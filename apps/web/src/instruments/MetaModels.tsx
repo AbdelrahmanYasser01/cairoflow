@@ -63,9 +63,9 @@ function Row({
       {large ? (
         <dl className="m-0 mt-2.5 flex flex-wrap gap-x-5 gap-y-1">
           {facts.map((fact) => (
-            <div key={fact.label} className="min-w-0">
-              <dd className="m-0 font-display text-num-s leading-none font-medium text-paint-1">{fact.value}</dd>
+            <div key={fact.label} className="flex min-w-0 flex-col-reverse">
               <dt className="mono mt-0.5 text-paint-3">{fact.label}</dt>
+              <dd className="m-0 font-display text-num-s leading-none font-medium text-paint-1">{fact.value}</dd>
             </div>
           ))}
         </dl>

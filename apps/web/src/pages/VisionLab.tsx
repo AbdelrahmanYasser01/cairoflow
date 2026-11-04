@@ -602,7 +602,7 @@ function Ready({
                       title="Every stored position of every track, drawn faintly. No video pixels."
                     >
                       <span aria-hidden="true" className="lamp-live inline-block size-1.5 bg-ev-approximated" />
-                      {`Long exposure · ${loaded.tracks.length.toLocaleString("en-US")} tracks · no video`}
+                      Long exposure · every stored track · no video
                     </p>
                   </>
                 )}
