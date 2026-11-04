@@ -122,7 +122,12 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1">
                   <EvidenceBadge kind={countEvidence} note={`${pairing.main} count`} />
-                  {pairing.paired ? <EvidenceBadge kind="observed" note="NGSIM band" /> : null}
+                  {pairing.paired ? (
+                    <span className="mono inline-flex items-center gap-2 text-paint-2">
+                      <span aria-hidden="true" className="inline-block h-2 w-5 bg-ev-observed/25" />
+                      NGSIM published, pale band
+                    </span>
+                  ) : null}
                   <EvidenceBadge kind="assumed" note="Schematic paths" />
                   {coverage ? <OutsideWindow coverage={coverage} /> : null}
                 </div>

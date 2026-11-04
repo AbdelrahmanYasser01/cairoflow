@@ -203,12 +203,12 @@ export function JunctionFlows({
           <pattern id="cf-grid" width="40" height="40" patternUnits="userSpaceOnUse">
             <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--rule-1)" strokeWidth="0.6" opacity="0.55" />
           </pattern>
-          <filter id="cf-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <filter id="cf-glow" x={-0.2} y={-0.2} width={1.4} height={1.4}>
             <feGaussianBlur stdDeviation="6" />
           </filter>
-          <radialGradient id="cf-vignette" cx="50%" cy="50%" r="65%">
-            <stop offset="55%" stopColor="var(--asphalt-0)" stopOpacity="0" />
-            <stop offset="100%" stopColor="var(--asphalt-0)" stopOpacity="0.9" />
+          <radialGradient id="cf-vignette" cx={0.5} cy={0.5} r={0.65}>
+            <stop offset={0.55} stopColor="var(--asphalt-0)" stopOpacity="0" />
+            <stop offset={1} stopColor="var(--asphalt-0)" stopOpacity="0.9" />
           </radialGradient>
         </defs>
         <rect width={VIEW.width} height={VIEW.height} fill="url(#cf-grid)" />
