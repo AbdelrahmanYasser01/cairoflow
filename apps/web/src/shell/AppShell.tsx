@@ -3,7 +3,7 @@ import { Suspense, useEffect, useRef, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button, DUR, EASE, EVIDENCE_KINDS, EvidenceBadge, Label, Select, pageVariants } from "../design";
 import { analysisName } from "../domain/analyses";
-import { ACTIVE_SITE, siteName } from "../domain/site";
+import { ACTIVE_SITE, SITE_NAME_NOTE, siteName } from "../domain/site";
 import { analysisLabel, useAnalysis } from "../state/analysis";
 import { Mark } from "./icons";
 import { ROUTES } from "./routes";
@@ -134,13 +134,13 @@ function AnalysisControl() {
   if (state.status === "ready" && options.length > 0) {
     return (
       <span className="flex min-w-0 items-baseline gap-2">
-        <span className="mono hidden shrink-0 text-paint-3 lg:inline">Analysis</span>
+        <span className="mono hidden shrink-0 text-paint-3 min-[1600px]:inline">Analysis</span>
         <Select
           label="Active analysis"
           value={state.analysis.id}
           options={options}
           onChange={select}
-          className="min-w-0 max-w-[20rem]"
+          className="min-w-0 max-w-[16rem]"
         />
       </span>
     );
@@ -160,19 +160,13 @@ function SiteLine() {
       </p>
     );
   }
+  // The one place the app says where and when this is, and what it is for.
+  const where = `${ACTIVE_SITE.city}, ${ACTIVE_SITE.year} · decision support only`;
   return (
-    <p className="mono flex min-w-0 items-baseline gap-2">
-      <span className="hidden text-paint-3 min-[1600px]:inline">Site</span>
-      <span className="truncate text-paint-3 lg:hidden">
-        {ACTIVE_SITE.dataset} {ACTIVE_SITE.street}, {ACTIVE_SITE.city}, {ACTIVE_SITE.year}
-      </span>
-      <span className="hidden truncate text-paint-1 lg:inline">
-        <span className="hidden min-[1600px]:inline">{ACTIVE_SITE.dataset} </span>
-        {siteName(ACTIVE_SITE)}
-      </span>
-      <span className="hidden whitespace-nowrap text-paint-3 min-[1400px]:inline">
-        {ACTIVE_SITE.city}, {ACTIVE_SITE.year}
-      </span>
+    <p className="mono flex min-w-0 items-baseline gap-2" title={SITE_NAME_NOTE}>
+      <span className="truncate text-paint-3 lg:hidden">{`${ACTIVE_SITE.street} · ${where}`}</span>
+      <span className="hidden truncate text-paint-1 lg:inline">{siteName(ACTIVE_SITE)}</span>
+      <span className="hidden whitespace-nowrap text-paint-3 min-[1240px]:inline">{where}</span>
     </p>
   );
 }
@@ -195,11 +189,15 @@ function ContextStrip() {
         <span aria-hidden="true" className="hidden h-4 border-l border-rule-2 lg:block" />
         <SiteLine />
       </div>
-      <div className="hidden shrink-0 items-center gap-1 md:flex">
-        <Label className="mr-2 hidden whitespace-nowrap min-[1280px]:inline">Evidence key</Label>
-        {EVIDENCE_KINDS.map((kind) => (
-          <EvidenceBadge key={kind} kind={kind} compact tooltipSide="bottom" tooltipAlign="end" />
-        ))}
+      <div className="hidden shrink-0 items-center gap-2 md:flex">
+        <Label className="hidden whitespace-nowrap min-[1600px]:inline">Key</Label>
+        <ul aria-label="Evidence key" className="m-0 flex list-none items-center border border-rule-1 bg-asphalt-1 p-0">
+          {EVIDENCE_KINDS.map((kind) => (
+            <li key={kind} className="border-r border-rule-1 px-0.5 last:border-r-0">
+              <EvidenceBadge kind={kind} compact tooltipSide="bottom" tooltipAlign="end" />
+            </li>
+          ))}
+        </ul>
       </div>
     </header>
   );

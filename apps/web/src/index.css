@@ -257,3 +257,93 @@
     color: var(--paint-3);
   }
 }
+
+/* Console layer: section eyebrows, the hero's survey grid and sweep, and the track stage. */
+@layer components {
+  /* A section's name, in the instrument voice: small, spaced, quiet. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    line-height: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--paint-3);
+  }
+
+  .eyebrow-dot::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 8px;
+    vertical-align: 1px;
+    background: var(--amber);
+  }
+
+  /* A survey grid under the junction: metres made visible, fading toward the edges. */
+  .survey-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--rule-1) 55%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--rule-1) 55%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 70% at 68% 62%, #000 30%, transparent 80%);
+  }
+
+  /* One slow sweep across the plan, like a scanner pass. Off for reduced motion. */
+  .scan-sweep {
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 46%,
+      color-mix(in srgb, var(--ev-approximated) 5%, transparent) 49.4%,
+      color-mix(in srgb, var(--ev-approximated) 22%, transparent) 50%,
+      transparent 50.15%
+    );
+    background-size: 200% 100%;
+    animation: cf-sweep 9s linear infinite;
+  }
+
+  @keyframes cf-sweep {
+    from {
+      background-position: 120% 0;
+    }
+    to {
+      background-position: -20% 0;
+    }
+  }
+
+  /* A lamp that is on: replay running. */
+  .lamp-live {
+    animation: cf-lamp 1.6s ease-in-out infinite;
+  }
+
+  @keyframes cf-lamp {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  /* The track stage with no video: a dark plate with a fine grid, so tracks read as drawn data. */
+  .track-plate {
+    background-color: #07090b;
+    background-image:
+      radial-gradient(ellipse 80% 70% at 50% 50%, color-mix(in srgb, var(--ev-approximated) 5%, transparent), transparent 70%),
+      linear-gradient(to right, color-mix(in srgb, var(--rule-1) 45%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--rule-1) 45%, transparent) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      32px 32px,
+      32px 32px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scan-sweep,
+    .lamp-live {
+      animation: none;
+    }
+  }
+}
