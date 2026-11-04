@@ -96,7 +96,7 @@ function WithheldValue({ what, withheld }: { what: string; withheld: Withheld })
   );
 }
 
-function Kpi({ metric, record }: { metric: Metric; record: AnalysisRecord }) {
+function Kpi({ metric, record, quiet }: { metric: Metric; record: AnalysisRecord; quiet: boolean }) {
   const { value, unit, format } = readMetric(metric);
   const withheld = withheldBy(record, metric);
   const counted = windowCount(record, metric);
@@ -119,7 +119,7 @@ function Kpi({ metric, record }: { metric: Metric; record: AnalysisRecord }) {
               Not available
             </span>
             <span className="mt-4 block">
-              <Absent reason={plainReason(metric.reason)} className="text-micro" />
+              <Absent reason={plainReason(metric.reason)} quiet={quiet} className="text-micro" />
             </span>
           </>
         ) : (
@@ -145,11 +145,28 @@ function Kpi({ metric, record }: { metric: Metric; record: AnalysisRecord }) {
 
 /** Headline figures: large numerals on hairlines, each with its gate status and evidence kind. */
 export function Kpis({ metrics, record }: { metrics: readonly Metric[]; record: AnalysisRecord }) {
+  // Figures absent for one shared reason say it once, under the row.
+  const absent = metrics.filter((metric) => metric.value == null && !withheldBy(record, metric) && !windowCount(record, metric));
+  const reasons = new Set(absent.map((metric) => plainReason(metric.reason)));
+  const shared = absent.length > 1 && reasons.size === 1 ? ([...reasons][0] as string) : null;
   return (
-    <dl className="m-0 grid grid-cols-2 divide-rule-1 border-y border-rule-2 lg:grid-cols-4 lg:divide-x">
-      {metrics.map((metric) => (
-        <Kpi key={metric.metric_id} metric={metric} record={record} />
-      ))}
-    </dl>
+    <>
+      <dl className="m-0 grid grid-cols-2 divide-rule-1 border-y border-rule-2 lg:grid-cols-4 lg:divide-x">
+        {metrics.map((metric) => (
+          <Kpi
+            key={metric.metric_id}
+            metric={metric}
+            record={record}
+            quiet={shared !== null && absent.includes(metric)}
+          />
+        ))}
+      </dl>
+      {shared ? (
+        <p className="mono m-0 mt-2 flex items-center justify-end gap-2 text-micro text-paint-3">
+          <span aria-hidden="true" className="inline-block h-[2px] w-3 bg-paint-4" />
+          {shared}
+        </p>
+      ) : null}
+    </>
   );
 }
