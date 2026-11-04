@@ -461,7 +461,7 @@ function Ready({
   const maskNote = overlayMode === "masks" && masks && reading.frame !== null ? maskFrameNote(masks, reading.frame) : null;
   const samRows = tracks.filter((track) => track.samRefined).length;
   const speedStored = findMetric(record, "speed.mean_moving")?.value != null;
-  const onFrame = samRows > 0 ? `${tracks.length} on frame, ${samRows} with a SAM box` : `${tracks.length} on frame`;
+  const onFrame = samRows > 0 ? `${tracks.length} on frame · ${samRows} SAM boxes` : `${tracks.length} on frame`;
 
   const videoWidth = Math.max(
     320,
@@ -650,7 +650,7 @@ function Ready({
         </div>
         <Panel
           title="Tracks on this frame"
-          meta={<Label>{speedStored ? onFrame : `${onFrame}. Speed withheld for this run`}</Label>}
+          meta={<Label>{speedStored ? onFrame : `${onFrame} · speed withheld`}</Label>}
           className="flex min-h-48 flex-1 flex-col lg:min-h-0"
         >
           <TrackList tracks={tracks} selected={selected} speed={speedStored} onPick={pick} />
