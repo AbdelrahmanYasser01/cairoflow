@@ -55,3 +55,6 @@ cache/muse/*
 *.pth
 *.ckpt
 *.safetensors
+
+# Ruflo plugin runtime state (local session data, not project code)
+.claude-flow/
