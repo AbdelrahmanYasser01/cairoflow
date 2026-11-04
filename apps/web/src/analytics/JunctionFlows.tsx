@@ -129,7 +129,7 @@ function Callout({
         {ARM_NAMES[arm].from.toUpperCase()}
       </text>
       {rows.map((cell, index) => {
-        const y = spot.y + 24 + index * 22;
+        const y = spot.y + 26 + index * 24;
         const lit = isLit(cell);
         const ref = pairing.paired && cell.reference_count != null ? ` / ${cell.reference_count}` : "";
         return (
@@ -140,8 +140,8 @@ function Callout({
             onMouseLeave={() => onActive(null)}
             style={{ cursor: "default", transition: "opacity 200ms" }}
           >
-            <rect x={end ? spot.x - 150 : spot.x - 4} y={y - 15} width={154} height={20} fill="transparent" />
-            <text x={spot.x} y={y} textAnchor={spot.anchor} fontSize={13}>
+            <rect x={end ? spot.x - 176 : spot.x - 4} y={y - 17} width={180} height={23} fill="transparent" />
+            <text x={spot.x} y={y} textAnchor={spot.anchor} fontSize={15}>
               {end ? (
                 <>
                   <tspan fill="var(--paint-3)">{`${turnLabel(cell.turn)}  `}</tspan>

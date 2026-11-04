@@ -140,7 +140,7 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
 
         <Instrument className="col-span-12 lg:col-span-4">
           <Panel
-            title="Origin to exit"
+            title="Movement counts"
             meta={<Label>{pairing.paired ? "Camera · NGSIM" : `${pairing.main} count`}</Label>}
           >
             {placeable ? (
