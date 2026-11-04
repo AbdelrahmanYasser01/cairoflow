@@ -73,7 +73,10 @@ function HypothesisCard({
   return (
     <li className="flex min-w-0 flex-col gap-3 border border-rule-1 bg-asphalt-1 p-4">
       <div className="flex items-center justify-between gap-3">
-        <span className="mono truncate text-label text-paint-1">{hypothesis.hypothesis_id}</span>
+        <span className="mono flex min-w-0 items-center gap-2 text-label text-paint-1" title="Model output">
+          <EvidenceGlyph kind="model_generated" size={9} />
+          <span className="truncate">{hypothesis.hypothesis_id}</span>
+        </span>
         <ConfidenceMeter level={hypothesis.confidence} />
       </div>
       <ModelQuote text={hypothesis.statement} lines={4} />

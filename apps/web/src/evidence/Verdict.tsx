@@ -119,7 +119,7 @@ export function SimulationMatrix({ decision, index }: { decision: DecisionSummar
                   </span>
                 </th>
               ))}
-              <th className="pb-2 pl-3 text-right align-bottom">
+              <th className="pb-2 pl-3 text-right align-bottom whitespace-nowrap">
                 <Kicker>On all {members.length}</Kicker>
               </th>
             </tr>
@@ -151,26 +151,26 @@ export function SimulationMatrix({ decision, index }: { decision: DecisionSummar
                         className="py-3 pl-3 align-middle"
                         aria-label={`${verdict.candidate} on ${member.member}: ${worse} measures worse, ${cell.confirmed?.length ?? 0} better, mean delay ${signedSeconds(cell.mean_delay_difference_s)} s`}
                       >
-                        <span className="inline-flex items-center gap-3 border border-rule-1 bg-asphalt-1 px-2.5 py-2">
+                        <span className="inline-flex items-center gap-3 border border-rule-1 bg-asphalt-1 px-2.5 py-2 transition-colors duration-150 hover:border-paint-4">
                           <Glyph cell={cell} measures={measures} delay={0.1 + (row * members.length + col) * 0.05} />
-                          <span className="flex flex-col">
+                          <span className="flex flex-col whitespace-nowrap">
                             <span
                               className={`mono text-label leading-none ${cell.mean_delay_difference_s > 0 ? "text-stop" : "text-paint-2"}`}
                               title="Mean delay against baseline, s. Above zero is worse."
                             >
                               {signedSeconds(cell.mean_delay_difference_s)}
                             </span>
-                            <span className="mono mt-1 text-micro leading-none text-paint-4">Δ delay s</span>
+                            <span className="mono mt-1 text-micro leading-none whitespace-nowrap text-paint-4">Δ delay, s</span>
                           </span>
                         </span>
                       </td>
                     );
                   })}
                   <td className="py-3 pl-3 text-right align-middle">
-                    <span className="mono block text-label text-stop" title={verdict.robust_harm.map(measureName).join(", ")}>
+                    <span className="mono block text-label whitespace-nowrap text-stop" title={verdict.robust_harm.map(measureName).join(", ")}>
                       {`${verdict.robust_harm.length} worse`}
                     </span>
-                    <span className="mono block text-label text-paint-3" title={verdict.common_confirmed.map(measureName).join(", ") || "None"}>
+                    <span className="mono block text-label whitespace-nowrap text-paint-3" title={verdict.common_confirmed.map(measureName).join(", ") || "None"}>
                       {`${verdict.common_confirmed.length} better`}
                     </span>
                   </td>
