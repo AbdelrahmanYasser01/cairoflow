@@ -122,7 +122,7 @@ export function WithheldBlock({ what, withheld, note }: { what: string; withheld
   return (
     <div className="mt-3 border-l-2 border-stop pl-4">
       <p className="m-0 max-w-[40rem] leading-snug text-paint-1">
-        {`${what} failed a check this run was held to, so no figure is shown here and none is estimated in its place.`}
+        {`${what} failed its gate: no figure, and none is estimated in its place.`}
       </p>
       {note ? <p className="m-0 mt-2 max-w-[40rem] leading-snug text-paint-2">{note}</p> : null}
       <details className="mt-2 max-w-[26rem]">

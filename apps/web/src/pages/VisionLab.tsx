@@ -95,7 +95,7 @@ const REFERENCE_SYNC_NOTE = "Published positions, not frame-synced: moving boxes
 /** Room the left column keeps for its heading, transport and attribution, in pixels. */
 const HEAD_PX = 112;
 const FOOT_PX = 126;
-const NOTICE_PX = 118;
+const NOTICE_PX = 56;
 const PROGRESS_PX = 160;
 const SIDE_MIN_PX = 392;
 /** The aspect of the stage before a job has given it one: the camera's. */
@@ -597,6 +597,13 @@ function Ready({
                       onPick={pick}
                     />
                     <FrameCorners />
+                    <p
+                      className="eyebrow pointer-events-none absolute top-2 left-2 m-0 flex items-center gap-2 bg-asphalt-0/80 px-2 py-1"
+                      title="Every stored position of every track, drawn faintly. No video pixels."
+                    >
+                      <span aria-hidden="true" className="lamp-live inline-block size-1.5 bg-ev-approximated" />
+                      {`Long exposure · ${loaded.tracks.length.toLocaleString("en-US")} tracks · no video`}
+                    </p>
                   </>
                 )}
               </div>
