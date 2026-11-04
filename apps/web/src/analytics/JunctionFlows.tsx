@@ -238,12 +238,9 @@ export function JunctionFlows({
             )}
           </motion.div>
         ) : (
-          <div className="flex items-baseline gap-3">
-            <span className="font-display text-num-m leading-none font-medium text-paint-1">
-              {movements.filter((cell) => cell.count != null).length}
-            </span>
-            <Label>Movements · width is count</Label>
-          </div>
+          <Label>
+            {`${movements.filter((cell) => cell.count != null && (focus === null || cell.approach === focus)).length} movements · ribbon width = vehicles`}
+          </Label>
         )}
       </div>
       <svg
@@ -362,12 +359,15 @@ export function JunctionFlows({
           <text x={10} y={cy + 4}>W</text>
         </g>
 
-        {ARMS.map((arm) => {
-          const cells = movements.filter((cell) => cell.approach === arm && cell.count != null);
-          return cells.length > 0 ? (
-            <Callout key={arm} arm={arm} cells={cells} pairing={pairing} isLit={isLit} onActive={onActive} />
-          ) : null;
-        })}
+        {/* Callouts shrink with the plan; on a phone the table below carries every value. */}
+        <g className="max-sm:hidden">
+          {ARMS.map((arm) => {
+            const cells = movements.filter((cell) => cell.approach === arm && cell.count != null);
+            return cells.length > 0 ? (
+              <Callout key={arm} arm={arm} cells={cells} pairing={pairing} isLit={isLit} onActive={onActive} />
+            ) : null;
+          })}
+        </g>
       </svg>
 
     </div>

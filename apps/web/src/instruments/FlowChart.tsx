@@ -94,7 +94,7 @@ export function FlowChart({
               </text>
             </g>
           ))}
-          {shown !== null && shownValue !== null ? (
+          {hover !== null && shown !== null && shownValue !== null ? (
             <line
               x1={x(shown) + bar / 2}
               x2={x(shown) + bar / 2}
@@ -167,7 +167,7 @@ export function FlowChart({
               fontFamily="var(--font-mono)"
               fontSize="13"
             >
-              {shownValue}
+              {hover === null ? `Peak ${shownValue}` : shownValue}
             </text>
           ) : null}
         </svg>

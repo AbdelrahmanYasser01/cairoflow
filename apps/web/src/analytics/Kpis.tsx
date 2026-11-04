@@ -61,14 +61,14 @@ function ShareBar({ share }: { share: number }) {
   );
 }
 
-/** The check that passed this figure, in one line: "Speed error 0.48 m/s · limit 1 m/s". */
-function CheckLine({ record, metric }: { record: AnalysisRecord; metric: string }) {
+/** The check that passed this figure, in one line: "Checked · median speed error …, limit …". */
+function CheckLine({ record, metric, name }: { record: AnalysisRecord; metric: string; name?: string }) {
   const gate = (record.gates ?? []).find((item) => item.metric === metric && item.passed);
   if (!gate || gate.measured == null) return null;
   return (
     <span className="mono mt-4 block text-micro text-paint-3">
       <span className="text-go">Checked</span>
-      {` · ${gateName(gate.metric).toLowerCase()} ${gateReading(gate.metric, gate.measured)}, limit ${gateLimit(gate.metric, gate.threshold)}`}
+      {` · ${name ?? gateName(gate.metric).toLowerCase()} ${gateReading(gate.metric, gate.measured)}, limit ${gateLimit(gate.metric, gate.threshold)}`}
     </span>
   );
 }
@@ -103,11 +103,11 @@ function Kpi({ metric, record, quiet }: { metric: Metric; record: AnalysisRecord
   const label = counted ? "Entering vehicles" : metric.label;
   return (
     <div
-      className={`relative min-w-0 px-5 py-4 first:pl-0 ${withheld ? "bg-[repeating-linear-gradient(135deg,transparent_0_7px,color-mix(in_oklab,var(--stop)_9%,transparent)_7px_8px)]" : ""}`}
+      className={`relative min-w-0 px-5 py-4 max-lg:odd:pl-0 lg:first:pl-0 ${withheld ? "bg-[repeating-linear-gradient(135deg,transparent_0_7px,color-mix(in_oklab,var(--stop)_9%,transparent)_7px_8px)]" : ""}`}
     >
       {withheld ? <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[2px] bg-stop" /> : null}
       <dt className="flex items-center gap-2">
-        <Label className="min-w-0 truncate uppercase tracking-[0.08em]">{label}</Label>
+        <Label className="min-w-0 leading-tight whitespace-normal uppercase tracking-[0.08em]">{label}</Label>
         <StatusMark status={metric.status} bare note={metric.reason} />
       </dt>
       <dd className="m-0 mt-3">
@@ -135,7 +135,7 @@ function Kpi({ metric, record, quiet }: { metric: Metric; record: AnalysisRecord
         )}
         {metric.metric_id === "vehicles.total" && value !== null ? <ClassMix record={record} /> : null}
         {metric.metric_id === "speed.mean_moving" && metric.status === "gate_pass" ? (
-          <CheckLine record={record} metric="speed_abs_error_median_m_s" />
+          <CheckLine record={record} metric="speed_abs_error_median_m_s" name="median speed error" />
         ) : null}
         {metric.metric_id === "stopped.share" && metric.value != null ? <ShareBar share={metric.value} /> : null}
       </dd>
@@ -164,7 +164,7 @@ export function Kpis({ metrics, record }: { metrics: readonly Metric[]; record: 
       {shared ? (
         <p className="mono m-0 mt-2 flex items-center justify-end gap-2 text-micro text-paint-3">
           <span aria-hidden="true" className="inline-block h-[2px] w-3 bg-paint-4" />
-          {shared}
+          {shared.replace(/^Withheld:\s*/, "Not measured: ")}
         </p>
       ) : null}
     </>

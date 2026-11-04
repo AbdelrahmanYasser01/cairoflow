@@ -12,12 +12,14 @@ import {
 } from "../design";
 import { Instrument, PageHead } from "../design/Instrument";
 import { isCalibrated, measuredCoverage } from "../domain/footage";
-import { countsNote, recordWords, withheldBy } from "../domain/gates";
+import { recordWords, withheldBy } from "../domain/gates";
 import { enteringRule, entryBins, findMetric, plainReason } from "../domain/metrics";
 import { ARMS, ARM_NAMES } from "../domain/vocabulary";
 import { AgreementPlot } from "../analytics/AgreementPlot";
 import { JunctionFlows, type Pairing } from "../analytics/JunctionFlows";
 import { Kpis } from "../analytics/Kpis";
+import { MovementRank } from "../analytics/MovementRank";
+import { splitNote } from "../analytics/notes";
 import { OdMatrix } from "../analytics/OdMatrix";
 import { RunStrip } from "../analytics/RunStrip";
 import { WithheldBand } from "../analytics/WithheldBand";
@@ -35,6 +37,7 @@ const ARM_OPTIONS = [
 
 const HEADLINE = ["vehicles.total", "flow.entering", "speed.mean_moving", "stopped.share"];
 const POOLED = "Turning check pooled over held-out blocks, not per movement.";
+const cameraWords = (label: string) => label.replace(/^Placement\b/, "Camera placement");
 
 function Limits({ lines }: { lines: readonly string[] }) {
   if (lines.length === 0) return null;
@@ -130,11 +133,11 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
                   {pairing.paired ? (
                     <span className="mono inline-flex items-center gap-2 text-paint-2">
                       <span aria-hidden="true" className="inline-block h-2 w-5 bg-ev-observed/25" />
-                      NGSIM published, pale band
+                      NGSIM published
                     </span>
                   ) : null}
                   <EvidenceBadge kind="assumed" note="Schematic paths" />
-                  {coverage ? <OutsideWindow coverage={coverage} /> : null}
+                  {coverage ? <OutsideWindow coverage={{ ...coverage, label: cameraWords(coverage.label) }} /> : null}
                 </div>
               </>
             ) : (
@@ -151,20 +154,27 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
             {placeable ? (
               <>
                 <OdMatrix movements={movements} pairing={pairing} focus={picked} active={active} onActive={setActive} />
-                <AgreementPlot
-                  record={record}
-                  movements={movements}
-                  pairing={pairing}
-                  active={active}
-                  onActive={setActive}
-                />
+                {pairing.paired ? (
+                  <AgreementPlot
+                    record={record}
+                    movements={movements}
+                    pairing={pairing}
+                    active={active}
+                    onActive={setActive}
+                  />
+                ) : (
+                  <MovementRank
+                    movements={movements}
+                    pairing={pairing}
+                    focus={picked}
+                    active={active}
+                    onActive={setActive}
+                  />
+                )}
               </>
             ) : (
               <p className="mt-3 text-paint-2">No movements recorded.</p>
             )}
-            {withheldFlow && placeable ? (
-              <p className="mono mt-3 text-micro text-paint-3">Row sums are not entering counts.</p>
-            ) : null}
           </Panel>
         </Instrument>
 
@@ -182,7 +192,7 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
             }
           >
             {withheldFlow && series ? (
-              <WithheldBand series={series} withheld={withheldFlow} note={countsNote(record)} />
+              <WithheldBand series={series} withheld={withheldFlow} note={splitNote(record)} />
             ) : absentFlow ? (
               <EmptyState className="mt-3" title="No entering flow" reason={plainReason(absentFlow.reason)} />
             ) : series ? (

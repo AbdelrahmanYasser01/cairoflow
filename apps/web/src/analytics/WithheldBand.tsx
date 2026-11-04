@@ -19,7 +19,7 @@ export function WithheldBand({
 }: {
   series: MetricSeries;
   withheld: Withheld;
-  note: string | null;
+  note: readonly string[] | null;
 }) {
   const [ref, { width }] = useElementSize<HTMLDivElement>();
   const bins = series.values.length;
@@ -84,7 +84,7 @@ export function WithheldBand({
         </div>
       </div>
       <div className="mt-1 flex items-baseline justify-between gap-4">
-        <Label>{`${bins} bins of ${series.bin_s} s · none drawn`}</Label>
+        <Label>{`${bins} bins of ${series.bin_s} s`}</Label>
         <Label>Seconds from start</Label>
       </div>
       <details className="group mt-4 border-t border-rule-1 pt-3">
@@ -93,7 +93,15 @@ export function WithheldBand({
           Why entering flow is withheld
         </summary>
         <div className="mt-3 grid gap-6 pl-4 md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
-          {note ? <p className="m-0 max-w-[38rem] leading-snug text-paint-2">{note}</p> : null}
+          {note ? (
+            <ul className="m-0 max-w-[38rem] list-none p-0">
+              {note.map((line) => (
+                <li key={line} className="border-b border-rule-1 py-1.5 leading-snug text-paint-2 last:border-b-0">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          ) : null}
           <WithheldCheck withheld={withheld} />
         </div>
       </details>

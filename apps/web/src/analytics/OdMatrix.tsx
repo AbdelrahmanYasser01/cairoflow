@@ -95,13 +95,13 @@ export function OdMatrix({
                       />
                       <span className="relative flex items-baseline justify-between gap-1">
                         <span className="font-display text-num-s leading-none font-medium text-paint-1">{cell.count}</span>
-                        <span className="mono text-paint-3" aria-label={turnLabel(cell.turn)}>
+                        <span className={`mono ${share > 0.6 ? "text-paint-1" : "text-paint-3"}`} aria-label={turnLabel(cell.turn)}>
                           {TURN_GLYPH[cell.turn] ?? turnLabel(cell.turn)}
                         </span>
                       </span>
                       <span className="relative block">
                         {ref !== null ? (
-                          <span className="mono block text-micro text-paint-2">{`NGSIM ${ref}`}</span>
+                          <span className="mono block text-micro whitespace-nowrap text-paint-2" title={`NGSIM ${ref}`}>{`/ ${ref}`}</span>
                         ) : null}
                         <span aria-hidden="true" className="mt-1 block h-[3px] bg-asphalt-0/60">
                           <span className="block h-full" style={{ width: `${(cell.count / largest) * 100}%`, background: colour }} />

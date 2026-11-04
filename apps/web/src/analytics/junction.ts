@@ -90,7 +90,8 @@ export function ribbons(movements: readonly MovementCell[]): Ribbon[] {
     const end = at(to, FAR[to] + 4, b, exitSide(to));
     const reach = Math.hypot(enter[0] - stop[0], enter[1] - stop[1]) * (cell.turn === "through" ? 0.42 : 0.5);
     const c1 = add(stop, OUT[from], -reach);
-    const c2 = add(enter, OUT[to], reach);
+    // Both control points sit inside the junction, so the curve leaves the stop line heading out.
+    const c2 = add(enter, OUT[to], -reach);
     const f = (p: Vec) => `${p[0].toFixed(1)} ${p[1].toFixed(1)}`;
     return {
       key,

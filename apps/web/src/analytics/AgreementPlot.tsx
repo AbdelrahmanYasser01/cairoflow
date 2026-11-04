@@ -46,10 +46,12 @@ export function AgreementPlot({
   return (
     <div className="mt-6">
       <div className="flex items-baseline justify-between gap-3 border-b border-rule-1 pb-2">
-        <Label tone="body">Camera vs NGSIM, per movement</Label>
+        <Label tone="body">Camera vs NGSIM</Label>
         {gate && gate.measured != null ? (
           <span className="mono text-micro text-paint-3">
-            <span className={gate.passed ? "text-go" : "text-stop"}>{gate.passed ? "Checked" : "Failed"}</span>
+            <span className={gate.passed ? "text-go" : "text-stop"}>
+              {gate.passed ? "Pooled check passed" : "Pooled check failed"}
+            </span>
             {` · ${gateReading(gate.metric, gate.measured)}, limit ${gateLimit(gate.metric, gate.threshold)}`}
           </span>
         ) : null}
