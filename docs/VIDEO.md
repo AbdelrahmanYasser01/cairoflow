@@ -191,7 +191,8 @@ records:
 | `vision` | `/vision` | 15-minute study: Tracks, Play, Boxes. |
 | `sam` | `/vision` | The SAM 3.1 window: Masks, Play. |
 
-The other clips use the DevTools screencast, so they keep real time and only cost what the page repaints.
+The other clips use the DevTools screencast, so motion keeps its true pace and a clip only costs what the
+page repaints.
 Clips land in `video/public/captures/` (Git-ignored) with `manifest.json`; `render.mjs` reads it and passes
 the clips to the composition as props. A clip that is missing renders as a labelled empty frame, never a
 failure.

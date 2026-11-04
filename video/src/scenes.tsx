@@ -306,8 +306,8 @@ export function Analytics({ dur, captures }: SceneProps) {
 /* 8. The gate: seven instruments against one line drawn before the read. */
 export function Gate({ dur }: SceneProps) {
   const frame = useCurrentFrame();
-  const top = 330;
-  const rowH = 88;
+  const top = 304;
+  const rowH = 80;
   const trackX = 600;
   const trackW = 860;
   const lineX = trackX + trackW * 0.72;
@@ -405,7 +405,7 @@ export function Gate({ dur }: SceneProps) {
           }}
         />
       ) : null}
-      <Rise at={440}style={{ position: "absolute", left: M, top: 980 - 70, fontFamily: F.display, fontWeight: 600, fontSize: 54, color: C.paint1 }}>
+      <Rise at={440} style={{ position: "absolute", left: M, top: 900, fontFamily: F.display, fontWeight: 600, fontSize: 54, color: C.paint1 }}>
         Six pass. One misses by <span style={{ color: C.stop }}>{MISS}</span>.
       </Rise>
     </SceneFade>
@@ -474,7 +474,7 @@ export function Muse({ dur }: SceneProps) {
   const frame = useCurrentFrame();
   const listX = 1250;
   const listY = 196;
-  const rowH = 30;
+  const rowH = 26;
   const chipY = 700;
   return (
     <SceneFade dur={dur}>

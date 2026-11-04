@@ -188,8 +188,7 @@ export function StatusMark({ status, style, size = 22 }: { status: Status; style
 
 /** Near-black room with a faint survey grid and a vignette, so flat scenes still have depth. */
 export function Backdrop({ grid = true, glow = 0.12 }: { grid?: boolean; glow?: number }) {
-  const frame = useCurrentFrame();
-  const drift = (frame * 0.15) % 80;
+  // Static on purpose: an unchanged layer is not repainted between frames, which keeps renders fast.
   return (
     <AbsoluteFill style={{ background: C.bg }}>
       {grid ? (
@@ -197,7 +196,7 @@ export function Backdrop({ grid = true, glow = 0.12 }: { grid?: boolean; glow?: 
           style={{
             backgroundImage: `linear-gradient(${C.rule1}40 1px, transparent 1px), linear-gradient(90deg, ${C.rule1}40 1px, transparent 1px)`,
             backgroundSize: "80px 80px",
-            backgroundPosition: `${drift}px ${drift * 0.5}px`,
+            backgroundPosition: "-1px -1px",
           }}
         />
       ) : null}

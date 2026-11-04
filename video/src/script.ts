@@ -73,7 +73,7 @@ export const VO: [SceneId, number, number, string, boolean?][] = [
   ["gate", 0.6, 3.4, "Before a single held-out read, we committed limits for seven checks"],
   ["gate", 4.1, 3.2, "against the published NGSIM trajectories."],
   ["gate", 7.6, 5.0, "Recall. Matching. Position. Lanes. Turns. Speed."],
-  ["gate", 14.4, 5.2, "Six pass. Entering counts miss, by zero point zero zero three three."],
+  ["gate", 14.4, 5.2, "Six pass. Entering counts miss, by zero point zero zero three three.", false],
   ["withheld", 0.5, 4.2, "So the product withholds entering flow"],
   ["withheld", 4.9, 3.8, "and shows the reason in its place. The limit stays."],
   ["evidence", 0.4, 5.4, "Every headline figure carries its evidence, and its gate."],
