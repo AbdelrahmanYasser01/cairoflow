@@ -87,6 +87,8 @@ export function SimulationMatrix({ decision, index }: { decision: DecisionSummar
   const members = (decision.ensemble.members as MemberInfo[]).filter((member) => member.required);
   const seeds = decision.simulation.seeds.length;
   const candidates = decision.ensemble.candidates;
+  // The per-timeline lists ride beside the typed fields. Without them a cell would read as no change.
+  const listed = candidates.some((entry) => (entry.members as MemberCell[]).some((cell) => Array.isArray(cell.worsens)));
   return (
     <section id="simulation" className="scroll-mt-24">
       <SectionHead
@@ -103,7 +105,8 @@ export function SimulationMatrix({ decision, index }: { decision: DecisionSummar
         <span className="text-paint-1">{`${candidates.length} candidates × ${members.length} timelines × ${seeds} seeds`}</span>
         {` · ${SIMULATOR} · same replayed vehicles`}
       </p>
-      <div className="mt-4 overflow-x-auto">
+      {listed ? null : <p className="mono mt-4 text-label text-paint-3">Per-timeline measure lists not on record</p>}
+      <div className={`mt-4 overflow-x-auto ${listed ? "" : "hidden"}`}>
         <table className="w-full min-w-[40rem] border-collapse">
           <caption className="sr-only">Each candidate on each signal timeline: which measures got worse or better</caption>
           <thead>
@@ -180,7 +183,7 @@ export function SimulationMatrix({ decision, index }: { decision: DecisionSummar
           </tbody>
         </table>
       </div>
-      <MatrixKey />
+      {listed ? <MatrixKey /> : null}
       <BaselineFigures decision={decision} measures={measures} />
     </section>
   );
