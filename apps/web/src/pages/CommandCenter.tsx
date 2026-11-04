@@ -103,7 +103,7 @@ function Headline() {
   return (
     <>
       <GateStrip />
-      <p className="eyebrow eyebrow-dot mt-auto">NGSIM intersection 2</p>
+      <p className="eyebrow eyebrow-dot mt-auto pt-4">NGSIM intersection 2</p>
       <h1
         title={SITE_NAME_NOTE}
         className="mt-3 -ml-[0.035em] text-hero leading-[0.9] font-medium tracking-[-0.022em] xl:whitespace-nowrap"
