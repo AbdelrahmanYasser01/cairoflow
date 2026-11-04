@@ -1,6 +1,6 @@
 import { PerformanceMonitor } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Bloom, EffectComposer, ToneMapping } from "@react-three/postprocessing";
+import { Bloom, EffectComposer, ToneMapping, Vignette } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { EVIDENCE_KINDS, EmptyState, ErrorState, type EvidenceKind } from "../design";
@@ -359,6 +359,8 @@ function World({
         <EffectComposer multisampling={reduced ? 0 : 4} enableNormalPass={false}>
           <Bloom mipmapBlur intensity={0.9} luminanceThreshold={1.15} luminanceSmoothing={0.1} radius={0.62} />
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
+          {/* A soft falloff to the stage edge: keeps the eye on the junction, carries no data. */}
+          <Vignette offset={0.32} darkness={0.5} />
         </EffectComposer>
       ) : null}
     </>
