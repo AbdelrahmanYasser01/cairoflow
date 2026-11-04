@@ -55,3 +55,8 @@ cache/muse/*
 *.pth
 *.ckpt
 *.safetensors
+
+# Demo video (video/): dependencies, renders and captures of the app are rebuilt, not committed
+video/node_modules
+video/out
+video/public/captures
