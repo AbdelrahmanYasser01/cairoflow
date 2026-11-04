@@ -9,6 +9,7 @@ import "./analytics.css";
 const ARMS: readonly Arm[] = ["N", "E", "S", "W"];
 const TO_NAME: Record<Arm, string> = { N: "north", E: "east", S: "south", W: "west" };
 const turnLabel = (turn: string) => TURNS.find((item) => item.id === turn)?.label ?? turn;
+const POOLED_NOTE = "Turning counts were checked pooled over held-out blocks, not movement by movement.";
 
 export interface Pairing {
   /** The main count's own name: "Camera" for a camera run, "NGSIM" for the published file. */
@@ -192,6 +193,54 @@ export function JunctionFlows({
 
   return (
     <div className="relative">
+      {/* Readout for the movement under the pointer: a strip above the plan, never over it. */}
+      <div className="flex h-14 items-center gap-6 border-b border-rule-1" aria-live="polite">
+        {current ? (
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, x: -4 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: DUR.base, ease: EASE }}
+            className="flex min-w-0 items-center gap-6 border-l-2 border-amber pl-3"
+          >
+            <span className="min-w-0">
+              <Label tone="paint" className="block truncate">
+                {movementTitle(current)}
+              </Label>
+              <Label className="block">{current.turn === "through" ? "Through" : `${turnLabel(current.turn)} turn`}</Label>
+            </span>
+            <span className="flex items-baseline gap-1.5">
+              <span className="font-display text-num-m leading-none font-medium" style={{ color: colour }}>
+                {current.count ?? "–"}
+              </span>
+              <Label>{pairing.main}</Label>
+            </span>
+            {pairing.paired && current.reference_count != null ? (
+              <span className="flex items-baseline gap-1.5">
+                <span className="font-display text-num-m leading-none font-medium text-paint-2">
+                  {current.reference_count}
+                </span>
+                <Label>NGSIM</Label>
+              </span>
+            ) : null}
+            {current.status === "gate_pass" ? (
+              <span className="flex items-center gap-2">
+                <StatusMark status={current.status} bare note={POOLED_NOTE} />
+                <Label>Pooled check passed</Label>
+              </span>
+            ) : (
+              <StatusMark status={current.status} />
+            )}
+          </motion.div>
+        ) : (
+          <div className="flex items-baseline gap-3">
+            <span className="font-display text-num-m leading-none font-medium text-paint-1">
+              {movements.filter((cell) => cell.count != null).length}
+            </span>
+            <Label>Movements · width is count</Label>
+          </div>
+        )}
+      </div>
       <svg
         viewBox={`0 0 ${VIEW.width} ${VIEW.height}`}
         className="block h-auto w-full"
@@ -310,46 +359,6 @@ export function JunctionFlows({
         })}
       </svg>
 
-      {/* Readout for the movement under the pointer. */}
-      <div className="pointer-events-none absolute top-0 left-0 w-[min(19rem,32%)]">
-        {current ? (
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: DUR.base, ease: EASE }}
-            className="border-l-2 border-amber bg-asphalt-0/80 py-1 pl-3"
-          >
-            <Label tone="body">{`${movementTitle(current)} · ${turnLabel(current.turn)}`}</Label>
-            <div className="mt-1 flex items-baseline gap-5">
-              <span>
-                <span className="block font-display text-num-m leading-none font-medium" style={{ color: colour }}>
-                  {current.count ?? "–"}
-                </span>
-                <Label>{pairing.main}</Label>
-              </span>
-              {pairing.paired && current.reference_count != null ? (
-                <span>
-                  <span className="block font-display text-num-m leading-none font-medium text-paint-2">
-                    {current.reference_count}
-                  </span>
-                  <Label>NGSIM</Label>
-                </span>
-              ) : null}
-            </div>
-            <div className="mt-2">
-              <StatusMark status={current.status} />
-            </div>
-          </motion.div>
-        ) : (
-          <div className="py-1">
-            <span className="block font-display text-num-m leading-none font-medium text-paint-1">
-              {movements.filter((cell) => cell.count != null).length}
-            </span>
-            <Label>Movements · width is count</Label>
-          </div>
-        )}
-      </div>
     </div>
   );
 }
