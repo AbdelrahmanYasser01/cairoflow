@@ -332,11 +332,11 @@ export function DecisionVerdict({
               <Kicker>To recommend, both must hold</Kicker>
               <ul className="m-0 mt-3 flex list-none flex-col gap-0 p-0">
                 <li className="flex items-baseline justify-between gap-4 border-t border-rule-1 py-3">
-                  <CheckLamp ok={allowed}>Baseline validated</CheckLamp>
+                  <CheckLamp ok={allowed} title={decision?.baseline.summary}>Baseline validated</CheckLamp>
                   <span className="mono text-label text-paint-2">{status ? baselineLabel(status) : "Not assessed"}</span>
                 </li>
                 <li className="flex items-baseline justify-between gap-4 border-y border-rule-1 py-3">
-                  <CheckLamp ok={supported > 0}>{`Clean on all ${timelines || "required"} timelines`}</CheckLamp>
+                  <CheckLamp ok={supported > 0} title="Better on a measure and worse on none, on every required timeline">{`Clean on all ${timelines || "required"} timelines`}</CheckLamp>
                   <span className="mono text-label text-paint-2">{decision ? `${supported} of ${total}` : "None"}</span>
                 </li>
               </ul>
