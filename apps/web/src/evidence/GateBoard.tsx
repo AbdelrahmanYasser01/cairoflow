@@ -145,7 +145,10 @@ function Loupe({ gate }: { gate: GateOutcome }) {
       <div className="flex items-baseline justify-between gap-3">
         <span className="mono text-micro tracking-[0.1em] whitespace-nowrap text-stop uppercase">{`Magnified ×${zoom}`}</span>
         <span className="mono text-micro whitespace-nowrap text-paint-3">
-          <span className="text-stop">{`+${measuredWords(miss)}`}</span> over the limit
+          <span className="text-stop" title={`+${measuredWords(miss)}`}>
+            {unit === "share" ? `+${(miss * 100).toFixed(2)} pts` : `+${measuredWords(miss)}`}
+          </span>{" "}
+          over the limit
         </span>
       </div>
       <div className="relative mt-4 h-4">

@@ -1,0 +1,16 @@
+{
+  "format": "sam_block_extract/1",
+  "analysis_id": "cv-hero-sam",
+  "parent_analysis": "cv-hero-dev",
+  "label": "agreement with a correlated reference on dev frames, not accuracy",
+  "scope": "dev block 14, scoring path",
+  "measured_record": {
+    "path": "experiments/records/sam-refine-20261104T125401Z/measured.json",
+    "sha256": "94fe72f555961ef6b3825769f7055701333545c954ee577cda4c8be78f4e9653"
+  },
+  "replaced_rows": 586,
+  "replaced_rows_matched": 542,
+  "across_road_error_m": { "interpolated_position": 0.365, "sam_position": 0.286 },
+  "along_road_error_m": { "interpolated_position": 0.554, "sam_position": 0.583 },
+  "recall": { "before": 0.7909, "with_sam_boxes": 0.8367, "same_rows_interpolated": 0.8348 }
+}

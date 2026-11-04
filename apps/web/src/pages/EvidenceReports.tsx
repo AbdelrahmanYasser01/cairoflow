@@ -9,10 +9,10 @@ import { Limitations, RecordStrip } from "../evidence/Limits";
 import { useInView } from "../evidence/useInView";
 import { Candidates, Hypotheses } from "../evidence/Proposals";
 import { ChainGraph, PipelineFlow } from "../evidence/Provenance";
+import { SamPanel } from "../evidence/SamPanel";
 import { DecisionVerdict, SimulationMatrix } from "../evidence/Verdict";
 import { useChain } from "../instruments/Chain";
 import { ModelReading } from "../instruments/ModelReading";
-import { SamChanged } from "../instruments/SamChanged";
 import { DECISION_URL } from "../lib/analysis";
 import { analysisLabel, useAnalysis } from "../state/analysis";
 import { useDecision } from "../state/resources";
@@ -178,11 +178,11 @@ export function EvidenceReports() {
         ) : null}
         {loaded ? (
           <Instrument>
-            <SamChanged loaded={loaded} />
+            <SamPanel loaded={loaded} index={number("what-sam-changed")} />
           </Instrument>
         ) : null}
         <Instrument>
-          <ChainGraph stages={chain} waiting={waiting} index={number("provenance")} />
+          <ChainGraph stages={chain} waiting={waiting} index={number("provenance")} origin={record?.data_origin ?? null} />
         </Instrument>
         {record ? (
           <Instrument>
@@ -194,7 +194,7 @@ export function EvidenceReports() {
             <Limitations decision={paired} record={record} index={number("limitations")} />
           </Instrument>
         ) : null}
-        <Instrument className="grid grid-cols-1 gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <Instrument className="grid grid-cols-1 gap-y-10">
           <RecordStrip decision={paired} record={record} />
           {record ? <PlacementBar record={record} /> : null}
         </Instrument>

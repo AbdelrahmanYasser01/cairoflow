@@ -58,7 +58,10 @@ function CandidateCard({ entry, verdict }: { entry: CandidateEntry; verdict: str
     <li className="flex min-w-0 flex-col gap-3 border border-rule-1 bg-asphalt-1 p-4">
       <div className="flex items-start justify-between gap-3">
         <span className="font-display text-[40px] leading-none font-medium text-paint-1">{entry.intervention_id}</span>
-        <span className="mono text-micro tracking-[0.08em] text-paint-3 uppercase">{asWords(entry.proposal.type)}</span>
+        <span className="flex flex-col items-end gap-1.5">
+          <ModelTag label="Muse Spark" />
+          <span className="mono text-micro tracking-[0.08em] text-paint-3 uppercase">{asWords(entry.proposal.type)}</span>
+        </span>
       </div>
       <div className="flex flex-wrap items-center gap-1.5">
         <span className="mono text-micro text-paint-3">Tests</span>

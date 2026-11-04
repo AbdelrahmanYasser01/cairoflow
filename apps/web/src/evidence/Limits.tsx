@@ -18,8 +18,39 @@ const LEADING: readonly RegExp[] = [
   /Ground positions are approximated/,
 ];
 
+type Source = "This run" | "SAM" | "Decision";
+
+const SOURCE_TONE: Record<Source, string> = {
+  "This run": "text-paint-3 border-rule-2",
+  SAM: "text-ev-model-generated border-ev-model-generated/40",
+  Decision: "text-ev-simulated border-ev-simulated/40",
+};
+
+const SOURCE_TITLE: Record<Source, string> = {
+  "This run": "From this analysis record",
+  SAM: "From the SAM measured record, source seconds 970 to 1000",
+  Decision: "From the decision record: published NGSIM trajectories",
+};
+
+function SourceTag({ source }: { source: Source }) {
+  return (
+    <span
+      className={`mono inline-block shrink-0 border px-1 py-px text-[10px] leading-none tracking-[0.06em] whitespace-nowrap uppercase ${SOURCE_TONE[source]}`}
+      title={SOURCE_TITLE[source]}
+    >
+      {source}
+    </span>
+  );
+}
+
 export function Limitations({ decision, record, index }: { decision: DecisionSummary | null; record: AnalysisRecord; index?: string }) {
-  const lines = [...record.disclosures, ...samMeasuredDisclosures(record), ...(decision?.limitations ?? [])];
+  const tagged: { text: string; source: Source }[] = [
+    ...record.disclosures.map((text) => ({ text, source: "This run" as const })),
+    ...samMeasuredDisclosures(record).map((text) => ({ text, source: "SAM" as const })),
+    ...(decision?.limitations ?? []).map((text) => ({ text, source: "Decision" as const })),
+  ];
+  const sourceOf = new Map(tagged.map(({ text, source }) => [text, source]));
+  const lines = tagged.map(({ text }) => text);
   const leading = LEADING.flatMap((pattern) => lines.find((line) => pattern.test(line)) ?? []);
   const ordered = [...leading, ...lines.filter((line) => !leading.includes(line))];
   const first = ordered[0];
@@ -37,7 +68,10 @@ export function Limitations({ decision, record, index }: { decision: DecisionSum
             {ordered.slice(1).map((line, index) => (
               <li key={line} className="flex break-inside-avoid gap-3 border-t border-rule-1 py-2 text-label leading-snug text-paint-2">
                 <span className="mono shrink-0 text-micro text-paint-4">{String(index + 2).padStart(2, "0")}</span>
-                <span>{recordWords(line)}</span>
+                <span className="min-w-0">
+                  <SourceTag source={sourceOf.get(line) ?? "This run"} />{" "}
+                  {recordWords(line)}
+                </span>
               </li>
             ))}
           </ol>
@@ -49,11 +83,11 @@ export function Limitations({ decision, record, index }: { decision: DecisionSum
   );
 }
 
-function Cell({ label, children }: { label: string; children: ReactNode }) {
+function Cell({ label, children, wide = false }: { label: string; children: ReactNode; wide?: boolean }) {
   return (
-    <div className="min-w-0 bg-asphalt-0 px-3 py-2.5">
+    <div className={`min-w-0 bg-asphalt-0 px-3 py-2.5 ${wide ? "col-span-2" : ""}`}>
       <Kicker>{label}</Kicker>
-      <span className="mono mt-1 block text-label [overflow-wrap:anywhere] text-paint-1">
+      <span className="mono mt-1 block text-label break-words text-paint-1">
         {children}
       </span>
     </div>
@@ -61,6 +95,9 @@ function Cell({ label, children }: { label: string; children: ReactNode }) {
 }
 
 const NONE = "No report loaded";
+
+/** "2026-10-29 12:29 UTC" from an ISO time; anything else as it stands. */
+const utc = (value: string) => value.replace(/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(:\d{2}(\.\d+)?)?Z$/, "$1 $2 UTC");
 
 /** What it takes to run this again, as a dense block of record fields. */
 export function RecordStrip({ decision, record }: { decision: DecisionSummary | null; record: AnalysisRecord | null }) {
@@ -70,12 +107,12 @@ export function RecordStrip({ decision, record }: { decision: DecisionSummary | 
   return (
     <section aria-label="Reproducibility" className="min-w-0">
       <SectionHead title="Reproducibility" />
-      <div className="mt-4 grid grid-cols-2 gap-px border border-rule-1 bg-rule-1 md:grid-cols-5">
-        <Cell label="Analysis">{record?.analysis_id ?? NONE}</Cell>
-        <Cell label="Detector">{detector ? `${detector.tool}, ${detector.licence ?? "licence not recorded"}` : NONE}</Cell>
+      <div className="mt-4 grid grid-cols-2 gap-px border border-rule-1 bg-rule-1 md:grid-cols-4 xl:grid-cols-6">
+        <Cell label="Analysis" wide>{record?.analysis_id ?? NONE}</Cell>
+        <Cell label="Detector" wide>{detector ? `${detector.tool}, ${detector.licence ?? "licence not recorded"}` : NONE}</Cell>
+        <Cell label="Simulation run" wide>{decision?.simulation.run_id ?? NONE}</Cell>
         <Cell label="Simulator">{decision ? SIMULATOR : NONE}</Cell>
-        <Cell label="Simulation run">{decision?.simulation.run_id ?? NONE}</Cell>
-        <Cell label="Created, UTC">{decision?.simulation.created_at_utc ?? NONE}</Cell>
+        <Cell label="Created">{decision ? utc(decision.simulation.created_at_utc) : NONE}</Cell>
         <Cell label="Seeds">{decision ? String(decision.simulation.seeds.length) : NONE}</Cell>
         <Cell label="Signal timelines">{required === undefined ? NONE : String(required)}</Cell>
         <Cell label="Baseline assessed">{decision?.baseline.assessed_on ?? NONE}</Cell>

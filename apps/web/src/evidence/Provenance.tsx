@@ -68,8 +68,48 @@ function Pulse() {
   );
 }
 
-/** The chain as two lines with a break between them: camera tracks fed no decision. */
-export function ChainGraph({ stages, waiting, index }: { stages: readonly ChainReading[]; waiting: boolean; index?: string }) {
+/** What the branches and the break are called: a reference run has no camera in it. */
+function wording(origin: string | null | undefined) {
+  const camera = origin === "camera_cv";
+  return {
+    first: camera ? null : "This analysis · NGSIM reference",
+    stop: camera ? "No link" : "Not linked",
+    why: camera ? "camera fed no decision" : "this run fed no decision",
+  };
+}
+
+/** The break between the branches, drawn across on wide screens and down the stack on narrow ones. */
+function Break({ stop, why }: { stop: string; why: string }) {
+  return (
+    <>
+      <div aria-hidden="true" className="hidden w-24 flex-col items-center pt-[42px] lg:flex">
+        <span className="h-px w-full border-t border-dashed border-stop/70" />
+        <span className="mono mt-2 text-center text-micro leading-tight text-stop">{stop}</span>
+        <span className="mono mt-1 text-center text-micro leading-tight text-paint-4">{why}</span>
+      </div>
+      <div aria-hidden="true" className="-my-3 flex items-center gap-3 lg:hidden">
+        <span className="h-px flex-1 border-t border-dashed border-stop/70" />
+        <span className="mono text-micro leading-tight whitespace-nowrap text-stop">{stop}</span>
+        <span className="mono text-micro leading-tight whitespace-nowrap text-paint-4">{why}</span>
+        <span className="h-px flex-1 border-t border-dashed border-stop/70" />
+      </div>
+    </>
+  );
+}
+
+/** The chain as two lines with a break between them: this run fed no decision. */
+export function ChainGraph({
+  stages,
+  waiting,
+  index,
+  origin,
+}: {
+  stages: readonly ChainReading[];
+  waiting: boolean;
+  index?: string;
+  origin?: string | null;
+}) {
+  const words = wording(origin);
   return (
     <section id="provenance" className="scroll-mt-24">
       <SectionHead
@@ -88,23 +128,20 @@ export function ChainGraph({ stages, waiting, index }: { stages: readonly ChainR
         </div>
       ) : (
         <div className="mt-5 grid grid-cols-1 gap-y-8 lg:grid-cols-[3fr_auto_4fr]">
-          {CHAIN_BRANCHES.map(({ id, label }, index) => {
+          {CHAIN_BRANCHES.map(({ id, label: named }, index) => {
             const members = stages.filter((stage) => stage.branch === id);
+            const label = index === 0 && words.first ? words.first : named;
             return (
               <Fragment key={id}>
-                {index > 0 ? (
-                  <div aria-hidden="true" className="hidden w-24 flex-col items-center pt-[42px] lg:flex">
-                    <span className="h-px w-full border-t border-dashed border-stop/70" />
-                    <span className="mono mt-2 text-center text-micro leading-tight text-stop">No link</span>
-                    <span className="mono mt-1 text-center text-micro leading-tight text-paint-4">camera fed no decision</span>
-                  </div>
-                ) : null}
+                {index > 0 ? <Break stop={words.stop} why={words.why} /> : null}
                 <section aria-label={label} className="min-w-0 border border-rule-1 bg-asphalt-1 px-4 pt-3 pb-4">
                   <Kicker>{label}</Kicker>
                   <div className="relative mt-3">
-                    <span aria-hidden="true" className="absolute top-[11px] right-6 left-1.5 h-px bg-paint-4" />
-                    <Pulse />
-                    <ol className="relative m-0 flex list-none gap-0 p-0">
+                    <span aria-hidden="true" className="absolute top-[11px] right-6 left-1.5 hidden h-px bg-paint-4 lg:block" />
+                    <span className="hidden lg:contents">
+                      <Pulse />
+                    </span>
+                    <ol className="relative m-0 grid list-none grid-cols-2 gap-x-0 gap-y-5 p-0 sm:grid-cols-3 lg:flex lg:gap-0">
                       {members.map((stage) => (
                         <Node key={stage.id} stage={stage} />
                       ))}

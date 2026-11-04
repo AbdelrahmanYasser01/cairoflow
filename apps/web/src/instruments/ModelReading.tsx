@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, EmptyState, ErrorState, EvidenceBadge, EvidenceGlyph, SkeletonRows } from "../design";
 import { DEFAULT_ANALYSIS, analysisName } from "../domain/analyses";
 import { ModelQuote } from "../evidence/Proposals";
-import { CheckLamp, ConfidenceMeter, Kicker, ModelTag, SectionHead } from "../evidence/parts";
+import { CheckLamp, ConfidenceMeter, Kicker, SectionHead } from "../evidence/parts";
 import type { CvDiagnosisRecord, CvEvidenceItem, CvHypothesis, CvReplicate } from "../lib/analysis";
 import { useAnalysis } from "../state/analysis";
 import { useDiagnosis } from "../state/resources";
@@ -192,11 +192,11 @@ function EvidenceTiles({ items, focus }: { items: readonly CvEvidenceItem[]; foc
               key={item.evidence_id}
               id={tileId(item.evidence_id)}
               className={`min-w-0 px-2.5 py-2 transition-colors duration-150 ${lit ? "bg-asphalt-3 shadow-[inset_0_0_0_1px_var(--amber)]" : "bg-asphalt-0"}`}
-              title={item.statement}
+              title={`${item.evidence_id} · ${item.statement}`}
             >
-              <span className="mono flex items-center gap-1.5 truncate text-micro text-paint-3">
+              <span className="mono flex min-w-0 items-center gap-1.5 text-micro text-paint-3">
                 <EvidenceGlyph kind={item.evidence_kind} size={8} />
-                {item.evidence_id}
+                <span className="truncate">{item.evidence_id.replace(/^[a-z_]+:/, "")}</span>
               </span>
               <span className={`mono mt-1 block truncate text-label ${withheld ? "text-stop" : "text-paint-1"}`}>
                 {withheld ? "Withheld" : (value ?? "No value")}
@@ -221,7 +221,7 @@ function Replies({ record }: { record: CvDiagnosisRecord }) {
   const current = record.replicates.find((replicate) => replicate.replicate === chosen) ?? record.replicates[0];
   return (
     <>
-      <p className="mono mt-3 text-label text-paint-3">Meta Muse Spark read this camera run · for a person to test</p>
+      <p className="mono mt-3 text-label text-paint-3">Muse Spark · hypotheses to test, not findings</p>
       <div className="mt-4 grid grid-cols-1 gap-px border border-rule-1 bg-rule-1 md:grid-cols-[1.2fr_1fr_1fr_1.4fr]">
         <div className="bg-asphalt-0 px-4 py-3">
           <Kicker>Model</Kicker>
@@ -254,13 +254,14 @@ function Replies({ record }: { record: CvDiagnosisRecord }) {
               role="tab"
               aria-selected={on}
               onClick={() => setChosen(replicate.replicate)}
+              title={replicate.status === "ok" ? "Recorded from a model call, replayed here" : undefined}
               className={`mono -mb-px cursor-pointer border-b-2 px-4 py-2 text-label transition-colors duration-150 ${
                 on ? "border-ev-model-generated text-paint-1" : "border-transparent text-paint-3 hover:text-paint-1"
               }`}
             >
               {`Reply ${replicate.replicate}`}
               <span className="ml-2 text-micro text-paint-4">
-                {replicate.status === "ok" ? `${replicate.diagnosis?.hypotheses.length ?? 0} hyp · ${replicate.from_cache ? "cache" : "live"}` : "failed"}
+                {replicate.status === "ok" ? `${replicate.diagnosis?.hypotheses.length ?? 0} hyp · ${replicate.from_cache ? "from cache" : "recorded call"}` : "failed"}
               </span>
             </button>
           );
@@ -284,12 +285,7 @@ export function ModelReading({ analysisId, index }: { analysisId: string | null;
       <SectionHead
         index={index}
         title="Muse's reading"
-        meta={
-          <>
-            <ModelTag />
-            <EvidenceBadge kind="model_generated" note="Text, never a measurement" />
-          </>
-        }
+        meta={<EvidenceBadge kind="model_generated" note="Text, never a measurement" />}
       />
       {analysisId === null ? (
         <EmptyState className="mt-3" title="No analysis loaded" />
