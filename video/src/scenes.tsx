@@ -297,7 +297,9 @@ export function Twin({ dur, captures }: SceneProps) {
 export function Analytics({ dur, captures }: SceneProps) {
   return (
     <SceneFade dur={dur}>
-      <Screen clip={captures.analytics} label="Analytics" dur={dur} frameless zoomFrom={1.02} zoomTo={1.1} originX={55} originY={45} />
+      {/* A gentle push toward the lower-left quarter, where the turning diagram sits; kept mild so a
+          redesigned page still frames well. */}
+      <Screen clip={captures.analytics} label="Analytics" dur={dur} frameless zoomFrom={1.02} zoomTo={1.16} originX={35} originY={62} />
       <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 78%, rgba(10,12,14,0.85) 100%)" }} />
       <SourceTag at={4}>Analytics · turning movements</SourceTag>
     </SceneFade>
