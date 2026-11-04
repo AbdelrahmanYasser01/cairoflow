@@ -106,7 +106,7 @@ function Kpi({ metric, record, quiet }: { metric: Metric; record: AnalysisRecord
   const label = counted ? "Entering vehicles" : metric.label;
   return (
     <div
-      className={`relative min-w-0 px-5 py-4 max-lg:odd:pl-0 lg:first:pl-0 ${withheld ? "bg-[repeating-linear-gradient(135deg,transparent_0_7px,color-mix(in_oklab,var(--stop)_9%,transparent)_7px_8px)]" : ""}`}
+      className={`relative min-w-0 px-5 py-4 sm:max-lg:odd:pl-0 lg:first:pl-0 ${withheld ? "max-sm:pr-0 max-sm:pl-4 bg-[repeating-linear-gradient(135deg,transparent_0_7px,color-mix(in_oklab,var(--stop)_9%,transparent)_7px_8px)]" : "max-sm:px-0"}`}
     >
       {withheld ? <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[2px] bg-stop" /> : null}
       <dt className="flex items-center gap-2">
@@ -154,7 +154,7 @@ export function Kpis({ metrics, record }: { metrics: readonly Metric[]; record: 
   const shared = absent.length > 1 && reasons.size === 1 ? ([...reasons][0] as string) : null;
   return (
     <>
-      <dl className="m-0 grid grid-cols-2 divide-rule-1 border-y border-rule-2 lg:grid-cols-4 lg:divide-x">
+      <dl className="m-0 grid grid-cols-1 divide-rule-1 border-y border-rule-2 max-sm:divide-y sm:grid-cols-2 lg:grid-cols-4 lg:divide-x">
         {metrics.map((metric) => (
           <Kpi
             key={metric.metric_id}

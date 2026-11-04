@@ -181,8 +181,8 @@ export function Tracks({ dur, captures, footage }: SceneProps) {
       {footage ? (
         <Screen clip={{ src: footage, durationInFrames: dur }} label="Annotated footage" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.0} zoomTo={1.06} />
       ) : (
-        // Pushed in on the Vision Lab's frame panel, where the tracks are drawn.
-        <Screen clip={captures.vision ?? captures.sam} label="Vision Lab" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.55} zoomTo={1.68} originX={17} originY={28} />
+        // Pushed in on the Vision Lab's frame panel (left half of the page), where the tracks are drawn.
+        <Screen clip={captures.vision ?? captures.sam} label="Vision Lab" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.43} zoomTo={1.52} originX={13} originY={50} />
       )}
       <SourceTag at={4}>{footage ? "NGSIM camera · annotated · CC BY-SA 4.0" : "Vision Lab · camera output"}</SourceTag>
       <div style={{ position: "absolute", left: 1300, top: 170, width: 540 }}>
@@ -299,7 +299,7 @@ export function Analytics({ dur, captures }: SceneProps) {
     <SceneFade dur={dur}>
       {/* A gentle push toward the lower-left quarter, where the turning diagram sits; kept mild so a
           redesigned page still frames well. */}
-      <Screen clip={captures.analytics} label="Analytics" dur={dur} frameless zoomFrom={1.02} zoomTo={1.16} originX={35} originY={62} />
+      <Screen clip={captures.analytics} label="Analytics" dur={dur} frameless zoomFrom={1.02} zoomTo={1.16} originX={35} originY={62} startAt={150} />
       <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 78%, rgba(10,12,14,0.85) 100%)" }} />
       <SourceTag at={4}>Analytics · turning movements</SourceTag>
     </SceneFade>

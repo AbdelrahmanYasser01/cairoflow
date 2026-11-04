@@ -470,10 +470,11 @@ export function CommandCenter() {
     <>
       <div
         ref={frame}
-        className="relative hidden h-full min-h-[640px] xl:grid"
+        className="relative hidden min-h-[max(100%,640px)] xl:grid"
         style={{
           gridTemplateColumns: `minmax(0, 1fr) ${ROAD_NS_PX}px ${EAST_PX}px`,
-          gridTemplateRows: `minmax(0, 1fr) ${ROAD_EW_PX}px ${SOUTH_PX}px`,
+          // The top row grows past the screen rather than let the headline run onto the road.
+          gridTemplateRows: `minmax(min-content, 1fr) ${ROAD_EW_PX}px ${SOUTH_PX}px`,
           ["--hero-fit" as string]: HERO_FIT,
         }}
       >
@@ -482,7 +483,8 @@ export function CommandCenter() {
           <Headline />
           <Opening />
         </Instrument>
-        <Instrument className="relative col-start-3 row-start-1 flex min-h-0 flex-col pt-6 pr-margin pb-5 pl-6">
+        {/* Opaque, so no line of the plan runs under the text. */}
+        <Instrument className="relative col-start-3 row-start-1 flex min-h-0 flex-col border-l border-rule-2 bg-asphalt-1 pt-6 pr-margin pb-5 pl-6">
           <Decision />
         </Instrument>
         <Instrument className="relative col-start-1 row-start-2 flex flex-wrap items-end gap-x-5 gap-y-1 self-end pr-24 pb-7 pl-margin">
@@ -491,7 +493,7 @@ export function CommandCenter() {
         <Instrument className="relative col-start-1 row-start-3 pt-5 pr-10 pb-5 pl-margin">
           <Chain />
         </Instrument>
-        <Instrument className="relative col-start-3 row-start-3 pt-4 pr-margin pb-3 pl-6">
+        <Instrument className="relative col-start-3 row-start-3 border-l border-rule-2 bg-asphalt-1 pt-4 pr-margin pb-3 pl-6">
           <MetaModels />
         </Instrument>
       </div>

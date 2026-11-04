@@ -209,13 +209,16 @@ function World({
     () => (anchor ? gridNorthInJunction(anchor.bearingDeg) : null),
     [anchor],
   );
+  // A ground scale bar reads true only from straight above; in a perspective view it shrinks with
+  // depth and runs under the panels, so it is drawn in Plan alone.
+  const planView = shown.view === "plan";
   const labels = useMemo(
     () => [
       ...armLabels(model.site),
-      scaleBarLabel(model.bounds),
+      ...(planView ? [scaleBarLabel(model.bounds)] : []),
       ...(mode === "geo" && anchor ? geoTickLabels(model.bounds, anchor, model.network) : []),
     ],
-    [model, mode, anchor],
+    [model, mode, anchor, planView],
   );
 
   const positionsKind: EvidenceKind =
@@ -338,7 +341,7 @@ function World({
       {interactive ? (
         <>
           <SceneLabels labels={labels} insets={insets} />
-          <ScaleBar bounds={model.bounds} palette={palette} />
+          {planView ? <ScaleBar bounds={model.bounds} palette={palette} /> : null}
           <Compass anchor={anchor} insets={insets} hidden={panelPx > 0} />
           {geo && anchor ? <GeoTicks bounds={model.bounds} network={model.network} palette={palette} /> : null}
           <Rig

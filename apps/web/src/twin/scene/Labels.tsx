@@ -67,7 +67,7 @@ export function SceneLabels({ labels, insets }: { labels: readonly LabelSpec[]; 
     const host = overlayNode(gl, "div", "pointer-events-none absolute inset-0 overflow-hidden");
     placed.current = labels.map((spec) => {
       const node = document.createElement("div");
-      node.className = "mono absolute top-0 left-0 whitespace-nowrap bg-asphalt-0/70 px-1 text-paint-3 select-none";
+      node.className = "mono absolute top-0 left-0 whitespace-nowrap bg-asphalt-0/90 px-1 text-paint-3 select-none";
       node.style.opacity = "0";
       node.style.transition = "opacity 160ms linear";
       node.style.willChange = "transform";

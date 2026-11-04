@@ -106,7 +106,9 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
             title="Turning movements"
             meta={
               <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1">
-                <Segmented label="Approach arm" options={ARM_OPTIONS} value={arm} onChange={setArm} />
+                <div className="max-w-full overflow-x-auto whitespace-nowrap">
+                  <Segmented label="Approach arm" options={ARM_OPTIONS} value={arm} onChange={setArm} />
+                </div>
                 {movementStatus ? (
                   <StatusMark
                     status={movementStatus.status}

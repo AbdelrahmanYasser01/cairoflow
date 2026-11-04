@@ -70,10 +70,10 @@ function Row({
           ))}
         </dl>
       ) : (
-        <p className="mono m-0 mt-0.5">
-          {facts.map((fact, index) => (
-            <span key={fact.label}>
-              {index > 0 ? <span className="text-paint-4"> · </span> : null}
+        // Each figure wraps whole, never between its value and its label.
+        <p className="mono m-0 mt-0.5 flex flex-wrap gap-x-4">
+          {facts.map((fact) => (
+            <span key={fact.label} className="whitespace-nowrap">
               <span className="text-paint-1">{fact.value}</span> <span className="text-paint-3">{fact.label}</span>
             </span>
           ))}

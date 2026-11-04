@@ -84,7 +84,7 @@ export function WithheldBand({
         </div>
       </div>
       <div className="mt-1 flex items-baseline justify-between gap-4">
-        <Label>{`${bins} bins of ${series.bin_s} s`}</Label>
+        <Label>{`${series.bin_s} s bins`}</Label>
         <Label>Seconds from start</Label>
       </div>
       <details className="group mt-4 border-t border-rule-1 pt-3">

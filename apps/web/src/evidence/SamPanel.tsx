@@ -196,7 +196,7 @@ function Against() {
           after={recall.with_sam_boxes}
           domain={[0.7, 0.9]}
           unit=""
-          verdict="gain is the row count"
+          verdict="same as control"
           better={false}
           control={recall.same_rows_interpolated}
           title={`Scored recall rose from ${recall.before} to ${recall.with_sam_boxes}. A control that keeps the same rows at their interpolated positions scores ${recall.same_rows_interpolated}.`}
