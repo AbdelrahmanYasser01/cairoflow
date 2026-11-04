@@ -753,8 +753,8 @@ export function TwinProvenance({
               lane polygon edges and their dash pattern is drawn, not surveyed.
             </li>
             <li className="mt-1">
-              Turn arrows show observed use per lane. The floor outside the lanes is where vehicles went
-              in this analysis, not a surveyed kerb.
+              Turn arrows show observed use per lane. Kerbs follow where vehicles drove in this analysis,
+              not a survey. Arms, lanes and sidewalks run on past the data to the scene edge.
             </li>
             <li className="mt-1">
               Between 10 Hz rows vehicles follow a curve through the rows. Drawn headings come from the
