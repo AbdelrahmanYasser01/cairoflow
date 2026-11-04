@@ -8,8 +8,9 @@ the voice-over is burned in as captions wherever the on-screen type doesn't alre
 - Output: `video/out/cairoflow-demo.mp4`, 1920x1080, 30 fps, H.264, yuv420p, no audio track yet.
 - Remotion is free for individuals and companies of up to three people; a larger organisation needs a
   company licence (remotion.dev/license).
-- Every figure comes from README.md or `data/sample`, unrounded. The SAM masks and the Muse citations on
-  screen are drawn from the committed records (`video/scripts/prepare-data.mjs` copies them).
+- Every figure comes from README.md or `data/sample`, unrounded. The SAM masks on screen are the committed
+  outlines (`video/scripts/prepare-data.mjs` copies them); the Muse hypothesis, its citations, the 24
+  evidence ids and the SUMO verdicts are copied into `video/src/facts.ts` from `data/sample`.
 - The two Higgsfield shots are illustrative. They stay labelled "Illustrative, not data" on screen.
 
 ## Storyboard
