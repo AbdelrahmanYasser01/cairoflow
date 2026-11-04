@@ -213,8 +213,11 @@ and splice them in (the scene's first frame is its start time x 30; Remotion Stu
 
 ```bash
 node video/scripts/render.mjs --frames=4200-4559 --out=video/out/patch.mp4
-npm --prefix video run splice -- video/out/patch.mp4 4200
+npm --prefix video run splice -- video/out/patch.mp4 4200     # more pairs allowed: patch start ...
 ```
+
+Ranges must not overlap. Each scene runs 12 frames into the next for the crossfade, so two neighbouring
+patches share those frames: trim one of them first.
 
 ## Honesty notes for whoever edits this next
 
