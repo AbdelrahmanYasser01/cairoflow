@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 /** A section counts as being read once its top has passed this share of the scroller's height. */
-const READ_LINE = 0.4;
+const READ_LINE = 0.3;
 /** How close to the bottom counts as the end of the page, in pixels. */
 const BOTTOM_SLACK = 4;
 /** How long a clicked index entry outranks the end-of-page rule, in milliseconds. */
