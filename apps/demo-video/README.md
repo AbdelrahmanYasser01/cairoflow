@@ -50,6 +50,16 @@ Render, pointing Remotion at a Chrome headless shell:
 npx remotion render CairoFlowDemo out/CairoFlow-demo.mp4 --codec=h264 --crf=17 --audio-bitrate=320k --browser-executable=/path/to/chrome-headless-shell
 ```
 
+Then master the sound: `scripts/master.py` rebuilds the mix in floating point from the stems on the
+same timeline (so coincident voice and score peaks can't clip), normalises it to -16 LUFS with a
+-1.5 dBTP ceiling, and copies the picture stream:
+
+```bash
+python scripts/master.py --video out/CairoFlow-demo.mp4 --out out/CairoFlow-demo-final.mp4
+```
+
+`out/CairoFlow-demo-final.mp4` is the submission file; `out/CairoFlow-demo.srt` carries its captions.
+
 ## Credits and licences
 
 - Derived tracks and analytics shown: adapted from the NGSIM Lankershim Boulevard data, U.S.

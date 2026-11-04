@@ -119,7 +119,7 @@ export const S03Problem: React.FC = () => {
           { t: seconds, x: 440, y: 665, z: 1.82 },
         ]}
       >
-        <Callout x={112} y={604} w={218} h={74} from={c3 + 0.0} color={C.stop} label="GATE FAILED · WITHHELD" />
+        <Callout x={112} y={604} w={218} h={74} from={c3 + 0.0} color={C.stop} label="GATE FAILED" />
         <Callout x={341} y={604} w={172} h={74} from={c3 + 0.55} color={C.go} label="GATE PASSED" />
         <Callout x={524} y={604} w={196} h={74} from={c3 + 1.1} color={C.amber} label="UNGATED" />
       </Shot>
