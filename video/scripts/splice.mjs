@@ -20,11 +20,13 @@ if (args.length < 2 || args.length % 2 !== 0) {
   process.exit(2);
 }
 const base = process.env.BASE ? resolve(process.env.BASE) : join(ROOT, "out", "cairoflow-demo.mp4");
+// ffprobe can print "600," (a trailing empty field) for some encodes, so parse the leading integer.
 const frames = (file) =>
-  Number(
+  Number.parseInt(
     spawnSync("ffprobe", ["-v", "error", "-count_packets", "-select_streams", "v:0", "-show_entries", "stream=nb_read_packets", "-of", "csv=p=0", file], {
       encoding: "utf8",
     }).stdout.trim(),
+    10,
   );
 const patches = [];
 for (let i = 0; i < args.length; i += 2) {
