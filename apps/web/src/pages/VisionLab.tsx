@@ -773,7 +773,7 @@ export function VisionLab() {
         <EmptyState
           size="stage"
           title="No analysis loaded"
-          reason="Footage opens with an analysis, so every box drawn over it can be traced to a record."
+          reason="Every box drawn here traces to an analysis record."
           action={
             <>
               <ButtonLink to="/intersections">Choose an analysis</ButtonLink>

@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useMemo, useRef } from "react";
+import { motion } from "motion/react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   ButtonLink,
@@ -18,6 +18,7 @@ import {
   useElementSize,
 } from "../design";
 import { DataSlot } from "../design/DataSlot";
+import { LiveTraffic } from "../design/LiveTraffic";
 import { Instrument } from "../design/Instrument";
 import { baselineLabel, decisionFor, whatWouldChange } from "../domain/chain";
 import { isCalibrated } from "../domain/footage";
@@ -29,7 +30,7 @@ import { ChainRail, useChain } from "../instruments/Chain";
 import { MetaModels } from "../instruments/MetaModels";
 import { Readouts } from "../instruments/Readouts";
 import { SitePlan } from "../instruments/SitePlan";
-import { NO_GROUND, clock, type LoadedAnalysis, type Metric, type TrackEntry } from "../lib/analysis";
+import type { LoadedAnalysis, Metric } from "../lib/analysis";
 import { useAnalysis } from "../state/analysis";
 import { useDecision, useSite } from "../state/resources";
 import type { SiteGeometry } from "../twin/site";
@@ -47,8 +48,6 @@ const ROAD_EW_PX = 134;
 const HERO_FIT = `clamp(60px, calc((100vw - var(--rail) - ${ROAD_NS_PX + EAST_PX}px - 96px) / 6.45), 148px)`;
 /** Junction metres across the shorter side of the plan on a narrow screen. */
 const NARROW_PLAN_M = 92;
-/** Frames of history behind each replayed vehicle on the plan. */
-const TAIL_FRAMES = 14;
 const REPLAY_CLOCK_ID = "hero-replay-clock";
 
 const HEADLINE_METRICS = ["flow.entering", "speed.mean_moving", "stopped.share"];
@@ -354,102 +353,6 @@ function ArmCounts({ loaded, arms, frame }: { loaded: LoadedAnalysis; arms: Site
   );
 }
 
-const mmss = (seconds: number) => {
-  const whole = Math.max(0, Math.floor(seconds));
-  return `${String(Math.floor(whole / 60)).padStart(2, "0")}:${String(whole % 60).padStart(2, "0")}`;
-};
-
-/**
- * The stored camera tracks replayed on the plan at their ground positions, at real speed. A local
- * cursor drives it, so the shared clock and every other page stay where they are.
- */
-function LiveTraffic({ loaded, frame }: { loaded: LoadedAnalysis; frame: PlanFrame }) {
-  const canvas = useRef<HTMLCanvasElement>(null);
-  const reduced = useReducedMotion();
-
-  useEffect(() => {
-    const surface = canvas.current;
-    const context = surface?.getContext("2d");
-    if (!surface || !context || frame.width === 0 || frame.height === 0) return;
-    const ratio = window.devicePixelRatio || 1;
-    surface.width = Math.round(frame.width * ratio);
-    surface.height = Math.round(frame.height * ratio);
-    context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    const style = getComputedStyle(document.documentElement);
-    const tone = style.getPropertyValue("--ev-approximated").trim() || "#7fd0da";
-    const project = projector(frame);
-    const { trajectories: t, tracks, record } = loaded;
-    const scale = t.header.groundScale;
-    const last = Math.max(0, record.frame_count - 1);
-    let cursor = Math.min(Math.max(0, Math.round(clock.get())), last);
-    let before = performance.now();
-    let stamped = 0;
-    let handle = 0;
-
-    const draw = (at: number) => {
-      context.clearRect(0, 0, frame.width, frame.height);
-      context.lineCap = "round";
-      context.lineJoin = "round";
-      loaded.active.forEach(at, (index, row) => {
-        const entry = tracks[index] as TrackEntry;
-        if (t.gx[row] === NO_GROUND) return;
-        const first = Math.max(entry.first_row, row - TAIL_FRAMES);
-        context.beginPath();
-        let started = false;
-        for (let at2 = first; at2 <= row; at2 += 1) {
-          if (t.gx[at2] === NO_GROUND) continue;
-          const [px, py] = project((t.gx[at2] as number) * scale, (t.gy[at2] as number) * scale);
-          if (started) context.lineTo(px, py);
-          else {
-            context.moveTo(px, py);
-            started = true;
-          }
-        }
-        context.globalAlpha = 0.32;
-        context.strokeStyle = tone;
-        context.lineWidth = 2;
-        context.stroke();
-        const [x, y] = project((t.gx[row] as number) * scale, (t.gy[row] as number) * scale);
-        context.globalAlpha = 1;
-        context.shadowColor = tone;
-        context.shadowBlur = 10;
-        context.fillStyle = tone;
-        context.beginPath();
-        context.arc(x, y, 2.6, 0, Math.PI * 2);
-        context.fill();
-        context.shadowBlur = 0;
-      });
-      context.globalAlpha = 1;
-    };
-
-    const stamp = (at: number, now: number) => {
-      if (now - stamped < 250) return;
-      stamped = now;
-      const target = document.getElementById(REPLAY_CLOCK_ID);
-      if (target) target.textContent = mmss(at / record.fps);
-    };
-
-    if (reduced) {
-      draw(cursor);
-      stamp(cursor, Infinity);
-      return;
-    }
-    const step = (now: number) => {
-      cursor += ((now - before) / 1000) * record.fps;
-      before = now;
-      if (cursor > last) cursor = 0;
-      const at = Math.floor(cursor);
-      draw(at);
-      stamp(at, now);
-      handle = requestAnimationFrame(step);
-    };
-    handle = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(handle);
-  }, [loaded, frame, reduced]);
-
-  return <canvas ref={canvas} aria-hidden="true" className="pointer-events-none absolute inset-0 size-full" />;
-}
-
 /** Replay on: what the dots are, and the source second they show. */
 function ReplayChip() {
   return (
@@ -533,7 +436,7 @@ function Plan({ site, width, height }: { site: SiteGeometry | null; width: numbe
       <motion.div layoutId="site-plan" transition={{ duration: DUR.slow, ease: EASE }} className="absolute inset-0">
         <SitePlan className="absolute inset-0" site={site} frame={frame} continuation />
       </motion.div>
-      {calibrated ? <LiveTraffic loaded={calibrated} frame={frame} /> : null}
+      {calibrated ? <LiveTraffic loaded={calibrated} frame={frame} clockId={REPLAY_CLOCK_ID} /> : null}
       {calibrated ? <ArmCounts loaded={calibrated} arms={arms} frame={frame} /> : null}
     </>
   );

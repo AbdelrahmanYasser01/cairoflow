@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   Absent,
@@ -20,12 +21,14 @@ import {
 } from "../design";
 import { Instrument, PageHead } from "../design/Instrument";
 import { analysisName } from "../domain/analyses";
-import { clipSpan, coveredS, footageFor } from "../domain/footage";
-import { ARM_ORDER, sitePlan } from "../domain/plan";
+import { clipSpan, coveredS, footageFor, isCalibrated } from "../domain/footage";
+import { ARM_ORDER, fitAcross, sitePlan } from "../domain/plan";
 import { ACTIVE_SITE, SITE_NAME_NOTE, groundFrameName, siteName, siteNameStatusLabel } from "../domain/site";
 import { MODE_LABEL } from "../domain/vocabulary";
-import { SitePlanCanvas } from "../instruments/SitePlan";
-import type { AnalysisSummary, CorridorIntersection, FootageSource } from "../lib/analysis";
+import { SitePlan, SitePlanCanvas } from "../instruments/SitePlan";
+import { LiveTraffic } from "../design/LiveTraffic";
+import type { SiteGeometry } from "../twin/site";
+import type { AnalysisSummary, CorridorIntersection, FootageSource, LoadedAnalysis } from "../lib/analysis";
 import { useAnalysis } from "../state/analysis";
 import { useCorridor, useSite, useSources } from "../state/resources";
 
@@ -376,10 +379,28 @@ function SiteRecord() {
   );
 }
 
+/** The plan with the loaded run replayed on it: the same drawing the Command Center opens on. */
+function ReplayPlan({ site, loaded }: { site: SiteGeometry; loaded: LoadedAnalysis }) {
+  const [box, size] = useElementSize<HTMLDivElement>();
+  const frame = useMemo(() => fitAcross(size.width, size.height, PLAN_M, 0.5, 0.5), [size.width, size.height]);
+  return (
+    <div ref={box} className="relative h-[340px] overflow-hidden">
+      {size.width > 0 ? (
+        <>
+          <SitePlan site={site} frame={frame} continuation className="absolute inset-0" />
+          <LiveTraffic loaded={loaded} frame={frame} />
+        </>
+      ) : null}
+    </div>
+  );
+}
+
 export function Intersections() {
   const site = useSite();
   const corridor = useCorridor();
+  const { state } = useAnalysis();
   const siteData = site.status === "ready" ? site.data : null;
+  const replay = state.status === "ready" && isCalibrated(state.loaded.record) ? state.loaded : null;
   const analysed =
     corridor.status === "ready" ? corridor.data.intersections.filter((row) => row.has_video_analysis).length : null;
 
@@ -426,11 +447,16 @@ export function Intersections() {
               transition={{ duration: DUR.slow, ease: EASE }}
               className="mt-3"
             >
-              <SitePlanCanvas site={siteData} metres={PLAN_M} className="h-[340px]" />
+              {siteData && replay ? (
+                <ReplayPlan site={siteData} loaded={replay} />
+              ) : (
+                <SitePlanCanvas site={siteData} metres={PLAN_M} className="h-[340px]" />
+              )}
             </motion.div>
             <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
               {siteData ? (
                 <>
+                  {replay ? <EvidenceBadge kind="approximated" note="Replay, camera tracks" /> : null}
                   <EvidenceBadge kind="approximated" note="Lanes from tracks" />
                   <EvidenceBadge kind="assumed" note="Road beyond" />
                 </>
