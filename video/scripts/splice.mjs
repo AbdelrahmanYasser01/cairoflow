@@ -66,7 +66,7 @@ filter += `${labels.join("")}concat=n=${labels.length}:v=1:a=0,fps=30,format=yuv
 const tmp = base.replace(/\.mp4$/, ".spliced.mp4");
 const r = spawnSync(
   "ffmpeg",
-  ["-y", "-loglevel", "error", ...inputs, "-filter_complex", filter, "-map", "[v]", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-movflags", "+faststart", tmp],
+  ["-y", "-loglevel", "error", ...inputs, "-filter_complex", filter, "-map", "[v]", "-c:v", "libx264", "-preset", process.env.SPLICE_PRESET || "medium", "-crf", "18", "-movflags", "+faststart", tmp],
   { stdio: "inherit" },
 );
 if (r.status !== 0) process.exit(r.status ?? 1);
