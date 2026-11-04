@@ -60,18 +60,25 @@ function Row({
         </Link>
         <span className="eyebrow shrink-0">{job}</span>
       </p>
-      <dl className={`m-0 flex flex-wrap gap-x-5 gap-y-1 ${large ? "mt-2.5" : "mt-1"}`}>
-        {facts.map((fact) => (
-          <div key={fact.label} className="min-w-0">
-            <dd
-              className={`m-0 font-display leading-none font-medium text-paint-1 ${large ? "text-num-s" : "text-head"}`}
-            >
-              {fact.value}
-            </dd>
-            <dt className="mono mt-0.5 text-paint-3">{fact.label}</dt>
-          </div>
-        ))}
-      </dl>
+      {large ? (
+        <dl className="m-0 mt-2.5 flex flex-wrap gap-x-5 gap-y-1">
+          {facts.map((fact) => (
+            <div key={fact.label} className="min-w-0">
+              <dd className="m-0 font-display text-num-s leading-none font-medium text-paint-1">{fact.value}</dd>
+              <dt className="mono mt-0.5 text-paint-3">{fact.label}</dt>
+            </div>
+          ))}
+        </dl>
+      ) : (
+        <p className="mono m-0 mt-0.5">
+          {facts.map((fact, index) => (
+            <span key={fact.label}>
+              {index > 0 ? <span className="text-paint-4"> · </span> : null}
+              <span className="text-paint-1">{fact.value}</span> <span className="text-paint-3">{fact.label}</span>
+            </span>
+          ))}
+        </p>
+      )}
     </li>
   );
 }

@@ -101,7 +101,14 @@ function Corridor() {
       <div className="mt-2">
         <EvidenceBadge kind={corridor.data.evidence_kind} note={corridor.data.evidence_note} />
       </div>
-      {note ? <p className="mt-1 max-w-[60rem] leading-snug text-paint-3">{note}</p> : null}
+      {note ? (
+        <details className="mt-1 max-w-[60rem]">
+          <summary className="mono cursor-pointer text-paint-3 underline decoration-rule-2 underline-offset-4 hover:text-paint-1">
+            Why the counts differ
+          </summary>
+          <p className="mt-1 leading-snug text-paint-2">{note}</p>
+        </details>
+      ) : null}
     </>
   );
 }
@@ -283,8 +290,8 @@ function SiteRecord() {
             reason={pending}
             quiet
           />
-          <p className="mt-2 leading-snug text-paint-3">
-            {`${SITE_NAME_NOTE}. Camera counts classify a track by where it first appeared; these lines are not where they are counted.`}
+          <p className="mono mt-2 text-paint-3" title="Camera counts classify a track by where it first appeared.">
+            {`${SITE_NAME_NOTE}. Counts use track origin, not these lines.`}
           </p>
         </>
       )}
@@ -317,16 +324,18 @@ export function Intersections() {
 
       <div className="grid-12 mt-10 gap-y-10">
         <Instrument className="col-span-12 flex flex-col gap-10 lg:col-span-7">
-          <Panel title="Analyses" meta={<Label>The whole app reads the one loaded here</Label>}>
+          <Panel title="Analyses" meta={<Label>Loads app-wide</Label>}>
             <Analyses />
           </Panel>
           <Panel title="Footage">
             <Footage />
           </Panel>
-          <EmptyState
-            size="line"
-            title="No other site is registered. An uploaded video runs uncalibrated, in image pixels, and its record says its licence was not verified."
-          />
+          <p
+            className="mono text-paint-3"
+            title="An uploaded video runs uncalibrated, in image pixels, and its record says its licence was not verified."
+          >
+            One site registered. Uploads run uncalibrated.
+          </p>
         </Instrument>
 
         <Instrument className="col-span-12 flex min-h-0 flex-col gap-10 lg:col-span-5">
@@ -345,8 +354,8 @@ export function Intersections() {
             <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
               {siteData ? (
                 <>
-                  <EvidenceBadge kind="approximated" note="Lanes derived from trajectories" />
-                  <EvidenceBadge kind="assumed" note="Road past the tracked lanes" />
+                  <EvidenceBadge kind="approximated" note="Lanes from tracks" />
+                  <EvidenceBadge kind="assumed" note="Road beyond" />
                 </>
               ) : (
                 <EvidenceBadge kind="assumed" note="Schematic, not surveyed" />
