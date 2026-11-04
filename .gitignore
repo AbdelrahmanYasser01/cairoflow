@@ -59,3 +59,9 @@ cache/muse/*
 # Local agent tooling state
 .claude-flow/
 .claude/worktrees/
+
+# Demo video (video/): dependencies, renders and captures of the app are rebuilt, not committed
+video/node_modules
+video/out
+video/public/captures
+video/public/footage
