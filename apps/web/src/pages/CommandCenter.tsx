@@ -271,12 +271,21 @@ function Decision() {
     ["Seeds", String(paired.simulation.seeds.length)],
     ["Timelines", String(timelines)],
   ];
+  // The short reason, counted from the record's own verdicts: which candidates made a measure worse.
+  const tested = new Set(paired.metrics.map((metric) => metric.candidate));
+  const worsened = new Set(paired.metrics.filter((metric) => metric.verdict === "worsens").map((metric) => metric.candidate));
+  const summary = record.decision_ref?.summary ?? null;
   return (
     <>
       {heading}
       <p className={DECISION_HEAD}>{recommended ? `Recommend ${recommended}` : "Nothing is recommended"}</p>
-      {record.decision_ref?.summary ? (
-        <p className="mt-3 max-w-[17rem] text-label leading-snug text-paint-2">{record.decision_ref.summary}</p>
+      {!recommended && tested.size > 0 ? (
+        <p className="mono mt-3 flex items-center gap-2 text-paint-1">
+          <span aria-hidden="true" className="inline-block size-1.5 bg-stop" />
+          {`${worsened.size} of ${tested.size} candidates worsened a metric`}
+        </p>
+      ) : summary ? (
+        <p className="mt-3 max-w-[17rem] text-label leading-snug text-paint-2">{summary}</p>
       ) : null}
       <dl className="m-0 mt-4 grid grid-cols-3 border-y border-rule-1">
         {facts.map(([name, value]) => (
@@ -289,12 +298,15 @@ function Decision() {
         ))}
       </dl>
       <p className="mono mt-2 text-paint-3">{`Baseline ${baselineLabel(paired.baseline.status).toLowerCase()}`}</p>
-      {change ? (
+      {change || (summary && !recommended && tested.size > 0) ? (
         <details className="mt-2">
           <summary className="mono cursor-pointer text-paint-2 underline decoration-rule-2 underline-offset-4 hover:text-paint-1">
-            What would change it
+            Why, and what would change it
           </summary>
-          <p className="mt-2 text-label leading-snug text-paint-2">{change}</p>
+          {summary && !recommended && tested.size > 0 ? (
+            <p className="mt-2 text-label leading-snug text-paint-2">{summary}</p>
+          ) : null}
+          {change ? <p className="mt-2 text-label leading-snug text-paint-2">{change}</p> : null}
         </details>
       ) : null}
       <div className="mt-auto flex flex-col items-start gap-1 pt-3">
