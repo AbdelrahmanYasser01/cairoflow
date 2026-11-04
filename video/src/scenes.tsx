@@ -215,7 +215,7 @@ export function Tracks({ dur, captures, footage }: SceneProps) {
 }
 
 type MaskFrame = { frame: number; masks: [number, [number, number][]][] };
-const MASK_FRAMES = (samMasks as { frames: MaskFrame[] }).frames;
+const MASK_FRAMES = (samMasks as unknown as { frames: MaskFrame[] }).frames;
 const [, , MAX_X, MAX_Y] = (samMasks as { bounds: number[] }).bounds;
 
 /* 5. SAM 3.1: real mask outlines from the SAM window, and what it changed. */
@@ -664,8 +664,8 @@ export function Close({ dur, slots, showSlotLabels }: SceneProps) {
   const first = 1 - prog(frame, swap - 14, 14, Easing.linear);
   return (
     <SceneFade dur={dur} edge={16}>
-      {slots.h2 ? (
-        <div style={{ position: "absolute", inset: 0, opacity: first }}>
+      {slots.h2 || showSlotLabels ? (
+        <div style={{ position: "absolute", inset: 0, opacity: first * 0.85 }}>
           <Slot id="H2" src={slots.h2} dur={dur} label="Night street, signals cycling" showLabel={showSlotLabels} />
         </div>
       ) : (

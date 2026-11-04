@@ -204,10 +204,18 @@ headless shell on first render, and Playwright needs `npx playwright install chr
 If `data/sample` changes, refresh the drawn data first: `node video/scripts/prepare-data.mjs`. If a figure
 in README.md changes, change `video/src/facts.ts` and the storyboard above.
 
+A full render takes 10 to 25 minutes on four busy cores. To fix one scene without that, re-render its frames
+and splice them in (the scene's first frame is its start time x 30; Remotion Studio shows it too):
+
+```bash
+node video/scripts/render.mjs --frames=4200-4559 --out=video/out/patch.mp4
+npm --prefix video run splice -- video/out/patch.mp4 4200
+```
+
 ## Honesty notes for whoever edits this next
 
-- Entering flow is never shown as a value outside the cold open, where 0.2033 is the gate's own error, the
-  number that failed. Keep "Withheld" and its reason together.
+- Entering flow is never shown as a value. 0.2033 is the gate's entering count error, the number that
+  failed, which README.md and the app both print. Keep "Withheld" and its reason together.
 - SAM's along-road error got worse (0.55 m to 0.58 m) and stays on screen next to the gains. SAM was seeded
   from the detector's tracks, so agreement with them is a consistency check, not confirmation.
 - 967 tracks is ungated and approximated, and is marked so.

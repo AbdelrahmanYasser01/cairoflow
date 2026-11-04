@@ -79,7 +79,7 @@ if (flag("stills")) {
   process.exit(0);
 }
 
-const target = join(OUT, "cairoflow-demo.mp4");
+const target = value("out") ? resolve(value("out")) : join(OUT, "cairoflow-demo.mp4");
 const extra = [];
 if (flag("draft")) extra.push("--scale=0.5", "--crf=26");
 if (flag("frames")) extra.push(`--frames=${value("frames")}`);
@@ -90,12 +90,14 @@ run([
   `--concurrency=${concurrency}`, ...extra, ...common,
 ]);
 
-const review = process.env.REVIEW_DIR || "/tmp/claude-0/review/video";
-try {
-  mkdirSync(review, { recursive: true });
-  copyFileSync(target, join(review, "cairoflow-demo.mp4"));
-  console.log(`[render] copied to ${join(review, "cairoflow-demo.mp4")}`);
-} catch {
-  /* the review folder is optional */
+if (!value("out") && !flag("frames")) {
+  const review = process.env.REVIEW_DIR || "/tmp/claude-0/review/video";
+  try {
+    mkdirSync(review, { recursive: true });
+    copyFileSync(target, join(review, "cairoflow-demo.mp4"));
+    console.log(`[render] copied to ${join(review, "cairoflow-demo.mp4")}`);
+  } catch {
+    /* the review folder is optional */
+  }
 }
 console.log(`[render] wrote ${target}`);
