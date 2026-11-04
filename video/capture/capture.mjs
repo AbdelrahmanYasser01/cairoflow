@@ -20,8 +20,10 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const VIDEO_ROOT = resolve(HERE, "..");
-const OUT_DIR = join(VIDEO_ROOT, "public", "captures");
-const WORK_DIR = join(VIDEO_ROOT, "out", "capture-frames");
+// CAPTURE_OUT and CAPTURE_WORK redirect the clips and their frames, e.g. for a trial run while a
+// render is reading public/captures.
+const OUT_DIR = process.env.CAPTURE_OUT ? resolve(process.env.CAPTURE_OUT) : join(VIDEO_ROOT, "public", "captures");
+const WORK_DIR = process.env.CAPTURE_WORK ? resolve(process.env.CAPTURE_WORK) : join(VIDEO_ROOT, "out", "capture-frames");
 const BASE = (process.env.CAPTURE_URL || "http://127.0.0.1:8105").replace(/\/$/, "");
 const WIDTH = 1920;
 const HEIGHT = 1080;
@@ -30,6 +32,9 @@ const FPS = 30;
 const args = process.argv.slice(2);
 const onlyArg = args.find((a) => a.startsWith("--only="));
 const ONLY = onlyArg ? new Set(onlyArg.slice(7).split(",").filter(Boolean)) : null;
+// --screencast records the 2D pages in real time instead of frame-stepping them (faster, but its
+// frame rate drops when the machine is busy).
+const SCREENCAST = args.includes("--screencast");
 
 async function loadPlaywright() {
   try {
@@ -177,6 +182,42 @@ async function glideToText(page, pattern, { ms = 1800, at = 0.38 } = {}) {
     return false;
   }
   await glide(page, { to: offset, ms });
+  return true;
+}
+
+/**
+ * For frame-stepped clips: starts a glide and returns at once. The glide runs on the page's virtual
+ * clock, so it advances only as the recorder steps it and comes out smooth at any machine load.
+ */
+async function glideLater(page, { to, fraction, pattern, at = 0.38, ms }) {
+  let target = to;
+  if (pattern) {
+    target = await page.evaluate(
+      ({ source, flags, at }) => {
+        const re = new RegExp(source, flags);
+        const el = window.__cfScroller();
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          if (!re.test(node.textContent || "")) continue;
+          const host = node.parentElement;
+          if (!host || host.closest("[aria-hidden='true']")) continue;
+          const rect = host.getBoundingClientRect();
+          if (rect.width === 0 || rect.height === 0) continue;
+          const isDoc = el === document.scrollingElement || el === document.documentElement;
+          const top = isDoc ? 0 : el.getBoundingClientRect().top;
+          return el.scrollTop + (rect.top - top) - el.clientHeight * at;
+        }
+        return null;
+      },
+      { source: pattern.source, flags: pattern.flags.replace("g", ""), at },
+    );
+    if (target === null) {
+      log(`  skipped: no text matching ${pattern}`);
+      return false;
+    }
+  }
+  glide(page, { to: target, fraction, ms }).catch(() => {});
   return true;
 }
 
@@ -377,6 +418,8 @@ const CLIPS = {
   // (b) Command center: the withheld figure, then the decision.
   command: {
     url: "/",
+    // The page fits one screen; its camera-tracks replay runs on the stepped clock.
+    stepped: { seconds: 10, async prepare() { await sleep(2500); }, timeline: [] },
     async run(page) {
       await sleep(2500);
       await glideToText(page, /withheld/i, { ms: 2200 });
@@ -388,6 +431,11 @@ const CLIPS = {
   // (c) Evidence: the gate panel, scrolled slowly.
   evidence: {
     url: "/evidence",
+    stepped: {
+      seconds: 7,
+      async prepare() { await sleep(2000); },
+      timeline: [{ at: 0.8, run: (page) => glideLater(page, { pattern: /entering count|agreement gate|held-out/i, at: 0.2, ms: 3200 }) }],
+    },
     async run(page) {
       await sleep(2000);
       if (!(await glideToText(page, /entering count|agreement gate|held-out/i, { ms: 2500, at: 0.2 }))) {
@@ -401,6 +449,11 @@ const CLIPS = {
   // (d) Analytics: turning movements.
   analytics: {
     url: "/analytics",
+    stepped: {
+      seconds: 8.5,
+      async prepare() { await sleep(2000); },
+      timeline: [{ at: 0.4, run: (page) => glideLater(page, { pattern: /turning/i, at: 0.25, ms: 2400 }) }],
+    },
     async run(page) {
       await sleep(2000);
       if (!(await glideToText(page, /turning/i, { ms: 2500, at: 0.25 }))) await glide(page, { fraction: 0.4, ms: 2500 });
@@ -414,6 +467,15 @@ const CLIPS = {
   // (e1) Vision Lab on the 15-minute study: tracks over the camera view.
   vision: {
     url: "/vision",
+    stepped: {
+      seconds: 12,
+      async prepare(page) {
+        await sleep(1500);
+        await press(page, /^tracks$/i);
+        await sleep(800);
+      },
+      timeline: [{ at: 0, run: (page) => press(page, /^play$/i) }],
+    },
     async run(page) {
       await sleep(1500);
       await press(page, /^tracks$/i);
@@ -467,7 +529,8 @@ async function main() {
   manifest.clips = manifest.clips || {};
   for (const [name, clip] of Object.entries(CLIPS)) {
     if (ONLY && !ONLY.has(name)) continue;
-    const result = clip.stepped
+    const useStepped = clip.stepped && !(SCREENCAST && clip.run);
+    const result = useStepped
       ? await recordStepped(context, name, clip.url, clip.stepped)
       : await record(context, name, clip.url, clip.run);
     if (result) manifest.clips[name] = result;
