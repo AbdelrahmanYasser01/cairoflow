@@ -324,8 +324,9 @@ export function Gate({ dur }: SceneProps) {
         <Rise at={8} style={{ fontFamily: F.display, fontWeight: 700, fontSize: 84, color: C.paint1, marginTop: 18, lineHeight: 1 }}>
           Seven checks. Limits first.
         </Rise>
-        <Rise at={22} style={{ fontFamily: F.mono, fontSize: 24, color: C.paint3, marginTop: 18 }}>
-          vs published NGSIM trajectories · 7 held-out blocks · one read
+        <Rise at={22} style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: F.mono, fontSize: 24, color: C.paint3, marginTop: 18 }}>
+          <StatusMark status="checked" size={24} />
+          <span>vs published NGSIM trajectories · 7 held-out blocks · one read</span>
         </Rise>
       </div>
       {/* The committed line. */}
