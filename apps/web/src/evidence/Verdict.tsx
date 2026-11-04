@@ -275,12 +275,13 @@ function BaselineFigures({ decision, measures }: { decision: DecisionSummary; me
 export function DecisionVerdict({
   decision,
   waiting,
-  linkedToCamera,
+  unlinked,
   index,
 }: {
   decision: DecisionSummary | null;
   waiting: boolean;
-  linkedToCamera: boolean;
+  /** How the decision stands apart from the run on screen, or null when that run fed it. */
+  unlinked: string | null;
   index?: string;
 }) {
   const status = decision?.baseline.status ?? null;
@@ -319,10 +320,10 @@ export function DecisionVerdict({
               {verdict}
             </p>
             <p className="mt-4 max-w-[34rem] text-body leading-snug text-paint-2">{reason}</p>
-            {decision && !linkedToCamera ? (
+            {decision && unlinked ? (
               <p className="mono mt-4 inline-flex items-center gap-2 border border-rule-2 px-2 py-1 text-micro tracking-[0.06em] text-paint-2 uppercase">
                 <span aria-hidden="true" className="size-1.5 bg-ev-observed" />
-                From published NGSIM trajectories · not this camera run
+                {`From published NGSIM trajectories · ${unlinked}`}
               </p>
             ) : null}
           </div>

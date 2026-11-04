@@ -41,9 +41,9 @@ function Node({ stage }: { stage: ChainReading }) {
           {stage.label}
         </span>
         <span className="mono mt-1 block text-micro text-paint-3">{stage.brief}</span>
-        <span className="mt-2.5 flex items-center gap-2">
+        <span className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1">
           <StatusMark status={stage.status} decorative />
-          <span className="mono text-micro text-paint-2">{STATUS[stage.status].label}</span>
+          <span className="mono text-micro whitespace-nowrap text-paint-2">{STATUS[stage.status].label}</span>
           {stage.evidence ? <EvidenceGlyph kind={stage.evidence} size={10} /> : null}
         </span>
       </Link>
@@ -141,11 +141,11 @@ export function PipelineFlow({ record, index }: { record: AnalysisRecord; index?
           copyleft.length > 0 ? (
             <span className="mono text-label text-amber">{`${copyleft.map((stage) => stage.stage).join(", ")}: ${copyleft[0]?.licence}`}</span>
           ) : (
-            <span className="mono text-label text-paint-3">{`${stages.length} stages`}</span>
+            <span className="mono text-label text-paint-3">{`${stages.length} stage${stages.length === 1 ? "" : "s"}`}</span>
           )
         }
       />
-      <ol className="m-0 mt-5 grid list-none grid-cols-2 gap-px border border-rule-1 bg-rule-1 p-0 sm:grid-cols-4 xl:grid-cols-7">
+      <ol className="m-0 mt-5 grid list-none grid-cols-2 border-t border-l border-rule-1 p-0 sm:grid-cols-4 xl:grid-cols-7">
         {stages.map((stage, index) => (
           <PipelineNode key={stage.stage} stage={stage} index={index} longest={longest} />
         ))}
@@ -169,7 +169,7 @@ function PipelineNode({ stage, index, longest }: { stage: StageReceipt; index: n
     .filter(Boolean)
     .join(" · ");
   return (
-    <li className="flex min-w-0 flex-col gap-2 bg-asphalt-0 p-3" title={detail}>
+    <li className="flex min-w-0 flex-col gap-2 border-r border-b border-rule-1 bg-asphalt-0 p-3" title={detail}>
       <span className="mono text-micro text-paint-4">{String(index + 1).padStart(2, "0")}</span>
       <span className="font-display text-head leading-none text-paint-1 capitalize">{stage.stage}</span>
       <span className="mono truncate text-micro text-paint-3">{short(stage.tool)}</span>

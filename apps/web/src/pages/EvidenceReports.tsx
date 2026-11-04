@@ -103,7 +103,12 @@ export function EvidenceReports() {
   const paired = record && decision.status === "ready" ? decisionFor(record, decision.data) : null;
   const chain = useChain(loaded);
   const waiting = state.status === "loading" || (loaded !== null && decision.status === "loading");
-  const linkedToCamera = record?.decision_ref?.linked_to_cv ?? false;
+  const unlinked =
+    record && paired && !record.decision_ref?.linked_to_cv
+      ? record.data_origin === "camera_cv"
+        ? "not this camera run"
+        : "not linked to this run"
+      : null;
   const sam = record ? samFacts(record) !== null : false;
   const number = (id: SectionId) => (record ? sectionNumber(sam, id) : undefined);
 
@@ -149,7 +154,7 @@ export function EvidenceReports() {
           </Instrument>
         ) : null}
         <Instrument>
-          <DecisionVerdict decision={paired} waiting={waiting} linkedToCamera={linkedToCamera} index={number("decision")} />
+          <DecisionVerdict decision={paired} waiting={waiting} unlinked={unlinked} index={number("decision")} />
         </Instrument>
         {paired ? (
           <Instrument>
