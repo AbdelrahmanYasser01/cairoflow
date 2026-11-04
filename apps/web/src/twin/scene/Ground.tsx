@@ -10,7 +10,7 @@ import {
   type Texture,
 } from "three";
 import type { Coverage, TwinModel } from "../model";
-import { ORDER, type Palette } from "./runtime";
+import { ORDER, fadeFrame, type Palette } from "./runtime";
 
 const VERTEX = /* glsl */ `
   varying vec3 vWorld;
@@ -112,15 +112,8 @@ export function Ground({
         uSurface: { value: palette.surface },
         uMinor: { value: palette.ruleStrong },
         uMajor: { value: palette.paintFaint },
-        uCentre: {
-          value: new Vector2((bounds.uMin + bounds.uMax) / 2, (bounds.vMin + bounds.vMax) / 2),
-        },
-        uRadius: {
-          value: new Vector2(
-            (bounds.uMax - bounds.uMin) / 2 + 70,
-            (bounds.vMax - bounds.vMin) / 2 + 70,
-          ),
-        },
+        uCentre: { value: new Vector2(...fadeFrame(bounds).centre) },
+        uRadius: { value: new Vector2(...fadeFrame(bounds).radius) },
         uGrid: { value: gridStrength },
       },
     });

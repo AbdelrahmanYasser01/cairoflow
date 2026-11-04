@@ -282,7 +282,15 @@ function World({
         showSurface={showRoad}
         gridStrength={geo ? 1 : full ? 0.5 : 0.28}
       />
-      {showRoad ? <Road lanes={model.site.lanes} gates={model.site.gates} palette={palette} /> : null}
+      {showRoad ? (
+        <Road
+          lanes={model.site.lanes}
+          gates={model.site.gates}
+          network={model.network}
+          bounds={model.bounds}
+          palette={palette}
+        />
+      ) : null}
       {full ? (
         <mesh rotation-x={-Math.PI / 2} position-y={LEVEL.shadow} receiveShadow renderOrder={ORDER.shadow}>
           <planeGeometry args={[440, 440]} />
