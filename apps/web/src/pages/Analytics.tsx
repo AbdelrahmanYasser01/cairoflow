@@ -19,6 +19,7 @@ import { AgreementPlot } from "../analytics/AgreementPlot";
 import { JunctionFlows, type Pairing } from "../analytics/JunctionFlows";
 import { Kpis } from "../analytics/Kpis";
 import { OdMatrix } from "../analytics/OdMatrix";
+import { RunStrip } from "../analytics/RunStrip";
 import { WithheldBand } from "../analytics/WithheldBand";
 import { FlowChart } from "../instruments/FlowChart";
 import { OutsideWindow } from "../instruments/Receipts";
@@ -86,7 +87,11 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
 
   return (
     <div className="page pb-12">
-      <PageHead title="Traffic Analytics" sub={<Label>{analysisLabel(state)}</Label>} />
+      <PageHead
+        title="Traffic Analytics"
+        sub={<Label>{analysisLabel(state)}</Label>}
+        meta={<RunStrip record={record} />}
+      />
 
       <Instrument>
         <Kpis metrics={headline} record={record} />
