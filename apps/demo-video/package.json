@@ -1,0 +1,24 @@
+{
+  "name": "@cairoflow/demo-video",
+  "private": true,
+  "version": "0.1.0",
+  "description": "The CairoFlow submission film: a Remotion project cut to its own voiceover",
+  "scripts": {
+    "studio": "remotion studio --no-open",
+    "render": "remotion render CairoFlowDemo out/CairoFlow-demo.mp4 --codec=h264 --crf=16 --audio-bitrate=320k",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.540",
+    "@remotion/fonts": "4.0.540",
+    "@remotion/media": "4.0.540",
+    "@remotion/transitions": "4.0.540",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.540"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}

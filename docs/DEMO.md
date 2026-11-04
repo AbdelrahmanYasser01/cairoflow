@@ -4,6 +4,8 @@ Two paths. **Primary:** precomputed analysis, fully offline. **Secondary:** a ne
 
 Start the app with `bash scripts/demo_run.sh`, then follow the script. It runs about three minutes.
 
+The produced submission film tells the same story and is built from this app in [`apps/demo-video`](../apps/demo-video/README.md); its treatment and script are in [the film's design doc](superpowers/specs/2026-11-04-demo-video-design.md).
+
 | Time | Screen | Do | Say |
 |---|---|---|---|
 | 0:00 | Title | | One recorded camera. What can it actually prove? |
