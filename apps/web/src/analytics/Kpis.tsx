@@ -61,6 +61,9 @@ function ShareBar({ share }: { share: number }) {
   );
 }
 
+/** A value and its unit stay on one line. */
+const keep = (words: string) => words.replace(/ /g, "\u00a0");
+
 /** The check that passed this figure, in one line: "Checked · median speed error …, limit …". */
 function CheckLine({ record, metric, name }: { record: AnalysisRecord; metric: string; name?: string }) {
   const gate = (record.gates ?? []).find((item) => item.metric === metric && item.passed);
@@ -68,7 +71,7 @@ function CheckLine({ record, metric, name }: { record: AnalysisRecord; metric: s
   return (
     <span className="mono mt-4 block text-micro text-paint-3">
       <span className="text-go">Checked</span>
-      {` · ${name ?? gateName(gate.metric).toLowerCase()} ${gateReading(gate.metric, gate.measured)}, limit ${gateLimit(gate.metric, gate.threshold)}`}
+      {` · ${name ?? gateName(gate.metric).toLowerCase()} ${keep(gateReading(gate.metric, gate.measured))}, limit ${keep(gateLimit(gate.metric, gate.threshold))}`}
     </span>
   );
 }
