@@ -55,3 +55,6 @@ cache/muse/*
 *.pth
 *.ckpt
 *.safetensors
+
+# Ruflo/claude-flow local runtime state (status snapshots, console history)
+.claude-flow/
