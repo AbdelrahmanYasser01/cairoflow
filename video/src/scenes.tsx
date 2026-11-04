@@ -181,7 +181,8 @@ export function Tracks({ dur, captures, footage }: SceneProps) {
       {footage ? (
         <Screen clip={{ src: footage, durationInFrames: dur }} label="Annotated footage" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.0} zoomTo={1.06} />
       ) : (
-        <Screen clip={captures.vision ?? captures.sam} label="Vision Lab" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.0} zoomTo={1.1} originX={40} originY={45} />
+        // Pushed in on the Vision Lab's frame panel, where the tracks are drawn.
+        <Screen clip={captures.vision ?? captures.sam} label="Vision Lab" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.55} zoomTo={1.68} originX={17} originY={28} />
       )}
       <SourceTag at={4}>{footage ? "NGSIM camera · annotated · CC BY-SA 4.0" : "Vision Lab · camera output"}</SourceTag>
       <div style={{ position: "absolute", left: 1300, top: 170, width: 540 }}>
