@@ -1,6 +1,6 @@
 import { PerformanceMonitor } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Bloom, EffectComposer, ToneMapping } from "@react-three/postprocessing";
+import { Bloom, EffectComposer, ToneMapping, Vignette } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { EVIDENCE_KINDS, EmptyState, ErrorState, type EvidenceKind } from "../design";
@@ -149,7 +149,9 @@ function Lights({ shadows, room }: { shadows: boolean; room: string }) {
   return (
     <>
       <fog attach="fog" args={[room, 520, 1250]} />
-      <hemisphereLight args={["#8ea3b8", "#14181c", 0.5]} />
+      <hemisphereLight args={["#8ea3b8", "#14181c", 0.42]} />
+      {/* Warm, low and shadowless from the far side: sodium light off the street, lifting the shade. */}
+      <directionalLight position={[110, 40, -90]} intensity={0.32} color="#f2c48a" />
       <directionalLight
         position={[-90, 150, 70]}
         intensity={1.15}
@@ -211,7 +213,7 @@ function World({
     () => [
       ...armLabels(model.site),
       scaleBarLabel(model.bounds),
-      ...(mode === "geo" && anchor ? geoTickLabels(model.bounds, anchor) : []),
+      ...(mode === "geo" && anchor ? geoTickLabels(model.bounds, anchor, model.network) : []),
     ],
     [model, mode, anchor],
   );
@@ -282,7 +284,15 @@ function World({
         showSurface={showRoad}
         gridStrength={geo ? 1 : full ? 0.5 : 0.28}
       />
-      {showRoad ? <Road lanes={model.site.lanes} gates={model.site.gates} palette={palette} /> : null}
+      {showRoad ? (
+        <Road
+          lanes={model.site.lanes}
+          gates={model.site.gates}
+          network={model.network}
+          bounds={model.bounds}
+          palette={palette}
+        />
+      ) : null}
       {full ? (
         <mesh rotation-x={-Math.PI / 2} position-y={LEVEL.shadow} receiveShadow renderOrder={ORDER.shadow}>
           <planeGeometry args={[440, 440]} />
@@ -330,7 +340,7 @@ function World({
           <SceneLabels labels={labels} insets={insets} />
           <ScaleBar bounds={model.bounds} palette={palette} />
           <Compass anchor={anchor} insets={insets} hidden={panelPx > 0} />
-          {geo && anchor ? <GeoTicks bounds={model.bounds} palette={palette} /> : null}
+          {geo && anchor ? <GeoTicks bounds={model.bounds} network={model.network} palette={palette} /> : null}
           <Rig
             rt={rt}
             mode={mode}
@@ -349,6 +359,8 @@ function World({
         <EffectComposer multisampling={reduced ? 0 : 4} enableNormalPass={false}>
           <Bloom mipmapBlur intensity={0.9} luminanceThreshold={1.15} luminanceSmoothing={0.1} radius={0.62} />
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
+          {/* A soft falloff to the stage edge: keeps the eye on the junction, carries no data. */}
+          <Vignette offset={0.32} darkness={0.5} />
         </EffectComposer>
       ) : null}
     </>
