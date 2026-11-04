@@ -426,7 +426,7 @@ function LiveTraffic({ loaded, frame }: { loaded: LoadedAnalysis; frame: PlanFra
       if (now - stamped < 250) return;
       stamped = now;
       const target = document.getElementById(REPLAY_CLOCK_ID);
-      if (target) target.textContent = mmss(record.source_start_s + at / record.fps);
+      if (target) target.textContent = mmss(at / record.fps);
     };
 
     if (reduced) {

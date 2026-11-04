@@ -340,10 +340,35 @@
       32px 32px;
   }
 
+  /* A record moving down the provenance line: a short amber run, one pass every few seconds. */
+  .chain-pulse {
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 44%,
+      color-mix(in srgb, var(--amber) 85%, transparent) 50%,
+      transparent 50.5%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: cf-pulse 4.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  }
+
+  @keyframes cf-pulse {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: -10% 0;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .scan-sweep,
-    .lamp-live {
+    .lamp-live,
+    .chain-pulse {
       animation: none;
+      background: none;
     }
   }
 }

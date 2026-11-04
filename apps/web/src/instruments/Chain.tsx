@@ -74,9 +74,17 @@ export function ChainRail({ stages }: { stages: readonly ChainReading[] }) {
           <section key={id} aria-label={label}>
             <Label className="mb-2.5 block">{label}</Label>
             <ol
-              className="m-0 grid list-none grid-cols-1 p-0 lg:[grid-template-columns:repeat(var(--stations),minmax(0,1fr))]"
+              className="relative m-0 grid list-none grid-cols-1 p-0 lg:[grid-template-columns:repeat(var(--stations),minmax(0,1fr))]"
               style={{ ["--stations" as string]: members.length }}
             >
+              {/* A pulse running down the line, only where every stage has a record behind it. */}
+              {members.every(hasRecord) ? (
+                <span
+                  aria-hidden="true"
+                  className="chain-pulse pointer-events-none absolute inset-x-0 -top-px hidden h-[2px] lg:block"
+                  style={{ animationDelay: id === CHAIN_BRANCHES[0]?.id ? "0s" : "1.4s" }}
+                />
+              ) : null}
               {members.map((stage) => (
                 <RailStage key={stage.id} stage={stage} />
               ))}
