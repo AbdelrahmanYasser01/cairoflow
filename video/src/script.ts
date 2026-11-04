@@ -53,15 +53,16 @@ export function placeScenes(): { placed: Placed[]; total: number } {
 
 /**
  * Voice-over lines: [scene, seconds into the scene, seconds shown, text, caption?]. The caption is
- * burned in unless the same words are already the on-screen type (cold open, title, decision, close).
+ * burned in unless the same words are already the on-screen type (cold open, title, place, the
+ * withheld card, the gate's last line, decision, close).
  */
 export const VO: [SceneId, number, number, string, boolean?][] = [
   ["cold", 1.2, 3.4, "Zero point two zero three three.", false],
   ["cold", 4.6, 2.2, "Our limit was zero point two zero.", false],
   ["cold", 7.0, 2.6, "So we didn't show it.", false],
   ["title", 1.0, 4.4, "This is CairoFlow. Traffic intelligence that shows its working.", false],
-  ["place", 0.6, 3.4, "One overhead camera. Los Angeles, June 2005."],
-  ["place", 4.2, 3.4, "Lankershim Boulevard at Universal Hollywood Drive."],
+  ["place", 0.6, 3.4, "One overhead camera. Los Angeles, June 2005.", false],
+  ["place", 4.2, 3.4, "Lankershim Boulevard at Universal Hollywood Drive.", false],
   ["tracks", 0.6, 4.6, "A detector and a tracker turn fifteen minutes of video"],
   ["tracks", 5.4, 5.0, "into nine hundred and sixty-seven tracks. That count is ungated."],
   ["sam", 0.6, 4.4, "On one sixty-second window, Meta's SAM 3.1 refines the tracks."],
@@ -75,7 +76,8 @@ export const VO: [SceneId, number, number, string, boolean?][] = [
   ["gate", 7.6, 5.0, "Recall. Matching. Position. Lanes. Turns. Speed."],
   ["gate", 14.4, 5.2, "Six pass. Entering counts miss, by zero point zero zero three three.", false],
   ["withheld", 0.5, 4.2, "So the product withholds entering flow"],
-  ["withheld", 4.9, 3.8, "and shows the reason in its place. The limit stays."],
+  ["withheld", 4.9, 2.2, "and shows the reason in its place.", false],
+  ["withheld", 7.1, 1.7, "The limit stays."],
   ["evidence", 0.4, 5.4, "Every headline figure carries its evidence, and its gate."],
   ["muse", 0.6, 4.6, "Meta's Muse Spark reads the record and writes hypotheses."],
   ["muse", 5.4, 4.4, "Model output, labelled as such."],

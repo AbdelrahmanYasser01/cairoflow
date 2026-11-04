@@ -399,7 +399,8 @@ const CLIPS = {
   twin: {
     url: "/twin",
     stepped: {
-      seconds: Number(process.env.CAPTURE_TWIN_SECONDS || 16),
+      // The twin scene shows 12.4 s, so 12.6 s is enough: Oblique, Along Lankershim, Plan.
+      seconds: Number(process.env.CAPTURE_TWIN_SECONDS || 12.6),
       async prepare(page) {
         await page.waitForSelector("canvas", { timeout: 20000 }).catch(() => log("  no canvas yet"));
         await sleep(3500);
@@ -411,7 +412,6 @@ const CLIPS = {
         { at: 0, run: (page) => press(page, /^play$/i) },
         { at: 4, run: (page) => press(page, /along lankershim/i) },
         { at: 8.5, run: (page) => press(page, /^plan$/i) },
-        { at: 12.5, run: (page) => press(page, /^oblique$/i) },
       ],
     },
   },

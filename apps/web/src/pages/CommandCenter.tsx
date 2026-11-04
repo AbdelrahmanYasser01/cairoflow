@@ -64,7 +64,7 @@ function GateStrip() {
   return (
     <Link
       to="/evidence#gates"
-      className="group inline-flex items-center gap-3 self-start"
+      className="group inline-flex flex-wrap items-center gap-x-3 gap-y-1 self-start"
       aria-label={`${passed} of ${total} checks passed${blind ? ", held-out read" : ""}`}
     >
       <span aria-hidden="true" className="flex gap-1">
@@ -79,8 +79,8 @@ function GateStrip() {
           />
         ))}
       </span>
-      <span className="mono text-paint-1 group-hover:text-amber">{`${passed} of ${total} checks passed`}</span>
-      {blind ? <span className="mono text-paint-3">held-out read</span> : null}
+      <span className="mono whitespace-nowrap text-paint-1 group-hover:text-amber">{`${passed} of ${total} checks passed`}</span>
+      {blind ? <span className="mono whitespace-nowrap text-paint-3">held-out read</span> : null}
     </Link>
   );
 }
@@ -237,7 +237,7 @@ function Decision() {
     return (
       <>
         {heading}
-        <p className={DECISION_HEAD}>Nothing is recommended</p>
+        <p className={DECISION_HEAD}>Nothing recommended</p>
         <p className="mono mt-3 text-paint-2">Needs a validated baseline.</p>
       </>
     );
@@ -257,7 +257,7 @@ function Decision() {
     return (
       <>
         {heading}
-        <p className={DECISION_HEAD}>Nothing is recommended</p>
+        <p className={DECISION_HEAD}>Nothing recommended</p>
         <p className="mono mt-3 text-paint-2">No decision record names this analysis.</p>
       </>
     );
@@ -278,7 +278,7 @@ function Decision() {
   return (
     <>
       {heading}
-      <p className={DECISION_HEAD}>{recommended ? `Recommend ${recommended}` : "Nothing is recommended"}</p>
+      <p className={DECISION_HEAD}>{recommended ? `Recommend ${recommended}` : "Nothing recommended"}</p>
       {!recommended && tested.size > 0 ? (
         <p className="mono mt-3 flex items-center gap-2 text-paint-1">
           <span aria-hidden="true" className="inline-block size-1.5 bg-stop" />

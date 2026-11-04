@@ -19,15 +19,15 @@ On Lankershim Blvd (Los Angeles, 2005), 6 of 7 checks passed: recall 0.761, 0.86
 ## How it uses Meta's models
 
 - **SAM 3.1** refines the detector's tracks on a 60-second window. Seeded with box prompts, it agreed with 9,900 of 10,858 detector rows. It replaced 586 interpolated rows with its own boxes, cutting interpolated rows from 7.7% to 2.7%. Its per-vehicle masks corrected a bus the detector had called a truck. We ran a control and report that SAM didn't raise recall itself.
-- **Muse Spark** reads the checked evidence and writes hypotheses for an engineer to test. Its reply schema has no numeric field, and code checks that every cited evidence id exists and that every numeral matches an evidence value. In a separate chain, Muse proposes signal-timing changes. Deterministic validators check each one, and SUMO tests them over 20 paired seeds across four signal timelines.
+- **Muse Spark** reads the checked evidence and writes hypotheses for an engineer to test. Its reply schema has no numeric field, and code checks that every cited evidence id exists and flags any numeral that matches no evidence value. In a separate chain, Muse proposes signal-timing changes. Deterministic validators check each one, and SUMO tests them over 20 paired seeds across four signal timelines.
 
 ## The decision
 
-Each of the three candidates worsened at least one metric, and no baseline is fully validated. So CairoFlow recommends nothing, and says why. That decision used the published NGSIM inputs, not this camera's output, and the app says so.
+Each of the three candidates worsened at least one metric, and no baseline is validated (two timelines partly, two not assessed). So CairoFlow recommends nothing, and says why. That decision used the published NGSIM inputs, not this camera's output, and the app says so.
 
 ## How we built it
 
-Python (FastAPI, Pydantic contracts, SUMO), a Vite + React + TypeScript web app with React Three Fiber for the twin, and about 1,800 automated tests. Model replies are cached by request hash, so the whole demo replays offline with no API key. Meta API spend stayed within a $3.00 project cap, with every paid request recorded in `experiments/records`.
+Python (FastAPI, Pydantic contracts, SUMO), a Vite + React + TypeScript web app with React Three Fiber for the twin, and about 1,800 automated tests. Model replies are cached by request hash, so the whole demo replays offline with no API key. Meta API spend since the delivery ledger began on 3 November was an estimated $0.51; earlier experiments are recorded with their runs in `experiments/records`.
 
 ## Challenges
 

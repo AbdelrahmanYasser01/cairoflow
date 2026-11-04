@@ -14,6 +14,7 @@ import {
 } from "./geo";
 import { createSample, displayHeadings, lerpAngle, positionAnchorOf, sampleFrame } from "./model";
 import { buildNetwork, clipToVerge, insidePolygon, onStreet } from "./network";
+import { CONTEXT_MAX_HEIGHT_M, contextBlocks } from "./context";
 import { parseAnalysisRows, parseSite } from "./site";
 
 const SCALE = 0.02;
@@ -530,6 +531,24 @@ describe("road network", () => {
     expect(network.offRoad).toBe(0);
     expect(network.sections.N.hi).toBeLessThan(17.5);
     expect(insidePolygon(network.outline, 18, 50)).toBe(false);
+  });
+
+  it("stands context blocks only on clear ground, off the road, sidewalks and side entrances", () => {
+    const network = buildNetwork(site, at([[18, 80], [19, 82], [17.5, 84]]), SCALE);
+    const blocks = contextBlocks(network, null, (u, v) => Math.hypot(u, v) < 200);
+    expect(blocks.length).toBeGreaterThan(4);
+    let onRoad = 0;
+    for (const block of blocks) {
+      expect(block.height).toBeLessThanOrEqual(CONTEXT_MAX_HEIGHT_M);
+      for (let u = block.uMin; u <= block.uMax; u += 1) {
+        for (let v = block.vMin; v <= block.vMax; v += 1) {
+          if (onStreet(network, u, v) || insidePolygon(network.outline, u, v)) onRoad++;
+        }
+      }
+    }
+    expect(onRoad).toBe(0);
+    // Nothing stands on the side entrance vehicles used.
+    expect(blocks.some((b) => b.uMin <= 18 && b.uMax >= 18 && b.vMin <= 82 && b.vMax >= 82)).toBe(false);
   });
 
   it("keeps the geo axes off the street", () => {

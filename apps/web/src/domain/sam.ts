@@ -90,7 +90,7 @@ export function samMeasuredDisclosures(record: AnalysisRecord): string[] {
   const { with_sam_boxes: boxes, same_rows_interpolated: control } = measured.recall;
   return [
     `On rows where SAM's box replaced an interpolated one, median across-road error fell from ${before} to ${after} m in source seconds ${from} to ${to}. This is ${measured.label}. Measured record ${recordName(measured)}.`,
-    `SAM did not raise recall. With SAM's boxes recall reads ${boxes}; the same rows left at their interpolated positions read ${control}. Measured record ${recordName(measured)}.`,
+    `SAM did not raise recall. In source seconds ${from} to ${to}, recall with SAM's boxes reads ${boxes}; the same rows left at their interpolated positions read ${control}. Measured record ${recordName(measured)}.`,
     `Class by mask length rests on thin evidence: only ${measured.long_vehicles_in_window} long vehicles are in this window.`,
   ];
 }

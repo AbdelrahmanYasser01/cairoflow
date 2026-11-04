@@ -23,7 +23,7 @@ Built for the Meta Global AI Developer Hackathon 2026, using SAM 3.1 and Muse Sp
 
 ## What it found
 
-The site is Lankershim Blvd at Universal Hollywood Dr, Los Angeles, filmed for the NGSIM programme on 16 June 2005. The street names come from a present-day map, not the dataset. The 15-minute study counted 967 tracks. That total has no gate behind it and includes tracks that restarted mid-view; the published reference lists 1,015 vehicles over a larger area. These results come from the local detector and tracker: SAM wasn't part of this run.
+The site is Lankershim Blvd at Universal Hollywood Dr, Los Angeles, filmed for the NGSIM programme on 16 June 2005. The street names come from a present-day map, not the dataset. The 15-minute study counted 967 tracks. That total has no gate behind it and includes tracks that restarted mid-view; the published reference has 1,015 vehicle runs over a larger area. These results come from the local detector and tracker: SAM wasn't part of this run.
 
 We committed limits for seven checks against the published NGSIM trajectories before the first held-out read. The footage is split into alternating 60-second blocks: the detector, tracker and thresholds were tuned on the even ones, and the seven odd ones were scored once. The first read died with its session and produced no result, so a second gate with identical limits took its own single read.
 

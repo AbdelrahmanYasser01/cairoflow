@@ -23,7 +23,9 @@ import {
   geoTickLabels,
   gridNorthInJunction,
   scaleBarLabel,
+  scaleBarRect,
 } from "./scene/Labels";
+import { ContextBlocks } from "./scene/Context";
 import { FOV_DEG, poseFor } from "./scene/framing";
 import { Picker, Rig, ViewFrame } from "./scene/Rig";
 import { Reflections } from "./scene/Reflections";
@@ -221,6 +223,8 @@ function World({
     [model, mode, anchor, planView],
   );
 
+  const contextAvoid = useMemo(() => [scaleBarRect(model.bounds)], [model]);
+
   const positionsKind: EvidenceKind =
     model.record.data_origin === "reference_dataset" ? "observed" : "approximated";
   const showPositions = visibleKinds.has(positionsKind);
@@ -295,6 +299,9 @@ function World({
           bounds={model.bounds}
           palette={palette}
         />
+      ) : null}
+      {interactive && !geo && visibleKinds.has("assumed") ? (
+        <ContextBlocks model={model} palette={palette} avoid={contextAvoid} />
       ) : null}
       {full ? (
         <mesh rotation-x={-Math.PI / 2} position-y={LEVEL.shadow} receiveShadow renderOrder={ORDER.shadow}>

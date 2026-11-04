@@ -5,6 +5,9 @@
 //   npm --prefix video run render:draft      faster: half-size frames, same length (check only)
 //   node video/scripts/render.mjs --frames=0-299         one range
 //   node video/scripts/render.mjs --stills=150,2400      PNG stills into out/stills/
+//   node video/scripts/render.mjs --bundle               bundle once into out/bundle (public/ included)
+//   node video/scripts/render.mjs --entry=out/bundle --frames=720-1061 --out=out/p1.mp4
+//                                                        render from that bundle, no re-bundling
 //
 // It reads public/captures/manifest.json (written by `npm run capture`) and any Higgsfield shots
 // dropped in public/slots/h1.mp4 and public/slots/h2.mp4, and passes them in as props. It uses the
@@ -62,6 +65,17 @@ console.log(
   `[render] captures: ${Object.keys(captures).join(", ") || "none"}; slots: ${Object.keys(slots).join(", ") || "none"}; footage: ${footage ? "yes" : "no"}`,
 );
 
+// --entry=<bundle dir> renders from a folder made by --bundle, which skips the bundling step; the
+// bundle holds its own copy of public/, so bundle again after a re-capture.
+const entry = value("entry") ? resolve(value("entry")) : "src/index.ts";
+if (flag("bundle")) {
+  const cliBundle = join(ROOT, "node_modules", ".bin", "remotion");
+  const out = join(OUT, "bundle");
+  console.log(`[render] remotion bundle src/index.ts --out-dir=${out}`);
+  const r = spawnSync(cliBundle, ["bundle", "src/index.ts", `--out-dir=${out}`, "--log=warn"], { cwd: ROOT, stdio: "inherit" });
+  process.exit(r.status ?? 1);
+}
+
 const browser = headlessShell();
 const common = [`--props=${propsPath}`, ...(browser ? [`--browser-executable=${browser}`] : []), "--log=warn"];
 const cli = join(ROOT, "node_modules", ".bin", "remotion");
@@ -74,7 +88,7 @@ const run = (cmd) => {
 if (flag("stills")) {
   mkdirSync(join(OUT, "stills"), { recursive: true });
   for (const f of value("stills").split(",")) {
-    run(["still", "src/index.ts", "CairoFlowDemo", join(OUT, "stills", `f${f.padStart(5, "0")}.png`), `--frame=${f}`, ...common]);
+    run(["still", entry, "CairoFlowDemo", join(OUT, "stills", `f${f.padStart(5, "0")}.png`), `--frame=${f}`, ...common]);
   }
   process.exit(0);
 }
@@ -85,7 +99,7 @@ if (flag("draft")) extra.push("--scale=0.5", "--crf=26");
 if (flag("frames")) extra.push(`--frames=${value("frames")}`);
 const concurrency = value("concurrency") || process.env.REMOTION_CONCURRENCY || "50%";
 run([
-  "render", "src/index.ts", "CairoFlowDemo", target,
+  "render", entry, "CairoFlowDemo", target,
   "--codec=h264", "--pixel-format=yuv420p", "--crf=18", "--image-format=jpeg", "--jpeg-quality=92",
   `--concurrency=${concurrency}`, ...extra, ...common,
 ]);

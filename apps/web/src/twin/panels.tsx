@@ -705,6 +705,7 @@ export function TwinProvenance({
           <EvidenceBadge compact kind={positionsKind(record)} note={positionsNote(record)} />
           <EvidenceBadge compact kind="approximated" note="Road geometry approximate" />
           <EvidenceBadge compact kind="assumed" note="Bodies schematic" />
+          {geo ? null : <EvidenceBadge compact kind="assumed" note="Context blocks, not surveyed" />}
         </span>
         <span className="mono text-[12px] text-paint-3">{geo ? "No basemap" : "Approximate reconstruction"}</span>
         {alert}
@@ -721,6 +722,7 @@ export function TwinProvenance({
         <EvidenceBadge kind={positionsKind(record)} note={positionsNote(record)} />
         <EvidenceBadge kind="approximated" note="Road geometry derived from trajectories, approximate" />
         <EvidenceBadge kind="assumed" note="Vehicle shape and height schematic" />
+        {geo ? null : <EvidenceBadge kind="assumed" note="Context blocks, not surveyed" />}
       </Rows>
       <div className="mt-1 flex items-baseline justify-between gap-4">
         <p className="mono text-paint-3">

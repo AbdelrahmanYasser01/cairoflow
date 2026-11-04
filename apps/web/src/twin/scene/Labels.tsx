@@ -208,6 +208,12 @@ function scaleBarStart(bounds: Bounds): Point2 {
   return [bounds.uMax + 10, bounds.vMin + 6];
 }
 
+/** The ground the scale bar takes, with room round it, for anything that must keep clear of it. */
+export function scaleBarRect(bounds: Bounds) {
+  const [u, v] = scaleBarStart(bounds);
+  return { uMin: u - 4, uMax: u + 10, vMin: v - 4, vMax: v + SCALE_BAR_M + 4 };
+}
+
 export function scaleBarLabel(bounds: Bounds): LabelSpec {
   const [u, v] = scaleBarStart(bounds);
   return {

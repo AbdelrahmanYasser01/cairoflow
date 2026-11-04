@@ -100,8 +100,12 @@ function CorridorStrip({ rows }: { rows: readonly CorridorIntersection[] }) {
   const pad = 56;
   const step = ordered.length > 1 ? (width - pad * 2) / (ordered.length - 1) : 0;
   const axis = 104;
+  // Too little room between nodes for one label line: the speed goes on a second line.
+  const stacked = step > 0 && step < 150;
   return (
-    <div ref={box} className="relative mb-8 border-y border-rule-1" style={{ height: STRIP_H }}>
+    <>
+      <p className="eyebrow mb-2 lg:hidden">Lankershim corridor · vehicles</p>
+      <div ref={box} className="relative mb-8 border-y border-rule-1" style={{ height: STRIP_H }}>
       <div aria-hidden="true" className="survey-grid absolute inset-0 [mask-image:none] opacity-60" />
       {width > 0 ? (
         <svg width={width} height={STRIP_H} className="absolute inset-0" role="img" aria-label="Corridor intersections by vehicle count">
@@ -147,16 +151,24 @@ function CorridorStrip({ rows }: { rows: readonly CorridorIntersection[] }) {
                 {lit ? (
                   <rect x={x - 11} y={axis - 9} width={22} height={22} fill="none" stroke="var(--amber)" strokeOpacity={0.35} className="lamp-live" />
                 ) : null}
-                <text x={x} y={axis + 30} textAnchor="middle" className="mono" fontSize={11} fill={lit ? "var(--amber)" : "var(--paint-3)"}>
-                  {`INT ${row.int_id} · ${row.mean_moving_speed_m_s.toFixed(1)} m/s`}
-                </text>
+                {stacked ? (
+                  <text x={x} y={axis + 26} textAnchor="middle" className="mono" fontSize={11} fill={lit ? "var(--amber)" : "var(--paint-3)"}>
+                    <tspan x={x}>{`INT ${row.int_id}`}</tspan>
+                    <tspan x={x} dy={14}>{`${row.mean_moving_speed_m_s.toFixed(1)} m/s`}</tspan>
+                  </text>
+                ) : (
+                  <text x={x} y={axis + 30} textAnchor="middle" className="mono" fontSize={11} fill={lit ? "var(--amber)" : "var(--paint-3)"}>
+                    {`INT ${row.int_id} · ${row.mean_moving_speed_m_s.toFixed(1)} m/s`}
+                  </text>
+                )}
               </g>
             );
           })}
         </svg>
       ) : null}
-      <span className="eyebrow absolute top-2 left-0">Lankershim corridor · vehicles</span>
-    </div>
+        <span className="eyebrow absolute top-2 left-0 hidden lg:block">Lankershim corridor · vehicles</span>
+      </div>
+    </>
   );
 }
 

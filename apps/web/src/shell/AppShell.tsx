@@ -164,7 +164,7 @@ function SiteLine() {
   const where = `${ACTIVE_SITE.city}, ${ACTIVE_SITE.year} · decision support only`;
   return (
     <p className="mono flex min-w-0 items-baseline gap-2" title={SITE_NAME_NOTE}>
-      <span className="hidden truncate text-paint-1 lg:inline">{siteName(ACTIVE_SITE)}</span>
+      <span className="hidden truncate text-paint-1 xl:inline">{siteName(ACTIVE_SITE)}</span>
       <span className="truncate text-paint-3 lg:shrink-0 lg:whitespace-nowrap">{where}</span>
     </p>
   );
