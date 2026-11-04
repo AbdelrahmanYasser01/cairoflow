@@ -6,6 +6,20 @@ CairoFlow turns one recorded overhead video, a 2005 NGSIM camera with a placemen
 
 Built for the Meta Global AI Developer Hackathon 2026, using SAM 3.1 and Muse Spark.
 
+![Command view: the entering-flow figure is withheld because its check failed, and the decision panel says nothing is recommended](docs/images/home.webp)
+
+## In one minute
+
+- **The problem.** Traffic analytics from cameras usually come as confident numbers with no way to tell which ones hold up. Engineers act on them anyway.
+- **What CairoFlow does.** It turns one overhead video into tracks, turning counts, speeds and a 3D twin. Then it scores every headline figure against limits fixed in advance, on footage it was never tuned on. A figure that fails its check isn't shown. The app shows the reason instead.
+- **Meta models.** SAM 3.1 refines the tracks on a 60-second window and gives per-vehicle masks. Muse Spark reads the checked evidence and writes hypotheses for an engineer, and it proposes signal changes, which validators and SUMO then test. Code checks every model citation against the evidence.
+- **What happened.** 6 of 7 held-out checks passed. Entering counts missed by 0.0033, so the app withholds them. Each of the three interventions tested in simulation made something worse, so the app recommends none. Refusing to publish unchecked numbers is the point of the product.
+- **Try it.** Five commands, offline, no API key: see [From a fresh clone](#from-a-fresh-clone). The suite has about 1,800 tests (Python and web).
+
+| Digital twin, on the same clock as the video | Evidence: each figure next to its pre-committed limit |
+|---|---|
+| ![3D twin of the junction with tracked vehicles](docs/images/twin.webp) | ![Gate table with six passed checks and one failed](docs/images/evidence.webp) |
+
 ## What it found
 
 The site is Lankershim Blvd at Universal Hollywood Dr, Los Angeles, filmed for the NGSIM programme on 16 June 2005. The street names come from a present-day map, not the dataset. The 15-minute study counted 967 tracks. That total has no gate behind it and includes tracks that restarted mid-view; the published reference lists 1,015 vehicles over a larger area. These results come from the local detector and tracker: SAM wasn't part of this run.
