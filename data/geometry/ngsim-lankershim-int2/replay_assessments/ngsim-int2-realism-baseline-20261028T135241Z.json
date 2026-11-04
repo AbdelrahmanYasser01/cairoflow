@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "baseline_manifest_sha256": "c9cbd5476f82af32ce0a7dcaeb44fd7b0715ec25e04daef70166cfc65b6cff08",
+  "status": "partially_validated",
+  "summary": "The replay baseline reproduces when the observed vehicles cross the stop line, on every arm in median (within 4 s), and north through travel time lies inside the observed interval. But the south and right turners stop more often than observed, left turns are slower, and 8 west left turns that crossed in signal windows the estimated timeline drops or ends early still wait one to two cycles. No delay is observed, and its 20 seeds replay one observed 10.5 minutes. It is not validated for estimating intervention effects.",
+  "findings": [
+    "North through: paired crossing lag 0.0 to +0.3 s (median per seed); travel time 18.9 s against 17.2 s [12.3, 23.5] observed; share stopping 30.6% against 24.1% [19.0, 30.1], just outside the observed interval.",
+    "South through: crossings 3.1 to 3.8 s early, yet 79.6% stop against 66.9% [59.3, 73.7] observed; start-up headways err in opposite directions on N and S, so no global calibration was made.",
+    "Turns: N and S left travel times 64.7 s and 70.1 s against 56.3 [49.3, 63.0] and 46.4 [34.5, 64.7] observed; right turners stop far more often (N 44% against 11%, S 59% against 37%).",
+    "West: with the vehicles served at the window start queued (DATA_REGISTER.md §21), through crossings are 0.9 to 2.0 s early in median and 74% within 5 s pooled; right turns -1.2 to +0.1 s; left turns -2.8 to -2.1 s in median but 53% within 5 s: 6 crossed while the estimated timeline shows red, 2 after a green end it fits to the last discharge, and 2 queue behind them (§20). Fixing those needs a new timeline version.",
+    "Window ends: 7 vehicles are queued on N at simulated 0 s against 22 observed; at the end N and S hold 23 and 14 against 16 and 9 (single instants, no interval).",
+    "Not validatable: mean delay, the east and west queues (observed only near the limit line); throughput is circular, one for one.",
+    "Uncertainty: every seed replays the same vehicles, so intervals measure SUMO's microscopic noise for one observed realisation, not demand uncertainty."
+  ],
+  "evidence": {
+    "experiments/records/ngsim-int2-realism-baseline-20261028T135241Z.json": "4d5c10204eeb6b3138e31adc5442433b40a6d53cf744d9fdca55be260c0844e2",
+    "experiments/records/ngsim-int2-realism-validity-20261028T135241Z/NOTICE.md": "a26e12be3aada57e698028a4924137b3201f045d20da7381bbe414fbab3c88b8",
+    "experiments/records/ngsim-int2-realism-validity-20261028T135241Z/validation/validation.json": "c7cc0d554660086a9f025e16916428bd351db3a9483b5feb5dedfc309d6f7c53",
+    "experiments/records/ngsim-int2-realism-validity-20261028T135241Z/validation/validation.md": "2defa80683aa6fca00800a19d178e98dee0a41d643f3be01b88684fbbc9f49f1"
+  },
+  "assessed_on": "2026-10-28",
+  "documented_in": "docs/DATA_REGISTER.md §§18-21"
+}

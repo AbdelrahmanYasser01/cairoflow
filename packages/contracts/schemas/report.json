@@ -1,0 +1,1057 @@
+{
+ "BaselineAssessment": {
+  "additionalProperties": false,
+  "description": "How far observations support the simulated baseline: an engineering judgement, recorded\nwith the evidence it rests on. Only `validated` lets a selected candidate be recommended.",
+  "properties": {
+   "assessed_on": {
+    "description": "ISO date; see the document named in `documented_in`",
+    "title": "Assessed On",
+    "type": "string"
+   },
+   "baseline_manifest_sha256": {
+    "description": "the baseline this assessment is about",
+    "title": "Baseline Manifest Sha256",
+    "type": "string"
+   },
+   "documented_in": {
+    "title": "Documented In",
+    "type": "string"
+   },
+   "evidence": {
+    "additionalProperties": {
+     "type": "string"
+    },
+    "description": "committed record path -> SHA-256",
+    "title": "Evidence",
+    "type": "object"
+   },
+   "findings": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Findings",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "validated",
+     "partially_validated",
+     "not_validated",
+     "not_assessed"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "summary": {
+    "minLength": 1,
+    "title": "Summary",
+    "type": "string"
+   }
+  },
+  "required": [
+   "baseline_manifest_sha256",
+   "status",
+   "summary",
+   "findings",
+   "evidence",
+   "assessed_on",
+   "documented_in"
+  ],
+  "title": "BaselineAssessment",
+  "type": "object"
+ },
+ "CandidateFinding": {
+  "additionalProperties": false,
+  "description": "One proposal: what the model said (text), what the validator and SUMO made of it.",
+  "properties": {
+   "addresses_hypothesis_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Addresses Hypothesis Ids",
+    "type": "array"
+   },
+   "confirmed_improvements": {
+    "default": [],
+    "description": "metrics whose improvement survives Holm's correction",
+    "items": {
+     "type": "string"
+    },
+    "title": "Confirmed Improvements",
+    "type": "array"
+   },
+   "expected_tradeoffs": {
+    "description": "model_generated text",
+    "items": {
+     "type": "string"
+    },
+    "title": "Expected Tradeoffs",
+    "type": "array"
+   },
+   "grounding_reasons": {
+    "default": [],
+    "description": "why the grounding gate kept it from planning, if it did",
+    "items": {
+     "type": "string"
+    },
+    "title": "Grounding Reasons",
+    "type": "array"
+   },
+   "intervention_id": {
+    "title": "Intervention Id",
+    "type": "string"
+   },
+   "number_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Number Ids",
+    "type": "array"
+   },
+   "rationale": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "model_generated text",
+    "title": "Rationale"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "simulation_reasons": {
+    "default": [],
+    "description": "why it was not compared (unfinished vehicles, broken runs)",
+    "items": {
+     "type": "string"
+    },
+    "title": "Simulation Reasons",
+    "type": "array"
+   },
+   "simulation_status": {
+    "anyOf": [
+     {
+      "enum": [
+       "not_simulated",
+       "compared",
+       "incomplete",
+       "invalid_simulation"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "eligibility of its SUMO runs; None in older reports",
+    "title": "Simulation Status"
+   },
+   "status": {
+    "enum": [
+     "accepted",
+     "rejected"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "unverified_assumptions": {
+    "default": [],
+    "description": "the proposal's preconditions: model-stated, never checked by code",
+    "items": {
+     "type": "string"
+    },
+    "title": "Unverified Assumptions",
+    "type": "array"
+   },
+   "validator_reasons": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Validator Reasons",
+    "type": "array"
+   },
+   "verdicts": {
+    "additionalProperties": {
+     "enum": [
+      "improves",
+      "worsens",
+      "inconclusive",
+      "uninformative"
+     ],
+     "type": "string"
+    },
+    "title": "Verdicts",
+    "type": "object"
+   }
+  },
+  "required": [
+   "intervention_id",
+   "status",
+   "validator_reasons",
+   "rationale",
+   "expected_tradeoffs",
+   "addresses_hypothesis_ids",
+   "verdicts",
+   "number_ids"
+  ],
+  "title": "CandidateFinding",
+  "type": "object"
+ },
+ "DecisionReport": {
+  "$defs": {
+   "BaselineAssessment": {
+    "additionalProperties": false,
+    "description": "How far observations support the simulated baseline: an engineering judgement, recorded\nwith the evidence it rests on. Only `validated` lets a selected candidate be recommended.",
+    "properties": {
+     "assessed_on": {
+      "description": "ISO date; see the document named in `documented_in`",
+      "title": "Assessed On",
+      "type": "string"
+     },
+     "baseline_manifest_sha256": {
+      "description": "the baseline this assessment is about",
+      "title": "Baseline Manifest Sha256",
+      "type": "string"
+     },
+     "documented_in": {
+      "title": "Documented In",
+      "type": "string"
+     },
+     "evidence": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "committed record path -> SHA-256",
+      "title": "Evidence",
+      "type": "object"
+     },
+     "findings": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Findings",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "validated",
+       "partially_validated",
+       "not_validated",
+       "not_assessed"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+     }
+    },
+    "required": [
+     "baseline_manifest_sha256",
+     "status",
+     "summary",
+     "findings",
+     "evidence",
+     "assessed_on",
+     "documented_in"
+    ],
+    "title": "BaselineAssessment",
+    "type": "object"
+   },
+   "CandidateFinding": {
+    "additionalProperties": false,
+    "description": "One proposal: what the model said (text), what the validator and SUMO made of it.",
+    "properties": {
+     "addresses_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Addresses Hypothesis Ids",
+      "type": "array"
+     },
+     "confirmed_improvements": {
+      "default": [],
+      "description": "metrics whose improvement survives Holm's correction",
+      "items": {
+       "type": "string"
+      },
+      "title": "Confirmed Improvements",
+      "type": "array"
+     },
+     "expected_tradeoffs": {
+      "description": "model_generated text",
+      "items": {
+       "type": "string"
+      },
+      "title": "Expected Tradeoffs",
+      "type": "array"
+     },
+     "grounding_reasons": {
+      "default": [],
+      "description": "why the grounding gate kept it from planning, if it did",
+      "items": {
+       "type": "string"
+      },
+      "title": "Grounding Reasons",
+      "type": "array"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "number_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Number Ids",
+      "type": "array"
+     },
+     "rationale": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "model_generated text",
+      "title": "Rationale"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "simulation_reasons": {
+      "default": [],
+      "description": "why it was not compared (unfinished vehicles, broken runs)",
+      "items": {
+       "type": "string"
+      },
+      "title": "Simulation Reasons",
+      "type": "array"
+     },
+     "simulation_status": {
+      "anyOf": [
+       {
+        "enum": [
+         "not_simulated",
+         "compared",
+         "incomplete",
+         "invalid_simulation"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "eligibility of its SUMO runs; None in older reports",
+      "title": "Simulation Status"
+     },
+     "status": {
+      "enum": [
+       "accepted",
+       "rejected"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unverified_assumptions": {
+      "default": [],
+      "description": "the proposal's preconditions: model-stated, never checked by code",
+      "items": {
+       "type": "string"
+      },
+      "title": "Unverified Assumptions",
+      "type": "array"
+     },
+     "validator_reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Validator Reasons",
+      "type": "array"
+     },
+     "verdicts": {
+      "additionalProperties": {
+       "enum": [
+        "improves",
+        "worsens",
+        "inconclusive",
+        "uninformative"
+       ],
+       "type": "string"
+      },
+      "title": "Verdicts",
+      "type": "object"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "status",
+     "validator_reasons",
+     "rationale",
+     "expected_tradeoffs",
+     "addresses_hypothesis_ids",
+     "verdicts",
+     "number_ids"
+    ],
+    "title": "CandidateFinding",
+    "type": "object"
+   },
+   "GroundingReport": {
+    "additionalProperties": false,
+    "description": "Deterministic evidence checks on one reply (cairoflow_reasoning.grounding, P0-3). A valid\nJSON reply is not a valid diagnosis: only proposals that address a supported hypothesis go\non to the validator and the simulator.",
+    "properties": {
+     "bundle_id": {
+      "title": "Bundle Id",
+      "type": "string"
+     },
+     "competing_hypotheses": {
+      "description": "at least two hypotheses are supported",
+      "title": "Competing Hypotheses",
+      "type": "boolean"
+     },
+     "hypotheses": {
+      "items": {
+       "$ref": "#/$defs/HypothesisGrounding"
+      },
+      "title": "Hypotheses",
+      "type": "array"
+     },
+     "missing_evidence": {
+      "description": "every missing item the model named",
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "proposals": {
+      "items": {
+       "$ref": "#/$defs/ProposalGrounding"
+      },
+      "title": "Proposals",
+      "type": "array"
+     },
+     "request_key": {
+      "title": "Request Key",
+      "type": "string"
+     },
+     "rules_version": {
+      "title": "Rules Version",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "rules_version",
+     "bundle_id",
+     "request_key",
+     "hypotheses",
+     "proposals",
+     "competing_hypotheses",
+     "missing_evidence",
+     "notes"
+    ],
+    "title": "GroundingReport",
+    "type": "object"
+   },
+   "Hypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "alternative_explanations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Alternative Explanations",
+      "type": "array"
+     },
+     "assumptions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+     },
+     "claim_type": {
+      "anyOf": [
+       {
+        "enum": [
+         "causal",
+         "associative",
+         "descriptive"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "causal only for a stated mechanism",
+      "title": "Claim Type"
+     },
+     "confidence_label": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence Label",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "pattern": "^H[1-9][0-9]?$",
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "inference": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "what is concluded beyond the evidence",
+      "title": "Inference"
+     },
+     "limiting_factor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "one of LIMITING_FACTORS (0.3.0)",
+      "title": "Limiting Factor"
+     },
+     "missing_evidence": {
+      "default": [],
+      "description": "what would confirm or refute it",
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+     },
+     "observations": {
+      "default": [],
+      "description": "cited evidence, restated",
+      "items": {
+       "$ref": "#/$defs/ObservedFact"
+      },
+      "title": "Observations",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "assumptions",
+     "confidence_label",
+     "alternative_explanations"
+    ],
+    "title": "Hypothesis",
+    "type": "object"
+   },
+   "HypothesisGrounding": {
+    "additionalProperties": false,
+    "description": "Code's verdict on whether one hypothesis rests on the evidence it cites.",
+    "properties": {
+     "flags": {
+      "description": "weaknesses that do not make it unsupported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Flags",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it is unsupported; empty when supported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "supported",
+       "unsupported"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "supporting_kinds": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "evidence kind -> supporting items cited",
+      "title": "Supporting Kinds",
+      "type": "object"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "status",
+     "reasons",
+     "flags",
+     "supporting_kinds"
+    ],
+    "title": "HypothesisGrounding",
+    "type": "object"
+   },
+   "ObservedFact": {
+    "additionalProperties": false,
+    "description": "One cited evidence item restated without inference (prompt 0.3.0 onwards).",
+    "properties": {
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "statement"
+    ],
+    "title": "ObservedFact",
+    "type": "object"
+   },
+   "ProposalGrounding": {
+    "additionalProperties": false,
+    "description": "Whether one proposal may go to planning: it must address a supported hypothesis.",
+    "properties": {
+     "eligible": {
+      "title": "Eligible",
+      "type": "boolean"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it may not; empty when eligible",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supported_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supported Hypothesis Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "eligible",
+     "reasons",
+     "supported_hypothesis_ids"
+    ],
+    "title": "ProposalGrounding",
+    "type": "object"
+   },
+   "ReportNumber": {
+    "additionalProperties": false,
+    "properties": {
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "label": {
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+     },
+     "number_id": {
+      "pattern": "^n[0-9]+$",
+      "title": "Number Id",
+      "type": "string"
+     },
+     "refs": {
+      "description": "refs[0] yields the value",
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Refs",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "enum": [
+       "metric",
+       "comparison",
+       "world_model",
+       "validated_input",
+       "settings"
+      ],
+      "title": "Source",
+      "type": "string"
+     },
+     "unit": {
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     }
+    },
+    "required": [
+     "number_id",
+     "label",
+     "value",
+     "unit",
+     "kind",
+     "source",
+     "refs"
+    ],
+    "title": "ReportNumber",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "baseline_assessment": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/BaselineAssessment"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "None in older reports and when nobody assessed the baseline"
+   },
+   "candidates": {
+    "items": {
+     "$ref": "#/$defs/CandidateFinding"
+    },
+    "title": "Candidates",
+    "type": "array"
+   },
+   "created_at_utc": {
+    "format": "date-time",
+    "title": "Created At Utc",
+    "type": "string"
+   },
+   "data_sources": {
+    "default": [],
+    "description": "where the world model's evidence comes from, source by source",
+    "items": {
+     "type": "string"
+    },
+    "title": "Data Sources",
+    "type": "array"
+   },
+   "experiment_id": {
+    "title": "Experiment Id",
+    "type": "string"
+   },
+   "grounding": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/GroundingReport"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "code's evidence checks on the reply (P0-3); None before them"
+   },
+   "hypotheses": {
+    "description": "model_generated text",
+    "items": {
+     "$ref": "#/$defs/Hypothesis"
+    },
+    "title": "Hypotheses",
+    "type": "array"
+   },
+   "limitations": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Limitations",
+    "type": "array"
+   },
+   "model_text_kind": {
+    "const": "model_generated",
+    "default": "model_generated",
+    "title": "Model Text Kind",
+    "type": "string"
+   },
+   "numbers": {
+    "items": {
+     "$ref": "#/$defs/ReportNumber"
+    },
+    "title": "Numbers",
+    "type": "array"
+   },
+   "objective": {
+    "description": "how candidates are judged; no weighted score",
+    "title": "Objective",
+    "type": "string"
+   },
+   "recommendation": {
+    "default": "",
+    "description": "why something is or is not recommended",
+    "title": "Recommendation",
+    "type": "string"
+   },
+   "recommended_intervention_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "the selection, only when the baseline is validated",
+    "title": "Recommended Intervention Id"
+   },
+   "report_id": {
+    "title": "Report Id",
+    "type": "string"
+   },
+   "reproducibility": {
+    "additionalProperties": {
+     "type": "string"
+    },
+    "description": "artifact or id name -> hash or id",
+    "title": "Reproducibility",
+    "type": "object"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "selected_intervention_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Selected Intervention Id"
+   },
+   "selection_reason": {
+    "title": "Selection Reason",
+    "type": "string"
+   },
+   "selection_rule": {
+    "title": "Selection Rule",
+    "type": "string"
+   }
+  },
+  "required": [
+   "report_id",
+   "experiment_id",
+   "created_at_utc",
+   "objective",
+   "selection_rule",
+   "selected_intervention_id",
+   "selection_reason",
+   "hypotheses",
+   "candidates",
+   "numbers",
+   "limitations",
+   "reproducibility"
+  ],
+  "title": "DecisionReport",
+  "type": "object"
+ },
+ "ReportNumber": {
+  "additionalProperties": false,
+  "properties": {
+   "kind": {
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Kind",
+    "type": "string"
+   },
+   "label": {
+    "minLength": 1,
+    "title": "Label",
+    "type": "string"
+   },
+   "number_id": {
+    "pattern": "^n[0-9]+$",
+    "title": "Number Id",
+    "type": "string"
+   },
+   "refs": {
+    "description": "refs[0] yields the value",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 1,
+    "title": "Refs",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "enum": [
+     "metric",
+     "comparison",
+     "world_model",
+     "validated_input",
+     "settings"
+    ],
+    "title": "Source",
+    "type": "string"
+   },
+   "unit": {
+    "title": "Unit",
+    "type": "string"
+   },
+   "value": {
+    "title": "Value",
+    "type": "number"
+   }
+  },
+  "required": [
+   "number_id",
+   "label",
+   "value",
+   "unit",
+   "kind",
+   "source",
+   "refs"
+  ],
+  "title": "ReportNumber",
+  "type": "object"
+ }
+}

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 670" width="760" height="670" role="img" aria-label="Lane use at the stop line">
+<style>svg{--surface:#fcfcfb;--text:#0b0b0b;--text2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--obs:#2a78d6;--sim:#eb6834}@media (prefers-color-scheme:dark){svg{--surface:#1a1a19;--text:#f0efec;--text2:#c3c2b7;--grid:#2c2c2a;--axis:#383835;--obs:#3987e5;--sim:#d95926}}.bg{fill:var(--surface)}.t{fill:var(--text);font:600 14px system-ui,sans-serif}.l{fill:var(--text2);font:12px system-ui,sans-serif}.m{fill:var(--muted);font:11px system-ui,sans-serif}.g{stroke:var(--grid)}.a{stroke:var(--axis)}.c{stroke:var(--muted)}.o{fill:var(--obs);stroke:var(--obs)}.s{fill:var(--sim);stroke:var(--sim)}.ol{stroke:var(--obs);fill:none;stroke-width:2}.sl{stroke:var(--sim);fill:none;opacity:.7}</style>
+<rect class="bg" width="760" height="670"/>
+<text class="t" x="16" y="24">Lane use at the stop line</text>
+<text class="m" x="16" y="42">Share of each approach's counted vehicles by lane (NGSIM lane ids)</text>
+<circle class="o" cx="26" cy="60" r="4.5"/>
+<text class="l" x="42" y="64">Observed (NGSIM, derived; 95% interval)</text>
+<rect class="s" x="381.5" y="55.5" width="9" height="9" rx="1"/>
+<text class="l" x="402" y="64">Simulated (SUMO; seed range)</text>
+<line class="g" x1="230.0" y1="78" x2="230.0" y2="624"/>
+<text class="m" x="230.0" y="640" text-anchor="middle">0</text>
+<line class="g" x1="328.0" y1="78" x2="328.0" y2="624"/>
+<text class="m" x="328.0" y="640" text-anchor="middle">20</text>
+<line class="g" x1="426.0" y1="78" x2="426.0" y2="624"/>
+<text class="m" x="426.0" y="640" text-anchor="middle">40</text>
+<line class="g" x1="524.0" y1="78" x2="524.0" y2="624"/>
+<text class="m" x="524.0" y="640" text-anchor="middle">60</text>
+<line class="g" x1="622.0" y1="78" x2="622.0" y2="624"/>
+<text class="m" x="622.0" y="640" text-anchor="middle">80</text>
+<line class="g" x1="720.0" y1="78" x2="720.0" y2="624"/>
+<text class="m" x="720.0" y="640" text-anchor="middle">100</text>
+<text class="m" x="720" y="658" text-anchor="end">percent of the approach</text>
+<text class="l" x="218" y="103.0" text-anchor="end">N11</text>
+<line class="o" x1="269.7" y1="94.0" x2="296.6" y2="94.0" stroke-width="2"/>
+<g><title>N11: observed 10.5, from 8.11 to 13.6</title><circle class="o" cx="281.6" cy="94.0" r="4.5"/></g>
+<line class="s" x1="294.1" y1="104.0" x2="301.6" y2="104.0" stroke-width="2"/>
+<g><title>N11: simulated mean 13.9, from 13.1 to 14.6</title><rect class="s" x="293.7" y="99.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="133.0" text-anchor="end">N12</text>
+<line class="o" x1="297.9" y1="124.0" x2="330.7" y2="124.0" stroke-width="2"/>
+<g><title>N12: observed 16.9, from 13.9 to 20.5</title><circle class="o" cx="313.0" cy="124.0" r="4.5"/></g>
+<line class="s" x1="295.5" y1="134.0" x2="301.9" y2="134.0" stroke-width="2"/>
+<g><title>N12: simulated mean 14.1, from 13.4 to 14.7</title><rect class="s" x="294.5" y="129.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="163.0" text-anchor="end">N1</text>
+<line class="o" x1="316.6" y1="154.0" x2="352.1" y2="154.0" stroke-width="2"/>
+<g><title>N1: observed 21.1, from 17.7 to 24.9</title><circle class="o" cx="333.3" cy="154.0" r="4.5"/></g>
+<line class="s" x1="331.7" y1="164.0" x2="341.3" y2="164.0" stroke-width="2"/>
+<g><title>N1: simulated mean 22, from 20.8 to 22.7</title><rect class="s" x="333.5" y="159.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="193.0" text-anchor="end">N2</text>
+<line class="o" x1="317.6" y1="184.0" x2="353.2" y2="184.0" stroke-width="2"/>
+<g><title>N2: observed 21.3, from 17.9 to 25.1</title><circle class="o" cx="334.3" cy="184.0" r="4.5"/></g>
+<line class="s" x1="332.8" y1="194.0" x2="341.0" y2="194.0" stroke-width="2"/>
+<g><title>N2: simulated mean 21.9, from 21 to 22.6</title><rect class="s" x="333.0" y="189.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="223.0" text-anchor="end">N3</text>
+<line class="o" x1="332.7" y1="214.0" x2="370.2" y2="214.0" stroke-width="2"/>
+<g><title>N3: observed 24.6, from 21 to 28.6</title><circle class="o" cx="350.5" cy="214.0" r="4.5"/></g>
+<line class="s" x1="335.8" y1="224.0" x2="342.4" y2="224.0" stroke-width="2"/>
+<g><title>N3: simulated mean 22.1, from 21.6 to 22.9</title><rect class="s" x="333.7" y="219.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="253.0" text-anchor="end">N31</text>
+<line class="o" x1="248.9" y1="244.0" x2="269.2" y2="244.0" stroke-width="2"/>
+<g><title>N31: observed 5.58, from 3.86 to 7.99</title><circle class="o" cx="257.3" cy="244.0" r="4.5"/></g>
+<line class="s" x1="257.5" y1="254.0" x2="261.0" y2="254.0" stroke-width="2"/>
+<g><title>N31: simulated mean 5.94, from 5.61 to 6.32</title><rect class="s" x="254.6" y="249.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="283.0" text-anchor="end">E1</text>
+<line class="o" x1="250.9" y1="274.0" x2="332.8" y2="274.0" stroke-width="2"/>
+<g><title>E1: observed 9.8, from 4.26 to 21</title><circle class="o" cx="278.0" cy="274.0" r="4.5"/></g>
+<line class="s" x1="254.1" y1="284.0" x2="309.8" y2="284.0" stroke-width="2"/>
+<g><title>E1: simulated mean 10.1, from 4.92 to 16.3</title><rect class="s" x="274.8" y="279.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="313.0" text-anchor="end">E2</text>
+<line class="o" x1="276.9" y1="304.0" x2="378.2" y2="304.0" stroke-width="2"/>
+<g><title>E2: observed 17.6, from 9.57 to 30.3</title><circle class="o" cx="316.5" cy="304.0" r="4.5"/></g>
+<line class="s" x1="284.4" y1="314.0" x2="340.2" y2="314.0" stroke-width="2"/>
+<g><title>E2: simulated mean 16, from 11.1 to 22.5</title><rect class="s" x="304.1" y="309.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="343.0" text-anchor="end">E3</text>
+<line class="o" x1="519.4" y1="334.0" x2="636.1" y2="334.0" stroke-width="2"/>
+<g><title>E3: observed 72.5, from 59.1 to 82.9</title><circle class="o" cx="585.5" cy="334.0" r="4.5"/></g>
+<line class="s" x1="549.1" y1="344.0" x2="631.6" y2="344.0" stroke-width="2"/>
+<g><title>E3: simulated mean 73.9, from 65.1 to 82</title><rect class="s" x="587.5" y="339.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="373.0" text-anchor="end">S11</text>
+<line class="o" x1="244.0" y1="364.0" x2="266.1" y2="364.0" stroke-width="2"/>
+<g><title>S11: observed 4.61, from 2.86 to 7.36</title><circle class="o" cx="252.6" cy="364.0" r="4.5"/></g>
+<line class="s" x1="244.9" y1="374.0" x2="257.9" y2="374.0" stroke-width="2"/>
+<g><title>S11: simulated mean 4.54, from 3.04 to 5.7</title><rect class="s" x="247.7" y="369.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="403.0" text-anchor="end">S1</text>
+<line class="o" x1="291.9" y1="394.0" x2="329.8" y2="394.0" stroke-width="2"/>
+<g><title>S1: observed 16.1, from 12.6 to 20.4</title><circle class="o" cx="309.1" cy="394.0" r="4.5"/></g>
+<line class="s" x1="343.2" y1="404.0" x2="350.6" y2="404.0" stroke-width="2"/>
+<g><title>S1: simulated mean 24.2, from 23.1 to 24.6</title><rect class="s" x="344.1" y="399.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="433.0" text-anchor="end">S2</text>
+<line class="o" x1="330.6" y1="424.0" x2="375.0" y2="424.0" stroke-width="2"/>
+<g><title>S2: observed 24.8, from 20.5 to 29.6</title><circle class="o" cx="351.4" cy="424.0" r="4.5"/></g>
+<line class="s" x1="343.2" y1="434.0" x2="352.5" y2="434.0" stroke-width="2"/>
+<g><title>S2: simulated mean 24.1, from 23.1 to 25</title><rect class="s" x="343.7" y="429.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="463.0" text-anchor="end">S3</text>
+<line class="o" x1="359.8" y1="454.0" x2="407.3" y2="454.0" stroke-width="2"/>
+<g><title>S3: observed 31.1, from 26.5 to 36.2</title><circle class="o" cx="382.5" cy="454.0" r="4.5"/></g>
+<line class="s" x1="348.4" y1="464.0" x2="358.1" y2="464.0" stroke-width="2"/>
+<g><title>S3: simulated mean 25, from 24.2 to 26.1</title><rect class="s" x="348.1" y="459.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="493.0" text-anchor="end">S4</text>
+<line class="o" x1="324.1" y1="484.0" x2="367.5" y2="484.0" stroke-width="2"/>
+<g><title>S4: observed 23.3, from 19.2 to 28.1</title><circle class="o" cx="344.4" cy="484.0" r="4.5"/></g>
+<line class="s" x1="329.1" y1="494.0" x2="351.8" y2="494.0" stroke-width="2"/>
+<g><title>S4: simulated mean 22.1, from 20.2 to 24.9</title><rect class="s" x="333.9" y="489.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="523.0" text-anchor="end">W1</text>
+<line class="o" x1="381.3" y1="514.0" x2="496.5" y2="514.0" stroke-width="2"/>
+<g><title>W1: observed 42.2, from 30.9 to 54.4</title><circle class="o" cx="436.7" cy="514.0" r="4.5"/></g>
+<line class="s" x1="407.4" y1="524.0" x2="487.0" y2="524.0" stroke-width="2"/>
+<g><title>W1: simulated mean 43.7, from 36.2 to 52.5</title><rect class="s" x="439.5" y="519.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="553.0" text-anchor="end">W2</text>
+<line class="o" x1="267.1" y1="544.0" x2="350.6" y2="544.0" stroke-width="2"/>
+<g><title>W2: observed 14.1, from 7.58 to 24.6</title><circle class="o" cx="298.9" cy="544.0" r="4.5"/></g>
+<line class="s" x1="310.3" y1="554.0" x2="348.3" y2="554.0" stroke-width="2"/>
+<g><title>W2: simulated mean 21.5, from 16.4 to 24.1</title><rect class="s" x="331.1" y="549.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="583.0" text-anchor="end">W3</text>
+<line class="o" x1="381.3" y1="574.0" x2="496.5" y2="574.0" stroke-width="2"/>
+<g><title>W3: observed 42.2, from 30.9 to 54.4</title><circle class="o" cx="436.7" cy="574.0" r="4.5"/></g>
+<line class="s" x1="374.6" y1="584.0" x2="407.4" y2="584.0" stroke-width="2"/>
+<g><title>W3: simulated mean 32.3, from 29.5 to 36.2</title><rect class="s" x="383.6" y="579.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="613.0" text-anchor="end">W unknown lane</text>
+<line class="o" x1="231.4" y1="604.0" x2="270.8" y2="604.0" stroke-width="2"/>
+<g><title>W unknown lane: observed 1.56, from 0.276 to 8.33</title><circle class="o" cx="237.7" cy="604.0" r="4.5"/></g>
+<line class="s" x1="237.8" y1="614.0" x2="246.9" y2="614.0" stroke-width="2"/>
+<g><title>W unknown lane: simulated mean 2.52, from 1.59 to 3.45</title><rect class="s" x="237.8" y="609.5" width="9" height="9" rx="1"/></g>
+<line class="a" x1="230" y1="624" x2="720" y2="624"/>
+</svg>

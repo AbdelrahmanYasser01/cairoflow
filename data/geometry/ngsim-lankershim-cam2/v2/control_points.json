@@ -1,0 +1,840 @@
+{
+  "schema": "cairoflow ngsim-cam2 control points v2 (DATA_REGISTER.md \u00a714)",
+  "produced_by": "scripts/analyse_ngsim_cam2.py --geometry-out data/geometry/ngsim-lankershim-cam2/v2",
+  "inputs": {
+    "trajectories": {
+      "path": "data/raw/ngsim-lankershim/trajectories/lankershim-0830-0845.csv",
+      "sha256": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e",
+      "licence": "CC BY-SA 3.0 Unported (data.transportation.gov 8ect-6jqj)"
+    },
+    "video": {
+      "path": "data/raw/ngsim-lankershim/camera2/lankershim-camera2-0830am-0845am.avi",
+      "sha256": "04ef7435be3a107e7321900c384bb1ee7703ce753a122559cd2937fef341f530",
+      "licence": "CC BY-SA 4.0 (data.transportation.gov uv3e-y54k)"
+    }
+  },
+  "licence": "values derived from NGSIM trajectories: CC BY-SA 3.0 Unported, attribution U.S. DOT FHWA NGSIM (data.transportation.gov 8ect-6jqj); no video pixels",
+  "local_frame": {
+    "origin_state_plane_ft": [
+      6452083.0,
+      1873176.0
+    ],
+    "crs": "EPSG:2229 NAD83 / California zone 5 (ftUS)",
+    "axes": "x grid east, y grid north, metres (US survey foot = 1200/3937 m)",
+    "origin_definition": "rounded centroid of the int_id 2 rows (a reference, not a survey)"
+  },
+  "identification": {
+    "best": "int2|image +u = NB bearing + 0|proper|seed 5.2 px/m",
+    "best_correlation": 0.9057,
+    "same_intersection_other_rotation_or_handedness": [
+      0.7504,
+      "int2|image +u = NB bearing + 180|proper|seed 5.2 px/m",
+      true
+    ],
+    "best_other_intersection_any_warp": [
+      0.7479,
+      "int1|image +u = NB bearing + 180|mirrored|seed 5.2 px/m",
+      false
+    ],
+    "best_other_intersection_plausible_warp": [
+      0.6668,
+      "int4|image +u = NB bearing + 0|proper|seed 6.2 px/m",
+      true
+    ],
+    "note": "a warp is plausible if converged, un-mirrored, within 2x of the seed scale and of anisotropy below 1.5"
+  },
+  "registration": {
+    "hypothesis": "int2|image +u = NB bearing + 0|proper|seed 5.2 px/m",
+    "ground_to_image": [
+      [
+        3.517,
+        6.416,
+        264.6211
+      ],
+      [
+        5.4662,
+        -2.0535,
+        195.2976
+      ],
+      [
+        0.0014,
+        0.0026,
+        1.0
+      ]
+    ],
+    "image_to_ground": [
+      [
+        0.0604,
+        0.1357,
+        -42.4758
+      ],
+      [
+        0.1228,
+        -0.0745,
+        -17.9604
+      ],
+      [
+        -0.0004,
+        0.0,
+        1.0
+      ]
+    ],
+    "ground_frame": "local metres of local_frame",
+    "status": "approximated: fitted to where vehicles were (no paint, no time); see paint_check"
+  },
+  "category_A_image": {
+    "measured_lines": {
+      "north": [
+        {
+          "id": "north#0",
+          "boundary_m": -14.209,
+          "paint_kind": "white",
+          "image_point_px": [
+            400.6899,
+            117.9854
+          ],
+          "image_direction": [
+            0.9992,
+            0.0392
+          ],
+          "image_rms_px": 1.0149,
+          "image_samples": 35
+        },
+        {
+          "id": "north#1",
+          "boundary_m": -11.0962,
+          "paint_kind": "white",
+          "image_point_px": [
+            407.0663,
+            133.8056
+          ],
+          "image_direction": [
+            0.9993,
+            0.0361
+          ],
+          "image_rms_px": 0.5782,
+          "image_samples": 32
+        },
+        {
+          "id": "north#2",
+          "boundary_m": -8.1788,
+          "paint_kind": "white",
+          "image_point_px": [
+            385.7912,
+            149.6602
+          ],
+          "image_direction": [
+            1.0,
+            0.0094
+          ],
+          "image_rms_px": 0.7117,
+          "image_samples": 48
+        },
+        {
+          "id": "north#3",
+          "boundary_m": -5.1611,
+          "paint_kind": "white",
+          "image_point_px": [
+            388.4231,
+            166.5056
+          ],
+          "image_direction": [
+            0.9999,
+            -0.0126
+          ],
+          "image_rms_px": 0.7957,
+          "image_samples": 46
+        },
+        {
+          "id": "north#4",
+          "boundary_m": -2.0543,
+          "paint_kind": "white",
+          "image_point_px": [
+            397.3356,
+            183.051
+          ],
+          "image_direction": [
+            1.0,
+            -0.0071
+          ],
+          "image_rms_px": 0.5243,
+          "image_samples": 41
+        },
+        {
+          "id": "north#5",
+          "boundary_m": 0.97,
+          "paint_kind": "white",
+          "image_point_px": [
+            401.5152,
+            199.5523
+          ],
+          "image_direction": [
+            0.9998,
+            -0.0209
+          ],
+          "image_rms_px": 1.3433,
+          "image_samples": 38
+        },
+        {
+          "id": "north#6",
+          "boundary_m": 3.955,
+          "paint_kind": "white",
+          "image_point_px": [
+            376.7883,
+            216.6097
+          ],
+          "image_direction": [
+            0.9997,
+            -0.0251
+          ],
+          "image_rms_px": 0.4931,
+          "image_samples": 38
+        },
+        {
+          "id": "north#7",
+          "boundary_m": 6.9921,
+          "paint_kind": "white",
+          "image_point_px": [
+            383.539,
+            233.269
+          ],
+          "image_direction": [
+            0.9997,
+            -0.0257
+          ],
+          "image_rms_px": 0.8841,
+          "image_samples": 31
+        }
+      ],
+      "south": [
+        {
+          "id": "south#0",
+          "boundary_m": -10.8526,
+          "paint_kind": "white",
+          "image_point_px": [
+            129.7502,
+            131.0618
+          ],
+          "image_direction": [
+            1.0,
+            0.0015
+          ],
+          "image_rms_px": 0.9337,
+          "image_samples": 37
+        },
+        {
+          "id": "south#1",
+          "boundary_m": -7.6417,
+          "paint_kind": "white",
+          "image_point_px": [
+            124.3774,
+            149.284
+          ],
+          "image_direction": [
+            1.0,
+            -0.0091
+          ],
+          "image_rms_px": 1.1414,
+          "image_samples": 37
+        },
+        {
+          "id": "south#3",
+          "boundary_m": 1.5532,
+          "paint_kind": "white",
+          "image_point_px": [
+            120.3521,
+            204.2508
+          ],
+          "image_direction": [
+            0.9998,
+            -0.0179
+          ],
+          "image_rms_px": 0.7977,
+          "image_samples": 46
+        },
+        {
+          "id": "south#4",
+          "boundary_m": 4.4206,
+          "paint_kind": "white",
+          "image_point_px": [
+            125.8785,
+            222.5397
+          ],
+          "image_direction": [
+            0.9999,
+            -0.0172
+          ],
+          "image_rms_px": 0.6354,
+          "image_samples": 48
+        },
+        {
+          "id": "south#5",
+          "boundary_m": 7.4893,
+          "paint_kind": "white",
+          "image_point_px": [
+            125.8205,
+            242.043
+          ],
+          "image_direction": [
+            0.9997,
+            -0.0254
+          ],
+          "image_rms_px": 0.5681,
+          "image_samples": 47
+        },
+        {
+          "id": "south#6",
+          "boundary_m": 10.8857,
+          "paint_kind": "white",
+          "image_point_px": [
+            115.8235,
+            262.6616
+          ],
+          "image_direction": [
+            0.9997,
+            -0.0248
+          ],
+          "image_rms_px": 1.3134,
+          "image_samples": 35
+        }
+      ]
+    },
+    "landmarks": {
+      "E_limit_north_kerb": {
+        "image_px": [
+          370.2,
+          96.0
+        ],
+        "uncertainty_px": 2.0,
+        "feature": "east crosswalk outer (limit) line at north kerb",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "E_limit_centreline": {
+        "image_px": [
+          375.4,
+          198.5
+        ],
+        "uncertainty_px": 2.0,
+        "feature": "east limit line crossing the yellow centreline",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "E_limit_south_kerb": {
+        "image_px": [
+          377.5,
+          252.0
+        ],
+        "uncertainty_px": 2.5,
+        "feature": "east limit line at the south kerb",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "E_inner_south_end": {
+        "image_px": [
+          344.5,
+          254.0
+        ],
+        "uncertainty_px": 2.5,
+        "feature": "east crosswalk inner line, south end",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "NE_crosswalk_corner": {
+        "image_px": [
+          338.0,
+          85.0
+        ],
+        "uncertainty_px": 1.0,
+        "feature": "L-corner of the north and east inner lines",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "N_limit_centreline": {
+        "image_px": [
+          255.6,
+          59.8
+        ],
+        "uncertainty_px": 1.5,
+        "feature": "north limit line crossing the yellow centreline",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "N_inner_centreline": {
+        "image_px": [
+          257.9,
+          94.6
+        ],
+        "uncertainty_px": 1.5,
+        "feature": "north yellow centreline end at the inner line",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "N_limit_east_end": {
+        "image_px": [
+          325.0,
+          52.0
+        ],
+        "uncertainty_px": 3.0,
+        "feature": "north limit line east end at the kerb curve",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "W_limit_median_nose": {
+        "image_px": [
+          149.0,
+          186.0
+        ],
+        "uncertainty_px": 1.5,
+        "feature": "west limit line north end at the median nose",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "W_limit_south_kerb": {
+        "image_px": [
+          140.5,
+          286.0
+        ],
+        "uncertainty_px": 2.5,
+        "feature": "west limit line south end at the kerb",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "S_zebra_east_upper": {
+        "image_px": [
+          326.5,
+          264.5
+        ],
+        "uncertainty_px": 3.0,
+        "feature": "south zebra crosswalk east end, upper corner",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "S_zebra_east_lower": {
+        "image_px": [
+          330.0,
+          281.5
+        ],
+        "uncertainty_px": 2.5,
+        "feature": "south zebra crosswalk east end, lower corner",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "E_pocket_arrow_tip": {
+        "image_px": [
+          456.5,
+          107.0
+        ],
+        "uncertainty_px": 1.5,
+        "feature": "east arm right-turn pocket arrow tip",
+        "method": "independent reading on the median of 3 stills"
+      },
+      "S_through_arrow_tip": {
+        "image_px": [
+          305.0,
+          295.5
+        ],
+        "uncertainty_px": 1.5,
+        "feature": "south arm through arrow tip",
+        "method": "independent reading on the median of 3 stills"
+      }
+    }
+  },
+  "category_B_ground": {
+    "lane_centres_and_boundaries": {
+      "north": {
+        "axis_bearing_deg": 25.8221,
+        "along_window_m": [
+          8.0,
+          32.0
+        ],
+        "trajectory_lane_centres": [
+          {
+            "lane": "SB lane 31",
+            "across_m": -15.8448,
+            "rows": 461
+          },
+          {
+            "lane": "SB lane 3",
+            "across_m": -12.5731,
+            "rows": 6424
+          },
+          {
+            "lane": "SB lane 2",
+            "across_m": -9.6192,
+            "rows": 7024
+          },
+          {
+            "lane": "SB lane 1",
+            "across_m": -6.7383,
+            "rows": 7199
+          },
+          {
+            "lane": "SB lane 12",
+            "across_m": -3.5839,
+            "rows": 11085
+          },
+          {
+            "lane": "SB lane 11",
+            "across_m": -0.5247,
+            "rows": 9094
+          },
+          {
+            "lane": "NB lane 1",
+            "across_m": 2.4647,
+            "rows": 1209
+          },
+          {
+            "lane": "NB lane 2",
+            "across_m": 5.4452,
+            "rows": 2086
+          },
+          {
+            "lane": "NB lane 3",
+            "across_m": 8.5391,
+            "rows": 2631
+          }
+        ]
+      },
+      "south": {
+        "axis_bearing_deg": 25.8221,
+        "along_window_m": [
+          -32.0,
+          -8.0
+        ],
+        "trajectory_lane_centres": [
+          {
+            "lane": "SB lane 3",
+            "across_m": -12.3787,
+            "rows": 2299
+          },
+          {
+            "lane": "SB lane 2",
+            "across_m": -9.3265,
+            "rows": 1995
+          },
+          {
+            "lane": "SB lane 1",
+            "across_m": -5.957,
+            "rows": 2036
+          },
+          {
+            "lane": "NB lane 11",
+            "across_m": 0.1711,
+            "rows": 2339
+          },
+          {
+            "lane": "NB lane 1",
+            "across_m": 2.9354,
+            "rows": 8663
+          },
+          {
+            "lane": "NB lane 2",
+            "across_m": 5.9059,
+            "rows": 11030
+          },
+          {
+            "lane": "NB lane 3",
+            "across_m": 9.0726,
+            "rows": 12698
+          },
+          {
+            "lane": "NB lane 4",
+            "across_m": 12.6988,
+            "rows": 2726
+          }
+        ]
+      }
+    },
+    "queue_heads": {
+      "north": {
+        "approach": "SB",
+        "coordinate": "metres along the approach from the origin, increasing towards the junction (negative = upstream of the origin)",
+        "limit_line_landmarks_through_registration": {
+          "E_limit_north_kerb": {
+            "along_towards_junction_m": -17.8734,
+            "across_m": -17.8933
+          },
+          "E_limit_centreline": {
+            "along_towards_junction_m": -17.7908,
+            "across_m": 0.6931
+          }
+        },
+        "limit_line_mean_m": -17.8321,
+        "published_lane_id_ends_p99_m_by_lane": {
+          "1": -1.5297,
+          "2": -1.3397,
+          "3": -1.0955,
+          "11": -20.6431,
+          "12": -20.9519,
+          "31": -21.3173
+        },
+        "queue_heads_front_bumper_lanes_by_position": [
+          {
+            "lane_id": 1,
+            "samples": 3201,
+            "median_m": -22.6154,
+            "q10_m": -28.0215,
+            "q90_m": -21.0288
+          },
+          {
+            "lane_id": 2,
+            "samples": 3018,
+            "median_m": -22.4983,
+            "q10_m": -24.8732,
+            "q90_m": -20.4463
+          },
+          {
+            "lane_id": 3,
+            "samples": 2442,
+            "median_m": -23.5488,
+            "q10_m": -25.4539,
+            "q90_m": -22.5341
+          },
+          {
+            "lane_id": 11,
+            "samples": 5270,
+            "median_m": -20.6431,
+            "q10_m": -22.2943,
+            "q90_m": -19.4336
+          },
+          {
+            "lane_id": 12,
+            "samples": 6126,
+            "median_m": -21.0429,
+            "q10_m": -23.6567,
+            "q90_m": -19.5721
+          }
+        ],
+        "gap_limit_line_to_head_median_m": {
+          "1": 4.7833,
+          "2": 4.6662,
+          "3": 5.7167,
+          "11": 2.811,
+          "12": 3.2107
+        },
+        "gap_limit_line_to_head_q90_m": {
+          "1": 3.1966,
+          "2": 2.6142,
+          "3": 4.702,
+          "11": 1.6014,
+          "12": 1.74
+        },
+        "transverse_paint_lines_found_by_profile": [
+          {
+            "position_m": -19.972,
+            "height": 9.9379,
+            "width_m": 0.3,
+            "kind": "white"
+          },
+          {
+            "position_m": -17.8524,
+            "height": 125.2515,
+            "width_m": 0.4,
+            "kind": "white"
+          },
+          {
+            "position_m": -12.4213,
+            "height": 103.8181,
+            "width_m": 0.35,
+            "kind": "white"
+          }
+        ]
+      },
+      "south": {
+        "approach": "NB",
+        "coordinate": "metres along the approach from the origin, increasing towards the junction (negative = upstream of the origin)",
+        "limit_line_landmarks_through_registration": {
+          "W_limit_median_nose": {
+            "along_towards_junction_m": -16.738,
+            "across_m": -1.6321
+          },
+          "W_limit_south_kerb": {
+            "along_towards_junction_m": -18.7458,
+            "across_m": 14.7266
+          }
+        },
+        "limit_line_mean_m": -17.7419,
+        "published_lane_id_ends_p99_m_by_lane": {
+          "1": -2.3636,
+          "2": -2.3599,
+          "3": -2.1498,
+          "4": -21.709,
+          "11": -20.7256
+        },
+        "queue_heads_front_bumper_lanes_by_position": [
+          {
+            "lane_id": 1,
+            "samples": 4057,
+            "median_m": -21.9681,
+            "q10_m": -23.4668,
+            "q90_m": -19.9084
+          },
+          {
+            "lane_id": 2,
+            "samples": 4849,
+            "median_m": -22.3947,
+            "q10_m": -25.1262,
+            "q90_m": -21.7581
+          },
+          {
+            "lane_id": 3,
+            "samples": 5209,
+            "median_m": -22.3919,
+            "q10_m": -24.5891,
+            "q90_m": -21.5251
+          },
+          {
+            "lane_id": 4,
+            "samples": 1018,
+            "median_m": -21.2179,
+            "q10_m": -25.714,
+            "q90_m": -18.3719
+          },
+          {
+            "lane_id": 11,
+            "samples": 4014,
+            "median_m": -18.9947,
+            "q10_m": -20.7256,
+            "q90_m": -18.1097
+          }
+        ],
+        "gap_limit_line_to_head_median_m": {
+          "1": 4.2262,
+          "2": 4.6528,
+          "3": 4.65,
+          "4": 3.476,
+          "11": 1.2528
+        },
+        "gap_limit_line_to_head_q90_m": {
+          "1": 2.1665,
+          "2": 4.0162,
+          "3": 3.7832,
+          "4": 0.63,
+          "11": 0.3678
+        },
+        "transverse_paint_lines_found_by_profile": []
+      }
+    }
+  },
+  "category_C_correspondences": {
+    "line_pairs": {
+      "north": [
+        {
+          "boundary_m": -14.209,
+          "paint_m": -14.029,
+          "paint_kind": "white",
+          "residual_m": 0.18,
+          "paint_height": 64.373,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": -11.0962,
+          "paint_m": -11.1618,
+          "paint_kind": "white",
+          "residual_m": -0.0656,
+          "paint_height": 39.0216,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": -8.1788,
+          "paint_m": -8.2624,
+          "paint_kind": "white",
+          "residual_m": -0.0836,
+          "paint_height": 42.5602,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": -5.1611,
+          "paint_m": -5.2401,
+          "paint_kind": "white",
+          "residual_m": -0.079,
+          "paint_height": 72.4872,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": -2.0543,
+          "paint_m": -2.1415,
+          "paint_kind": "white",
+          "residual_m": -0.0871,
+          "paint_height": 81.1885,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": 0.97,
+          "paint_m": 0.8733,
+          "paint_kind": "white",
+          "residual_m": -0.0967,
+          "paint_height": 13.4486,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": 3.955,
+          "paint_m": 3.9342,
+          "paint_kind": "white",
+          "residual_m": -0.0207,
+          "paint_height": 29.6781,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": 6.9921,
+          "paint_m": 7.043,
+          "paint_kind": "white",
+          "residual_m": 0.0508,
+          "paint_height": 26.3652,
+          "inside_painted_median": false
+        }
+      ],
+      "south": [
+        {
+          "boundary_m": -10.8526,
+          "paint_m": -10.5499,
+          "paint_kind": "white",
+          "residual_m": 0.3027,
+          "paint_height": 23.2498,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": -7.6417,
+          "paint_m": -7.6016,
+          "paint_kind": "white",
+          "residual_m": 0.0402,
+          "paint_height": 7.4347,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": -2.893,
+          "paint_m": -2.4463,
+          "paint_kind": "white",
+          "residual_m": null,
+          "paint_height": 13.0299,
+          "inside_painted_median": true
+        },
+        {
+          "boundary_m": 1.5532,
+          "paint_m": 1.3415,
+          "paint_kind": "white",
+          "residual_m": -0.2117,
+          "paint_height": 47.9725,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": 4.4206,
+          "paint_m": 4.3116,
+          "paint_kind": "white",
+          "residual_m": -0.1091,
+          "paint_height": 40.4848,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": 7.4893,
+          "paint_m": 7.4735,
+          "paint_kind": "white",
+          "residual_m": -0.0158,
+          "paint_height": 35.9243,
+          "inside_painted_median": false
+        },
+        {
+          "boundary_m": 10.8857,
+          "paint_m": 10.751,
+          "paint_kind": "white",
+          "residual_m": -0.1347,
+          "paint_height": 10.2982,
+          "inside_painted_median": false
+        }
+      ]
+    },
+    "points": [],
+    "why_no_points": "a point needs a second, crossing line known in both frames; the cross streets are tracked only from their limit lines inward, so their painted lane lines have no trajectory counterpart, and published stop positions disagree with the painted limit lines (see category_B_ground.queue_heads)"
+  },
+  "calibration_files": {},
+  "status": "no calibration: the across-Lankershim direction agrees with paint to lane level, the along-Lankershim direction needs time-synchronised or surveyed check points (DATA_REGISTER.md \u00a714.5)"
+}

@@ -1,0 +1,1171 @@
+{
+ "AttachedHypothesis": {
+  "$defs": {
+   "SourceFile": {
+    "additionalProperties": false,
+    "description": "A record the statement read, by its repository path and the SHA-256 of its bytes.",
+    "properties": {
+     "path": {
+      "description": "POSIX path relative to the repository",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "path",
+     "sha256"
+    ],
+    "title": "SourceFile",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Model text from a stored Muse reply: AI-generated, attached for context, never evidence.",
+  "properties": {
+   "hypothesis_id": {
+    "pattern": "^H[1-9][0-9]?$",
+    "title": "Hypothesis Id",
+    "type": "string"
+   },
+   "kind": {
+    "const": "ai_generated",
+    "default": "ai_generated",
+    "title": "Kind",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "$ref": "#/$defs/SourceFile"
+   },
+   "statement": {
+    "minLength": 1,
+    "title": "Statement",
+    "type": "string"
+   }
+  },
+  "required": [
+   "hypothesis_id",
+   "statement",
+   "source"
+  ],
+  "title": "AttachedHypothesis",
+  "type": "object"
+ },
+ "ConfirmedImprovement": {
+  "additionalProperties": false,
+  "description": "A Holm-confirmed improvement of one candidate on the subject metric, as recorded.",
+  "properties": {
+   "candidate": {
+    "minLength": 1,
+    "title": "Candidate",
+    "type": "string"
+   },
+   "ci95_difference": {
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Ci95 Difference",
+    "type": "array"
+   },
+   "holm_threshold": {
+    "title": "Holm Threshold",
+    "type": "number"
+   },
+   "label": {
+    "const": "simulated",
+    "default": "simulated",
+    "title": "Label",
+    "type": "string"
+   },
+   "mean_difference": {
+    "description": "candidate minus baseline, the metric's unit",
+    "title": "Mean Difference",
+    "type": "number"
+   },
+   "p_value": {
+    "title": "P Value",
+    "type": "number"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "t_statistic": {
+    "title": "T Statistic",
+    "type": "number"
+   }
+  },
+  "required": [
+   "candidate",
+   "mean_difference",
+   "ci95_difference",
+   "t_statistic",
+   "p_value",
+   "holm_threshold"
+  ],
+  "title": "ConfirmedImprovement",
+  "type": "object"
+ },
+ "MemberBaseline": {
+  "$defs": {
+   "ConfirmedImprovement": {
+    "additionalProperties": false,
+    "description": "A Holm-confirmed improvement of one candidate on the subject metric, as recorded.",
+    "properties": {
+     "candidate": {
+      "minLength": 1,
+      "title": "Candidate",
+      "type": "string"
+     },
+     "ci95_difference": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Ci95 Difference",
+      "type": "array"
+     },
+     "holm_threshold": {
+      "title": "Holm Threshold",
+      "type": "number"
+     },
+     "label": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Label",
+      "type": "string"
+     },
+     "mean_difference": {
+      "description": "candidate minus baseline, the metric's unit",
+      "title": "Mean Difference",
+      "type": "number"
+     },
+     "p_value": {
+      "title": "P Value",
+      "type": "number"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "t_statistic": {
+      "title": "T Statistic",
+      "type": "number"
+     }
+    },
+    "required": [
+     "candidate",
+     "mean_difference",
+     "ci95_difference",
+     "t_statistic",
+     "p_value",
+     "holm_threshold"
+    ],
+    "title": "ConfirmedImprovement",
+    "type": "object"
+   },
+   "SourceFile": {
+    "additionalProperties": false,
+    "description": "A record the statement read, by its repository path and the SHA-256 of its bytes.",
+    "properties": {
+     "path": {
+      "description": "POSIX path relative to the repository",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "path",
+     "sha256"
+    ],
+    "title": "SourceFile",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One timeline member's simulated baseline of the subject metric, and what is known of it.",
+  "properties": {
+   "assessment": {
+    "enum": [
+     "validated",
+     "partially_validated",
+     "not_validated",
+     "not_assessed"
+    ],
+    "title": "Assessment",
+    "type": "string"
+   },
+   "assessment_source": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/SourceFile"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the assessment file, when cited"
+   },
+   "assessment_summary": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the assessment's own summary, copied",
+    "title": "Assessment Summary"
+   },
+   "baseline_manifest_sha256": {
+    "title": "Baseline Manifest Sha256",
+    "type": "string"
+   },
+   "baseline_mean": {
+    "title": "Baseline Mean",
+    "type": "number"
+   },
+   "better": {
+    "enum": [
+     "lower",
+     "higher"
+    ],
+    "title": "Better",
+    "type": "string"
+   },
+   "improvements": {
+    "items": {
+     "$ref": "#/$defs/ConfirmedImprovement"
+    },
+    "title": "Improvements",
+    "type": "array"
+   },
+   "label": {
+    "const": "simulated",
+    "default": "simulated",
+    "title": "Label",
+    "type": "string"
+   },
+   "member": {
+    "minLength": 1,
+    "title": "Member",
+    "type": "string"
+   },
+   "metric_name": {
+    "minLength": 1,
+    "title": "Metric Name",
+    "type": "string"
+   },
+   "n": {
+    "description": "paired seeds",
+    "minimum": 0,
+    "title": "N",
+    "type": "integer"
+   },
+   "required": {
+    "title": "Required",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "timeline_id": {
+    "minLength": 1,
+    "title": "Timeline Id",
+    "type": "string"
+   },
+   "unit": {
+    "minLength": 1,
+    "title": "Unit",
+    "type": "string"
+   },
+   "unit_basis": {
+    "description": "the record sentence the unit rests on",
+    "minLength": 1,
+    "title": "Unit Basis",
+    "type": "string"
+   },
+   "unit_of_inference": {
+    "minLength": 1,
+    "title": "Unit Of Inference",
+    "type": "string"
+   },
+   "validation": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/SourceFile"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the committed validation record, if any"
+   }
+  },
+  "required": [
+   "member",
+   "timeline_id",
+   "required",
+   "baseline_manifest_sha256",
+   "metric_name",
+   "unit",
+   "better",
+   "n",
+   "baseline_mean",
+   "unit_of_inference",
+   "unit_basis",
+   "assessment",
+   "assessment_source",
+   "assessment_summary",
+   "validation",
+   "improvements"
+  ],
+  "title": "MemberBaseline",
+  "type": "object"
+ },
+ "ObservedQuantity": {
+  "$defs": {
+   "SourceFile": {
+    "additionalProperties": false,
+    "description": "A record the statement read, by its repository path and the SHA-256 of its bytes.",
+    "properties": {
+     "path": {
+      "description": "POSIX path relative to the repository",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "path",
+     "sha256"
+    ],
+    "title": "SourceFile",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "An NGSIM-derived quantity as a validation record states it, with the same-definition\nvalue that record's baseline simulated and what the record says of the comparison.",
+  "properties": {
+   "comparability": {
+    "description": "the record's status for the pair",
+    "minLength": 1,
+    "title": "Comparability",
+    "type": "string"
+   },
+   "discrepancy": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "simulated minus observed, as recorded",
+    "title": "Discrepancy"
+   },
+   "interval95": {
+    "anyOf": [
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Interval95"
+   },
+   "key": {
+    "description": "the validation record's key, e.g. queue_mean.S",
+    "minLength": 1,
+    "title": "Key",
+    "type": "string"
+   },
+   "label": {
+    "const": "derived",
+    "description": "fixed rules over observed NGSIM values",
+    "title": "Label",
+    "type": "string"
+   },
+   "limitations": {
+    "description": "the record's caveats on this comparison",
+    "items": {
+     "type": "string"
+    },
+    "title": "Limitations",
+    "type": "array"
+   },
+   "lower_bound": {
+    "description": "censored: the true value is at least this",
+    "title": "Lower Bound",
+    "type": "boolean"
+   },
+   "member": {
+    "description": "the member whose baseline was validated",
+    "minLength": 1,
+    "title": "Member",
+    "type": "string"
+   },
+   "quantity": {
+    "minLength": 1,
+    "title": "Quantity",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "simulated_inside_observed_interval": {
+    "anyOf": [
+     {
+      "type": "boolean"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "as the record states",
+    "title": "Simulated Inside Observed Interval"
+   },
+   "simulated_lower_bound": {
+    "description": "the simulated value is censored too",
+    "title": "Simulated Lower Bound",
+    "type": "boolean"
+   },
+   "simulated_value": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "same definition, the record's baseline",
+    "title": "Simulated Value"
+   },
+   "source": {
+    "$ref": "#/$defs/SourceFile"
+   },
+   "unit": {
+    "minLength": 1,
+    "title": "Unit",
+    "type": "string"
+   },
+   "value": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "None when the record states none",
+    "title": "Value"
+   }
+  },
+  "required": [
+   "key",
+   "quantity",
+   "unit",
+   "label",
+   "value",
+   "interval95",
+   "lower_bound",
+   "simulated_value",
+   "simulated_lower_bound",
+   "simulated_inside_observed_interval",
+   "discrepancy",
+   "comparability",
+   "limitations",
+   "member",
+   "source"
+  ],
+  "title": "ObservedQuantity",
+  "type": "object"
+ },
+ "ProblemStatement": {
+  "$defs": {
+   "AttachedHypothesis": {
+    "additionalProperties": false,
+    "description": "Model text from a stored Muse reply: AI-generated, attached for context, never evidence.",
+    "properties": {
+     "hypothesis_id": {
+      "pattern": "^H[1-9][0-9]?$",
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "kind": {
+      "const": "ai_generated",
+      "default": "ai_generated",
+      "title": "Kind",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "$ref": "#/$defs/SourceFile"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "source"
+    ],
+    "title": "AttachedHypothesis",
+    "type": "object"
+   },
+   "ConfirmedImprovement": {
+    "additionalProperties": false,
+    "description": "A Holm-confirmed improvement of one candidate on the subject metric, as recorded.",
+    "properties": {
+     "candidate": {
+      "minLength": 1,
+      "title": "Candidate",
+      "type": "string"
+     },
+     "ci95_difference": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Ci95 Difference",
+      "type": "array"
+     },
+     "holm_threshold": {
+      "title": "Holm Threshold",
+      "type": "number"
+     },
+     "label": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Label",
+      "type": "string"
+     },
+     "mean_difference": {
+      "description": "candidate minus baseline, the metric's unit",
+      "title": "Mean Difference",
+      "type": "number"
+     },
+     "p_value": {
+      "title": "P Value",
+      "type": "number"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "t_statistic": {
+      "title": "T Statistic",
+      "type": "number"
+     }
+    },
+    "required": [
+     "candidate",
+     "mean_difference",
+     "ci95_difference",
+     "t_statistic",
+     "p_value",
+     "holm_threshold"
+    ],
+    "title": "ConfirmedImprovement",
+    "type": "object"
+   },
+   "MemberBaseline": {
+    "additionalProperties": false,
+    "description": "One timeline member's simulated baseline of the subject metric, and what is known of it.",
+    "properties": {
+     "assessment": {
+      "enum": [
+       "validated",
+       "partially_validated",
+       "not_validated",
+       "not_assessed"
+      ],
+      "title": "Assessment",
+      "type": "string"
+     },
+     "assessment_source": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/SourceFile"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the assessment file, when cited"
+     },
+     "assessment_summary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the assessment's own summary, copied",
+      "title": "Assessment Summary"
+     },
+     "baseline_manifest_sha256": {
+      "title": "Baseline Manifest Sha256",
+      "type": "string"
+     },
+     "baseline_mean": {
+      "title": "Baseline Mean",
+      "type": "number"
+     },
+     "better": {
+      "enum": [
+       "lower",
+       "higher"
+      ],
+      "title": "Better",
+      "type": "string"
+     },
+     "improvements": {
+      "items": {
+       "$ref": "#/$defs/ConfirmedImprovement"
+      },
+      "title": "Improvements",
+      "type": "array"
+     },
+     "label": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Label",
+      "type": "string"
+     },
+     "member": {
+      "minLength": 1,
+      "title": "Member",
+      "type": "string"
+     },
+     "metric_name": {
+      "minLength": 1,
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "n": {
+      "description": "paired seeds",
+      "minimum": 0,
+      "title": "N",
+      "type": "integer"
+     },
+     "required": {
+      "title": "Required",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timeline_id": {
+      "minLength": 1,
+      "title": "Timeline Id",
+      "type": "string"
+     },
+     "unit": {
+      "minLength": 1,
+      "title": "Unit",
+      "type": "string"
+     },
+     "unit_basis": {
+      "description": "the record sentence the unit rests on",
+      "minLength": 1,
+      "title": "Unit Basis",
+      "type": "string"
+     },
+     "unit_of_inference": {
+      "minLength": 1,
+      "title": "Unit Of Inference",
+      "type": "string"
+     },
+     "validation": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/SourceFile"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the committed validation record, if any"
+     }
+    },
+    "required": [
+     "member",
+     "timeline_id",
+     "required",
+     "baseline_manifest_sha256",
+     "metric_name",
+     "unit",
+     "better",
+     "n",
+     "baseline_mean",
+     "unit_of_inference",
+     "unit_basis",
+     "assessment",
+     "assessment_source",
+     "assessment_summary",
+     "validation",
+     "improvements"
+    ],
+    "title": "MemberBaseline",
+    "type": "object"
+   },
+   "ObservedQuantity": {
+    "additionalProperties": false,
+    "description": "An NGSIM-derived quantity as a validation record states it, with the same-definition\nvalue that record's baseline simulated and what the record says of the comparison.",
+    "properties": {
+     "comparability": {
+      "description": "the record's status for the pair",
+      "minLength": 1,
+      "title": "Comparability",
+      "type": "string"
+     },
+     "discrepancy": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "simulated minus observed, as recorded",
+      "title": "Discrepancy"
+     },
+     "interval95": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Interval95"
+     },
+     "key": {
+      "description": "the validation record's key, e.g. queue_mean.S",
+      "minLength": 1,
+      "title": "Key",
+      "type": "string"
+     },
+     "label": {
+      "const": "derived",
+      "description": "fixed rules over observed NGSIM values",
+      "title": "Label",
+      "type": "string"
+     },
+     "limitations": {
+      "description": "the record's caveats on this comparison",
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "lower_bound": {
+      "description": "censored: the true value is at least this",
+      "title": "Lower Bound",
+      "type": "boolean"
+     },
+     "member": {
+      "description": "the member whose baseline was validated",
+      "minLength": 1,
+      "title": "Member",
+      "type": "string"
+     },
+     "quantity": {
+      "minLength": 1,
+      "title": "Quantity",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "simulated_inside_observed_interval": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "as the record states",
+      "title": "Simulated Inside Observed Interval"
+     },
+     "simulated_lower_bound": {
+      "description": "the simulated value is censored too",
+      "title": "Simulated Lower Bound",
+      "type": "boolean"
+     },
+     "simulated_value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "same definition, the record's baseline",
+      "title": "Simulated Value"
+     },
+     "source": {
+      "$ref": "#/$defs/SourceFile"
+     },
+     "unit": {
+      "minLength": 1,
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "None when the record states none",
+      "title": "Value"
+     }
+    },
+    "required": [
+     "key",
+     "quantity",
+     "unit",
+     "label",
+     "value",
+     "interval95",
+     "lower_bound",
+     "simulated_value",
+     "simulated_lower_bound",
+     "simulated_inside_observed_interval",
+     "discrepancy",
+     "comparability",
+     "limitations",
+     "member",
+     "source"
+    ],
+    "title": "ObservedQuantity",
+    "type": "object"
+   },
+   "SourceFile": {
+    "additionalProperties": false,
+    "description": "A record the statement read, by its repository path and the SHA-256 of its bytes.",
+    "properties": {
+     "path": {
+      "description": "POSIX path relative to the repository",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "path",
+     "sha256"
+    ],
+    "title": "SourceFile",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "The problem on one approach and metric, projected from committed records.",
+  "properties": {
+   "approach": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Approach",
+    "type": "string"
+   },
+   "baseline_validated": {
+    "description": "True only if every member's baseline is",
+    "title": "Baseline Validated",
+    "type": "boolean"
+   },
+   "definition_note": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "what the validation records say of the decision metric's definition",
+    "title": "Definition Note"
+   },
+   "entity_ids": {
+    "description": "WorldView entity ids",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 1,
+    "title": "Entity Ids",
+    "type": "array"
+   },
+   "failure_conditions": {
+    "description": "conditions_of(): written by code",
+    "items": {
+     "type": "string"
+    },
+    "title": "Failure Conditions",
+    "type": "array"
+   },
+   "hypotheses": {
+    "items": {
+     "$ref": "#/$defs/AttachedHypothesis"
+    },
+    "title": "Hypotheses",
+    "type": "array"
+   },
+   "hypotheses_note": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "why no hypothesis is attached, if none is",
+    "title": "Hypotheses Note"
+   },
+   "limitations": {
+    "description": "the records' limitations, copied",
+    "items": {
+     "type": "string"
+    },
+    "title": "Limitations",
+    "type": "array"
+   },
+   "members": {
+    "items": {
+     "$ref": "#/$defs/MemberBaseline"
+    },
+    "minItems": 1,
+    "title": "Members",
+    "type": "array"
+   },
+   "metric_name": {
+    "minLength": 1,
+    "title": "Metric Name",
+    "type": "string"
+   },
+   "observed": {
+    "items": {
+     "$ref": "#/$defs/ObservedQuantity"
+    },
+    "title": "Observed",
+    "type": "array"
+   },
+   "problem_id": {
+    "pattern": "^[a-z0-9][a-z0-9_.-]*$",
+    "title": "Problem Id",
+    "type": "string"
+   },
+   "problem_sha256": {
+    "title": "Problem Sha256",
+    "type": "string"
+   },
+   "problem_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Problem Version",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "sources": {
+    "description": "every record read, by path",
+    "items": {
+     "$ref": "#/$defs/SourceFile"
+    },
+    "title": "Sources",
+    "type": "array"
+   },
+   "statement": {
+    "description": "statement_of(): written by code",
+    "minLength": 1,
+    "title": "Statement",
+    "type": "string"
+   }
+  },
+  "required": [
+   "problem_id",
+   "approach",
+   "metric_name",
+   "statement",
+   "observed",
+   "members",
+   "definition_note",
+   "hypotheses",
+   "hypotheses_note",
+   "baseline_validated",
+   "limitations",
+   "failure_conditions",
+   "sources",
+   "entity_ids",
+   "problem_sha256"
+  ],
+  "title": "ProblemStatement",
+  "type": "object"
+ },
+ "SourceFile": {
+  "additionalProperties": false,
+  "description": "A record the statement read, by its repository path and the SHA-256 of its bytes.",
+  "properties": {
+   "path": {
+    "description": "POSIX path relative to the repository",
+    "minLength": 1,
+    "title": "Path",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "sha256": {
+    "title": "Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "path",
+   "sha256"
+  ],
+  "title": "SourceFile",
+  "type": "object"
+ }
+}

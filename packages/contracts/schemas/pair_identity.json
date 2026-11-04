@@ -1,0 +1,546 @@
+{
+ "ArmRuns": {
+  "additionalProperties": false,
+  "description": "One arm of the experiment: what it ran, on which seeds, with which SUMO binary.",
+  "properties": {
+   "arm": {
+    "description": "'baseline' or an intervention id",
+    "minLength": 1,
+    "title": "Arm",
+    "type": "string"
+   },
+   "intervention_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the proposal's hash; None for baseline",
+    "title": "Intervention Sha256"
+   },
+   "network_sha256": {
+    "description": "the network apart from its signal program",
+    "title": "Network Sha256",
+    "type": "string"
+   },
+   "plan_sha256": {
+    "description": "pairing.plan_sha256 of the signal program it ran",
+    "title": "Plan Sha256",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seeds": {
+    "items": {
+     "type": "integer"
+    },
+    "title": "Seeds",
+    "type": "array"
+   },
+   "sumo_binary_version": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the version every run output's header names; None when none names one",
+    "title": "Sumo Binary Version"
+   }
+  },
+  "required": [
+   "arm",
+   "plan_sha256",
+   "intervention_sha256",
+   "network_sha256",
+   "sumo_binary_version",
+   "seeds"
+  ],
+  "title": "ArmRuns",
+  "type": "object"
+ },
+ "PairIdentityView": {
+  "$defs": {
+   "ArmRuns": {
+    "additionalProperties": false,
+    "description": "One arm of the experiment: what it ran, on which seeds, with which SUMO binary.",
+    "properties": {
+     "arm": {
+      "description": "'baseline' or an intervention id",
+      "minLength": 1,
+      "title": "Arm",
+      "type": "string"
+     },
+     "intervention_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the proposal's hash; None for baseline",
+      "title": "Intervention Sha256"
+     },
+     "network_sha256": {
+      "description": "the network apart from its signal program",
+      "title": "Network Sha256",
+      "type": "string"
+     },
+     "plan_sha256": {
+      "description": "pairing.plan_sha256 of the signal program it ran",
+      "title": "Plan Sha256",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seeds": {
+      "items": {
+       "type": "integer"
+      },
+      "title": "Seeds",
+      "type": "array"
+     },
+     "sumo_binary_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the version every run output's header names; None when none names one",
+      "title": "Sumo Binary Version"
+     }
+    },
+    "required": [
+     "arm",
+     "plan_sha256",
+     "intervention_sha256",
+     "network_sha256",
+     "sumo_binary_version",
+     "seeds"
+    ],
+    "title": "ArmRuns",
+    "type": "object"
+   },
+   "PairIdentity": {
+    "additionalProperties": false,
+    "description": "Two runs that may be compared: `pair_sha256` names the pair in a ledger or a report.",
+    "properties": {
+     "compared": {
+      "$ref": "#/$defs/RunIdentity"
+     },
+     "pair_sha256": {
+      "title": "Pair Sha256",
+      "type": "string"
+     },
+     "pairing_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Pairing Version",
+      "type": "string"
+     },
+     "reference": {
+      "$ref": "#/$defs/RunIdentity"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "reference",
+     "compared",
+     "pair_sha256"
+    ],
+    "title": "PairIdentity",
+    "type": "object"
+   },
+   "RunIdentity": {
+    "additionalProperties": false,
+    "description": "One run of one arm on one seed, as far as pairing is concerned.",
+    "properties": {
+     "arm": {
+      "description": "'baseline' or an intervention id",
+      "minLength": 1,
+      "title": "Arm",
+      "type": "string"
+     },
+     "demand_sha256": {
+      "description": "SHA-256 of the route file's bytes (RunRecord)",
+      "title": "Demand Sha256",
+      "type": "string"
+     },
+     "geometry_sha256": {
+      "title": "Geometry Sha256",
+      "type": "string"
+     },
+     "intervention_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the proposal's hash (ValidationOutcome), when the arm has one",
+      "title": "Intervention Sha256"
+     },
+     "member_sha256": {
+      "description": "SHA-256 of the member's baseline_manifest.json",
+      "title": "Member Sha256",
+      "type": "string"
+     },
+     "network_sha256": {
+      "description": "the compiled network but for its signal program: plain XML hashes, link count, simulator version and parameters other than the cycle",
+      "title": "Network Sha256",
+      "type": "string"
+     },
+     "plan_sha256": {
+      "description": "plan_sha256 of the signal program the run executed",
+      "title": "Plan Sha256",
+      "type": "string"
+     },
+     "population_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the route file's vehicles without speedFactor; None when it was not read",
+      "title": "Population Sha256"
+     },
+     "population_version": {
+      "const": "population-v1",
+      "default": "population-v1",
+      "title": "Population Version",
+      "type": "string"
+     },
+     "program_structure_sha256": {
+      "description": "phase names and states, not durations",
+      "title": "Program Structure Sha256",
+      "type": "string"
+     },
+     "run_config_sha256": {
+      "description": "the SUMO command as recorded, without the values of --net-file and --route-files, which name directories",
+      "title": "Run Config Sha256",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+     },
+     "settings_sha256": {
+      "description": "settings_pairing_sha256: all but the seeds",
+      "title": "Settings Sha256",
+      "type": "string"
+     },
+     "timeline_id": {
+      "description": "the signal timeline the member replays",
+      "minLength": 1,
+      "title": "Timeline Id",
+      "type": "string"
+     },
+     "world_model_sha256": {
+      "title": "World Model Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "member_sha256",
+     "timeline_id",
+     "arm",
+     "seed",
+     "demand_sha256",
+     "population_sha256",
+     "world_model_sha256",
+     "geometry_sha256",
+     "network_sha256",
+     "program_structure_sha256",
+     "run_config_sha256",
+     "settings_sha256",
+     "plan_sha256"
+    ],
+    "title": "RunIdentity",
+    "type": "object"
+   },
+   "SeedDemand": {
+    "additionalProperties": false,
+    "description": "One seed's route file, as the baseline recorded it.",
+    "properties": {
+     "demand_file": {
+      "description": "relative to the baseline's demand dir",
+      "minLength": 1,
+      "title": "Demand File",
+      "type": "string"
+     },
+     "demand_sha256": {
+      "description": "SHA-256 of the file's bytes: DemandFile.sha256, and RunRecord.demand_sha256 of every run on this seed",
+      "title": "Demand Sha256",
+      "type": "string"
+     },
+     "population_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "population-v1: the vehicles without speedFactor; None when not read",
+      "title": "Population Sha256"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+     },
+     "speed_factors_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the seed's speedFactor draws alone; None when not read",
+      "title": "Speed Factors Sha256"
+     }
+    },
+    "required": [
+     "seed",
+     "demand_file",
+     "demand_sha256",
+     "population_sha256",
+     "speed_factors_sha256"
+    ],
+    "title": "SeedDemand",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One experiment's pairs and what they share: a sidecar, named by `view_sha256`.",
+  "properties": {
+   "arms": {
+    "items": {
+     "$ref": "#/$defs/ArmRuns"
+    },
+    "minItems": 1,
+    "title": "Arms",
+    "type": "array"
+   },
+   "baseline_experiment_id": {
+    "minLength": 1,
+    "title": "Baseline Experiment Id",
+    "type": "string"
+   },
+   "confirmation": {
+    "description": "True only if reserved seeds 301-320 were allowed",
+    "title": "Confirmation",
+    "type": "boolean"
+   },
+   "experiment_id": {
+    "minLength": 1,
+    "title": "Experiment Id",
+    "type": "string"
+   },
+   "horizon_s": {
+    "description": "measurement window every run shares (settings)",
+    "exclusiveMinimum": 0,
+    "title": "Horizon S",
+    "type": "number"
+   },
+   "member_sha256": {
+    "description": "SHA-256 of the baseline_manifest.json: the member",
+    "title": "Member Sha256",
+    "type": "string"
+   },
+   "network_sha256": {
+    "description": "the baseline network apart from its signal program",
+    "title": "Network Sha256",
+    "type": "string"
+   },
+   "pairs": {
+    "items": {
+     "$ref": "#/$defs/PairIdentity"
+    },
+    "title": "Pairs",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seeds": {
+    "items": {
+     "$ref": "#/$defs/SeedDemand"
+    },
+    "minItems": 1,
+    "title": "Seeds",
+    "type": "array"
+   },
+   "sumo_binary_version": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the SUMO binary every run's output header names; None when none names one",
+    "title": "Sumo Binary Version"
+   },
+   "sumo_wheel_version": {
+    "description": "the eclipse-sumo package version the manifests record; not the binary",
+    "title": "Sumo Wheel Version",
+    "type": "string"
+   },
+   "timeline_id": {
+    "description": "the signal timeline the member replays",
+    "minLength": 1,
+    "title": "Timeline Id",
+    "type": "string"
+   },
+   "unit_of_inference": {
+    "description": "unit_of_inference() of the seeds' populations",
+    "title": "Unit Of Inference",
+    "type": "string"
+   },
+   "view_sha256": {
+    "title": "View Sha256",
+    "type": "string"
+   },
+   "view_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "View Version",
+    "type": "string"
+   },
+   "world_model_sha256": {
+    "title": "World Model Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "experiment_id",
+   "baseline_experiment_id",
+   "member_sha256",
+   "timeline_id",
+   "world_model_sha256",
+   "network_sha256",
+   "horizon_s",
+   "sumo_binary_version",
+   "sumo_wheel_version",
+   "confirmation",
+   "seeds",
+   "arms",
+   "pairs",
+   "unit_of_inference",
+   "view_sha256"
+  ],
+  "title": "PairIdentityView",
+  "type": "object"
+ },
+ "SeedDemand": {
+  "additionalProperties": false,
+  "description": "One seed's route file, as the baseline recorded it.",
+  "properties": {
+   "demand_file": {
+    "description": "relative to the baseline's demand dir",
+    "minLength": 1,
+    "title": "Demand File",
+    "type": "string"
+   },
+   "demand_sha256": {
+    "description": "SHA-256 of the file's bytes: DemandFile.sha256, and RunRecord.demand_sha256 of every run on this seed",
+    "title": "Demand Sha256",
+    "type": "string"
+   },
+   "population_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "population-v1: the vehicles without speedFactor; None when not read",
+    "title": "Population Sha256"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seed": {
+    "minimum": 0,
+    "title": "Seed",
+    "type": "integer"
+   },
+   "speed_factors_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the seed's speedFactor draws alone; None when not read",
+    "title": "Speed Factors Sha256"
+   }
+  },
+  "required": [
+   "seed",
+   "demand_file",
+   "demand_sha256",
+   "population_sha256",
+   "speed_factors_sha256"
+  ],
+  "title": "SeedDemand",
+  "type": "object"
+ }
+}

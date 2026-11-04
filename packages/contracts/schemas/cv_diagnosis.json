@@ -1,0 +1,839 @@
+{
+ "CvDiagnosis": {
+  "$defs": {
+   "CvHypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "confidence": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "how_to_check": {
+      "description": "what measurement would settle it",
+      "minLength": 1,
+      "title": "How To Check",
+      "type": "string"
+     },
+     "hypothesis_id": {
+      "minLength": 1,
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "confidence",
+     "how_to_check"
+    ],
+    "title": "CvHypothesis",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "hypotheses": {
+    "items": {
+     "$ref": "#/$defs/CvHypothesis"
+    },
+    "title": "Hypotheses",
+    "type": "array"
+   },
+   "limitations": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Limitations",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "summary": {
+    "minLength": 1,
+    "title": "Summary",
+    "type": "string"
+   }
+  },
+  "required": [
+   "summary",
+   "hypotheses",
+   "limitations"
+  ],
+  "title": "CvDiagnosis",
+  "type": "object"
+ },
+ "CvDiagnosisRecord": {
+  "$defs": {
+   "CvDiagnosis": {
+    "additionalProperties": false,
+    "properties": {
+     "hypotheses": {
+      "items": {
+       "$ref": "#/$defs/CvHypothesis"
+      },
+      "title": "Hypotheses",
+      "type": "array"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+     }
+    },
+    "required": [
+     "summary",
+     "hypotheses",
+     "limitations"
+    ],
+    "title": "CvDiagnosis",
+    "type": "object"
+   },
+   "CvDiagnosisReplicate": {
+    "additionalProperties": false,
+    "description": "One independent reply, with what code found wrong with it.",
+    "properties": {
+     "citation_problems": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Citation Problems",
+      "type": "array"
+     },
+     "cost_usd": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Cost Usd"
+     },
+     "diagnosis": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/CvDiagnosis"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null
+     },
+     "failure": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Failure"
+     },
+     "from_cache": {
+      "title": "From Cache",
+      "type": "boolean"
+     },
+     "replicate": {
+      "minimum": 1,
+      "title": "Replicate",
+      "type": "integer"
+     },
+     "request_key": {
+      "title": "Request Key",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "ok",
+       "failed"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unsupported_numbers": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Unsupported Numbers",
+      "type": "array"
+     }
+    },
+    "required": [
+     "replicate",
+     "status",
+     "request_key",
+     "from_cache"
+    ],
+    "title": "CvDiagnosisReplicate",
+    "type": "object"
+   },
+   "CvEvidenceItem": {
+    "additionalProperties": false,
+    "description": "One fact the model was given, copied from the analysis record by code.",
+    "properties": {
+     "evidence_id": {
+      "minLength": 1,
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "status": {
+      "minLength": 1,
+      "title": "Status",
+      "type": "string"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Unit"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Value"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "statement",
+     "evidence_kind",
+     "status"
+    ],
+    "title": "CvEvidenceItem",
+    "type": "object"
+   },
+   "CvHypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "confidence": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "how_to_check": {
+      "description": "what measurement would settle it",
+      "minLength": 1,
+      "title": "How To Check",
+      "type": "string"
+     },
+     "hypothesis_id": {
+      "minLength": 1,
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "confidence",
+     "how_to_check"
+    ],
+    "title": "CvHypothesis",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Every reply to one request about one analysis.",
+  "properties": {
+   "analysis_id": {
+    "minLength": 1,
+    "title": "Analysis Id",
+    "type": "string"
+   },
+   "analysis_record_sha256": {
+    "title": "Analysis Record Sha256",
+    "type": "string"
+   },
+   "created_at_utc": {
+    "format": "date-time",
+    "title": "Created At Utc",
+    "type": "string"
+   },
+   "evidence": {
+    "items": {
+     "$ref": "#/$defs/CvEvidenceItem"
+    },
+    "title": "Evidence",
+    "type": "array"
+   },
+   "label": {
+    "minLength": 1,
+    "title": "Label",
+    "type": "string"
+   },
+   "model": {
+    "minLength": 1,
+    "title": "Model",
+    "type": "string"
+   },
+   "prompt_version": {
+    "minLength": 1,
+    "title": "Prompt Version",
+    "type": "string"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "replicates": {
+    "items": {
+     "$ref": "#/$defs/CvDiagnosisReplicate"
+    },
+    "title": "Replicates",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "label",
+   "analysis_id",
+   "analysis_record_sha256",
+   "model",
+   "prompt_version",
+   "created_at_utc",
+   "evidence",
+   "replicates",
+   "provenance"
+  ],
+  "title": "CvDiagnosisRecord",
+  "type": "object"
+ },
+ "CvDiagnosisReplicate": {
+  "$defs": {
+   "CvDiagnosis": {
+    "additionalProperties": false,
+    "properties": {
+     "hypotheses": {
+      "items": {
+       "$ref": "#/$defs/CvHypothesis"
+      },
+      "title": "Hypotheses",
+      "type": "array"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+     }
+    },
+    "required": [
+     "summary",
+     "hypotheses",
+     "limitations"
+    ],
+    "title": "CvDiagnosis",
+    "type": "object"
+   },
+   "CvHypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "confidence": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "how_to_check": {
+      "description": "what measurement would settle it",
+      "minLength": 1,
+      "title": "How To Check",
+      "type": "string"
+     },
+     "hypothesis_id": {
+      "minLength": 1,
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "confidence",
+     "how_to_check"
+    ],
+    "title": "CvHypothesis",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One independent reply, with what code found wrong with it.",
+  "properties": {
+   "citation_problems": {
+    "default": [],
+    "items": {
+     "type": "string"
+    },
+    "title": "Citation Problems",
+    "type": "array"
+   },
+   "cost_usd": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Cost Usd"
+   },
+   "diagnosis": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/CvDiagnosis"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null
+   },
+   "failure": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Failure"
+   },
+   "from_cache": {
+    "title": "From Cache",
+    "type": "boolean"
+   },
+   "replicate": {
+    "minimum": 1,
+    "title": "Replicate",
+    "type": "integer"
+   },
+   "request_key": {
+    "title": "Request Key",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "ok",
+     "failed"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "unsupported_numbers": {
+    "default": [],
+    "items": {
+     "type": "string"
+    },
+    "title": "Unsupported Numbers",
+    "type": "array"
+   }
+  },
+  "required": [
+   "replicate",
+   "status",
+   "request_key",
+   "from_cache"
+  ],
+  "title": "CvDiagnosisReplicate",
+  "type": "object"
+ },
+ "CvEvidenceItem": {
+  "additionalProperties": false,
+  "description": "One fact the model was given, copied from the analysis record by code.",
+  "properties": {
+   "evidence_id": {
+    "minLength": 1,
+    "title": "Evidence Id",
+    "type": "string"
+   },
+   "evidence_kind": {
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "statement": {
+    "minLength": 1,
+    "title": "Statement",
+    "type": "string"
+   },
+   "status": {
+    "minLength": 1,
+    "title": "Status",
+    "type": "string"
+   },
+   "unit": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Unit"
+   },
+   "value": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Value"
+   }
+  },
+  "required": [
+   "evidence_id",
+   "statement",
+   "evidence_kind",
+   "status"
+  ],
+  "title": "CvEvidenceItem",
+  "type": "object"
+ },
+ "CvHypothesis": {
+  "additionalProperties": false,
+  "properties": {
+   "confidence": {
+    "enum": [
+     "low",
+     "medium",
+     "high"
+    ],
+    "title": "Confidence",
+    "type": "string"
+   },
+   "contradicting_evidence_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Contradicting Evidence Ids",
+    "type": "array"
+   },
+   "how_to_check": {
+    "description": "what measurement would settle it",
+    "minLength": 1,
+    "title": "How To Check",
+    "type": "string"
+   },
+   "hypothesis_id": {
+    "minLength": 1,
+    "title": "Hypothesis Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "statement": {
+    "minLength": 1,
+    "title": "Statement",
+    "type": "string"
+   },
+   "supporting_evidence_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Supporting Evidence Ids",
+    "type": "array"
+   }
+  },
+  "required": [
+   "hypothesis_id",
+   "statement",
+   "supporting_evidence_ids",
+   "contradicting_evidence_ids",
+   "confidence",
+   "how_to_check"
+  ],
+  "title": "CvHypothesis",
+  "type": "object"
+ }
+}

@@ -1,0 +1,900 @@
+{
+ "ChainBreak": {
+  "additionalProperties": false,
+  "properties": {
+   "at": {
+    "description": "the record whose derivation could not be followed",
+    "title": "At",
+    "type": "string"
+   },
+   "code": {
+    "enum": [
+     "missing_link",
+     "unknown_node",
+     "wrong_entity_type",
+     "hash_mismatch",
+     "wrong_stage",
+     "cycle"
+    ],
+    "title": "Code",
+    "type": "string"
+   },
+   "missing": {
+    "description": "the relationship, e.g. 'problem_statement <- world_entity'",
+    "title": "Missing",
+    "type": "string"
+   },
+   "reason": {
+    "minLength": 1,
+    "title": "Reason",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "code",
+   "at",
+   "missing",
+   "reason"
+  ],
+  "title": "ChainBreak",
+  "type": "object"
+ },
+ "LinkEnd": {
+  "additionalProperties": false,
+  "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+  "properties": {
+   "record_id": {
+    "pattern": "^\\S+$",
+    "title": "Record Id",
+    "type": "string"
+   },
+   "record_type": {
+    "enum": [
+     "DatasetFile",
+     "SourceClip",
+     "SamResponse",
+     "TrackFile",
+     "TrafficWorldModel",
+     "WorldEntity",
+     "ProblemStatement",
+     "InterventionProposal",
+     "ExperimentManifest",
+     "DecisionReport"
+    ],
+    "title": "Record Type",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "stated_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Stated Sha256"
+   }
+  },
+  "required": [
+   "record_type",
+   "record_id"
+  ],
+  "title": "LinkEnd",
+  "type": "object"
+ },
+ "NodeRef": {
+  "additionalProperties": false,
+  "description": "One existing record, by its existing id and content hash; never a copy of it.",
+  "properties": {
+   "category": {
+    "enum": [
+     "camera_derived",
+     "dataset_derived",
+     "world_model",
+     "simulated",
+     "ai_generated"
+    ],
+    "title": "Category",
+    "type": "string"
+   },
+   "content_sha256": {
+    "title": "Content Sha256",
+    "type": "string"
+   },
+   "evidence_kind": {
+    "description": "as the record states it, not re-judged",
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "hash_basis": {
+    "enum": [
+     "file_bytes",
+     "model_dump_json",
+     "canonical_json",
+     "proposal_sha256",
+     "request_key"
+    ],
+    "title": "Hash Basis",
+    "type": "string"
+   },
+   "model_output": {
+    "default": false,
+    "description": "the record is a model's output (SAM, Muse)",
+    "title": "Model Output",
+    "type": "boolean"
+   },
+   "record_id": {
+    "description": "the id the record already has",
+    "pattern": "^\\S+$",
+    "title": "Record Id",
+    "type": "string"
+   },
+   "record_type": {
+    "enum": [
+     "DatasetFile",
+     "SourceClip",
+     "SamResponse",
+     "TrackFile",
+     "TrafficWorldModel",
+     "WorldEntity",
+     "ProblemStatement",
+     "InterventionProposal",
+     "ExperimentManifest",
+     "DecisionReport"
+    ],
+    "title": "Record Type",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "stage": {
+    "enum": [
+     "source_record",
+     "observation",
+     "world_entity",
+     "problem_statement",
+     "intervention",
+     "experiment",
+     "decision_report"
+    ],
+    "title": "Stage",
+    "type": "string"
+   }
+  },
+  "required": [
+   "stage",
+   "record_type",
+   "record_id",
+   "content_sha256",
+   "hash_basis",
+   "category",
+   "evidence_kind"
+  ],
+  "title": "NodeRef",
+  "type": "object"
+ },
+ "ProblemStatement": {
+  "additionalProperties": false,
+  "description": "A traffic problem named by a deterministic rule on WorldView entities; no number, no model\ntext. `statement` is written by the rule's code.",
+  "properties": {
+   "entity_ids": {
+    "description": "sorted, unique",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 1,
+    "title": "Entity Ids",
+    "type": "array"
+   },
+   "problem_id": {
+    "pattern": "^[a-z0-9][a-z0-9_.-]*$",
+    "title": "Problem Id",
+    "type": "string"
+   },
+   "problem_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Problem Version",
+    "type": "string"
+   },
+   "produced_by": {
+    "const": "rule",
+    "default": "rule",
+    "title": "Produced By",
+    "type": "string"
+   },
+   "rule_id": {
+    "pattern": "^[a-z0-9][a-z0-9_.-]*$",
+    "title": "Rule Id",
+    "type": "string"
+   },
+   "rule_version": {
+    "minLength": 1,
+    "title": "Rule Version",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "statement": {
+    "minLength": 1,
+    "title": "Statement",
+    "type": "string"
+   },
+   "view_sha256": {
+    "description": "the WorldView whose entities it names",
+    "title": "View Sha256",
+    "type": "string"
+   },
+   "world_model_sha256": {
+    "description": "canonical: sha256 of model_dump_json()",
+    "title": "World Model Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "problem_id",
+   "rule_id",
+   "rule_version",
+   "statement",
+   "world_model_sha256",
+   "view_sha256",
+   "entity_ids"
+  ],
+  "title": "ProblemStatement",
+  "type": "object"
+ },
+ "ProvenanceGraph": {
+  "$defs": {
+   "LinkEnd": {
+    "additionalProperties": false,
+    "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+    "properties": {
+     "record_id": {
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stated_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Stated Sha256"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "LinkEnd",
+    "type": "object"
+   },
+   "NodeRef": {
+    "additionalProperties": false,
+    "description": "One existing record, by its existing id and content hash; never a copy of it.",
+    "properties": {
+     "category": {
+      "enum": [
+       "camera_derived",
+       "dataset_derived",
+       "world_model",
+       "simulated",
+       "ai_generated"
+      ],
+      "title": "Category",
+      "type": "string"
+     },
+     "content_sha256": {
+      "title": "Content Sha256",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "description": "as the record states it, not re-judged",
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "hash_basis": {
+      "enum": [
+       "file_bytes",
+       "model_dump_json",
+       "canonical_json",
+       "proposal_sha256",
+       "request_key"
+      ],
+      "title": "Hash Basis",
+      "type": "string"
+     },
+     "model_output": {
+      "default": false,
+      "description": "the record is a model's output (SAM, Muse)",
+      "title": "Model Output",
+      "type": "boolean"
+     },
+     "record_id": {
+      "description": "the id the record already has",
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stage": {
+      "enum": [
+       "source_record",
+       "observation",
+       "world_entity",
+       "problem_statement",
+       "intervention",
+       "experiment",
+       "decision_report"
+      ],
+      "title": "Stage",
+      "type": "string"
+     }
+    },
+    "required": [
+     "stage",
+     "record_type",
+     "record_id",
+     "content_sha256",
+     "hash_basis",
+     "category",
+     "evidence_kind"
+    ],
+    "title": "NodeRef",
+    "type": "object"
+   },
+   "ProvenanceLink": {
+    "additionalProperties": false,
+    "description": "`child` was derived from `parent`, as `basis` (a field of an existing record) states.",
+    "properties": {
+     "basis": {
+      "description": "e.g. 'TrafficWorldModel.tracks_sha256'",
+      "minLength": 1,
+      "title": "Basis",
+      "type": "string"
+     },
+     "child": {
+      "$ref": "#/$defs/LinkEnd"
+     },
+     "parent": {
+      "$ref": "#/$defs/LinkEnd"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "child",
+     "parent",
+     "basis"
+    ],
+    "title": "ProvenanceLink",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "graph_sha256": {
+    "title": "Graph Sha256",
+    "type": "string"
+   },
+   "links": {
+    "items": {
+     "$ref": "#/$defs/ProvenanceLink"
+    },
+    "title": "Links",
+    "type": "array"
+   },
+   "nodes": {
+    "items": {
+     "$ref": "#/$defs/NodeRef"
+    },
+    "title": "Nodes",
+    "type": "array"
+   },
+   "provenance_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Provenance Version",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "nodes",
+   "links",
+   "graph_sha256"
+  ],
+  "title": "ProvenanceGraph",
+  "type": "object"
+ },
+ "ProvenanceLink": {
+  "$defs": {
+   "LinkEnd": {
+    "additionalProperties": false,
+    "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+    "properties": {
+     "record_id": {
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stated_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Stated Sha256"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "LinkEnd",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "`child` was derived from `parent`, as `basis` (a field of an existing record) states.",
+  "properties": {
+   "basis": {
+    "description": "e.g. 'TrafficWorldModel.tracks_sha256'",
+    "minLength": 1,
+    "title": "Basis",
+    "type": "string"
+   },
+   "child": {
+    "$ref": "#/$defs/LinkEnd"
+   },
+   "parent": {
+    "$ref": "#/$defs/LinkEnd"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "child",
+   "parent",
+   "basis"
+  ],
+  "title": "ProvenanceLink",
+  "type": "object"
+ },
+ "ProvenanceTrace": {
+  "$defs": {
+   "ChainBreak": {
+    "additionalProperties": false,
+    "properties": {
+     "at": {
+      "description": "the record whose derivation could not be followed",
+      "title": "At",
+      "type": "string"
+     },
+     "code": {
+      "enum": [
+       "missing_link",
+       "unknown_node",
+       "wrong_entity_type",
+       "hash_mismatch",
+       "wrong_stage",
+       "cycle"
+      ],
+      "title": "Code",
+      "type": "string"
+     },
+     "missing": {
+      "description": "the relationship, e.g. 'problem_statement <- world_entity'",
+      "title": "Missing",
+      "type": "string"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "code",
+     "at",
+     "missing",
+     "reason"
+    ],
+    "title": "ChainBreak",
+    "type": "object"
+   },
+   "LinkEnd": {
+    "additionalProperties": false,
+    "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+    "properties": {
+     "record_id": {
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stated_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Stated Sha256"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "LinkEnd",
+    "type": "object"
+   },
+   "NodeRef": {
+    "additionalProperties": false,
+    "description": "One existing record, by its existing id and content hash; never a copy of it.",
+    "properties": {
+     "category": {
+      "enum": [
+       "camera_derived",
+       "dataset_derived",
+       "world_model",
+       "simulated",
+       "ai_generated"
+      ],
+      "title": "Category",
+      "type": "string"
+     },
+     "content_sha256": {
+      "title": "Content Sha256",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "description": "as the record states it, not re-judged",
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "hash_basis": {
+      "enum": [
+       "file_bytes",
+       "model_dump_json",
+       "canonical_json",
+       "proposal_sha256",
+       "request_key"
+      ],
+      "title": "Hash Basis",
+      "type": "string"
+     },
+     "model_output": {
+      "default": false,
+      "description": "the record is a model's output (SAM, Muse)",
+      "title": "Model Output",
+      "type": "boolean"
+     },
+     "record_id": {
+      "description": "the id the record already has",
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stage": {
+      "enum": [
+       "source_record",
+       "observation",
+       "world_entity",
+       "problem_statement",
+       "intervention",
+       "experiment",
+       "decision_report"
+      ],
+      "title": "Stage",
+      "type": "string"
+     }
+    },
+    "required": [
+     "stage",
+     "record_type",
+     "record_id",
+     "content_sha256",
+     "hash_basis",
+     "category",
+     "evidence_kind"
+    ],
+    "title": "NodeRef",
+    "type": "object"
+   },
+   "ProvenanceLink": {
+    "additionalProperties": false,
+    "description": "`child` was derived from `parent`, as `basis` (a field of an existing record) states.",
+    "properties": {
+     "basis": {
+      "description": "e.g. 'TrafficWorldModel.tracks_sha256'",
+      "minLength": 1,
+      "title": "Basis",
+      "type": "string"
+     },
+     "child": {
+      "$ref": "#/$defs/LinkEnd"
+     },
+     "parent": {
+      "$ref": "#/$defs/LinkEnd"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "child",
+     "parent",
+     "basis"
+    ],
+    "title": "ProvenanceLink",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "What `walk` found from one record back: every ancestor reached, every link followed and\nevery break. `complete` only when there is no break, so every path ends at a source record.",
+  "properties": {
+   "breaks": {
+    "items": {
+     "$ref": "#/$defs/ChainBreak"
+    },
+    "title": "Breaks",
+    "type": "array"
+   },
+   "categories": {
+    "description": "the categories on the path, in order",
+    "items": {
+     "enum": [
+      "camera_derived",
+      "dataset_derived",
+      "world_model",
+      "simulated",
+      "ai_generated"
+     ],
+     "type": "string"
+    },
+    "title": "Categories",
+    "type": "array"
+   },
+   "complete": {
+    "title": "Complete",
+    "type": "boolean"
+   },
+   "graph_sha256": {
+    "title": "Graph Sha256",
+    "type": "string"
+   },
+   "links": {
+    "items": {
+     "$ref": "#/$defs/ProvenanceLink"
+    },
+    "title": "Links",
+    "type": "array"
+   },
+   "nodes": {
+    "description": "by stage, then key: the path, source first",
+    "items": {
+     "$ref": "#/$defs/NodeRef"
+    },
+    "title": "Nodes",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "terminal": {
+    "title": "Terminal",
+    "type": "string"
+   },
+   "unhashed_links": {
+    "description": "links whose stating record gives no hash: matched by id only",
+    "items": {
+     "type": "string"
+    },
+    "title": "Unhashed Links",
+    "type": "array"
+   }
+  },
+  "required": [
+   "terminal",
+   "graph_sha256",
+   "complete",
+   "nodes",
+   "links",
+   "breaks",
+   "unhashed_links",
+   "categories"
+  ],
+  "title": "ProvenanceTrace",
+  "type": "object"
+ }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CairoFlow baseline four-way intersection: edges.
+     Each approach edge (X_in, X to C) has 3 lanes: lane 0 right turn, lane 1 through, lane 2 left turn
+     (SUMO numbers lanes from the right-hand kerb). Each exit edge (X_out, C to X) has 2 lanes.
+     Assumptions, not measurements: lane width 3.2 m, speed 13.89 m/s (50 km/h), right-hand traffic. -->
+<edges>
+    <edge id="N_in" from="N" to="C" numLanes="3" speed="13.89" width="3.2"/>
+    <edge id="N_out" from="C" to="N" numLanes="2" speed="13.89" width="3.2"/>
+    <edge id="E_in" from="E" to="C" numLanes="3" speed="13.89" width="3.2"/>
+    <edge id="E_out" from="C" to="E" numLanes="2" speed="13.89" width="3.2"/>
+    <edge id="S_in" from="S" to="C" numLanes="3" speed="13.89" width="3.2"/>
+    <edge id="S_out" from="C" to="S" numLanes="2" speed="13.89" width="3.2"/>
+    <edge id="W_in" from="W" to="C" numLanes="3" speed="13.89" width="3.2"/>
+    <edge id="W_out" from="C" to="W" numLanes="2" speed="13.89" width="3.2"/>
+</edges>

@@ -1,0 +1,157 @@
+{
+  "schema": "cairoflow camera-to-world-model gate, pre-registered (P1-1)",
+  "gate_id": "cam2-int2-lane-gate-v3",
+  "written_on": "2026-10-31",
+  "status": "proposed for the user's review: written before any SAM request on its excerpt. It is the pre-registration once the user approves that request; no field changes after the request is sent. Gates v1 and v2 stay as they are.",
+  "purpose": "Gate v2 was no-go on D (lateral p90 2.206 m, limit 1.5 m). Its diagnosis (experiments/diagnostics/camera-gate-v2-20261030T223228Z/report.md) found that the tail was along-road error that the measurement counted as lateral, in two ways (the arm-axis fallback inside the junction box; greedy per-frame pairing taking the car in the next lane), and that the along-road error fits a time sync about 0.3 s off. This gate tests the corrected measurement and the registered sync on new held-out data, with v1/v2's thresholds unchanged; the overall D still decides.",
+  "already_known_when_written": [
+    "Gate v1 (cam2-int2-lane-gate-v1) on source seconds 370-380: A 0.7222, B 0.9177 over 328 points, C 0.8571 over 7 tracks, D 1.3244 m: no-go on C's track count.",
+    "Gate v2 (cam2-int2-lane-gate-v2) on source seconds 390-420: A 0.64, B 0.9251 over 668 points, C 0.8333 over 12 tracks, D 2.206 m: no-go on D.",
+    "The gate v2 diagnosis, exploratory and on data v2 had judged: across each vehicle's own heading p90 0.755 m at the v2 sync; 66 of the 126 points over 1.5 m came from the junction-box axis fallback and 54 from adjacent-lane pairing; moving vehicles' median along error crossed zero near -0.3 s in all three directions, in v2 and in v1's window; v1/v2's procedure re-run at -0.3 s gave D 0.608 m on v2's data. The corrections in this gate were derived from those data, so only this gate's excerpt can test them.",
+    "The registered sync (120.0 s) is the frame_id value DATA_REGISTER section 15 recorded on 2026-10-28, before any camera gate; the diagnosis is why the choice was revisited, not the source of the value.",
+    "The excerpt was chosen by the rule under 'data' before anyone looked at it: a 600-630 s excerpt proposed in the diagnosis report was dropped because it holds calibration pair frame 6217.",
+    "No SAM request has been sent on the excerpt and nobody has looked at its frames.",
+    "After this procedure and its parameters were written, it was run on the data gates v2 and v1 had already judged (exploration, not evidence; experiments/diagnostics/camera-gate-v3-procedure-on-*): on v2's data the outcome would be go (A 0.96, B 0.9982 over 1120 points, C 1.0 over 20 tracks, D 0.5376 m, junction box 0.3515 m over 866 points; both predictions hold); on v1's data no-go (B 0.846 over 656 points, D 2.5907 m), decided by one stationary track (t3, 100 of 893 points) that the camera places between lanes N1 and N2, 2.6 m across from the nearest NGSIM car in N2 and 4.4 m from the one in N1; v1's own 3.0 m radius left that track unpaired. Nothing in the procedure was changed after these runs."
+  ],
+  "data": {
+    "excerpt": "camera 2, source seconds 970-1000 (source frames 9700-10000), 30 s",
+    "rule": "of the 30 s windows starting on a whole 10 s, inside the trajectory window, overlapping no earlier excerpt (370-380, 390-420) or calibration clip (60-360, 60-70), and holding no frame named in the committed hand readings (sync_checkpoints.json, cross_clicks.json, stop_gap_clicks.json), the one farthest from any such frame",
+    "nearest_named_frames": "9380 (938.0 s, 32 s before the excerpt) and 10260 (1026.0 s, 26 s after it)",
+    "sam_request": "one request, prompt 'car', as gate v2's (about $0.06), sent only with the user's approval; its tracks are judged alone, never pooled with v1's or v2's"
+  },
+  "inputs": {
+    "sam_tracks": {
+      "path": "<SAM_RUN>/tracks.json",
+      "sha256": null,
+      "note": "the output of the single SAM request sent after this gate was committed and the request approved; its hash is pinned in the gate run's record"
+    },
+    "sam_observations": {
+      "path": "<SAM_RUN>/observations.json",
+      "sha256": null
+    },
+    "camera_clip_manifest": {
+      "path": "data/processed/clips/ngsim-lankershim-cam2-0830-t970-d030/source_clip.json",
+      "sha256": "bad0a04728f0a9d158caab7d0c000a8ee9119bbc799986136b4a905b933b808d",
+      "clip_id": "eed18b52e9db6567",
+      "note": "ingested 2026-10-31 by scripts/ingest_clip.py (local FFmpeg trim, no network); nobody has looked at its frames; the gate run's record keeps a copy"
+    },
+    "calibration_pairs": {
+      "path": "data/geometry/ngsim-lankershim-cam2/v2/sync_checkpoints.json",
+      "sha256": "d60301d19639f623f0eae510b576b34d49d58c2f05fa2e17fa26932348cf5c2d",
+      "fit": "fit_homography on the CalibrationSpec that scripts/checkpoints_ngsim_cam2.py spec_for() builds from these pairs (alternate frames held out: 29 fit, 21 check), unchanged; no refit, no new pairs"
+    },
+    "world_model_geometry": {
+      "path": "data/geometry/ngsim-lankershim-int2/geometry.json",
+      "sha256": "f8fe90a43d908c16f8e46a8aa91b076b110cd7c001e9c991544a00c22d4a4f04",
+      "frame": "ADR-017 metres from State Plane (6452083, 1873176) ftUS, rotated so +y has grid bearing 25.8215 deg (scenario.json frame)"
+    },
+    "reference_trajectories": {
+      "path": "data/raw/ngsim-lankershim/trajectories/lankershim-0830-0845.csv",
+      "sha256": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e",
+      "licence": "CC BY-SA 3.0, U.S. DOT FHWA NGSIM"
+    }
+  },
+  "time_sync": {
+    "registered_source_second_at_0830": 120.0,
+    "statement": "source second 120.0 = 08:30:00.0; camera frame k of the excerpt is source second 970 + k/10, world-model window second 850.0 + k/10, and NGSIM tick round((850.0 + k/10) * 10) * 100 ms after 08:30:00.0",
+    "basis": "NGSIM frame_id 1201 at 08:30:00.0 counts frames from 08:28:00.0, so the video's first frame is 08:28:00.0 if it starts with the transcription; the full table starts at 08:28:00.2 and the metadata PDF says transcription ran from 8:28 a.m. (DATA_REGISTER.md section 15). The cross-correlation estimate, 119.7 s (half-width 0.8 s; 119.6-120.0 s by approach), cannot resolve 0.3 s.",
+    "other_candidate_source_second_at_0830": 119.7,
+    "role_of_other": "sensitivity and prediction 2 only; it decides nothing"
+  },
+  "procedure": [
+    "1. Image point of a track point: the centre of its SAM box. Camera 2 looks down almost vertically and the calibration pairs are vehicle fronts read by hand, so the box centre is the point on the vehicle's centre line least affected by heading; the box bottom-centre (the contact point used for an oblique camera) would sit at the front or the rear depending on direction.",
+    "2. Ground point: the homography of the procedure above, giving ADR-017 grid metres, then the rotation by the world model's bearing into its junction frame. Its error: the ground error of 2 px of image error at that point (Homography.ground_error_at), combined in quadrature with the calibration's median held-out error.",
+    "3. Lane: the world-model lane polygon that contains the ground point, if exactly one does; otherwise 'outside_lanes' (none, e.g. inside the junction) or 'ambiguous' (several). A lane-associated point whose distance to its polygon's edge is below its ground error is also marked near_lane_boundary.",
+    "4. Reference: every NGSIM vehicle present at the synced tick, its centre being its published front centre moved back by half its published length along its heading (ngsim.kinematics, previous tick), in the same junction frame, with its own lane by the same polygons.",
+    "5. Heading and speed of each reference: ngsim.kinematics (previous tick), as step 4 uses it for the centre, turned into the junction frame.",
+    "6. Residual: camera point minus reference centre, resolved along (positive ahead) and across (positive to the right) the reference vehicle's own heading, for every point: in or out of lanes and in the junction box. No arm axis.",
+    "7. Pairing (camera_gate_v3.pair_tracks): a track-vehicle option exists when the vehicle lies within 3.0 m across and 8.0 m along the track's point in at least 5 frames, and those frames are at least 70% of the track's frames with any vehicle within both windows. Its cost is the median over those frames of (across / 1.6)^2 + (along / 8.0)^2. Options are taken cheapest first (ties by track id, then vehicle id); a track takes one vehicle, and a vehicle takes another track only on frames it has not taken. The counted points are the option's frames.",
+    "8. Region of a counted point (camera_gate_v3.region_of), by its reference centre: approach or departure if inside exactly one approach or exit lane polygon; junction_interior if in no lane and inside the box the four stop lines bound; otherwise unknown."
+  ],
+  "inclusion_and_exclusion": {
+    "included": "every counted point of every paired track: in lanes, outside lanes, in the junction box, at track ends, and boxes touching the image edge",
+    "excluded": [
+      "reference vehicles without a heading (never moved), as v1/v2",
+      "frames of a paired track whose vehicle lies beyond the windows (3.0 m across, 8.0 m along): not counted, as v1/v2's 3.0 m radius did not count them; their number is reported (window_excluded_points)"
+    ],
+    "nothing_else_is_excluded": true
+  },
+  "parameters": {
+    "across_window_m": 3.0,
+    "along_window_m": 8.0,
+    "across_scale_m": 1.6,
+    "along_scale_m": 8.0,
+    "min_matched_points": 5,
+    "min_match_share": 0.7,
+    "min_lane_points": 3,
+    "moving_m_s": 2.0,
+    "stopped_m_s": 0.5,
+    "junction_min_points": 50,
+    "junction_min_tracks": 3,
+    "prediction_min_points": 30,
+    "prediction_registered_m": 0.75,
+    "prediction_other_m": 1.0
+  },
+  "thresholds": {
+    "A_track_match_share": 0.6,
+    "B_point_lane_agreement": 0.85,
+    "B_min_points": 100,
+    "C_track_lane_agreement": 0.8,
+    "C_min_tracks": 8,
+    "D_across_heading_p90_m": 1.5,
+    "J_across_heading_p90_m": 1.5
+  },
+  "metrics": {
+    "A_track_match_share": "paired camera tracks / camera tracks",
+    "B_point_lane_agreement": "counted points whose camera lane equals the reference lane / counted points where both have a lane",
+    "C_track_lane_agreement": "paired tracks whose most frequent camera lane equals their most frequent reference lane / paired tracks with at least 3 counted points where both have a lane",
+    "D_across_heading_p90_m": "90th percentile (numpy, linear interpolation) of |across| over all counted points",
+    "J_across_heading_p90_m": "the same over counted points in the junction box, with J_points and J_tracks"
+  },
+  "go_rule": {
+    "all_of": [
+      "A_track_match_share >= 0.60",
+      "B_point_lane_agreement >= 0.85, over at least 100 points",
+      "C_track_lane_agreement >= 0.80, over at least 8 tracks",
+      "D_across_heading_p90_m <= 1.5 (half the narrowest world-model lane, 3.0 m)",
+      "J_across_heading_p90_m <= 1.5 when the junction box has at least 50 counted points from at least 3 tracks; with fewer it is reported as not judged and does not decide"
+    ],
+    "otherwise": "no-go",
+    "regions": "the overall D always decides; no region's figure replaces it"
+  },
+  "predictions": {
+    "of": "the timing explanation (sync about 0.3 s off), stated before the data",
+    "1": "at the registered sync, every direction with at least 30 counted points of moving reference vehicles (>= 2.0 m/s) has |median along| <= 0.75 m",
+    "2": "with the same pairs read at the other candidate sync (119.7 s), the moving points' pooled |median along| > 1.0 m (at least 30 points)",
+    "consequence": "if either is false, the timing explanation is refuted, whatever the go outcome; null means too few moving points to test it. They do not decide go."
+  },
+  "reported_not_gated": [
+    "v3's procedure at the other candidate sync, and the outcome it would give",
+    "v1/v2's procedure (camera_world.compare) at both syncs",
+    "tracks v1/v2 would pair with another vehicle, or only one of the two procedures pairs",
+    "median |across| and |along|, 2-D error p90, v1/v2's arm-axis lateral p90 on the counted points",
+    "D by region (approach, departure, junction_interior, unknown)",
+    "median signed along error of moving and of stopped reference vehicles, by direction",
+    "window_excluded_points; input, projected, in-lane, outside-lane and ambiguous counts"
+  ],
+  "consequences": {
+    "go": "The camera tracks enter the world model as a separate camera layer: each entity labelled camera-derived (SAM 3.1 output through the camera 2 calibration, approximated), with its lane or an explicit unknown, its ground error and this gate's measured agreement; NGSIM-derived entities stay as they are and are never merged with them. Only lane-level quantities are derived from the camera (which lane, presence, speed); along-road quantities (stop-line crossings, queue lengths) are not, because ADR-018 still rejects the calibration for along-road distances. The evidence bundle then carries camera items, so Muse can cite them.",
+    "no_go": "No camera entity enters the world model; every claim that the camera feeds it is withdrawn, and the SAM step is described as a perception probe with its measured precision and recall. The orchestrated run says its world model comes from the NGSIM trajectories only."
+  },
+  "limitations": [
+    "One 30 s excerpt of one camera. The thresholds are pass/fail rules on this sample, not population estimates.",
+    "The corrections were derived from gate v2's data; only this excerpt tests them.",
+    "Pairing by a cost that weighs across distance favours small lateral errors; v1/v2's pairing is reported beside it for that reason.",
+    "Stopped vehicles show an along-road offset the diagnosis could not explain; along-road quantities stay out of the world model (ADR-018).",
+    "The reference is itself approximated: NGSIM states about 2 ft across the road and 4 ft along it.",
+    "SAM recall (0.28) is not tested here: the gate asks whether the vehicles SAM does track can be placed in lanes, not whether it tracks every vehicle. Camera-derived counts remain lower bounds.",
+    "Masks are not used; boxes are.",
+    "D is a percentile over points, so a stationary track (up to 300 points in 30 s) weighs as much as many moving ones: one stationary track that disagrees with NGSIM can decide it, as on v1's data.",
+    "A stationary track may be paired with the next car in its own lane (about one car length along) when its own NGSIM vehicle covers less than 70% of the track's frames; its lateral error is unaffected, but the along statistics of stopped vehicles then do not describe one vehicle."
+  ],
+  "preservation": "Gates v1 and v2 (their files, camera_world.compare and apply_gate, scripts/build_camera_world_model.py and their records) are unchanged; tests/test_diagnose_camera_gate.py reproduces gate v2 exactly.",
+  "code": {
+    "measurement": "packages/perception/cairoflow_perception/camera_gate_v3.py",
+    "runner": "scripts/build_camera_world_model_v3.py (refuses a gate file whose parameters or thresholds differ from the module's)"
+  }
+}

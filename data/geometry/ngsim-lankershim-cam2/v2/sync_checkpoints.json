@@ -1,0 +1,1551 @@
+{
+  "schema": "cairoflow ngsim-cam2 synced check points (DATA_REGISTER.md \u00a715)",
+  "produced_by": "scripts/sync_ngsim_cam2.py, scripts/checkpoints_ngsim_cam2.py",
+  "licence": "NGSIM-derived values: CC BY-SA 3.0 Unported (U.S. DOT FHWA NGSIM)",
+  "sync": {
+    "definition": "video_time_s = (global_time_ms - 1118935800000) / 1000 + offset_s; video frame = video_time_s * 10000000 / 999999",
+    "offset_s": 119.7,
+    "video_frame_at_0830": 1197.0011970011972,
+    "combined": {
+      "lag_s": 119.7,
+      "peak": 0.489099253981859,
+      "next_peak_lag_s": 129.8,
+      "next_peak": 0.2031721202553128,
+      "half_width_s": 0.8
+    },
+    "per_zone": {
+      "N": {
+        "lag_s": 119.6,
+        "peak": 0.6015844491975814,
+        "next_peak_lag_s": 130.4,
+        "next_peak": 0.21442639205440317,
+        "half_width_s": 0.45
+      },
+      "S": {
+        "lag_s": 119.6,
+        "peak": 0.5751110587750541,
+        "next_peak_lag_s": 219.6,
+        "next_peak": 0.13649613786189094,
+        "half_width_s": 0.4
+      },
+      "W": {
+        "lag_s": 119.8,
+        "peak": 0.44286258609041224,
+        "next_peak_lag_s": 129.8,
+        "next_peak": 0.2892715361886988,
+        "half_width_s": 11.65
+      },
+      "E": {
+        "lag_s": 120.0,
+        "peak": 0.3575104918376822,
+        "next_peak_lag_s": 150.2,
+        "next_peak": 0.25078543830569583,
+        "half_width_s": 9.600000000000001
+      }
+    }
+  },
+  "pairs": [
+    {
+      "frame": 3320,
+      "arm": "N",
+      "lane": "N_SB3",
+      "tick": 2123,
+      "image_front_px": [
+        381,
+        126
+      ],
+      "ngsim_vehicle_id": 458,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.5980695960733349,
+        25.807162814323924
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452077.757,
+        1873260.669
+      ],
+      "registered_image_front_m": [
+        -2.790467201510148,
+        22.93463898065125
+      ],
+      "residual_along_m": -3.1050872722634804,
+      "residual_across_m": 0.1778714594766071
+    },
+    {
+      "frame": 3320,
+      "arm": "N",
+      "lane": "N_SB2",
+      "tick": 2123,
+      "image_front_px": [
+        380,
+        142
+      ],
+      "ngsim_vehicle_id": 487,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        1.1344678689561762,
+        24.445008890003585
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452086.722,
+        1873256.2
+      ],
+      "registered_image_front_m": [
+        -0.30000000000000465,
+        21.373349056603775
+      ],
+      "residual_along_m": -3.3897802698777633,
+      "residual_across_m": 0.04671103870472848
+    },
+    {
+      "frame": 3320,
+      "arm": "N",
+      "lane": "N_SB1",
+      "tick": 2123,
+      "image_front_px": [
+        381,
+        158
+      ],
+      "ngsim_vehicle_id": 485,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        3.299161798330409,
+        22.49733299468302
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452093.824,
+        1873249.81
+      ],
+      "registered_image_front_m": [
+        2.3327041057102362,
+        20.121991505427093
+      ],
+      "residual_along_m": -2.5591336419919775,
+      "residual_across_m": 0.16468960085613382
+    },
+    {
+      "frame": 3320,
+      "arm": "N",
+      "lane": "N_SB12",
+      "tick": 2123,
+      "image_front_px": [
+        378,
+        175
+      ],
+      "ngsim_vehicle_id": 1425,
+      "ngsim_lane_id": 12,
+      "ngsim_front_m": [
+        6.08778257563555,
+        20.58867157732839
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452102.973,
+        1873243.548
+      ],
+      "registered_image_front_m": [
+        4.833765315739866,
+        18.16741281809614
+      ],
+      "residual_along_m": -2.7257208283786687,
+      "residual_across_m": -0.07415681369833171
+    },
+    {
+      "frame": 5600,
+      "arm": "N",
+      "lane": "N_SB3",
+      "tick": 4403,
+      "image_front_px": [
+        378,
+        126
+      ],
+      "ngsim_vehicle_id": 773,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.3993395986837391,
+        25.568503936989703
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452078.409,
+        1873259.886
+      ],
+      "registered_image_front_m": [
+        -2.9999999999999982,
+        22.468190386427903
+      ],
+      "residual_along_m": -3.4879628037978976,
+      "residual_across_m": -0.0904063684778631
+    },
+    {
+      "frame": 5600,
+      "arm": "N",
+      "lane": "N_SB2",
+      "tick": 4403,
+      "image_front_px": [
+        373,
+        142
+      ],
+      "ngsim_vehicle_id": 757,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        0.3136398273091768,
+        22.562560325113267
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452084.029,
+        1873250.024
+      ],
+      "registered_image_front_m": [
+        -0.7959567465914423,
+        20.292665726375176
+      ],
+      "residual_along_m": -2.5265637318905982,
+      "residual_across_m": -0.010087362757742468
+    },
+    {
+      "frame": 5600,
+      "arm": "N",
+      "lane": "N_SB1",
+      "tick": 4403,
+      "image_front_px": [
+        385,
+        158
+      ],
+      "ngsim_vehicle_id": 742,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        3.7828803658561108,
+        23.871069342150605
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452095.411,
+        1873254.317
+      ],
+      "registered_image_front_m": [
+        2.6226950354609864,
+        20.740661938534284
+      ],
+      "residual_along_m": -3.3231904121335694,
+      "residual_across_m": 0.3191958617893351
+    },
+    {
+      "frame": 8400,
+      "arm": "N",
+      "lane": "N_SB3",
+      "tick": 7203,
+      "image_front_px": [
+        381,
+        126
+      ],
+      "ngsim_vehicle_id": 1138,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.2249936500849503,
+        26.164084328194203
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452078.981,
+        1873261.84
+      ],
+      "registered_image_front_m": [
+        -2.790467201510148,
+        22.93463898065125
+      ],
+      "residual_along_m": -3.588874268257879,
+      "residual_across_m": -0.0024858831665348635
+    },
+    {
+      "frame": 8400,
+      "arm": "N",
+      "lane": "N_SB2",
+      "tick": 7203,
+      "image_front_px": [
+        376,
+        142
+      ],
+      "ngsim_vehicle_id": 1139,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        0.9195834391646074,
+        23.984150368325714
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452086.017,
+        1873254.688
+      ],
+      "registered_image_front_m": [
+        -0.5838041431261796,
+        20.75494350282486
+      ],
+      "residual_along_m": -3.5616162953299564,
+      "residual_across_m": 0.05329697575001813
+    },
+    {
+      "frame": 8400,
+      "arm": "N",
+      "lane": "N_SB1",
+      "tick": 7203,
+      "image_front_px": [
+        379,
+        158
+      ],
+      "ngsim_vehicle_id": 1131,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        3.107137414315705,
+        22.497637795271615
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452093.194,
+        1873249.811
+      ],
+      "registered_image_front_m": [
+        2.1881188118811887,
+        19.813531353135314
+      ],
+      "residual_along_m": -2.816405230043745,
+      "residual_across_m": 0.3418832615389692
+    },
+    {
+      "frame": 8400,
+      "arm": "N",
+      "lane": "N_SB12",
+      "tick": 7203,
+      "image_front_px": [
+        380,
+        175
+      ],
+      "ngsim_vehicle_id": 1069,
+      "ngsim_lane_id": 12,
+      "ngsim_front_m": [
+        6.253594107185943,
+        21.60060960122431
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452103.517,
+        1873246.868
+      ],
+      "registered_image_front_m": [
+        4.980778301886794,
+        18.474174528301887
+      ],
+      "residual_along_m": -3.3686741102039512,
+      "residual_across_m": 0.2160811853456288
+    },
+    {
+      "frame": 8400,
+      "arm": "N",
+      "lane": "N_SB11",
+      "tick": 7203,
+      "image_front_px": [
+        374,
+        191
+      ],
+      "ngsim_vehicle_id": 1082,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        8.005892811733391,
+        18.172517145047347
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452109.266,
+        1873235.621
+      ],
+      "registered_image_front_m": [
+        7.093720602069612,
+        16.15392756349953
+      ],
+      "residual_along_m": -2.214357536523139,
+      "residual_across_m": 0.05816132099146887
+    },
+    {
+      "frame": 9380,
+      "arm": "N",
+      "lane": "N_SB3",
+      "tick": 8183,
+      "image_front_px": [
+        382,
+        126
+      ],
+      "ngsim_vehicle_id": 1278,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.307289814541023,
+        26.019913639853392
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452078.711,
+        1873261.367
+      ],
+      "registered_image_front_m": [
+        -2.720491029272899,
+        23.090415486307844
+      ],
+      "residual_along_m": -3.2525500221798924,
+      "residual_across_m": 0.00393168717080794
+    },
+    {
+      "frame": 9380,
+      "arm": "N",
+      "lane": "N_SB2",
+      "tick": 8183,
+      "image_front_px": [
+        381,
+        142
+      ],
+      "ngsim_vehicle_id": 1282,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        1.4221996444606042,
+        24.884531369060465
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452087.666,
+        1873257.642
+      ],
+      "registered_image_front_m": [
+        -0.22888154789995588,
+        21.528315243039177
+      ],
+      "residual_along_m": -3.7402759232613114,
+      "residual_across_m": -0.024327067308944406
+    },
+    {
+      "frame": 9380,
+      "arm": "N",
+      "lane": "N_SB1",
+      "tick": 8183,
+      "image_front_px": [
+        385,
+        158
+      ],
+      "ngsim_vehicle_id": 1279,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        3.9745999492112527,
+        23.200508001042117
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452096.04,
+        1873252.117
+      ],
+      "registered_image_front_m": [
+        2.6226950354609864,
+        20.740661938534284
+      ],
+      "residual_along_m": -2.8030929627492003,
+      "residual_across_m": -0.14546267302408822
+    },
+    {
+      "frame": 9380,
+      "arm": "N",
+      "lane": "N_SB11",
+      "tick": 8183,
+      "image_front_px": [
+        372,
+        191
+      ],
+      "ngsim_vehicle_id": 1250,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        8.109525018952388,
+        18.35234950466665
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452109.606,
+        1873236.211
+      ],
+      "registered_image_front_m": [
+        6.945136278195484,
+        15.850211466165415
+      ],
+      "residual_along_m": -2.759484137367542,
+      "residual_across_m": 0.04175163389804637
+    },
+    {
+      "frame": 2440,
+      "arm": "S",
+      "lane": "S_NB11",
+      "tick": 1243,
+      "image_front_px": [
+        155,
+        196
+      ],
+      "ngsim_vehicle_id": 255,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        -7.800152400309342,
+        -16.344018288028625
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452057.409,
+        1873122.378
+      ],
+      "registered_image_front_m": [
+        -6.9473347547974456,
+        -14.422601279317696
+      ],
+      "residual_along_m": 2.1010340023355365,
+      "residual_across_m": -0.06926311348780989
+    },
+    {
+      "frame": 2440,
+      "arm": "S",
+      "lane": "S_NB1",
+      "tick": 1243,
+      "image_front_px": [
+        136,
+        214.5
+      ],
+      "ngsim_vehicle_id": 358,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        -6.512369824857738,
+        -20.46065532131859
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452061.634,
+        1873108.872
+      ],
+      "registered_image_front_m": [
+        -5.450243231810493,
+        -18.231651861252114
+      ],
+      "residual_along_m": 2.4690786442879924,
+      "residual_across_m": -0.014831485678766687
+    },
+    {
+      "frame": 2440,
+      "arm": "S",
+      "lane": "S_NB2",
+      "tick": 1243,
+      "image_front_px": [
+        136,
+        234.5
+      ],
+      "ngsim_vehicle_id": 368,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        -4.295554991214446,
+        -22.3373126745998
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452068.907,
+        1873102.715
+      ],
+      "registered_image_front_m": [
+        -2.5801078680203084,
+        -19.80737098138748
+      ],
+      "residual_along_m": 3.024540713401976,
+      "residual_across_m": 0.442173355713501
+    },
+    {
+      "frame": 2440,
+      "arm": "S",
+      "lane": "S_NB3",
+      "tick": 1243,
+      "image_front_px": [
+        134,
+        254.5
+      ],
+      "ngsim_vehicle_id": 336,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.950114300242226,
+        -24.62910845821805
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452076.602,
+        1873095.196
+      ],
+      "registered_image_front_m": [
+        0.16214074387151248,
+        -21.624524513947588
+      ],
+      "residual_along_m": 3.6246312626054316,
+      "residual_across_m": 0.5926164524337201
+    },
+    {
+      "frame": 4520,
+      "arm": "S",
+      "lane": "S_NB1",
+      "tick": 3323,
+      "image_front_px": [
+        132,
+        214.5
+      ],
+      "ngsim_vehicle_id": 629,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        -7.237185674355452,
+        -21.80269240537232
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452059.256,
+        1873104.469
+      ],
+      "registered_image_front_m": [
+        -5.6961043074324325,
+        -18.71943623310811
+      ],
+      "residual_along_m": 3.446657253941292,
+      "residual_across_m": 0.04420607578764901
+    },
+    {
+      "frame": 4520,
+      "arm": "S",
+      "lane": "S_NB2",
+      "tick": 3323,
+      "image_front_px": [
+        136,
+        234.5
+      ],
+      "ngsim_vehicle_id": 618,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        -4.276352552784588,
+        -22.10231140461259
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452068.97,
+        1873103.486
+      ],
+      "registered_image_front_m": [
+        -2.5801078680203084,
+        -19.80737098138748
+      ],
+      "residual_along_m": 2.8046399594494003,
+      "residual_across_m": 0.5272497269827521
+    },
+    {
+      "frame": 4520,
+      "arm": "S",
+      "lane": "S_NB3",
+      "tick": 3323,
+      "image_front_px": [
+        136,
+        254.5
+      ],
+      "ngsim_vehicle_id": 613,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.5425958851168293,
+        -23.34041148078776
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452077.939,
+        1873099.424
+      ],
+      "registered_image_front_m": [
+        0.29002749576987624,
+        -21.38309010152284
+      ],
+      "residual_along_m": 2.560135502971377,
+      "residual_across_m": 0.7970706645747615
+    },
+    {
+      "frame": 5620,
+      "arm": "S",
+      "lane": "S_NB1",
+      "tick": 4423,
+      "image_front_px": [
+        145,
+        214.5
+      ],
+      "ngsim_vehicle_id": 769,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        -6.259994919901273,
+        -19.684023368069443
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452062.462,
+        1873111.42
+      ],
+      "registered_image_front_m": [
+        -4.894002123142256,
+        -17.128078556263272
+      ],
+      "residual_along_m": 2.895732708143923,
+      "residual_across_m": 0.11628535927565986
+    },
+    {
+      "frame": 5620,
+      "arm": "S",
+      "lane": "S_NB2",
+      "tick": 4423,
+      "image_front_px": [
+        124,
+        234.5
+      ],
+      "ngsim_vehicle_id": 776,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        -4.241910083931444,
+        -22.813106426183328
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452069.083,
+        1873101.154
+      ],
+      "registered_image_front_m": [
+        -3.329703282828281,
+        -21.257838804713803
+      ],
+      "residual_along_m": 1.7973129577792526,
+      "residual_across_m": 0.1436828248926597
+    },
+    {
+      "frame": 5620,
+      "arm": "S",
+      "lane": "S_NB3",
+      "tick": 4423,
+      "image_front_px": [
+        135,
+        254.5
+      ],
+      "ngsim_vehicle_id": 775,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.8035052071216902,
+        -24.003048006096012
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452077.083,
+        1873097.25
+      ],
+      "registered_image_front_m": [
+        0.2260570824524321,
+        -21.503858350951376
+      ],
+      "residual_along_m": 3.133681002333214,
+      "residual_across_m": 0.7383193044064524
+    },
+    {
+      "frame": 7500,
+      "arm": "S",
+      "lane": "S_NB11",
+      "tick": 6303,
+      "image_front_px": [
+        151,
+        196
+      ],
+      "ngsim_vehicle_id": 988,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        -8.104343408591438,
+        -17.18008636016988
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452056.411,
+        1873119.635
+      ],
+      "registered_image_front_m": [
+        -7.192635163899534,
+        -14.920817369093228
+      ],
+      "residual_along_m": 2.430803213218499,
+      "residual_across_m": -0.16341369614058865
+    },
+    {
+      "frame": 7500,
+      "arm": "S",
+      "lane": "S_NB1",
+      "tick": 6303,
+      "image_front_px": [
+        145,
+        214.5
+      ],
+      "ngsim_vehicle_id": 1023,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        -6.200254000562503,
+        -19.116484633002763
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452062.658,
+        1873113.282
+      ],
+      "registered_image_front_m": [
+        -4.894002123142256,
+        -17.128078556263272
+      ],
+      "residual_along_m": 2.358840395581714,
+      "residual_across_m": 0.3097170990603505
+    },
+    {
+      "frame": 7500,
+      "arm": "S",
+      "lane": "S_NB2",
+      "tick": 6303,
+      "image_front_px": [
+        130,
+        234.5
+      ],
+      "ngsim_vehicle_id": 1018,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        -4.66101092213312,
+        -22.895707391440897
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452067.708,
+        1873100.883
+      ],
+      "registered_image_front_m": [
+        -2.955854430379752,
+        -20.53444092827004
+      ],
+      "residual_along_m": 2.8682251892873296,
+      "residual_across_m": 0.5063815113150618
+    },
+    {
+      "frame": 7500,
+      "arm": "S",
+      "lane": "S_NB3",
+      "tick": 6303,
+      "image_front_px": [
+        139,
+        254.5
+      ],
+      "ngsim_vehicle_id": 1003,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -1.6047752094482266,
+        -23.136195072377653
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452077.735,
+        1873100.094
+      ],
+      "registered_image_front_m": [
+        0.4822638712409985,
+        -21.020171537484114
+      ],
+      "residual_along_m": 2.81380934693106,
+      "residual_across_m": 0.9569559465674888
+    },
+    {
+      "frame": 1817,
+      "arm": "W",
+      "lane": "W_EB_kerb",
+      "tick": 620,
+      "image_front_px": [
+        214,
+        63.6
+      ],
+      "ngsim_vehicle_id": 265,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        -23.495554991098626,
+        3.2452120904588124
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452005.915,
+        1873186.647
+      ],
+      "registered_image_front_m": [
+        -22.87804024496938,
+        3.915791776027997
+      ],
+      "residual_along_m": 0.872598904781132,
+      "residual_across_m": 0.2637664265214619
+    },
+    {
+      "frame": 1817,
+      "arm": "W",
+      "lane": "W_EB_mid",
+      "tick": 620,
+      "image_front_px": [
+        229,
+        66.5
+      ],
+      "ngsim_vehicle_id": 302,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        -22.537261874414742,
+        6.492252984520162
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452009.059,
+        1873197.3
+      ],
+      "registered_image_front_m": [
+        -21.598579920739763,
+        5.731560986349626
+      ],
+      "residual_along_m": -0.27586800870567385,
+      "residual_across_m": 1.1762962926102105
+    },
+    {
+      "frame": 1817,
+      "arm": "W",
+      "lane": "W_EB_inner",
+      "tick": 620,
+      "image_front_px": [
+        248,
+        54
+      ],
+      "ngsim_vehicle_id": 274,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        -22.822860045586104,
+        10.200457200918944
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452008.122,
+        1873209.466
+      ],
+      "registered_image_front_m": [
+        -22.3898756660746,
+        9.403863232682063
+      ],
+      "residual_along_m": -0.5284561046286971,
+      "residual_across_m": 0.7367303228543024
+    },
+    {
+      "frame": 3197,
+      "arm": "W",
+      "lane": "W_EB_inner",
+      "tick": 2000,
+      "image_front_px": [
+        248,
+        53.5
+      ],
+      "ngsim_vehicle_id": 518,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        -23.01244602489205,
+        9.30129540260954
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452007.5,
+        1873206.516
+      ],
+      "registered_image_front_m": [
+        -22.46519760213144,
+        9.44521536412078
+      ],
+      "residual_along_m": 0.3679192298566103,
+      "residual_across_m": 0.4299177035632417
+    },
+    {
+      "frame": 5127,
+      "arm": "W",
+      "lane": "W_EB_kerb",
+      "tick": 3930,
+      "image_front_px": [
+        214.5,
+        62
+      ],
+      "ngsim_vehicle_id": 772,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        -23.84546609093445,
+        3.7551435103068913
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452004.767,
+        1873188.32
+      ],
+      "registered_image_front_m": [
+        -23.087508203894114,
+        4.114198206081823
+      ],
+      "residual_along_m": 0.6533534168656977,
+      "residual_across_m": 0.5258799727643174
+    },
+    {
+      "frame": 6217,
+      "arm": "W",
+      "lane": "W_EB_kerb",
+      "tick": 5020,
+      "image_front_px": [
+        213.5,
+        54
+      ],
+      "ngsim_vehicle_id": 903,
+      "ngsim_lane_id": 3,
+      "ngsim_front_m": [
+        -25.19695199401526,
+        4.033731267443799
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452000.333,
+        1873189.234
+      ],
+      "registered_image_front_m": [
+        -24.33041766892631,
+        4.629783511917779
+      ],
+      "residual_along_m": 0.9139805007832452,
+      "residual_across_m": 0.5203841455000762
+    },
+    {
+      "frame": 6217,
+      "arm": "W",
+      "lane": "W_EB_inner",
+      "tick": 5020,
+      "image_front_px": [
+        249,
+        54
+      ],
+      "ngsim_vehicle_id": 895,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        -22.542443484775692,
+        10.097434594877138
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452009.042,
+        1873209.128
+      ],
+      "registered_image_front_m": [
+        -22.332741003998223,
+        9.544424700133277
+      ],
+      "residual_along_m": -0.40645045706449034,
+      "residual_across_m": 0.4296429914253317
+    },
+    {
+      "frame": 9207,
+      "arm": "W",
+      "lane": "W_EB_kerb",
+      "tick": 8010,
+      "image_front_px": [
+        214,
+        60
+      ],
+      "ngsim_vehicle_id": 1291,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        -24.115824231682527,
+        3.547879095726966
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452003.88,
+        1873187.64
+      ],
+      "registered_image_front_m": [
+        -23.412292213473318,
+        4.20909886264217
+      ],
+      "residual_along_m": 0.9016408264880633,
+      "residual_across_m": 0.3452719230039456
+    },
+    {
+      "frame": 3597,
+      "arm": "E",
+      "lane": "E_WB_right",
+      "tick": 2400,
+      "image_front_px": [
+        326,
+        279.5
+      ],
+      "ngsim_vehicle_id": 526,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        16.538785877553586,
+        1.9202438405018742
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452137.261,
+        1873182.3
+      ],
+      "registered_image_front_m": [
+        17.413465961361545,
+        1.437040018399267
+      ],
+      "residual_along_m": -0.053964625212858885,
+      "residual_across_m": 0.9978171184793848
+    },
+    {
+      "frame": 3597,
+      "arm": "E",
+      "lane": "E_WB_through",
+      "tick": 2400,
+      "image_front_px": [
+        307,
+        288
+      ],
+      "ngsim_vehicle_id": 549,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        15.507645415156844,
+        -1.7583947168161171
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452133.878,
+        1873170.231
+      ],
+      "registered_image_front_m": [
+        17.269265845873228,
+        -1.9571363429092559
+      ],
+      "residual_along_m": 0.588426256455133,
+      "residual_across_m": 1.6722916362207048
+    },
+    {
+      "frame": 4207,
+      "arm": "E",
+      "lane": "E_WB_right",
+      "tick": 3010,
+      "image_front_px": [
+        328,
+        288
+      ],
+      "ngsim_vehicle_id": 601,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        17.670815341517134,
+        2.1537211074751434
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452140.975,
+        1873183.066
+      ],
+      "registered_image_front_m": [
+        18.89617863720073,
+        0.9921731123388603
+      ],
+      "residual_along_m": -0.5118266844148259,
+      "residual_across_m": 1.6089569281166636
+    },
+    {
+      "frame": 5287,
+      "arm": "E",
+      "lane": "E_WB_through",
+      "tick": 4090,
+      "image_front_px": [
+        306,
+        287
+      ],
+      "ngsim_vehicle_id": 794,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        16.665887731868573,
+        -2.453340106715413
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452137.678,
+        1873167.951
+      ],
+      "registered_image_front_m": [
+        17.03794439380127,
+        -2.0112807657247003
+      ],
+      "residual_along_m": 0.5599799035237515,
+      "residual_across_m": 0.142355640194456
+    },
+    {
+      "frame": 7007,
+      "arm": "E",
+      "lane": "E_WB_through",
+      "tick": 5810,
+      "image_front_px": [
+        309,
+        280
+      ],
+      "ngsim_vehicle_id": 931,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        16.175158750308416,
+        -0.46360172718812553
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452136.068,
+        1873174.479
+      ],
+      "registered_image_front_m": [
+        16.184162482884528,
+        -0.9986307622090325
+      ],
+      "residual_along_m": -0.4776849980605796,
+      "residual_across_m": 0.2411517740833955
+    },
+    {
+      "frame": 7007,
+      "arm": "E",
+      "lane": "E_WB_right",
+      "tick": 5810,
+      "image_front_px": [
+        326.5,
+        274
+      ],
+      "ngsim_vehicle_id": 995,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        16.755194310359098,
+        2.4853441707178634
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452137.971,
+        1873184.154
+      ],
+      "registered_image_front_m": [
+        16.59374281113411,
+        1.9792960662525887
+      ],
+      "residual_along_m": -0.5258443956415173,
+      "residual_across_m": 0.07509289052434537
+    },
+    {
+      "frame": 8557,
+      "arm": "E",
+      "lane": "E_WB_left",
+      "tick": 7360,
+      "image_front_px": [
+        288,
+        290
+      ],
+      "ngsim_vehicle_id": 1225,
+      "ngsim_lane_id": 1,
+      "ngsim_front_m": [
+        16.42448564895313,
+        -4.868580137159706
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452136.886,
+        1873160.027
+      ],
+      "registered_image_front_m": [
+        16.130650994575042,
+        -4.745705244122964
+      ],
+      "residual_along_m": -0.017382073077445062,
+      "residual_across_m": -0.3180171488895085
+    },
+    {
+      "frame": 8557,
+      "arm": "E",
+      "lane": "E_WB_through",
+      "tick": 7360,
+      "image_front_px": [
+        310.5,
+        298
+      ],
+      "ngsim_vehicle_id": 1187,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        19.25090170179886,
+        -1.9674879349985792
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452146.159,
+        1873169.545
+      ],
+      "registered_image_front_m": [
+        19.087691253710883,
+        -2.320164421100706
+      ],
+      "residual_along_m": -0.3885529663888847,
+      "residual_across_m": 0.006704216943093089
+    },
+    {
+      "frame": 1787,
+      "arm": "E",
+      "lane": "E_WB_right",
+      "tick": 590,
+      "image_front_px": [
+        326,
+        280
+      ],
+      "ngsim_vehicle_id": 292,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        17.70678181366809,
+        1.7852171704576179
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452141.093,
+        1873181.857
+      ],
+      "registered_image_front_m": [
+        17.491490340386385,
+        1.3942042318307295
+      ],
+      "residual_along_m": -0.4457469221616293,
+      "residual_across_m": -0.023478032815307637
+    },
+    {
+      "frame": 2767,
+      "arm": "E",
+      "lane": "E_WB_through",
+      "tick": 1570,
+      "image_front_px": [
+        309,
+        295
+      ],
+      "ngsim_vehicle_id": 454,
+      "ngsim_lane_id": 2,
+      "ngsim_front_m": [
+        17.528168656403167,
+        -1.8025908052139712
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452140.507,
+        1873170.086
+      ],
+      "registered_image_front_m": [
+        18.506732085805567,
+        -2.2737334550433563
+      ],
+      "residual_along_m": 0.002141583801325231,
+      "residual_across_m": 1.0860742126903027
+    },
+    {
+      "frame": 7707,
+      "arm": "E",
+      "lane": "E_WB_left",
+      "tick": 6510,
+      "image_front_px": [
+        288,
+        293
+      ],
+      "ngsim_vehicle_id": 1037,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        15.169926339716422,
+        -4.593649987298839
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452132.77,
+        1873160.929
+      ],
+      "registered_image_front_m": [
+        16.59075497287522,
+        -4.9983047016274815
+      ],
+      "residual_along_m": 0.2546318954912187,
+      "residual_across_m": 1.4552188977713436
+    },
+    {
+      "frame": 4957,
+      "arm": "E",
+      "lane": "E_WB_right",
+      "tick": 3760,
+      "image_front_px": [
+        326.5,
+        279
+      ],
+      "ngsim_vehicle_id": 737,
+      "ngsim_lane_id": 0,
+      "ngsim_front_m": [
+        16.980441960872565,
+        2.3183134366001896
+      ],
+      "ngsim_front_state_plane_ft": [
+        6452138.71,
+        1873183.606
+      ],
+      "registered_image_front_m": [
+        17.374166091557388,
+        1.550839659535314
+      ],
+      "residual_along_m": -0.5193444542839588,
+      "residual_across_m": 0.6887060529501999
+    }
+  ],
+  "unmatched": [
+    {
+      "frame": 10260,
+      "lane": "N_SB3",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 10260,
+      "lane": "N_SB1",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 10260,
+      "lane": "N_SB12",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 10260,
+      "lane": "N_SB11",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 580,
+      "lane": "S_NB1",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 580,
+      "lane": "S_NB2",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 580,
+      "lane": "S_NB3",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 2440,
+      "lane": "S_NB4",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 10440,
+      "lane": "S_NB11",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 10440,
+      "lane": "S_NB1",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 10440,
+      "lane": "S_NB2",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 10440,
+      "lane": "S_NB3",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 5127,
+      "lane": "W_EB_inner",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 8167,
+      "lane": "E_WB_right",
+      "reason": "no stopped NGSIM vehicle in the window"
+    },
+    {
+      "frame": 4207,
+      "lane": "E_WB_through",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 5887,
+      "lane": "E_WB_through",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 9157,
+      "lane": "E_WB_left",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 9157,
+      "lane": "E_WB_through",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 3897,
+      "lane": "E_WB_right",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 3897,
+      "lane": "E_WB_through",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 6187,
+      "lane": "E_WB_through",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 6617,
+      "lane": "E_WB_through",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    },
+    {
+      "frame": 8167,
+      "lane": "E_WB_left",
+      "reason": "same NGSIM vehicle as an earlier pair"
+    }
+  ],
+  "summary": {
+    "N": {
+      "pairs": 16,
+      "along_median_m": -3.1788186472216866,
+      "along_iqr_m": 0.6632825932374735,
+      "across_median_m": 0.044231336301387425,
+      "across_iqr_m": 0.1816323544067951
+    },
+    "S": {
+      "pairs": 14,
+      "along_median_m": 2.8092246531902303,
+      "along_iqr_m": 0.5519666411015907,
+      "across_median_m": 0.37594522738692576,
+      "across_iqr_m": 0.5140488744113264
+    },
+    "W": {
+      "pairs": 8,
+      "along_median_m": 0.5106363233611539,
+      "along_iqr_m": 1.188373006003243,
+      "across_median_m": 0.47515092453165897,
+      "across_iqr_m": 0.17004233596682844
+    },
+    "E": {
+      "pairs": 12,
+      "along_median_m": -0.2212587958008718,
+      "along_iqr_m": 0.5514845813729398,
+      "across_median_m": 0.4649289135167977,
+      "across_iqr_m": 1.1203646618315306
+    }
+  },
+  "along_scale_fit": {
+    "k_ngsim_over_registered": 1.1557745132497208,
+    "residual_after_scale_m": {
+      "median": 0.14863146837753938,
+      "rms": 0.4514056495444845
+    },
+    "note": "k > 1 means the registration shortens along-road distances; compare with the car-length scale ratio of DATA_REGISTER.md \u00a714.6 (1.11 N, 1.17 S)"
+  },
+  "calibration_assessment": {
+    "arms": [
+      "E",
+      "N",
+      "S",
+      "W"
+    ],
+    "fit_points": 29,
+    "check_points": 21,
+    "fit_rms_m": 0.558195,
+    "check_max_m": 1.157432,
+    "check_median_m": 0.433024,
+    "accepted_by_repo_rule": true,
+    "reasons": [],
+    "lane_line_check": {
+      "lines": 14,
+      "rms_m": 0.24155846031811237,
+      "max_abs_m": 0.5391504975593104,
+      "per_line_m": {
+        "north#0": -0.14487100703696498,
+        "north#1": -0.2783051903320857,
+        "north#2": -0.13435927124639946,
+        "north#3": -0.02584655038931949,
+        "north#4": -0.07217197083030813,
+        "north#5": -0.049519613169678345,
+        "north#6": -0.002793652457572904,
+        "north#7": -0.015274706666257742,
+        "south#0": 0.10569398242306072,
+        "south#1": -0.09404304506284333,
+        "south#3": -0.4025917440907265,
+        "south#4": -0.3406378507673038,
+        "south#5": -0.3209829828297046,
+        "south#6": -0.5391504975593104
+      }
+    },
+    "lane_line_check_passes": true,
+    "swapped_split": {
+      "check_points": 29,
+      "check_max_m": 1.474713,
+      "accepted_by_repo_rule": false,
+      "reasons": [
+        "check point E8557_E_WB_left is off by 1.47 m (target 1.25 m)"
+      ]
+    },
+    "accepted": false
+  },
+  "status": "check points only; calibration not accepted (calibration_assessment) (DATA_REGISTER.md \u00a715)"
+}

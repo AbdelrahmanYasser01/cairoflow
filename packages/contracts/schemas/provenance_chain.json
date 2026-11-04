@@ -1,0 +1,1020 @@
+{
+ "ChainEnd": {
+  "additionalProperties": false,
+  "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+  "properties": {
+   "record_id": {
+    "pattern": "^\\S+$",
+    "title": "Record Id",
+    "type": "string"
+   },
+   "record_type": {
+    "enum": [
+     "DatasetFile",
+     "SourceClip",
+     "SamResponse",
+     "TrackFile",
+     "NgsimTrackPoints",
+     "NgsimMovementCount",
+     "NgsimQueueSample",
+     "TrafficWorldModel",
+     "WorldEntity",
+     "ProblemStatement",
+     "InterventionProposal",
+     "BaselineManifest",
+     "ExperimentManifest",
+     "DecisionReport"
+    ],
+    "title": "Record Type",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "stated_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Stated Sha256"
+   }
+  },
+  "required": [
+   "record_type",
+   "record_id"
+  ],
+  "title": "ChainEnd",
+  "type": "object"
+ },
+ "ChainGraph": {
+  "$defs": {
+   "ChainEnd": {
+    "additionalProperties": false,
+    "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+    "properties": {
+     "record_id": {
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "NgsimTrackPoints",
+       "NgsimMovementCount",
+       "NgsimQueueSample",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "BaselineManifest",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stated_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Stated Sha256"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "ChainEnd",
+    "type": "object"
+   },
+   "ChainLink": {
+    "additionalProperties": false,
+    "description": "`child` was derived from (kind \"derived\") or compiled from (kind \"input\") `parent`, as\n`basis`, a field of an existing record, states.",
+    "properties": {
+     "basis": {
+      "minLength": 1,
+      "title": "Basis",
+      "type": "string"
+     },
+     "child": {
+      "$ref": "#/$defs/ChainEnd"
+     },
+     "kind": {
+      "default": "derived",
+      "enum": [
+       "derived",
+       "input"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parent": {
+      "$ref": "#/$defs/ChainEnd"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "child",
+     "parent",
+     "basis"
+    ],
+    "title": "ChainLink",
+    "type": "object"
+   },
+   "ChainRecord": {
+    "additionalProperties": false,
+    "description": "One existing record, by its existing id and content hash (as provenance.NodeRef).",
+    "properties": {
+     "category": {
+      "enum": [
+       "camera_derived",
+       "dataset_derived",
+       "world_model",
+       "simulated",
+       "ai_generated"
+      ],
+      "title": "Category",
+      "type": "string"
+     },
+     "content_sha256": {
+      "title": "Content Sha256",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "description": "as the record states it, not re-judged",
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "hash_basis": {
+      "enum": [
+       "file_bytes",
+       "model_dump_json",
+       "canonical_json",
+       "proposal_sha256",
+       "request_key"
+      ],
+      "title": "Hash Basis",
+      "type": "string"
+     },
+     "model_output": {
+      "default": false,
+      "description": "the record is a model's output (SAM, Muse)",
+      "title": "Model Output",
+      "type": "boolean"
+     },
+     "record_id": {
+      "description": "the id the record already has",
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "NgsimTrackPoints",
+       "NgsimMovementCount",
+       "NgsimQueueSample",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "BaselineManifest",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stage": {
+      "enum": [
+       "source_record",
+       "observation",
+       "world_entity",
+       "problem_statement",
+       "intervention",
+       "experiment",
+       "decision_report"
+      ],
+      "title": "Stage",
+      "type": "string"
+     }
+    },
+    "required": [
+     "stage",
+     "record_type",
+     "record_id",
+     "content_sha256",
+     "hash_basis",
+     "category",
+     "evidence_kind"
+    ],
+    "title": "ChainRecord",
+    "type": "object"
+   },
+   "RefusedLink": {
+    "additionalProperties": false,
+    "description": "A link a record states that a decision does not accept, with the decision's reason.",
+    "properties": {
+     "basis": {
+      "minLength": 1,
+      "title": "Basis",
+      "type": "string"
+     },
+     "child": {
+      "$ref": "#/$defs/ChainEnd"
+     },
+     "parent": {
+      "$ref": "#/$defs/ChainEnd"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "child",
+     "parent",
+     "basis",
+     "reason"
+    ],
+    "title": "RefusedLink",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "chain_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Chain Version",
+    "type": "string"
+   },
+   "graph_sha256": {
+    "title": "Graph Sha256",
+    "type": "string"
+   },
+   "links": {
+    "items": {
+     "$ref": "#/$defs/ChainLink"
+    },
+    "title": "Links",
+    "type": "array"
+   },
+   "records": {
+    "items": {
+     "$ref": "#/$defs/ChainRecord"
+    },
+    "title": "Records",
+    "type": "array"
+   },
+   "refused": {
+    "default": [],
+    "items": {
+     "$ref": "#/$defs/RefusedLink"
+    },
+    "title": "Refused",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "records",
+   "links",
+   "graph_sha256"
+  ],
+  "title": "ChainGraph",
+  "type": "object"
+ },
+ "ChainLink": {
+  "$defs": {
+   "ChainEnd": {
+    "additionalProperties": false,
+    "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+    "properties": {
+     "record_id": {
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "NgsimTrackPoints",
+       "NgsimMovementCount",
+       "NgsimQueueSample",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "BaselineManifest",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stated_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Stated Sha256"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "ChainEnd",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "`child` was derived from (kind \"derived\") or compiled from (kind \"input\") `parent`, as\n`basis`, a field of an existing record, states.",
+  "properties": {
+   "basis": {
+    "minLength": 1,
+    "title": "Basis",
+    "type": "string"
+   },
+   "child": {
+    "$ref": "#/$defs/ChainEnd"
+   },
+   "kind": {
+    "default": "derived",
+    "enum": [
+     "derived",
+     "input"
+    ],
+    "title": "Kind",
+    "type": "string"
+   },
+   "parent": {
+    "$ref": "#/$defs/ChainEnd"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "child",
+   "parent",
+   "basis"
+  ],
+  "title": "ChainLink",
+  "type": "object"
+ },
+ "ChainRecord": {
+  "additionalProperties": false,
+  "description": "One existing record, by its existing id and content hash (as provenance.NodeRef).",
+  "properties": {
+   "category": {
+    "enum": [
+     "camera_derived",
+     "dataset_derived",
+     "world_model",
+     "simulated",
+     "ai_generated"
+    ],
+    "title": "Category",
+    "type": "string"
+   },
+   "content_sha256": {
+    "title": "Content Sha256",
+    "type": "string"
+   },
+   "evidence_kind": {
+    "description": "as the record states it, not re-judged",
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "hash_basis": {
+    "enum": [
+     "file_bytes",
+     "model_dump_json",
+     "canonical_json",
+     "proposal_sha256",
+     "request_key"
+    ],
+    "title": "Hash Basis",
+    "type": "string"
+   },
+   "model_output": {
+    "default": false,
+    "description": "the record is a model's output (SAM, Muse)",
+    "title": "Model Output",
+    "type": "boolean"
+   },
+   "record_id": {
+    "description": "the id the record already has",
+    "pattern": "^\\S+$",
+    "title": "Record Id",
+    "type": "string"
+   },
+   "record_type": {
+    "enum": [
+     "DatasetFile",
+     "SourceClip",
+     "SamResponse",
+     "TrackFile",
+     "NgsimTrackPoints",
+     "NgsimMovementCount",
+     "NgsimQueueSample",
+     "TrafficWorldModel",
+     "WorldEntity",
+     "ProblemStatement",
+     "InterventionProposal",
+     "BaselineManifest",
+     "ExperimentManifest",
+     "DecisionReport"
+    ],
+    "title": "Record Type",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "stage": {
+    "enum": [
+     "source_record",
+     "observation",
+     "world_entity",
+     "problem_statement",
+     "intervention",
+     "experiment",
+     "decision_report"
+    ],
+    "title": "Stage",
+    "type": "string"
+   }
+  },
+  "required": [
+   "stage",
+   "record_type",
+   "record_id",
+   "content_sha256",
+   "hash_basis",
+   "category",
+   "evidence_kind"
+  ],
+  "title": "ChainRecord",
+  "type": "object"
+ },
+ "DecisionChain": {
+  "$defs": {
+   "ChainEnd": {
+    "additionalProperties": false,
+    "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+    "properties": {
+     "record_id": {
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "NgsimTrackPoints",
+       "NgsimMovementCount",
+       "NgsimQueueSample",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "BaselineManifest",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stated_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Stated Sha256"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "ChainEnd",
+    "type": "object"
+   },
+   "ChainLink": {
+    "additionalProperties": false,
+    "description": "`child` was derived from (kind \"derived\") or compiled from (kind \"input\") `parent`, as\n`basis`, a field of an existing record, states.",
+    "properties": {
+     "basis": {
+      "minLength": 1,
+      "title": "Basis",
+      "type": "string"
+     },
+     "child": {
+      "$ref": "#/$defs/ChainEnd"
+     },
+     "kind": {
+      "default": "derived",
+      "enum": [
+       "derived",
+       "input"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parent": {
+      "$ref": "#/$defs/ChainEnd"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "child",
+     "parent",
+     "basis"
+    ],
+    "title": "ChainLink",
+    "type": "object"
+   },
+   "ChainRecord": {
+    "additionalProperties": false,
+    "description": "One existing record, by its existing id and content hash (as provenance.NodeRef).",
+    "properties": {
+     "category": {
+      "enum": [
+       "camera_derived",
+       "dataset_derived",
+       "world_model",
+       "simulated",
+       "ai_generated"
+      ],
+      "title": "Category",
+      "type": "string"
+     },
+     "content_sha256": {
+      "title": "Content Sha256",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "description": "as the record states it, not re-judged",
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "hash_basis": {
+      "enum": [
+       "file_bytes",
+       "model_dump_json",
+       "canonical_json",
+       "proposal_sha256",
+       "request_key"
+      ],
+      "title": "Hash Basis",
+      "type": "string"
+     },
+     "model_output": {
+      "default": false,
+      "description": "the record is a model's output (SAM, Muse)",
+      "title": "Model Output",
+      "type": "boolean"
+     },
+     "record_id": {
+      "description": "the id the record already has",
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "NgsimTrackPoints",
+       "NgsimMovementCount",
+       "NgsimQueueSample",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "BaselineManifest",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stage": {
+      "enum": [
+       "source_record",
+       "observation",
+       "world_entity",
+       "problem_statement",
+       "intervention",
+       "experiment",
+       "decision_report"
+      ],
+      "title": "Stage",
+      "type": "string"
+     }
+    },
+    "required": [
+     "stage",
+     "record_type",
+     "record_id",
+     "content_sha256",
+     "hash_basis",
+     "category",
+     "evidence_kind"
+    ],
+    "title": "ChainRecord",
+    "type": "object"
+   },
+   "TypedBreak": {
+    "additionalProperties": false,
+    "properties": {
+     "at": {
+      "description": "the record whose derivation could not be followed",
+      "title": "At",
+      "type": "string"
+     },
+     "code": {
+      "enum": [
+       "missing_link",
+       "unknown_record",
+       "wrong_entity_type",
+       "hash_mismatch",
+       "wrong_stage",
+       "cycle",
+       "not_accepted"
+      ],
+      "title": "Code",
+      "type": "string"
+     },
+     "link": {
+      "description": "the relationship, e.g. 'intervention <- problem_statement'",
+      "title": "Link",
+      "type": "string"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "code",
+     "link",
+     "at",
+     "reason"
+    ],
+    "title": "TypedBreak",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "What `walk` found from one record back: the best path to a source record (start first),\nthe links on it, and every typed break met anywhere on the way.",
+  "properties": {
+   "breaks": {
+    "items": {
+     "$ref": "#/$defs/TypedBreak"
+    },
+    "title": "Breaks",
+    "type": "array"
+   },
+   "full_chain": {
+    "description": "that path passes through all seven stages",
+    "title": "Full Chain",
+    "type": "boolean"
+   },
+   "graph_sha256": {
+    "title": "Graph Sha256",
+    "type": "string"
+   },
+   "path": {
+    "items": {
+     "$ref": "#/$defs/ChainRecord"
+    },
+    "title": "Path",
+    "type": "array"
+   },
+   "path_links": {
+    "items": {
+     "$ref": "#/$defs/ChainLink"
+    },
+    "title": "Path Links",
+    "type": "array"
+   },
+   "reaches_source": {
+    "description": "a break-free path reaches a source record",
+    "title": "Reaches Source",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the content hash the path ends at",
+    "title": "Source Sha256"
+   },
+   "start": {
+    "title": "Start",
+    "type": "string"
+   },
+   "unhashed_links": {
+    "description": "followed links matched by id only",
+    "items": {
+     "type": "string"
+    },
+    "title": "Unhashed Links",
+    "type": "array"
+   }
+  },
+  "required": [
+   "start",
+   "graph_sha256",
+   "reaches_source",
+   "full_chain",
+   "path",
+   "path_links",
+   "source_sha256",
+   "unhashed_links",
+   "breaks"
+  ],
+  "title": "DecisionChain",
+  "type": "object"
+ },
+ "RefusedLink": {
+  "$defs": {
+   "ChainEnd": {
+    "additionalProperties": false,
+    "description": "A record a link names, and the hash the stating record gives for it (None: none given).",
+    "properties": {
+     "record_id": {
+      "pattern": "^\\S+$",
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "enum": [
+       "DatasetFile",
+       "SourceClip",
+       "SamResponse",
+       "TrackFile",
+       "NgsimTrackPoints",
+       "NgsimMovementCount",
+       "NgsimQueueSample",
+       "TrafficWorldModel",
+       "WorldEntity",
+       "ProblemStatement",
+       "InterventionProposal",
+       "BaselineManifest",
+       "ExperimentManifest",
+       "DecisionReport"
+      ],
+      "title": "Record Type",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stated_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Stated Sha256"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "ChainEnd",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "A link a record states that a decision does not accept, with the decision's reason.",
+  "properties": {
+   "basis": {
+    "minLength": 1,
+    "title": "Basis",
+    "type": "string"
+   },
+   "child": {
+    "$ref": "#/$defs/ChainEnd"
+   },
+   "parent": {
+    "$ref": "#/$defs/ChainEnd"
+   },
+   "reason": {
+    "minLength": 1,
+    "title": "Reason",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "child",
+   "parent",
+   "basis",
+   "reason"
+  ],
+  "title": "RefusedLink",
+  "type": "object"
+ },
+ "TypedBreak": {
+  "additionalProperties": false,
+  "properties": {
+   "at": {
+    "description": "the record whose derivation could not be followed",
+    "title": "At",
+    "type": "string"
+   },
+   "code": {
+    "enum": [
+     "missing_link",
+     "unknown_record",
+     "wrong_entity_type",
+     "hash_mismatch",
+     "wrong_stage",
+     "cycle",
+     "not_accepted"
+    ],
+    "title": "Code",
+    "type": "string"
+   },
+   "link": {
+    "description": "the relationship, e.g. 'intervention <- problem_statement'",
+    "title": "Link",
+    "type": "string"
+   },
+   "reason": {
+    "minLength": 1,
+    "title": "Reason",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "code",
+   "link",
+   "at",
+   "reason"
+  ],
+  "title": "TypedBreak",
+  "type": "object"
+ }
+}

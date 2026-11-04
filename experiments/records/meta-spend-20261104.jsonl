@@ -1,0 +1,19 @@
+{"at_utc": "2026-11-03T22:54:06+00:00", "kind": "sam-seeded-smoke", "usd": 0.01, "request_key": "196954629d94fbe33b6359d52b417d440ac0ebb7a38e991b20d5e16160d52f45", "note": "box prompts"}
+{"at_utc": "2026-11-04T12:27:48+00:00", "kind": "sam-refine", "usd": 0.042, "request_key": "318bb52233d6987813a523a48dfabc7c60cb57b0f639c2825fdc1052652256c3", "note": "cohort 3, 16 box seeds"}
+{"at_utc": "2026-11-04T12:30:57+00:00", "kind": "muse-cv", "usd": 0.021863, "request_key": "cde4cad4cbdf035ead99829b09dda280f6500569193676ce0b792d65412de306", "note": "replicate 1"}
+{"at_utc": "2026-11-04T12:31:13+00:00", "kind": "sam-refine", "usd": 0.042, "request_key": "c40b32303347e1913bb6c39203243bdc9072ba20a5ae6bd27f3394389ac6d2d3", "note": "cohort 4, 16 box seeds"}
+{"at_utc": "2026-11-04T12:31:34+00:00", "kind": "muse-cv", "usd": 0.01803, "request_key": "cde4cad4cbdf035ead99829b09dda280f6500569193676ce0b792d65412de306", "note": "replicate 2"}
+{"at_utc": "2026-11-04T12:32:09+00:00", "kind": "muse-cv", "usd": 0.01402, "request_key": "cde4cad4cbdf035ead99829b09dda280f6500569193676ce0b792d65412de306", "note": "replicate 3"}
+{"at_utc": "2026-11-04T12:32:15+00:00", "kind": "sam-refine", "usd": 0.04, "request_key": "fd1949f63ec1206cf061257e80fcff2846c8cbdf1d6179ce86c59629dfc3e62b", "note": "cohort 2, 11 box seeds"}
+{"at_utc": "2026-11-04T12:33:30+00:00", "kind": "sam-refine", "usd": 0.04, "request_key": "c2629a80670fe70bf7e1afcc37d49d01db040ae511c64dd75a4ae9c948a75441", "note": "cohort 5, 16 box seeds"}
+{"at_utc": "2026-11-04T12:34:25+00:00", "kind": "sam-refine", "usd": 0.04, "request_key": "ea389b1dec94e173f838addf628a2a2a13517c96643b7ee7494546bf3b70836f", "note": "cohort 1, 9 box seeds"}
+{"at_utc": "2026-11-04T12:35:30+00:00", "kind": "sam-refine", "usd": 0.034, "request_key": "f2ee3d633445656d60e9545a39c6a460d83e9422c5460d28ed0305b0b1b05daf", "note": "cohort 0, 16 box seeds"}
+{"at_utc": "2026-11-04T12:36:38+00:00", "kind": "sam-refine", "usd": 0.04, "request_key": "06f476121c88e89c368436be193d0c977e6ee9c6b7dd71a6ed8b0a70af9d9671", "note": "cohort 6, 16 box seeds"}
+{"at_utc": "2026-11-04T12:37:48+00:00", "kind": "sam-refine", "usd": 0.03, "request_key": "85913953008e1524b0237b1242d2588466591fd6a11aebd7ca57b4dfd0ba2229", "note": "cohort 7, 16 box seeds"}
+{"at_utc": "2026-11-04T12:38:21+00:00", "kind": "sam-refine", "usd": 0.014, "request_key": "bad4b3e76ea3fadb34de423be4c1627b3be865b764317321014781cd747c30fc", "note": "cohort 8, 14 box seeds"}
+{"at_utc": "2026-11-04T14:20:21+00:00", "kind": "muse-cv", "usd": 0.022927, "request_key": "638207137e97e684173b01f1e28f055b171e228b6e57b04488afe794781191ee", "note": "replicate 1"}
+{"at_utc": "2026-11-04T14:21:26+00:00", "kind": "muse-cv", "usd": 0.024075, "request_key": "638207137e97e684173b01f1e28f055b171e228b6e57b04488afe794781191ee", "note": "replicate 2"}
+{"at_utc": "2026-11-04T14:22:23+00:00", "kind": "muse-cv", "usd": 0.019299, "request_key": "638207137e97e684173b01f1e28f055b171e228b6e57b04488afe794781191ee", "note": "replicate 3"}
+{"at_utc": "2026-11-04T14:41:11+00:00", "kind": "muse-cv", "usd": 0.023648, "request_key": "2e36b579cdb6bd07589821354fcfb60de3281da822f149cdda71ca6c31edaf8d", "note": "replicate 1"}
+{"at_utc": "2026-11-04T14:41:59+00:00", "kind": "muse-cv", "usd": 0.019884, "request_key": "2e36b579cdb6bd07589821354fcfb60de3281da822f149cdda71ca6c31edaf8d", "note": "replicate 2"}
+{"at_utc": "2026-11-04T14:42:34+00:00", "kind": "muse-cv", "usd": 0.018195, "request_key": "2e36b579cdb6bd07589821354fcfb60de3281da822f149cdda71ca6c31edaf8d", "note": "replicate 3"}

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" width="760" height="310" role="img" aria-label="Segment travel time, N and S approaches">
+<style>svg{--surface:#fcfcfb;--text:#0b0b0b;--text2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--obs:#2a78d6;--sim:#eb6834}@media (prefers-color-scheme:dark){svg{--surface:#1a1a19;--text:#f0efec;--text2:#c3c2b7;--grid:#2c2c2a;--axis:#383835;--obs:#3987e5;--sim:#d95926}}.bg{fill:var(--surface)}.t{fill:var(--text);font:600 14px system-ui,sans-serif}.l{fill:var(--text2);font:12px system-ui,sans-serif}.m{fill:var(--muted);font:11px system-ui,sans-serif}.g{stroke:var(--grid)}.a{stroke:var(--axis)}.c{stroke:var(--muted)}.o{fill:var(--obs);stroke:var(--obs)}.s{fill:var(--sim);stroke:var(--sim)}.ol{stroke:var(--obs);fill:none;stroke-width:2}.sl{stroke:var(--sim);fill:none;opacity:.7}</style>
+<rect class="bg" width="760" height="310"/>
+<text class="t" x="16" y="24">Segment travel time, N and S approaches</text>
+<text class="m" x="16" y="42">From 80 m out on the approach to the exit line; mean per movement</text>
+<circle class="o" cx="26" cy="60" r="4.5"/>
+<text class="l" x="42" y="64">Observed (NGSIM, derived; 95% interval)</text>
+<rect class="s" x="381.5" y="55.5" width="9" height="9" rx="1"/>
+<text class="l" x="402" y="64">Simulated (SUMO; seed range)</text>
+<line class="g" x1="230.0" y1="78" x2="230.0" y2="264"/>
+<text class="m" x="230.0" y="280" text-anchor="middle">0</text>
+<line class="g" x1="291.2" y1="78" x2="291.2" y2="264"/>
+<text class="m" x="291.2" y="280" text-anchor="middle">10</text>
+<line class="g" x1="352.5" y1="78" x2="352.5" y2="264"/>
+<text class="m" x="352.5" y="280" text-anchor="middle">20</text>
+<line class="g" x1="413.8" y1="78" x2="413.8" y2="264"/>
+<text class="m" x="413.8" y="280" text-anchor="middle">30</text>
+<line class="g" x1="475.0" y1="78" x2="475.0" y2="264"/>
+<text class="m" x="475.0" y="280" text-anchor="middle">40</text>
+<line class="g" x1="536.2" y1="78" x2="536.2" y2="264"/>
+<text class="m" x="536.2" y="280" text-anchor="middle">50</text>
+<line class="g" x1="597.5" y1="78" x2="597.5" y2="264"/>
+<text class="m" x="597.5" y="280" text-anchor="middle">60</text>
+<line class="g" x1="658.8" y1="78" x2="658.8" y2="264"/>
+<text class="m" x="658.8" y="280" text-anchor="middle">70</text>
+<line class="g" x1="720.0" y1="78" x2="720.0" y2="264"/>
+<text class="m" x="720.0" y="280" text-anchor="middle">80</text>
+<text class="m" x="720" y="298" text-anchor="end">seconds</text>
+<text class="l" x="218" y="103.0" text-anchor="end">N left</text>
+<line class="o" x1="532.1" y1="94.0" x2="615.9" y2="94.0" stroke-width="2"/>
+<g><title>N left: observed 56.3, from 49.3 to 63</title><circle class="o" cx="574.7" cy="94.0" r="4.5"/></g>
+<line class="s" x1="608.9" y1="104.0" x2="631.6" y2="104.0" stroke-width="2"/>
+<g><title>N left: simulated mean 64.2, from 61.9 to 65.6</title><rect class="s" x="618.8" y="99.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="133.0" text-anchor="end">N through</text>
+<line class="o" x1="305.1" y1="124.0" x2="373.8" y2="124.0" stroke-width="2"/>
+<g><title>N through: observed 17.2, from 12.3 to 23.5</title><circle class="o" cx="335.1" cy="124.0" r="4.5"/></g>
+<line class="s" x1="334.5" y1="134.0" x2="341.0" y2="134.0" stroke-width="2"/>
+<g><title>N through: simulated mean 17.5, from 17.1 to 18.1</title><rect class="s" x="332.8" y="129.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="163.0" text-anchor="end">N right</text>
+<line class="o" x1="282.8" y1="154.0" x2="320.5" y2="154.0" stroke-width="2"/>
+<g><title>N right: observed 11, from 8.62 to 14.8</title><circle class="o" cx="297.4" cy="154.0" r="4.5"/></g>
+<line class="s" x1="286.3" y1="164.0" x2="293.5" y2="164.0" stroke-width="2"/>
+<g><title>N right: simulated mean 9.63, from 9.2 to 10.4</title><rect class="s" x="284.5" y="159.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="193.0" text-anchor="end">S left</text>
+<line class="o" x1="441.5" y1="184.0" x2="626.1" y2="184.0" stroke-width="2"/>
+<g><title>S left: observed 46.4, from 34.5 to 64.7</title><circle class="o" cx="514.3" cy="184.0" r="4.5"/></g>
+<line class="s" x1="658.1" y1="194.0" x2="661.3" y2="194.0" stroke-width="2"/>
+<g><title>S left: simulated mean 70.1, from 69.9 to 70.4</title><rect class="s" x="654.8" y="189.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="223.0" text-anchor="end">S through</text>
+<line class="o" x1="419.9" y1="214.0" x2="478.4" y2="214.0" stroke-width="2"/>
+<g><title>S through: observed 37, from 31 to 40.6</title><circle class="o" cx="456.8" cy="214.0" r="4.5"/></g>
+<line class="s" x1="467.2" y1="224.0" x2="471.1" y2="224.0" stroke-width="2"/>
+<g><title>S through: simulated mean 38.9, from 38.7 to 39.4</title><rect class="s" x="464.1" y="219.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="253.0" text-anchor="end">S right</text>
+<line class="o" x1="298.9" y1="244.0" x2="326.1" y2="244.0" stroke-width="2"/>
+<g><title>S right: observed 13.7, from 11.2 to 15.7</title><circle class="o" cx="314.1" cy="244.0" r="4.5"/></g>
+<line class="s" x1="304.4" y1="254.0" x2="321.4" y2="254.0" stroke-width="2"/>
+<g><title>S right: simulated mean 13.7, from 12.1 to 14.9</title><rect class="s" x="309.4" y="249.5" width="9" height="9" rx="1"/></g>
+<line class="a" x1="230" y1="264" x2="720" y2="264"/>
+</svg>

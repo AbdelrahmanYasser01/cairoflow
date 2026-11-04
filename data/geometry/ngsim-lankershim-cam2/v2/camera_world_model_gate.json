@@ -1,0 +1,84 @@
+{
+  "schema": "cairoflow camera-to-world-model gate, pre-registered (P1-1)",
+  "gate_id": "cam2-int2-lane-gate-v1",
+  "written_on": "2026-10-30",
+  "status": "pre-registered: written and committed before any camera 2 track was projected into the intersection 2 world-model frame or compared with an NGSIM vehicle",
+  "purpose": "Decide, by a rule fixed in advance, whether the recorded SAM 3.1 tracks of camera 2 can enter the shared Traffic World Model as lane-associated, camera-derived entities. The test is the one lane association needs: the lateral position of each tracked vehicle, checked against the time-synced published NGSIM trajectories, an independent reference for the same vehicles at the same instants.",
+  "already_known_when_written": [
+    "SAM 3.1 on camera 2 source seconds 370-380 (record experiments/records/ngsim-cam2-sam-20261028T151050Z.json): prompt 'car' 1,227 observations in 100 frames, 18 tracks; prompt 'bus' none.",
+    "A3 hand check of those boxes: precision 1.00, recall 0.28 (70 of 246 vehicles boxed), 0 id switches in 18 tracks.",
+    "Camera 2 calibration from 50 synced lead-vehicle pairs (ADR-017, ADR-018): alternate split worst held-out error 1.157 m, swapped split 1.475 m (east frame 8557), painted lane lines within 0.54 m; NOT accepted under ADR-018, which tests along-road positions to 1.25 m.",
+    "None of the calibration pairs comes from source frames 3600-3900; the SAM excerpt is source frames 3700-3800, so the reference vehicles here were not used to fit the calibration.",
+    "No camera track had been projected to the ground, assigned to a lane or compared with any NGSIM vehicle."
+  ],
+  "inputs": {
+    "sam_tracks": {
+      "path": "experiments/runs/ngsim-cam2-sam-20261028T151050Z/tracks.json",
+      "sha256": "40474d5ee78adf85ce5873ab2d11e1335d22aba85734320c94724a3857cb581e",
+      "note": "Git-ignored run directory; the gate run copies the file into its committed record"
+    },
+    "sam_observations": {
+      "path": "experiments/runs/ngsim-cam2-sam-20261028T151050Z/observations.json",
+      "sha256": "26e0327a0bc1d220d48981725aca28b99e7b08b3910fcbd10ecd0e10d60b0075"
+    },
+    "camera_clip_manifest": {
+      "path": "data/processed/clips/ngsim-lankershim-cam2-0830-t370-d010/source_clip.json",
+      "sha256": "94577af1bdba25dcdb72eca98f39271b11bd1db3e1c469fe5bf88ec205dcf919",
+      "clip_id": "4c0895cd84a81758"
+    },
+    "calibration_pairs": {
+      "path": "data/geometry/ngsim-lankershim-cam2/v2/sync_checkpoints.json",
+      "sha256": "d60301d19639f623f0eae510b576b34d49d58c2f05fa2e17fa26932348cf5c2d",
+      "fit": "fit_homography on the CalibrationSpec that scripts/checkpoints_ngsim_cam2.py spec_for() builds from these pairs (alternate frames held out: 29 fit, 21 check), unchanged; no refit, no new pairs"
+    },
+    "world_model_geometry": {
+      "path": "data/geometry/ngsim-lankershim-int2/geometry.json",
+      "sha256": "f8fe90a43d908c16f8e46a8aa91b076b110cd7c001e9c991544a00c22d4a4f04",
+      "frame": "ADR-017 metres from State Plane (6452083, 1873176) ftUS, rotated so +y has grid bearing 25.8215 deg (scenario.json frame)"
+    },
+    "reference_trajectories": {
+      "path": "data/raw/ngsim-lankershim/trajectories/lankershim-0830-0845.csv",
+      "sha256": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e",
+      "licence": "CC BY-SA 3.0, U.S. DOT FHWA NGSIM"
+    },
+    "time_sync": "source second 119.7 = 08:30:00.0 (DATA_REGISTER.md section 15); camera frame k of the excerpt is source second 370 + k/10, world-model window second 250.3 + k/10, and NGSIM tick round((250.3 + k/10) * 10) * 100 ms after 08:30:00.0"
+  },
+  "procedure": [
+    "1. Image point of a track point: the centre of its SAM box. Camera 2 looks down almost vertically and the calibration pairs are vehicle fronts read by hand, so the box centre is the point on the vehicle's centre line least affected by heading; the box bottom-centre (the contact point used for an oblique camera) would sit at the front or the rear depending on direction.",
+    "2. Ground point: the homography of the procedure above, giving ADR-017 grid metres, then the rotation by the world model's bearing into its junction frame. Its error: the ground error of 2 px of image error at that point (Homography.ground_error_at), combined in quadrature with the calibration's median held-out error.",
+    "3. Lane: the world-model lane polygon that contains the ground point, if exactly one does; otherwise 'outside_lanes' (none, e.g. inside the junction) or 'ambiguous' (several). A lane-associated point whose distance to its polygon's edge is below its ground error is also marked near_lane_boundary.",
+    "4. Reference: every NGSIM vehicle present at the synced tick, its centre being its published front centre moved back by half its published length along its heading (ngsim.kinematics, previous tick), in the same junction frame, with its own lane by the same polygons.",
+    "5. Matching, per camera frame: camera points and reference centres are paired greedily by distance, one to one, within 3.0 m. A camera track is matched to the reference vehicle it is paired with most often, if it has at least 5 paired points and at least 70% of them name that vehicle; only those points count as matched points.",
+    "6. Lateral and along residuals: camera point minus reference centre, resolved across and along the matched lane's axis (the arm's axis for points outside lanes)."
+  ],
+  "metrics": {
+    "A_track_match_share": "matched car tracks / car tracks",
+    "B_point_lane_agreement": "matched points whose camera lane equals the reference lane / matched points where both have a lane",
+    "C_track_lane_agreement": "matched tracks whose most frequent camera lane equals their most frequent reference lane / matched tracks with at least 3 matched points where both have a lane",
+    "D_lateral_p90_m": "90th percentile of |lateral residual| over matched points",
+    "reported_not_gated": [
+      "input observations, usable (projected) observations, points in a lane, outside lanes, ambiguous, near a lane boundary",
+      "median |lateral| and median and 90th percentile |along| residuals",
+      "reference vehicles in view and how many were matched (recall against the reference)"
+    ]
+  },
+  "go_rule": {
+    "all_of": [
+      "A_track_match_share >= 0.60",
+      "B_point_lane_agreement >= 0.85, over at least 100 points",
+      "C_track_lane_agreement >= 0.80, over at least 8 tracks",
+      "D_lateral_p90_m <= 1.5 (half the narrowest world-model lane, 3.0 m)"
+    ],
+    "otherwise": "no-go"
+  },
+  "consequences": {
+    "go": "The camera tracks enter the world model as a separate camera layer: each entity labelled camera-derived (SAM 3.1 output through the camera 2 calibration, approximated), with its lane or an explicit unknown, its ground error and this gate's measured agreement; NGSIM-derived entities stay as they are and are never merged with them. Only lane-level quantities are derived from the camera (which lane, presence, speed); along-road quantities (stop-line crossings, queue lengths) are not, because ADR-018 still rejects the calibration for along-road distances. The evidence bundle then carries camera items, so Muse can cite them.",
+    "no_go": "No camera entity enters the world model; every claim that the camera feeds it is withdrawn, and the SAM step is described as a perception probe with its measured precision and recall. The orchestrated run says its world model comes from the NGSIM trajectories only."
+  },
+  "limitations": [
+    "One 10 s excerpt of one camera; 18 tracks. The thresholds are pass/fail rules on this sample, not population estimates.",
+    "The reference is itself approximated: NGSIM states about 2 ft across the road and 4 ft along it.",
+    "SAM recall (0.28) is not tested here: the gate asks whether the vehicles SAM does track can be placed in lanes, not whether it tracks every vehicle. Camera-derived counts remain lower bounds.",
+    "Masks are not used; boxes are."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "script": "scripts/sam_receipt.py",
+  "created_at_utc": "2026-11-03T18:12:41+00:00",
+  "label": "model output (SAM 3.1) on one excerpt: a receipt of one request; not ground truth, not tracked, not used by the world model (ADR-018, ADR-019)",
+  "model": "sam-3.1",
+  "endpoint": "https://api.meta.ai/v1/responses",
+  "prompt": "car",
+  "request_key": "51d517efa864dd1f8b8fb3106d5b770bce436e6579f4d03c7c12b8bf5d8c2b38",
+  "request_id": "88c9c45d-5f03-4051-b9f8-3850a33b5421",
+  "sent_at_utc": "2026-11-03T18:12:41.348352+00:00",
+  "from_cache": false,
+  "http_status": 200,
+  "elapsed_s": 5.906,
+  "clip": {
+    "clip_id": "f4614dee4ac6885a",
+    "output_sha256": "f4614dee4ac6885a614c4d50dfe7206a201851005c22f1e508db0d46846471ed",
+    "frames": 30,
+    "fps": 10.0,
+    "duration_s": 3.0,
+    "source_window_s": [
+      970.0,
+      973.0
+    ]
+  },
+  "frames_billed": 50,
+  "outcome": "completed",
+  "observations": 447,
+  "frames_with_an_observation": 30,
+  "distinct_sam_object_ids": 16,
+  "parser_diagnostics": [],
+  "dropped": 0,
+  "recorded_cost_usd": 0.01,
+  "spent_this_run_usd": 0.01,
+  "cost_basis": "published price, $0.20 per 1,000 frames, at least 50 frames billed (https://dev.meta.ai/docs/pricing-rate-limits, accessed 2026-10-27); not an invoice",
+  "stream": {
+    "path": "cache/sam/51d517efa864dd1f8b8fb3106d5b770bce436e6579f4d03c7c12b8bf5d8c2b38.json",
+    "sha256": "0d4f3c7696ab405e9d368a3ea40bb5047a46e8945f80891c64490e1626f96f91",
+    "lines": 116
+  }
+}

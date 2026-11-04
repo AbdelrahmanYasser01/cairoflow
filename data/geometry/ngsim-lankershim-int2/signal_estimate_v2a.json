@@ -1,0 +1,372 @@
+{
+  "script": "scripts/build_ngsim_int2_timeline_ensemble.py",
+  "created_at_utc": "2026-10-29T11:43:16+00:00",
+  "label": "trajectory-derived",
+  "inputs": {
+    "scenario_record_sha256": "9d08eb6e033d2e60e81aaa10b5c6c6773fc4bb55058e39baae7224f59ff156a1",
+    "world_model_sha256": "09452b7b604be76c7d352413622e55ea6f3d82eeff837563ea4854faed22ce43",
+    "signal_timeline_v1_sha256": "71a114a4a2e1e3e922e0b8684010633288ad6425943434c49eb06ca99e44ab9b",
+    "signal_timeline_v2_sha256": "5eb55b93a53ec643467680c6339095171dd09e5aad1e0d897ea5f555032c3968",
+    "signal_estimate_v2_sha256": "2d4f85917ac9bb0a4b206042adeb3e231aaa3fef2e217eda8e54d0f98ab21fa1"
+  },
+  "reproduces_v1": true,
+  "reproduces_v2": true,
+  "ensemble_record": "timeline_ensemble.json",
+  "policy": {
+    "service_gap_s": 25.0,
+    "startup_lost_s": 2.0,
+    "yellow_s": 4.0,
+    "all_red_s": 1.0,
+    "min_green_s": 5.0,
+    "min_reference_crossings": 20,
+    "min_window_crossings": 2,
+    "protected_left_max_share": 0.2,
+    "follow_min_share": 0.5,
+    "min_follow_crossings": 5,
+    "service_margin_s": 2.0,
+    "time_step_s": 1.0
+  },
+  "revision": {
+    "version": "2a",
+    "permissive_left_evidence": true,
+    "yellow_from_last_crossing": false
+  },
+  "timeline_id": "ngsim-int2-signals-c74ef7cc6d92-v2a",
+  "timeline_file": "signal_timeline_v2a.json",
+  "timeline_sha256": "215acd637de6c1d408b5ad767263e05c68c8dff4aea6a783bbba2faaee18a875",
+  "known_window_s": {
+    "v1": [
+      118.0,
+      751.0
+    ],
+    "v2a": [
+      118.0,
+      751.0
+    ]
+  },
+  "conflicting_seconds": [],
+  "heads": {
+    "N left": "own: 133 left crossings, 5% while the opposite through was being served",
+    "W left": "none: 8 opposing through crossings, too few to test protection",
+    "S left": "follows N left: 67% of its 15 left crossings fall in N's protected-left service",
+    "N all": "own: 323 through crossings",
+    "S all": "own: 250 through crossings",
+    "W all": "own: 61 through and left crossings",
+    "E all": "own, sparse: 14 through and left crossings (0% of them in W's service, so it does not follow it)"
+  },
+  "greens": {
+    "v1": {
+      "N all": {
+        "greens": 9,
+        "median_green_s": 46.0,
+        "min_green_s": 29.0,
+        "max_green_s": 62.0
+      },
+      "N left": {
+        "greens": 9,
+        "median_green_s": 21.0,
+        "min_green_s": 14.0,
+        "max_green_s": 25.0
+      },
+      "E all": {
+        "greens": 8,
+        "median_green_s": 5.0,
+        "min_green_s": 5.0,
+        "max_green_s": 5.0
+      },
+      "S all": {
+        "greens": 9,
+        "median_green_s": 31.0,
+        "min_green_s": 26.0,
+        "max_green_s": 44.0
+      },
+      "S left": {
+        "greens": 6,
+        "median_green_s": 9.0,
+        "min_green_s": 4.0,
+        "max_green_s": 22.0
+      },
+      "W all": {
+        "greens": 7,
+        "median_green_s": 9.0,
+        "min_green_s": 5.0,
+        "max_green_s": 26.0
+      }
+    },
+    "v2a": {
+      "N all": {
+        "greens": 9,
+        "median_green_s": 46.0,
+        "min_green_s": 29.0,
+        "max_green_s": 62.0
+      },
+      "N left": {
+        "greens": 9,
+        "median_green_s": 21.0,
+        "min_green_s": 14.0,
+        "max_green_s": 25.0
+      },
+      "E all": {
+        "greens": 8,
+        "median_green_s": 5.0,
+        "min_green_s": 5.0,
+        "max_green_s": 5.0
+      },
+      "S all": {
+        "greens": 9,
+        "median_green_s": 31.0,
+        "min_green_s": 26.0,
+        "max_green_s": 44.0
+      },
+      "S left": {
+        "greens": 6,
+        "median_green_s": 9.0,
+        "min_green_s": 4.0,
+        "max_green_s": 22.0
+      },
+      "W all": {
+        "greens": 8,
+        "median_green_s": 11.0,
+        "min_green_s": 5.0,
+        "max_green_s": 26.0
+      }
+    }
+  },
+  "dropped": [
+    "N all: 1 crossing at 34.6056 s, outside any window",
+    "S all: 1 crossing at 531.392 s, outside any window",
+    "N left: 1 crossing at 688.08 s, outside any window",
+    "S left following N left 243-265 s: conflicts leave no green",
+    "S left following N left 534-563 s: conflicts leave no green",
+    "S left following N left 832-850 s: conflicts leave no green"
+  ],
+  "adjustments": [
+    "N left: 14-53 s ended at 40 s, before S all starts at 41 s",
+    "N left: 140-168 s ended at 165 s, before S all starts at 166 s",
+    "N left: 334-382 s ended at 359 s, before S all starts at 360 s",
+    "N all: 346-405 s ended at 401 s, before W all starts at 402 s",
+    "N left: 436-460 s ended at 459 s, before S all starts at 460 s",
+    "N left: 534-569 s ended at 563 s, before S all starts at 564 s",
+    "S all: 564-617 s ended at 600 s, before E all starts at 601 s",
+    "N left: 739-778 s ended at 765 s, before S all starts at 766 s",
+    "S left following N left: 140-165 s cut to 140-163 s to avoid a conflicting head",
+    "S left following N left: 334-359 s cut to 334-345 s to avoid a conflicting head",
+    "S left following N left: 436-459 s cut to 436-444 s to avoid a conflicting head",
+    "S left following N left: 634-655 s cut to 634-648 s to avoid a conflicting head",
+    "S left following N left: 739-765 s cut to 739-751 s to avoid a conflicting head"
+  ],
+  "consistency": [
+    {
+      "approach": "N",
+      "turn": "left",
+      "head": "left",
+      "crossings": 133,
+      "v1_share": 0.9398,
+      "v2a_share": 0.9398
+    },
+    {
+      "approach": "N",
+      "turn": "through",
+      "head": "all",
+      "crossings": 323,
+      "v1_share": 0.9969,
+      "v2a_share": 0.9969
+    },
+    {
+      "approach": "N",
+      "turn": "right",
+      "head": "all",
+      "crossings": 28,
+      "v1_share": 0.7143,
+      "v2a_share": 0.7143
+    },
+    {
+      "approach": "E",
+      "turn": "left",
+      "head": "all",
+      "crossings": 6,
+      "v1_share": 1.0,
+      "v2a_share": 1.0
+    },
+    {
+      "approach": "E",
+      "turn": "through",
+      "head": "all",
+      "crossings": 8,
+      "v1_share": 1.0,
+      "v2a_share": 1.0
+    },
+    {
+      "approach": "E",
+      "turn": "right",
+      "head": "all",
+      "crossings": 37,
+      "v1_share": 0.2059,
+      "v2a_share": 0.2059
+    },
+    {
+      "approach": "S",
+      "turn": "left",
+      "head": "left",
+      "crossings": 15,
+      "v1_share": 0.6,
+      "v2a_share": 0.6
+    },
+    {
+      "approach": "S",
+      "turn": "through",
+      "head": "all",
+      "crossings": 250,
+      "v1_share": 0.992,
+      "v2a_share": 0.992
+    },
+    {
+      "approach": "S",
+      "turn": "right",
+      "head": "all",
+      "crossings": 82,
+      "v1_share": 0.4815,
+      "v2a_share": 0.4815
+    },
+    {
+      "approach": "W",
+      "turn": "left",
+      "head": "all",
+      "crossings": 27,
+      "v1_share": 0.7692,
+      "v2a_share": 1.0
+    },
+    {
+      "approach": "W",
+      "turn": "through",
+      "head": "all",
+      "crossings": 34,
+      "v1_share": 0.9706,
+      "v2a_share": 1.0
+    },
+    {
+      "approach": "W",
+      "turn": "right",
+      "head": "all",
+      "crossings": 3,
+      "v1_share": 0.6667,
+      "v2a_share": 0.6667
+    }
+  ],
+  "representative_cycle": {
+    "start_s": 564.0,
+    "end_s": 663.0,
+    "length_s": 99.0,
+    "qualifying_cuts": 7,
+    "candidate_cuts": 26,
+    "physical_cycles_in_window": 7,
+    "median_length_s": 99.0,
+    "onset_spacing_range_s": [
+      80.0,
+      201.0
+    ],
+    "greens_in_cycle_s": {
+      "N all": 45.0,
+      "N left": 17.0,
+      "E all": 5.0,
+      "S all": 32.0,
+      "S left": 10.0,
+      "W all": 12.0
+    },
+    "median_greens_s": {
+      "N all": 46.0,
+      "N left": 21.0,
+      "E all": 5.0,
+      "S all": 31.0,
+      "S left": 9.0,
+      "W all": 11.0
+    },
+    "distance_from_medians_s": 8.0,
+    "rule": "qualifying cut (every head green, none unknown, closes legally) whose head greens and length are nearest their medians (summed |difference|); earliest on a tie"
+  },
+  "gate": {
+    "G1_reproduces_committed_v1_and_v2": true,
+    "G2_conflicting_seconds": [],
+    "G3_known_window_s": [
+      118.0,
+      751.0
+    ],
+    "G3_reference_window_s": [
+      118.0,
+      751.0
+    ],
+    "G3_cut_cycle_start_s": 564.0,
+    "G3_cut_cycle": "compiles",
+    "G4_red_crossings_in_window": {
+      "E left": [
+        0,
+        4
+      ],
+      "E through": [
+        0,
+        5
+      ],
+      "N left": [
+        6,
+        104
+      ],
+      "N through": [
+        1,
+        231
+      ],
+      "S left": [
+        6,
+        12
+      ],
+      "S through": [
+        2,
+        166
+      ],
+      "W left": [
+        0,
+        23
+      ],
+      "W through": [
+        0,
+        30
+      ]
+    },
+    "G4_v1_red_crossings_in_window": {
+      "E left": [
+        0,
+        4
+      ],
+      "E through": [
+        0,
+        5
+      ],
+      "N left": [
+        6,
+        104
+      ],
+      "N through": [
+        1,
+        231
+      ],
+      "S left": [
+        6,
+        12
+      ],
+      "S through": [
+        2,
+        166
+      ],
+      "W left": [
+        6,
+        23
+      ],
+      "W through": [
+        1,
+        30
+      ]
+    },
+    "G4_more_red_than_v1": [],
+    "passed": true,
+    "not_checked_here": "G2 and G3 on the compiled replay program, and G5 (a valid replay baseline), at the baseline build"
+  }
+}

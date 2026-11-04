@@ -1,0 +1,6030 @@
+{
+ "AmbiguousMovement": {
+  "additionalProperties": false,
+  "description": "A track that crossed only one of the two gates: listed, never counted.",
+  "properties": {
+   "approach": {
+    "anyOf": [
+     {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Approach"
+   },
+   "exit_arm": {
+    "anyOf": [
+     {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Exit Arm"
+   },
+   "reason": {
+    "minLength": 1,
+    "title": "Reason",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "track_id": {
+    "title": "Track Id",
+    "type": "string"
+   }
+  },
+  "required": [
+   "track_id",
+   "approach",
+   "exit_arm",
+   "reason"
+  ],
+  "title": "AmbiguousMovement",
+  "type": "object"
+ },
+ "CalibrationReport": {
+  "$defs": {
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "A fitted image-to-ground homography and how well it reproduces the control points.",
+  "properties": {
+   "accepted": {
+    "title": "Accepted",
+    "type": "boolean"
+   },
+   "check_errors_m": {
+    "additionalProperties": {
+     "type": "number"
+    },
+    "title": "Check Errors M",
+    "type": "object"
+   },
+   "check_errors_px": {
+    "additionalProperties": {
+     "type": "number"
+    },
+    "title": "Check Errors Px",
+    "type": "object"
+   },
+   "check_point_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Check Point Ids",
+    "type": "array"
+   },
+   "clip_id": {
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "fit_max_m": {
+    "minimum": 0,
+    "title": "Fit Max M",
+    "type": "number"
+   },
+   "fit_point_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Fit Point Ids",
+    "type": "array"
+   },
+   "fit_rms_m": {
+    "minimum": 0,
+    "title": "Fit Rms M",
+    "type": "number"
+   },
+   "image_to_ground": {
+    "description": "3x3 row-major, scaled so the last entry is 1",
+    "items": {
+     "type": "number"
+    },
+    "maxItems": 9,
+    "minItems": 9,
+    "title": "Image To Ground",
+    "type": "array"
+   },
+   "max_check_error_m": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Max Check Error M"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "reasons": {
+    "description": "why the calibration is not accepted, if not",
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "spec_sha256": {
+    "title": "Spec Sha256",
+    "type": "string"
+   },
+   "target_max_check_error_m": {
+    "exclusiveMinimum": 0,
+    "title": "Target Max Check Error M",
+    "type": "number"
+   }
+  },
+  "required": [
+   "clip_id",
+   "spec_sha256",
+   "image_to_ground",
+   "fit_point_ids",
+   "check_point_ids",
+   "fit_rms_m",
+   "fit_max_m",
+   "check_errors_m",
+   "check_errors_px",
+   "max_check_error_m",
+   "target_max_check_error_m",
+   "accepted",
+   "reasons",
+   "provenance"
+  ],
+  "title": "CalibrationReport",
+  "type": "object"
+ },
+ "CalibrationSpec": {
+  "$defs": {
+   "ControlPoint": {
+    "additionalProperties": false,
+    "description": "One image point with its known ground position, used to fit or to check a calibration.",
+    "properties": {
+     "ground_m": {
+      "description": "local ground metres: origin at the junction centre, x east, y north",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Ground M",
+      "type": "array"
+     },
+     "ground_provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Ground Provenance",
+      "type": "string"
+     },
+     "image_px": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Image Px",
+      "type": "array"
+     },
+     "point_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+      "title": "Point Id",
+      "type": "string"
+     },
+     "role": {
+      "description": "'check' points are held out of the fit",
+      "enum": [
+       "fit",
+       "check"
+      ],
+      "title": "Role",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "description": "lane-marking corner, drawing reference, ...",
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     }
+    },
+    "required": [
+     "point_id",
+     "image_px",
+     "ground_m",
+     "role",
+     "ground_provenance",
+     "source"
+    ],
+    "title": "ControlPoint",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Hand-picked control points for one clip (the versioned `calibration.json`).",
+  "properties": {
+   "clip_id": {
+    "minLength": 1,
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "ground_frame": {
+    "const": "local_enu_junction_m",
+    "default": "local_enu_junction_m",
+    "title": "Ground Frame",
+    "type": "string"
+   },
+   "image_height_px": {
+    "exclusiveMinimum": 0,
+    "title": "Image Height Px",
+    "type": "integer"
+   },
+   "image_width_px": {
+    "exclusiveMinimum": 0,
+    "title": "Image Width Px",
+    "type": "integer"
+   },
+   "points": {
+    "items": {
+     "$ref": "#/$defs/ControlPoint"
+    },
+    "title": "Points",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "clip_id",
+   "image_width_px",
+   "image_height_px",
+   "points"
+  ],
+  "title": "CalibrationSpec",
+  "type": "object"
+ },
+ "CameraGate": {
+  "additionalProperties": false,
+  "description": "The pre-registered gate's result for one camera layer.",
+  "properties": {
+   "checks": {
+    "additionalProperties": {
+     "type": "boolean"
+    },
+    "title": "Checks",
+    "type": "object"
+   },
+   "gate_id": {
+    "title": "Gate Id",
+    "type": "string"
+   },
+   "gate_sha256": {
+    "title": "Gate Sha256",
+    "type": "string"
+   },
+   "metrics": {
+    "additionalProperties": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "title": "Metrics",
+    "type": "object"
+   },
+   "outcome": {
+    "enum": [
+     "go",
+     "no_go"
+    ],
+    "title": "Outcome",
+    "type": "string"
+   },
+   "reasons": {
+    "description": "why it is no-go; empty for go",
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "gate_id",
+   "gate_sha256",
+   "outcome",
+   "metrics",
+   "checks",
+   "reasons"
+  ],
+  "title": "CameraGate",
+  "type": "object"
+ },
+ "CameraLayer": {
+  "$defs": {
+   "CameraGate": {
+    "additionalProperties": false,
+    "description": "The pre-registered gate's result for one camera layer.",
+    "properties": {
+     "checks": {
+      "additionalProperties": {
+       "type": "boolean"
+      },
+      "title": "Checks",
+      "type": "object"
+     },
+     "gate_id": {
+      "title": "Gate Id",
+      "type": "string"
+     },
+     "gate_sha256": {
+      "title": "Gate Sha256",
+      "type": "string"
+     },
+     "metrics": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Metrics",
+      "type": "object"
+     },
+     "outcome": {
+      "enum": [
+       "go",
+       "no_go"
+      ],
+      "title": "Outcome",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it is no-go; empty for go",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "gate_id",
+     "gate_sha256",
+     "outcome",
+     "metrics",
+     "checks",
+     "reasons"
+    ],
+    "title": "CameraGate",
+    "type": "object"
+   },
+   "CameraTrack": {
+    "additionalProperties": false,
+    "description": "One SAM-tracked vehicle on the ground: camera-derived, never merged with NGSIM ones.",
+    "properties": {
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the lane most of its lane points lie in, else None",
+      "title": "Lane Id"
+     },
+     "lane_share": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "share of its lane points in that lane",
+      "title": "Lane Share"
+     },
+     "points": {
+      "items": {
+       "$ref": "#/$defs/CameraTrackPoint"
+      },
+      "minItems": 1,
+      "title": "Points",
+      "type": "array"
+     },
+     "sam_object_ids": {
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Sam Object Ids",
+      "type": "array"
+     },
+     "sam_track_id": {
+      "title": "Sam Track Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "track_id": {
+      "description": "e.g. 'cam2:car:t3'",
+      "pattern": "^cam[0-9]+:",
+      "title": "Track Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "track_id",
+     "sam_track_id",
+     "sam_object_ids",
+     "points",
+     "lane_id",
+     "lane_share"
+    ],
+    "title": "CameraTrack",
+    "type": "object"
+   },
+   "CameraTrackPoint": {
+    "additionalProperties": false,
+    "description": "One camera track point placed in the world model's frame (P1-1).",
+    "properties": {
+     "confidence": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "SAM's confidence, when supplied",
+      "title": "Confidence"
+     },
+     "frame": {
+      "$ref": "#/$defs/FrameRef",
+      "description": "the camera clip's frame"
+     },
+     "image_point_px": {
+      "description": "the SAM box centre, image pixels",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Image Point Px",
+      "type": "array"
+     },
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the one lane polygon containing it, else None",
+      "title": "Lane Id"
+     },
+     "lane_status": {
+      "enum": [
+       "in_lane",
+       "outside_lanes",
+       "ambiguous"
+      ],
+      "title": "Lane Status",
+      "type": "string"
+     },
+     "near_lane_boundary": {
+      "description": "closer to its lane's edge than its error",
+      "title": "Near Lane Boundary",
+      "type": "boolean"
+     },
+     "observation_id": {
+      "title": "Observation Id",
+      "type": "string"
+     },
+     "position_error_m": {
+      "description": "1-sigma ground error of the point",
+      "minimum": 0,
+      "title": "Position Error M",
+      "type": "number"
+     },
+     "position_m": {
+      "description": "the world model's junction frame",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Position M",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "speed_m_s": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Speed M S"
+     },
+     "window_time_s": {
+      "description": "the same instant in the world model's window",
+      "title": "Window Time S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "frame",
+     "window_time_s",
+     "observation_id",
+     "image_point_px",
+     "position_m",
+     "position_error_m",
+     "lane_id",
+     "lane_status",
+     "near_lane_boundary"
+    ],
+    "title": "CameraTrackPoint",
+    "type": "object"
+   },
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Camera-derived entities of the world model (P1-1), kept apart from the trajectories'.\n\nOnly lane-level quantities are derived from the camera (lane, presence, speed). Along-road\nones (stop-line crossings, queue lengths) are not: the calibration is not accepted for\nalong-road distances (ADR-018). Every count is a lower bound (SAM recall, hand check A3).",
+  "properties": {
+   "calibration_accepted": {
+    "description": "under ADR-018, for along-road distances",
+    "title": "Calibration Accepted",
+    "type": "boolean"
+   },
+   "calibration_notes": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Calibration Notes",
+    "type": "array"
+   },
+   "calibration_spec_sha256": {
+    "title": "Calibration Spec Sha256",
+    "type": "string"
+   },
+   "camera_clip_id": {
+    "title": "Camera Clip Id",
+    "type": "string"
+   },
+   "camera_clip_sha256": {
+    "title": "Camera Clip Sha256",
+    "type": "string"
+   },
+   "counts": {
+    "additionalProperties": {
+     "type": "integer"
+    },
+    "description": "observations in, projected, placed, rejected",
+    "title": "Counts",
+    "type": "object"
+   },
+   "derived": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Derived",
+    "type": "array"
+   },
+   "frame": {
+    "description": "how image pixels reach the junction frame",
+    "title": "Frame",
+    "type": "string"
+   },
+   "gate": {
+    "$ref": "#/$defs/CameraGate"
+   },
+   "label": {
+    "minLength": 1,
+    "title": "Label",
+    "type": "string"
+   },
+   "lane_presence": {
+    "additionalProperties": {
+     "type": "integer"
+    },
+    "description": "lane -> distinct camera tracks seen in it",
+    "title": "Lane Presence",
+    "type": "object"
+   },
+   "not_derived": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Not Derived",
+    "type": "array"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "sam_model": {
+    "title": "Sam Model",
+    "type": "string"
+   },
+   "sam_request_keys": {
+    "items": {
+     "type": "string"
+    },
+    "minItems": 1,
+    "title": "Sam Request Keys",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "const": "camera",
+    "default": "camera",
+    "title": "Source",
+    "type": "string"
+   },
+   "time_sync": {
+    "title": "Time Sync",
+    "type": "string"
+   },
+   "tracks": {
+    "items": {
+     "$ref": "#/$defs/CameraTrack"
+    },
+    "title": "Tracks",
+    "type": "array"
+   },
+   "tracks_sha256": {
+    "title": "Tracks Sha256",
+    "type": "string"
+   },
+   "window_s": {
+    "description": "the world model's seconds it covers",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Window S",
+    "type": "array"
+   }
+  },
+  "required": [
+   "label",
+   "camera_clip_id",
+   "camera_clip_sha256",
+   "sam_model",
+   "sam_request_keys",
+   "tracks_sha256",
+   "calibration_spec_sha256",
+   "calibration_accepted",
+   "calibration_notes",
+   "frame",
+   "time_sync",
+   "window_s",
+   "tracks",
+   "counts",
+   "lane_presence",
+   "derived",
+   "not_derived",
+   "gate",
+   "provenance"
+  ],
+  "title": "CameraLayer",
+  "type": "object"
+ },
+ "CameraTrack": {
+  "$defs": {
+   "CameraTrackPoint": {
+    "additionalProperties": false,
+    "description": "One camera track point placed in the world model's frame (P1-1).",
+    "properties": {
+     "confidence": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "SAM's confidence, when supplied",
+      "title": "Confidence"
+     },
+     "frame": {
+      "$ref": "#/$defs/FrameRef",
+      "description": "the camera clip's frame"
+     },
+     "image_point_px": {
+      "description": "the SAM box centre, image pixels",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Image Point Px",
+      "type": "array"
+     },
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the one lane polygon containing it, else None",
+      "title": "Lane Id"
+     },
+     "lane_status": {
+      "enum": [
+       "in_lane",
+       "outside_lanes",
+       "ambiguous"
+      ],
+      "title": "Lane Status",
+      "type": "string"
+     },
+     "near_lane_boundary": {
+      "description": "closer to its lane's edge than its error",
+      "title": "Near Lane Boundary",
+      "type": "boolean"
+     },
+     "observation_id": {
+      "title": "Observation Id",
+      "type": "string"
+     },
+     "position_error_m": {
+      "description": "1-sigma ground error of the point",
+      "minimum": 0,
+      "title": "Position Error M",
+      "type": "number"
+     },
+     "position_m": {
+      "description": "the world model's junction frame",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Position M",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "speed_m_s": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Speed M S"
+     },
+     "window_time_s": {
+      "description": "the same instant in the world model's window",
+      "title": "Window Time S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "frame",
+     "window_time_s",
+     "observation_id",
+     "image_point_px",
+     "position_m",
+     "position_error_m",
+     "lane_id",
+     "lane_status",
+     "near_lane_boundary"
+    ],
+    "title": "CameraTrackPoint",
+    "type": "object"
+   },
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One SAM-tracked vehicle on the ground: camera-derived, never merged with NGSIM ones.",
+  "properties": {
+   "lane_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the lane most of its lane points lie in, else None",
+    "title": "Lane Id"
+   },
+   "lane_share": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "share of its lane points in that lane",
+    "title": "Lane Share"
+   },
+   "points": {
+    "items": {
+     "$ref": "#/$defs/CameraTrackPoint"
+    },
+    "minItems": 1,
+    "title": "Points",
+    "type": "array"
+   },
+   "sam_object_ids": {
+    "items": {
+     "type": "string"
+    },
+    "minItems": 1,
+    "title": "Sam Object Ids",
+    "type": "array"
+   },
+   "sam_track_id": {
+    "title": "Sam Track Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "track_id": {
+    "description": "e.g. 'cam2:car:t3'",
+    "pattern": "^cam[0-9]+:",
+    "title": "Track Id",
+    "type": "string"
+   }
+  },
+  "required": [
+   "track_id",
+   "sam_track_id",
+   "sam_object_ids",
+   "points",
+   "lane_id",
+   "lane_share"
+  ],
+  "title": "CameraTrack",
+  "type": "object"
+ },
+ "CameraTrackPoint": {
+  "$defs": {
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One camera track point placed in the world model's frame (P1-1).",
+  "properties": {
+   "confidence": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "SAM's confidence, when supplied",
+    "title": "Confidence"
+   },
+   "frame": {
+    "$ref": "#/$defs/FrameRef",
+    "description": "the camera clip's frame"
+   },
+   "image_point_px": {
+    "description": "the SAM box centre, image pixels",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Image Point Px",
+    "type": "array"
+   },
+   "lane_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the one lane polygon containing it, else None",
+    "title": "Lane Id"
+   },
+   "lane_status": {
+    "enum": [
+     "in_lane",
+     "outside_lanes",
+     "ambiguous"
+    ],
+    "title": "Lane Status",
+    "type": "string"
+   },
+   "near_lane_boundary": {
+    "description": "closer to its lane's edge than its error",
+    "title": "Near Lane Boundary",
+    "type": "boolean"
+   },
+   "observation_id": {
+    "title": "Observation Id",
+    "type": "string"
+   },
+   "position_error_m": {
+    "description": "1-sigma ground error of the point",
+    "minimum": 0,
+    "title": "Position Error M",
+    "type": "number"
+   },
+   "position_m": {
+    "description": "the world model's junction frame",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Position M",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "speed_m_s": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Speed M S"
+   },
+   "window_time_s": {
+    "description": "the same instant in the world model's window",
+    "title": "Window Time S",
+    "type": "number"
+   }
+  },
+  "required": [
+   "frame",
+   "window_time_s",
+   "observation_id",
+   "image_point_px",
+   "position_m",
+   "position_error_m",
+   "lane_id",
+   "lane_status",
+   "near_lane_boundary"
+  ],
+  "title": "CameraTrackPoint",
+  "type": "object"
+ },
+ "ClipLicense": {
+  "additionalProperties": false,
+  "description": "The licence record of one source clip; mirrors its row in docs/DATA_REGISTER.md.",
+  "properties": {
+   "accessed_on": {
+    "format": "date",
+    "title": "Accessed On",
+    "type": "string"
+   },
+   "attribution": {
+    "description": "exact text to show wherever pixels appear",
+    "minLength": 1,
+    "title": "Attribution",
+    "type": "string"
+   },
+   "licence_name": {
+    "minLength": 1,
+    "title": "Licence Name",
+    "type": "string"
+   },
+   "licence_url": {
+    "anyOf": [
+     {
+      "pattern": "^https?://\\S+$",
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Licence Url"
+   },
+   "permits_cloud_processing": {
+    "description": "may be uploaded to a hosted model API",
+    "title": "Permits Cloud Processing",
+    "type": "boolean"
+   },
+   "permits_commercial_use": {
+    "title": "Permits Commercial Use",
+    "type": "boolean"
+   },
+   "permits_redistribution": {
+    "title": "Permits Redistribution",
+    "type": "boolean"
+   },
+   "register_ref": {
+    "description": "where the register row lives",
+    "minLength": 1,
+    "title": "Register Ref",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "share_alike": {
+    "title": "Share Alike",
+    "type": "boolean"
+   },
+   "source_id": {
+    "pattern": "^[a-z0-9][a-z0-9_-]*$",
+    "title": "Source Id",
+    "type": "string"
+   },
+   "source_url": {
+    "pattern": "^https?://\\S+$",
+    "title": "Source Url",
+    "type": "string"
+   },
+   "synthetic": {
+    "default": false,
+    "description": "generated in code; no third-party content",
+    "title": "Synthetic",
+    "type": "boolean"
+   }
+  },
+  "required": [
+   "source_id",
+   "source_url",
+   "licence_name",
+   "attribution",
+   "accessed_on",
+   "register_ref",
+   "permits_commercial_use",
+   "permits_cloud_processing",
+   "permits_redistribution",
+   "share_alike"
+  ],
+  "title": "ClipLicense",
+  "type": "object"
+ },
+ "ControlPoint": {
+  "additionalProperties": false,
+  "description": "One image point with its known ground position, used to fit or to check a calibration.",
+  "properties": {
+   "ground_m": {
+    "description": "local ground metres: origin at the junction centre, x east, y north",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Ground M",
+    "type": "array"
+   },
+   "ground_provenance": {
+    "enum": [
+     "measured",
+     "approximated",
+     "synthetic"
+    ],
+    "title": "Ground Provenance",
+    "type": "string"
+   },
+   "image_px": {
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Image Px",
+    "type": "array"
+   },
+   "point_id": {
+    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+    "title": "Point Id",
+    "type": "string"
+   },
+   "role": {
+    "description": "'check' points are held out of the fit",
+    "enum": [
+     "fit",
+     "check"
+    ],
+    "title": "Role",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "description": "lane-marking corner, drawing reference, ...",
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   }
+  },
+  "required": [
+   "point_id",
+   "image_px",
+   "ground_m",
+   "role",
+   "ground_provenance",
+   "source"
+  ],
+  "title": "ControlPoint",
+  "type": "object"
+ },
+ "EvidenceModel": {
+  "additionalProperties": false,
+  "description": "Base for all evidence: immutable, no unknown fields, versioned.",
+  "properties": {
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "title": "EvidenceModel",
+  "type": "object"
+ },
+ "FrameRef": {
+  "additionalProperties": false,
+  "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+  "properties": {
+   "clip_id": {
+    "minLength": 1,
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "frame_index": {
+    "minimum": 0,
+    "title": "Frame Index",
+    "type": "integer"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "timestamp_s": {
+    "description": "presentation time from the clip's first frame",
+    "minimum": 0,
+    "title": "Timestamp S",
+    "type": "number"
+   }
+  },
+  "required": [
+   "clip_id",
+   "frame_index",
+   "timestamp_s"
+  ],
+  "title": "FrameRef",
+  "type": "object"
+ },
+ "Gate": {
+  "additionalProperties": false,
+  "description": "A stop line or exit line: a ground segment whose crossing defines a movement.\n\nDirection is fixed by the ground frame: a stop line is crossed towards the junction centre\n(the origin), an exit line away from it.",
+  "properties": {
+   "arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Arm",
+    "type": "string"
+   },
+   "provenance": {
+    "enum": [
+     "measured",
+     "approximated",
+     "synthetic"
+    ],
+    "title": "Provenance",
+    "type": "string"
+   },
+   "role": {
+    "enum": [
+     "stop_line",
+     "exit_line"
+    ],
+    "title": "Role",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "segment_m": {
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     },
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     }
+    ],
+    "title": "Segment M",
+    "type": "array"
+   },
+   "source": {
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   }
+  },
+  "required": [
+   "arm",
+   "role",
+   "segment_m",
+   "provenance",
+   "source"
+  ],
+  "title": "Gate",
+  "type": "object"
+ },
+ "GeometryValue": {
+  "additionalProperties": false,
+  "description": "One intersection-geometry or signal-timing number with its unit and ADR-014 label.",
+  "properties": {
+   "error": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "1-sigma error in the same unit, if known",
+    "title": "Error"
+   },
+   "provenance": {
+    "enum": [
+     "measured",
+     "approximated",
+     "synthetic"
+    ],
+    "title": "Provenance",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "description": "drawing, procedure or reason for the value",
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   },
+   "unit": {
+    "enum": [
+     "m",
+     "m/s",
+     "s",
+     "deg",
+     "count"
+    ],
+    "title": "Unit",
+    "type": "string"
+   },
+   "value": {
+    "title": "Value",
+    "type": "number"
+   }
+  },
+  "required": [
+   "value",
+   "unit",
+   "provenance",
+   "source"
+  ],
+  "title": "GeometryValue",
+  "type": "object"
+ },
+ "GroundTrack": {
+  "$defs": {
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   },
+   "GroundTrackPoint": {
+    "additionalProperties": false,
+    "description": "One track point on the ground: its contact point through the homography.",
+    "properties": {
+     "frame": {
+      "$ref": "#/$defs/FrameRef"
+     },
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the one lane polygon containing the point",
+      "title": "Lane Id"
+     },
+     "position_error_m": {
+      "description": "ground error of the assumed pixel error",
+      "minimum": 0,
+      "title": "Position Error M",
+      "type": "number"
+     },
+     "position_m": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Position M",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "speed_m_s": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "None when the track is too short",
+      "title": "Speed M S"
+     }
+    },
+    "required": [
+     "frame",
+     "position_m",
+     "position_error_m"
+    ],
+    "title": "GroundTrackPoint",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "class_label": {
+    "title": "Class Label",
+    "type": "string"
+   },
+   "points": {
+    "items": {
+     "$ref": "#/$defs/GroundTrackPoint"
+    },
+    "title": "Points",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "track_id": {
+    "title": "Track Id",
+    "type": "string"
+   },
+   "unprojected_frames": {
+    "description": "points at or beyond the horizon",
+    "items": {
+     "type": "integer"
+    },
+    "title": "Unprojected Frames",
+    "type": "array"
+   }
+  },
+  "required": [
+   "track_id",
+   "class_label",
+   "points",
+   "unprojected_frames"
+  ],
+  "title": "GroundTrack",
+  "type": "object"
+ },
+ "GroundTrackPoint": {
+  "$defs": {
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One track point on the ground: its contact point through the homography.",
+  "properties": {
+   "frame": {
+    "$ref": "#/$defs/FrameRef"
+   },
+   "lane_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "the one lane polygon containing the point",
+    "title": "Lane Id"
+   },
+   "position_error_m": {
+    "description": "ground error of the assumed pixel error",
+    "minimum": 0,
+    "title": "Position Error M",
+    "type": "number"
+   },
+   "position_m": {
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Position M",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "speed_m_s": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "None when the track is too short",
+    "title": "Speed M S"
+   }
+  },
+  "required": [
+   "frame",
+   "position_m",
+   "position_error_m"
+  ],
+  "title": "GroundTrackPoint",
+  "type": "object"
+ },
+ "ImageGeometry": {
+  "$defs": {
+   "ImageLane": {
+    "additionalProperties": false,
+    "description": "One lane outlined in image pixels, with the evidence for what it allows.\n\nUnlike `LanePolygon`, an approach lane may list no turns: at 640x480 most arrows are hidden\nor unreadable, and an unknown turn is recorded as unknown (`turns_source` says why).",
+    "properties": {
+     "allowed_turns": {
+      "items": {
+       "enum": [
+        "left",
+        "through",
+        "right",
+        "u_turn"
+       ],
+       "type": "string"
+      },
+      "title": "Allowed Turns",
+      "type": "array"
+     },
+     "arm": {
+      "description": "compass leg from the junction (nearest of N/E/S/W)",
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Arm",
+      "type": "string"
+     },
+     "direction": {
+      "enum": [
+       "approach",
+       "exit"
+      ],
+      "title": "Direction",
+      "type": "string"
+     },
+     "error_px": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "1-sigma boundary error, pixels",
+      "title": "Error Px"
+     },
+     "lane_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+      "title": "Lane Id",
+      "type": "string"
+     },
+     "polygon_px": {
+      "description": "vertices in order",
+      "items": {
+       "maxItems": 2,
+       "minItems": 2,
+       "prefixItems": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        }
+       ],
+       "type": "array"
+      },
+      "minItems": 3,
+      "title": "Polygon Px",
+      "type": "array"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "reference_lane": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "matching published lane, if any",
+      "title": "Reference Lane"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     },
+     "turns_source": {
+      "description": "painted arrow, published lane code, ...",
+      "minLength": 1,
+      "title": "Turns Source",
+      "type": "string"
+     }
+    },
+    "required": [
+     "lane_id",
+     "arm",
+     "direction",
+     "polygon_px",
+     "allowed_turns",
+     "turns_source",
+     "provenance",
+     "source"
+    ],
+    "title": "ImageLane",
+    "type": "object"
+   },
+   "ImageLine": {
+    "additionalProperties": false,
+    "description": "A painted line or a kerb edge in image pixels.",
+    "properties": {
+     "arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Arm",
+      "type": "string"
+     },
+     "error_px": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Error Px"
+     },
+     "line_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+      "title": "Line Id",
+      "type": "string"
+     },
+     "painted": {
+      "description": "paint seen in the image (False: kerb or edge)",
+      "title": "Painted",
+      "type": "boolean"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "role": {
+      "enum": [
+       "limit_line",
+       "exit_line",
+       "lane_line",
+       "centreline",
+       "kerb_edge"
+      ],
+      "title": "Role",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "segment_px": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       }
+      ],
+      "title": "Segment Px",
+      "type": "array"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     }
+    },
+    "required": [
+     "line_id",
+     "arm",
+     "role",
+     "segment_px",
+     "painted",
+     "provenance",
+     "source"
+    ],
+    "title": "ImageLine",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Lanes and lines of one junction in image pixels, measured on a stated source image.",
+  "properties": {
+   "clip_ids": {
+    "description": "clips sharing this camera view",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 1,
+    "title": "Clip Ids",
+    "type": "array"
+   },
+   "drives_on": {
+    "const": "right",
+    "default": "right",
+    "title": "Drives On",
+    "type": "string"
+   },
+   "geometry_id": {
+    "minLength": 1,
+    "title": "Geometry Id",
+    "type": "string"
+   },
+   "image_height_px": {
+    "exclusiveMinimum": 0,
+    "title": "Image Height Px",
+    "type": "integer"
+   },
+   "image_width_px": {
+    "exclusiveMinimum": 0,
+    "title": "Image Width Px",
+    "type": "integer"
+   },
+   "lanes": {
+    "items": {
+     "$ref": "#/$defs/ImageLane"
+    },
+    "title": "Lanes",
+    "type": "array"
+   },
+   "lines": {
+    "items": {
+     "$ref": "#/$defs/ImageLine"
+    },
+    "title": "Lines",
+    "type": "array"
+   },
+   "notes": {
+    "default": [],
+    "items": {
+     "type": "string"
+    },
+    "title": "Notes",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source_image_sha256": {
+    "title": "Source Image Sha256",
+    "type": "string"
+   },
+   "supersedes": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "geometry_id of the version it replaces",
+    "title": "Supersedes"
+   },
+   "usable_v_max_px": {
+    "description": "rows from here down are not road",
+    "exclusiveMinimum": 0,
+    "title": "Usable V Max Px",
+    "type": "number"
+   }
+  },
+  "required": [
+   "geometry_id",
+   "clip_ids",
+   "source_image_sha256",
+   "image_width_px",
+   "image_height_px",
+   "usable_v_max_px",
+   "lanes",
+   "lines"
+  ],
+  "title": "ImageGeometry",
+  "type": "object"
+ },
+ "ImageLane": {
+  "additionalProperties": false,
+  "description": "One lane outlined in image pixels, with the evidence for what it allows.\n\nUnlike `LanePolygon`, an approach lane may list no turns: at 640x480 most arrows are hidden\nor unreadable, and an unknown turn is recorded as unknown (`turns_source` says why).",
+  "properties": {
+   "allowed_turns": {
+    "items": {
+     "enum": [
+      "left",
+      "through",
+      "right",
+      "u_turn"
+     ],
+     "type": "string"
+    },
+    "title": "Allowed Turns",
+    "type": "array"
+   },
+   "arm": {
+    "description": "compass leg from the junction (nearest of N/E/S/W)",
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Arm",
+    "type": "string"
+   },
+   "direction": {
+    "enum": [
+     "approach",
+     "exit"
+    ],
+    "title": "Direction",
+    "type": "string"
+   },
+   "error_px": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "1-sigma boundary error, pixels",
+    "title": "Error Px"
+   },
+   "lane_id": {
+    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+    "title": "Lane Id",
+    "type": "string"
+   },
+   "polygon_px": {
+    "description": "vertices in order",
+    "items": {
+     "maxItems": 2,
+     "minItems": 2,
+     "prefixItems": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "number"
+      }
+     ],
+     "type": "array"
+    },
+    "minItems": 3,
+    "title": "Polygon Px",
+    "type": "array"
+   },
+   "provenance": {
+    "enum": [
+     "measured",
+     "approximated",
+     "synthetic"
+    ],
+    "title": "Provenance",
+    "type": "string"
+   },
+   "reference_lane": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "matching published lane, if any",
+    "title": "Reference Lane"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   },
+   "turns_source": {
+    "description": "painted arrow, published lane code, ...",
+    "minLength": 1,
+    "title": "Turns Source",
+    "type": "string"
+   }
+  },
+  "required": [
+   "lane_id",
+   "arm",
+   "direction",
+   "polygon_px",
+   "allowed_turns",
+   "turns_source",
+   "provenance",
+   "source"
+  ],
+  "title": "ImageLane",
+  "type": "object"
+ },
+ "ImageLine": {
+  "additionalProperties": false,
+  "description": "A painted line or a kerb edge in image pixels.",
+  "properties": {
+   "arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Arm",
+    "type": "string"
+   },
+   "error_px": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Error Px"
+   },
+   "line_id": {
+    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+    "title": "Line Id",
+    "type": "string"
+   },
+   "painted": {
+    "description": "paint seen in the image (False: kerb or edge)",
+    "title": "Painted",
+    "type": "boolean"
+   },
+   "provenance": {
+    "enum": [
+     "measured",
+     "approximated",
+     "synthetic"
+    ],
+    "title": "Provenance",
+    "type": "string"
+   },
+   "role": {
+    "enum": [
+     "limit_line",
+     "exit_line",
+     "lane_line",
+     "centreline",
+     "kerb_edge"
+    ],
+    "title": "Role",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "segment_px": {
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     },
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     }
+    ],
+    "title": "Segment Px",
+    "type": "array"
+   },
+   "source": {
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   }
+  },
+  "required": [
+   "line_id",
+   "arm",
+   "role",
+   "segment_px",
+   "painted",
+   "provenance",
+   "source"
+  ],
+  "title": "ImageLine",
+  "type": "object"
+ },
+ "IntersectionGeometry": {
+  "$defs": {
+   "Gate": {
+    "additionalProperties": false,
+    "description": "A stop line or exit line: a ground segment whose crossing defines a movement.\n\nDirection is fixed by the ground frame: a stop line is crossed towards the junction centre\n(the origin), an exit line away from it.",
+    "properties": {
+     "arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Arm",
+      "type": "string"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "role": {
+      "enum": [
+       "stop_line",
+       "exit_line"
+      ],
+      "title": "Role",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "segment_m": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       }
+      ],
+      "title": "Segment M",
+      "type": "array"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     }
+    },
+    "required": [
+     "arm",
+     "role",
+     "segment_m",
+     "provenance",
+     "source"
+    ],
+    "title": "Gate",
+    "type": "object"
+   },
+   "LanePolygon": {
+    "additionalProperties": false,
+    "description": "One lane drawn by hand in ground metres, with what its markings allow.",
+    "properties": {
+     "allowed_turns": {
+      "description": "from markings; approach lanes only",
+      "items": {
+       "enum": [
+        "left",
+        "through",
+        "right",
+        "u_turn"
+       ],
+       "type": "string"
+      },
+      "title": "Allowed Turns",
+      "type": "array"
+     },
+     "arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Arm",
+      "type": "string"
+     },
+     "direction": {
+      "description": "towards or away from the centre",
+      "enum": [
+       "approach",
+       "exit"
+      ],
+      "title": "Direction",
+      "type": "string"
+     },
+     "lane_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+      "title": "Lane Id",
+      "type": "string"
+     },
+     "polygon_m": {
+      "description": "local ground metres, vertices in order, not closed",
+      "items": {
+       "maxItems": 2,
+       "minItems": 2,
+       "prefixItems": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        }
+       ],
+       "type": "array"
+      },
+      "minItems": 3,
+      "title": "Polygon M",
+      "type": "array"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     }
+    },
+    "required": [
+     "lane_id",
+     "arm",
+     "direction",
+     "polygon_m",
+     "allowed_turns",
+     "provenance",
+     "source"
+    ],
+    "title": "LanePolygon",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Lanes and gates of one junction in local ground metres, versioned with their frame anchor.\n\nThe ground frame has exactly one anchor: the camera calibration the geometry was drawn against\n(`calibration_spec_sha256`), or the published dataset of ground positions it was derived from\n(`ground_source_sha256`, e.g. the NGSIM trajectory file). A geometry anchored on a dataset\ncannot be used to measure camera tracks: the world model checks the calibration hash.",
+  "properties": {
+   "calibration_spec_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Calibration Spec Sha256"
+   },
+   "clip_id": {
+    "description": "the ingested clip, or the observation window of a ground dataset",
+    "minLength": 1,
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "drives_on": {
+    "const": "right",
+    "default": "right",
+    "description": "fixes which turn is left or right",
+    "title": "Drives On",
+    "type": "string"
+   },
+   "gates": {
+    "items": {
+     "$ref": "#/$defs/Gate"
+    },
+    "title": "Gates",
+    "type": "array"
+   },
+   "geometry_id": {
+    "minLength": 1,
+    "title": "Geometry Id",
+    "type": "string"
+   },
+   "ground_frame": {
+    "const": "local_enu_junction_m",
+    "default": "local_enu_junction_m",
+    "title": "Ground Frame",
+    "type": "string"
+   },
+   "ground_source_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "SHA-256 of the published ground dataset the geometry is derived from",
+    "title": "Ground Source Sha256"
+   },
+   "lanes": {
+    "items": {
+     "$ref": "#/$defs/LanePolygon"
+    },
+    "title": "Lanes",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "geometry_id",
+   "clip_id",
+   "lanes",
+   "gates"
+  ],
+  "title": "IntersectionGeometry",
+  "type": "object"
+ },
+ "LanePolygon": {
+  "additionalProperties": false,
+  "description": "One lane drawn by hand in ground metres, with what its markings allow.",
+  "properties": {
+   "allowed_turns": {
+    "description": "from markings; approach lanes only",
+    "items": {
+     "enum": [
+      "left",
+      "through",
+      "right",
+      "u_turn"
+     ],
+     "type": "string"
+    },
+    "title": "Allowed Turns",
+    "type": "array"
+   },
+   "arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Arm",
+    "type": "string"
+   },
+   "direction": {
+    "description": "towards or away from the centre",
+    "enum": [
+     "approach",
+     "exit"
+    ],
+    "title": "Direction",
+    "type": "string"
+   },
+   "lane_id": {
+    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+    "title": "Lane Id",
+    "type": "string"
+   },
+   "polygon_m": {
+    "description": "local ground metres, vertices in order, not closed",
+    "items": {
+     "maxItems": 2,
+     "minItems": 2,
+     "prefixItems": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "number"
+      }
+     ],
+     "type": "array"
+    },
+    "minItems": 3,
+    "title": "Polygon M",
+    "type": "array"
+   },
+   "provenance": {
+    "enum": [
+     "measured",
+     "approximated",
+     "synthetic"
+    ],
+    "title": "Provenance",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   }
+  },
+  "required": [
+   "lane_id",
+   "arm",
+   "direction",
+   "polygon_m",
+   "allowed_turns",
+   "provenance",
+   "source"
+  ],
+  "title": "LanePolygon",
+  "type": "object"
+ },
+ "MovementCount": {
+  "$defs": {
+   "MovementTrack": {
+    "additionalProperties": false,
+    "description": "One vehicle counted in a movement, with the evidence for it.",
+    "properties": {
+     "exit_line_time_s": {
+      "minimum": 0,
+      "title": "Exit Line Time S",
+      "type": "number"
+     },
+     "follows_markings": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "None when the lane is unknown",
+      "title": "Follows Markings"
+     },
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "approach lane just before the stop line, if any",
+      "title": "Lane Id"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stop_line_time_s": {
+      "minimum": 0,
+      "title": "Stop Line Time S",
+      "type": "number"
+     },
+     "track_id": {
+      "title": "Track Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "track_id",
+     "lane_id",
+     "stop_line_time_s",
+     "exit_line_time_s",
+     "follows_markings"
+    ],
+    "title": "MovementTrack",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Turning-movement count and stop-line flow for one approach and exit, over the clip.",
+  "properties": {
+   "approach": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Approach",
+    "type": "string"
+   },
+   "count_veh": {
+    "minimum": 0,
+    "title": "Count Veh",
+    "type": "integer"
+   },
+   "exit_arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Exit Arm",
+    "type": "string"
+   },
+   "flow_ci95_veh_per_h": {
+    "description": "exact Poisson 95% interval",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Flow Ci95 Veh Per H",
+    "type": "array"
+   },
+   "flow_veh_per_h": {
+    "description": "stop-line crossings over the clip duration",
+    "minimum": 0,
+    "title": "Flow Veh Per H",
+    "type": "number"
+   },
+   "marked_lane_ids": {
+    "description": "approach lanes whose markings allow it; empty if only observed",
+    "items": {
+     "type": "string"
+    },
+    "title": "Marked Lane Ids",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "tracks": {
+    "items": {
+     "$ref": "#/$defs/MovementTrack"
+    },
+    "title": "Tracks",
+    "type": "array"
+   },
+   "turn": {
+    "enum": [
+     "left",
+     "through",
+     "right",
+     "u_turn"
+    ],
+    "title": "Turn",
+    "type": "string"
+   }
+  },
+  "required": [
+   "approach",
+   "exit_arm",
+   "turn",
+   "count_veh",
+   "flow_veh_per_h",
+   "flow_ci95_veh_per_h",
+   "marked_lane_ids",
+   "tracks"
+  ],
+  "title": "MovementCount",
+  "type": "object"
+ },
+ "MovementTrack": {
+  "additionalProperties": false,
+  "description": "One vehicle counted in a movement, with the evidence for it.",
+  "properties": {
+   "exit_line_time_s": {
+    "minimum": 0,
+    "title": "Exit Line Time S",
+    "type": "number"
+   },
+   "follows_markings": {
+    "anyOf": [
+     {
+      "type": "boolean"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "None when the lane is unknown",
+    "title": "Follows Markings"
+   },
+   "lane_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "approach lane just before the stop line, if any",
+    "title": "Lane Id"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "stop_line_time_s": {
+    "minimum": 0,
+    "title": "Stop Line Time S",
+    "type": "number"
+   },
+   "track_id": {
+    "title": "Track Id",
+    "type": "string"
+   }
+  },
+  "required": [
+   "track_id",
+   "lane_id",
+   "stop_line_time_s",
+   "exit_line_time_s",
+   "follows_markings"
+  ],
+  "title": "MovementTrack",
+  "type": "object"
+ },
+ "Observation": {
+  "$defs": {
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One detected object in one frame (perception output, not ground truth).",
+  "properties": {
+   "bbox_xyxy_px": {
+    "description": "half-open image pixels",
+    "maxItems": 4,
+    "minItems": 4,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Bbox Xyxy Px",
+    "type": "array"
+   },
+   "class_label": {
+    "description": "the noun phrase sent to SAM",
+    "minLength": 1,
+    "title": "Class Label",
+    "type": "string"
+   },
+   "confidence": {
+    "anyOf": [
+     {
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "None when not supplied",
+    "title": "Confidence"
+   },
+   "frame": {
+    "$ref": "#/$defs/FrameRef"
+   },
+   "mask_artifact_uri": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Mask Artifact Uri"
+   },
+   "object_id": {
+    "description": "class-namespaced, e.g. 'car:12'",
+    "pattern": "^[a-z][a-z0-9_]*:\\S+$",
+    "title": "Object Id",
+    "type": "string"
+   },
+   "observation_id": {
+    "minLength": 1,
+    "title": "Observation Id",
+    "type": "string"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "observation_id",
+   "frame",
+   "class_label",
+   "object_id",
+   "bbox_xyxy_px",
+   "provenance"
+  ],
+  "title": "Observation",
+  "type": "object"
+ },
+ "Provenance": {
+  "additionalProperties": false,
+  "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+  "properties": {
+   "cached": {
+    "default": false,
+    "description": "True when replayed from cache, not produced live",
+    "title": "Cached",
+    "type": "boolean"
+   },
+   "input_sha256": {
+    "default": [],
+    "items": {
+     "type": "string"
+    },
+    "title": "Input Sha256",
+    "type": "array"
+   },
+   "kind": {
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Kind",
+    "type": "string"
+   },
+   "parameters": {
+    "additionalProperties": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "integer"
+      },
+      {
+       "type": "number"
+      },
+      {
+       "type": "boolean"
+      }
+     ]
+    },
+    "title": "Parameters",
+    "type": "object"
+   },
+   "produced_at_utc": {
+    "format": "date-time",
+    "title": "Produced At Utc",
+    "type": "string"
+   },
+   "produced_by": {
+    "description": "module path or model id",
+    "minLength": 1,
+    "title": "Produced By",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "software": {
+    "additionalProperties": {
+     "type": "string"
+    },
+    "description": "name -> version",
+    "title": "Software",
+    "type": "object"
+   }
+  },
+  "required": [
+   "kind",
+   "produced_by",
+   "produced_at_utc"
+  ],
+  "title": "Provenance",
+  "type": "object"
+ },
+ "QueueSample": {
+  "$defs": {
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Stopped vehicles chained back from one stop line in one lane, at one frame.",
+  "properties": {
+   "arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Arm",
+    "type": "string"
+   },
+   "censored": {
+    "default": false,
+    "description": "the chain reaches the far end of the observed lane, so the queue may go on beyond it: the length and count are lower bounds",
+    "title": "Censored",
+    "type": "boolean"
+   },
+   "frame": {
+    "$ref": "#/$defs/FrameRef"
+   },
+   "lane_id": {
+    "title": "Lane Id",
+    "type": "string"
+   },
+   "length_error_m": {
+    "description": "ground error at the last queued vehicle",
+    "minimum": 0,
+    "title": "Length Error M",
+    "type": "number"
+   },
+   "length_m": {
+    "description": "stop line to the last queued contact point",
+    "minimum": 0,
+    "title": "Length M",
+    "type": "number"
+   },
+   "queued_veh": {
+    "minimum": 0,
+    "title": "Queued Veh",
+    "type": "integer"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "track_ids": {
+    "description": "queued vehicles, nearest the stop line first",
+    "items": {
+     "type": "string"
+    },
+    "title": "Track Ids",
+    "type": "array"
+   },
+   "unknown_speed_track_ids": {
+    "description": "in the lane, speed unknown",
+    "items": {
+     "type": "string"
+    },
+    "title": "Unknown Speed Track Ids",
+    "type": "array"
+   }
+  },
+  "required": [
+   "frame",
+   "arm",
+   "lane_id",
+   "queued_veh",
+   "length_m",
+   "length_error_m",
+   "track_ids",
+   "unknown_speed_track_ids"
+  ],
+  "title": "QueueSample",
+  "type": "object"
+ },
+ "SignalInterval": {
+  "additionalProperties": false,
+  "description": "One signal head of an arm showing one state over [start_s, end_s), in clip seconds.\n\nHead `all` controls the arm's movements; head `left`, where an arm has one, is a protected\nleft-turn head and then controls the arm's left turns instead.",
+  "properties": {
+   "arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Arm",
+    "type": "string"
+   },
+   "end_s": {
+    "title": "End S",
+    "type": "number"
+   },
+   "head": {
+    "default": "all",
+    "enum": [
+     "all",
+     "left"
+    ],
+    "title": "Head",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "start_s": {
+    "minimum": 0,
+    "title": "Start S",
+    "type": "number"
+   },
+   "state": {
+    "enum": [
+     "green",
+     "yellow",
+     "red",
+     "unknown"
+    ],
+    "title": "State",
+    "type": "string"
+   }
+  },
+  "required": [
+   "arm",
+   "state",
+   "start_s",
+   "end_s"
+  ],
+  "title": "SignalInterval",
+  "type": "object"
+ },
+ "SignalSecond": {
+  "additionalProperties": false,
+  "description": "The signal state of every timed arm at one whole second of the clip.",
+  "properties": {
+   "green_arms": {
+    "description": "the phase: arms showing green",
+    "items": {
+     "enum": [
+      "N",
+      "E",
+      "S",
+      "W"
+     ],
+     "type": "string"
+    },
+    "title": "Green Arms",
+    "type": "array"
+   },
+   "left_states": {
+    "additionalProperties": {
+     "enum": [
+      "green",
+      "yellow",
+      "red",
+      "unknown"
+     ],
+     "type": "string"
+    },
+    "description": "protected-left heads, for arms that have one",
+    "propertyNames": {
+     "enum": [
+      "N",
+      "E",
+      "S",
+      "W"
+     ]
+    },
+    "title": "Left States",
+    "type": "object"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "states": {
+    "additionalProperties": {
+     "enum": [
+      "green",
+      "yellow",
+      "red",
+      "unknown"
+     ],
+     "type": "string"
+    },
+    "propertyNames": {
+     "enum": [
+      "N",
+      "E",
+      "S",
+      "W"
+     ]
+    },
+    "title": "States",
+    "type": "object"
+   },
+   "time_s": {
+    "minimum": 0,
+    "title": "Time S",
+    "type": "number"
+   }
+  },
+  "required": [
+   "time_s",
+   "states",
+   "green_arms"
+  ],
+  "title": "SignalSecond",
+  "type": "object"
+ },
+ "SignalTimeline": {
+  "$defs": {
+   "SignalInterval": {
+    "additionalProperties": false,
+    "description": "One signal head of an arm showing one state over [start_s, end_s), in clip seconds.\n\nHead `all` controls the arm's movements; head `left`, where an arm has one, is a protected\nleft-turn head and then controls the arm's left turns instead.",
+    "properties": {
+     "arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Arm",
+      "type": "string"
+     },
+     "end_s": {
+      "title": "End S",
+      "type": "number"
+     },
+     "head": {
+      "default": "all",
+      "enum": [
+       "all",
+       "left"
+      ],
+      "title": "Head",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "start_s": {
+      "minimum": 0,
+      "title": "Start S",
+      "type": "number"
+     },
+     "state": {
+      "enum": [
+       "green",
+       "yellow",
+       "red",
+       "unknown"
+      ],
+      "title": "State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "arm",
+     "state",
+     "start_s",
+     "end_s"
+    ],
+    "title": "SignalInterval",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Signal states per arm over one clip.\n\nEach timed arm has an `all` head; it may also have a protected `left` head, which then controls\nits left turns. Arms at right angles may never show green or yellow at the same time, and a\nleft head may not show green or yellow while the opposite arm's `all` head does. Per head,\nstates cycle green -> yellow -> red -> green, except to or from `unknown` (head not visible,\nnot annotated, or not estimable).",
+  "properties": {
+   "annotation_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "SHA-256 of the annotation file",
+    "title": "Annotation Sha256"
+   },
+   "clip_id": {
+    "minLength": 1,
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "intervals": {
+    "items": {
+     "$ref": "#/$defs/SignalInterval"
+    },
+    "minItems": 1,
+    "title": "Intervals",
+    "type": "array"
+   },
+   "label": {
+    "enum": [
+     "observed-annotated",
+     "published",
+     "trajectory-derived",
+     "assumed"
+    ],
+    "title": "Label",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "description": "who annotated it, or the publication",
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   },
+   "timeline_id": {
+    "minLength": 1,
+    "title": "Timeline Id",
+    "type": "string"
+   },
+   "window_s": {
+    "description": "clip duration the intervals cover",
+    "exclusiveMinimum": 0,
+    "title": "Window S",
+    "type": "number"
+   }
+  },
+  "required": [
+   "timeline_id",
+   "clip_id",
+   "label",
+   "source",
+   "window_s",
+   "intervals"
+  ],
+  "title": "SignalTimeline",
+  "type": "object"
+ },
+ "SourceClip": {
+  "$defs": {
+   "ClipLicense": {
+    "additionalProperties": false,
+    "description": "The licence record of one source clip; mirrors its row in docs/DATA_REGISTER.md.",
+    "properties": {
+     "accessed_on": {
+      "format": "date",
+      "title": "Accessed On",
+      "type": "string"
+     },
+     "attribution": {
+      "description": "exact text to show wherever pixels appear",
+      "minLength": 1,
+      "title": "Attribution",
+      "type": "string"
+     },
+     "licence_name": {
+      "minLength": 1,
+      "title": "Licence Name",
+      "type": "string"
+     },
+     "licence_url": {
+      "anyOf": [
+       {
+        "pattern": "^https?://\\S+$",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Licence Url"
+     },
+     "permits_cloud_processing": {
+      "description": "may be uploaded to a hosted model API",
+      "title": "Permits Cloud Processing",
+      "type": "boolean"
+     },
+     "permits_commercial_use": {
+      "title": "Permits Commercial Use",
+      "type": "boolean"
+     },
+     "permits_redistribution": {
+      "title": "Permits Redistribution",
+      "type": "boolean"
+     },
+     "register_ref": {
+      "description": "where the register row lives",
+      "minLength": 1,
+      "title": "Register Ref",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "share_alike": {
+      "title": "Share Alike",
+      "type": "boolean"
+     },
+     "source_id": {
+      "pattern": "^[a-z0-9][a-z0-9_-]*$",
+      "title": "Source Id",
+      "type": "string"
+     },
+     "source_url": {
+      "pattern": "^https?://\\S+$",
+      "title": "Source Url",
+      "type": "string"
+     },
+     "synthetic": {
+      "default": false,
+      "description": "generated in code; no third-party content",
+      "title": "Synthetic",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "source_id",
+     "source_url",
+     "licence_name",
+     "attribution",
+     "accessed_on",
+     "register_ref",
+     "permits_commercial_use",
+     "permits_cloud_processing",
+     "permits_redistribution",
+     "share_alike"
+    ],
+    "title": "ClipLicense",
+    "type": "object"
+   },
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   },
+   "TrimSpec": {
+    "additionalProperties": false,
+    "description": "Which part of the source to keep, in source seconds.",
+    "properties": {
+     "duration_s": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "None keeps the rest of the clip",
+      "title": "Duration S"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "start_s": {
+      "default": 0.0,
+      "minimum": 0,
+      "title": "Start S",
+      "type": "number"
+     }
+    },
+    "title": "TrimSpec",
+    "type": "object"
+   },
+   "VideoStreamInfo": {
+    "additionalProperties": false,
+    "description": "ffprobe facts about the first video stream of a file. Observed, not assumed.",
+    "properties": {
+     "codec": {
+      "title": "Codec",
+      "type": "string"
+     },
+     "duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Duration S",
+      "type": "number"
+     },
+     "fps": {
+      "description": "average frame rate",
+      "exclusiveMinimum": 0,
+      "title": "Fps",
+      "type": "number"
+     },
+     "frame_count": {
+      "exclusiveMinimum": 0,
+      "title": "Frame Count",
+      "type": "integer"
+     },
+     "height_px": {
+      "exclusiveMinimum": 0,
+      "title": "Height Px",
+      "type": "integer"
+     },
+     "pixel_format": {
+      "title": "Pixel Format",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "width_px": {
+      "exclusiveMinimum": 0,
+      "title": "Width Px",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "codec",
+     "pixel_format",
+     "width_px",
+     "height_px",
+     "fps",
+     "frame_count",
+     "duration_s"
+    ],
+    "title": "VideoStreamInfo",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Manifest of one ingested clip: what came in, what was produced, and how.",
+  "properties": {
+   "clip_id": {
+    "description": "first 16 hex digits of output_sha256",
+    "minLength": 1,
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "ffmpeg_command": {
+    "description": "with {source} and {output} placeholders",
+    "items": {
+     "type": "string"
+    },
+    "title": "Ffmpeg Command",
+    "type": "array"
+   },
+   "frames": {
+    "items": {
+     "$ref": "#/$defs/FrameRef"
+    },
+    "title": "Frames",
+    "type": "array"
+   },
+   "licence": {
+    "$ref": "#/$defs/ClipLicense"
+   },
+   "output_file": {
+    "description": "file name, relative to the manifest",
+    "minLength": 1,
+    "title": "Output File",
+    "type": "string"
+   },
+   "output_sha256": {
+    "title": "Output Sha256",
+    "type": "string"
+   },
+   "output_stream": {
+    "$ref": "#/$defs/VideoStreamInfo"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source_file_name": {
+    "minLength": 1,
+    "title": "Source File Name",
+    "type": "string"
+   },
+   "source_sha256": {
+    "title": "Source Sha256",
+    "type": "string"
+   },
+   "source_stream": {
+    "$ref": "#/$defs/VideoStreamInfo"
+   },
+   "target_fps": {
+    "exclusiveMinimum": 0,
+    "title": "Target Fps",
+    "type": "integer"
+   },
+   "trim": {
+    "$ref": "#/$defs/TrimSpec"
+   }
+  },
+  "required": [
+   "clip_id",
+   "licence",
+   "source_file_name",
+   "source_sha256",
+   "source_stream",
+   "trim",
+   "target_fps",
+   "output_file",
+   "output_sha256",
+   "output_stream",
+   "ffmpeg_command",
+   "frames",
+   "provenance"
+  ],
+  "title": "SourceClip",
+  "type": "object"
+ },
+ "Track": {
+  "$defs": {
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   },
+   "TrackPoint": {
+    "additionalProperties": false,
+    "description": "One observation as a point of a track, in image pixels.",
+    "properties": {
+     "bbox_xyxy_px": {
+      "maxItems": 4,
+      "minItems": 4,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Bbox Xyxy Px",
+      "type": "array"
+     },
+     "contact_point_px": {
+      "description": "bottom-centre of the box: where the vehicle meets the road, image pixels",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Contact Point Px",
+      "type": "array"
+     },
+     "frame": {
+      "$ref": "#/$defs/FrameRef"
+     },
+     "observation_id": {
+      "minLength": 1,
+      "title": "Observation Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "observation_id",
+     "frame",
+     "bbox_xyxy_px",
+     "contact_point_px"
+    ],
+    "title": "TrackPoint",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One vehicle followed through the clip, stitched from SAM object ids by our procedure.",
+  "properties": {
+   "bridged_gaps": {
+    "description": "gaps joined between different SAM ids",
+    "minimum": 0,
+    "title": "Bridged Gaps",
+    "type": "integer"
+   },
+   "class_label": {
+    "minLength": 1,
+    "title": "Class Label",
+    "type": "string"
+   },
+   "clip_id": {
+    "minLength": 1,
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "points": {
+    "items": {
+     "$ref": "#/$defs/TrackPoint"
+    },
+    "minItems": 1,
+    "title": "Points",
+    "type": "array"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "sam_object_ids": {
+    "description": "in order of appearance",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 1,
+    "title": "Sam Object Ids",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "track_id": {
+    "description": "e.g. 'car:t3'",
+    "pattern": "^[a-z][a-z0-9_]*:t[1-9][0-9]*$",
+    "title": "Track Id",
+    "type": "string"
+   }
+  },
+  "required": [
+   "track_id",
+   "clip_id",
+   "class_label",
+   "sam_object_ids",
+   "points",
+   "bridged_gaps",
+   "provenance"
+  ],
+  "title": "Track",
+  "type": "object"
+ },
+ "TrackPoint": {
+  "$defs": {
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One observation as a point of a track, in image pixels.",
+  "properties": {
+   "bbox_xyxy_px": {
+    "maxItems": 4,
+    "minItems": 4,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Bbox Xyxy Px",
+    "type": "array"
+   },
+   "contact_point_px": {
+    "description": "bottom-centre of the box: where the vehicle meets the road, image pixels",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Contact Point Px",
+    "type": "array"
+   },
+   "frame": {
+    "$ref": "#/$defs/FrameRef"
+   },
+   "observation_id": {
+    "minLength": 1,
+    "title": "Observation Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "observation_id",
+   "frame",
+   "bbox_xyxy_px",
+   "contact_point_px"
+  ],
+  "title": "TrackPoint",
+  "type": "object"
+ },
+ "TrafficWorldModel": {
+  "$defs": {
+   "AmbiguousMovement": {
+    "additionalProperties": false,
+    "description": "A track that crossed only one of the two gates: listed, never counted.",
+    "properties": {
+     "approach": {
+      "anyOf": [
+       {
+        "enum": [
+         "N",
+         "E",
+         "S",
+         "W"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approach"
+     },
+     "exit_arm": {
+      "anyOf": [
+       {
+        "enum": [
+         "N",
+         "E",
+         "S",
+         "W"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Exit Arm"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "track_id": {
+      "title": "Track Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "track_id",
+     "approach",
+     "exit_arm",
+     "reason"
+    ],
+    "title": "AmbiguousMovement",
+    "type": "object"
+   },
+   "CameraGate": {
+    "additionalProperties": false,
+    "description": "The pre-registered gate's result for one camera layer.",
+    "properties": {
+     "checks": {
+      "additionalProperties": {
+       "type": "boolean"
+      },
+      "title": "Checks",
+      "type": "object"
+     },
+     "gate_id": {
+      "title": "Gate Id",
+      "type": "string"
+     },
+     "gate_sha256": {
+      "title": "Gate Sha256",
+      "type": "string"
+     },
+     "metrics": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Metrics",
+      "type": "object"
+     },
+     "outcome": {
+      "enum": [
+       "go",
+       "no_go"
+      ],
+      "title": "Outcome",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it is no-go; empty for go",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "gate_id",
+     "gate_sha256",
+     "outcome",
+     "metrics",
+     "checks",
+     "reasons"
+    ],
+    "title": "CameraGate",
+    "type": "object"
+   },
+   "CameraLayer": {
+    "additionalProperties": false,
+    "description": "Camera-derived entities of the world model (P1-1), kept apart from the trajectories'.\n\nOnly lane-level quantities are derived from the camera (lane, presence, speed). Along-road\nones (stop-line crossings, queue lengths) are not: the calibration is not accepted for\nalong-road distances (ADR-018). Every count is a lower bound (SAM recall, hand check A3).",
+    "properties": {
+     "calibration_accepted": {
+      "description": "under ADR-018, for along-road distances",
+      "title": "Calibration Accepted",
+      "type": "boolean"
+     },
+     "calibration_notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Calibration Notes",
+      "type": "array"
+     },
+     "calibration_spec_sha256": {
+      "title": "Calibration Spec Sha256",
+      "type": "string"
+     },
+     "camera_clip_id": {
+      "title": "Camera Clip Id",
+      "type": "string"
+     },
+     "camera_clip_sha256": {
+      "title": "Camera Clip Sha256",
+      "type": "string"
+     },
+     "counts": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "observations in, projected, placed, rejected",
+      "title": "Counts",
+      "type": "object"
+     },
+     "derived": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Derived",
+      "type": "array"
+     },
+     "frame": {
+      "description": "how image pixels reach the junction frame",
+      "title": "Frame",
+      "type": "string"
+     },
+     "gate": {
+      "$ref": "#/$defs/CameraGate"
+     },
+     "label": {
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+     },
+     "lane_presence": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "lane -> distinct camera tracks seen in it",
+      "title": "Lane Presence",
+      "type": "object"
+     },
+     "not_derived": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Not Derived",
+      "type": "array"
+     },
+     "provenance": {
+      "$ref": "#/$defs/Provenance"
+     },
+     "sam_model": {
+      "title": "Sam Model",
+      "type": "string"
+     },
+     "sam_request_keys": {
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Sam Request Keys",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "const": "camera",
+      "default": "camera",
+      "title": "Source",
+      "type": "string"
+     },
+     "time_sync": {
+      "title": "Time Sync",
+      "type": "string"
+     },
+     "tracks": {
+      "items": {
+       "$ref": "#/$defs/CameraTrack"
+      },
+      "title": "Tracks",
+      "type": "array"
+     },
+     "tracks_sha256": {
+      "title": "Tracks Sha256",
+      "type": "string"
+     },
+     "window_s": {
+      "description": "the world model's seconds it covers",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Window S",
+      "type": "array"
+     }
+    },
+    "required": [
+     "label",
+     "camera_clip_id",
+     "camera_clip_sha256",
+     "sam_model",
+     "sam_request_keys",
+     "tracks_sha256",
+     "calibration_spec_sha256",
+     "calibration_accepted",
+     "calibration_notes",
+     "frame",
+     "time_sync",
+     "window_s",
+     "tracks",
+     "counts",
+     "lane_presence",
+     "derived",
+     "not_derived",
+     "gate",
+     "provenance"
+    ],
+    "title": "CameraLayer",
+    "type": "object"
+   },
+   "CameraTrack": {
+    "additionalProperties": false,
+    "description": "One SAM-tracked vehicle on the ground: camera-derived, never merged with NGSIM ones.",
+    "properties": {
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the lane most of its lane points lie in, else None",
+      "title": "Lane Id"
+     },
+     "lane_share": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "share of its lane points in that lane",
+      "title": "Lane Share"
+     },
+     "points": {
+      "items": {
+       "$ref": "#/$defs/CameraTrackPoint"
+      },
+      "minItems": 1,
+      "title": "Points",
+      "type": "array"
+     },
+     "sam_object_ids": {
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Sam Object Ids",
+      "type": "array"
+     },
+     "sam_track_id": {
+      "title": "Sam Track Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "track_id": {
+      "description": "e.g. 'cam2:car:t3'",
+      "pattern": "^cam[0-9]+:",
+      "title": "Track Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "track_id",
+     "sam_track_id",
+     "sam_object_ids",
+     "points",
+     "lane_id",
+     "lane_share"
+    ],
+    "title": "CameraTrack",
+    "type": "object"
+   },
+   "CameraTrackPoint": {
+    "additionalProperties": false,
+    "description": "One camera track point placed in the world model's frame (P1-1).",
+    "properties": {
+     "confidence": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "SAM's confidence, when supplied",
+      "title": "Confidence"
+     },
+     "frame": {
+      "$ref": "#/$defs/FrameRef",
+      "description": "the camera clip's frame"
+     },
+     "image_point_px": {
+      "description": "the SAM box centre, image pixels",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Image Point Px",
+      "type": "array"
+     },
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the one lane polygon containing it, else None",
+      "title": "Lane Id"
+     },
+     "lane_status": {
+      "enum": [
+       "in_lane",
+       "outside_lanes",
+       "ambiguous"
+      ],
+      "title": "Lane Status",
+      "type": "string"
+     },
+     "near_lane_boundary": {
+      "description": "closer to its lane's edge than its error",
+      "title": "Near Lane Boundary",
+      "type": "boolean"
+     },
+     "observation_id": {
+      "title": "Observation Id",
+      "type": "string"
+     },
+     "position_error_m": {
+      "description": "1-sigma ground error of the point",
+      "minimum": 0,
+      "title": "Position Error M",
+      "type": "number"
+     },
+     "position_m": {
+      "description": "the world model's junction frame",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Position M",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "speed_m_s": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Speed M S"
+     },
+     "window_time_s": {
+      "description": "the same instant in the world model's window",
+      "title": "Window Time S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "frame",
+     "window_time_s",
+     "observation_id",
+     "image_point_px",
+     "position_m",
+     "position_error_m",
+     "lane_id",
+     "lane_status",
+     "near_lane_boundary"
+    ],
+    "title": "CameraTrackPoint",
+    "type": "object"
+   },
+   "FrameRef": {
+    "additionalProperties": false,
+    "description": "One frame of an ingested clip, or one time step of a ground dataset's observation window\n(then `clip_id` names the window and `timestamp_s` counts from its start).",
+    "properties": {
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "frame_index": {
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timestamp_s": {
+      "description": "presentation time from the clip's first frame",
+      "minimum": 0,
+      "title": "Timestamp S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "clip_id",
+     "frame_index",
+     "timestamp_s"
+    ],
+    "title": "FrameRef",
+    "type": "object"
+   },
+   "GroundTrack": {
+    "additionalProperties": false,
+    "properties": {
+     "class_label": {
+      "title": "Class Label",
+      "type": "string"
+     },
+     "points": {
+      "items": {
+       "$ref": "#/$defs/GroundTrackPoint"
+      },
+      "title": "Points",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "track_id": {
+      "title": "Track Id",
+      "type": "string"
+     },
+     "unprojected_frames": {
+      "description": "points at or beyond the horizon",
+      "items": {
+       "type": "integer"
+      },
+      "title": "Unprojected Frames",
+      "type": "array"
+     }
+    },
+    "required": [
+     "track_id",
+     "class_label",
+     "points",
+     "unprojected_frames"
+    ],
+    "title": "GroundTrack",
+    "type": "object"
+   },
+   "GroundTrackPoint": {
+    "additionalProperties": false,
+    "description": "One track point on the ground: its contact point through the homography.",
+    "properties": {
+     "frame": {
+      "$ref": "#/$defs/FrameRef"
+     },
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the one lane polygon containing the point",
+      "title": "Lane Id"
+     },
+     "position_error_m": {
+      "description": "ground error of the assumed pixel error",
+      "minimum": 0,
+      "title": "Position Error M",
+      "type": "number"
+     },
+     "position_m": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Position M",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "speed_m_s": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "None when the track is too short",
+      "title": "Speed M S"
+     }
+    },
+    "required": [
+     "frame",
+     "position_m",
+     "position_error_m"
+    ],
+    "title": "GroundTrackPoint",
+    "type": "object"
+   },
+   "MovementCount": {
+    "additionalProperties": false,
+    "description": "Turning-movement count and stop-line flow for one approach and exit, over the clip.",
+    "properties": {
+     "approach": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Approach",
+      "type": "string"
+     },
+     "count_veh": {
+      "minimum": 0,
+      "title": "Count Veh",
+      "type": "integer"
+     },
+     "exit_arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Exit Arm",
+      "type": "string"
+     },
+     "flow_ci95_veh_per_h": {
+      "description": "exact Poisson 95% interval",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Flow Ci95 Veh Per H",
+      "type": "array"
+     },
+     "flow_veh_per_h": {
+      "description": "stop-line crossings over the clip duration",
+      "minimum": 0,
+      "title": "Flow Veh Per H",
+      "type": "number"
+     },
+     "marked_lane_ids": {
+      "description": "approach lanes whose markings allow it; empty if only observed",
+      "items": {
+       "type": "string"
+      },
+      "title": "Marked Lane Ids",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "tracks": {
+      "items": {
+       "$ref": "#/$defs/MovementTrack"
+      },
+      "title": "Tracks",
+      "type": "array"
+     },
+     "turn": {
+      "enum": [
+       "left",
+       "through",
+       "right",
+       "u_turn"
+      ],
+      "title": "Turn",
+      "type": "string"
+     }
+    },
+    "required": [
+     "approach",
+     "exit_arm",
+     "turn",
+     "count_veh",
+     "flow_veh_per_h",
+     "flow_ci95_veh_per_h",
+     "marked_lane_ids",
+     "tracks"
+    ],
+    "title": "MovementCount",
+    "type": "object"
+   },
+   "MovementTrack": {
+    "additionalProperties": false,
+    "description": "One vehicle counted in a movement, with the evidence for it.",
+    "properties": {
+     "exit_line_time_s": {
+      "minimum": 0,
+      "title": "Exit Line Time S",
+      "type": "number"
+     },
+     "follows_markings": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "None when the lane is unknown",
+      "title": "Follows Markings"
+     },
+     "lane_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "approach lane just before the stop line, if any",
+      "title": "Lane Id"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stop_line_time_s": {
+      "minimum": 0,
+      "title": "Stop Line Time S",
+      "type": "number"
+     },
+     "track_id": {
+      "title": "Track Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "track_id",
+     "lane_id",
+     "stop_line_time_s",
+     "exit_line_time_s",
+     "follows_markings"
+    ],
+    "title": "MovementTrack",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   },
+   "QueueSample": {
+    "additionalProperties": false,
+    "description": "Stopped vehicles chained back from one stop line in one lane, at one frame.",
+    "properties": {
+     "arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Arm",
+      "type": "string"
+     },
+     "censored": {
+      "default": false,
+      "description": "the chain reaches the far end of the observed lane, so the queue may go on beyond it: the length and count are lower bounds",
+      "title": "Censored",
+      "type": "boolean"
+     },
+     "frame": {
+      "$ref": "#/$defs/FrameRef"
+     },
+     "lane_id": {
+      "title": "Lane Id",
+      "type": "string"
+     },
+     "length_error_m": {
+      "description": "ground error at the last queued vehicle",
+      "minimum": 0,
+      "title": "Length Error M",
+      "type": "number"
+     },
+     "length_m": {
+      "description": "stop line to the last queued contact point",
+      "minimum": 0,
+      "title": "Length M",
+      "type": "number"
+     },
+     "queued_veh": {
+      "minimum": 0,
+      "title": "Queued Veh",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "track_ids": {
+      "description": "queued vehicles, nearest the stop line first",
+      "items": {
+       "type": "string"
+      },
+      "title": "Track Ids",
+      "type": "array"
+     },
+     "unknown_speed_track_ids": {
+      "description": "in the lane, speed unknown",
+      "items": {
+       "type": "string"
+      },
+      "title": "Unknown Speed Track Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "frame",
+     "arm",
+     "lane_id",
+     "queued_veh",
+     "length_m",
+     "length_error_m",
+     "track_ids",
+     "unknown_speed_track_ids"
+    ],
+    "title": "QueueSample",
+    "type": "object"
+   },
+   "SignalInterval": {
+    "additionalProperties": false,
+    "description": "One signal head of an arm showing one state over [start_s, end_s), in clip seconds.\n\nHead `all` controls the arm's movements; head `left`, where an arm has one, is a protected\nleft-turn head and then controls the arm's left turns instead.",
+    "properties": {
+     "arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Arm",
+      "type": "string"
+     },
+     "end_s": {
+      "title": "End S",
+      "type": "number"
+     },
+     "head": {
+      "default": "all",
+      "enum": [
+       "all",
+       "left"
+      ],
+      "title": "Head",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "start_s": {
+      "minimum": 0,
+      "title": "Start S",
+      "type": "number"
+     },
+     "state": {
+      "enum": [
+       "green",
+       "yellow",
+       "red",
+       "unknown"
+      ],
+      "title": "State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "arm",
+     "state",
+     "start_s",
+     "end_s"
+    ],
+    "title": "SignalInterval",
+    "type": "object"
+   },
+   "SignalSecond": {
+    "additionalProperties": false,
+    "description": "The signal state of every timed arm at one whole second of the clip.",
+    "properties": {
+     "green_arms": {
+      "description": "the phase: arms showing green",
+      "items": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ],
+       "type": "string"
+      },
+      "title": "Green Arms",
+      "type": "array"
+     },
+     "left_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "description": "protected-left heads, for arms that have one",
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Left States",
+      "type": "object"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "States",
+      "type": "object"
+     },
+     "time_s": {
+      "minimum": 0,
+      "title": "Time S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "time_s",
+     "states",
+     "green_arms"
+    ],
+    "title": "SignalSecond",
+    "type": "object"
+   },
+   "SignalTimeline": {
+    "additionalProperties": false,
+    "description": "Signal states per arm over one clip.\n\nEach timed arm has an `all` head; it may also have a protected `left` head, which then controls\nits left turns. Arms at right angles may never show green or yellow at the same time, and a\nleft head may not show green or yellow while the opposite arm's `all` head does. Per head,\nstates cycle green -> yellow -> red -> green, except to or from `unknown` (head not visible,\nnot annotated, or not estimable).",
+    "properties": {
+     "annotation_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "SHA-256 of the annotation file",
+      "title": "Annotation Sha256"
+     },
+     "clip_id": {
+      "minLength": 1,
+      "title": "Clip Id",
+      "type": "string"
+     },
+     "intervals": {
+      "items": {
+       "$ref": "#/$defs/SignalInterval"
+      },
+      "minItems": 1,
+      "title": "Intervals",
+      "type": "array"
+     },
+     "label": {
+      "enum": [
+       "observed-annotated",
+       "published",
+       "trajectory-derived",
+       "assumed"
+      ],
+      "title": "Label",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "description": "who annotated it, or the publication",
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     },
+     "timeline_id": {
+      "minLength": 1,
+      "title": "Timeline Id",
+      "type": "string"
+     },
+     "window_s": {
+      "description": "clip duration the intervals cover",
+      "exclusiveMinimum": 0,
+      "title": "Window S",
+      "type": "number"
+     }
+    },
+    "required": [
+     "timeline_id",
+     "clip_id",
+     "label",
+     "source",
+     "window_s",
+     "intervals"
+    ],
+    "title": "SignalTimeline",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Measurements derived from tracks and geometry; every value traceable.\n\nTracks reach the ground either through a camera calibration (`calibration_spec_sha256`) or\nalready as published ground positions (`ground_source_sha256`, the dataset file, which is\nthen also the tracks input). Exactly one of the two is set. `camera`, when set, holds a\nsecond, camera-derived source (P1-1) beside a trajectory-built model; it is left out of the\nJSON when unset, so models made before it serialise and hash as they did.",
+  "properties": {
+   "ambiguous": {
+    "items": {
+     "$ref": "#/$defs/AmbiguousMovement"
+    },
+    "title": "Ambiguous",
+    "type": "array"
+   },
+   "calibration_spec_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Calibration Spec Sha256"
+   },
+   "camera": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/CameraLayer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "camera-derived entities (P1-1)"
+   },
+   "clip_id": {
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "end_of_red_queues": {
+    "description": "each approach lane in the last frame before its red turns green",
+    "items": {
+     "$ref": "#/$defs/QueueSample"
+    },
+    "title": "End Of Red Queues",
+    "type": "array"
+   },
+   "geometry_id": {
+    "title": "Geometry Id",
+    "type": "string"
+   },
+   "geometry_sha256": {
+    "title": "Geometry Sha256",
+    "type": "string"
+   },
+   "ground_source_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Ground Source Sha256"
+   },
+   "ground_tracks": {
+    "items": {
+     "$ref": "#/$defs/GroundTrack"
+    },
+    "title": "Ground Tracks",
+    "type": "array"
+   },
+   "movements": {
+    "items": {
+     "$ref": "#/$defs/MovementCount"
+    },
+    "title": "Movements",
+    "type": "array"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "queues": {
+    "description": "every approach lane, at a fixed interval",
+    "items": {
+     "$ref": "#/$defs/QueueSample"
+    },
+    "title": "Queues",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "signal_notes": {
+    "description": "red ends that could not be sampled, and why",
+    "items": {
+     "type": "string"
+    },
+    "title": "Signal Notes",
+    "type": "array"
+   },
+   "signal_per_second": {
+    "items": {
+     "$ref": "#/$defs/SignalSecond"
+    },
+    "title": "Signal Per Second",
+    "type": "array"
+   },
+   "signal_timeline": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/SignalTimeline"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   },
+   "tracks_sha256": {
+    "title": "Tracks Sha256",
+    "type": "string"
+   },
+   "window_s": {
+    "description": "clip duration the flows are computed over",
+    "exclusiveMinimum": 0,
+    "title": "Window S",
+    "type": "number"
+   }
+  },
+  "required": [
+   "clip_id",
+   "geometry_id",
+   "geometry_sha256",
+   "tracks_sha256",
+   "window_s",
+   "ground_tracks",
+   "movements",
+   "ambiguous",
+   "queues",
+   "signal_timeline",
+   "signal_per_second",
+   "end_of_red_queues",
+   "signal_notes",
+   "provenance"
+  ],
+  "title": "TrafficWorldModel",
+  "type": "object"
+ },
+ "TrimSpec": {
+  "additionalProperties": false,
+  "description": "Which part of the source to keep, in source seconds.",
+  "properties": {
+   "duration_s": {
+    "anyOf": [
+     {
+      "exclusiveMinimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "None keeps the rest of the clip",
+    "title": "Duration S"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "start_s": {
+    "default": 0.0,
+    "minimum": 0,
+    "title": "Start S",
+    "type": "number"
+   }
+  },
+  "title": "TrimSpec",
+  "type": "object"
+ },
+ "VideoStreamInfo": {
+  "additionalProperties": false,
+  "description": "ffprobe facts about the first video stream of a file. Observed, not assumed.",
+  "properties": {
+   "codec": {
+    "title": "Codec",
+    "type": "string"
+   },
+   "duration_s": {
+    "exclusiveMinimum": 0,
+    "title": "Duration S",
+    "type": "number"
+   },
+   "fps": {
+    "description": "average frame rate",
+    "exclusiveMinimum": 0,
+    "title": "Fps",
+    "type": "number"
+   },
+   "frame_count": {
+    "exclusiveMinimum": 0,
+    "title": "Frame Count",
+    "type": "integer"
+   },
+   "height_px": {
+    "exclusiveMinimum": 0,
+    "title": "Height Px",
+    "type": "integer"
+   },
+   "pixel_format": {
+    "title": "Pixel Format",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "width_px": {
+    "exclusiveMinimum": 0,
+    "title": "Width Px",
+    "type": "integer"
+   }
+  },
+  "required": [
+   "codec",
+   "pixel_format",
+   "width_px",
+   "height_px",
+   "fps",
+   "frame_count",
+   "duration_s"
+  ],
+  "title": "VideoStreamInfo",
+  "type": "object"
+ }
+}

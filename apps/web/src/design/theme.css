@@ -1,0 +1,62 @@
+/*
+ * Tailwind theme mapping. The stock palette, fonts and sizes are cleared first, so a class can
+ * only ever name a CairoFlow token: `bg-indigo-500` simply does not exist here.
+ */
+@theme inline {
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --shadow-*: initial;
+  --radius-*: initial;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-asphalt-0: var(--asphalt-0);
+  --color-asphalt-1: var(--asphalt-1);
+  --color-asphalt-2: var(--asphalt-2);
+  --color-asphalt-3: var(--asphalt-3);
+  --color-rule-1: var(--rule-1);
+  --color-rule-2: var(--rule-2);
+  --color-paint-1: var(--paint-1);
+  --color-paint-2: var(--paint-2);
+  --color-paint-3: var(--paint-3);
+  --color-paint-4: var(--paint-4);
+  --color-amber: var(--amber);
+  --color-amber-ink: var(--amber-ink);
+  --color-go: var(--go);
+  --color-stop: var(--stop);
+  --color-ev-observed: var(--ev-observed);
+  --color-ev-approximated: var(--ev-approximated);
+  --color-ev-assumed: var(--ev-assumed);
+  --color-ev-model-generated: var(--ev-model-generated);
+  --color-ev-simulated: var(--ev-simulated);
+
+  --font-display: var(--font-display);
+  --font-text: var(--font-text);
+  --font-mono: var(--font-mono);
+
+  --text-micro: var(--text-micro);
+  --text-label: var(--text-label);
+  --text-body: var(--text-body);
+  --text-head: var(--text-head);
+  --text-title: var(--text-title);
+  --text-display: var(--text-display);
+  --text-hero: var(--text-hero);
+  --text-num-s: var(--num-s);
+  --text-num-m: var(--num-m);
+  --text-num-l: var(--num-l);
+
+  --radius-none: 0;
+
+  --spacing-margin: var(--margin);
+  --spacing-gutter: var(--gutter);
+  --spacing-rail: var(--rail);
+  --spacing-strip: var(--strip);
+  --spacing-bottom-bar: var(--bottom-bar);
+
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+}

@@ -1,0 +1,716 @@
+{
+  "schema_version": "0.1.0",
+  "label": "computed by code (cairoflow_evaluation.muse_recurrence) from stored Muse replies; the statements are model-generated text; recurrence measures the model's consistency, not the traffic",
+  "request_key": "ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad",
+  "prompt_version": "0.1.0",
+  "bundle_id": "94d8ba7f75925ed4",
+  "n_replies": 4,
+  "replies": [
+    {
+      "schema_version": "0.1.0",
+      "reply_id": "r1",
+      "replicate": 1,
+      "cache_path": "cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.json",
+      "cache_sha256": "2c94eb6f579b2ea02af7b391d17595732e6ea6125f80b3d60b10bcc38804a92d",
+      "response_id": "resp_6ae1ab232d6734548cef4e03"
+    },
+    {
+      "schema_version": "0.1.0",
+      "reply_id": "r2",
+      "replicate": 2,
+      "cache_path": "cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.r2.json",
+      "cache_sha256": "f4c93e6892bdbeb2f701b4d483f8076f3e212a302f08919a36baa612ca3a78a5",
+      "response_id": "resp_6aea2888f40b9650c4374eb3"
+    },
+    {
+      "schema_version": "0.1.0",
+      "reply_id": "r3",
+      "replicate": 3,
+      "cache_path": "cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.r3.json",
+      "cache_sha256": "642edc4df7c17ab728e7aa1aa2e0fefc62c3b32c9b9a05f2ca40637fa4461f83",
+      "response_id": "resp_6aea28b62d2a15dabb3c4733"
+    },
+    {
+      "schema_version": "0.1.0",
+      "reply_id": "r4",
+      "replicate": 4,
+      "cache_path": "cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.r4.json",
+      "cache_sha256": "d0ebe76ad307d12173449034d0471f1988ef1de83d460f91f6bf7569a563ddda",
+      "response_id": "resp_6aea28ed0e4c388be7d14521"
+    }
+  ],
+  "rule": "hypotheses of different replies are linked when their supporting evidence sets overlap with Jaccard >= 0.5; a cluster is a connected group (single link); wording is not compared",
+  "jaccard_threshold": 0.5,
+  "evidence": [
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.NE",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.NS",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.SN",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N11",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N12",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.S2",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.S3",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N11",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N12",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S2",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S3",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "sig.program",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N2",
+      "supporting_in": 1,
+      "contradicting_in": 3,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.SW",
+      "supporting_in": 0,
+      "contradicting_in": 4,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S11",
+      "supporting_in": 0,
+      "contradicting_in": 4,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S4",
+      "supporting_in": 0,
+      "contradicting_in": 4,
+      "cited_in": 4,
+      "replies": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.WE",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 3,
+      "replies": [
+        "r1",
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.W2",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 3,
+      "replies": [
+        "r1",
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.E2",
+      "supporting_in": 0,
+      "contradicting_in": 2,
+      "cited_in": 3,
+      "replies": [
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N31",
+      "supporting_in": 0,
+      "contradicting_in": 3,
+      "cited_in": 3,
+      "replies": [
+        "r1",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.S11",
+      "supporting_in": 0,
+      "contradicting_in": 3,
+      "cited_in": 3,
+      "replies": [
+        "r1",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N31",
+      "supporting_in": 0,
+      "contradicting_in": 3,
+      "cited_in": 3,
+      "replies": [
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N2",
+      "supporting_in": 2,
+      "contradicting_in": 0,
+      "cited_in": 2,
+      "replies": [
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N3",
+      "supporting_in": 2,
+      "contradicting_in": 0,
+      "cited_in": 2,
+      "replies": [
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N1",
+      "supporting_in": 2,
+      "contradicting_in": 0,
+      "cited_in": 2,
+      "replies": [
+        "r1",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S1",
+      "supporting_in": 2,
+      "contradicting_in": 0,
+      "cited_in": 2,
+      "replies": [
+        "r1",
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.EW",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 2,
+      "replies": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N3",
+      "supporting_in": 1,
+      "contradicting_in": 1,
+      "cited_in": 2,
+      "replies": [
+        "r1",
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.W2",
+      "supporting_in": 0,
+      "contradicting_in": 1,
+      "cited_in": 2,
+      "replies": [
+        "r2",
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.ES",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.WS",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N1",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 1,
+      "replies": [
+        "r4"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.E1",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.E2",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.W1",
+      "supporting_in": 1,
+      "contradicting_in": 0,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "net.signal.cycle",
+      "supporting_in": 0,
+      "contradicting_in": 1,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.W1",
+      "supporting_in": 0,
+      "contradicting_in": 1,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.W3",
+      "supporting_in": 0,
+      "contradicting_in": 1,
+      "cited_in": 1,
+      "replies": [
+        "r3"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.W3",
+      "supporting_in": 0,
+      "contradicting_in": 0,
+      "cited_in": 1,
+      "replies": [
+        "r2"
+      ]
+    }
+  ],
+  "hypotheses": [
+    {
+      "schema_version": "0.1.0",
+      "cluster_id": "C1",
+      "in_replies": 4,
+      "members": [
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r1",
+          "hypothesis_id": "H1",
+          "statement": "The junction is primarily limited by heavy northbound through and southbound through demand sharing the main north-south through green, producing persistent residual queues on southbound through lanes and northbound through lanes.",
+          "confidence_label": "medium",
+          "supporting_evidence_ids": [
+            "mv.NS",
+            "mv.SN",
+            "qr.S3",
+            "qr.S2",
+            "qr.S1",
+            "q.S3",
+            "q.S2",
+            "qr.N1",
+            "sig.program"
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r2",
+          "hypothesis_id": "H1",
+          "statement": "The junction is limited by insufficient green for the heavy north-south through demand, causing persistent build-up on north and south through lanes",
+          "confidence_label": "low",
+          "supporting_evidence_ids": [
+            "mv.NS",
+            "mv.SN",
+            "q.S2",
+            "q.S3",
+            "q.N12",
+            "qr.S2",
+            "qr.S3",
+            "qr.N12",
+            "sig.program"
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r3",
+          "hypothesis_id": "H1",
+          "statement": "The junction is limited by insufficient through green for heavy north-south through demand causing residual queues on northbound and southbound through lanes",
+          "confidence_label": "medium",
+          "supporting_evidence_ids": [
+            "mv.NS",
+            "mv.SN",
+            "q.N2",
+            "q.N3",
+            "q.S2",
+            "q.S3",
+            "qr.N2",
+            "qr.N3",
+            "qr.S1",
+            "qr.S2",
+            "qr.S3",
+            "sig.program"
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r4",
+          "hypothesis_id": "H1",
+          "statement": "The junction is limited by heavy north-south through demand exceeding the through green share, causing sustained queuing on north through lanes and south through lanes.",
+          "confidence_label": "medium",
+          "supporting_evidence_ids": [
+            "mv.NS",
+            "mv.SN",
+            "q.N1",
+            "q.N2",
+            "q.N3",
+            "q.S2",
+            "q.S3",
+            "qr.N1",
+            "qr.S2",
+            "qr.S3",
+            "sig.program"
+          ]
+        }
+      ],
+      "shared_evidence_ids": [
+        "mv.NS",
+        "mv.SN",
+        "q.S2",
+        "q.S3",
+        "qr.S2",
+        "qr.S3",
+        "sig.program"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "cluster_id": "C2",
+      "in_replies": 4,
+      "members": [
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r1",
+          "hypothesis_id": "H2",
+          "statement": "The junction is primarily limited by high northbound left-turn demand relative to dedicated left-turn green and storage, causing large persistent queues in the north left-turn lanes while south left-turn and side-street approaches remain light.",
+          "confidence_label": "low",
+          "supporting_evidence_ids": [
+            "mv.NE",
+            "q.N12",
+            "qr.N12",
+            "q.N11",
+            "qr.N11",
+            "sig.program"
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r2",
+          "hypothesis_id": "H2",
+          "statement": "The junction is limited by the short protected left-turn service and uneven lane use on the north approach, with north-left demand concentrated in one lane overwhelming its green",
+          "confidence_label": "low",
+          "supporting_evidence_ids": [
+            "mv.NE",
+            "q.N11",
+            "q.N12",
+            "qr.N11",
+            "qr.N12",
+            "sig.program"
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r3",
+          "hypothesis_id": "H2",
+          "statement": "The junction is limited by concentrated north left-turn demand and imbalance between left lanes with one lane carrying most queuing while south left remains light",
+          "confidence_label": "low",
+          "supporting_evidence_ids": [
+            "mv.NE",
+            "q.N11",
+            "q.N12",
+            "qr.N11",
+            "qr.N12",
+            "sig.program"
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r4",
+          "hypothesis_id": "H2",
+          "statement": "The junction is limited by north left-turn demand relative to short protected left green, concentrating storage queue in N12 and N11 and potentially impeding adjacent through flow.",
+          "confidence_label": "low",
+          "supporting_evidence_ids": [
+            "mv.NE",
+            "q.N12",
+            "q.N11",
+            "qr.N12",
+            "qr.N11",
+            "sig.program"
+          ]
+        }
+      ],
+      "shared_evidence_ids": [
+        "mv.NE",
+        "q.N11",
+        "q.N12",
+        "qr.N11",
+        "qr.N12",
+        "sig.program"
+      ]
+    },
+    {
+      "schema_version": "0.1.0",
+      "cluster_id": "C3",
+      "in_replies": 1,
+      "members": [
+        {
+          "schema_version": "0.1.0",
+          "reply_id": "r3",
+          "hypothesis_id": "H3",
+          "statement": "The junction is limited by disproportionate green and cycle share given to very low east-west demand which inflates red for mainline movements",
+          "confidence_label": "low",
+          "supporting_evidence_ids": [
+            "mv.ES",
+            "mv.EW",
+            "mv.WE",
+            "mv.WS",
+            "qr.E1",
+            "qr.E2",
+            "qr.W1",
+            "qr.W2",
+            "sig.program"
+          ]
+        }
+      ],
+      "shared_evidence_ids": [
+        "mv.ES",
+        "mv.EW",
+        "mv.WE",
+        "mv.WS",
+        "qr.E1",
+        "qr.E2",
+        "qr.W1",
+        "qr.W2",
+        "sig.program"
+      ]
+    }
+  ],
+  "interventions": [
+    {
+      "schema_version": "0.1.0",
+      "intervention_type": "signal_timing",
+      "in_replies": 4
+    }
+  ]
+}

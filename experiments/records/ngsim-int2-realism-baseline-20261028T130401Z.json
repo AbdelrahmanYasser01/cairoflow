@@ -1,0 +1,361 @@
+{
+  "script": "scripts/build_ngsim_int2_realism.py",
+  "created_at_utc": "2026-10-28T13:04:01+00:00",
+  "run_dir": "experiments/runs/ngsim-int2-realism-baseline-20261028T130401Z",
+  "label": "simulated",
+  "inputs": {
+    "scenario_record_sha256": "9d08eb6e033d2e60e81aaa10b5c6c6773fc4bb55058e39baae7224f59ff156a1",
+    "world_model_sha256": "09452b7b604be76c7d352413622e55ea6f3d82eeff837563ea4854faed22ce43",
+    "signal_timeline_sha256": "71a114a4a2e1e3e922e0b8684010633288ad6425943434c49eb06ca99e44ab9b"
+  },
+  "replay": {
+    "window_s": [
+      118.0,
+      751.0
+    ],
+    "drain_s": 600.0,
+    "yellow_s": 4.0,
+    "clearance_s": 1.0
+  },
+  "settings": {
+    "schema_version": "0.1.0",
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "warmup_s": 0.0,
+    "horizon_s": 633.0,
+    "drain_s": 600.0,
+    "step_length_s": 1.0,
+    "time_to_teleport_s": 300.0
+  },
+  "compile_options": {
+    "arm_length_m": 200.0,
+    "speed_limit_m_s": 13.89,
+    "default_exit_lanes": 2,
+    "default_lane_width_m": 3.2,
+    "program_id": "ngsim_int2_cycle",
+    "cycle_start_s": 564.0,
+    "right_turn_on_red": true
+  },
+  "baseline_manifest_sha256": "8eea8af7ab683fc150203b70ea727c9623ebb84bdc2574bd5aaae7209ec2be5d",
+  "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T130401Z",
+  "valid": true,
+  "reasons": [],
+  "reruns_identical": true,
+  "entries": {
+    "initial": 38,
+    "observed": 600,
+    "upstream": 93
+  },
+  "demand_notes": [
+    "trace demand (ADR-022): the observed vehicles over clip [118, 751) s, simulation time = clip time - window start; the movements list the world model's whole-clip counts and flows",
+    "vehicles entering per movement: EN 29, ES 5, EW 6, NE 112, NS 253, NW 19, SE 59, SN 180, SW 12, WE 30, WN 23, WS 3",
+    "entries: initial 38, observed 600, upstream 93",
+    "assumed: a later first observation within 40 m of the stop line enters at the start of its approach, timed to reach that spot at the speed limit; initial vehicles below 1 m/s enter at rest, re-packed at SUMO's length + minGap; all others enter at SUMO's safe speed",
+    "excluded: 81 crossed the stop line before the window",
+    "excluded: 134 first observed at or after the window end",
+    "trace_vehicles.json: SHA-256 97c97728c281997ef2f4a90a01fa71c700c2bbb70f41be60e92ef9c8d8b99373 (vehicle id -> track id and entry state)",
+    "every seed has the same vehicles and entry states; speed factors differ by seed"
+  ],
+  "runs": [
+    {
+      "seed": 1,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 6.0,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "6fb7c27ca0a5e20b6c0b243107f056b749e917bfe725046c6932a95adb0e0566"
+    },
+    {
+      "seed": 2,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 5.8,
+        "over_5_s": 1
+      },
+      "tripinfo_sha256": "dce0c4b7a5f4a1f6d67bb8600342678ae535c4fbf95203abd58a8e4bb47baa53"
+    },
+    {
+      "seed": 3,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 6.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "768745e62cf7bec0c871f7753f0524dc6a972b6bc6f579c10026e58025c22ecb"
+    },
+    {
+      "seed": 4,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 5.8,
+        "over_5_s": 1
+      },
+      "tripinfo_sha256": "8fabf07533feec8440ae2fb269b5b607cfbcf79a897b34634cae249a8182dc75"
+    },
+    {
+      "seed": 5,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 6.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "8632095a53eeda31d06a9dba3e137b28e29487292d1ea069d5974c122d1ec123"
+    },
+    {
+      "seed": 6,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 7.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "0d01ba017cfa27afd01df737d95288bea0c9c48047ad80d8c8b4c93f3461d877"
+    },
+    {
+      "seed": 7,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 5.8,
+        "over_5_s": 1
+      },
+      "tripinfo_sha256": "8ee5df95317d78c048beef9f806ded60736a62b0ab963fa7c9892cbac77371a9"
+    },
+    {
+      "seed": 8,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 6.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "fc749d2492261ebca4e94d7308cae0e4593655123f4699248f15e4fedb670698"
+    },
+    {
+      "seed": 9,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 8.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "ac194e39ac9886a4af230fbfc860378bfc0aa985edf5919738858637dda6d4a0"
+    },
+    {
+      "seed": 10,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 5.8,
+        "over_5_s": 1
+      },
+      "tripinfo_sha256": "0094c3053ed1b0cc271380dbede9e93925b70bb107ae00add3dfce63fc39d2af"
+    },
+    {
+      "seed": 11,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 7.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "5bf44123dcb03b5f6a6b0d7c841aa91841759f252a537438bfdd0fd11b882d88"
+    },
+    {
+      "seed": 12,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 5.8,
+        "over_5_s": 1
+      },
+      "tripinfo_sha256": "ae8456a16b5495b53f8ea2ef44616f13902c46f8ac129ac81856e4a641c8eaa9"
+    },
+    {
+      "seed": 13,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 4.8,
+        "over_5_s": 0
+      },
+      "tripinfo_sha256": "d8c98a1af0cee489fe7922757aab1dc28b57b90bf9f2f2601980a8315f309163"
+    },
+    {
+      "seed": 14,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 5.8,
+        "over_5_s": 1
+      },
+      "tripinfo_sha256": "2fc6565f3122b186efea2077f821692525a039d5b2a052f7b1fc33df8efea39d"
+    },
+    {
+      "seed": 15,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 8.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "eaa0f953d555e765811f49987604c2197df2fb25bd941ded11fdac2d326330c9"
+    },
+    {
+      "seed": 16,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 5.0,
+        "over_5_s": 0
+      },
+      "tripinfo_sha256": "2d55b384214b19fe5c5bff89808242fd29cb68d6fc1f934bb0fba1589f45e335"
+    },
+    {
+      "seed": 17,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 6.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "22acd83537e3cb05ae8c6d024833d7e36f3aa7bb6d56d42c88a79079fc8ab0f6"
+    },
+    {
+      "seed": 18,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 8.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "bccfbef8c41a7dda29be28a39e88fee8e0024333361a7dc42e6890276fe1b156"
+    },
+    {
+      "seed": 19,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 6.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "4f2e9a000e2de1bb28fdc2869da9960567354113149519aa8feec73c52b33ad1"
+    },
+    {
+      "seed": 20,
+      "valid": true,
+      "loaded": 731,
+      "arrived": 731,
+      "teleports": 0,
+      "collisions": 0,
+      "insertion_delay_s": {
+        "median": 0.0,
+        "max": 6.8,
+        "over_5_s": 2
+      },
+      "tripinfo_sha256": "b80f31136cd796e9c75b20c767ff03b2db0775f463d06c3fc20ee5c25dc665e8"
+    }
+  ]
+}

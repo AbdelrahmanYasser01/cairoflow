@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" width="760" height="310" role="img" aria-label="Queue at the end of red">
+<style>svg{--surface:#fcfcfb;--text:#0b0b0b;--text2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--obs:#2a78d6;--sim:#eb6834}@media (prefers-color-scheme:dark){svg{--surface:#1a1a19;--text:#f0efec;--text2:#c3c2b7;--grid:#2c2c2a;--axis:#383835;--obs:#3987e5;--sim:#d95926}}.bg{fill:var(--surface)}.t{fill:var(--text);font:600 14px system-ui,sans-serif}.l{fill:var(--text2);font:12px system-ui,sans-serif}.m{fill:var(--muted);font:11px system-ui,sans-serif}.g{stroke:var(--grid)}.a{stroke:var(--axis)}.c{stroke:var(--muted)}.o{fill:var(--obs);stroke:var(--obs)}.s{fill:var(--sim);stroke:var(--sim)}.ol{stroke:var(--obs);fill:none;stroke-width:2}.sl{stroke:var(--sim);fill:none;opacity:.7}</style>
+<rect class="bg" width="760" height="310"/>
+<text class="t" x="16" y="24">Queue at the end of red</text>
+<text class="m" x="16" y="42">Vehicles queued in the lanes following each head, mean over red ends; E and W are observed only 10-12 m deep</text>
+<circle class="o" cx="26" cy="60" r="4.5"/>
+<text class="l" x="42" y="64">Observed (NGSIM, derived; 95% interval)</text>
+<rect class="s" x="381.5" y="55.5" width="9" height="9" rx="1"/>
+<text class="l" x="402" y="64">Simulated (SUMO; seed range)</text>
+<line class="g" x1="230.0" y1="78" x2="230.0" y2="264"/>
+<text class="m" x="230.0" y="280" text-anchor="middle">0</text>
+<line class="g" x1="328.0" y1="78" x2="328.0" y2="264"/>
+<text class="m" x="328.0" y="280" text-anchor="middle">5</text>
+<line class="g" x1="426.0" y1="78" x2="426.0" y2="264"/>
+<text class="m" x="426.0" y="280" text-anchor="middle">10</text>
+<line class="g" x1="524.0" y1="78" x2="524.0" y2="264"/>
+<text class="m" x="524.0" y="280" text-anchor="middle">15</text>
+<line class="g" x1="622.0" y1="78" x2="622.0" y2="264"/>
+<text class="m" x="622.0" y="280" text-anchor="middle">20</text>
+<line class="g" x1="720.0" y1="78" x2="720.0" y2="264"/>
+<text class="m" x="720.0" y="280" text-anchor="middle">25</text>
+<text class="m" x="720" y="298" text-anchor="end">vehicles</text>
+<text class="l" x="218" y="103.0" text-anchor="end">E all (not comparable)</text>
+<line class="o" x1="261.4" y1="94.0" x2="284.9" y2="94.0" stroke-width="2"/>
+<text class="m" x="264.1" y="98.0" text-anchor="end">&#8805;</text>
+<g><title>E all (not comparable): observed 2.2, from 1.6 to 2.8 (censored: a lower bound)</title><circle class="o" cx="273.1" cy="94.0" r="4.5"/></g>
+<line class="s" x1="261.4" y1="104.0" x2="261.4" y2="104.0" stroke-width="2"/>
+<g><title>E all (not comparable): simulated mean 1.6, from 1.6 to 1.6</title><rect class="s" x="256.9" y="99.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="133.0" text-anchor="end">N all</text>
+<line class="o" x1="295.3" y1="124.0" x2="475.0" y2="124.0" stroke-width="2"/>
+<text class="m" x="368.0" y="128.0" text-anchor="end">&#8805;</text>
+<g><title>N all: observed 7.5, from 3.33 to 12.5 (censored: a lower bound)</title><circle class="o" cx="377.0" cy="124.0" r="4.5"/></g>
+<line class="s" x1="426.0" y1="134.0" x2="442.3" y2="134.0" stroke-width="2"/>
+<g><title>N all: simulated mean 10.5, from 10 to 10.8</title><rect class="s" x="431.0" y="129.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="163.0" text-anchor="end">N left</text>
+<line class="o" x1="434.4" y1="154.0" x2="512.8" y2="154.0" stroke-width="2"/>
+<text class="m" x="464.6" y="158.0" text-anchor="end">&#8805;</text>
+<g><title>N left: observed 12.4, from 10.4 to 14.4 (censored: a lower bound)</title><circle class="o" cx="473.6" cy="154.0" r="4.5"/></g>
+<line class="s" x1="507.2" y1="164.0" x2="521.2" y2="164.0" stroke-width="2"/>
+<g><title>N left: simulated mean 14.5, from 14.1 to 14.9</title><rect class="s" x="509.3" y="159.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="193.0" text-anchor="end">S all</text>
+<line class="o" x1="540.3" y1="184.0" x2="671.1" y2="184.0" stroke-width="2"/>
+<text class="m" x="593.4" y="188.0" text-anchor="end">&#8805;</text>
+<g><title>S all: observed 19, from 15.8 to 22.5 (censored: a lower bound)</title><circle class="o" cx="602.4" cy="184.0" r="4.5"/></g>
+<line class="s" x1="599.1" y1="194.0" x2="631.8" y2="194.0" stroke-width="2"/>
+<g><title>S all: simulated mean 19.2, from 18.8 to 20.5</title><rect class="s" x="602.5" y="189.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="223.0" text-anchor="end">S left</text>
+<line class="o" x1="237.8" y1="214.0" x2="249.6" y2="214.0" stroke-width="2"/>
+<g><title>S left: observed 0.8, from 0.4 to 1</title><circle class="o" cx="245.7" cy="214.0" r="4.5"/></g>
+<line class="s" x1="269.2" y1="224.0" x2="269.2" y2="224.0" stroke-width="2"/>
+<g><title>S left: simulated mean 2, from 2 to 2</title><rect class="s" x="264.7" y="219.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="253.0" text-anchor="end">W all (not comparable)</text>
+<line class="o" x1="233.9" y1="244.0" x2="257.4" y2="244.0" stroke-width="2"/>
+<text class="m" x="236.7" y="248.0" text-anchor="end">&#8805;</text>
+<g><title>W all (not comparable): observed 0.8, from 0.2 to 1.4 (censored: a lower bound)</title><circle class="o" cx="245.7" cy="244.0" r="4.5"/></g>
+<line class="s" x1="308.4" y1="254.0" x2="316.2" y2="254.0" stroke-width="2"/>
+<g><title>W all (not comparable): simulated mean 4.19, from 4 to 4.4</title><rect class="s" x="307.6" y="249.5" width="9" height="9" rx="1"/></g>
+<line class="a" x1="230" y1="264" x2="720" y2="264"/>
+</svg>

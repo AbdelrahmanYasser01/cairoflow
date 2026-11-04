@@ -1,0 +1,35 @@
+{
+  "script": "scripts/run_muse_replicates.py",
+  "created_at_utc": "2026-11-03T18:30:42+00:00",
+  "label": "model output (Muse Spark): an independent reply to the demo's committed request, sent again unchanged; hypotheses and proposals, not evidence and not a measurement",
+  "request_key": "ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad",
+  "replicate": 4,
+  "model": "muse-spark-1.3",
+  "prompt_version": "0.1.0",
+  "parameters": {
+    "effort": "medium",
+    "max_output_tokens": 7000,
+    "store": null
+  },
+  "bundle_id": "94d8ba7f75925ed4",
+  "status": "ok",
+  "response_id": "resp_6aea28ed0e4c388be7d14521",
+  "request_id": "2ee3807d-9954-4310-aaee-87dee48a64bf",
+  "sent_at_utc": "2026-11-03T18:32:22.059242+00:00",
+  "from_cache": false,
+  "recorded_cost_usd": 0.034578,
+  "usage": {
+    "input_tokens": 8449,
+    "output_tokens": 5651,
+    "total_tokens": 14100,
+    "cached_tokens": 0,
+    "reasoning_tokens": 4408
+  },
+  "hypotheses": 2,
+  "interventions": 3,
+  "citation_problems": [],
+  "cache": {
+    "path": "cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.r4.json",
+    "sha256": "d0ebe76ad307d12173449034d0471f1988ef1de83d460f91f6bf7569a563ddda"
+  }
+}

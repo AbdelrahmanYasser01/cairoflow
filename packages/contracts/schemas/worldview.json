@@ -1,0 +1,1050 @@
+{
+ "Absence": {
+  "additionalProperties": false,
+  "properties": {
+   "layer": {
+    "enum": [
+     "camera",
+     "signal_timeline",
+     "signal_program",
+     "queues",
+     "conflict_zones"
+    ],
+    "title": "Layer",
+    "type": "string"
+   },
+   "reason": {
+    "minLength": 1,
+    "title": "Reason",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "layer",
+   "reason"
+  ],
+  "title": "Absence",
+  "type": "object"
+ },
+ "Ambiguity": {
+  "additionalProperties": false,
+  "description": "A track that crossed only one of a movement's two gates: listed, never counted.",
+  "properties": {
+   "approach": {
+    "anyOf": [
+     {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Approach"
+   },
+   "exit_arm": {
+    "anyOf": [
+     {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Exit Arm"
+   },
+   "reason": {
+    "minLength": 1,
+    "title": "Reason",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "track_id": {
+    "title": "Track Id",
+    "type": "string"
+   }
+  },
+  "required": [
+   "track_id",
+   "approach",
+   "exit_arm",
+   "reason"
+  ],
+  "title": "Ambiguity",
+  "type": "object"
+ },
+ "EvidenceRef": {
+  "additionalProperties": false,
+  "description": "One evidence item of a bundle and the entities it describes (none: said so, not hidden).",
+  "properties": {
+   "entity_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Entity Ids",
+    "type": "array"
+   },
+   "evidence_id": {
+    "pattern": "^[a-z]+(\\.[A-Za-z0-9_@-]+)+$",
+    "title": "Evidence Id",
+    "type": "string"
+   },
+   "kind": {
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Kind",
+    "type": "string"
+   },
+   "note": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "why it maps to no entity, or to several",
+    "title": "Note"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "evidence_id",
+   "kind",
+   "entity_ids"
+  ],
+  "title": "EvidenceRef",
+  "type": "object"
+ },
+ "SourceRef": {
+  "additionalProperties": false,
+  "description": "Where in the source records an entity's values come from.",
+  "properties": {
+   "model": {
+    "enum": [
+     "TrafficWorldModel",
+     "IntersectionGeometry",
+     "SignalTimeline",
+     "CameraLayer",
+     "CompiledNetwork"
+    ],
+    "title": "Model",
+    "type": "string"
+   },
+   "path": {
+    "description": "e.g. 'movements[SN]' or 'lanes[S1]'",
+    "minLength": 1,
+    "title": "Path",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "model",
+   "path"
+  ],
+  "title": "SourceRef",
+  "type": "object"
+ },
+ "Uncertainty": {
+  "additionalProperties": false,
+  "description": "How far a value can be trusted, in the value's own unit.",
+  "properties": {
+   "interval95": {
+    "anyOf": [
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "95% interval, if known",
+    "title": "Interval95"
+   },
+   "lower_bound": {
+    "default": false,
+    "description": "the true value is at least this: censored data",
+    "title": "Lower Bound",
+    "type": "boolean"
+   },
+   "note": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Note"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "unit": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Unit"
+   }
+  },
+  "title": "Uncertainty",
+  "type": "object"
+ },
+ "WorldEntity": {
+  "$defs": {
+   "SourceRef": {
+    "additionalProperties": false,
+    "description": "Where in the source records an entity's values come from.",
+    "properties": {
+     "model": {
+      "enum": [
+       "TrafficWorldModel",
+       "IntersectionGeometry",
+       "SignalTimeline",
+       "CameraLayer",
+       "CompiledNetwork"
+      ],
+      "title": "Model",
+      "type": "string"
+     },
+     "path": {
+      "description": "e.g. 'movements[SN]' or 'lanes[S1]'",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "model",
+     "path"
+    ],
+    "title": "SourceRef",
+    "type": "object"
+   },
+   "Uncertainty": {
+    "additionalProperties": false,
+    "description": "How far a value can be trusted, in the value's own unit.",
+    "properties": {
+     "interval95": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "95% interval, if known",
+      "title": "Interval95"
+     },
+     "lower_bound": {
+      "default": false,
+      "description": "the true value is at least this: censored data",
+      "title": "Lower Bound",
+      "type": "boolean"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Note"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Unit"
+     }
+    },
+    "title": "Uncertainty",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "attributes": {
+    "additionalProperties": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "integer"
+      },
+      {
+       "type": "number"
+      },
+      {
+       "type": "boolean"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "description": "units in the key",
+    "title": "Attributes",
+    "type": "object"
+   },
+   "entity_id": {
+    "pattern": "^[a-z_]+:[A-Za-z0-9][A-Za-z0-9_.@|:-]*$",
+    "title": "Entity Id",
+    "type": "string"
+   },
+   "entity_type": {
+    "enum": [
+     "intersection",
+     "approach",
+     "lane",
+     "movement",
+     "signal_head",
+     "signal_program",
+     "conflict_zone",
+     "queue",
+     "camera_layer",
+     "camera_track"
+    ],
+    "title": "Entity Type",
+    "type": "string"
+   },
+   "evidence_kind": {
+    "description": "observed, approximated or assumed, as recorded",
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed"
+    ],
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "label": {
+    "minLength": 1,
+    "title": "Label",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "$ref": "#/$defs/SourceRef"
+   },
+   "status": {
+    "enum": [
+     "present",
+     "unobserved",
+     "censored",
+     "derived_rule"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "uncertainty": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/Uncertainty"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null
+   }
+  },
+  "required": [
+   "entity_id",
+   "entity_type",
+   "label",
+   "evidence_kind",
+   "status",
+   "source"
+  ],
+  "title": "WorldEntity",
+  "type": "object"
+ },
+ "WorldRelation": {
+  "additionalProperties": false,
+  "properties": {
+   "basis": {
+    "description": "why the relation holds, in a sentence",
+    "minLength": 1,
+    "title": "Basis",
+    "type": "string"
+   },
+   "evidence_kind": {
+    "description": "the less certain of the two ends",
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed"
+    ],
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "relation": {
+    "enum": [
+     "contains",
+     "allows",
+     "controlled_by",
+     "involves",
+     "queues_on",
+     "observed_in"
+    ],
+    "title": "Relation",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source_id": {
+    "title": "Source Id",
+    "type": "string"
+   },
+   "target_id": {
+    "title": "Target Id",
+    "type": "string"
+   }
+  },
+  "required": [
+   "source_id",
+   "relation",
+   "target_id",
+   "evidence_kind",
+   "basis"
+  ],
+  "title": "WorldRelation",
+  "type": "object"
+ },
+ "WorldView": {
+  "$defs": {
+   "Absence": {
+    "additionalProperties": false,
+    "properties": {
+     "layer": {
+      "enum": [
+       "camera",
+       "signal_timeline",
+       "signal_program",
+       "queues",
+       "conflict_zones"
+      ],
+      "title": "Layer",
+      "type": "string"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "layer",
+     "reason"
+    ],
+    "title": "Absence",
+    "type": "object"
+   },
+   "Ambiguity": {
+    "additionalProperties": false,
+    "description": "A track that crossed only one of a movement's two gates: listed, never counted.",
+    "properties": {
+     "approach": {
+      "anyOf": [
+       {
+        "enum": [
+         "N",
+         "E",
+         "S",
+         "W"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approach"
+     },
+     "exit_arm": {
+      "anyOf": [
+       {
+        "enum": [
+         "N",
+         "E",
+         "S",
+         "W"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Exit Arm"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "track_id": {
+      "title": "Track Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "track_id",
+     "approach",
+     "exit_arm",
+     "reason"
+    ],
+    "title": "Ambiguity",
+    "type": "object"
+   },
+   "EvidenceRef": {
+    "additionalProperties": false,
+    "description": "One evidence item of a bundle and the entities it describes (none: said so, not hidden).",
+    "properties": {
+     "entity_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Entity Ids",
+      "type": "array"
+     },
+     "evidence_id": {
+      "pattern": "^[a-z]+(\\.[A-Za-z0-9_@-]+)+$",
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "why it maps to no entity, or to several",
+      "title": "Note"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "kind",
+     "entity_ids"
+    ],
+    "title": "EvidenceRef",
+    "type": "object"
+   },
+   "SourceRef": {
+    "additionalProperties": false,
+    "description": "Where in the source records an entity's values come from.",
+    "properties": {
+     "model": {
+      "enum": [
+       "TrafficWorldModel",
+       "IntersectionGeometry",
+       "SignalTimeline",
+       "CameraLayer",
+       "CompiledNetwork"
+      ],
+      "title": "Model",
+      "type": "string"
+     },
+     "path": {
+      "description": "e.g. 'movements[SN]' or 'lanes[S1]'",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "model",
+     "path"
+    ],
+    "title": "SourceRef",
+    "type": "object"
+   },
+   "Uncertainty": {
+    "additionalProperties": false,
+    "description": "How far a value can be trusted, in the value's own unit.",
+    "properties": {
+     "interval95": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "95% interval, if known",
+      "title": "Interval95"
+     },
+     "lower_bound": {
+      "default": false,
+      "description": "the true value is at least this: censored data",
+      "title": "Lower Bound",
+      "type": "boolean"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Note"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Unit"
+     }
+    },
+    "title": "Uncertainty",
+    "type": "object"
+   },
+   "WorldEntity": {
+    "additionalProperties": false,
+    "properties": {
+     "attributes": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "description": "units in the key",
+      "title": "Attributes",
+      "type": "object"
+     },
+     "entity_id": {
+      "pattern": "^[a-z_]+:[A-Za-z0-9][A-Za-z0-9_.@|:-]*$",
+      "title": "Entity Id",
+      "type": "string"
+     },
+     "entity_type": {
+      "enum": [
+       "intersection",
+       "approach",
+       "lane",
+       "movement",
+       "signal_head",
+       "signal_program",
+       "conflict_zone",
+       "queue",
+       "camera_layer",
+       "camera_track"
+      ],
+      "title": "Entity Type",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "description": "observed, approximated or assumed, as recorded",
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "label": {
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "$ref": "#/$defs/SourceRef"
+     },
+     "status": {
+      "enum": [
+       "present",
+       "unobserved",
+       "censored",
+       "derived_rule"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "uncertainty": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/Uncertainty"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null
+     }
+    },
+    "required": [
+     "entity_id",
+     "entity_type",
+     "label",
+     "evidence_kind",
+     "status",
+     "source"
+    ],
+    "title": "WorldEntity",
+    "type": "object"
+   },
+   "WorldRelation": {
+    "additionalProperties": false,
+    "properties": {
+     "basis": {
+      "description": "why the relation holds, in a sentence",
+      "minLength": 1,
+      "title": "Basis",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "description": "the less certain of the two ends",
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "relation": {
+      "enum": [
+       "contains",
+       "allows",
+       "controlled_by",
+       "involves",
+       "queues_on",
+       "observed_in"
+      ],
+      "title": "Relation",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "target_id": {
+      "title": "Target Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "relation",
+     "target_id",
+     "evidence_kind",
+     "basis"
+    ],
+    "title": "WorldRelation",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "absent": {
+    "default": [],
+    "items": {
+     "$ref": "#/$defs/Absence"
+    },
+    "title": "Absent",
+    "type": "array"
+   },
+   "ambiguities": {
+    "default": [],
+    "items": {
+     "$ref": "#/$defs/Ambiguity"
+    },
+    "title": "Ambiguities",
+    "type": "array"
+   },
+   "bundle_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "the evidence bundle, if one was given",
+    "title": "Bundle Id"
+   },
+   "clip_id": {
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "entities": {
+    "items": {
+     "$ref": "#/$defs/WorldEntity"
+    },
+    "title": "Entities",
+    "type": "array"
+   },
+   "evidence": {
+    "default": [],
+    "items": {
+     "$ref": "#/$defs/EvidenceRef"
+    },
+    "title": "Evidence",
+    "type": "array"
+   },
+   "geometry_id": {
+    "title": "Geometry Id",
+    "type": "string"
+   },
+   "geometry_sha256": {
+    "description": "canonical, as TrafficWorldModel.geometry_sha256",
+    "title": "Geometry Sha256",
+    "type": "string"
+   },
+   "net_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "the compiled network, if one was given",
+    "title": "Net Sha256"
+   },
+   "relations": {
+    "items": {
+     "$ref": "#/$defs/WorldRelation"
+    },
+    "title": "Relations",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "view_sha256": {
+    "title": "View Sha256",
+    "type": "string"
+   },
+   "view_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "View Version",
+    "type": "string"
+   },
+   "world_model_sha256": {
+    "description": "canonical: sha256 of model_dump_json()",
+    "title": "World Model Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "clip_id",
+   "geometry_id",
+   "geometry_sha256",
+   "world_model_sha256",
+   "entities",
+   "relations",
+   "view_sha256"
+  ],
+  "title": "WorldView",
+  "type": "object"
+ }
+}

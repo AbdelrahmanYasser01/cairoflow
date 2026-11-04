@@ -1,0 +1,926 @@
+{
+  "schema": "cairoflow-a3-review/0.1.0",
+  "label": "observed by a person (the reviewer), by eye, on SAM 3.1 output",
+  "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+  "sheet_sha256": "606fc1ff5c52aeadda8ec8f4f01b470dfbe4779247d128f452faf6bb244c2138",
+  "clip_id": "4c0895cd84a81758",
+  "protocol": {
+    "sample_frames": [
+      0,
+      20,
+      40,
+      60,
+      80,
+      99
+    ],
+    "roi_bottom_px": 410,
+    "verdicts": {
+      "vehicle": "covers most of exactly one motor vehicle",
+      "not_vehicle": "no motor vehicle under most of the box",
+      "partial": "covers less than about half of one vehicle, or covers two or more"
+    },
+    "missed": "motor vehicles at least half visible above image row 410 that no box covers most of (parked or moving, on or off the road)",
+    "switches": "how often a crop shows a different vehicle from the crop before it",
+    "strip_step_frames": 10
+  },
+  "scores": {
+    "boxes": 73,
+    "verdicts": {
+      "vehicle": 73,
+      "not_vehicle": 0,
+      "partial": 0
+    },
+    "precision": {
+      "value": 1.0,
+      "ci95": [
+        0.95,
+        1.0
+      ],
+      "definition": "boxes marked vehicle / all sampled boxes"
+    },
+    "recall": {
+      "value": 0.2846,
+      "ci95": [
+        0.2318,
+        0.3439
+      ],
+      "found": 70,
+      "missed": 176,
+      "definition": "vehicle boxes above row 410 / (those + vehicles missed there)"
+    },
+    "id_switches": {
+      "total": 0,
+      "tracks_with_a_switch": 0,
+      "tracks": 18
+    },
+    "per_frame": [
+      {
+        "frame": 0,
+        "boxes": 16,
+        "vehicle": 16,
+        "missed": 27
+      },
+      {
+        "frame": 20,
+        "boxes": 16,
+        "vehicle": 16,
+        "missed": 25
+      },
+      {
+        "frame": 40,
+        "boxes": 12,
+        "vehicle": 12,
+        "missed": 29
+      },
+      {
+        "frame": 60,
+        "boxes": 11,
+        "vehicle": 11,
+        "missed": 32
+      },
+      {
+        "frame": 80,
+        "boxes": 9,
+        "vehicle": 9,
+        "missed": 29
+      },
+      {
+        "frame": 99,
+        "boxes": 9,
+        "vehicle": 9,
+        "missed": 34
+      }
+    ],
+    "caveats": [
+      "Wilson intervals treat boxes and vehicles as independent; boxes in one frame are not, so the intervals are too narrow",
+      "one reviewer, by eye, on one 10 s clip of one camera: it measures this clip only"
+    ]
+  },
+  "marks": [
+    {
+      "box": 1,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:29:01.598Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t13",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 1,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:04.756Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t13",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 1,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:27.731Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t13",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 1,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:09.450Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t13",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 1,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:50.146Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t13",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 1,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:58.729Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t13",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 10,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:50.456Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t3",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 10,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:18.549Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t11",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 10,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:34.966Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t8",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 10,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:19.505Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t4",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 11,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:51.364Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t5",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 11,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:19.542Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t3",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 11,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:35.668Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t14",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 11,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:20.403Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t17",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 12,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:51.914Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t16",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 12,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:21.746Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t5",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 12,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:36.402Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t4",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 13,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:53.047Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t6",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 13,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:22.861Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t8",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 14,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:53.578Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t8",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 14,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:23.611Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t14",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 15,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:55.449Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t14",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 15,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:24.447Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t6",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 16,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:56.467Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t4",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 16,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:25.309Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t4",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 2,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:29:13.358Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t15",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 2,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:05.636Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t15",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 2,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:28.360Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t15",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 2,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:10.100Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t15",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 2,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:50.818Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t15",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 2,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:59.384Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t15",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 3,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:19.561Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t7",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 3,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:07.961Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t7",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 3,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:29.108Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t7",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 3,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:11.036Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t7",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 3,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:51.981Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t7",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 3,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:31:00.310Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t7",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 4,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:24.576Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t1",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 4,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:08.810Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t9",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 4,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:29.600Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t12",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 4,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:13.645Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t12",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 4,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:52.499Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t16",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 4,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:31:00.835Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t16",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 5,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:28.121Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t9",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 5,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:09.599Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t2",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 5,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:30.537Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t9",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 5,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:14.460Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t16",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 5,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:53.332Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t3",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 5,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:31:01.960Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t3",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 6,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:29.371Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t2",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 6,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:10.160Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t12",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 6,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:31.306Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t10",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 6,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:15.206Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t3",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 6,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:53.834Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t5",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 6,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:31:02.664Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t5",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 7,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:35.968Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t12",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 7,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:13.389Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t10",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 7,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:33.145Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t16",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 7,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:16.061Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t5",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 7,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:54.683Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t8",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 7,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:31:03.301Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t8",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 8,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:48.356Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t10",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 8,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:14.769Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t1",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 8,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:33.662Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t3",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 8,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:16.731Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t8",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 8,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:55.264Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t14",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 8,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:31:03.730Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t14",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 9,
+      "frame": 0,
+      "kind": "box",
+      "marked_at": "2026-10-28T15:32:49.677Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t11",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 9,
+      "frame": 20,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:28:17.737Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t16",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 9,
+      "frame": 40,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:29:34.496Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t5",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 9,
+      "frame": 60,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:18.925Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t14",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 9,
+      "frame": 80,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:30:56.506Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t4",
+      "verdict": "vehicle"
+    },
+    {
+      "box": 9,
+      "frame": 99,
+      "kind": "box",
+      "marked_at": "2026-10-29T10:31:04.334Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "track_id": "car:t4",
+      "verdict": "vehicle"
+    },
+    {
+      "frame": 0,
+      "kind": "frame",
+      "marked_at": "2026-10-28T15:33:40.570Z",
+      "missed": 27,
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15"
+    },
+    {
+      "frame": 20,
+      "kind": "frame",
+      "marked_at": "2026-10-29T10:28:53.324Z",
+      "missed": 25,
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15"
+    },
+    {
+      "frame": 40,
+      "kind": "frame",
+      "marked_at": "2026-10-29T10:30:03.037Z",
+      "missed": 29,
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15"
+    },
+    {
+      "frame": 60,
+      "kind": "frame",
+      "marked_at": "2026-10-29T10:30:48.036Z",
+      "missed": 32,
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15"
+    },
+    {
+      "frame": 80,
+      "kind": "frame",
+      "marked_at": "2026-10-29T10:39:43.960Z",
+      "missed": 29,
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15"
+    },
+    {
+      "frame": 99,
+      "kind": "frame",
+      "marked_at": "2026-10-29T10:39:10.344Z",
+      "missed": 34,
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:27.524Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t1"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:31.757Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t2"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:33.608Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t3"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:35.471Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t4"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:36.911Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t5"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:38.896Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t6"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:39.814Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t7"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:41.282Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t8"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:42.388Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t9"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:43.645Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t10"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:44.360Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t11"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:45.809Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t12"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:46.638Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t13"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:48.052Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t14"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:48.949Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t15"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:50.267Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t16"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:52.417Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t17"
+    },
+    {
+      "kind": "track",
+      "marked_at": "2026-10-29T10:31:53.356Z",
+      "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15",
+      "switches": 0,
+      "track_id": "car:t18"
+    }
+  ]
+}

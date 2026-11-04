@@ -1,0 +1,117 @@
+{
+ "record_format": "corridor_summary/1",
+ "evidence_label": "reference_data",
+ "evidence_kind": "observed",
+ "evidence_note": "Counted from the published NGSIM trajectories. Not video analysis and not simulated.",
+ "definitions": {
+  "rows": "trajectory rows (one vehicle, one 0.1 s frame) with this int_id",
+  "unique_vehicles": "distinct vehicle_id values among those rows",
+  "mean_moving_speed_m_s": "mean of per-row speeds at or above 0.5 m/s; a speed is the distance from the same vehicle's row one frame earlier",
+  "vehicles_by_direction": "distinct vehicles per direction code; one vehicle can count under two codes",
+  "has_video_analysis": "camera footage of this intersection has been analysed"
+ },
+ "source": {
+  "path": "data/raw/ngsim-lankershim/trajectories/lankershim-0830-0845.csv",
+  "sha256": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e",
+  "rows": 616749,
+  "rows_outside_int_1_to_4": 478555,
+  "first_global_time_ms": 1118935800000,
+  "last_global_time_ms": 1118936699900,
+  "licence_name": "CC BY-SA 3.0 Unported",
+  "attribution": "Derived from U.S. Department of Transportation, Federal Highway Administration, Next Generation Simulation (NGSIM) Lankershim Boulevard vehicle trajectories, data.transportation.gov dataset 8ect-6jqj (DOI 10.21949/1504477)"
+ },
+ "intersections": [
+  {
+   "int_id": 1,
+   "site_id": null,
+   "name": null,
+   "name_status": "not_recorded",
+   "name_source": null,
+   "location": {
+    "lat_deg": 34.138135,
+    "lon_deg": -118.362585,
+    "method": "centroid of this int_id's rows; not a surveyed point"
+   },
+   "unique_vehicles": 704,
+   "rows": 20764,
+   "mean_moving_speed_m_s": 6.157,
+   "moving_rows": 14184,
+   "vehicles_by_direction": {
+    "EB": 5,
+    "NB": 362,
+    "WB": 19,
+    "SB": 338
+   },
+   "has_video_analysis": false
+  },
+  {
+   "int_id": 2,
+   "site_id": "ngsim-lankershim-int2",
+   "name": "Lankershim Blvd at Universal Hollywood Dr, Los Angeles",
+   "name_status": "supported_hypothesis",
+   "name_source": "docs/DATA_REGISTER.md §14.3",
+   "location": {
+    "lat_deg": 34.139033,
+    "lon_deg": -118.362142,
+    "method": "centroid of this int_id's rows; not a surveyed point"
+   },
+   "unique_vehicles": 956,
+   "rows": 56973,
+   "mean_moving_speed_m_s": 8.69,
+   "moving_rows": 38831,
+   "vehicles_by_direction": {
+    "EB": 234,
+    "NB": 402,
+    "WB": 92,
+    "SB": 495
+   },
+   "has_video_analysis": true
+  },
+  {
+   "int_id": 3,
+   "site_id": null,
+   "name": null,
+   "name_status": "not_recorded",
+   "name_source": null,
+   "location": {
+    "lat_deg": 34.140653,
+    "lon_deg": -118.361274,
+    "method": "centroid of this int_id's rows; not a surveyed point"
+   },
+   "unique_vehicles": 855,
+   "rows": 27176,
+   "mean_moving_speed_m_s": 11.731,
+   "moving_rows": 21202,
+   "vehicles_by_direction": {
+    "EB": 23,
+    "NB": 313,
+    "WB": 36,
+    "SB": 532
+   },
+   "has_video_analysis": false
+  },
+  {
+   "int_id": 4,
+   "site_id": null,
+   "name": null,
+   "name_status": "not_recorded",
+   "name_source": null,
+   "location": {
+    "lat_deg": 34.141872,
+    "lon_deg": -118.360936,
+    "method": "centroid of this int_id's rows; not a surveyed point"
+   },
+   "unique_vehicles": 853,
+   "rows": 33281,
+   "mean_moving_speed_m_s": 10.797,
+   "moving_rows": 24428,
+   "vehicles_by_direction": {
+    "EB": 21,
+    "NB": 298,
+    "WB": 14,
+    "SB": 553
+   },
+   "has_video_analysis": false
+  }
+ ]
+}

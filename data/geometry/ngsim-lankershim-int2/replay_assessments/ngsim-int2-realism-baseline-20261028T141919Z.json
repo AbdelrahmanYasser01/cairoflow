@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1.0",
+  "baseline_manifest_sha256": "76e85decc79b9d617c3f27cd1dd81440e38ed1e61866275a39b2c5271e848c92",
+  "status": "partially_validated",
+  "summary": "On signal timeline version 2, the replay baseline reproduces when the observed vehicles cross the stop line on every arm in median (within 4 s, no west left late), and north through stopping and travel time lie inside their observed intervals. But the south and right turners still stop more often than observed and left turns are slower; the timeline is estimated from the same crossings, no delay is observed, and the 20 seeds replay one observed 10.5 minutes. It is not validated for estimating intervention effects.",
+  "findings": [
+    "North through: paired crossing lag -0.1 to +0.2 s (median per seed); travel time 17.5 s against 17.2 s [12.3, 23.5] observed; share stopping 27.7% against 24.1% [19.0, 30.1], now inside the observed interval (30.6% on version 1).",
+    "South through: crossings 3.5 to 3.9 s early, and 78.2% stop against 66.9% [59.3, 73.7] observed; start-up headways err in opposite directions on N and S, so no global calibration was made.",
+    "Turns: N and S left travel times 64.2 s and 70.1 s against 56.3 [49.3, 63.0] and 46.4 [34.5, 64.7] observed; right turners stop far more often (N 40% against 11%, S 55% against 37%).",
+    "West: no left turn misses its green any more (all 23 paired, 3.6 to 4.1 s early in median, 57% within 5 s pooled); throughs 2.4 to 2.8 s early, 87% within 5 s; rights -1.1 to +0.3 s. The remaining error is early: SUMO discharges the permissive lefts at its saturation headway, the observed ones went 3 to 6 s apart (DATA_REGISTER.md §22).",
+    "In-sample: timeline version 2 is estimated from the same stop-line crossings the paired lags compare, so their agreement is internal consistency, not an independent check of the signal timing; no signal head or controller log was read.",
+    "Window ends: 7 vehicles are queued on N at simulated 0 s against 22 observed; at the end N and S hold 20 and 13 against 16 and 9 (single instants, no interval).",
+    "Not validatable: mean delay, the east and west queues (observed only near the limit line); throughput is circular, one for one.",
+    "Uncertainty: every seed replays the same vehicles, so intervals measure SUMO's microscopic noise for one observed realisation, not demand uncertainty.",
+    "Decision sensitivity: candidate effects depend on the signal timeline estimate, not only on seed noise. I1's mean-delay difference is +5.40 s [5.13, 5.67] on the version 1 replay (record ngsim-int2-realism-experiment-20261028T135556Z) and -0.75 s [-0.90, -0.60] on this one: each interval is narrow, yet they exclude each other, so intervals from one timeline understate the uncertainty of any verdict."
+  ],
+  "evidence": {
+    "experiments/records/ngsim-int2-realism-baseline-20261028T141919Z.json": "834fcabacff630f132efe3505ddbd47d2661e4ef2a204e6eece502bd5b153beb",
+    "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/NOTICE.md": "9567bd6409588af2e364f6f0c308fbae0c49858a9f11a58db8a9d1b8dd3f9bc6",
+    "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/validation/validation.json": "0b7b88aba5b7bdd33a4a78969a9ccbc66c2927ed9e7773830620a68ad2aecf08",
+    "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/validation/validation.md": "6a1fa1ca3af0494e2228f88aba59d99bd7ffd65e49e5ac808af32376a51e9616",
+    "data/geometry/ngsim-lankershim-int2/signal_timeline_v2.json": "5eb55b93a53ec643467680c6339095171dd09e5aad1e0d897ea5f555032c3968",
+    "data/geometry/ngsim-lankershim-int2/signal_estimate_v2.json": "2d4f85917ac9bb0a4b206042adeb3e231aaa3fef2e217eda8e54d0f98ab21fa1",
+    "experiments/records/ngsim-int2-realism-experiment-20261028T135556Z.json": "720df4abe1f3c0eaee3ebff3abd783d57c1985f1e69af271689624670cd8dc55"
+  },
+  "assessed_on": "2026-10-28",
+  "documented_in": "docs/DATA_REGISTER.md §§18-22"
+}

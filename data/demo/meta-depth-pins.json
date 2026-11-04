@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1.0",
+  "files": {
+    "frame_annotation": {
+      "path": "experiments/records/muse-frame-annotation-20261103T182120Z.json",
+      "sha256": "8cf7d87f949de39629f07341a296dad54fd92c8a5fdbd6a4bfa92de586bd50a8"
+    },
+    "frame_image": {
+      "path": "experiments/records/muse-frame-annotation-20261103T182120Z/frame.jpg",
+      "sha256": "9a3fed9221624988238509b75092886f597df7e96a3bb7923470710f7f730146"
+    },
+    "frame_notice": {
+      "path": "experiments/records/muse-frame-annotation-20261103T182120Z/NOTICE.md",
+      "sha256": "1cc1c9ac4676f60e6c7c19a275ba14ad64f217df72a0642fd6ef7ccab5d0d8a9"
+    },
+    "muse_recurrence": {
+      "path": "experiments/records/muse-recurrence-20261103T183337Z.json",
+      "sha256": "a70fa139df291ca946c16ed2ebaa48b05e0551f88a7813905868c46edfc7393c"
+    }
+  }
+}

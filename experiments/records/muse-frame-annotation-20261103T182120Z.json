@@ -1,0 +1,217 @@
+{
+  "schema_version": "0.1.0",
+  "label": "model-generated annotation (Muse Spark) of one SAM review-overlay frame; not ground truth, not a measurement; no figure, metric or label uses it",
+  "status": "ok",
+  "failure": null,
+  "model": "muse-spark-1.3",
+  "prompt_version": "frame-0.1.0",
+  "endpoint": "https://api.meta.ai/v1/responses",
+  "request_key": "a7f53a3c5897558b394bfe3d3e2d8982fe27f3b8ab4e216dbffa42015fffaf98",
+  "request_id": "a4c82f14-2f74-4359-8272-2b13eab4ed9f",
+  "response_id": "resp_6aea263fa068c71d43e6480c",
+  "sent_at_utc": "2026-11-03T18:21:21.292721Z",
+  "elapsed_s": 28.45,
+  "recorded_cost_usd": 0.0107535,
+  "usage": {
+    "input_tokens": 623,
+    "output_tokens": 2347,
+    "total_tokens": 2970,
+    "cached_tokens": 0,
+    "reasoning_tokens": 1455
+  },
+  "cache_path": "cache/muse/a7f53a3c5897558b394bfe3d3e2d8982fe27f3b8ab4e216dbffa42015fffaf98.json",
+  "frame": {
+    "schema_version": "0.1.0",
+    "source_path": "experiments/records/ngsim-cam2-sam-20261028T151050Z/overlay.mp4",
+    "source_sha256": "87bb2d293c4f7940580e7e97edde8a09d0c9a43638db1feeb3e979914a6ebde5",
+    "frame_index": 50,
+    "time_s": 5.0,
+    "image_path": "experiments/records/muse-frame-annotation-20261103T182120Z/frame.jpg",
+    "image_sha256": "9a3fed9221624988238509b75092886f597df7e96a3bb7923470710f7f730146",
+    "width_px": 640,
+    "height_px": 480
+  },
+  "annotation": {
+    "schema_version": "0.1.0",
+    "scene_summary": "aerial top-down view of a signalised urban road junction with vehicles on west, north, east and south approaches, crosswalks and buildings visible, with coloured tracking boxes and text captions overlaid",
+    "objects": [
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "left",
+        "overlay_box": "not_boxed",
+        "note": "far west white sedan on west approach"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "left",
+        "overlay_box": "boxed",
+        "note": "white car with red box on west approach"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "left",
+        "overlay_box": "not_boxed",
+        "note": "white car below red-boxed car, no box"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "left",
+        "overlay_box": "boxed",
+        "note": "car with green box middle west approach"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "left",
+        "overlay_box": "boxed",
+        "note": "car with green box south lane west approach"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "center",
+        "overlay_box": "not_boxed",
+        "note": "dark SUV turning in central intersection"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "center",
+        "overlay_box": "boxed",
+        "note": "white car with purple box labeled cart12 in center"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "center",
+        "overlay_box": "not_boxed",
+        "note": "white sedan just south of purple-boxed car"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "center",
+        "overlay_box": "not_boxed",
+        "note": "dark sedan south of center"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "center",
+        "overlay_box": "not_boxed",
+        "note": "yellow car east of center"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "bottom_left",
+        "overlay_box": "boxed",
+        "note": "white car with blue vertical box on south approach"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "bottom",
+        "overlay_box": "not_boxed",
+        "note": "small white car far south"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top",
+        "overlay_box": "boxed",
+        "note": "white car with blue box on north approach"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top",
+        "overlay_box": "not_boxed",
+        "note": "red car in north approach queue no box"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top",
+        "overlay_box": "not_boxed",
+        "note": "red car in north approach queue no box"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top",
+        "overlay_box": "not_boxed",
+        "note": "dark car in north approach queue no box"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top_right",
+        "overlay_box": "boxed",
+        "note": "car with yellow box labeled cart6 north-east queue"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top_right",
+        "overlay_box": "boxed",
+        "note": "car with light blue box north-east queue"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top_right",
+        "overlay_box": "boxed",
+        "note": "car with pink box labeled cart14 north-east"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "top_right",
+        "overlay_box": "not_boxed",
+        "note": "multiple other queued cars top-right with no clear box"
+      },
+      {
+        "schema_version": "0.1.0",
+        "category": "car",
+        "region": "right",
+        "overlay_box": "boxed",
+        "note": "white car with teal box labeled cart17 on east approach"
+      }
+    ],
+    "overlay_issues": [
+      "many visible road users have no overlay box, including far west white car, white car below red box, central white sedan and dark cars, and most north approach queue",
+      "two captions cart1 and cart14 appear overlapping same vehicle at top-right suggesting two boxes on one road user",
+      "green and blue line artifacts in top_left are not road users"
+    ],
+    "image_quality": "poor",
+    "limitations": [
+      "one frame cannot show movement direction or speed",
+      "one frame cannot show traffic signal state changes over time",
+      "one frame cannot show queue formation or dissipation over time",
+      "one frame cannot show track continuity or identity across frames"
+    ]
+  },
+  "provenance": {
+    "schema_version": "0.1.0",
+    "kind": "model_generated",
+    "produced_by": "muse-spark-1.3",
+    "produced_at_utc": "2026-11-03T18:21:21.292721Z",
+    "input_sha256": [
+      "9a3fed9221624988238509b75092886f597df7e96a3bb7923470710f7f730146",
+      "a7f53a3c5897558b394bfe3d3e2d8982fe27f3b8ab4e216dbffa42015fffaf98"
+    ],
+    "parameters": {
+      "prompt_version": "frame-0.1.0",
+      "effort": "low",
+      "max_output_tokens": 6000,
+      "store": false
+    },
+    "software": {},
+    "cached": false
+  }
+}

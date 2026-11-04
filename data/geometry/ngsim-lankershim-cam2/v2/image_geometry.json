@@ -1,0 +1,1122 @@
+{
+  "schema_version": "0.1.0",
+  "geometry_id": "ngsim-lankershim-cam2-image-v2",
+  "clip_ids": [
+    "4a06259854300b67",
+    "fd74a18fdb99bc73"
+  ],
+  "source_image_sha256": "4a1668e4aa243e771d5242aae62561966ead8ee804878146d39e6009dc2a5e10",
+  "image_width_px": 640,
+  "image_height_px": 480,
+  "usable_v_max_px": 410.0,
+  "drives_on": "right",
+  "lanes": [
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N_SB31",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          369.95,
+          96.43
+        ],
+        [
+          371.2,
+          117.6
+        ],
+        [
+          470.0,
+          119.99
+        ],
+        [
+          470.0,
+          97.66
+        ]
+      ],
+      "allowed_turns": [
+        "right"
+      ],
+      "turns_source": "NGSIM lane code 31+ = right-turn bay (metadata); right-turn arrow painted",
+      "reference_lane": "NGSIM SB lane_id 31",
+      "provenance": "approximated",
+      "error_px": 2.0,
+      "source": "between lines N_kerb and N_31_3, from N_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N_SB3",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          371.2,
+          117.6
+        ],
+        [
+          372.12,
+          133.33
+        ],
+        [
+          470.0,
+          135.29
+        ],
+        [
+          470.0,
+          119.99
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "NGSIM numbered lane, not a bay; arrows hidden by queues (right turn not established)",
+      "reference_lane": "NGSIM SB lane_id 3",
+      "provenance": "approximated",
+      "error_px": 0.87,
+      "source": "between lines N_31_3 and N_3_2, from N_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N_SB2",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          372.12,
+          133.33
+        ],
+        [
+          373.04,
+          148.87
+        ],
+        [
+          470.0,
+          151.06
+        ],
+        [
+          470.0,
+          135.29
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "NGSIM numbered lane, not a bay; arrows hidden by queues (right turn not established)",
+      "reference_lane": "NGSIM SB lane_id 2",
+      "provenance": "approximated",
+      "error_px": 0.87,
+      "source": "between lines N_3_2 and N_2_1, from N_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N_SB1",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          373.04,
+          148.87
+        ],
+        [
+          374.04,
+          165.78
+        ],
+        [
+          470.0,
+          166.61
+        ],
+        [
+          470.0,
+          151.06
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "NGSIM numbered lane, not a bay; arrows hidden by queues (right turn not established)",
+      "reference_lane": "NGSIM SB lane_id 1",
+      "provenance": "approximated",
+      "error_px": 0.87,
+      "source": "between lines N_2_1 and N_1_12, from N_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N_SB12",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          374.04,
+          165.78
+        ],
+        [
+          375.04,
+          182.86
+        ],
+        [
+          470.0,
+          182.99
+        ],
+        [
+          470.0,
+          166.61
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "turns_source": "NGSIM lane code 11+ = left-turn bay (metadata); arrow hidden by queues",
+      "reference_lane": "NGSIM SB lane_id 12",
+      "provenance": "approximated",
+      "error_px": 0.87,
+      "source": "between lines N_1_12 and N_12_11, from N_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N_SB11",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          375.04,
+          182.86
+        ],
+        [
+          375.97,
+          198.58
+        ],
+        [
+          470.0,
+          198.36
+        ],
+        [
+          470.0,
+          182.99
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "turns_source": "NGSIM lane code 11+ = left-turn bay (metadata); arrow hidden by queues",
+      "reference_lane": "NGSIM SB lane_id 11",
+      "provenance": "approximated",
+      "error_px": 0.87,
+      "source": "between lines N_12_11 and N_centre, from N_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S_NB11",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          149.07,
+          186.88
+        ],
+        [
+          147.48,
+          204.19
+        ],
+        [
+          12.0,
+          205.72
+        ],
+        [
+          12.0,
+          186.65
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "turns_source": "NGSIM lane code 11+ = left-turn bay (metadata); arrow hidden by queues",
+      "reference_lane": "NGSIM NB lane_id 11",
+      "provenance": "approximated",
+      "error_px": 0.86,
+      "source": "between lines S_median and S_11_1, from S_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S_NB1",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          147.48,
+          204.19
+        ],
+        [
+          145.81,
+          222.43
+        ],
+        [
+          12.0,
+          224.35
+        ],
+        [
+          12.0,
+          205.72
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "NGSIM numbered lane, not a bay; arrows hidden by queues (right turn not established)",
+      "reference_lane": "NGSIM NB lane_id 1",
+      "provenance": "approximated",
+      "error_px": 0.88,
+      "source": "between lines S_11_1 and S_1_2, from S_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S_NB2",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          145.81,
+          222.43
+        ],
+        [
+          144.06,
+          241.6
+        ],
+        [
+          12.0,
+          245.32
+        ],
+        [
+          12.0,
+          224.35
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "NGSIM numbered lane, not a bay; arrows hidden by queues (right turn not established)",
+      "reference_lane": "NGSIM NB lane_id 2",
+      "provenance": "approximated",
+      "error_px": 0.89,
+      "source": "between lines S_1_2 and S_2_3, from S_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S_NB3",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          144.06,
+          241.6
+        ],
+        [
+          142.17,
+          262.23
+        ],
+        [
+          12.0,
+          264.35
+        ],
+        [
+          12.0,
+          245.32
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "NGSIM numbered lane, not a bay; arrows hidden by queues (right turn not established)",
+      "reference_lane": "NGSIM NB lane_id 3",
+      "provenance": "approximated",
+      "error_px": 0.97,
+      "source": "between lines S_2_3 and S_3_4, from S_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S_NB4",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          142.17,
+          262.23
+        ],
+        [
+          140.36,
+          282.0
+        ],
+        [
+          12.0,
+          282.0
+        ],
+        [
+          12.0,
+          264.35
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "NGSIM numbered lane, not a bay; arrows hidden by queues (right turn not established); kerb lane, seen in one still (medium confidence)",
+      "reference_lane": "NGSIM NB lane_id 4",
+      "provenance": "approximated",
+      "error_px": 3.0,
+      "source": "between lines S_3_4 and S_kerb, from S_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W_EB_kerb",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          203.69,
+          66.09
+        ],
+        [
+          222.11,
+          63.87
+        ],
+        [
+          217.89,
+          4.0
+        ],
+        [
+          201.46,
+          4.0
+        ]
+      ],
+      "allowed_turns": [],
+      "turns_source": "no arrow visible; the cross street has no published lane ids",
+      "reference_lane": null,
+      "provenance": "approximated",
+      "error_px": 2.0,
+      "source": "between lines W_kerb and W_1_2, from W_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W_EB_mid",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          222.11,
+          63.87
+        ],
+        [
+          238.8,
+          61.86
+        ],
+        [
+          234.78,
+          4.0
+        ],
+        [
+          217.89,
+          4.0
+        ]
+      ],
+      "allowed_turns": [],
+      "turns_source": "no arrow visible; the cross street has no published lane ids",
+      "reference_lane": null,
+      "provenance": "approximated",
+      "error_px": 0.79,
+      "source": "between lines W_1_2 and W_2_3, from W_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W_EB_inner",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          238.8,
+          61.86
+        ],
+        [
+          255.32,
+          59.86
+        ],
+        [
+          252.85,
+          4.0
+        ],
+        [
+          234.78,
+          4.0
+        ]
+      ],
+      "allowed_turns": [],
+      "turns_source": "no arrow visible; the cross street has no published lane ids",
+      "reference_lane": null,
+      "provenance": "approximated",
+      "error_px": 0.98,
+      "source": "between lines W_2_3 and W_centre, from W_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E_WB_left",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          272.58,
+          289.02
+        ],
+        [
+          292.95,
+          286.26
+        ],
+        [
+          302.85,
+          400.0
+        ],
+        [
+          278.79,
+          400.0
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "turns_source": "painted left arrow, low confidence (partly hidden by a static blue object)",
+      "reference_lane": null,
+      "provenance": "approximated",
+      "error_px": 3.0,
+      "source": "between lines E_planter and E_0_1, from E_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E_WB_through",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          292.95,
+          286.26
+        ],
+        [
+          313.06,
+          283.53
+        ],
+        [
+          323.21,
+          400.0
+        ],
+        [
+          302.85,
+          400.0
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "turns_source": "painted straight arrow",
+      "reference_lane": null,
+      "provenance": "approximated",
+      "error_px": 3.0,
+      "source": "between lines E_0_1 and E_1_2, from E_limit to the drawn extent"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E_WB_right",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_px": [
+        [
+          313.06,
+          283.53
+        ],
+        [
+          330.28,
+          281.2
+        ],
+        [
+          340.1,
+          400.0
+        ],
+        [
+          323.21,
+          400.0
+        ]
+      ],
+      "allowed_turns": [
+        "right"
+      ],
+      "turns_source": "painted right-turn arrow with 'ONLY'",
+      "reference_lane": null,
+      "provenance": "approximated",
+      "error_px": 3.0,
+      "source": "between lines E_1_2 and E_kerb, from E_limit to the drawn extent"
+    }
+  ],
+  "lines": [
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_kerb",
+      "arm": "N",
+      "role": "kerb_edge",
+      "segment_px": [
+        [
+          379.99,
+          96.55
+        ],
+        [
+          469.98,
+          97.66
+        ]
+      ],
+      "painted": false,
+      "provenance": "approximated",
+      "error_px": 2.0,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 26 profile samples, rms 0.45 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_31_3",
+      "arm": "N",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          380.02,
+          117.81
+        ],
+        [
+          470.01,
+          119.99
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.7,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 46 profile samples, rms 0.20 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_3_2",
+      "arm": "N",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          379.99,
+          133.48
+        ],
+        [
+          470.01,
+          135.29
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.69,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 46 profile samples, rms 0.19 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_2_1",
+      "arm": "N",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          380.0,
+          149.03
+        ],
+        [
+          469.99,
+          151.06
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.7,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 46 profile samples, rms 0.20 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_1_12",
+      "arm": "N",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          380.0,
+          165.83
+        ],
+        [
+          470.0,
+          166.61
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.76,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 46 profile samples, rms 0.26 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_12_11",
+      "arm": "N",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          380.0,
+          182.87
+        ],
+        [
+          470.0,
+          182.99
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.56,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 46 profile samples, rms 0.06 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_centre",
+      "arm": "N",
+      "role": "centreline",
+      "segment_px": [
+        [
+          380.0,
+          198.57
+        ],
+        [
+          470.0,
+          198.36
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.83,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 39 profile samples, rms 0.33 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_limit",
+      "arm": "N",
+      "role": "limit_line",
+      "segment_px": [
+        [
+          369.92,
+          96.02
+        ],
+        [
+          375.96,
+          198.47
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.87,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 51 profile samples, rms 0.37 px; outer line of the two-line crosswalk; it is the limit line (no separate stop bar)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "N_exit",
+      "arm": "N",
+      "role": "exit_line",
+      "segment_px": [
+        [
+          375.74,
+          198.49
+        ],
+        [
+          377.84,
+          251.99
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.79,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 26 profile samples, rms 0.29 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "S_median",
+      "arm": "S",
+      "role": "centreline",
+      "segment_px": [
+        [
+          15.0,
+          186.65
+        ],
+        [
+          130.0,
+          186.85
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.67,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 58 profile samples, rms 0.17 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "S_11_1",
+      "arm": "S",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          15.0,
+          205.69
+        ],
+        [
+          129.99,
+          204.39
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.76,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 58 profile samples, rms 0.26 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "S_1_2",
+      "arm": "S",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          15.0,
+          224.31
+        ],
+        [
+          129.98,
+          222.66
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.88,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 50 profile samples, rms 0.38 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "S_2_3",
+      "arm": "S",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          15.01,
+          245.23
+        ],
+        [
+          129.92,
+          242.0
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.89,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 42 profile samples, rms 0.39 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "S_3_4",
+      "arm": "S",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          15.0,
+          264.3
+        ],
+        [
+          129.97,
+          262.42
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.97,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 37 profile samples, rms 0.47 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "S_kerb",
+      "arm": "S",
+      "role": "kerb_edge",
+      "segment_px": [
+        [
+          15.0,
+          282.0
+        ],
+        [
+          130.0,
+          282.0
+        ]
+      ],
+      "painted": false,
+      "provenance": "approximated",
+      "error_px": 3.0,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); profile refinement agreed on too few samples (21), so the hand-read seed is kept"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "S_limit",
+      "arm": "S",
+      "role": "limit_line",
+      "segment_px": [
+        [
+          149.14,
+          186.01
+        ],
+        [
+          140.0,
+          285.95
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.86,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 48 profile samples, rms 0.36 px; single painted stop line from the median nose to the kerb"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "W_kerb",
+      "arm": "W",
+      "role": "kerb_edge",
+      "segment_px": [
+        [
+          201.46,
+          3.97
+        ],
+        [
+          203.48,
+          59.98
+        ]
+      ],
+      "painted": false,
+      "provenance": "approximated",
+      "error_px": 2.0,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 18 profile samples, rms 0.44 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "W_1_2",
+      "arm": "W",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          217.89,
+          4.01
+        ],
+        [
+          221.84,
+          60.01
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.75,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 29 profile samples, rms 0.25 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "W_2_3",
+      "arm": "W",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          234.78,
+          4.01
+        ],
+        [
+          238.67,
+          59.98
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.79,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 29 profile samples, rms 0.29 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "W_centre",
+      "arm": "W",
+      "role": "centreline",
+      "segment_px": [
+        [
+          252.85,
+          3.96
+        ],
+        [
+          255.32,
+          59.81
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.98,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 25 profile samples, rms 0.48 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "W_limit",
+      "arm": "W",
+      "role": "limit_line",
+      "segment_px": [
+        [
+          207.95,
+          65.58
+        ],
+        [
+          255.6,
+          59.83
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.68,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 25 profile samples, rms 0.18 px; outer line of the two-line crosswalk (the inner line is v1's 'stop line')"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "W_exit",
+      "arm": "W",
+      "role": "exit_line",
+      "segment_px": [
+        [
+          255.61,
+          59.87
+        ],
+        [
+          324.99,
+          51.95
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.68,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 35 profile samples, rms 0.18 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "E_planter",
+      "arm": "E",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          272.97,
+          295.89
+        ],
+        [
+          278.79,
+          400.05
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.73,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 17 profile samples, rms 0.23 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "E_0_1",
+      "arm": "E",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          293.8,
+          296.03
+        ],
+        [
+          302.85,
+          400.0
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.72,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 53 profile samples, rms 0.22 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "E_1_2",
+      "arm": "E",
+      "role": "lane_line",
+      "segment_px": [
+        [
+          314.15,
+          296.03
+        ],
+        [
+          323.21,
+          399.99
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 0.72,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 53 profile samples, rms 0.22 px"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "E_kerb",
+      "arm": "E",
+      "role": "kerb_edge",
+      "segment_px": [
+        [
+          331.5,
+          296.0
+        ],
+        [
+          340.1,
+          400.0
+        ]
+      ],
+      "painted": false,
+      "provenance": "approximated",
+      "error_px": 3.0,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); profile refinement agreed on too few samples (21), so the hand-read seed is kept"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "E_limit",
+      "arm": "E",
+      "role": "limit_line",
+      "segment_px": [
+        [
+          270.5,
+          289.3
+        ],
+        [
+          331.0,
+          281.1
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 3.0,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); profile refinement agreed on too few samples (13), so the hand-read seed is kept; lower edge of the zebra crosswalk"
+    },
+    {
+      "schema_version": "0.1.0",
+      "line_id": "E_exit",
+      "arm": "E",
+      "role": "exit_line",
+      "segment_px": [
+        [
+          221.22,
+          297.43
+        ],
+        [
+          262.16,
+          291.52
+        ]
+      ],
+      "painted": true,
+      "provenance": "approximated",
+      "error_px": 2.0,
+      "source": "seeded from the independent reading of 2026-10-27 (DATA_REGISTER.md §14.4); refined on the full-video median background: 14 profile samples, rms 0.64 px"
+    }
+  ],
+  "supersedes": "ngsim-lankershim-cam2-provisional-d010/d300 (v1, kept unchanged)",
+  "notes": [
+    "NGSIM intersection 2 (DATA_REGISTER.md §14.3); arms are compass legs: image right N (~26 deg), left S, top W (~299 deg), bottom E (~119 deg)",
+    "pixels only; no ground metres until a calibration is accepted (ADR-017)",
+    "exit lanes not drawn; the S leg has no visible exit-side crosswalk line, so no S exit_line",
+    "E_WB_left holds a static blue object for most of the video (bus or painted pad, not determined)"
+  ]
+}

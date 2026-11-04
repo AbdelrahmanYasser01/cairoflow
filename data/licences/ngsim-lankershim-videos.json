@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "ngsim-lankershim-videos",
+  "source_url": "https://data.transportation.gov/Automobiles/Next-Generation-Simulation-NGSIM-Program-Lankershi/uv3e-y54k",
+  "licence_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+  "attribution": "U.S. Department of Transportation Federal Highway Administration. (2016). Next Generation Simulation (NGSIM) Program Lankershim Boulevard Videos. [Dataset]. Provided by ITS DataHub through Data.transportation.gov. Accessed 2026-10-27 from http://doi.org/10.21949/1504477. Licensed CC BY-SA 4.0. More: https://ops.fhwa.dot.gov/trafficanalysistools/ngsim.htm",
+  "accessed_on": "2026-10-27",
+  "register_ref": "docs/DATA_REGISTER.md sections 6-10",
+  "permits_commercial_use": true,
+  "permits_cloud_processing": true,
+  "permits_redistribution": true,
+  "share_alike": true,
+  "synthetic": false
+}

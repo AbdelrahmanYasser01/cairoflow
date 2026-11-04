@@ -1,0 +1,943 @@
+{
+  "analysis_id": "cv-ngsim-int2-15min",
+  "block_formula": "floor((source_s - 120) / 60)",
+  "blocks": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14
+  ],
+  "by_block": {
+    "0": {
+      "across_heading_p90_m": {
+        "n": 7931,
+        "value": 1.098
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 1,
+          "reference": 2
+        },
+        "N": {
+          "camera": 7,
+          "reference": 13
+        },
+        "S": {
+          "camera": 26,
+          "reference": 32
+        },
+        "W": {
+          "camera": 3,
+          "reference": 2
+        }
+      },
+      "entering_count_error_share": {
+        "n": 49,
+        "value": 0.2857
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 5390,
+        "value": 0.9332
+      },
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 8,
+        "S": 6,
+        "W": 1
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 11021,
+        "numerator": 8694,
+        "value": 0.7889
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.2087,
+        "n": 2969,
+        "p90_m_s": 1.7024,
+        "value": 0.438
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 0,
+          "reference": 1
+        },
+        "N-E-left": {
+          "camera": 9,
+          "reference": 10
+        },
+        "N-S-through": {
+          "camera": 1,
+          "reference": 1
+        },
+        "S-E-right": {
+          "camera": 5,
+          "reference": 5
+        },
+        "S-N-through": {
+          "camera": 18,
+          "reference": 18
+        },
+        "S-W-left": {
+          "camera": 2,
+          "reference": 1
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 36,
+        "value": 0.9444
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 10913,
+        "numerator": 8207,
+        "value": 0.752
+      }
+    },
+    "10": {
+      "across_heading_p90_m": {
+        "n": 10472,
+        "value": 2.096
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 6,
+          "reference": 6
+        },
+        "N": {
+          "camera": 25,
+          "reference": 25
+        },
+        "S": {
+          "camera": 13,
+          "reference": 18
+        },
+        "W": {
+          "camera": 4,
+          "reference": 5
+        }
+      },
+      "entering_count_error_share": {
+        "n": 54,
+        "value": 0.1111
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 7666,
+        "value": 0.8136
+      },
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 2,
+        "S": 4,
+        "W": 1
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 15823,
+        "numerator": 12597,
+        "value": 0.7961
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.0219,
+        "n": 3170,
+        "p90_m_s": 1.6163,
+        "value": 0.4153
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 3,
+          "reference": 3
+        },
+        "N-E-left": {
+          "camera": 11,
+          "reference": 11
+        },
+        "N-S-through": {
+          "camera": 6,
+          "reference": 7
+        },
+        "S-E-right": {
+          "camera": 2,
+          "reference": 2
+        },
+        "S-W-left": {
+          "camera": 1,
+          "reference": 3
+        },
+        "W-E-through": {
+          "camera": 2,
+          "reference": 2
+        },
+        "W-N-left": {
+          "camera": 3,
+          "reference": 3
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 31,
+        "value": 0.9032
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 16066,
+        "numerator": 12368,
+        "value": 0.7698
+      }
+    },
+    "12": {
+      "across_heading_p90_m": {
+        "n": 17605,
+        "value": 0.8522
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 3,
+          "reference": 2
+        },
+        "N": {
+          "camera": 59,
+          "reference": 61
+        },
+        "S": {
+          "camera": 27,
+          "reference": 28
+        },
+        "W": {
+          "camera": 6,
+          "reference": 14
+        }
+      },
+      "entering_count_error_share": {
+        "n": 105,
+        "value": 0.1143
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 13069,
+        "value": 0.9263
+      },
+      "mid_view_by_arm": {
+        "E": 1,
+        "N": 4,
+        "S": 2,
+        "W": 1
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 21241,
+        "numerator": 18854,
+        "value": 0.8876
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.0627,
+        "n": 7430,
+        "p90_m_s": 1.9697,
+        "value": 0.4409
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 1,
+          "reference": 1
+        },
+        "N-E-left": {
+          "camera": 16,
+          "reference": 16
+        },
+        "N-S-through": {
+          "camera": 27,
+          "reference": 29
+        },
+        "N-W-right": {
+          "camera": 2,
+          "reference": 2
+        },
+        "S-E-right": {
+          "camera": 6,
+          "reference": 6
+        },
+        "S-N-through": {
+          "camera": 12,
+          "reference": 12
+        },
+        "S-W-left": {
+          "camera": 1,
+          "reference": 2
+        },
+        "W-E-through": {
+          "camera": 3,
+          "reference": 7
+        },
+        "W-N-left": {
+          "camera": 3,
+          "reference": 5
+        },
+        "W-S-right": {
+          "camera": 1,
+          "reference": 1
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 81,
+        "value": 0.8889
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 22520,
+        "numerator": 18586,
+        "value": 0.8253
+      }
+    },
+    "14": {
+      "across_heading_p90_m": {
+        "n": 10144,
+        "value": 0.7238
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 2,
+          "reference": 0
+        },
+        "N": {
+          "camera": 50,
+          "reference": 55
+        },
+        "S": {
+          "camera": 34,
+          "reference": 36
+        },
+        "W": {
+          "camera": 0,
+          "reference": 0
+        }
+      },
+      "entering_count_error_share": {
+        "n": 91,
+        "value": 0.0989
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 6279,
+        "value": 0.9462
+      },
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 4,
+        "S": 3,
+        "W": 0
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 10901,
+        "numerator": 10106,
+        "value": 0.9271
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.1257,
+        "n": 6886,
+        "p90_m_s": 2.0004,
+        "value": 0.4666
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 1,
+          "reference": 0
+        },
+        "N-E-left": {
+          "camera": 6,
+          "reference": 4
+        },
+        "N-S-through": {
+          "camera": 26,
+          "reference": 29
+        },
+        "N-W-right": {
+          "camera": 4,
+          "reference": 4
+        },
+        "S-E-right": {
+          "camera": 4,
+          "reference": 4
+        },
+        "S-N-through": {
+          "camera": 30,
+          "reference": 30
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 71,
+        "value": 0.9577
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 12171,
+        "numerator": 9671,
+        "value": 0.7946
+      }
+    },
+    "2": {
+      "across_heading_p90_m": {
+        "n": 17857,
+        "value": 0.7453
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 4,
+          "reference": 5
+        },
+        "N": {
+          "camera": 52,
+          "reference": 53
+        },
+        "S": {
+          "camera": 22,
+          "reference": 23
+        },
+        "W": {
+          "camera": 9,
+          "reference": 14
+        }
+      },
+      "entering_count_error_share": {
+        "n": 95,
+        "value": 0.0842
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 14907,
+        "value": 0.969
+      },
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 3,
+        "S": 1,
+        "W": 1
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 22495,
+        "numerator": 20198,
+        "value": 0.8979
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.0463,
+        "n": 5317,
+        "p90_m_s": 1.6124,
+        "value": 0.4144
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 2,
+          "reference": 4
+        },
+        "N-E-left": {
+          "camera": 18,
+          "reference": 22
+        },
+        "N-S-through": {
+          "camera": 13,
+          "reference": 13
+        },
+        "S-E-right": {
+          "camera": 2,
+          "reference": 2
+        },
+        "S-N-through": {
+          "camera": 9,
+          "reference": 11
+        },
+        "S-W-left": {
+          "camera": 3,
+          "reference": 2
+        },
+        "W-E-through": {
+          "camera": 5,
+          "reference": 6
+        },
+        "W-N-left": {
+          "camera": 3,
+          "reference": 4
+        },
+        "W-S-right": {
+          "camera": 1,
+          "reference": 1
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 65,
+        "value": 0.8462
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 24174,
+        "numerator": 19623,
+        "value": 0.8117
+      }
+    },
+    "4": {
+      "across_heading_p90_m": {
+        "n": 16138,
+        "value": 1.0384
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 3,
+          "reference": 3
+        },
+        "N": {
+          "camera": 70,
+          "reference": 75
+        },
+        "S": {
+          "camera": 25,
+          "reference": 29
+        },
+        "W": {
+          "camera": 0,
+          "reference": 1
+        }
+      },
+      "entering_count_error_share": {
+        "n": 108,
+        "value": 0.0926
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 11998,
+        "value": 0.9251
+      },
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 10,
+        "S": 5,
+        "W": 0
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 20518,
+        "numerator": 18230,
+        "value": 0.8885
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.0762,
+        "n": 8260,
+        "p90_m_s": 1.8941,
+        "value": 0.4292
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 0,
+          "reference": 1
+        },
+        "N-E-left": {
+          "camera": 11,
+          "reference": 13
+        },
+        "N-S-through": {
+          "camera": 46,
+          "reference": 46
+        },
+        "N-W-right": {
+          "camera": 0,
+          "reference": 1
+        },
+        "S-E-right": {
+          "camera": 7,
+          "reference": 7
+        },
+        "S-N-through": {
+          "camera": 16,
+          "reference": 17
+        },
+        "S-W-left": {
+          "camera": 1,
+          "reference": 1
+        },
+        "W-S-right": {
+          "camera": 0,
+          "reference": 1
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 87,
+        "value": 0.931
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 22921,
+        "numerator": 17521,
+        "value": 0.7644
+      }
+    },
+    "6": {
+      "across_heading_p90_m": {
+        "n": 12440,
+        "value": 0.8511
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 5,
+          "reference": 5
+        },
+        "N": {
+          "camera": 47,
+          "reference": 62
+        },
+        "S": {
+          "camera": 43,
+          "reference": 46
+        },
+        "W": {
+          "camera": 3,
+          "reference": 5
+        }
+      },
+      "entering_count_error_share": {
+        "n": 118,
+        "value": 0.1695
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 8507,
+        "value": 0.923
+      },
+      "mid_view_by_arm": {
+        "E": 1,
+        "N": 7,
+        "S": 3,
+        "W": 0
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 16317,
+        "numerator": 14492,
+        "value": 0.8882
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.1914,
+        "n": 6983,
+        "p90_m_s": 2.1682,
+        "value": 0.4692
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 2,
+          "reference": 2
+        },
+        "N-S-through": {
+          "camera": 31,
+          "reference": 35
+        },
+        "N-W-right": {
+          "camera": 3,
+          "reference": 4
+        },
+        "S-E-right": {
+          "camera": 8,
+          "reference": 8
+        },
+        "S-N-through": {
+          "camera": 25,
+          "reference": 27
+        },
+        "W-E-through": {
+          "camera": 1,
+          "reference": 3
+        },
+        "W-N-left": {
+          "camera": 2,
+          "reference": 2
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 81,
+        "value": 0.8889
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 17344,
+        "numerator": 14072,
+        "value": 0.8113
+      }
+    },
+    "8": {
+      "across_heading_p90_m": {
+        "n": 9102,
+        "value": 1.7867
+      },
+      "entering_by_arm": {
+        "E": {
+          "camera": 3,
+          "reference": 5
+        },
+        "N": {
+          "camera": 33,
+          "reference": 37
+        },
+        "S": {
+          "camera": 19,
+          "reference": 28
+        },
+        "W": {
+          "camera": 3,
+          "reference": 5
+        }
+      },
+      "entering_count_error_share": {
+        "n": 75,
+        "value": 0.2267
+      },
+      "frames": 600,
+      "lane_agreement": {
+        "n": 6399,
+        "value": 0.9228
+      },
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 4,
+        "S": 8,
+        "W": 0
+      },
+      "precision_proxy": {
+        "ci95": null,
+        "n": 12555,
+        "numerator": 10431,
+        "value": 0.8308
+      },
+      "speed_abs_error_median_m_s": {
+        "median_signed_m_s": -0.205,
+        "n": 3081,
+        "p90_m_s": 2.3857,
+        "value": 0.5727
+      },
+      "turning_cells": {
+        "E-N-right": {
+          "camera": 0,
+          "reference": 3
+        },
+        "E-W-through": {
+          "camera": 0,
+          "reference": 1
+        },
+        "N-S-through": {
+          "camera": 14,
+          "reference": 15
+        },
+        "N-W-right": {
+          "camera": 2,
+          "reference": 3
+        },
+        "S-E-right": {
+          "camera": 5,
+          "reference": 5
+        },
+        "S-N-through": {
+          "camera": 9,
+          "reference": 11
+        },
+        "W-E-through": {
+          "camera": 1,
+          "reference": 2
+        },
+        "W-N-left": {
+          "camera": 2,
+          "reference": 3
+        }
+      },
+      "turning_matrix_agreement": {
+        "n": 43,
+        "value": 0.7674
+      },
+      "vehicle_recall": {
+        "ci95": null,
+        "n": 15032,
+        "numerator": 10289,
+        "value": 0.6845
+      }
+    }
+  },
+  "entering_by_arm": {
+    "E": {
+      "camera": 27,
+      "reference": 28
+    },
+    "N": {
+      "camera": 343,
+      "reference": 381
+    },
+    "S": {
+      "camera": 209,
+      "reference": 240
+    },
+    "W": {
+      "camera": 28,
+      "reference": 46
+    }
+  },
+  "entering_definition": "camera: tracks first seen near the edge of the usable image or at the start of the block; reference: every published vehicle in view. mid_view_by_arm is what the camera rule left out.",
+  "evidence_class": "agreement with a correlated reference, not accuracy",
+  "frames_scored": 4800,
+  "gate_commit": null,
+  "gate_id": "cv-int2-v2",
+  "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+  "held_out_read": null,
+  "metrics": {
+    "across_heading_p90_m": {
+      "n": 101689,
+      "value": 0.9605
+    },
+    "entering_count_error_share": {
+      "n": 695,
+      "value": 0.1381
+    },
+    "lane_agreement": {
+      "n": 74215,
+      "value": 0.9245
+    },
+    "precision_proxy": {
+      "ci95": [
+        0.8446,
+        0.8898
+      ],
+      "n": 130871,
+      "numerator": 113602,
+      "value": 0.868
+    },
+    "speed_abs_error_median_m_s": {
+      "median_signed_m_s": -0.1094,
+      "n": 44096,
+      "p90_m_s": 1.9254,
+      "value": 0.4497
+    },
+    "turning_matrix_agreement": {
+      "n": 495,
+      "value": 0.8949
+    },
+    "vehicle_recall": {
+      "ci95": [
+        0.7545,
+        0.8087
+      ],
+      "n": 141141,
+      "numerator": 110337,
+      "value": 0.7818
+    }
+  },
+  "mid_view_by_arm": {
+    "E": 2,
+    "N": 42,
+    "S": 32,
+    "W": 4
+  },
+  "outcomes": [
+    {
+      "comparator": ">=",
+      "gate_id": "cv-int2-v2",
+      "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+      "measured": 0.7818,
+      "metric": "vehicle_recall",
+      "n": 141141,
+      "note": null,
+      "passed": true,
+      "schema_version": "0.1.0",
+      "scope": "site",
+      "split": "dev",
+      "threshold": 0.7
+    },
+    {
+      "comparator": ">=",
+      "gate_id": "cv-int2-v2",
+      "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+      "measured": 0.868,
+      "metric": "precision_proxy",
+      "n": 130871,
+      "note": null,
+      "passed": true,
+      "schema_version": "0.1.0",
+      "scope": "site",
+      "split": "dev",
+      "threshold": 0.8
+    },
+    {
+      "comparator": "<=",
+      "gate_id": "cv-int2-v2",
+      "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+      "measured": 0.9605,
+      "metric": "across_heading_p90_m",
+      "n": 101689,
+      "note": null,
+      "passed": true,
+      "schema_version": "0.1.0",
+      "scope": "site",
+      "split": "dev",
+      "threshold": 1.5
+    },
+    {
+      "comparator": ">=",
+      "gate_id": "cv-int2-v2",
+      "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+      "measured": 0.9245,
+      "metric": "lane_agreement",
+      "n": 74215,
+      "note": null,
+      "passed": true,
+      "schema_version": "0.1.0",
+      "scope": "site",
+      "split": "dev",
+      "threshold": 0.85
+    },
+    {
+      "comparator": "<=",
+      "gate_id": "cv-int2-v2",
+      "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+      "measured": 0.1381,
+      "metric": "entering_count_error_share",
+      "n": 695,
+      "note": null,
+      "passed": true,
+      "schema_version": "0.1.0",
+      "scope": "site",
+      "split": "dev",
+      "threshold": 0.2
+    },
+    {
+      "comparator": ">=",
+      "gate_id": "cv-int2-v2",
+      "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+      "measured": 0.8949,
+      "metric": "turning_matrix_agreement",
+      "n": 495,
+      "note": null,
+      "passed": true,
+      "schema_version": "0.1.0",
+      "scope": "site",
+      "split": "dev",
+      "threshold": 0.8
+    },
+    {
+      "comparator": "<=",
+      "gate_id": "cv-int2-v2",
+      "gate_sha256": "7ab3a2b0e1836b1f21892ac11993bc772f8c4ad849f72d8b18b2642f4b592842",
+      "measured": 0.4497,
+      "metric": "speed_abs_error_median_m_s",
+      "n": 44096,
+      "note": null,
+      "passed": true,
+      "schema_version": "0.1.0",
+      "scope": "site",
+      "split": "dev",
+      "threshold": 1.0
+    }
+  ],
+  "passed": true,
+  "split": "dev",
+  "tracks": {
+    "paired": 646,
+    "with_points": 713
+  }
+}

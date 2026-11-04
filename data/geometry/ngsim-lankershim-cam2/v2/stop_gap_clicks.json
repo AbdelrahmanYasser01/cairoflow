@@ -1,0 +1,66 @@
+{
+  "reader": "Claude (Opus 5.5), visual reading in the session of 2026-10-28",
+  "date": "2026-10-28",
+  "method": "Lead vehicle per approach lane read on 5x crops of the source frame with a 5 px grid (scripts/measure_ngsim_cam2_stop_gap.py select), before looking at the automatic estimate. Front = downstream end of the vehicle body (not its shadow), rear = upstream end; u read to about +-2 px, v set to the lane centre. Frames chosen by the script (stationary vehicles in at least two through lanes); every visible lead vehicle in the crop is recorded, and the report decides from the video whether it is stopped.",
+  "source_video_sha256": "04ef7435be3a107e7321900c384bb1ee7703ce753a122559cd2937fef341f530",
+  "frames": [
+    {"frame": 3320, "arm": "N", "lanes": {
+      "N_SB3": {"front_px": [381, 126], "rear_px": [400, 126]},
+      "N_SB2": {"front_px": [380, 142], "rear_px": [409, 142]},
+      "N_SB1": {"front_px": [381, 158], "rear_px": [409, 158]},
+      "N_SB12": {"front_px": [378, 175], "rear_px": null, "note": "rear unclear"}}},
+    {"frame": 5600, "arm": "N", "lanes": {
+      "N_SB3": {"front_px": [378, 126], "rear_px": [406, 126]},
+      "N_SB2": {"front_px": [373, 142], "rear_px": [397, 142]},
+      "N_SB1": {"front_px": [385, 158], "rear_px": [413, 158]},
+      "N_SB12": {"front_px": [395, 175], "rear_px": [422, 175], "note": "not at the line; may be moving"},
+      "N_SB11": {"front_px": [410, 191], "rear_px": [433, 191], "note": "not at the line; may be moving"}}},
+    {"frame": 8400, "arm": "N", "lanes": {
+      "N_SB3": {"front_px": [381, 126], "rear_px": [403, 126]},
+      "N_SB2": {"front_px": [376, 142], "rear_px": [402, 142]},
+      "N_SB1": {"front_px": [379, 158], "rear_px": [413, 158], "note": "long vehicle (van)"},
+      "N_SB12": {"front_px": [380, 175], "rear_px": [407, 175]},
+      "N_SB11": {"front_px": [374, 191], "rear_px": [399, 191]}}},
+    {"frame": 9380, "arm": "N", "lanes": {
+      "N_SB3": {"front_px": [382, 126], "rear_px": [404, 126]},
+      "N_SB2": {"front_px": [381, 142], "rear_px": null, "note": "red vehicle ahead of a yellow truck; rear unclear"},
+      "N_SB1": {"front_px": [385, 158], "rear_px": [408, 158]},
+      "N_SB11": {"front_px": [372, 191], "rear_px": [393, 191], "note": "dark car, low contrast"}}},
+    {"frame": 10260, "arm": "N", "lanes": {
+      "N_SB3": {"front_px": [381, 126], "rear_px": [406, 126]},
+      "N_SB2": {"front_px": [389, 142], "rear_px": null, "note": "rear unclear"},
+      "N_SB1": {"front_px": [409, 158], "rear_px": [433, 158], "note": "well back; may be arriving"},
+      "N_SB12": {"front_px": [388, 175], "rear_px": [415, 175]},
+      "N_SB11": {"front_px": [378, 191], "rear_px": [407, 191]}}},
+    {"frame": 580, "arm": "S", "lanes": {
+      "S_NB1": {"front_px": [129, 214.5], "rear_px": [112, 214.5], "note": "short blue car"},
+      "S_NB2": {"front_px": [141, 234.5], "rear_px": [120, 234.5]},
+      "S_NB3": {"front_px": [140, 254.5], "rear_px": [111, 254.5]}}},
+    {"frame": 2440, "arm": "S", "lanes": {
+      "S_NB11": {"front_px": [155, 196], "rear_px": [120, 196], "note": "stopped over the line"},
+      "S_NB1": {"front_px": [136, 214.5], "rear_px": [109, 214.5]},
+      "S_NB2": {"front_px": [136, 234.5], "rear_px": [110, 234.5]},
+      "S_NB3": {"front_px": [134, 254.5], "rear_px": [94, 254.5], "note": "van"},
+      "S_NB4": {"front_px": [160, 273], "rear_px": null, "note": "past the line, probably turning right"}}},
+    {"frame": 4520, "arm": "S", "lanes": {
+      "S_NB11": {"front_px": [144, 196], "rear_px": [112, 196]},
+      "S_NB1": {"front_px": [132, 214.5], "rear_px": [104, 214.5], "note": "rear uncertain (a dark car abuts)"},
+      "S_NB2": {"front_px": [136, 234.5], "rear_px": [104, 234.5]},
+      "S_NB3": {"front_px": [136, 254.5], "rear_px": [106, 254.5]}}},
+    {"frame": 5620, "arm": "S", "lanes": {
+      "S_NB1": {"front_px": [145, 214.5], "rear_px": [112, 214.5]},
+      "S_NB2": {"front_px": [124, 234.5], "rear_px": [102, 234.5], "note": "well back; may be arriving"},
+      "S_NB3": {"front_px": [135, 254.5], "rear_px": [94, 254.5], "note": "long van or truck"}}},
+    {"frame": 7500, "arm": "S", "lanes": {
+      "S_NB11": {"front_px": [151, 196], "rear_px": [120, 196], "note": "slightly over the line"},
+      "S_NB1": {"front_px": [145, 214.5], "rear_px": [115, 214.5]},
+      "S_NB2": {"front_px": [130, 234.5], "rear_px": [102, 234.5]},
+      "S_NB3": {"front_px": [139, 254.5], "rear_px": [110, 254.5]},
+      "S_NB4": {"front_px": [111, 273], "rear_px": [80, 273], "note": "well back; may be arriving"}}},
+    {"frame": 10440, "arm": "S", "lanes": {
+      "S_NB11": {"front_px": [149, 196], "rear_px": [113, 196]},
+      "S_NB1": {"front_px": [129, 214.5], "rear_px": [64, 214.5], "note": "truck, about 65 px long"},
+      "S_NB2": {"front_px": [133, 234.5], "rear_px": [104, 234.5]},
+      "S_NB3": {"front_px": [135, 254.5], "rear_px": null, "note": "rear unclear"}}}
+  ]
+}

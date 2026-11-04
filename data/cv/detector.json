@@ -1,0 +1,12 @@
+{
+  "detector": "detectors",
+  "model": "dfine-l",
+  "conf": 0.27,
+  "low_conf": 0.1,
+  "requires_cuda": true,
+  "cpu_min_frame_stride": 3,
+  "tracker": {
+    "high_score": 0.27,
+    "low_score": 0.03
+  }
+}

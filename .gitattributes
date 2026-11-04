@@ -1,0 +1,5 @@
+# Records and data are pinned by SHA-256 (the demo manifest, baseline assessments, record checks).
+# Keep their bytes exactly as committed on every checkout, Windows included: no line-ending changes.
+data/** -text
+experiments/records/** -text
+cache/muse/** -text

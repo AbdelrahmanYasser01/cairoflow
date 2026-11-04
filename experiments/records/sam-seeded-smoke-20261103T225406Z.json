@@ -1,0 +1,123 @@
+{
+ "script": "scripts/sam_seeded_smoke.py",
+ "created_at_utc": "2026-11-03T22:54:06+00:00",
+ "label": "model_generated; seeds are projected reference positions, not detections",
+ "request_key": "196954629d94fbe33b6359d52b417d440ac0ebb7a38e991b20d5e16160d52f45",
+ "from_cache": false,
+ "http_status": 200,
+ "frames_billed": 50,
+ "outcome": "completed",
+ "observations": 311,
+ "parser_diagnostics": [],
+ "dropped": 0,
+ "seeds": [
+  {
+   "object_id": 1,
+   "frame": 0,
+   "box_xyxy_px": [
+    218,
+    334,
+    233,
+    368
+   ]
+  },
+  {
+   "object_id": 2,
+   "frame": 0,
+   "box_xyxy_px": [
+    225,
+    229,
+    251,
+    260
+   ]
+  },
+  {
+   "object_id": 3,
+   "frame": 0,
+   "box_xyxy_px": [
+    266,
+    186,
+    296,
+    214
+   ]
+  },
+  {
+   "object_id": 4,
+   "frame": 0,
+   "box_xyxy_px": [
+    324,
+    164,
+    358,
+    182
+   ]
+  },
+  {
+   "object_id": 5,
+   "frame": 0,
+   "box_xyxy_px": [
+    118,
+    244,
+    149,
+    259
+   ]
+  },
+  {
+   "object_id": 6,
+   "frame": 0,
+   "box_xyxy_px": [
+    105,
+    226,
+    136,
+    240
+   ]
+  },
+  {
+   "object_id": 7,
+   "frame": 34,
+   "box_xyxy_px": [
+    313,
+    269,
+    333,
+    301
+   ]
+  }
+ ],
+ "per_object": {
+  "vehicle:1": {
+   "first": 0,
+   "last": 47,
+   "n": 27
+  },
+  "vehicle:2": {
+   "first": 0,
+   "last": 43,
+   "n": 44
+  },
+  "vehicle:3": {
+   "first": 0,
+   "last": 49,
+   "n": 50
+  },
+  "vehicle:4": {
+   "first": 0,
+   "last": 49,
+   "n": 50
+  },
+  "vehicle:5": {
+   "first": 0,
+   "last": 49,
+   "n": 40
+  },
+  "vehicle:6": {
+   "first": 0,
+   "last": 49,
+   "n": 50
+  },
+  "vehicle:7": {
+   "first": 0,
+   "last": 49,
+   "n": 50
+  }
+ },
+ "mean_confidence": 0.6532053904094537
+}

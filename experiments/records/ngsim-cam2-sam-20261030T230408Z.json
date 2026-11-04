@@ -1,0 +1,77 @@
+{
+  "script": "scripts/run_sam_cam2_excerpt.py",
+  "created_at_utc": "2026-10-30T23:04:08+00:00",
+  "run_dir": "experiments/runs/ngsim-cam2-sam-20261030T230408Z",
+  "label": "model output (SAM 3.1), tracked by our procedure; not ground truth; not used by the world model (ADR-018, ADR-019)",
+  "clip": {
+    "clip_id": "eed18b52e9db6567",
+    "output_sha256": "eed18b52e9db65676a28f74928b82e7439c91582978ac69365d48597cca970bf",
+    "frames": 300,
+    "fps": 10.0,
+    "source_window_s": [
+      970.0,
+      1000.0
+    ],
+    "trajectory_clip_window_s": [
+      850.3,
+      880.3
+    ],
+    "time_sync": "source second 119.7 = 08:30:00.0 (DATA_REGISTER.md \u00a715)"
+  },
+  "requests": [
+    {
+      "prompt": "car",
+      "model": "sam-3.1",
+      "request_key": "a12b677f5bede3a442b09228ee4b63ed7267df8e36e7113baa875d361903061c",
+      "request_id": "3f7dae5f-c363-40a5-9cb7-1281c1fdf0cb",
+      "sent_at_utc": "2026-10-30T23:04:08.918183+00:00",
+      "from_cache": false,
+      "http_status": 200,
+      "elapsed_s": 41.441,
+      "frames_billed": 300,
+      "estimated_cost_usd": 0.060000000000000005,
+      "outcome": "completed",
+      "observations": 2854,
+      "frames_with_an_observation": 300,
+      "distinct_sam_object_ids": 16,
+      "parser_diagnostics": [],
+      "dropped": 0
+    }
+  ],
+  "spent_usd_estimated": 0.06,
+  "tracking": {
+    "policy": {
+      "duplicate_iou": 0.7,
+      "max_gap_frames": 5,
+      "max_link_residual": 0.5,
+      "max_link_area_ratio": 2.0,
+      "min_track_observations": 3
+    },
+    "tracks": 26,
+    "by_class": {
+      "car": 26
+    },
+    "duplicates_removed": 0,
+    "gaps_bridged": 0,
+    "short_tracks_removed": 4,
+    "tracked_objects_per_frame": {
+      "min": 1,
+      "median": 10.0,
+      "max": 16
+    }
+  },
+  "overlay": {
+    "clip_id": "eed18b52e9db6567",
+    "clip_sha256": "eed18b52e9db65676a28f74928b82e7439c91582978ac69365d48597cca970bf",
+    "tracks_sha256": "f285bb54dec9836fdb895ba37ea654e7b57ad031f1fa788f39112a234ef8a935",
+    "track_count": 26,
+    "drawn_boxes": 2850,
+    "trail_frames": 10,
+    "output_file": "overlay.mp4",
+    "output_sha256": "7d3c31f9f322beedefa4178431df5372ff533ec11ed834951485616fc963eed4",
+    "frame_count": 300,
+    "fps": 10,
+    "produced_at_utc": "2026-10-30T23:04:08Z"
+  },
+  "not_compared": "no comparison with the NGSIM trajectories: the camera's footprint on the ground would need the calibration that was not accepted (ADR-018)"
+}

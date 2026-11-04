@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cairoflow"
+version = "0.0.1"
+description = "Evidence-grounded, simulation-validated urban traffic decision support."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "pydantic>=2",
+  "httpx",
+  "openai",
+  "meta-sam-parser",
+  "numpy",
+  "opencv-python-headless",
+  "eclipse-sumo",
+  "traci",
+  "sumolib",
+  "libsumo",
+  "fastapi>=0.162.0",
+  "uvicorn>=0.54.0",
+]
+
+# The neural detectors. Neither extra is in a default install, and `uv sync` strips extras it was
+# not asked for, so a vision environment lives outside the repository (UV_PROJECT_ENVIRONMENT).
+# Exact pins: the bake-off's numbers were measured on these versions.
+[project.optional-dependencies]
+# Apache-2.0: D-FINE and RT-DETRv2 through transformers.
+vision = [
+  "torch==2.11.0",
+  "torchvision==0.26.0",
+  "transformers==5.22.1",
+  "safetensors==0.8.0",
+  "huggingface-hub==2.4.0",
+]
+# AGPL-3.0, opt-in: see NOTICE. Running with it makes that combined runtime subject to AGPL-3.0.
+vision-agpl = [
+  "torch==2.11.0",
+  "torchvision==0.26.0",
+  "ultralytics==8.4.201",
+  "huggingface-hub==2.4.0",
+]
+
+[dependency-groups]
+dev = ["pytest", "ruff"]
+
+# uv resolves and locks for the supported development target only: WSL2 Ubuntu on x86_64
+# (docs/DECISIONS.md ADR-011). uv.lock therefore never carries Windows wheels or hashes.
+[tool.uv]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+# ultralytics asks for opencv-python, which would overwrite cv2 from the headless wheel the project
+# already depends on, and with it the GUI libraries a server does not have.
+exclude-dependencies = ["opencv-python"]
+
+# CUDA wheels. `explicit` keeps this index to the two packages named under sources.
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+# One distribution, five importable packages under packages/<area>/ and the API under apps/api/.
+[tool.setuptools]
+packages = [
+  "cairoflow_contracts",
+  "cairoflow_perception",
+  "cairoflow_reasoning",
+  "cairoflow_simulation",
+  "cairoflow_evaluation",
+  "cairoflow_api",
+]
+
+[tool.setuptools.package-dir]
+cairoflow_contracts = "packages/contracts/cairoflow_contracts"
+cairoflow_perception = "packages/perception/cairoflow_perception"
+cairoflow_reasoning = "packages/reasoning/cairoflow_reasoning"
+cairoflow_simulation = "packages/simulation/cairoflow_simulation"
+cairoflow_evaluation = "packages/evaluation/cairoflow_evaluation"
+cairoflow_api = "apps/api/cairoflow_api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+  "cairoflow_contracts",
+  "cairoflow_perception",
+  "cairoflow_reasoning",
+  "cairoflow_simulation",
+  "cairoflow_evaluation",
+  "cairoflow_api",
+]

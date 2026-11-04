@@ -1,0 +1,95 @@
+/*
+ * CairoFlow design tokens. Everything downstream references these names.
+ *
+ * Signal room: near-black asphalt with a slight cool cast, lane-paint warm white for text,
+ * signal amber as the one interface accent (it is the double yellow centreline of a US road).
+ * Green and red exist for gate meaning only. Evidence colours exist for evidence only.
+ */
+:root {
+  color-scheme: dark;
+
+  /* Ground. Surfaces separate by one tone step or a hairline, never a shadow. */
+  --asphalt-0: #0a0c0e; /* the room */
+  --asphalt-1: #11151a; /* instruments placed over a canvas */
+  --asphalt-2: #181d22; /* controls at rest */
+  --asphalt-3: #21272d; /* controls under the pointer */
+
+  /* Rules. rule-1 sits at 1.5:1 on the ground so a hairline survives video compression. */
+  --rule-1: #2a3138; /* hairline */
+  --rule-2: #3d4750; /* control edge, strong hairline */
+
+  /* Lane paint */
+  --paint-1: #efeadf; /* primary text */
+  --paint-2: #b9b7af; /* secondary text */
+  --paint-3: #8b8d89; /* tertiary text, 5.9:1 on the ground */
+  --paint-4: #5f666d; /* drawn linework and unlit lamps, 3.4:1 on the ground */
+
+  /* Accent: signal amber, one per interface */
+  --amber: #f5a623;
+  --amber-ink: #171004; /* text on an amber fill */
+
+  /* Meaning only, never decoration */
+  --go: #33c37b; /* gate passed */
+  --stop: #f0524f; /* gate failed */
+
+  /* Evidence grammar. Colours are taken from the road sign code, away from the three signal
+     colours: lane white, light blue, sand, incident pink, guide blue. */
+  --ev-observed: #efeadf;
+  --ev-approximated: #7fd0da;
+  --ev-assumed: #c9b48c;
+  --ev-model-generated: #f19db1;
+  --ev-simulated: #6ea2ff;
+
+  /* Type */
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
+  --font-text: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --text-micro: 11px;
+  --text-label: 12px;
+  --text-body: 15px;
+  --text-head: 18px;
+  --text-title: 30px;
+  --text-display: 46px;
+  --text-hero: clamp(60px, 8.6vw, 148px);
+
+  --num-s: 20px;
+  --num-m: 34px;
+  --num-l: 60px;
+
+  /* Space: 4px base */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-24: 96px;
+
+  /* Frame */
+  --rail: 84px;
+  --strip: 44px;
+  --bottom-bar: 60px;
+  --margin: 32px; /* the one outer margin */
+  --gutter: 24px; /* the one column gap */
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 360ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --margin: 20px;
+    --gutter: 16px;
+    --text-title: 26px;
+    --text-display: 36px;
+    --num-l: 48px;
+  }
+}

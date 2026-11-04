@@ -1,0 +1,893 @@
+{
+  "arm_ids": {
+    "D1": "I1",
+    "D2": "I2"
+  },
+  "baseline_assessment": "not_assessed: the held-out baselines have no assessment, so no selection can become a recommendation",
+  "created_at_utc": "2026-11-03T00:16:03+00:00",
+  "ensemble": {
+    "candidates": [
+      {
+        "candidate": "I1",
+        "common_confirmed": [],
+        "direction_disagreements": [
+          {
+            "ci95_difference": {
+              "T1": [
+                0.769242,
+                3.057758
+              ],
+              "T2": [
+                -1.088417,
+                1.535417
+              ],
+              "T3": [
+                -0.205843,
+                1.687843
+              ],
+              "T4": [
+                1.915556,
+                3.745444
+              ]
+            },
+            "mean_difference": {
+              "T1": 1.9135,
+              "T2": 0.2235,
+              "T3": 0.741,
+              "T4": 2.8305
+            },
+            "metric_name": "max_queue_m.E",
+            "opposite": false,
+            "verdicts": {
+              "T1": "worsens",
+              "T2": "inconclusive",
+              "T3": "inconclusive",
+              "T4": "worsens"
+            }
+          },
+          {
+            "ci95_difference": {
+              "T1": [
+                -5.241716,
+                -2.370284
+              ],
+              "T2": [
+                2.534694,
+                5.883306
+              ],
+              "T3": [
+                0.600557,
+                2.895443
+              ],
+              "T4": [
+                -1.169981,
+                0.394981
+              ]
+            },
+            "mean_difference": {
+              "T1": -3.806,
+              "T2": 4.209,
+              "T3": 1.748,
+              "T4": -0.3875
+            },
+            "metric_name": "max_queue_m.S",
+            "opposite": true,
+            "verdicts": {
+              "T1": "improves",
+              "T2": "worsens",
+              "T3": "worsens",
+              "T4": "inconclusive"
+            }
+          },
+          {
+            "ci95_difference": {
+              "T1": [
+                3.134377,
+                3.421845
+              ],
+              "T2": [
+                0.447886,
+                0.522376
+              ],
+              "T3": [
+                -0.076675,
+                0.430429
+              ],
+              "T4": [
+                0.961374,
+                1.717437
+              ]
+            },
+            "mean_difference": {
+              "T1": 3.278111,
+              "T2": 0.485131,
+              "T3": 0.176877,
+              "T4": 1.339405
+            },
+            "metric_name": "mean_queue_m.W",
+            "opposite": false,
+            "verdicts": {
+              "T1": "worsens",
+              "T2": "worsens",
+              "T3": "inconclusive",
+              "T4": "worsens"
+            }
+          }
+        ],
+        "members": [
+          {
+            "blocked_by": [
+              "I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W"
+            ],
+            "confirmed": [],
+            "held_off": [],
+            "mean_delay_ci95_s": [
+              1.34787,
+              1.860325
+            ],
+            "mean_delay_difference_s": 1.604098,
+            "member": "T1",
+            "phase_changes": [
+              {
+                "already_shorter": 0,
+                "applied": 14,
+                "change_s": -4.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=green W=red N left=red S left=red"
+              },
+              {
+                "already_shorter": 0,
+                "applied": 14,
+                "change_s": -2.0,
+                "clamped": 2,
+                "phases": "E=red N=red S=red W=green N left=red S left=red"
+              },
+              {
+                "already_shorter": 1,
+                "applied": 12,
+                "change_s": -3.0,
+                "clamped": 1,
+                "phases": "E=red N=red S=red W=red N left=green S left=green"
+              },
+              {
+                "already_shorter": 9,
+                "applied": 4,
+                "change_s": 9.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=red W=red N left=green S left=red"
+              }
+            ],
+            "required": true,
+            "status": "compared",
+            "supported": false,
+            "worsens": [
+              "mean_delay_s",
+              "throughput_veh_per_h",
+              "max_queue_m.E",
+              "mean_queue_m.E",
+              "mean_queue_m.S",
+              "mean_queue_m.W"
+            ]
+          },
+          {
+            "blocked_by": [
+              "I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W"
+            ],
+            "confirmed": [],
+            "held_off": [],
+            "mean_delay_ci95_s": [
+              0.837921,
+              1.176706
+            ],
+            "mean_delay_difference_s": 1.007314,
+            "member": "T2",
+            "phase_changes": [
+              {
+                "already_shorter": 0,
+                "applied": 14,
+                "change_s": -4.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=green W=red N left=red S left=red"
+              },
+              {
+                "already_shorter": 0,
+                "applied": 15,
+                "change_s": -2.0,
+                "clamped": 0,
+                "phases": "E=red N=red S=red W=green N left=red S left=red"
+              },
+              {
+                "already_shorter": 1,
+                "applied": 12,
+                "change_s": -3.0,
+                "clamped": 1,
+                "phases": "E=red N=red S=red W=red N left=green S left=green"
+              },
+              {
+                "already_shorter": 0,
+                "applied": 13,
+                "change_s": 9.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=red W=red N left=green S left=red"
+              }
+            ],
+            "required": true,
+            "status": "compared",
+            "supported": false,
+            "worsens": [
+              "mean_delay_s",
+              "throughput_veh_per_h",
+              "max_queue_m.S",
+              "mean_queue_m.E",
+              "mean_queue_m.S",
+              "mean_queue_m.W"
+            ]
+          },
+          {
+            "blocked_by": [
+              "I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.S, mean_queue_m.E, mean_queue_m.S"
+            ],
+            "confirmed": [],
+            "held_off": [],
+            "mean_delay_ci95_s": [
+              1.625693,
+              2.027006
+            ],
+            "mean_delay_difference_s": 1.82635,
+            "member": "T3",
+            "phase_changes": [
+              {
+                "already_shorter": 0,
+                "applied": 14,
+                "change_s": -4.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=green W=red N left=red S left=red"
+              },
+              {
+                "already_shorter": 0,
+                "applied": 15,
+                "change_s": -2.0,
+                "clamped": 1,
+                "phases": "E=red N=red S=red W=green N left=red S left=red"
+              },
+              {
+                "already_shorter": 1,
+                "applied": 12,
+                "change_s": -3.0,
+                "clamped": 1,
+                "phases": "E=red N=red S=red W=red N left=green S left=green"
+              },
+              {
+                "already_shorter": 9,
+                "applied": 4,
+                "change_s": 9.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=red W=red N left=green S left=red"
+              }
+            ],
+            "required": true,
+            "status": "compared",
+            "supported": false,
+            "worsens": [
+              "mean_delay_s",
+              "throughput_veh_per_h",
+              "max_queue_m.S",
+              "mean_queue_m.E",
+              "mean_queue_m.S"
+            ]
+          },
+          {
+            "blocked_by": [
+              "I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W"
+            ],
+            "confirmed": [],
+            "held_off": [],
+            "mean_delay_ci95_s": [
+              0.827208,
+              1.18161
+            ],
+            "mean_delay_difference_s": 1.004409,
+            "member": "T4",
+            "phase_changes": [
+              {
+                "already_shorter": 0,
+                "applied": 14,
+                "change_s": -4.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=green W=red N left=red S left=red"
+              },
+              {
+                "already_shorter": 0,
+                "applied": 14,
+                "change_s": -2.0,
+                "clamped": 1,
+                "phases": "E=red N=red S=red W=green N left=red S left=red"
+              },
+              {
+                "already_shorter": 1,
+                "applied": 12,
+                "change_s": -3.0,
+                "clamped": 1,
+                "phases": "E=red N=red S=red W=red N left=green S left=green"
+              },
+              {
+                "already_shorter": 0,
+                "applied": 13,
+                "change_s": 9.0,
+                "clamped": 0,
+                "phases": "E=red N=green S=red W=red N left=green S left=red"
+              }
+            ],
+            "required": true,
+            "status": "compared",
+            "supported": false,
+            "worsens": [
+              "mean_delay_s",
+              "throughput_veh_per_h",
+              "max_queue_m.E",
+              "mean_queue_m.E",
+              "mean_queue_m.S",
+              "mean_queue_m.W"
+            ]
+          }
+        ],
+        "not_supported_on": [
+          "T1",
+          "T2",
+          "T3",
+          "T4"
+        ],
+        "reason": "I1 is eligible on no required member: on T1: I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W; on T2: I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W; on T3: I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.S, mean_queue_m.E, mean_queue_m.S; on T4: I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W.",
+        "robust_harm": [
+          "mean_delay_s",
+          "throughput_veh_per_h",
+          "mean_queue_m.E",
+          "mean_queue_m.S"
+        ],
+        "supported_on": [],
+        "verdict": "no_support"
+      }
+    ],
+    "label": "simulated",
+    "members": [
+      "T1",
+      "T2",
+      "T3",
+      "T4"
+    ],
+    "planned_seeds": [
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220
+    ],
+    "recommendation": "Nothing is recommended: no robust selection.",
+    "recommended": null,
+    "required_members": [
+      "T1",
+      "T2",
+      "T3",
+      "T4"
+    ],
+    "robust_selection": null,
+    "rule": "Each member is evaluated on its own under the experiment rules; nothing is pooled, averaged or weighted across members. A candidate is supported on a member when its every phase change applies to at least one replayed phase (the same plan), every comparison has the member's planned paired seeds, and it is eligible there (compared, no metric worsens, no more vehicles held off at an entry than the baseline, at least one Holm-confirmed improvement). It is a robust improvement only when supported on every required member; timeline-dependent when supported on some but not all; without support when supported on none. A metric that worsens on every required member is robust harm.",
+    "rule_version": "0.1.0",
+    "selection_reason": "No robust selection: no candidate is a robust improvement."
+  },
+  "git": {
+    "branch": "ia/d1-d2",
+    "changed_paths_sha256": "61e0b9cac0a1030a90f7dbfa8288e850b3f5af58b9fb9fa367782b38e0f02853",
+    "dirty_paths": 35,
+    "head": "7e679f72b5630c20f002939636a0b57dfac17118",
+    "tracked_diff_sha256": "12904c368736865c7e39d37914f54ec8f71dbdc56c349ebc99ab936f72b889a6"
+  },
+  "label": "simulated",
+  "members": {
+    "T1": {
+      "arms": {
+        "D1": {
+          "comparisons": [
+            {
+              "ci95_difference": [
+                1.34787,
+                1.860325
+              ],
+              "mean_difference": 1.604098,
+              "metric": "mean_delay_s",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                -39.700973,
+                -31.957795
+              ],
+              "mean_difference": -35.829384,
+              "metric": "throughput_veh_per_h",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.N",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                0.769242,
+                3.057758
+              ],
+              "mean_difference": 1.9135,
+              "metric": "max_queue_m.E",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                -5.241716,
+                -2.370284
+              ],
+              "mean_difference": -3.806,
+              "metric": "max_queue_m.S",
+              "verdict": "improves"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.W",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                -5.456923,
+                -4.390282
+              ],
+              "mean_difference": -4.923603,
+              "metric": "mean_queue_m.N",
+              "verdict": "improves"
+            },
+            {
+              "ci95_difference": [
+                0.346094,
+                0.714037
+              ],
+              "mean_difference": 0.530066,
+              "metric": "mean_queue_m.E",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                3.352844,
+                4.008811
+              ],
+              "mean_difference": 3.680828,
+              "metric": "mean_queue_m.S",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                3.134377,
+                3.421845
+              ],
+              "mean_difference": 3.278111,
+              "metric": "mean_queue_m.W",
+              "verdict": "worsens"
+            }
+          ],
+          "confirmed": [],
+          "delay_difference_s": 1.604098,
+          "held_off": [],
+          "status": "compared",
+          "worsens": [
+            "mean_delay_s",
+            "throughput_veh_per_h",
+            "max_queue_m.E",
+            "mean_queue_m.E",
+            "mean_queue_m.S",
+            "mean_queue_m.W"
+          ]
+        }
+      },
+      "baseline_dir": "experiments/runs/ladder-evaluation-20261103T001603Z/T1/baseline",
+      "baseline_manifest_sha256": "42ffcecc7df21e67b194442ec1bd43377e63a6380fbec5b90e9bf1c834afb706",
+      "evaluation_sha256": "1f423b55edbbb891ba0dc7e3990bb8c3a3bdc5c34fd23a8a5e6fb415d170a0dd",
+      "experiment_manifest_sha256": "6eac4262fcc8307821eb75f8892df6c010c73a4f329af0d7cae40934ff49fa14",
+      "version": "v1"
+    },
+    "T2": {
+      "arms": {
+        "D1": {
+          "comparisons": [
+            {
+              "ci95_difference": [
+                0.837921,
+                1.176706
+              ],
+              "mean_difference": 1.007314,
+              "metric": "mean_delay_s",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                -6.586068,
+                -1.376018
+              ],
+              "mean_difference": -3.981043,
+              "metric": "throughput_veh_per_h",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.N",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                -1.088417,
+                1.535417
+              ],
+              "mean_difference": 0.2235,
+              "metric": "max_queue_m.E",
+              "verdict": "inconclusive"
+            },
+            {
+              "ci95_difference": [
+                2.534694,
+                5.883306
+              ],
+              "mean_difference": 4.209,
+              "metric": "max_queue_m.S",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.W",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                -4.630154,
+                -3.949385
+              ],
+              "mean_difference": -4.289769,
+              "metric": "mean_queue_m.N",
+              "verdict": "improves"
+            },
+            {
+              "ci95_difference": [
+                0.239896,
+                0.602641
+              ],
+              "mean_difference": 0.421268,
+              "metric": "mean_queue_m.E",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                3.786874,
+                4.511897
+              ],
+              "mean_difference": 4.149385,
+              "metric": "mean_queue_m.S",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.447886,
+                0.522376
+              ],
+              "mean_difference": 0.485131,
+              "metric": "mean_queue_m.W",
+              "verdict": "worsens"
+            }
+          ],
+          "confirmed": [],
+          "delay_difference_s": 1.007314,
+          "held_off": [],
+          "status": "compared",
+          "worsens": [
+            "mean_delay_s",
+            "throughput_veh_per_h",
+            "max_queue_m.S",
+            "mean_queue_m.E",
+            "mean_queue_m.S",
+            "mean_queue_m.W"
+          ]
+        }
+      },
+      "baseline_dir": "experiments/runs/ladder-evaluation-20261103T001603Z/T2/baseline",
+      "baseline_manifest_sha256": "6b4bec61327998a433c57dc34750efcee84352396c86bb021287dddefee8bede",
+      "evaluation_sha256": "600e7349e01e79f0dc3c9653f94bbe5a64845a69e785c4b3bc89cddf604f0892",
+      "experiment_manifest_sha256": "616ef7c67b5596569cc4b012fb684aed13f3e03f42bcc60d3350b2c055de7092",
+      "version": "v2"
+    },
+    "T3": {
+      "arms": {
+        "D1": {
+          "comparisons": [
+            {
+              "ci95_difference": [
+                1.625693,
+                2.027006
+              ],
+              "mean_difference": 1.82635,
+              "metric": "mean_delay_s",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                -73.849179,
+                -62.074992
+              ],
+              "mean_difference": -67.962085,
+              "metric": "throughput_veh_per_h",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.N",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                -0.205843,
+                1.687843
+              ],
+              "mean_difference": 0.741,
+              "metric": "max_queue_m.E",
+              "verdict": "inconclusive"
+            },
+            {
+              "ci95_difference": [
+                0.600557,
+                2.895443
+              ],
+              "mean_difference": 1.748,
+              "metric": "max_queue_m.S",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.W",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                -4.187704,
+                -3.239537
+              ],
+              "mean_difference": -3.71362,
+              "metric": "mean_queue_m.N",
+              "verdict": "improves"
+            },
+            {
+              "ci95_difference": [
+                0.427454,
+                0.78924
+              ],
+              "mean_difference": 0.608347,
+              "metric": "mean_queue_m.E",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                3.532858,
+                4.209934
+              ],
+              "mean_difference": 3.871396,
+              "metric": "mean_queue_m.S",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                -0.076675,
+                0.430429
+              ],
+              "mean_difference": 0.176877,
+              "metric": "mean_queue_m.W",
+              "verdict": "inconclusive"
+            }
+          ],
+          "confirmed": [],
+          "delay_difference_s": 1.82635,
+          "held_off": [],
+          "status": "compared",
+          "worsens": [
+            "mean_delay_s",
+            "throughput_veh_per_h",
+            "max_queue_m.S",
+            "mean_queue_m.E",
+            "mean_queue_m.S"
+          ]
+        }
+      },
+      "baseline_dir": "experiments/runs/ladder-evaluation-20261103T001603Z/T3/baseline",
+      "baseline_manifest_sha256": "9213948b0ad3a166faa907ada05f6a759deefc6b0f8a3eba280dbe03840e74b6",
+      "evaluation_sha256": "6fe91d7423ff67cc8b7cb196bbfe1a7e285563da1f10e525934874469d18324b",
+      "experiment_manifest_sha256": "41c3ec7f2f920a3c2b1f1d0f2651ee7bd757cd48b598ebba365ee6e342792385",
+      "version": "v2a"
+    },
+    "T4": {
+      "arms": {
+        "D1": {
+          "comparisons": [
+            {
+              "ci95_difference": [
+                0.827208,
+                1.18161
+              ],
+              "mean_difference": 1.004409,
+              "metric": "mean_delay_s",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                -16.102104,
+                -7.215431
+              ],
+              "mean_difference": -11.658768,
+              "metric": "throughput_veh_per_h",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.N",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                1.915556,
+                3.745444
+              ],
+              "mean_difference": 2.8305,
+              "metric": "max_queue_m.E",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                -1.169981,
+                0.394981
+              ],
+              "mean_difference": -0.3875,
+              "metric": "max_queue_m.S",
+              "verdict": "inconclusive"
+            },
+            {
+              "ci95_difference": [
+                0.0,
+                0.0
+              ],
+              "mean_difference": 0.0,
+              "metric": "max_queue_m.W",
+              "verdict": "uninformative"
+            },
+            {
+              "ci95_difference": [
+                -4.528045,
+                -3.881231
+              ],
+              "mean_difference": -4.204638,
+              "metric": "mean_queue_m.N",
+              "verdict": "improves"
+            },
+            {
+              "ci95_difference": [
+                0.309187,
+                0.678497
+              ],
+              "mean_difference": 0.493842,
+              "metric": "mean_queue_m.E",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                3.702209,
+                4.184499
+              ],
+              "mean_difference": 3.943354,
+              "metric": "mean_queue_m.S",
+              "verdict": "worsens"
+            },
+            {
+              "ci95_difference": [
+                0.961374,
+                1.717437
+              ],
+              "mean_difference": 1.339405,
+              "metric": "mean_queue_m.W",
+              "verdict": "worsens"
+            }
+          ],
+          "confirmed": [],
+          "delay_difference_s": 1.004409,
+          "held_off": [],
+          "status": "compared",
+          "worsens": [
+            "mean_delay_s",
+            "throughput_veh_per_h",
+            "max_queue_m.E",
+            "mean_queue_m.E",
+            "mean_queue_m.S",
+            "mean_queue_m.W"
+          ]
+        }
+      },
+      "baseline_dir": "experiments/runs/ladder-evaluation-20261103T001603Z/T4/baseline",
+      "baseline_manifest_sha256": "4f9c1074bc0b12cbdb738fcc583be7bdfff711fb747e9e7e40119d0a609946a3",
+      "evaluation_sha256": "61606e68b09ed8908630e01bd946dd27e2082ec44ce57a0ff78174b19eae1fe6",
+      "experiment_manifest_sha256": "146323c6156d380982c402681a9decad4a9e1d6e688c9bfa117167ada78651f6",
+      "version": "v2b"
+    }
+  },
+  "preregistration": "ladder-preregistration-20261103T001537Z.json",
+  "preregistration_sha256": "99a39a12008875a250abf9d160e792193be7ccb7c65bbbf606c47242d5a2abd4",
+  "record_sha256": "dbd840104e33a98cd40638da57d089871f2d5470f2792469675909478cb48984",
+  "run_dir": "experiments/runs/ladder-evaluation-20261103T001603Z",
+  "script": "scripts/run_ladder_evaluation_experiment.py run",
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220
+  ],
+  "software": {
+    "python": "3.12.3",
+    "sumo": "1.28.0"
+  }
+}

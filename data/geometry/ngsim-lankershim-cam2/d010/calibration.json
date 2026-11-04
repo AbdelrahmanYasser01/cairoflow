@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "clip_id": "4a06259854300b67",
+  "image_width_px": 640,
+  "image_height_px": 480,
+  "ground_frame": "local_enu_junction_m",
+  "points": [
+    {
+      "schema_version": "0.1.0",
+      "point_id": "E_stop_top",
+      "image_px": [
+        372.0,
+        118.0
+      ],
+      "ground_m": [
+        25.333,
+        16.0
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): upper end of the right-approach stop line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "point_id": "E_stop_bottom",
+      "image_px": [
+        372.0,
+        198.0
+      ],
+      "ground_m": [
+        25.333,
+        -1.778
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): lower end of the right-approach stop line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "point_id": "W_stop_top",
+      "image_px": [
+        147.0,
+        200.0
+      ],
+      "ground_m": [
+        -24.667,
+        -2.222
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): upper end of the left-approach stop line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "point_id": "W_stop_bottom",
+      "image_px": [
+        147.0,
+        262.0
+      ],
+      "ground_m": [
+        -24.667,
+        -16.0
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): lower end of the left-approach stop line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "point_id": "N_stop_left",
+      "image_px": [
+        205.0,
+        100.0
+      ],
+      "ground_m": [
+        -11.778,
+        20.0
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): left end of the top-approach stop line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "point_id": "N_exit_right",
+      "image_px": [
+        330.0,
+        95.0
+      ],
+      "ground_m": [
+        16.0,
+        21.111
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): right end of the top-arm stop/crosswalk line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "point_id": "S_stop_left",
+      "image_px": [
+        265.0,
+        290.0
+      ],
+      "ground_m": [
+        1.556,
+        -22.222
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): left end of the bottom-approach stop line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "point_id": "S_stop_right",
+      "image_px": [
+        330.0,
+        290.0
+      ],
+      "ground_m": [
+        16.0,
+        -22.222
+      ],
+      "role": "fit",
+      "ground_provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s): right end of the bottom-approach stop line; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    }
+  ]
+}

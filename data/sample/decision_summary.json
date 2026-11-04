@@ -1,0 +1,2383 @@
+{
+ "schema_version": "0.1.0",
+ "record_format": "decision_summary/1",
+ "demo_id": "ngsim-int2-ensemble-control",
+ "title": "Lankershim Boulevard at Universal Hollywood Drive (NGSIM intersection 2), 16 June 2005, 08:30-08:45",
+ "outcome": {
+  "schema_version": "0.1.0",
+  "evidence_kind": "simulated",
+  "outcome": "none_selected",
+  "selected_intervention_id": null,
+  "selection_reason": "None selected: I1 worsens throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W; I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W.",
+  "recommended_intervention_id": null,
+  "recommendation": "Nothing is recommended: no candidate was selected."
+ },
+ "baseline": {
+  "schema_version": "0.1.0",
+  "baseline_manifest_sha256": "76e85decc79b9d617c3f27cd1dd81440e38ed1e61866275a39b2c5271e848c92",
+  "status": "partially_validated",
+  "summary": "On signal timeline version 2, the replay baseline reproduces when the observed vehicles cross the stop line on every arm in median (within 4 s, no west left late), and north through stopping and travel time lie inside their observed intervals. But the south and right turners still stop more often than observed and left turns are slower; the timeline is estimated from the same crossings, no delay is observed, and the 20 seeds replay one observed 10.5 minutes. It is not validated for estimating intervention effects.",
+  "findings": [
+   "North through: paired crossing lag -0.1 to +0.2 s (median per seed); travel time 17.5 s against 17.2 s [12.3, 23.5] observed; share stopping 27.7% against 24.1% [19.0, 30.1], now inside the observed interval (30.6% on version 1).",
+   "South through: crossings 3.5 to 3.9 s early, and 78.2% stop against 66.9% [59.3, 73.7] observed; start-up headways err in opposite directions on N and S, so no global calibration was made.",
+   "Turns: N and S left travel times 64.2 s and 70.1 s against 56.3 [49.3, 63.0] and 46.4 [34.5, 64.7] observed; right turners stop far more often (N 40% against 11%, S 55% against 37%).",
+   "West: no left turn misses its green any more (all 23 paired, 3.6 to 4.1 s early in median, 57% within 5 s pooled); throughs 2.4 to 2.8 s early, 87% within 5 s; rights -1.1 to +0.3 s. The remaining error is early: SUMO discharges the permissive lefts at its saturation headway, the observed ones went 3 to 6 s apart (DATA_REGISTER.md §22).",
+   "In-sample: timeline version 2 is estimated from the same stop-line crossings the paired lags compare, so their agreement is internal consistency, not an independent check of the signal timing; no signal head or controller log was read.",
+   "Window ends: 7 vehicles are queued on N at simulated 0 s against 22 observed; at the end N and S hold 20 and 13 against 16 and 9 (single instants, no interval).",
+   "Not validatable: mean delay, the east and west queues (observed only near the limit line); throughput is circular, one for one.",
+   "Uncertainty: every seed replays the same vehicles, so intervals measure SUMO's microscopic noise for one observed realisation, not demand uncertainty.",
+   "Decision sensitivity: candidate effects depend on the signal timeline estimate, not only on seed noise. I1's mean-delay difference is +5.40 s [5.13, 5.67] on the version 1 replay (record ngsim-int2-realism-experiment-20261028T135556Z) and -0.75 s [-0.90, -0.60] on this one: each interval is narrow, yet they exclude each other, so intervals from one timeline understate the uncertainty of any verdict."
+  ],
+  "evidence": {
+   "experiments/records/ngsim-int2-realism-baseline-20261028T141919Z.json": "834fcabacff630f132efe3505ddbd47d2661e4ef2a204e6eece502bd5b153beb",
+   "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/NOTICE.md": "9567bd6409588af2e364f6f0c308fbae0c49858a9f11a58db8a9d1b8dd3f9bc6",
+   "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/validation/validation.json": "0b7b88aba5b7bdd33a4a78969a9ccbc66c2927ed9e7773830620a68ad2aecf08",
+   "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/validation/validation.md": "6a1fa1ca3af0494e2228f88aba59d99bd7ffd65e49e5ac808af32376a51e9616",
+   "data/geometry/ngsim-lankershim-int2/signal_timeline_v2.json": "5eb55b93a53ec643467680c6339095171dd09e5aad1e0d897ea5f555032c3968",
+   "data/geometry/ngsim-lankershim-int2/signal_estimate_v2.json": "2d4f85917ac9bb0a4b206042adeb3e231aaa3fef2e217eda8e54d0f98ab21fa1",
+   "experiments/records/ngsim-int2-realism-experiment-20261028T135556Z.json": "720df4abe1f3c0eaee3ebff3abd783d57c1985f1e69af271689624670cd8dc55"
+  },
+  "assessed_on": "2026-10-28",
+  "documented_in": "docs/DATA_REGISTER.md §§18-22"
+ },
+ "hypotheses": [
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "model_generated",
+   "hypothesis": {
+    "schema_version": "0.1.0",
+    "hypothesis_id": "H1",
+    "statement": "The junction is primarily limited by heavy northbound through and southbound through demand sharing the main north-south through green, producing persistent residual queues on southbound through lanes and northbound through lanes.",
+    "supporting_evidence_ids": [
+     "mv.NS",
+     "mv.SN",
+     "qr.S3",
+     "qr.S2",
+     "qr.S1",
+     "q.S3",
+     "q.S2",
+     "qr.N1",
+     "sig.program"
+    ],
+    "contradicting_evidence_ids": [
+     "qr.N2",
+     "qr.N3",
+     "qr.S4",
+     "q.N31"
+    ],
+    "assumptions": [
+     "Stop-line discharge counts approximate arrival demand over the clip",
+     "Queue samples and end-of-red residuals represent typical operation",
+     "Estimated signal staging captures the control structure"
+    ],
+    "confidence_label": "medium",
+    "alternative_explanations": [
+     "Lane use imbalance concentrates left turning vehicles in one lane while adjacent lanes are underused",
+     "Downstream blockage or merge friction inflates observed queues rather than signal capacity"
+    ]
+   },
+   "citations": [
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "mv.NS",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "N to S (through): 323 vehicles in 900 s = 1292 veh/h, 95% interval 1155-1441 veh/h; lanes marked for it: N1, N2, N3",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.NS",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "mv.SN",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "S to N (through): 250 vehicles in 900 s = 1000 veh/h, 95% interval 880-1132 veh/h; lanes marked for it: S1, S2, S3",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.SN",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.S3",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane S3 at the end of each red (8 reds): median 9 vehicles, max 12; median 62.7 m, max 79.4 m; 1 reach the end of the observed lane (at least)",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S3",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.S2",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane S2 at the end of each red (8 reds): median 7 vehicles, max 10; median 47.3 m, max 71.7 m; 1 reach the end of the observed lane (at least)",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S2",
+      "supporting_in": 4,
+      "contradicting_in": 1,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.S1",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane S1 at the end of each red (8 reds): median 4 vehicles, max 6; median 22.6 m, max 46.7 m",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S1",
+      "supporting_in": 2,
+      "contradicting_in": 0,
+      "cited_in": 2,
+      "replies": [
+       "r1",
+       "r3"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "q.S3",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane S3: 0-12 queued vehicles over 900 samples (mean 3.1); longest 80.1 +/- 1.2 m at 542 s (at least: it reaches the end of the observed lane); 42 samples reach the end of the observed lane",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.S3",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "q.S2",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane S2: 0-10 queued vehicles over 900 samples (mean 1.9); longest 77.6 +/- 1.2 m at 463 s (at least: it reaches the end of the observed lane); 18 samples reach the end of the observed lane",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.S2",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.N1",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane N1 at the end of each red (8 reds): median 3 vehicles, max 5; median 16.6 m, max 32.9 m",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N1",
+      "supporting_in": 2,
+      "contradicting_in": 0,
+      "cited_in": 2,
+      "replies": [
+       "r1",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "sig.program",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "simulated cycle 99 s, cut from timeline ngsim-int2-signals-c74ef7cc6d92 (trajectory-derived) at 564 s: p0_Ng_Er_Sg_Wr_NLr_SLr 31 s green N,S; p1_Ny_Er_Sg_Wr_NLr_SLr 1 s clearance (fixed), green S; p2_Ny_Er_Sy_Wr_NLr_SLr 3 s clearance (fixed); p3_Nr_Er_Sy_Wr_NLr_SLr 1 s clearance (fixed); p4_Nr_Er_Sr_Wr_NLr_SLr 1 s clearance (fixed); p5_Nr_Eg_Sr_Wr_NLr_SLr 5 s green E; p6_Nr_Ey_Sr_Wr_NLr_SLr 4 s clearance (fixed); p7_Nr_Er_Sr_Wr_NLr_SLr 5 s clearance (fixed); p8_Nr_Er_Sr_Wg_NLr_SLr 12 s green W; p9_Nr_Er_Sr_Wy_NLr_SLr 4 s clearance (fixed); p10_Nr_Er_Sr_Wr_NLr_SLr 3 s clearance (fixed); p11_Nr_Er_Sr_Wr_NLg_SLg 10 s green N-left,S-left; p12_Nr_Er_Sr_Wr_NLg_SLy 4 s clearance (fixed), green N-left; p13_Nr_Er_Sr_Wr_NLg_SLr 1 s green N-left; p14_Ng_Er_Sr_Wr_NLg_SLr 2 s green N,N-left; p15_Ng_Er_Sr_Wr_NLy_SLr 4 s clearance (fixed), green N; p16_Ng_Er_Sr_Wr_NLr_SLr 8 s green N",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "sig.program",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.N2",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "lane N2 at the end of each red (8 reds): median 1 vehicles, max 7; median 4.4 m, max 46.8 m",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N2",
+      "supporting_in": 1,
+      "contradicting_in": 3,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.N3",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "lane N3 at the end of each red (8 reds): median 2 vehicles, max 12; median 11.0 m, max 81.9 m; 1 reach the end of the observed lane (at least)",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N3",
+      "supporting_in": 1,
+      "contradicting_in": 1,
+      "cited_in": 2,
+      "replies": [
+       "r1",
+       "r3"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.S4",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "lane S4 at the end of each red (8 reds): median 0 vehicles, max 2; median 0.0 m, max 7.2 m",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S4",
+      "supporting_in": 0,
+      "contradicting_in": 4,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "q.N31",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "lane N31: 0-1 queued vehicles over 900 samples (mean 0.0); longest 1.7 +/- 1.2 m at 179 s",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N31",
+      "supporting_in": 0,
+      "contradicting_in": 3,
+      "cited_in": 3,
+      "replies": [
+       "r1",
+       "r3",
+       "r4"
+      ]
+     }
+    }
+   ],
+   "grounding": {
+    "schema_version": "0.1.0",
+    "hypothesis_id": "H1",
+    "status": "supported",
+    "reasons": [],
+    "flags": [],
+    "supporting_kinds": {
+     "approximated": 9
+    }
+   },
+   "recurrence": {
+    "schema_version": "0.1.0",
+    "cluster_id": "C1",
+    "in_replies": 4,
+    "n_replies": 4,
+    "shared_evidence_ids": [
+     "mv.NS",
+     "mv.SN",
+     "q.S2",
+     "q.S3",
+     "qr.S2",
+     "qr.S3",
+     "sig.program"
+    ]
+   }
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "model_generated",
+   "hypothesis": {
+    "schema_version": "0.1.0",
+    "hypothesis_id": "H2",
+    "statement": "The junction is primarily limited by high northbound left-turn demand relative to dedicated left-turn green and storage, causing large persistent queues in the north left-turn lanes while south left-turn and side-street approaches remain light.",
+    "supporting_evidence_ids": [
+     "mv.NE",
+     "q.N12",
+     "qr.N12",
+     "q.N11",
+     "qr.N11",
+     "sig.program"
+    ],
+    "contradicting_evidence_ids": [
+     "mv.SW",
+     "qr.S11",
+     "q.S11",
+     "qr.N2"
+    ],
+    "assumptions": [
+     "Marked lanes for the north to east movement are used as marked",
+     "Left-turn queue buildup reflects signal capacity rather than downstream spillback",
+     "Estimated left-turn green durations approximate field control"
+    ],
+    "confidence_label": "low",
+    "alternative_explanations": [
+     "Drivers favour one left-turn lane, creating apparent saturation without excess total left-turn demand",
+     "Short observation length for cross streets masks west or east pressure that also matters"
+    ]
+   },
+   "citations": [
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "mv.NE",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "N to E (left): 133 vehicles in 900 s = 532 veh/h, 95% interval 445-630 veh/h; lanes marked for it: N11, N12",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.NE",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "q.N12",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane N12: 0-13 queued vehicles over 900 samples (mean 4.2); longest 83.9 +/- 1.2 m at 115 s (at least: it reaches the end of the observed lane); 100 samples reach the end of the observed lane",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N12",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.N12",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane N12 at the end of each red (8 reds): median 8 vehicles, max 13; median 57.9 m, max 83.8 m; 2 reach the end of the observed lane (at least)",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N12",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "q.N11",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane N11: 0-6 queued vehicles over 900 samples (mean 1.6); longest 35.8 +/- 1.2 m at 141 s",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.N11",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.N11",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "lane N11 at the end of each red (8 reds): median 4 vehicles, max 5; median 23.4 m, max 28.2 m",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N11",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "sig.program",
+     "stance": "supporting",
+     "kind": "approximated",
+     "summary": "simulated cycle 99 s, cut from timeline ngsim-int2-signals-c74ef7cc6d92 (trajectory-derived) at 564 s: p0_Ng_Er_Sg_Wr_NLr_SLr 31 s green N,S; p1_Ny_Er_Sg_Wr_NLr_SLr 1 s clearance (fixed), green S; p2_Ny_Er_Sy_Wr_NLr_SLr 3 s clearance (fixed); p3_Nr_Er_Sy_Wr_NLr_SLr 1 s clearance (fixed); p4_Nr_Er_Sr_Wr_NLr_SLr 1 s clearance (fixed); p5_Nr_Eg_Sr_Wr_NLr_SLr 5 s green E; p6_Nr_Ey_Sr_Wr_NLr_SLr 4 s clearance (fixed); p7_Nr_Er_Sr_Wr_NLr_SLr 5 s clearance (fixed); p8_Nr_Er_Sr_Wg_NLr_SLr 12 s green W; p9_Nr_Er_Sr_Wy_NLr_SLr 4 s clearance (fixed); p10_Nr_Er_Sr_Wr_NLr_SLr 3 s clearance (fixed); p11_Nr_Er_Sr_Wr_NLg_SLg 10 s green N-left,S-left; p12_Nr_Er_Sr_Wr_NLg_SLy 4 s clearance (fixed), green N-left; p13_Nr_Er_Sr_Wr_NLg_SLr 1 s green N-left; p14_Ng_Er_Sr_Wr_NLg_SLr 2 s green N,N-left; p15_Ng_Er_Sr_Wr_NLy_SLr 4 s clearance (fixed), green N; p16_Ng_Er_Sr_Wr_NLr_SLr 8 s green N",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "sig.program",
+      "supporting_in": 4,
+      "contradicting_in": 0,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "mv.SW",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "S to W (left): 15 vehicles in 900 s = 60 veh/h, 95% interval 34-99 veh/h; lanes marked for it: S11",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "mv.SW",
+      "supporting_in": 0,
+      "contradicting_in": 4,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.S11",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "lane S11 at the end of each red (5 reds): median 1 vehicles, max 1; median 6.0 m, max 8.1 m",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.S11",
+      "supporting_in": 0,
+      "contradicting_in": 4,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "q.S11",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "lane S11: 0-2 queued vehicles over 900 samples (mean 0.2); longest 8.6 +/- 1.2 m at 0 s",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "q.S11",
+      "supporting_in": 0,
+      "contradicting_in": 3,
+      "cited_in": 3,
+      "replies": [
+       "r1",
+       "r3",
+       "r4"
+      ]
+     }
+    },
+    {
+     "schema_version": "0.1.0",
+     "evidence_id": "qr.N2",
+     "stance": "contradicting",
+     "kind": "approximated",
+     "summary": "lane N2 at the end of each red (8 reds): median 1 vehicles, max 7; median 4.4 m, max 46.8 m",
+     "recurrence": {
+      "schema_version": "0.1.0",
+      "evidence_id": "qr.N2",
+      "supporting_in": 1,
+      "contradicting_in": 3,
+      "cited_in": 4,
+      "replies": [
+       "r1",
+       "r2",
+       "r3",
+       "r4"
+      ]
+     }
+    }
+   ],
+   "grounding": {
+    "schema_version": "0.1.0",
+    "hypothesis_id": "H2",
+    "status": "supported",
+    "reasons": [],
+    "flags": [],
+    "supporting_kinds": {
+     "approximated": 6
+    }
+   },
+   "recurrence": {
+    "schema_version": "0.1.0",
+    "cluster_id": "C2",
+    "in_replies": 4,
+    "n_replies": 4,
+    "shared_evidence_ids": [
+     "mv.NE",
+     "q.N11",
+     "q.N12",
+     "qr.N11",
+     "qr.N12",
+     "sig.program"
+    ]
+   }
+  }
+ ],
+ "candidates": [
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "model_generated",
+   "intervention_id": "I1",
+   "proposal": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I1",
+    "type": "signal_timing",
+    "target_program": "ngsim_int2_cycle",
+    "phase_changes": [
+     {
+      "schema_version": "0.1.0",
+      "phase_name": "p0_Ng_Er_Sg_Wr_NLr_SLr",
+      "green_s": 40.0
+     },
+     {
+      "schema_version": "0.1.0",
+      "phase_name": "p8_Nr_Er_Sr_Wg_NLr_SLr",
+      "green_s": 6.0
+     }
+    ],
+    "rationale": "Reallocate green time from the lightly used west approach toward the main north south through movement to test whether added through capacity eases residual queues on the busiest through lanes.",
+    "expected_tradeoffs": [
+     "Longer waiting time for west approach users with greater chance of short lane buildup near the limit line",
+     "Less flexibility for westbound discharge if arrivals vary across the peak"
+    ],
+    "preconditions": [
+     "Signal controller accepts revised green splits",
+     "Lane markings and right turn on red operation remain as observed"
+    ],
+    "addresses_hypothesis_ids": [
+     "H1"
+    ],
+    "evidence_ids": [
+     "mv.NS",
+     "mv.SN",
+     "qr.S3",
+     "qr.S2",
+     "mv.WE",
+     "qr.W2",
+     "sig.program"
+    ]
+   },
+   "grounding": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I1",
+    "eligible": true,
+    "reasons": [],
+    "supported_hypothesis_ids": [
+     "H1"
+    ]
+   },
+   "validator": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I1",
+    "status": "accepted",
+    "reasons": [],
+    "program_id": "ngsim_int2_cycle",
+    "phase_durations_s": [
+     40.0,
+     1.0,
+     3.0,
+     1.0,
+     1.0,
+     5.0,
+     4.0,
+     5.0,
+     6.0,
+     4.0,
+     3.0,
+     10.0,
+     4.0,
+     1.0,
+     2.0,
+     4.0,
+     8.0
+    ],
+    "cycle_s": 102.0,
+    "baseline_cycle_s": 99.0,
+    "validated_at_utc": "2026-10-28T07:58:03Z"
+   },
+   "eligibility_status": "compared",
+   "eligibility_reasons": []
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "model_generated",
+   "intervention_id": "I2",
+   "proposal": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I2",
+    "type": "signal_timing",
+    "target_program": "ngsim_int2_cycle",
+    "phase_changes": [
+     {
+      "schema_version": "0.1.0",
+      "phase_name": "p0_Ng_Er_Sg_Wr_NLr_SLr",
+      "green_s": 26.0
+     },
+     {
+      "schema_version": "0.1.0",
+      "phase_name": "p11_Nr_Er_Sr_Wr_NLg_SLg",
+      "green_s": 15.0
+     }
+    ],
+    "rationale": "Reallocate green time from the main through movement toward the dedicated north left turn stage to test whether left turn capacity and storage explain the large left lane buildup.",
+    "expected_tradeoffs": [
+     "Longer waiting time for through users on the main approaches with risk of longer residual queues",
+     "Potential underuse of left turn green if left turn arrivals vary across the peak"
+    ],
+    "preconditions": [
+     "Signal controller accepts revised green splits",
+     "Lane markings and right turn on red operation remain as observed"
+    ],
+    "addresses_hypothesis_ids": [
+     "H2"
+    ],
+    "evidence_ids": [
+     "mv.NE",
+     "q.N12",
+     "qr.N12",
+     "qr.N11",
+     "mv.NS",
+     "sig.program"
+    ]
+   },
+   "grounding": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I2",
+    "eligible": true,
+    "reasons": [],
+    "supported_hypothesis_ids": [
+     "H2"
+    ]
+   },
+   "validator": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I2",
+    "status": "accepted",
+    "reasons": [],
+    "program_id": "ngsim_int2_cycle",
+    "phase_durations_s": [
+     26.0,
+     1.0,
+     3.0,
+     1.0,
+     1.0,
+     5.0,
+     4.0,
+     5.0,
+     12.0,
+     4.0,
+     3.0,
+     15.0,
+     4.0,
+     1.0,
+     2.0,
+     4.0,
+     8.0
+    ],
+    "cycle_s": 99.0,
+    "baseline_cycle_s": 99.0,
+    "validated_at_utc": "2026-10-28T07:58:03Z"
+   },
+   "eligibility_status": "compared",
+   "eligibility_reasons": []
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "model_generated",
+   "intervention_id": "I3",
+   "proposal": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I3",
+    "type": "signal_timing",
+    "target_program": "ngsim_int2_cycle",
+    "phase_changes": [
+     {
+      "schema_version": "0.1.0",
+      "phase_name": "p8_Nr_Er_Sr_Wg_NLr_SLr",
+      "green_s": 5.0
+     },
+     {
+      "schema_version": "0.1.0",
+      "phase_name": "p11_Nr_Er_Sr_Wr_NLg_SLg",
+      "green_s": 16.0
+     },
+     {
+      "schema_version": "0.1.0",
+      "phase_name": "p16_Ng_Er_Sr_Wr_NLr_SLr",
+      "green_s": 12.0
+     }
+    ],
+    "rationale": "Trim west green to minimum levels and extend the trailing north extension and the dedicated left turn stage to test joint relief of through and left turn pressure while keeping overall cycle length stable.",
+    "expected_tradeoffs": [
+     "Longer waiting time for west and east approach users with possible buildup in short observable areas",
+     "Greater north green share may increase side street delay without guarantee of balanced operation"
+    ],
+    "preconditions": [
+     "Signal controller accepts revised green splits",
+     "Lane markings and right turn on red operation remain as observed"
+    ],
+    "addresses_hypothesis_ids": [
+     "H1",
+     "H2"
+    ],
+    "evidence_ids": [
+     "mv.NS",
+     "mv.SN",
+     "mv.NE",
+     "qr.S3",
+     "qr.N12",
+     "qr.W2",
+     "sig.program"
+    ]
+   },
+   "grounding": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I3",
+    "eligible": true,
+    "reasons": [],
+    "supported_hypothesis_ids": [
+     "H1",
+     "H2"
+    ]
+   },
+   "validator": {
+    "schema_version": "0.1.0",
+    "intervention_id": "I3",
+    "status": "accepted",
+    "reasons": [],
+    "program_id": "ngsim_int2_cycle",
+    "phase_durations_s": [
+     31.0,
+     1.0,
+     3.0,
+     1.0,
+     1.0,
+     5.0,
+     4.0,
+     5.0,
+     5.0,
+     4.0,
+     3.0,
+     16.0,
+     4.0,
+     1.0,
+     2.0,
+     4.0,
+     12.0
+    ],
+    "cycle_s": 102.0,
+    "baseline_cycle_s": 99.0,
+    "validated_at_utc": "2026-10-28T07:58:03Z"
+   },
+   "eligibility_status": "compared",
+   "eligibility_reasons": []
+  }
+ ],
+ "simulation": {
+  "schema_version": "0.1.0",
+  "evidence_kind": "simulated",
+  "run_id": "ngsim-int2-realism-experiment-20261029T122930Z",
+  "created_at_utc": "2026-10-29T12:29:30Z",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20
+  ],
+  "replay_window_s": [
+   118.0,
+   751.0
+  ],
+  "baseline_manifest_sha256": "76e85decc79b9d617c3f27cd1dd81440e38ed1e61866275a39b2c5271e848c92"
+ },
+ "metrics": [
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "mean_delay_s",
+   "unit": "s",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 25.757471,
+   "candidate_mean": 25.005787,
+   "mean_difference": -0.751684,
+   "sd_difference": 0.321446,
+   "ci95_difference": [
+    -0.902124,
+    -0.601244
+   ],
+   "verdict": "improves",
+   "improvement_confirmed": true
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "throughput_veh_per_h",
+   "unit": "veh/h",
+   "better": "higher",
+   "n_seeds": 20,
+   "baseline_mean": 3787.962085,
+   "candidate_mean": 3768.909953,
+   "mean_difference": -19.052132,
+   "sd_difference": 6.722863,
+   "ci95_difference": [
+    -22.198493,
+    -15.905772
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "max_queue_m.N",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 105.46,
+   "candidate_mean": 105.46,
+   "mean_difference": 0.0,
+   "sd_difference": 0.0,
+   "ci95_difference": [
+    0.0,
+    0.0
+   ],
+   "verdict": "uninformative",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "max_queue_m.E",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 13.0315,
+   "candidate_mean": 24.7385,
+   "mean_difference": 11.707,
+   "sd_difference": 1.837705,
+   "ci95_difference": [
+    10.846938,
+    12.567062
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "max_queue_m.S",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 80.5275,
+   "candidate_mean": 59.297,
+   "mean_difference": -21.2305,
+   "sd_difference": 4.171008,
+   "ci95_difference": [
+    -23.18257,
+    -19.27843
+   ],
+   "verdict": "improves",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "max_queue_m.W",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 54.33,
+   "candidate_mean": 54.33,
+   "mean_difference": 0.0,
+   "sd_difference": 0.0,
+   "ci95_difference": [
+    0.0,
+    0.0
+   ],
+   "verdict": "uninformative",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "mean_queue_m.N",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 34.752697,
+   "candidate_mean": 33.035825,
+   "mean_difference": -1.716872,
+   "sd_difference": 0.799029,
+   "ci95_difference": [
+    -2.090825,
+    -1.342919
+   ],
+   "verdict": "improves",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "mean_queue_m.E",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 0.94549,
+   "candidate_mean": 1.774679,
+   "mean_difference": 0.82919,
+   "sd_difference": 0.148893,
+   "ci95_difference": [
+    0.759506,
+    0.898873
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "mean_queue_m.S",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 24.730442,
+   "candidate_mean": 20.817625,
+   "mean_difference": -3.912817,
+   "sd_difference": 0.369444,
+   "ci95_difference": [
+    -4.08572,
+    -3.739914
+   ],
+   "verdict": "improves",
+   "improvement_confirmed": true
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I1",
+   "metric_name": "mean_queue_m.W",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 1.925096,
+   "candidate_mean": 7.885002,
+   "mean_difference": 5.959906,
+   "sd_difference": 0.649443,
+   "ci95_difference": [
+    5.655961,
+    6.263851
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "mean_delay_s",
+   "unit": "s",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 25.757471,
+   "candidate_mean": 28.577835,
+   "mean_difference": 2.820365,
+   "sd_difference": 0.273686,
+   "ci95_difference": [
+    2.692277,
+    2.948452
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "throughput_veh_per_h",
+   "unit": "veh/h",
+   "better": "higher",
+   "n_seeds": 20,
+   "baseline_mean": 3787.962085,
+   "candidate_mean": 3676.492891,
+   "mean_difference": -111.469194,
+   "sd_difference": 9.299377,
+   "ci95_difference": [
+    -115.821387,
+    -107.117002
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "max_queue_m.N",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 105.46,
+   "candidate_mean": 105.46,
+   "mean_difference": 0.0,
+   "sd_difference": 0.0,
+   "ci95_difference": [
+    0.0,
+    0.0
+   ],
+   "verdict": "uninformative",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "max_queue_m.E",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 13.0315,
+   "candidate_mean": 19.9395,
+   "mean_difference": 6.908,
+   "sd_difference": 5.536766,
+   "ci95_difference": [
+    4.316744,
+    9.499256
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "max_queue_m.S",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 80.5275,
+   "candidate_mean": 86.425,
+   "mean_difference": 5.8975,
+   "sd_difference": 2.72549,
+   "ci95_difference": [
+    4.621946,
+    7.173054
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "max_queue_m.W",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 54.33,
+   "candidate_mean": 54.33,
+   "mean_difference": 0.0,
+   "sd_difference": 0.0,
+   "ci95_difference": [
+    0.0,
+    0.0
+   ],
+   "verdict": "uninformative",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "mean_queue_m.N",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 34.752697,
+   "candidate_mean": 32.901707,
+   "mean_difference": -1.85099,
+   "sd_difference": 0.575595,
+   "ci95_difference": [
+    -2.120373,
+    -1.581606
+   ],
+   "verdict": "improves",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "mean_queue_m.E",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 0.94549,
+   "candidate_mean": 3.411376,
+   "mean_difference": 2.465886,
+   "sd_difference": 0.177809,
+   "ci95_difference": [
+    2.38267,
+    2.549103
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "mean_queue_m.S",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 24.730442,
+   "candidate_mean": 26.644948,
+   "mean_difference": 1.914506,
+   "sd_difference": 0.399593,
+   "ci95_difference": [
+    1.727493,
+    2.101519
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I2",
+   "metric_name": "mean_queue_m.W",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 1.925096,
+   "candidate_mean": 3.077915,
+   "mean_difference": 1.152819,
+   "sd_difference": 0.594789,
+   "ci95_difference": [
+    0.874452,
+    1.431186
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "mean_delay_s",
+   "unit": "s",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 25.757471,
+   "candidate_mean": 29.113533,
+   "mean_difference": 3.356062,
+   "sd_difference": 0.302731,
+   "ci95_difference": [
+    3.214382,
+    3.497743
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "throughput_veh_per_h",
+   "unit": "veh/h",
+   "better": "higher",
+   "n_seeds": 20,
+   "baseline_mean": 3787.962085,
+   "candidate_mean": 3627.298578,
+   "mean_difference": -160.663507,
+   "sd_difference": 9.20277,
+   "ci95_difference": [
+    -164.970486,
+    -156.356528
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "max_queue_m.N",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 105.46,
+   "candidate_mean": 105.46,
+   "mean_difference": 0.0,
+   "sd_difference": 0.0,
+   "ci95_difference": [
+    0.0,
+    0.0
+   ],
+   "verdict": "uninformative",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "max_queue_m.E",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 13.0315,
+   "candidate_mean": 20.131,
+   "mean_difference": 7.0995,
+   "sd_difference": 0.466267,
+   "ci95_difference": [
+    6.881283,
+    7.317717
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "max_queue_m.S",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 80.5275,
+   "candidate_mean": 80.272,
+   "mean_difference": -0.2555,
+   "sd_difference": 4.023453,
+   "ci95_difference": [
+    -2.138512,
+    1.627512
+   ],
+   "verdict": "inconclusive",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "max_queue_m.W",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 54.33,
+   "candidate_mean": 54.33,
+   "mean_difference": 0.0,
+   "sd_difference": 0.0,
+   "ci95_difference": [
+    0.0,
+    0.0
+   ],
+   "verdict": "uninformative",
+   "improvement_confirmed": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "mean_queue_m.N",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 34.752697,
+   "candidate_mean": 32.516509,
+   "mean_difference": -2.236188,
+   "sd_difference": 0.617545,
+   "ci95_difference": [
+    -2.525205,
+    -1.947171
+   ],
+   "verdict": "improves",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "mean_queue_m.E",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 0.94549,
+   "candidate_mean": 4.037609,
+   "mean_difference": 3.092119,
+   "sd_difference": 0.220439,
+   "ci95_difference": [
+    2.988952,
+    3.195287
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "mean_queue_m.S",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 24.730442,
+   "candidate_mean": 22.484641,
+   "mean_difference": -2.2458,
+   "sd_difference": 0.306785,
+   "ci95_difference": [
+    -2.389378,
+    -2.102222
+   ],
+   "verdict": "improves",
+   "improvement_confirmed": true
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_kind": "simulated",
+   "candidate": "I3",
+   "metric_name": "mean_queue_m.W",
+   "unit": "m",
+   "better": "lower",
+   "n_seeds": 20,
+   "baseline_mean": 1.925096,
+   "candidate_mean": 10.734525,
+   "mean_difference": 8.809429,
+   "sd_difference": 0.527614,
+   "ci95_difference": [
+    8.562501,
+    9.056357
+   ],
+   "verdict": "worsens",
+   "improvement_confirmed": false
+  }
+ ],
+ "ensemble": {
+  "schema_version": "0.1.0",
+  "evidence_kind": "simulated",
+  "rule": "Each member is evaluated on its own under the experiment rules; nothing is pooled, averaged or weighted across members. A candidate is supported on a member when its every phase change applies to at least one replayed phase (the same plan), every comparison has the member's planned paired seeds, and it is eligible there (compared, no metric worsens, no more vehicles held off at an entry than the baseline, at least one Holm-confirmed improvement). It is a robust improvement only when supported on every required member; timeline-dependent when supported on some but not all; without support when supported on none. A metric that worsens on every required member is robust harm.",
+  "rule_version": "0.1.0",
+  "members": [
+   {
+    "schema_version": "0.1.0",
+    "member": "T1",
+    "version": "v1",
+    "required": true,
+    "baseline_assessment": "partially_validated",
+    "timeline_id": "ngsim-int2-signals-c74ef7cc6d92",
+    "timeline_sha256": "71a114a4a2e1e3e922e0b8684010633288ad6425943434c49eb06ca99e44ab9b",
+    "gate_passed": true
+   },
+   {
+    "schema_version": "0.1.0",
+    "member": "T2",
+    "version": "v2",
+    "required": true,
+    "baseline_assessment": "partially_validated",
+    "timeline_id": "ngsim-int2-signals-c74ef7cc6d92-v2",
+    "timeline_sha256": "5eb55b93a53ec643467680c6339095171dd09e5aad1e0d897ea5f555032c3968",
+    "gate_passed": true
+   },
+   {
+    "schema_version": "0.1.0",
+    "member": "T3",
+    "version": "v2a",
+    "required": true,
+    "baseline_assessment": "not_assessed",
+    "timeline_id": "ngsim-int2-signals-c74ef7cc6d92-v2a",
+    "timeline_sha256": "215acd637de6c1d408b5ad767263e05c68c8dff4aea6a783bbba2faaee18a875",
+    "gate_passed": true
+   },
+   {
+    "schema_version": "0.1.0",
+    "member": "T4",
+    "version": "v2b",
+    "required": true,
+    "baseline_assessment": "not_assessed",
+    "timeline_id": "ngsim-int2-signals-c74ef7cc6d92-v2b",
+    "timeline_sha256": "f5bf4f413d50b29a0c9739e4734ac63083560fb0f6562a4a073fa687d8deceba",
+    "gate_passed": true
+   }
+  ],
+  "candidates": [
+   {
+    "schema_version": "0.1.0",
+    "candidate": "I1",
+    "verdict": "no_support",
+    "reason": "I1 is eligible on no required member: on T1: I1 worsens mean_delay_s, max_queue_m.E, max_queue_m.W, mean_queue_m.E, mean_queue_m.W; on T2: I1 worsens throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; on T3: I1 worsens mean_delay_s, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; on T4: I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W.",
+    "supported_on": [],
+    "not_supported_on": [
+     "T1",
+     "T2",
+     "T3",
+     "T4"
+    ],
+    "common_confirmed": [
+     "mean_queue_m.S"
+    ],
+    "robust_harm": [
+     "max_queue_m.E",
+     "mean_queue_m.E",
+     "mean_queue_m.W"
+    ],
+    "direction_disagreements": [
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "max_queue_m.W",
+      "verdicts": {
+       "T1": "worsens",
+       "T2": "uninformative",
+       "T3": "uninformative",
+       "T4": "uninformative"
+      },
+      "mean_difference": {
+       "T1": 11.706,
+       "T2": 0.0,
+       "T3": 0.0,
+       "T4": 0.0
+      },
+      "ci95_difference": {
+       "T1": [
+        11.695769,
+        11.716231
+       ],
+       "T2": [
+        0.0,
+        0.0
+       ],
+       "T3": [
+        0.0,
+        0.0
+       ],
+       "T4": [
+        0.0,
+        0.0
+       ]
+      },
+      "opposite": false
+     },
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "mean_delay_s",
+      "verdicts": {
+       "T1": "worsens",
+       "T2": "improves",
+       "T3": "worsens",
+       "T4": "worsens"
+      },
+      "mean_difference": {
+       "T1": 5.40174,
+       "T2": -0.751684,
+       "T3": 0.806765,
+       "T4": 2.307849
+      },
+      "ci95_difference": {
+       "T1": [
+        5.130218,
+        5.673261
+       ],
+       "T2": [
+        -0.902124,
+        -0.601244
+       ],
+       "T3": [
+        0.580287,
+        1.033243
+       ],
+       "T4": [
+        2.183406,
+        2.432292
+       ]
+      },
+      "opposite": true
+     },
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "mean_queue_m.N",
+      "verdicts": {
+       "T1": "inconclusive",
+       "T2": "improves",
+       "T3": "improves",
+       "T4": "improves"
+      },
+      "mean_difference": {
+       "T1": -0.200043,
+       "T2": -1.716872,
+       "T3": -2.317588,
+       "T4": -0.650026
+      },
+      "ci95_difference": {
+       "T1": [
+        -0.816022,
+        0.415935
+       ],
+       "T2": [
+        -2.090825,
+        -1.342919
+       ],
+       "T3": [
+        -2.864928,
+        -1.770249
+       ],
+       "T4": [
+        -1.063384,
+        -0.236668
+       ]
+      },
+      "opposite": false
+     },
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "throughput_veh_per_h",
+      "verdicts": {
+       "T1": "improves",
+       "T2": "worsens",
+       "T3": "improves",
+       "T4": "worsens"
+      },
+      "mean_difference": {
+       "T1": 10.236967,
+       "T2": -19.052132,
+       "T3": 8.815166,
+       "T4": -17.345971
+      },
+      "ci95_difference": {
+       "T1": [
+        6.131662,
+        14.342272
+       ],
+       "T2": [
+        -22.198493,
+        -15.905772
+       ],
+       "T3": [
+        5.41808,
+        12.212252
+       ],
+       "T4": [
+        -20.743057,
+        -13.948885
+       ]
+      },
+      "opposite": true
+     }
+    ],
+    "members": [
+     {
+      "schema_version": "0.1.0",
+      "member": "T1",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I1 worsens mean_delay_s, max_queue_m.E, max_queue_m.W, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "max_queue_m.E",
+       "max_queue_m.W",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [
+       "mean_queue_m.S"
+      ],
+      "held_off": [
+       "N"
+      ],
+      "mean_delay_difference_s": 5.40174,
+      "mean_delay_ci95_s": [
+       5.130218,
+       5.673261
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T2",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I1 worsens throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [
+       "mean_delay_s",
+       "mean_queue_m.S"
+      ],
+      "held_off": [],
+      "mean_delay_difference_s": -0.751684,
+      "mean_delay_ci95_s": [
+       -0.902124,
+       -0.601244
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T3",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I1 worsens mean_delay_s, max_queue_m.E, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "max_queue_m.E",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [
+       "mean_queue_m.S"
+      ],
+      "held_off": [],
+      "mean_delay_difference_s": 0.806765,
+      "mean_delay_ci95_s": [
+       0.580287,
+       1.033243
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T4",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I1 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [
+       "mean_queue_m.S"
+      ],
+      "held_off": [],
+      "mean_delay_difference_s": 2.307849,
+      "mean_delay_ci95_s": [
+       2.183406,
+       2.432292
+      ]
+     }
+    ]
+   },
+   {
+    "schema_version": "0.1.0",
+    "candidate": "I2",
+    "verdict": "no_support",
+    "reason": "I2 is eligible on no required member: on T1: I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W; on T2: I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W; on T3: I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W; on T4: I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S.",
+    "supported_on": [],
+    "not_supported_on": [
+     "T1",
+     "T2",
+     "T3",
+     "T4"
+    ],
+    "common_confirmed": [],
+    "robust_harm": [
+     "mean_delay_s",
+     "throughput_veh_per_h",
+     "max_queue_m.E",
+     "max_queue_m.S",
+     "mean_queue_m.E",
+     "mean_queue_m.S"
+    ],
+    "direction_disagreements": [
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "mean_queue_m.W",
+      "verdicts": {
+       "T1": "worsens",
+       "T2": "worsens",
+       "T3": "worsens",
+       "T4": "inconclusive"
+      },
+      "mean_difference": {
+       "T1": 1.267002,
+       "T2": 1.152819,
+       "T3": 1.478895,
+       "T4": 0.435915
+      },
+      "ci95_difference": {
+       "T1": [
+        0.81144,
+        1.722563
+       ],
+       "T2": [
+        0.874452,
+        1.431186
+       ],
+       "T3": [
+        1.074485,
+        1.883305
+       ],
+       "T4": [
+        -0.029165,
+        0.900996
+       ]
+      },
+      "opposite": false
+     }
+    ],
+    "members": [
+     {
+      "schema_version": "0.1.0",
+      "member": "T1",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "max_queue_m.S",
+       "mean_queue_m.E",
+       "mean_queue_m.S",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [],
+      "held_off": [
+       "N",
+       "S"
+      ],
+      "mean_delay_difference_s": 3.291775,
+      "mean_delay_ci95_s": [
+       3.130762,
+       3.452788
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T2",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "max_queue_m.S",
+       "mean_queue_m.E",
+       "mean_queue_m.S",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [],
+      "held_off": [
+       "N",
+       "S"
+      ],
+      "mean_delay_difference_s": 2.820365,
+      "mean_delay_ci95_s": [
+       2.692277,
+       2.948452
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T3",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "max_queue_m.S",
+       "mean_queue_m.E",
+       "mean_queue_m.S",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [],
+      "held_off": [
+       "N",
+       "S"
+      ],
+      "mean_delay_difference_s": 3.359506,
+      "mean_delay_ci95_s": [
+       3.204388,
+       3.514623
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T4",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I2 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, mean_queue_m.E, mean_queue_m.S"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "max_queue_m.S",
+       "mean_queue_m.E",
+       "mean_queue_m.S"
+      ],
+      "confirmed": [],
+      "held_off": [
+       "N",
+       "S"
+      ],
+      "mean_delay_difference_s": 2.861079,
+      "mean_delay_ci95_s": [
+       2.680308,
+       3.041849
+      ]
+     }
+    ]
+   },
+   {
+    "schema_version": "0.1.0",
+    "candidate": "I3",
+    "verdict": "no_support",
+    "reason": "I3 is eligible on no required member: on T1: I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, max_queue_m.W, mean_queue_m.E, mean_queue_m.W; on T2: not the same plan: its change to E=red N=green S=red W=red N left=red S left=red (+4 s) applies to no replayed phase, I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; on T3: I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, max_queue_m.W, mean_queue_m.E, mean_queue_m.W; on T4: not the same plan: its change to E=red N=green S=red W=red N left=red S left=red (+4 s) applies to no replayed phase, I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.S, max_queue_m.W, mean_queue_m.E, mean_queue_m.W.",
+    "supported_on": [],
+    "not_supported_on": [
+     "T1",
+     "T2",
+     "T3",
+     "T4"
+    ],
+    "common_confirmed": [],
+    "robust_harm": [
+     "mean_delay_s",
+     "throughput_veh_per_h",
+     "mean_queue_m.E",
+     "mean_queue_m.W"
+    ],
+    "direction_disagreements": [
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "max_queue_m.E",
+      "verdicts": {
+       "T1": "worsens",
+       "T2": "worsens",
+       "T3": "worsens",
+       "T4": "improves"
+      },
+      "mean_difference": {
+       "T1": 4.135,
+       "T2": 7.0995,
+       "T3": 4.785,
+       "T4": -0.34
+      },
+      "ci95_difference": {
+       "T1": [
+        1.66251,
+        6.60749
+       ],
+       "T2": [
+        6.881283,
+        7.317717
+       ],
+       "T3": [
+        3.632509,
+        5.937491
+       ],
+       "T4": [
+        -0.583085,
+        -0.096915
+       ]
+      },
+      "opposite": true
+     },
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "max_queue_m.S",
+      "verdicts": {
+       "T1": "worsens",
+       "T2": "inconclusive",
+       "T3": "worsens",
+       "T4": "worsens"
+      },
+      "mean_difference": {
+       "T1": 1.274,
+       "T2": -0.2555,
+       "T3": 3.807,
+       "T4": 5.54
+      },
+      "ci95_difference": {
+       "T1": [
+        0.23937,
+        2.30863
+       ],
+       "T2": [
+        -2.138512,
+        1.627512
+       ],
+       "T3": [
+        2.775358,
+        4.838642
+       ],
+       "T4": [
+        4.338124,
+        6.741876
+       ]
+      },
+      "opposite": false
+     },
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "max_queue_m.W",
+      "verdicts": {
+       "T1": "worsens",
+       "T2": "uninformative",
+       "T3": "worsens",
+       "T4": "worsens"
+      },
+      "mean_difference": {
+       "T1": 11.6905,
+       "T2": 0.0,
+       "T3": 3.2235,
+       "T4": 1.2585
+      },
+      "ci95_difference": {
+       "T1": [
+        11.683799,
+        11.697201
+       ],
+       "T2": [
+        0.0,
+        0.0
+       ],
+       "T3": [
+        1.284217,
+        5.162783
+       ],
+       "T4": [
+        0.335415,
+        2.181585
+       ]
+      },
+      "opposite": false
+     },
+     {
+      "schema_version": "0.1.0",
+      "metric_name": "mean_queue_m.S",
+      "verdicts": {
+       "T1": "improves",
+       "T2": "improves",
+       "T3": "improves",
+       "T4": "inconclusive"
+      },
+      "mean_difference": {
+       "T1": -0.337717,
+       "T2": -2.2458,
+       "T3": -1.002577,
+       "T4": 0.108411
+      },
+      "ci95_difference": {
+       "T1": [
+        -0.531902,
+        -0.143532
+       ],
+       "T2": [
+        -2.389378,
+        -2.102222
+       ],
+       "T3": [
+        -1.172822,
+        -0.832333
+       ],
+       "T4": [
+        -0.114506,
+        0.331329
+       ]
+      },
+      "opposite": false
+     }
+    ],
+    "members": [
+     {
+      "schema_version": "0.1.0",
+      "member": "T1",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, max_queue_m.W, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "max_queue_m.S",
+       "max_queue_m.W",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [
+       "mean_queue_m.S"
+      ],
+      "held_off": [],
+      "mean_delay_difference_s": 3.737984,
+      "mean_delay_ci95_s": [
+       3.565339,
+       3.910629
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T2",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "not the same plan: its change to E=red N=green S=red W=red N left=red S left=red (+4 s) applies to no replayed phase",
+       "I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [
+       "mean_queue_m.S"
+      ],
+      "held_off": [
+       "N"
+      ],
+      "mean_delay_difference_s": 3.356062,
+      "mean_delay_ci95_s": [
+       3.214382,
+       3.497743
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T3",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, max_queue_m.S, max_queue_m.W, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.E",
+       "max_queue_m.S",
+       "max_queue_m.W",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [
+       "mean_queue_m.S"
+      ],
+      "held_off": [
+       "N"
+      ],
+      "mean_delay_difference_s": 5.718857,
+      "mean_delay_ci95_s": [
+       5.414752,
+       6.022963
+      ]
+     },
+     {
+      "schema_version": "0.1.0",
+      "member": "T4",
+      "required": true,
+      "supported": false,
+      "blocked_by": [
+       "not the same plan: its change to E=red N=green S=red W=red N left=red S left=red (+4 s) applies to no replayed phase",
+       "I3 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.S, max_queue_m.W, mean_queue_m.E, mean_queue_m.W"
+      ],
+      "status": "compared",
+      "worsens": [
+       "mean_delay_s",
+       "throughput_veh_per_h",
+       "max_queue_m.S",
+       "max_queue_m.W",
+       "mean_queue_m.E",
+       "mean_queue_m.W"
+      ],
+      "confirmed": [],
+      "held_off": [],
+      "mean_delay_difference_s": 1.824701,
+      "mean_delay_ci95_s": [
+       1.664922,
+       1.98448
+      ]
+     }
+    ]
+   }
+  ],
+  "robust_selection": null,
+  "selection_reason": "No robust selection: no candidate is a robust improvement.",
+  "recommended": null,
+  "recommendation": "Nothing is recommended: no robust selection."
+ },
+ "assumptions": [
+  "The two SignalRevision axes are the estimation choices the evidence leaves open; the others are fixed by the data or are synthetic constants this design does not propagate.",
+  "The candidates are carried onto each member by phase identity; where a change applies to fewer phases, or is clamped at the minimum green, the plan differs between members, and the per-member mapping is recorded.",
+  "Every member replays one observed 10.5 minute realisation; the 20 seeds measure SUMO's microscopic noise, not demand uncertainty.",
+  "Cross-street entries are anchored to each member's own greens, so cross-street demand timing differs between members by construction."
+ ],
+ "limitations": [
+  "The ensemble brackets two rule choices; it is not a probability distribution over timelines, and a robust verdict is not a calibrated probability.",
+  "Synthetic constants (yellow, all-red, minimum green, start-up lost time), east greens that are lower bounds, red gaps, the window edges, south over-stopping and right turners' stops remain unpropagated.",
+  "West and east results are not trusted on their own (ADR-022), and mean delay has no observed counterpart.",
+  "No member's baseline is assessed as validated, so nothing found under this design is a recommendation.",
+  "The agreement of any timeline with the crossings is internal consistency: the timelines are estimated from the same crossings.",
+  "The evidence comes from published NGSIM vehicle trajectories (Lankershim Boulevard, 2005-06-16 08:30-08:45), not from camera tracking; no camera calibration is used.",
+  "The signal timeline and program are estimated from stop-line discharges: green onsets and ends are approximated; yellow 4 s, start-up 2 s, clearance 1 s and minimum green 5 s are assumed. The real control appears actuated (onset spacing 80-201 s); the simulation repeats one observed 99 s cycle.",
+  "Queue lengths marked 'at least' reach the end of the observed lane; cross-street queues are observable only near the limit line (east) or not at all (west).",
+  "In the simulation right turns may go on red after stopping (assumed).",
+  "Known slip in the model text: the reply calls arm N's left turners \"northbound\". Arm N means vehicles arriving from the north, travelling southbound."
+ ],
+ "sources": [
+  {
+   "schema_version": "0.1.0",
+   "role": "demo_manifest",
+   "path": "data/demo/ngsim-int2-ensemble-control.json",
+   "sha256": "e698801df1a4b9eac647c9002a00343180e7bf21798c3f1154babc2e54ef8450"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "meta_depth_pins",
+   "path": "data/demo/meta-depth-pins.json",
+   "sha256": "43f4581a63950faa2f5912e6eab54bbba06a05c2656088b32e34546dc371fea0"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "scenario",
+   "path": "data/geometry/ngsim-lankershim-int2/scenario.json",
+   "sha256": "9d08eb6e033d2e60e81aaa10b5c6c6773fc4bb55058e39baae7224f59ff156a1"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "proposals",
+   "path": "experiments/records/ngsim-int2-experiment-20261028T075803Z.json",
+   "sha256": "a97c71f8aa70c57012d6b007d9b50e8da0e80d359f67237dc234454e523a225c"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "muse_reply",
+   "path": "cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.json",
+   "sha256": "2c94eb6f579b2ea02af7b391d17595732e6ea6125f80b3d60b10bcc38804a92d"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "timeline_estimate",
+   "path": "data/geometry/ngsim-lankershim-int2/signal_estimate_v2.json",
+   "sha256": "2d4f85917ac9bb0a4b206042adeb3e231aaa3fef2e217eda8e54d0f98ab21fa1"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "baseline",
+   "path": "experiments/records/ngsim-int2-realism-baseline-20261028T141919Z.json",
+   "sha256": "834fcabacff630f132efe3505ddbd47d2661e4ef2a204e6eece502bd5b153beb"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "validation",
+   "path": "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/validation/validation.json",
+   "sha256": "0b7b88aba5b7bdd33a4a78969a9ccbc66c2927ed9e7773830620a68ad2aecf08"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "assessment",
+   "path": "data/geometry/ngsim-lankershim-int2/replay_assessments/ngsim-int2-realism-baseline-20261028T141919Z.json",
+   "sha256": "e5b3ec61b43135ba0fddff37c9233bf9a593eb365341a12e36cdec90d133b2c7"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "results",
+   "path": "experiments/records/ngsim-int2-realism-experiment-20261029T122930Z.json",
+   "sha256": "76978d9f18a02dd4d97ef0926221437b385f524b5da2df1726f3854ea9e68ace"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "results_v1",
+   "path": "experiments/records/ngsim-int2-realism-experiment-20261029T122910Z.json",
+   "sha256": "249f32e7b803212a4e08a714d3bc4b86caf22fa104bac76250cb6be7b0037429"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "assessment_v1",
+   "path": "data/geometry/ngsim-lankershim-int2/replay_assessments/ngsim-int2-realism-baseline-20261028T135241Z.json",
+   "sha256": "cdb3a8863812bde8c62ae74e50a92b9d580cee37fd468a1f261973f2690d46ab"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "ensemble",
+   "path": "experiments/records/ngsim-int2-timeline-ensemble-20261029T123045Z.json",
+   "sha256": "abd15cd0db30e485dc4cd101ba1c702f39886df59a5b4c8e946a3a3dc59268d5"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "control_reallocation",
+   "path": "experiments/records/synthetic-known-answer-reallocation-20261029T123315Z.json",
+   "sha256": "aead12e94c1d5b1826b83f63f0fa357b8746336985f99c10ac471f36a8e25757"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "control_long_cycle",
+   "path": "experiments/records/synthetic-known-answer-long-cycle-20261029T123354Z.json",
+   "sha256": "b34459d0c20cde6755f1c7b49fa12a680ba80a25d4f152c377e9dcc04c288b55"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "muse_notice",
+   "path": "cache/muse/NOTICE.md",
+   "sha256": "2ab8c586272889f95ec5148aa98641a47fc40d3e2a4ed123a479cb7e9ef16171"
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "muse_recurrence",
+   "path": "experiments/records/muse-recurrence-20261103T183337Z.json",
+   "sha256": "a70fa139df291ca946c16ed2ebaa48b05e0551f88a7813905868c46edfc7393c"
+  }
+ ]
+}

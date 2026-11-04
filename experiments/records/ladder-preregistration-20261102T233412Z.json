@@ -1,0 +1,308 @@
+{
+  "arms": {
+    "D1": {
+      "durations_s": [
+        29.0,
+        1.0,
+        3.0,
+        1.0,
+        1.0,
+        5.0,
+        4.0,
+        5.0,
+        10.0,
+        4.0,
+        3.0,
+        7.0,
+        4.0,
+        1.0,
+        12.0,
+        4.0,
+        5.0
+      ],
+      "eq1_record": {
+        "algorithm": "eq1-v1",
+        "assumption": "equal saturation flow for every signal head and no lost time, so a head's load is its critical flow per lane divided by its green (ADR-033 decision 3e)",
+        "assumption_status": "experimental assumption, accepted by the account holder on 2026-11-03 as an explicit experimental assumption, not an empirically established traffic characteristic; no saturation flow or lost time was calibrated",
+        "input_sha256": "32bf3d8dd81f8b59d02bad158d73c23f89cf39b38d23a2514ed6ede5bc702714",
+        "inputs": {
+          "baseline_durations_s": [
+            31,
+            1,
+            3,
+            1,
+            1,
+            5,
+            4,
+            5,
+            12,
+            4,
+            3,
+            10,
+            4,
+            1,
+            2,
+            4,
+            8
+          ],
+          "critical_flow_veh_per_h_per_lane": {
+            "E": "32",
+            "N": "1292/3",
+            "NL": "266",
+            "S": "1000/3",
+            "SL": "60",
+            "W": "108"
+          },
+          "cycle_s": 99,
+          "flows_veh_per_h": {
+            "E left": "24",
+            "E right": "148",
+            "E through": "32",
+            "N left": "532",
+            "N right": "112",
+            "N through": "1292",
+            "S left": "60",
+            "S right": "328",
+            "S through": "1000",
+            "W left": "108",
+            "W right": "12",
+            "W through": "136"
+          },
+          "free_phases": [
+            "p0_Ng_Er_Sg_Wr_NLr_SLr",
+            "p5_Nr_Eg_Sr_Wr_NLr_SLr",
+            "p8_Nr_Er_Sr_Wg_NLr_SLr",
+            "p11_Nr_Er_Sr_Wr_NLg_SLg",
+            "p14_Ng_Er_Sr_Wr_NLg_SLr",
+            "p16_Ng_Er_Sr_Wr_NLr_SLr"
+          ],
+          "head_green_phases": {
+            "E": [
+              "p5_Nr_Eg_Sr_Wr_NLr_SLr"
+            ],
+            "N": [
+              "p0_Ng_Er_Sg_Wr_NLr_SLr",
+              "p14_Ng_Er_Sr_Wr_NLg_SLr",
+              "p15_Ng_Er_Sr_Wr_NLy_SLr",
+              "p16_Ng_Er_Sr_Wr_NLr_SLr"
+            ],
+            "NL": [
+              "p11_Nr_Er_Sr_Wr_NLg_SLg",
+              "p12_Nr_Er_Sr_Wr_NLg_SLy",
+              "p13_Nr_Er_Sr_Wr_NLg_SLr",
+              "p14_Ng_Er_Sr_Wr_NLg_SLr"
+            ],
+            "S": [
+              "p0_Ng_Er_Sg_Wr_NLr_SLr",
+              "p1_Ny_Er_Sg_Wr_NLr_SLr"
+            ],
+            "SL": [
+              "p11_Nr_Er_Sr_Wr_NLg_SLg"
+            ],
+            "W": [
+              "p8_Nr_Er_Sr_Wg_NLr_SLr"
+            ]
+          },
+          "lanes_left": {
+            "E": 1,
+            "N": 2,
+            "S": 1,
+            "W": 1
+          },
+          "lanes_through": {
+            "E": 1,
+            "N": 3,
+            "S": 3,
+            "W": 2
+          },
+          "min_green_s": 5.0,
+          "ordering": "leximin of the descending load vector, then smaller L1 change from the baseline, then the lexicographically smaller vector of the adjustable phases in program order; the first vector without timing_problems",
+          "phase_names": [
+            "p0_Ng_Er_Sg_Wr_NLr_SLr",
+            "p1_Ny_Er_Sg_Wr_NLr_SLr",
+            "p2_Ny_Er_Sy_Wr_NLr_SLr",
+            "p3_Nr_Er_Sy_Wr_NLr_SLr",
+            "p4_Nr_Er_Sr_Wr_NLr_SLr",
+            "p5_Nr_Eg_Sr_Wr_NLr_SLr",
+            "p6_Nr_Ey_Sr_Wr_NLr_SLr",
+            "p7_Nr_Er_Sr_Wr_NLr_SLr",
+            "p8_Nr_Er_Sr_Wg_NLr_SLr",
+            "p9_Nr_Er_Sr_Wy_NLr_SLr",
+            "p10_Nr_Er_Sr_Wr_NLr_SLr",
+            "p11_Nr_Er_Sr_Wr_NLg_SLg",
+            "p12_Nr_Er_Sr_Wr_NLg_SLy",
+            "p13_Nr_Er_Sr_Wr_NLg_SLr",
+            "p14_Ng_Er_Sr_Wr_NLg_SLr",
+            "p15_Ng_Er_Sr_Wr_NLy_SLr",
+            "p16_Ng_Er_Sr_Wr_NLr_SLr"
+          ],
+          "program_id": "ngsim_int2_cycle",
+          "reported_phases": [
+            "p0_Ng_Er_Sg_Wr_NLr_SLr",
+            "p5_Nr_Eg_Sr_Wr_NLr_SLr",
+            "p8_Nr_Er_Sr_Wg_NLr_SLr",
+            "p11_Nr_Er_Sr_Wr_NLg_SLg",
+            "p13_Nr_Er_Sr_Wr_NLg_SLr",
+            "p14_Ng_Er_Sr_Wr_NLg_SLr",
+            "p16_Ng_Er_Sr_Wr_NLr_SLr"
+          ],
+          "timeline_id": "ngsim-int2-signals-c74ef7cc6d92"
+        },
+        "record_sha256": "43d08abc49fad85143831d2c28aab6b27b130325d78285853e563285f0d6c226",
+        "result": {
+          "cycle_s": 99,
+          "durations_s": [
+            29,
+            1,
+            3,
+            1,
+            1,
+            5,
+            4,
+            5,
+            10,
+            4,
+            3,
+            7,
+            4,
+            1,
+            12,
+            4,
+            5
+          ],
+          "head_green_s": {
+            "E": 5,
+            "N": 50,
+            "NL": 24,
+            "S": 30,
+            "SL": 7,
+            "W": 10
+          },
+          "l1_change_s": 20,
+          "loads": {
+            "E": "32/5",
+            "N": "646/75",
+            "NL": "133/12",
+            "S": "100/9",
+            "SL": "60/7",
+            "W": "54/5"
+          },
+          "loads_rounded": {
+            "E": 6.4,
+            "N": 8.613333,
+            "NL": 11.083333,
+            "S": 11.111111,
+            "SL": 8.571429,
+            "W": 10.8
+          },
+          "max_load": 11.111111,
+          "plan_sha256": "60bc41d3b945a7547b1d2c5dad3646e13556f22ec11ba3911e86b967c963a1ce",
+          "reported_phases": [
+            "p0",
+            "p5",
+            "p8",
+            "p11",
+            "p13",
+            "p14",
+            "p16"
+          ],
+          "vector": [
+            29,
+            5,
+            10,
+            7,
+            1,
+            12,
+            5
+          ]
+        },
+        "source": "ADR-033 decision 3 (EQ-1 = D1)",
+        "steps": {
+          "enumerated": 962598,
+          "rank_of_selected": 1,
+          "rejected_by_timing_before_selected": 0,
+          "tied_on_load_vector": 1
+        }
+      },
+      "intervention_id": "I1",
+      "plan_sha256": "60bc41d3b945a7547b1d2c5dad3646e13556f22ec11ba3911e86b967c963a1ce",
+      "source": "cairoflow_simulation.eq1 on the committed inputs",
+      "validator": {
+        "reasons": [],
+        "status": "accepted"
+      }
+    },
+    "D2": {
+      "reported": "not_testable",
+      "source": "d2-plan-20261102T232051Z.json"
+    }
+  },
+  "created_at_utc": "2026-11-02T23:34:12+00:00",
+  "ensemble_record_sha256": "abd15cd0db30e485dc4cd101ba1c702f39886df59a5b4c8e946a3a3dc59268d5",
+  "ensemble_rule_version": "0.1.0",
+  "family": {
+    "alpha": 0.05,
+    "improvement_metrics": [
+      "mean_delay_s",
+      "mean_queue_m"
+    ],
+    "scope": "per member: every tested arm x every improvement metric, fixed when the member's experiment manifest is written (compare.improvement_plan, ADR-033 #4)"
+  },
+  "git": {
+    "branch": "ia/d1-d2",
+    "changed_paths_sha256": "d0cec0cc0c71f4663cf3736959556a39665e3a628fd717724d6e7de0c7584c5f",
+    "dirty_paths": 36,
+    "head": "ec343ef13a96842d14f7511e5732dec91728bb42",
+    "tracked_diff_sha256": "12904c368736865c7e39d37914f54ec8f71dbdc56c349ebc99ab936f72b889a6"
+  },
+  "label": "pre-registration",
+  "members": [
+    {
+      "id": "T1",
+      "required": true,
+      "version": "v1"
+    },
+    {
+      "id": "T2",
+      "required": true,
+      "version": "v2"
+    },
+    {
+      "id": "T3",
+      "required": true,
+      "version": "v2a"
+    },
+    {
+      "id": "T4",
+      "required": true,
+      "version": "v2b"
+    }
+  ],
+  "r_arm": "not defined in any surviving file (ADR-033 decision 8); not an arm here",
+  "record_sha256": "3dd8da2488aa48588896af7f3fefaa739723a8e9db0f6dd11b353f8538da1d17",
+  "rules_version": "0.3.1",
+  "script": "scripts/run_ladder_evaluation_experiment.py preregister",
+  "seed_role": "held-out confirmation (ADR-033 decision 5); 301-320 stay reserved",
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220
+  ]
+}

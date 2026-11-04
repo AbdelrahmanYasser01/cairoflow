@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 490" width="760" height="490" role="img" aria-label="Discharge headways, through lanes">
+<style>svg{--surface:#fcfcfb;--text:#0b0b0b;--text2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--obs:#2a78d6;--sim:#eb6834}@media (prefers-color-scheme:dark){svg{--surface:#1a1a19;--text:#f0efec;--text2:#c3c2b7;--grid:#2c2c2a;--axis:#383835;--obs:#3987e5;--sim:#d95926}}.bg{fill:var(--surface)}.t{fill:var(--text);font:600 14px system-ui,sans-serif}.l{fill:var(--text2);font:12px system-ui,sans-serif}.m{fill:var(--muted);font:11px system-ui,sans-serif}.g{stroke:var(--grid)}.a{stroke:var(--axis)}.c{stroke:var(--muted)}.o{fill:var(--obs);stroke:var(--obs)}.s{fill:var(--sim);stroke:var(--sim)}.ol{stroke:var(--obs);fill:none;stroke-width:2}.sl{stroke:var(--sim);fill:none;opacity:.7}</style>
+<rect class="bg" width="760" height="490"/>
+<text class="t" x="16" y="24">Discharge headways, through lanes</text>
+<text class="m" x="16" y="42">Mean crossing gap by queue position after green (positions observed 3 or more times); position 1 is left out: observed onsets are estimated</text>
+<circle class="o" cx="26" cy="60" r="4.5"/>
+<text class="l" x="42" y="64">Observed (NGSIM, derived; 95% interval)</text>
+<rect class="s" x="381.5" y="55.5" width="9" height="9" rx="1"/>
+<text class="l" x="402" y="64">Simulated (SUMO; seed range)</text>
+<line class="g" x1="230.0" y1="78" x2="230.0" y2="444"/>
+<text class="m" x="230.0" y="460" text-anchor="middle">0</text>
+<line class="g" x1="300.0" y1="78" x2="300.0" y2="444"/>
+<text class="m" x="300.0" y="460" text-anchor="middle">1</text>
+<line class="g" x1="370.0" y1="78" x2="370.0" y2="444"/>
+<text class="m" x="370.0" y="460" text-anchor="middle">2</text>
+<line class="g" x1="440.0" y1="78" x2="440.0" y2="444"/>
+<text class="m" x="440.0" y="460" text-anchor="middle">3</text>
+<line class="g" x1="510.0" y1="78" x2="510.0" y2="444"/>
+<text class="m" x="510.0" y="460" text-anchor="middle">4</text>
+<line class="g" x1="580.0" y1="78" x2="580.0" y2="444"/>
+<text class="m" x="580.0" y="460" text-anchor="middle">5</text>
+<line class="g" x1="650.0" y1="78" x2="650.0" y2="444"/>
+<text class="m" x="650.0" y="460" text-anchor="middle">6</text>
+<line class="g" x1="720.0" y1="78" x2="720.0" y2="444"/>
+<text class="m" x="720.0" y="460" text-anchor="middle">7</text>
+<text class="m" x="720" y="478" text-anchor="end">seconds</text>
+<text class="l" x="218" y="103.0" text-anchor="end">N position 2 (n=15)</text>
+<line class="o" x1="418.1" y1="94.0" x2="695.0" y2="94.0" stroke-width="2"/>
+<g><title>N position 2 (n=15): observed 4.36, from 2.69 to 6.64</title><circle class="o" cx="535.3" cy="94.0" r="4.5"/></g>
+<line class="s" x1="462.5" y1="104.0" x2="471.4" y2="104.0" stroke-width="2"/>
+<g><title>N position 2 (n=15): simulated mean 3.4, from 3.32 to 3.45</title><rect class="s" x="463.6" y="99.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="133.0" text-anchor="end">N position 3 (n=11)</text>
+<line class="o" x1="384.0" y1="124.0" x2="414.9" y2="124.0" stroke-width="2"/>
+<g><title>N position 3 (n=11): observed 2.4, from 2.2 to 2.64</title><circle class="o" cx="398.3" cy="124.0" r="4.5"/></g>
+<line class="s" x1="398.4" y1="134.0" x2="406.5" y2="134.0" stroke-width="2"/>
+<g><title>N position 3 (n=11): simulated mean 2.47, from 2.41 to 2.52</title><rect class="s" x="398.5" y="129.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="163.0" text-anchor="end">N position 4 (n=7)</text>
+<line class="o" x1="333.8" y1="154.0" x2="407.0" y2="154.0" stroke-width="2"/>
+<g><title>N position 4 (n=7): observed 1.98, from 1.48 to 2.53</title><circle class="o" cx="368.5" cy="154.0" r="4.5"/></g>
+<line class="s" x1="380.4" y1="164.0" x2="387.1" y2="164.0" stroke-width="2"/>
+<g><title>N position 4 (n=7): simulated mean 2.19, from 2.15 to 2.24</title><rect class="s" x="379.0" y="159.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="193.0" text-anchor="end">N position 5 (n=5)</text>
+<line class="o" x1="350.1" y1="184.0" x2="383.9" y2="184.0" stroke-width="2"/>
+<g><title>N position 5 (n=5): observed 1.94, from 1.72 to 2.2</title><circle class="o" cx="366.1" cy="184.0" r="4.5"/></g>
+<line class="s" x1="372.5" y1="194.0" x2="380.8" y2="194.0" stroke-width="2"/>
+<g><title>N position 5 (n=5): simulated mean 2.1, from 2.04 to 2.15</title><rect class="s" x="372.5" y="189.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="223.0" text-anchor="end">S position 2 (n=24)</text>
+<line class="o" x1="399.8" y1="214.0" x2="430.1" y2="214.0" stroke-width="2"/>
+<g><title>S position 2 (n=24): observed 2.63, from 2.43 to 2.86</title><circle class="o" cx="414.0" cy="214.0" r="4.5"/></g>
+<line class="s" x1="458.9" y1="224.0" x2="469.9" y2="224.0" stroke-width="2"/>
+<g><title>S position 2 (n=24): simulated mean 3.35, from 3.27 to 3.43</title><rect class="s" x="460.1" y="219.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="253.0" text-anchor="end">S position 3 (n=21)</text>
+<line class="o" x1="373.7" y1="244.0" x2="399.1" y2="244.0" stroke-width="2"/>
+<g><title>S position 3 (n=21): observed 2.23, from 2.05 to 2.42</title><circle class="o" cx="386.4" cy="244.0" r="4.5"/></g>
+<line class="s" x1="395.6" y1="254.0" x2="404.4" y2="254.0" stroke-width="2"/>
+<g><title>S position 3 (n=21): simulated mean 2.44, from 2.37 to 2.49</title><rect class="s" x="396.0" y="249.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="283.0" text-anchor="end">S position 4 (n=20)</text>
+<line class="o" x1="355.1" y1="274.0" x2="385.4" y2="274.0" stroke-width="2"/>
+<g><title>S position 4 (n=20): observed 1.98, from 1.79 to 2.22</title><circle class="o" cx="368.9" cy="274.0" r="4.5"/></g>
+<line class="s" x1="383.4" y1="284.0" x2="396.9" y2="284.0" stroke-width="2"/>
+<g><title>S position 4 (n=20): simulated mean 2.26, from 2.19 to 2.38</title><rect class="s" x="383.8" y="279.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="313.0" text-anchor="end">S position 5 (n=17)</text>
+<line class="o" x1="362.0" y1="304.0" x2="412.9" y2="304.0" stroke-width="2"/>
+<g><title>S position 5 (n=17): observed 2.22, from 1.89 to 2.61</title><circle class="o" cx="385.4" cy="304.0" r="4.5"/></g>
+<line class="s" x1="373.7" y1="314.0" x2="377.5" y2="314.0" stroke-width="2"/>
+<g><title>S position 5 (n=17): simulated mean 2.08, from 2.05 to 2.11</title><rect class="s" x="371.2" y="309.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="343.0" text-anchor="end">S position 6 (n=12)</text>
+<line class="o" x1="352.7" y1="334.0" x2="398.3" y2="334.0" stroke-width="2"/>
+<g><title>S position 6 (n=12): observed 2.04, from 1.75 to 2.4</title><circle class="o" cx="372.9" cy="334.0" r="4.5"/></g>
+<line class="s" x1="363.8" y1="344.0" x2="374.3" y2="344.0" stroke-width="2"/>
+<g><title>S position 6 (n=12): simulated mean 1.99, from 1.91 to 2.06</title><rect class="s" x="365.1" y="339.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="373.0" text-anchor="end">S position 7 (n=11)</text>
+<line class="o" x1="347.6" y1="364.0" x2="378.2" y2="364.0" stroke-width="2"/>
+<g><title>S position 7 (n=11): observed 1.9, from 1.68 to 2.12</title><circle class="o" cx="363.0" cy="364.0" r="4.5"/></g>
+<line class="s" x1="360.8" y1="374.0" x2="373.5" y2="374.0" stroke-width="2"/>
+<g><title>S position 7 (n=11): simulated mean 1.98, from 1.87 to 2.05</title><rect class="s" x="364.1" y="369.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="403.0" text-anchor="end">S position 8 (n=7)</text>
+<line class="o" x1="345.1" y1="394.0" x2="385.3" y2="394.0" stroke-width="2"/>
+<g><title>S position 8 (n=7): observed 1.91, from 1.64 to 2.22</title><circle class="o" cx="363.5" cy="394.0" r="4.5"/></g>
+<line class="s" x1="356.6" y1="404.0" x2="388.3" y2="404.0" stroke-width="2"/>
+<g><title>S position 8 (n=7): simulated mean 1.96, from 1.81 to 2.26</title><rect class="s" x="362.8" y="399.5" width="9" height="9" rx="1"/></g>
+<text class="l" x="218" y="433.0" text-anchor="end">S position 9 (n=5)</text>
+<line class="o" x1="364.7" y1="424.0" x2="421.3" y2="424.0" stroke-width="2"/>
+<g><title>S position 9 (n=5): observed 2.33, from 1.92 to 2.73</title><circle class="o" cx="392.8" cy="424.0" r="4.5"/></g>
+<line class="s" x1="357.5" y1="434.0" x2="363.4" y2="434.0" stroke-width="2"/>
+<g><title>S position 9 (n=5): simulated mean 1.86, from 1.82 to 1.91</title><rect class="s" x="355.7" y="429.5" width="9" height="9" rx="1"/></g>
+<line class="a" x1="230" y1="444" x2="720" y2="444"/>
+</svg>

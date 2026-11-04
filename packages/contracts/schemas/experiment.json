@@ -1,0 +1,4086 @@
+{
+ "BaselineManifest": {
+  "$defs": {
+   "CompiledNetworkManifest": {
+    "additionalProperties": false,
+    "properties": {
+     "geometry_id": {
+      "title": "Geometry Id",
+      "type": "string"
+     },
+     "geometry_sha256": {
+      "title": "Geometry Sha256",
+      "type": "string"
+     },
+     "link_count": {
+      "exclusiveMinimum": 0,
+      "title": "Link Count",
+      "type": "integer"
+     },
+     "net_sha256": {
+      "description": "of the .net.xml with XML comments stripped",
+      "title": "Net Sha256",
+      "type": "string"
+     },
+     "netconvert_warnings": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Netconvert Warnings",
+      "type": "array"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "parameters": {
+      "items": {
+       "$ref": "#/$defs/NetworkParameter"
+      },
+      "title": "Parameters",
+      "type": "array"
+     },
+     "plain_xml_sha256": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "file name -> SHA-256",
+      "title": "Plain Xml Sha256",
+      "type": "object"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "signal_program": {
+      "$ref": "#/$defs/SignalProgramSpec"
+     },
+     "sumo_version": {
+      "title": "Sumo Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "geometry_id",
+     "geometry_sha256",
+     "sumo_version",
+     "plain_xml_sha256",
+     "net_sha256",
+     "link_count",
+     "parameters",
+     "signal_program",
+     "netconvert_warnings",
+     "notes"
+    ],
+    "title": "CompiledNetworkManifest",
+    "type": "object"
+   },
+   "DemandFile": {
+    "additionalProperties": false,
+    "properties": {
+     "file": {
+      "description": "relative to the demand directory",
+      "minLength": 1,
+      "title": "File",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     },
+     "vehicles": {
+      "minimum": 0,
+      "title": "Vehicles",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "seed",
+     "file",
+     "sha256",
+     "vehicles"
+    ],
+    "title": "DemandFile",
+    "type": "object"
+   },
+   "DemandManifest": {
+    "additionalProperties": false,
+    "properties": {
+     "files": {
+      "items": {
+       "$ref": "#/$defs/DemandFile"
+      },
+      "title": "Files",
+      "type": "array"
+     },
+     "generation_end_s": {
+      "description": "vehicles depart in [0, this)",
+      "exclusiveMinimum": 0,
+      "title": "Generation End S",
+      "type": "number"
+     },
+     "movements": {
+      "items": {
+       "$ref": "#/$defs/MovementDemand"
+      },
+      "title": "Movements",
+      "type": "array"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "speed_factor_sd": {
+      "minimum": 0,
+      "title": "Speed Factor Sd",
+      "type": "number"
+     },
+     "world_model_sha256": {
+      "title": "World Model Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "world_model_sha256",
+     "movements",
+     "generation_end_s",
+     "speed_factor_sd",
+     "files",
+     "notes"
+    ],
+    "title": "DemandManifest",
+    "type": "object"
+   },
+   "MovementDemand": {
+    "additionalProperties": false,
+    "description": "The demand of one movement, taken from the world model's point estimate.",
+    "properties": {
+     "approach": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Approach",
+      "type": "string"
+     },
+     "exit_arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Exit Arm",
+      "type": "string"
+     },
+     "flow_ci95_veh_per_h": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Flow Ci95 Veh Per H",
+      "type": "array"
+     },
+     "flow_veh_per_h": {
+      "minimum": 0,
+      "title": "Flow Veh Per H",
+      "type": "number"
+     },
+     "observed_count_veh": {
+      "minimum": 0,
+      "title": "Observed Count Veh",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "turn": {
+      "enum": [
+       "left",
+       "through",
+       "right",
+       "u_turn"
+      ],
+      "title": "Turn",
+      "type": "string"
+     },
+     "vehicle_type_mix": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "description": "SUMO vType -> share of counted tracks",
+      "title": "Vehicle Type Mix",
+      "type": "object"
+     }
+    },
+    "required": [
+     "approach",
+     "exit_arm",
+     "turn",
+     "observed_count_veh",
+     "flow_veh_per_h",
+     "flow_ci95_veh_per_h",
+     "vehicle_type_mix"
+    ],
+    "title": "MovementDemand",
+    "type": "object"
+   },
+   "NetworkParameter": {
+    "additionalProperties": false,
+    "description": "One value the network was built from, with where it came from.",
+    "properties": {
+     "name": {
+      "description": "e.g. 'S.arm_length' or 'S1.width'",
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     },
+     "unit": {
+      "enum": [
+       "m",
+       "m/s",
+       "s",
+       "deg",
+       "count"
+      ],
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     }
+    },
+    "required": [
+     "name",
+     "value",
+     "unit",
+     "provenance",
+     "source"
+    ],
+    "title": "NetworkParameter",
+    "type": "object"
+   },
+   "RunRecord": {
+    "additionalProperties": false,
+    "description": "One SUMO run: what went in, the output hashes and whether it is valid.",
+    "properties": {
+     "arrived": {
+      "minimum": 0,
+      "title": "Arrived",
+      "type": "integer"
+     },
+     "collisions": {
+      "minimum": 0,
+      "title": "Collisions",
+      "type": "integer"
+     },
+     "command": {
+      "description": "relative paths, run from run_dir",
+      "items": {
+       "type": "string"
+      },
+      "title": "Command",
+      "type": "array"
+     },
+     "demand_sha256": {
+      "title": "Demand Sha256",
+      "type": "string"
+     },
+     "inserted": {
+      "minimum": 0,
+      "title": "Inserted",
+      "type": "integer"
+     },
+     "loaded": {
+      "minimum": 0,
+      "title": "Loaded",
+      "type": "integer"
+     },
+     "reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "run_dir": {
+      "title": "Run Dir",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "title": "Seed",
+      "type": "integer"
+     },
+     "teleports": {
+      "minimum": 0,
+      "title": "Teleports",
+      "type": "integer"
+     },
+     "tripinfo_sha256": {
+      "description": "XML comments stripped",
+      "title": "Tripinfo Sha256",
+      "type": "string"
+     },
+     "unfinished": {
+      "description": "still running or waiting to insert at the end",
+      "minimum": 0,
+      "title": "Unfinished",
+      "type": "integer"
+     },
+     "valid": {
+      "title": "Valid",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "seed",
+     "run_dir",
+     "command",
+     "demand_sha256",
+     "tripinfo_sha256",
+     "loaded",
+     "inserted",
+     "arrived",
+     "unfinished",
+     "teleports",
+     "collisions",
+     "valid",
+     "reasons"
+    ],
+    "title": "RunRecord",
+    "type": "object"
+   },
+   "RunSettings": {
+    "additionalProperties": false,
+    "description": "Shared by the baseline and every candidate (ADR-008).",
+    "properties": {
+     "drain_s": {
+      "default": 600.0,
+      "description": "no new vehicles; lets the network empty",
+      "minimum": 0,
+      "title": "Drain S",
+      "type": "number"
+     },
+     "horizon_s": {
+      "default": 900.0,
+      "description": "measurement window after warm-up",
+      "exclusiveMinimum": 0,
+      "title": "Horizon S",
+      "type": "number"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seeds": {
+      "default": [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "items": {
+       "type": "integer"
+      },
+      "minItems": 1,
+      "title": "Seeds",
+      "type": "array"
+     },
+     "step_length_s": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "title": "Step Length S",
+      "type": "number"
+     },
+     "time_to_teleport_s": {
+      "default": 300.0,
+      "exclusiveMinimum": 0,
+      "title": "Time To Teleport S",
+      "type": "number"
+     },
+     "warmup_s": {
+      "default": 300.0,
+      "minimum": 0,
+      "title": "Warmup S",
+      "type": "number"
+     }
+    },
+    "title": "RunSettings",
+    "type": "object"
+   },
+   "SignalPhaseSpec": {
+    "additionalProperties": false,
+    "properties": {
+     "arm_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Arm States",
+      "type": "object"
+     },
+     "duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Duration S",
+      "type": "number"
+     },
+     "left_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "description": "protected-left heads, for arms that have one",
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Left States",
+      "type": "object"
+     },
+     "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "state": {
+      "description": "SUMO link states, by link index ('s': right turn on red, after stopping)",
+      "pattern": "^[GgyrOs]+$",
+      "title": "State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "duration_s",
+     "state",
+     "arm_states"
+    ],
+    "title": "SignalPhaseSpec",
+    "type": "object"
+   },
+   "SignalProgramSpec": {
+    "additionalProperties": false,
+    "description": "One signal cycle cut from a timeline and repeated by SUMO.",
+    "properties": {
+     "annotation_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Annotation Sha256"
+     },
+     "cycle_s": {
+      "exclusiveMinimum": 0,
+      "title": "Cycle S",
+      "type": "number"
+     },
+     "cycle_start_s": {
+      "description": "clip time where the cut cycle begins",
+      "minimum": 0,
+      "title": "Cycle Start S",
+      "type": "number"
+     },
+     "label": {
+      "enum": [
+       "observed-annotated",
+       "published",
+       "trajectory-derived",
+       "assumed"
+      ],
+      "title": "Label",
+      "type": "string"
+     },
+     "phases": {
+      "items": {
+       "$ref": "#/$defs/SignalPhaseSpec"
+      },
+      "minItems": 1,
+      "title": "Phases",
+      "type": "array"
+     },
+     "program_id": {
+      "pattern": "^[A-Za-z0-9_]+$",
+      "title": "Program Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timeline_id": {
+      "title": "Timeline Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "program_id",
+     "timeline_id",
+     "label",
+     "annotation_sha256",
+     "cycle_start_s",
+     "cycle_s",
+     "phases"
+    ],
+    "title": "SignalProgramSpec",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "A baseline experiment: replayable from the recorded inputs and settings.",
+  "properties": {
+   "created_at_utc": {
+    "format": "date-time",
+    "title": "Created At Utc",
+    "type": "string"
+   },
+   "demand": {
+    "$ref": "#/$defs/DemandManifest"
+   },
+   "experiment_id": {
+    "minLength": 1,
+    "title": "Experiment Id",
+    "type": "string"
+   },
+   "network": {
+    "$ref": "#/$defs/CompiledNetworkManifest"
+   },
+   "reasons": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "reruns": {
+    "description": "each seed run again, to compare hashes",
+    "items": {
+     "$ref": "#/$defs/RunRecord"
+    },
+    "title": "Reruns",
+    "type": "array"
+   },
+   "reruns_identical": {
+    "anyOf": [
+     {
+      "type": "boolean"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "None when reruns were not made",
+    "title": "Reruns Identical"
+   },
+   "runs": {
+    "items": {
+     "$ref": "#/$defs/RunRecord"
+    },
+    "title": "Runs",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "settings": {
+    "$ref": "#/$defs/RunSettings"
+   },
+   "valid": {
+    "title": "Valid",
+    "type": "boolean"
+   },
+   "world_model_sha256": {
+    "title": "World Model Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "experiment_id",
+   "created_at_utc",
+   "world_model_sha256",
+   "settings",
+   "network",
+   "demand",
+   "runs",
+   "reruns",
+   "reruns_identical",
+   "valid",
+   "reasons"
+  ],
+  "title": "BaselineManifest",
+  "type": "object"
+ },
+ "CandidateEligibility": {
+  "$defs": {
+   "UnfinishedMovement": {
+    "additionalProperties": false,
+    "description": "Vehicles of one movement still in the network when a run ended (from tripinfo.xml).",
+    "properties": {
+     "delay_lower_bound_range_s": {
+      "description": "min and max over these vehicles of timeLoss + departDelay at the end; the trips are unfinished, so each vehicle's value is a lower bound of its delay",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Delay Lower Bound Range S",
+      "type": "array"
+     },
+     "first_depart_s": {
+      "description": "earliest insertion among them",
+      "title": "First Depart S",
+      "type": "number"
+     },
+     "movement": {
+      "description": "approach and exit arm, from the vehicle id, e.g. 'WN'",
+      "title": "Movement",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "title": "Seed",
+      "type": "integer"
+     },
+     "vehicles": {
+      "exclusiveMinimum": 0,
+      "title": "Vehicles",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "seed",
+     "movement",
+     "vehicles",
+     "first_depart_s",
+     "delay_lower_bound_range_s"
+    ],
+    "title": "UnfinishedMovement",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Whether a candidate's runs can be compared with the baseline, and why not.",
+  "properties": {
+   "candidate": {
+    "title": "Candidate",
+    "type": "string"
+   },
+   "censored_lanes": {
+    "additionalProperties": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "description": "seed -> approach lanes whose queue reached their upstream end in the window, so the arm's queue metrics are lower bounds",
+    "title": "Censored Lanes",
+    "type": "object"
+   },
+   "entry_blocked": {
+    "additionalProperties": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "type": "object"
+    },
+    "description": "seed -> arm -> vehicle-seconds in the window that vehicles of that arm waited to enter the network (tripinfo insertion delays of at least 2 s; rules 0.3.1, in 0.3.0 only while a standing queue was at their entry); queue.xml does not see them, so the arm's queue metrics are lower bounds",
+    "title": "Entry Blocked",
+    "type": "object"
+   },
+   "not_inserted": {
+    "additionalProperties": {
+     "type": "integer"
+    },
+    "description": "seed -> vehicles still waiting to enter at the end (not in tripinfo.xml)",
+    "title": "Not Inserted",
+    "type": "object"
+   },
+   "reasons": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "run_classes": {
+    "additionalProperties": {
+     "enum": [
+      "complete",
+      "incomplete",
+      "integrity_failure"
+     ],
+     "type": "string"
+    },
+    "description": "seed -> class of that run",
+    "title": "Run Classes",
+    "type": "object"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "compared",
+     "incomplete",
+     "invalid_simulation"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "unfinished": {
+    "items": {
+     "$ref": "#/$defs/UnfinishedMovement"
+    },
+    "title": "Unfinished",
+    "type": "array"
+   }
+  },
+  "required": [
+   "candidate",
+   "status",
+   "run_classes",
+   "not_inserted",
+   "unfinished",
+   "reasons"
+  ],
+  "title": "CandidateEligibility",
+  "type": "object"
+ },
+ "CandidateRecord": {
+  "$defs": {
+   "CompiledNetworkManifest": {
+    "additionalProperties": false,
+    "properties": {
+     "geometry_id": {
+      "title": "Geometry Id",
+      "type": "string"
+     },
+     "geometry_sha256": {
+      "title": "Geometry Sha256",
+      "type": "string"
+     },
+     "link_count": {
+      "exclusiveMinimum": 0,
+      "title": "Link Count",
+      "type": "integer"
+     },
+     "net_sha256": {
+      "description": "of the .net.xml with XML comments stripped",
+      "title": "Net Sha256",
+      "type": "string"
+     },
+     "netconvert_warnings": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Netconvert Warnings",
+      "type": "array"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "parameters": {
+      "items": {
+       "$ref": "#/$defs/NetworkParameter"
+      },
+      "title": "Parameters",
+      "type": "array"
+     },
+     "plain_xml_sha256": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "file name -> SHA-256",
+      "title": "Plain Xml Sha256",
+      "type": "object"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "signal_program": {
+      "$ref": "#/$defs/SignalProgramSpec"
+     },
+     "sumo_version": {
+      "title": "Sumo Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "geometry_id",
+     "geometry_sha256",
+     "sumo_version",
+     "plain_xml_sha256",
+     "net_sha256",
+     "link_count",
+     "parameters",
+     "signal_program",
+     "netconvert_warnings",
+     "notes"
+    ],
+    "title": "CompiledNetworkManifest",
+    "type": "object"
+   },
+   "NetworkParameter": {
+    "additionalProperties": false,
+    "description": "One value the network was built from, with where it came from.",
+    "properties": {
+     "name": {
+      "description": "e.g. 'S.arm_length' or 'S1.width'",
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     },
+     "unit": {
+      "enum": [
+       "m",
+       "m/s",
+       "s",
+       "deg",
+       "count"
+      ],
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     }
+    },
+    "required": [
+     "name",
+     "value",
+     "unit",
+     "provenance",
+     "source"
+    ],
+    "title": "NetworkParameter",
+    "type": "object"
+   },
+   "RunRecord": {
+    "additionalProperties": false,
+    "description": "One SUMO run: what went in, the output hashes and whether it is valid.",
+    "properties": {
+     "arrived": {
+      "minimum": 0,
+      "title": "Arrived",
+      "type": "integer"
+     },
+     "collisions": {
+      "minimum": 0,
+      "title": "Collisions",
+      "type": "integer"
+     },
+     "command": {
+      "description": "relative paths, run from run_dir",
+      "items": {
+       "type": "string"
+      },
+      "title": "Command",
+      "type": "array"
+     },
+     "demand_sha256": {
+      "title": "Demand Sha256",
+      "type": "string"
+     },
+     "inserted": {
+      "minimum": 0,
+      "title": "Inserted",
+      "type": "integer"
+     },
+     "loaded": {
+      "minimum": 0,
+      "title": "Loaded",
+      "type": "integer"
+     },
+     "reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "run_dir": {
+      "title": "Run Dir",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "title": "Seed",
+      "type": "integer"
+     },
+     "teleports": {
+      "minimum": 0,
+      "title": "Teleports",
+      "type": "integer"
+     },
+     "tripinfo_sha256": {
+      "description": "XML comments stripped",
+      "title": "Tripinfo Sha256",
+      "type": "string"
+     },
+     "unfinished": {
+      "description": "still running or waiting to insert at the end",
+      "minimum": 0,
+      "title": "Unfinished",
+      "type": "integer"
+     },
+     "valid": {
+      "title": "Valid",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "seed",
+     "run_dir",
+     "command",
+     "demand_sha256",
+     "tripinfo_sha256",
+     "loaded",
+     "inserted",
+     "arrived",
+     "unfinished",
+     "teleports",
+     "collisions",
+     "valid",
+     "reasons"
+    ],
+    "title": "RunRecord",
+    "type": "object"
+   },
+   "SignalPhaseSpec": {
+    "additionalProperties": false,
+    "properties": {
+     "arm_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Arm States",
+      "type": "object"
+     },
+     "duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Duration S",
+      "type": "number"
+     },
+     "left_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "description": "protected-left heads, for arms that have one",
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Left States",
+      "type": "object"
+     },
+     "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "state": {
+      "description": "SUMO link states, by link index ('s': right turn on red, after stopping)",
+      "pattern": "^[GgyrOs]+$",
+      "title": "State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "duration_s",
+     "state",
+     "arm_states"
+    ],
+    "title": "SignalPhaseSpec",
+    "type": "object"
+   },
+   "SignalProgramSpec": {
+    "additionalProperties": false,
+    "description": "One signal cycle cut from a timeline and repeated by SUMO.",
+    "properties": {
+     "annotation_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Annotation Sha256"
+     },
+     "cycle_s": {
+      "exclusiveMinimum": 0,
+      "title": "Cycle S",
+      "type": "number"
+     },
+     "cycle_start_s": {
+      "description": "clip time where the cut cycle begins",
+      "minimum": 0,
+      "title": "Cycle Start S",
+      "type": "number"
+     },
+     "label": {
+      "enum": [
+       "observed-annotated",
+       "published",
+       "trajectory-derived",
+       "assumed"
+      ],
+      "title": "Label",
+      "type": "string"
+     },
+     "phases": {
+      "items": {
+       "$ref": "#/$defs/SignalPhaseSpec"
+      },
+      "minItems": 1,
+      "title": "Phases",
+      "type": "array"
+     },
+     "program_id": {
+      "pattern": "^[A-Za-z0-9_]+$",
+      "title": "Program Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timeline_id": {
+      "title": "Timeline Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "program_id",
+     "timeline_id",
+     "label",
+     "annotation_sha256",
+     "cycle_start_s",
+     "cycle_s",
+     "phases"
+    ],
+    "title": "SignalProgramSpec",
+    "type": "object"
+   },
+   "ValidationOutcome": {
+    "additionalProperties": false,
+    "description": "The validator's verdict on one proposal. Accepted proposals become simulation candidates.",
+    "properties": {
+     "baseline_cycle_s": {
+      "title": "Baseline Cycle S",
+      "type": "number"
+     },
+     "cycle_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cycle S"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_durations_s": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the candidate cycle, in compiled phase order, when accepted",
+      "title": "Phase Durations S"
+     },
+     "program_id": {
+      "title": "Program Id",
+      "type": "string"
+     },
+     "proposal_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the proposal's canonical JSON, so a candidate names what it came from",
+      "title": "Proposal Sha256"
+     },
+     "reasons": {
+      "description": "why it was rejected; empty when accepted",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "accepted",
+       "rejected"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "validated_at_utc": {
+      "format": "date-time",
+      "title": "Validated At Utc",
+      "type": "string"
+     },
+     "validator_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "None in outcomes before 0.2.0",
+      "title": "Validator Version"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "status",
+     "reasons",
+     "program_id",
+     "phase_durations_s",
+     "cycle_s",
+     "baseline_cycle_s",
+     "validated_at_utc"
+    ],
+    "title": "ValidationOutcome",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One validated intervention, rebuilt into a network and run on the baseline's seeds.",
+  "properties": {
+   "intervention_id": {
+    "title": "Intervention Id",
+    "type": "string"
+   },
+   "network": {
+    "$ref": "#/$defs/CompiledNetworkManifest"
+   },
+   "outcome": {
+    "$ref": "#/$defs/ValidationOutcome"
+   },
+   "reasons": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "runs": {
+    "items": {
+     "$ref": "#/$defs/RunRecord"
+    },
+    "title": "Runs",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "valid": {
+    "title": "Valid",
+    "type": "boolean"
+   }
+  },
+  "required": [
+   "intervention_id",
+   "outcome",
+   "network",
+   "runs",
+   "valid",
+   "reasons"
+  ],
+  "title": "CandidateRecord",
+  "type": "object"
+ },
+ "CompiledNetworkManifest": {
+  "$defs": {
+   "NetworkParameter": {
+    "additionalProperties": false,
+    "description": "One value the network was built from, with where it came from.",
+    "properties": {
+     "name": {
+      "description": "e.g. 'S.arm_length' or 'S1.width'",
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     },
+     "unit": {
+      "enum": [
+       "m",
+       "m/s",
+       "s",
+       "deg",
+       "count"
+      ],
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     }
+    },
+    "required": [
+     "name",
+     "value",
+     "unit",
+     "provenance",
+     "source"
+    ],
+    "title": "NetworkParameter",
+    "type": "object"
+   },
+   "SignalPhaseSpec": {
+    "additionalProperties": false,
+    "properties": {
+     "arm_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Arm States",
+      "type": "object"
+     },
+     "duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Duration S",
+      "type": "number"
+     },
+     "left_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "description": "protected-left heads, for arms that have one",
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Left States",
+      "type": "object"
+     },
+     "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "state": {
+      "description": "SUMO link states, by link index ('s': right turn on red, after stopping)",
+      "pattern": "^[GgyrOs]+$",
+      "title": "State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "duration_s",
+     "state",
+     "arm_states"
+    ],
+    "title": "SignalPhaseSpec",
+    "type": "object"
+   },
+   "SignalProgramSpec": {
+    "additionalProperties": false,
+    "description": "One signal cycle cut from a timeline and repeated by SUMO.",
+    "properties": {
+     "annotation_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Annotation Sha256"
+     },
+     "cycle_s": {
+      "exclusiveMinimum": 0,
+      "title": "Cycle S",
+      "type": "number"
+     },
+     "cycle_start_s": {
+      "description": "clip time where the cut cycle begins",
+      "minimum": 0,
+      "title": "Cycle Start S",
+      "type": "number"
+     },
+     "label": {
+      "enum": [
+       "observed-annotated",
+       "published",
+       "trajectory-derived",
+       "assumed"
+      ],
+      "title": "Label",
+      "type": "string"
+     },
+     "phases": {
+      "items": {
+       "$ref": "#/$defs/SignalPhaseSpec"
+      },
+      "minItems": 1,
+      "title": "Phases",
+      "type": "array"
+     },
+     "program_id": {
+      "pattern": "^[A-Za-z0-9_]+$",
+      "title": "Program Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timeline_id": {
+      "title": "Timeline Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "program_id",
+     "timeline_id",
+     "label",
+     "annotation_sha256",
+     "cycle_start_s",
+     "cycle_s",
+     "phases"
+    ],
+    "title": "SignalProgramSpec",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "geometry_id": {
+    "title": "Geometry Id",
+    "type": "string"
+   },
+   "geometry_sha256": {
+    "title": "Geometry Sha256",
+    "type": "string"
+   },
+   "link_count": {
+    "exclusiveMinimum": 0,
+    "title": "Link Count",
+    "type": "integer"
+   },
+   "net_sha256": {
+    "description": "of the .net.xml with XML comments stripped",
+    "title": "Net Sha256",
+    "type": "string"
+   },
+   "netconvert_warnings": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Netconvert Warnings",
+    "type": "array"
+   },
+   "notes": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Notes",
+    "type": "array"
+   },
+   "parameters": {
+    "items": {
+     "$ref": "#/$defs/NetworkParameter"
+    },
+    "title": "Parameters",
+    "type": "array"
+   },
+   "plain_xml_sha256": {
+    "additionalProperties": {
+     "type": "string"
+    },
+    "description": "file name -> SHA-256",
+    "title": "Plain Xml Sha256",
+    "type": "object"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "signal_program": {
+    "$ref": "#/$defs/SignalProgramSpec"
+   },
+   "sumo_version": {
+    "title": "Sumo Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "geometry_id",
+   "geometry_sha256",
+   "sumo_version",
+   "plain_xml_sha256",
+   "net_sha256",
+   "link_count",
+   "parameters",
+   "signal_program",
+   "netconvert_warnings",
+   "notes"
+  ],
+  "title": "CompiledNetworkManifest",
+  "type": "object"
+ },
+ "DemandFile": {
+  "additionalProperties": false,
+  "properties": {
+   "file": {
+    "description": "relative to the demand directory",
+    "minLength": 1,
+    "title": "File",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seed": {
+    "minimum": 0,
+    "title": "Seed",
+    "type": "integer"
+   },
+   "sha256": {
+    "title": "Sha256",
+    "type": "string"
+   },
+   "vehicles": {
+    "minimum": 0,
+    "title": "Vehicles",
+    "type": "integer"
+   }
+  },
+  "required": [
+   "seed",
+   "file",
+   "sha256",
+   "vehicles"
+  ],
+  "title": "DemandFile",
+  "type": "object"
+ },
+ "DemandManifest": {
+  "$defs": {
+   "DemandFile": {
+    "additionalProperties": false,
+    "properties": {
+     "file": {
+      "description": "relative to the demand directory",
+      "minLength": 1,
+      "title": "File",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     },
+     "vehicles": {
+      "minimum": 0,
+      "title": "Vehicles",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "seed",
+     "file",
+     "sha256",
+     "vehicles"
+    ],
+    "title": "DemandFile",
+    "type": "object"
+   },
+   "MovementDemand": {
+    "additionalProperties": false,
+    "description": "The demand of one movement, taken from the world model's point estimate.",
+    "properties": {
+     "approach": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Approach",
+      "type": "string"
+     },
+     "exit_arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Exit Arm",
+      "type": "string"
+     },
+     "flow_ci95_veh_per_h": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Flow Ci95 Veh Per H",
+      "type": "array"
+     },
+     "flow_veh_per_h": {
+      "minimum": 0,
+      "title": "Flow Veh Per H",
+      "type": "number"
+     },
+     "observed_count_veh": {
+      "minimum": 0,
+      "title": "Observed Count Veh",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "turn": {
+      "enum": [
+       "left",
+       "through",
+       "right",
+       "u_turn"
+      ],
+      "title": "Turn",
+      "type": "string"
+     },
+     "vehicle_type_mix": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "description": "SUMO vType -> share of counted tracks",
+      "title": "Vehicle Type Mix",
+      "type": "object"
+     }
+    },
+    "required": [
+     "approach",
+     "exit_arm",
+     "turn",
+     "observed_count_veh",
+     "flow_veh_per_h",
+     "flow_ci95_veh_per_h",
+     "vehicle_type_mix"
+    ],
+    "title": "MovementDemand",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "files": {
+    "items": {
+     "$ref": "#/$defs/DemandFile"
+    },
+    "title": "Files",
+    "type": "array"
+   },
+   "generation_end_s": {
+    "description": "vehicles depart in [0, this)",
+    "exclusiveMinimum": 0,
+    "title": "Generation End S",
+    "type": "number"
+   },
+   "movements": {
+    "items": {
+     "$ref": "#/$defs/MovementDemand"
+    },
+    "title": "Movements",
+    "type": "array"
+   },
+   "notes": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Notes",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "speed_factor_sd": {
+    "minimum": 0,
+    "title": "Speed Factor Sd",
+    "type": "number"
+   },
+   "world_model_sha256": {
+    "title": "World Model Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "world_model_sha256",
+   "movements",
+   "generation_end_s",
+   "speed_factor_sd",
+   "files",
+   "notes"
+  ],
+  "title": "DemandManifest",
+  "type": "object"
+ },
+ "EvaluationResult": {
+  "$defs": {
+   "CandidateEligibility": {
+    "additionalProperties": false,
+    "description": "Whether a candidate's runs can be compared with the baseline, and why not.",
+    "properties": {
+     "candidate": {
+      "title": "Candidate",
+      "type": "string"
+     },
+     "censored_lanes": {
+      "additionalProperties": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "description": "seed -> approach lanes whose queue reached their upstream end in the window, so the arm's queue metrics are lower bounds",
+      "title": "Censored Lanes",
+      "type": "object"
+     },
+     "entry_blocked": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "type": "number"
+       },
+       "type": "object"
+      },
+      "description": "seed -> arm -> vehicle-seconds in the window that vehicles of that arm waited to enter the network (tripinfo insertion delays of at least 2 s; rules 0.3.1, in 0.3.0 only while a standing queue was at their entry); queue.xml does not see them, so the arm's queue metrics are lower bounds",
+      "title": "Entry Blocked",
+      "type": "object"
+     },
+     "not_inserted": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "seed -> vehicles still waiting to enter at the end (not in tripinfo.xml)",
+      "title": "Not Inserted",
+      "type": "object"
+     },
+     "reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "run_classes": {
+      "additionalProperties": {
+       "enum": [
+        "complete",
+        "incomplete",
+        "integrity_failure"
+       ],
+       "type": "string"
+      },
+      "description": "seed -> class of that run",
+      "title": "Run Classes",
+      "type": "object"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "compared",
+       "incomplete",
+       "invalid_simulation"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unfinished": {
+      "items": {
+       "$ref": "#/$defs/UnfinishedMovement"
+      },
+      "title": "Unfinished",
+      "type": "array"
+     }
+    },
+    "required": [
+     "candidate",
+     "status",
+     "run_classes",
+     "not_inserted",
+     "unfinished",
+     "reasons"
+    ],
+    "title": "CandidateEligibility",
+    "type": "object"
+   },
+   "ImprovementTest": {
+    "additionalProperties": false,
+    "description": "One planned improvement claim (a candidate and a metric), tested with Holm's step-down.",
+    "properties": {
+     "candidate": {
+      "title": "Candidate",
+      "type": "string"
+     },
+     "confirmed": {
+      "description": "rejected by Holm's procedure and in the better direction",
+      "title": "Confirmed",
+      "type": "boolean"
+     },
+     "holm_threshold": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "family alpha / (planned tests - rank + 1) at this test's rank; None when untested. Tests ranked after the first one not rejected are never rejected",
+      "title": "Holm Threshold"
+     },
+     "metric_name": {
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "n": {
+      "description": "paired seeds",
+      "minimum": 0,
+      "title": "N",
+      "type": "integer"
+     },
+     "p_value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "two-sided paired t test; None when untested",
+      "title": "P Value"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "t_statistic": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "paired t of the difference, signed so that positive means better; None when untested (no comparison, fewer than 2 seeds, a zero standard deviation, or a censored queue: lane full or vehicles held off the network at the entry)",
+      "title": "T Statistic"
+     }
+    },
+    "required": [
+     "candidate",
+     "metric_name",
+     "n",
+     "t_statistic",
+     "p_value",
+     "holm_threshold",
+     "confirmed"
+    ],
+    "title": "ImprovementTest",
+    "type": "object"
+   },
+   "MetricResult": {
+    "additionalProperties": false,
+    "description": "One simulated metric of one run, computed from one SUMO output file (never from a model).",
+    "properties": {
+     "arm": {
+      "description": "'baseline' or an intervention id",
+      "title": "Arm",
+      "type": "string"
+     },
+     "calculation_version": {
+      "title": "Calculation Version",
+      "type": "string"
+     },
+     "experiment_id": {
+      "title": "Experiment Id",
+      "type": "string"
+     },
+     "kind": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Kind",
+      "type": "string"
+     },
+     "metric_name": {
+      "description": "e.g. 'mean_delay_s' or 'max_queue_m.S'",
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "sample_size": {
+      "description": "vehicles or time steps behind the value",
+      "minimum": 0,
+      "title": "Sample Size",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "title": "Seed",
+      "type": "integer"
+     },
+     "source_output_file": {
+      "description": "relative to the experiment directory",
+      "title": "Source Output File",
+      "type": "string"
+     },
+     "source_sha256": {
+      "title": "Source Sha256",
+      "type": "string"
+     },
+     "unit": {
+      "enum": [
+       "s",
+       "veh/h",
+       "m",
+       "veh"
+      ],
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     },
+     "window_s": {
+      "description": "measurement window, simulation seconds",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Window S",
+      "type": "array"
+     }
+    },
+    "required": [
+     "experiment_id",
+     "arm",
+     "seed",
+     "metric_name",
+     "value",
+     "unit",
+     "window_s",
+     "sample_size",
+     "source_output_file",
+     "source_sha256",
+     "calculation_version"
+    ],
+    "title": "MetricResult",
+    "type": "object"
+   },
+   "PairedComparison": {
+    "additionalProperties": false,
+    "description": "Candidate minus baseline for one metric, seed by seed.",
+    "properties": {
+     "baseline_mean": {
+      "title": "Baseline Mean",
+      "type": "number"
+     },
+     "baseline_values": {
+      "items": {
+       "type": "number"
+      },
+      "title": "Baseline Values",
+      "type": "array"
+     },
+     "better": {
+      "enum": [
+       "lower",
+       "higher"
+      ],
+      "title": "Better",
+      "type": "string"
+     },
+     "candidate": {
+      "title": "Candidate",
+      "type": "string"
+     },
+     "candidate_mean": {
+      "title": "Candidate Mean",
+      "type": "number"
+     },
+     "candidate_values": {
+      "items": {
+       "type": "number"
+      },
+      "title": "Candidate Values",
+      "type": "array"
+     },
+     "ci95_difference": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "t interval; None if n < 2",
+      "title": "Ci95 Difference"
+     },
+     "differences": {
+      "items": {
+       "type": "number"
+      },
+      "title": "Differences",
+      "type": "array"
+     },
+     "mean_difference": {
+      "title": "Mean Difference",
+      "type": "number"
+     },
+     "metric_name": {
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sd_difference": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "sample standard deviation; None if n < 2",
+      "title": "Sd Difference"
+     },
+     "seeds": {
+      "items": {
+       "type": "integer"
+      },
+      "title": "Seeds",
+      "type": "array"
+     },
+     "shared_state_seeds": {
+      "default": [],
+      "description": "maximum queues only: seeds on which both runs reached their maximum before their signal programs first differed, so that seed's difference is zero by construction",
+      "items": {
+       "type": "integer"
+      },
+      "title": "Shared State Seeds",
+      "type": "array"
+     },
+     "unit": {
+      "enum": [
+       "s",
+       "veh/h",
+       "m",
+       "veh"
+      ],
+      "title": "Unit",
+      "type": "string"
+     },
+     "verdict": {
+      "description": "improves or worsens only when the interval excludes zero; uninformative (rules 0.3.0) when the values measure a state both runs share, not the plan",
+      "enum": [
+       "improves",
+       "worsens",
+       "inconclusive",
+       "uninformative"
+      ],
+      "title": "Verdict",
+      "type": "string"
+     }
+    },
+    "required": [
+     "candidate",
+     "metric_name",
+     "unit",
+     "better",
+     "seeds",
+     "baseline_values",
+     "candidate_values",
+     "differences",
+     "baseline_mean",
+     "candidate_mean",
+     "mean_difference",
+     "sd_difference",
+     "ci95_difference",
+     "verdict"
+    ],
+    "title": "PairedComparison",
+    "type": "object"
+   },
+   "UnfinishedMovement": {
+    "additionalProperties": false,
+    "description": "Vehicles of one movement still in the network when a run ended (from tripinfo.xml).",
+    "properties": {
+     "delay_lower_bound_range_s": {
+      "description": "min and max over these vehicles of timeLoss + departDelay at the end; the trips are unfinished, so each vehicle's value is a lower bound of its delay",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Delay Lower Bound Range S",
+      "type": "array"
+     },
+     "first_depart_s": {
+      "description": "earliest insertion among them",
+      "title": "First Depart S",
+      "type": "number"
+     },
+     "movement": {
+      "description": "approach and exit arm, from the vehicle id, e.g. 'WN'",
+      "title": "Movement",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "title": "Seed",
+      "type": "integer"
+     },
+     "vehicles": {
+      "exclusiveMinimum": 0,
+      "title": "Vehicles",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "seed",
+     "movement",
+     "vehicles",
+     "first_depart_s",
+     "delay_lower_bound_range_s"
+    ],
+    "title": "UnfinishedMovement",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Every metric of every compared run and the paired comparisons; no combined score.",
+  "properties": {
+   "baseline_censored_lanes": {
+    "additionalProperties": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "description": "seed -> baseline approach lanes whose queue reached their upstream end",
+    "title": "Baseline Censored Lanes",
+    "type": "object"
+   },
+   "baseline_entry_blocked": {
+    "additionalProperties": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "type": "object"
+    },
+    "description": "seed -> arm -> vehicle-seconds the baseline's vehicles waited to enter the network (as CandidateEligibility.entry_blocked)",
+    "title": "Baseline Entry Blocked",
+    "type": "object"
+   },
+   "calculation_version": {
+    "title": "Calculation Version",
+    "type": "string"
+   },
+   "comparisons": {
+    "items": {
+     "$ref": "#/$defs/PairedComparison"
+    },
+    "title": "Comparisons",
+    "type": "array"
+   },
+   "eligibility": {
+    "default": [],
+    "description": "every simulated candidate's status; empty in records before 0.2.0",
+    "items": {
+     "$ref": "#/$defs/CandidateEligibility"
+    },
+    "title": "Eligibility",
+    "type": "array"
+   },
+   "excluded": {
+    "description": "candidates that can never be selected, and why (before 0.2.0: not compared)",
+    "items": {
+     "type": "string"
+    },
+    "title": "Excluded",
+    "type": "array"
+   },
+   "experiment_id": {
+    "title": "Experiment Id",
+    "type": "string"
+   },
+   "improvement_tests": {
+    "default": [],
+    "description": "every planned improvement test (each simulated candidate with each improvement metric); empty before 0.2.0",
+    "items": {
+     "$ref": "#/$defs/ImprovementTest"
+    },
+    "title": "Improvement Tests",
+    "type": "array"
+   },
+   "metrics": {
+    "items": {
+     "$ref": "#/$defs/MetricResult"
+    },
+    "title": "Metrics",
+    "type": "array"
+   },
+   "rules_version": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "version of the eligibility and selection rules; None before",
+    "title": "Rules Version"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "experiment_id",
+   "calculation_version",
+   "metrics",
+   "comparisons",
+   "excluded"
+  ],
+  "title": "EvaluationResult",
+  "type": "object"
+ },
+ "ExperimentManifest": {
+  "$defs": {
+   "CandidateRecord": {
+    "additionalProperties": false,
+    "description": "One validated intervention, rebuilt into a network and run on the baseline's seeds.",
+    "properties": {
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "network": {
+      "$ref": "#/$defs/CompiledNetworkManifest"
+     },
+     "outcome": {
+      "$ref": "#/$defs/ValidationOutcome"
+     },
+     "reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "runs": {
+      "items": {
+       "$ref": "#/$defs/RunRecord"
+      },
+      "title": "Runs",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "valid": {
+      "title": "Valid",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "outcome",
+     "network",
+     "runs",
+     "valid",
+     "reasons"
+    ],
+    "title": "CandidateRecord",
+    "type": "object"
+   },
+   "CompiledNetworkManifest": {
+    "additionalProperties": false,
+    "properties": {
+     "geometry_id": {
+      "title": "Geometry Id",
+      "type": "string"
+     },
+     "geometry_sha256": {
+      "title": "Geometry Sha256",
+      "type": "string"
+     },
+     "link_count": {
+      "exclusiveMinimum": 0,
+      "title": "Link Count",
+      "type": "integer"
+     },
+     "net_sha256": {
+      "description": "of the .net.xml with XML comments stripped",
+      "title": "Net Sha256",
+      "type": "string"
+     },
+     "netconvert_warnings": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Netconvert Warnings",
+      "type": "array"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "parameters": {
+      "items": {
+       "$ref": "#/$defs/NetworkParameter"
+      },
+      "title": "Parameters",
+      "type": "array"
+     },
+     "plain_xml_sha256": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "file name -> SHA-256",
+      "title": "Plain Xml Sha256",
+      "type": "object"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "signal_program": {
+      "$ref": "#/$defs/SignalProgramSpec"
+     },
+     "sumo_version": {
+      "title": "Sumo Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "geometry_id",
+     "geometry_sha256",
+     "sumo_version",
+     "plain_xml_sha256",
+     "net_sha256",
+     "link_count",
+     "parameters",
+     "signal_program",
+     "netconvert_warnings",
+     "notes"
+    ],
+    "title": "CompiledNetworkManifest",
+    "type": "object"
+   },
+   "NetworkParameter": {
+    "additionalProperties": false,
+    "description": "One value the network was built from, with where it came from.",
+    "properties": {
+     "name": {
+      "description": "e.g. 'S.arm_length' or 'S1.width'",
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "provenance": {
+      "enum": [
+       "measured",
+       "approximated",
+       "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "source": {
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     },
+     "unit": {
+      "enum": [
+       "m",
+       "m/s",
+       "s",
+       "deg",
+       "count"
+      ],
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     }
+    },
+    "required": [
+     "name",
+     "value",
+     "unit",
+     "provenance",
+     "source"
+    ],
+    "title": "NetworkParameter",
+    "type": "object"
+   },
+   "RunRecord": {
+    "additionalProperties": false,
+    "description": "One SUMO run: what went in, the output hashes and whether it is valid.",
+    "properties": {
+     "arrived": {
+      "minimum": 0,
+      "title": "Arrived",
+      "type": "integer"
+     },
+     "collisions": {
+      "minimum": 0,
+      "title": "Collisions",
+      "type": "integer"
+     },
+     "command": {
+      "description": "relative paths, run from run_dir",
+      "items": {
+       "type": "string"
+      },
+      "title": "Command",
+      "type": "array"
+     },
+     "demand_sha256": {
+      "title": "Demand Sha256",
+      "type": "string"
+     },
+     "inserted": {
+      "minimum": 0,
+      "title": "Inserted",
+      "type": "integer"
+     },
+     "loaded": {
+      "minimum": 0,
+      "title": "Loaded",
+      "type": "integer"
+     },
+     "reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "run_dir": {
+      "title": "Run Dir",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seed": {
+      "title": "Seed",
+      "type": "integer"
+     },
+     "teleports": {
+      "minimum": 0,
+      "title": "Teleports",
+      "type": "integer"
+     },
+     "tripinfo_sha256": {
+      "description": "XML comments stripped",
+      "title": "Tripinfo Sha256",
+      "type": "string"
+     },
+     "unfinished": {
+      "description": "still running or waiting to insert at the end",
+      "minimum": 0,
+      "title": "Unfinished",
+      "type": "integer"
+     },
+     "valid": {
+      "title": "Valid",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "seed",
+     "run_dir",
+     "command",
+     "demand_sha256",
+     "tripinfo_sha256",
+     "loaded",
+     "inserted",
+     "arrived",
+     "unfinished",
+     "teleports",
+     "collisions",
+     "valid",
+     "reasons"
+    ],
+    "title": "RunRecord",
+    "type": "object"
+   },
+   "RunSettings": {
+    "additionalProperties": false,
+    "description": "Shared by the baseline and every candidate (ADR-008).",
+    "properties": {
+     "drain_s": {
+      "default": 600.0,
+      "description": "no new vehicles; lets the network empty",
+      "minimum": 0,
+      "title": "Drain S",
+      "type": "number"
+     },
+     "horizon_s": {
+      "default": 900.0,
+      "description": "measurement window after warm-up",
+      "exclusiveMinimum": 0,
+      "title": "Horizon S",
+      "type": "number"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seeds": {
+      "default": [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "items": {
+       "type": "integer"
+      },
+      "minItems": 1,
+      "title": "Seeds",
+      "type": "array"
+     },
+     "step_length_s": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "title": "Step Length S",
+      "type": "number"
+     },
+     "time_to_teleport_s": {
+      "default": 300.0,
+      "exclusiveMinimum": 0,
+      "title": "Time To Teleport S",
+      "type": "number"
+     },
+     "warmup_s": {
+      "default": 300.0,
+      "minimum": 0,
+      "title": "Warmup S",
+      "type": "number"
+     }
+    },
+    "title": "RunSettings",
+    "type": "object"
+   },
+   "SignalPhaseSpec": {
+    "additionalProperties": false,
+    "properties": {
+     "arm_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Arm States",
+      "type": "object"
+     },
+     "duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Duration S",
+      "type": "number"
+     },
+     "left_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "description": "protected-left heads, for arms that have one",
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Left States",
+      "type": "object"
+     },
+     "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "state": {
+      "description": "SUMO link states, by link index ('s': right turn on red, after stopping)",
+      "pattern": "^[GgyrOs]+$",
+      "title": "State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "duration_s",
+     "state",
+     "arm_states"
+    ],
+    "title": "SignalPhaseSpec",
+    "type": "object"
+   },
+   "SignalProgramSpec": {
+    "additionalProperties": false,
+    "description": "One signal cycle cut from a timeline and repeated by SUMO.",
+    "properties": {
+     "annotation_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Annotation Sha256"
+     },
+     "cycle_s": {
+      "exclusiveMinimum": 0,
+      "title": "Cycle S",
+      "type": "number"
+     },
+     "cycle_start_s": {
+      "description": "clip time where the cut cycle begins",
+      "minimum": 0,
+      "title": "Cycle Start S",
+      "type": "number"
+     },
+     "label": {
+      "enum": [
+       "observed-annotated",
+       "published",
+       "trajectory-derived",
+       "assumed"
+      ],
+      "title": "Label",
+      "type": "string"
+     },
+     "phases": {
+      "items": {
+       "$ref": "#/$defs/SignalPhaseSpec"
+      },
+      "minItems": 1,
+      "title": "Phases",
+      "type": "array"
+     },
+     "program_id": {
+      "pattern": "^[A-Za-z0-9_]+$",
+      "title": "Program Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timeline_id": {
+      "title": "Timeline Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "program_id",
+     "timeline_id",
+     "label",
+     "annotation_sha256",
+     "cycle_start_s",
+     "cycle_s",
+     "phases"
+    ],
+    "title": "SignalProgramSpec",
+    "type": "object"
+   },
+   "ValidationOutcome": {
+    "additionalProperties": false,
+    "description": "The validator's verdict on one proposal. Accepted proposals become simulation candidates.",
+    "properties": {
+     "baseline_cycle_s": {
+      "title": "Baseline Cycle S",
+      "type": "number"
+     },
+     "cycle_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cycle S"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_durations_s": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the candidate cycle, in compiled phase order, when accepted",
+      "title": "Phase Durations S"
+     },
+     "program_id": {
+      "title": "Program Id",
+      "type": "string"
+     },
+     "proposal_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the proposal's canonical JSON, so a candidate names what it came from",
+      "title": "Proposal Sha256"
+     },
+     "reasons": {
+      "description": "why it was rejected; empty when accepted",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "accepted",
+       "rejected"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "validated_at_utc": {
+      "format": "date-time",
+      "title": "Validated At Utc",
+      "type": "string"
+     },
+     "validator_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "None in outcomes before 0.2.0",
+      "title": "Validator Version"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "status",
+     "reasons",
+     "program_id",
+     "phase_durations_s",
+     "cycle_s",
+     "baseline_cycle_s",
+     "validated_at_utc"
+    ],
+    "title": "ValidationOutcome",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Candidates run against a baseline with the same network, demand, settings and seeds.",
+  "properties": {
+   "baseline_dir": {
+    "description": "relative to the experiment directory",
+    "title": "Baseline Dir",
+    "type": "string"
+   },
+   "baseline_experiment_id": {
+    "title": "Baseline Experiment Id",
+    "type": "string"
+   },
+   "baseline_manifest_sha256": {
+    "title": "Baseline Manifest Sha256",
+    "type": "string"
+   },
+   "candidates": {
+    "items": {
+     "$ref": "#/$defs/CandidateRecord"
+    },
+    "title": "Candidates",
+    "type": "array"
+   },
+   "created_at_utc": {
+    "format": "date-time",
+    "title": "Created At Utc",
+    "type": "string"
+   },
+   "experiment_id": {
+    "minLength": 1,
+    "title": "Experiment Id",
+    "type": "string"
+   },
+   "reasons": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "settings": {
+    "$ref": "#/$defs/RunSettings"
+   },
+   "skipped": {
+    "description": "rejected outcomes, not simulated",
+    "items": {
+     "type": "string"
+    },
+    "title": "Skipped",
+    "type": "array"
+   },
+   "valid": {
+    "title": "Valid",
+    "type": "boolean"
+   }
+  },
+  "required": [
+   "experiment_id",
+   "created_at_utc",
+   "baseline_dir",
+   "baseline_experiment_id",
+   "baseline_manifest_sha256",
+   "settings",
+   "candidates",
+   "skipped",
+   "valid",
+   "reasons"
+  ],
+  "title": "ExperimentManifest",
+  "type": "object"
+ },
+ "ImprovementTest": {
+  "additionalProperties": false,
+  "description": "One planned improvement claim (a candidate and a metric), tested with Holm's step-down.",
+  "properties": {
+   "candidate": {
+    "title": "Candidate",
+    "type": "string"
+   },
+   "confirmed": {
+    "description": "rejected by Holm's procedure and in the better direction",
+    "title": "Confirmed",
+    "type": "boolean"
+   },
+   "holm_threshold": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "family alpha / (planned tests - rank + 1) at this test's rank; None when untested. Tests ranked after the first one not rejected are never rejected",
+    "title": "Holm Threshold"
+   },
+   "metric_name": {
+    "title": "Metric Name",
+    "type": "string"
+   },
+   "n": {
+    "description": "paired seeds",
+    "minimum": 0,
+    "title": "N",
+    "type": "integer"
+   },
+   "p_value": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "two-sided paired t test; None when untested",
+    "title": "P Value"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "t_statistic": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "paired t of the difference, signed so that positive means better; None when untested (no comparison, fewer than 2 seeds, a zero standard deviation, or a censored queue: lane full or vehicles held off the network at the entry)",
+    "title": "T Statistic"
+   }
+  },
+  "required": [
+   "candidate",
+   "metric_name",
+   "n",
+   "t_statistic",
+   "p_value",
+   "holm_threshold",
+   "confirmed"
+  ],
+  "title": "ImprovementTest",
+  "type": "object"
+ },
+ "MetricResult": {
+  "additionalProperties": false,
+  "description": "One simulated metric of one run, computed from one SUMO output file (never from a model).",
+  "properties": {
+   "arm": {
+    "description": "'baseline' or an intervention id",
+    "title": "Arm",
+    "type": "string"
+   },
+   "calculation_version": {
+    "title": "Calculation Version",
+    "type": "string"
+   },
+   "experiment_id": {
+    "title": "Experiment Id",
+    "type": "string"
+   },
+   "kind": {
+    "const": "simulated",
+    "default": "simulated",
+    "title": "Kind",
+    "type": "string"
+   },
+   "metric_name": {
+    "description": "e.g. 'mean_delay_s' or 'max_queue_m.S'",
+    "title": "Metric Name",
+    "type": "string"
+   },
+   "sample_size": {
+    "description": "vehicles or time steps behind the value",
+    "minimum": 0,
+    "title": "Sample Size",
+    "type": "integer"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seed": {
+    "title": "Seed",
+    "type": "integer"
+   },
+   "source_output_file": {
+    "description": "relative to the experiment directory",
+    "title": "Source Output File",
+    "type": "string"
+   },
+   "source_sha256": {
+    "title": "Source Sha256",
+    "type": "string"
+   },
+   "unit": {
+    "enum": [
+     "s",
+     "veh/h",
+     "m",
+     "veh"
+    ],
+    "title": "Unit",
+    "type": "string"
+   },
+   "value": {
+    "title": "Value",
+    "type": "number"
+   },
+   "window_s": {
+    "description": "measurement window, simulation seconds",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Window S",
+    "type": "array"
+   }
+  },
+  "required": [
+   "experiment_id",
+   "arm",
+   "seed",
+   "metric_name",
+   "value",
+   "unit",
+   "window_s",
+   "sample_size",
+   "source_output_file",
+   "source_sha256",
+   "calculation_version"
+  ],
+  "title": "MetricResult",
+  "type": "object"
+ },
+ "MovementDemand": {
+  "additionalProperties": false,
+  "description": "The demand of one movement, taken from the world model's point estimate.",
+  "properties": {
+   "approach": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Approach",
+    "type": "string"
+   },
+   "exit_arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Exit Arm",
+    "type": "string"
+   },
+   "flow_ci95_veh_per_h": {
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Flow Ci95 Veh Per H",
+    "type": "array"
+   },
+   "flow_veh_per_h": {
+    "minimum": 0,
+    "title": "Flow Veh Per H",
+    "type": "number"
+   },
+   "observed_count_veh": {
+    "minimum": 0,
+    "title": "Observed Count Veh",
+    "type": "integer"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "turn": {
+    "enum": [
+     "left",
+     "through",
+     "right",
+     "u_turn"
+    ],
+    "title": "Turn",
+    "type": "string"
+   },
+   "vehicle_type_mix": {
+    "additionalProperties": {
+     "type": "number"
+    },
+    "description": "SUMO vType -> share of counted tracks",
+    "title": "Vehicle Type Mix",
+    "type": "object"
+   }
+  },
+  "required": [
+   "approach",
+   "exit_arm",
+   "turn",
+   "observed_count_veh",
+   "flow_veh_per_h",
+   "flow_ci95_veh_per_h",
+   "vehicle_type_mix"
+  ],
+  "title": "MovementDemand",
+  "type": "object"
+ },
+ "NetworkParameter": {
+  "additionalProperties": false,
+  "description": "One value the network was built from, with where it came from.",
+  "properties": {
+   "name": {
+    "description": "e.g. 'S.arm_length' or 'S1.width'",
+    "minLength": 1,
+    "title": "Name",
+    "type": "string"
+   },
+   "provenance": {
+    "enum": [
+     "measured",
+     "approximated",
+     "synthetic"
+    ],
+    "title": "Provenance",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "source": {
+    "minLength": 1,
+    "title": "Source",
+    "type": "string"
+   },
+   "unit": {
+    "enum": [
+     "m",
+     "m/s",
+     "s",
+     "deg",
+     "count"
+    ],
+    "title": "Unit",
+    "type": "string"
+   },
+   "value": {
+    "title": "Value",
+    "type": "number"
+   }
+  },
+  "required": [
+   "name",
+   "value",
+   "unit",
+   "provenance",
+   "source"
+  ],
+  "title": "NetworkParameter",
+  "type": "object"
+ },
+ "PairedComparison": {
+  "additionalProperties": false,
+  "description": "Candidate minus baseline for one metric, seed by seed.",
+  "properties": {
+   "baseline_mean": {
+    "title": "Baseline Mean",
+    "type": "number"
+   },
+   "baseline_values": {
+    "items": {
+     "type": "number"
+    },
+    "title": "Baseline Values",
+    "type": "array"
+   },
+   "better": {
+    "enum": [
+     "lower",
+     "higher"
+    ],
+    "title": "Better",
+    "type": "string"
+   },
+   "candidate": {
+    "title": "Candidate",
+    "type": "string"
+   },
+   "candidate_mean": {
+    "title": "Candidate Mean",
+    "type": "number"
+   },
+   "candidate_values": {
+    "items": {
+     "type": "number"
+    },
+    "title": "Candidate Values",
+    "type": "array"
+   },
+   "ci95_difference": {
+    "anyOf": [
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "t interval; None if n < 2",
+    "title": "Ci95 Difference"
+   },
+   "differences": {
+    "items": {
+     "type": "number"
+    },
+    "title": "Differences",
+    "type": "array"
+   },
+   "mean_difference": {
+    "title": "Mean Difference",
+    "type": "number"
+   },
+   "metric_name": {
+    "title": "Metric Name",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "sd_difference": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "sample standard deviation; None if n < 2",
+    "title": "Sd Difference"
+   },
+   "seeds": {
+    "items": {
+     "type": "integer"
+    },
+    "title": "Seeds",
+    "type": "array"
+   },
+   "shared_state_seeds": {
+    "default": [],
+    "description": "maximum queues only: seeds on which both runs reached their maximum before their signal programs first differed, so that seed's difference is zero by construction",
+    "items": {
+     "type": "integer"
+    },
+    "title": "Shared State Seeds",
+    "type": "array"
+   },
+   "unit": {
+    "enum": [
+     "s",
+     "veh/h",
+     "m",
+     "veh"
+    ],
+    "title": "Unit",
+    "type": "string"
+   },
+   "verdict": {
+    "description": "improves or worsens only when the interval excludes zero; uninformative (rules 0.3.0) when the values measure a state both runs share, not the plan",
+    "enum": [
+     "improves",
+     "worsens",
+     "inconclusive",
+     "uninformative"
+    ],
+    "title": "Verdict",
+    "type": "string"
+   }
+  },
+  "required": [
+   "candidate",
+   "metric_name",
+   "unit",
+   "better",
+   "seeds",
+   "baseline_values",
+   "candidate_values",
+   "differences",
+   "baseline_mean",
+   "candidate_mean",
+   "mean_difference",
+   "sd_difference",
+   "ci95_difference",
+   "verdict"
+  ],
+  "title": "PairedComparison",
+  "type": "object"
+ },
+ "RunRecord": {
+  "additionalProperties": false,
+  "description": "One SUMO run: what went in, the output hashes and whether it is valid.",
+  "properties": {
+   "arrived": {
+    "minimum": 0,
+    "title": "Arrived",
+    "type": "integer"
+   },
+   "collisions": {
+    "minimum": 0,
+    "title": "Collisions",
+    "type": "integer"
+   },
+   "command": {
+    "description": "relative paths, run from run_dir",
+    "items": {
+     "type": "string"
+    },
+    "title": "Command",
+    "type": "array"
+   },
+   "demand_sha256": {
+    "title": "Demand Sha256",
+    "type": "string"
+   },
+   "inserted": {
+    "minimum": 0,
+    "title": "Inserted",
+    "type": "integer"
+   },
+   "loaded": {
+    "minimum": 0,
+    "title": "Loaded",
+    "type": "integer"
+   },
+   "reasons": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "run_dir": {
+    "title": "Run Dir",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seed": {
+    "title": "Seed",
+    "type": "integer"
+   },
+   "teleports": {
+    "minimum": 0,
+    "title": "Teleports",
+    "type": "integer"
+   },
+   "tripinfo_sha256": {
+    "description": "XML comments stripped",
+    "title": "Tripinfo Sha256",
+    "type": "string"
+   },
+   "unfinished": {
+    "description": "still running or waiting to insert at the end",
+    "minimum": 0,
+    "title": "Unfinished",
+    "type": "integer"
+   },
+   "valid": {
+    "title": "Valid",
+    "type": "boolean"
+   }
+  },
+  "required": [
+   "seed",
+   "run_dir",
+   "command",
+   "demand_sha256",
+   "tripinfo_sha256",
+   "loaded",
+   "inserted",
+   "arrived",
+   "unfinished",
+   "teleports",
+   "collisions",
+   "valid",
+   "reasons"
+  ],
+  "title": "RunRecord",
+  "type": "object"
+ },
+ "RunSettings": {
+  "additionalProperties": false,
+  "description": "Shared by the baseline and every candidate (ADR-008).",
+  "properties": {
+   "drain_s": {
+    "default": 600.0,
+    "description": "no new vehicles; lets the network empty",
+    "minimum": 0,
+    "title": "Drain S",
+    "type": "number"
+   },
+   "horizon_s": {
+    "default": 900.0,
+    "description": "measurement window after warm-up",
+    "exclusiveMinimum": 0,
+    "title": "Horizon S",
+    "type": "number"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seeds": {
+    "default": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "items": {
+     "type": "integer"
+    },
+    "minItems": 1,
+    "title": "Seeds",
+    "type": "array"
+   },
+   "step_length_s": {
+    "default": 1.0,
+    "exclusiveMinimum": 0,
+    "title": "Step Length S",
+    "type": "number"
+   },
+   "time_to_teleport_s": {
+    "default": 300.0,
+    "exclusiveMinimum": 0,
+    "title": "Time To Teleport S",
+    "type": "number"
+   },
+   "warmup_s": {
+    "default": 300.0,
+    "minimum": 0,
+    "title": "Warmup S",
+    "type": "number"
+   }
+  },
+  "title": "RunSettings",
+  "type": "object"
+ },
+ "SignalPhaseSpec": {
+  "additionalProperties": false,
+  "properties": {
+   "arm_states": {
+    "additionalProperties": {
+     "enum": [
+      "green",
+      "yellow",
+      "red",
+      "unknown"
+     ],
+     "type": "string"
+    },
+    "propertyNames": {
+     "enum": [
+      "N",
+      "E",
+      "S",
+      "W"
+     ]
+    },
+    "title": "Arm States",
+    "type": "object"
+   },
+   "duration_s": {
+    "exclusiveMinimum": 0,
+    "title": "Duration S",
+    "type": "number"
+   },
+   "left_states": {
+    "additionalProperties": {
+     "enum": [
+      "green",
+      "yellow",
+      "red",
+      "unknown"
+     ],
+     "type": "string"
+    },
+    "description": "protected-left heads, for arms that have one",
+    "propertyNames": {
+     "enum": [
+      "N",
+      "E",
+      "S",
+      "W"
+     ]
+    },
+    "title": "Left States",
+    "type": "object"
+   },
+   "name": {
+    "minLength": 1,
+    "title": "Name",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "state": {
+    "description": "SUMO link states, by link index ('s': right turn on red, after stopping)",
+    "pattern": "^[GgyrOs]+$",
+    "title": "State",
+    "type": "string"
+   }
+  },
+  "required": [
+   "name",
+   "duration_s",
+   "state",
+   "arm_states"
+  ],
+  "title": "SignalPhaseSpec",
+  "type": "object"
+ },
+ "SignalProgramSpec": {
+  "$defs": {
+   "SignalPhaseSpec": {
+    "additionalProperties": false,
+    "properties": {
+     "arm_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Arm States",
+      "type": "object"
+     },
+     "duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Duration S",
+      "type": "number"
+     },
+     "left_states": {
+      "additionalProperties": {
+       "enum": [
+        "green",
+        "yellow",
+        "red",
+        "unknown"
+       ],
+       "type": "string"
+      },
+      "description": "protected-left heads, for arms that have one",
+      "propertyNames": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ]
+      },
+      "title": "Left States",
+      "type": "object"
+     },
+     "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "state": {
+      "description": "SUMO link states, by link index ('s': right turn on red, after stopping)",
+      "pattern": "^[GgyrOs]+$",
+      "title": "State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "duration_s",
+     "state",
+     "arm_states"
+    ],
+    "title": "SignalPhaseSpec",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One signal cycle cut from a timeline and repeated by SUMO.",
+  "properties": {
+   "annotation_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Annotation Sha256"
+   },
+   "cycle_s": {
+    "exclusiveMinimum": 0,
+    "title": "Cycle S",
+    "type": "number"
+   },
+   "cycle_start_s": {
+    "description": "clip time where the cut cycle begins",
+    "minimum": 0,
+    "title": "Cycle Start S",
+    "type": "number"
+   },
+   "label": {
+    "enum": [
+     "observed-annotated",
+     "published",
+     "trajectory-derived",
+     "assumed"
+    ],
+    "title": "Label",
+    "type": "string"
+   },
+   "phases": {
+    "items": {
+     "$ref": "#/$defs/SignalPhaseSpec"
+    },
+    "minItems": 1,
+    "title": "Phases",
+    "type": "array"
+   },
+   "program_id": {
+    "pattern": "^[A-Za-z0-9_]+$",
+    "title": "Program Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "timeline_id": {
+    "title": "Timeline Id",
+    "type": "string"
+   }
+  },
+  "required": [
+   "program_id",
+   "timeline_id",
+   "label",
+   "annotation_sha256",
+   "cycle_start_s",
+   "cycle_s",
+   "phases"
+  ],
+  "title": "SignalProgramSpec",
+  "type": "object"
+ },
+ "UnfinishedMovement": {
+  "additionalProperties": false,
+  "description": "Vehicles of one movement still in the network when a run ended (from tripinfo.xml).",
+  "properties": {
+   "delay_lower_bound_range_s": {
+    "description": "min and max over these vehicles of timeLoss + departDelay at the end; the trips are unfinished, so each vehicle's value is a lower bound of its delay",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Delay Lower Bound Range S",
+    "type": "array"
+   },
+   "first_depart_s": {
+    "description": "earliest insertion among them",
+    "title": "First Depart S",
+    "type": "number"
+   },
+   "movement": {
+    "description": "approach and exit arm, from the vehicle id, e.g. 'WN'",
+    "title": "Movement",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seed": {
+    "title": "Seed",
+    "type": "integer"
+   },
+   "vehicles": {
+    "exclusiveMinimum": 0,
+    "title": "Vehicles",
+    "type": "integer"
+   }
+  },
+  "required": [
+   "seed",
+   "movement",
+   "vehicles",
+   "first_depart_s",
+   "delay_lower_bound_range_s"
+  ],
+  "title": "UnfinishedMovement",
+  "type": "object"
+ }
+}

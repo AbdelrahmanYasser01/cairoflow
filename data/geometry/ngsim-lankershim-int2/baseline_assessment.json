@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "baseline_manifest_sha256": "a48949c8a4dc0b951db08c82558f19b2158204de65e288c5020c71e918ef7112",
+  "status": "not_validated",
+  "summary": "The baseline runs validly and reproduces its demand, but it is not validated for estimating intervention effects: its signal program repeats one cut of what looks like actuated control, its north approach misses the observed platoon arrivals, and mean delay, the main decision metric, has no observed counterpart.",
+  "findings": [
+    "Signal timing: 3 of the 7 observed cycle cuts that can be repeated give baselines that do not clear their demand (a protected left with 4-5 s of green); paired against the recorded cut, the valid ones change mean delay by up to +6.1 s, the south mean queue by up to +7.1 m and the north mean queue by -13.4 to +10.3 m (intervals excluding zero), more than the candidate effects being judged (signal_sensitivity).",
+    "North approach: observed through arrivals come in platoons (platoon ratio 1.63 against about 1.0 in every seed), so SUMO stops 64.8% of north through vehicles against 31.9% observed and adds about 10 s of segment travel time; north delay is overstated (validation).",
+    "South approach: saturation headway (2.02 s against 2.03 s observed), jam spacing, the share of through vehicles stopping and segment travel time agree; SUMO spreads through traffic evenly across the lanes, so its longest-lane queue is shorter than observed (validation).",
+    "Not validatable with the available data: mean delay, the east and west queues, start-up lost time and the signal timing itself; throughput agrees but is circular because the demand is generated from the same counts (validation).",
+    "Termination: the baseline empties 422-521 s before its 1800 s end; a plan that gives a protected left less green than its demand needs leaves vehicles after the drain, while a later end leaves every window metric unchanged (drain_sensitivity)."
+  ],
+  "evidence": {
+    "experiments/records/ngsim-int2-baseline-validity-20261028T121654Z/NOTICE.md": "d4aed6b9a63600d461059f2664f953bc8b8abfc2f158711bd3277c3809d1d5ba",
+    "experiments/records/ngsim-int2-baseline-validity-20261028T121654Z/validation/validation.json": "3733393efb90ac1a4174e33bc95a646ee7aacdb51452a6fc8690704d25c88a2b",
+    "experiments/records/ngsim-int2-baseline-validity-20261028T121654Z/validation/validation.md": "ceb17bc78d370640bfbf16a05a4b4649c6db23e9ba8408ccc0ff98affac453b9",
+    "experiments/records/ngsim-int2-baseline-validity-20261028T121654Z/signal_sensitivity/sensitivity.json": "6904a639ddff681a4b2a070a4c435f56a823a3b41dac2a65ebd483e72a9ce100",
+    "experiments/records/ngsim-int2-baseline-validity-20261028T121654Z/signal_sensitivity/sensitivity.md": "9b4483696d062840a577ac311cd0a84672199e62109a970f25289c1e2b1a74a4",
+    "experiments/records/ngsim-int2-baseline-validity-20261028T121654Z/drain_sensitivity/drain_sensitivity.json": "83bf5e5d82adc4a820894054e5adba4738bf06dc4e1b6b872ab2fc28d740d6ef",
+    "experiments/records/ngsim-int2-baseline-validity-20261028T121654Z/drain_sensitivity/drain_sensitivity.md": "d53afd6828aed0d2acc054745d0e4e18dbb9cf1ea24e4ae9fb94f0b8d77f7660"
+  },
+  "assessed_on": "2026-10-28",
+  "documented_in": "docs/DATA_REGISTER.md §17"
+}

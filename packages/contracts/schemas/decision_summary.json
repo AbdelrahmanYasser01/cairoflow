@@ -1,0 +1,3679 @@
+{
+ "CandidateView": {
+  "$defs": {
+   "InterventionProposal": {
+    "additionalProperties": false,
+    "properties": {
+     "addresses_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Addresses Hypothesis Ids",
+      "type": "array"
+     },
+     "evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+     },
+     "expected_tradeoffs": {
+      "description": "words only; no predicted metrics",
+      "items": {
+       "type": "string"
+      },
+      "title": "Expected Tradeoffs",
+      "type": "array"
+     },
+     "intervention_id": {
+      "pattern": "^I[1-9][0-9]?$",
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_changes": {
+      "items": {
+       "$ref": "#/$defs/PhaseChange"
+      },
+      "title": "Phase Changes",
+      "type": "array"
+     },
+     "preconditions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Preconditions",
+      "type": "array"
+     },
+     "rationale": {
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "target_program": {
+      "title": "Target Program",
+      "type": "string"
+     },
+     "type": {
+      "description": "checked against the allowlist later",
+      "pattern": "^[a-z_]+$",
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "type",
+     "target_program",
+     "phase_changes",
+     "rationale",
+     "expected_tradeoffs",
+     "preconditions",
+     "addresses_hypothesis_ids",
+     "evidence_ids"
+    ],
+    "title": "InterventionProposal",
+    "type": "object"
+   },
+   "PhaseChange": {
+    "additionalProperties": false,
+    "properties": {
+     "green_s": {
+      "title": "Green S",
+      "type": "number"
+     },
+     "phase_name": {
+      "minLength": 1,
+      "title": "Phase Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phase_name",
+     "green_s"
+    ],
+    "title": "PhaseChange",
+    "type": "object"
+   },
+   "ProposalGrounding": {
+    "additionalProperties": false,
+    "description": "Whether one proposal may go to planning: it must address a supported hypothesis.",
+    "properties": {
+     "eligible": {
+      "title": "Eligible",
+      "type": "boolean"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it may not; empty when eligible",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supported_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supported Hypothesis Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "eligible",
+     "reasons",
+     "supported_hypothesis_ids"
+    ],
+    "title": "ProposalGrounding",
+    "type": "object"
+   },
+   "ValidationOutcome": {
+    "additionalProperties": false,
+    "description": "The validator's verdict on one proposal. Accepted proposals become simulation candidates.",
+    "properties": {
+     "baseline_cycle_s": {
+      "title": "Baseline Cycle S",
+      "type": "number"
+     },
+     "cycle_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cycle S"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_durations_s": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the candidate cycle, in compiled phase order, when accepted",
+      "title": "Phase Durations S"
+     },
+     "program_id": {
+      "title": "Program Id",
+      "type": "string"
+     },
+     "proposal_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the proposal's canonical JSON, so a candidate names what it came from",
+      "title": "Proposal Sha256"
+     },
+     "reasons": {
+      "description": "why it was rejected; empty when accepted",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "accepted",
+       "rejected"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "validated_at_utc": {
+      "format": "date-time",
+      "title": "Validated At Utc",
+      "type": "string"
+     },
+     "validator_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "None in outcomes before 0.2.0",
+      "title": "Validator Version"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "status",
+     "reasons",
+     "program_id",
+     "phase_durations_s",
+     "cycle_s",
+     "baseline_cycle_s",
+     "validated_at_utc"
+    ],
+    "title": "ValidationOutcome",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One Muse proposal, and what deterministic code did with it.",
+  "properties": {
+   "eligibility_reasons": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Eligibility Reasons",
+    "type": "array"
+   },
+   "eligibility_status": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the evaluation's status for the candidate",
+    "title": "Eligibility Status"
+   },
+   "evidence_kind": {
+    "const": "model_generated",
+    "default": "model_generated",
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "grounding": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/ProposalGrounding"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   },
+   "intervention_id": {
+    "minLength": 1,
+    "title": "Intervention Id",
+    "type": "string"
+   },
+   "proposal": {
+    "$ref": "#/$defs/InterventionProposal"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "validator": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/ValidationOutcome"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   }
+  },
+  "required": [
+   "intervention_id",
+   "proposal",
+   "grounding",
+   "validator",
+   "eligibility_status",
+   "eligibility_reasons"
+  ],
+  "title": "CandidateView",
+  "type": "object"
+ },
+ "Citation": {
+  "$defs": {
+   "EvidenceRecurrence": {
+    "additionalProperties": false,
+    "properties": {
+     "cited_in": {
+      "description": "replies citing it at all",
+      "minimum": 0,
+      "title": "Cited In",
+      "type": "integer"
+     },
+     "contradicting_in": {
+      "description": "replies citing it against a hypothesis",
+      "minimum": 0,
+      "title": "Contradicting In",
+      "type": "integer"
+     },
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "replies": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Replies",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supporting_in": {
+      "description": "replies citing it in support of a hypothesis",
+      "minimum": 0,
+      "title": "Supporting In",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "supporting_in",
+     "contradicting_in",
+     "cited_in",
+     "replies"
+    ],
+    "title": "EvidenceRecurrence",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One evidence item a hypothesis cites, read back from the bundle the model was sent.",
+  "properties": {
+   "evidence_id": {
+    "minLength": 1,
+    "title": "Evidence Id",
+    "type": "string"
+   },
+   "kind": {
+    "anyOf": [
+     {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "as the bundle holds it; None when not in it",
+    "title": "Kind"
+   },
+   "recurrence": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/EvidenceRecurrence"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "how often replies to this request cite it; None when not counted"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "stance": {
+    "enum": [
+     "supporting",
+     "contradicting"
+    ],
+    "title": "Stance",
+    "type": "string"
+   },
+   "summary": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "as the bundle holds it; None when not in it",
+    "title": "Summary"
+   }
+  },
+  "required": [
+   "evidence_id",
+   "stance",
+   "kind",
+   "summary",
+   "recurrence"
+  ],
+  "title": "Citation",
+  "type": "object"
+ },
+ "DecisionSummary": {
+  "$defs": {
+   "BaselineAssessment": {
+    "additionalProperties": false,
+    "description": "How far observations support the simulated baseline: an engineering judgement, recorded\nwith the evidence it rests on. Only `validated` lets a selected candidate be recommended.",
+    "properties": {
+     "assessed_on": {
+      "description": "ISO date; see the document named in `documented_in`",
+      "title": "Assessed On",
+      "type": "string"
+     },
+     "baseline_manifest_sha256": {
+      "description": "the baseline this assessment is about",
+      "title": "Baseline Manifest Sha256",
+      "type": "string"
+     },
+     "documented_in": {
+      "title": "Documented In",
+      "type": "string"
+     },
+     "evidence": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "committed record path -> SHA-256",
+      "title": "Evidence",
+      "type": "object"
+     },
+     "findings": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Findings",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "validated",
+       "partially_validated",
+       "not_validated",
+       "not_assessed"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+     }
+    },
+    "required": [
+     "baseline_manifest_sha256",
+     "status",
+     "summary",
+     "findings",
+     "evidence",
+     "assessed_on",
+     "documented_in"
+    ],
+    "title": "BaselineAssessment",
+    "type": "object"
+   },
+   "CandidateView": {
+    "additionalProperties": false,
+    "description": "One Muse proposal, and what deterministic code did with it.",
+    "properties": {
+     "eligibility_reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Eligibility Reasons",
+      "type": "array"
+     },
+     "eligibility_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the evaluation's status for the candidate",
+      "title": "Eligibility Status"
+     },
+     "evidence_kind": {
+      "const": "model_generated",
+      "default": "model_generated",
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "grounding": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/ProposalGrounding"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "intervention_id": {
+      "minLength": 1,
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "proposal": {
+      "$ref": "#/$defs/InterventionProposal"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "validator": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/ValidationOutcome"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "required": [
+     "intervention_id",
+     "proposal",
+     "grounding",
+     "validator",
+     "eligibility_status",
+     "eligibility_reasons"
+    ],
+    "title": "CandidateView",
+    "type": "object"
+   },
+   "Citation": {
+    "additionalProperties": false,
+    "description": "One evidence item a hypothesis cites, read back from the bundle the model was sent.",
+    "properties": {
+     "evidence_id": {
+      "minLength": 1,
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "kind": {
+      "anyOf": [
+       {
+        "enum": [
+         "observed",
+         "approximated",
+         "assumed",
+         "model_generated",
+         "simulated"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "as the bundle holds it; None when not in it",
+      "title": "Kind"
+     },
+     "recurrence": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/EvidenceRecurrence"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "how often replies to this request cite it; None when not counted"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stance": {
+      "enum": [
+       "supporting",
+       "contradicting"
+      ],
+      "title": "Stance",
+      "type": "string"
+     },
+     "summary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "as the bundle holds it; None when not in it",
+      "title": "Summary"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "stance",
+     "kind",
+     "summary",
+     "recurrence"
+    ],
+    "title": "Citation",
+    "type": "object"
+   },
+   "DirectionDisagreement": {
+    "additionalProperties": false,
+    "description": "A metric whose verdict differs between members; `opposite` when the signs differ.",
+    "properties": {
+     "ci95_difference": {
+      "additionalProperties": {
+       "maxItems": 2,
+       "minItems": 2,
+       "prefixItems": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        }
+       ],
+       "type": "array"
+      },
+      "title": "Ci95 Difference",
+      "type": "object"
+     },
+     "mean_difference": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "title": "Mean Difference",
+      "type": "object"
+     },
+     "metric_name": {
+      "minLength": 1,
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "opposite": {
+      "title": "Opposite",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "verdicts": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Verdicts",
+      "type": "object"
+     }
+    },
+    "required": [
+     "metric_name",
+     "verdicts",
+     "mean_difference",
+     "ci95_difference",
+     "opposite"
+    ],
+    "title": "DirectionDisagreement",
+    "type": "object"
+   },
+   "EnsembleCandidateMember": {
+    "additionalProperties": false,
+    "description": "One candidate on one member, as the verdict recorded it.",
+    "properties": {
+     "blocked_by": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Blocked By",
+      "type": "array"
+     },
+     "confirmed": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Confirmed",
+      "type": "array"
+     },
+     "held_off": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Held Off",
+      "type": "array"
+     },
+     "mean_delay_ci95_s": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Delay Ci95 S"
+     },
+     "mean_delay_difference_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Delay Difference S"
+     },
+     "member": {
+      "minLength": 1,
+      "title": "Member",
+      "type": "string"
+     },
+     "required": {
+      "title": "Required",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "minLength": 1,
+      "title": "Status",
+      "type": "string"
+     },
+     "supported": {
+      "title": "Supported",
+      "type": "boolean"
+     },
+     "worsens": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Worsens",
+      "type": "array"
+     }
+    },
+    "required": [
+     "member",
+     "required",
+     "supported",
+     "blocked_by",
+     "status",
+     "worsens",
+     "confirmed",
+     "held_off",
+     "mean_delay_difference_s",
+     "mean_delay_ci95_s"
+    ],
+    "title": "EnsembleCandidateMember",
+    "type": "object"
+   },
+   "EnsembleCandidateVerdict": {
+    "additionalProperties": false,
+    "properties": {
+     "candidate": {
+      "minLength": 1,
+      "title": "Candidate",
+      "type": "string"
+     },
+     "common_confirmed": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Common Confirmed",
+      "type": "array"
+     },
+     "direction_disagreements": {
+      "items": {
+       "$ref": "#/$defs/DirectionDisagreement"
+      },
+      "title": "Direction Disagreements",
+      "type": "array"
+     },
+     "members": {
+      "items": {
+       "$ref": "#/$defs/EnsembleCandidateMember"
+      },
+      "title": "Members",
+      "type": "array"
+     },
+     "not_supported_on": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Not Supported On",
+      "type": "array"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "robust_harm": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Robust Harm",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supported_on": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supported On",
+      "type": "array"
+     },
+     "verdict": {
+      "minLength": 1,
+      "title": "Verdict",
+      "type": "string"
+     }
+    },
+    "required": [
+     "candidate",
+     "verdict",
+     "reason",
+     "supported_on",
+     "not_supported_on",
+     "common_confirmed",
+     "robust_harm",
+     "direction_disagreements",
+     "members"
+    ],
+    "title": "EnsembleCandidateVerdict",
+    "type": "object"
+   },
+   "EnsembleMember": {
+    "additionalProperties": false,
+    "description": "One signal-timeline version the candidates were re-run on.",
+    "properties": {
+     "baseline_assessment": {
+      "minLength": 1,
+      "title": "Baseline Assessment",
+      "type": "string"
+     },
+     "gate_passed": {
+      "title": "Gate Passed",
+      "type": "boolean"
+     },
+     "member": {
+      "minLength": 1,
+      "title": "Member",
+      "type": "string"
+     },
+     "required": {
+      "title": "Required",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timeline_id": {
+      "minLength": 1,
+      "title": "Timeline Id",
+      "type": "string"
+     },
+     "timeline_sha256": {
+      "title": "Timeline Sha256",
+      "type": "string"
+     },
+     "version": {
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "member",
+     "version",
+     "required",
+     "baseline_assessment",
+     "timeline_id",
+     "timeline_sha256",
+     "gate_passed"
+    ],
+    "title": "EnsembleMember",
+    "type": "object"
+   },
+   "EnsembleSummary": {
+    "additionalProperties": false,
+    "description": "The pre-registered timeline ensemble's verdicts; nothing is pooled across members.",
+    "properties": {
+     "candidates": {
+      "items": {
+       "$ref": "#/$defs/EnsembleCandidateVerdict"
+      },
+      "title": "Candidates",
+      "type": "array"
+     },
+     "evidence_kind": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "members": {
+      "items": {
+       "$ref": "#/$defs/EnsembleMember"
+      },
+      "title": "Members",
+      "type": "array"
+     },
+     "recommendation": {
+      "minLength": 1,
+      "title": "Recommendation",
+      "type": "string"
+     },
+     "recommended": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recommended"
+     },
+     "robust_selection": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Robust Selection"
+     },
+     "rule": {
+      "minLength": 1,
+      "title": "Rule",
+      "type": "string"
+     },
+     "rule_version": {
+      "minLength": 1,
+      "title": "Rule Version",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "selection_reason": {
+      "minLength": 1,
+      "title": "Selection Reason",
+      "type": "string"
+     }
+    },
+    "required": [
+     "rule",
+     "rule_version",
+     "members",
+     "candidates",
+     "robust_selection",
+     "selection_reason",
+     "recommended",
+     "recommendation"
+    ],
+    "title": "EnsembleSummary",
+    "type": "object"
+   },
+   "EvidenceRecurrence": {
+    "additionalProperties": false,
+    "properties": {
+     "cited_in": {
+      "description": "replies citing it at all",
+      "minimum": 0,
+      "title": "Cited In",
+      "type": "integer"
+     },
+     "contradicting_in": {
+      "description": "replies citing it against a hypothesis",
+      "minimum": 0,
+      "title": "Contradicting In",
+      "type": "integer"
+     },
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "replies": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Replies",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supporting_in": {
+      "description": "replies citing it in support of a hypothesis",
+      "minimum": 0,
+      "title": "Supporting In",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "supporting_in",
+     "contradicting_in",
+     "cited_in",
+     "replies"
+    ],
+    "title": "EvidenceRecurrence",
+    "type": "object"
+   },
+   "Hypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "alternative_explanations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Alternative Explanations",
+      "type": "array"
+     },
+     "assumptions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+     },
+     "claim_type": {
+      "anyOf": [
+       {
+        "enum": [
+         "causal",
+         "associative",
+         "descriptive"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "causal only for a stated mechanism",
+      "title": "Claim Type"
+     },
+     "confidence_label": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence Label",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "pattern": "^H[1-9][0-9]?$",
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "inference": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "what is concluded beyond the evidence",
+      "title": "Inference"
+     },
+     "limiting_factor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "one of LIMITING_FACTORS (0.3.0)",
+      "title": "Limiting Factor"
+     },
+     "missing_evidence": {
+      "default": [],
+      "description": "what would confirm or refute it",
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+     },
+     "observations": {
+      "default": [],
+      "description": "cited evidence, restated",
+      "items": {
+       "$ref": "#/$defs/ObservedFact"
+      },
+      "title": "Observations",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "assumptions",
+     "confidence_label",
+     "alternative_explanations"
+    ],
+    "title": "Hypothesis",
+    "type": "object"
+   },
+   "HypothesisGrounding": {
+    "additionalProperties": false,
+    "description": "Code's verdict on whether one hypothesis rests on the evidence it cites.",
+    "properties": {
+     "flags": {
+      "description": "weaknesses that do not make it unsupported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Flags",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it is unsupported; empty when supported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "supported",
+       "unsupported"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "supporting_kinds": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "evidence kind -> supporting items cited",
+      "title": "Supporting Kinds",
+      "type": "object"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "status",
+     "reasons",
+     "flags",
+     "supporting_kinds"
+    ],
+    "title": "HypothesisGrounding",
+    "type": "object"
+   },
+   "HypothesisRecurrence": {
+    "additionalProperties": false,
+    "description": "How far a hypothesis recurs across replies to the same request (computed by code).",
+    "properties": {
+     "cluster_id": {
+      "minLength": 1,
+      "title": "Cluster Id",
+      "type": "string"
+     },
+     "in_replies": {
+      "minimum": 1,
+      "title": "In Replies",
+      "type": "integer"
+     },
+     "n_replies": {
+      "minimum": 1,
+      "title": "N Replies",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "shared_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Shared Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "cluster_id",
+     "in_replies",
+     "n_replies",
+     "shared_evidence_ids"
+    ],
+    "title": "HypothesisRecurrence",
+    "type": "object"
+   },
+   "HypothesisView": {
+    "additionalProperties": false,
+    "description": "One Muse hypothesis with code's checks beside it.",
+    "properties": {
+     "citations": {
+      "items": {
+       "$ref": "#/$defs/Citation"
+      },
+      "title": "Citations",
+      "type": "array"
+     },
+     "evidence_kind": {
+      "const": "model_generated",
+      "default": "model_generated",
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "grounding": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/HypothesisGrounding"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "hypothesis": {
+      "$ref": "#/$defs/Hypothesis"
+     },
+     "recurrence": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/HypothesisRecurrence"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "hypothesis",
+     "citations",
+     "grounding",
+     "recurrence"
+    ],
+    "title": "HypothesisView",
+    "type": "object"
+   },
+   "InterventionProposal": {
+    "additionalProperties": false,
+    "properties": {
+     "addresses_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Addresses Hypothesis Ids",
+      "type": "array"
+     },
+     "evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+     },
+     "expected_tradeoffs": {
+      "description": "words only; no predicted metrics",
+      "items": {
+       "type": "string"
+      },
+      "title": "Expected Tradeoffs",
+      "type": "array"
+     },
+     "intervention_id": {
+      "pattern": "^I[1-9][0-9]?$",
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_changes": {
+      "items": {
+       "$ref": "#/$defs/PhaseChange"
+      },
+      "title": "Phase Changes",
+      "type": "array"
+     },
+     "preconditions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Preconditions",
+      "type": "array"
+     },
+     "rationale": {
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "target_program": {
+      "title": "Target Program",
+      "type": "string"
+     },
+     "type": {
+      "description": "checked against the allowlist later",
+      "pattern": "^[a-z_]+$",
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "type",
+     "target_program",
+     "phase_changes",
+     "rationale",
+     "expected_tradeoffs",
+     "preconditions",
+     "addresses_hypothesis_ids",
+     "evidence_ids"
+    ],
+    "title": "InterventionProposal",
+    "type": "object"
+   },
+   "ObservedFact": {
+    "additionalProperties": false,
+    "description": "One cited evidence item restated without inference (prompt 0.3.0 onwards).",
+    "properties": {
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "statement"
+    ],
+    "title": "ObservedFact",
+    "type": "object"
+   },
+   "PhaseChange": {
+    "additionalProperties": false,
+    "properties": {
+     "green_s": {
+      "title": "Green S",
+      "type": "number"
+     },
+     "phase_name": {
+      "minLength": 1,
+      "title": "Phase Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phase_name",
+     "green_s"
+    ],
+    "title": "PhaseChange",
+    "type": "object"
+   },
+   "ProposalGrounding": {
+    "additionalProperties": false,
+    "description": "Whether one proposal may go to planning: it must address a supported hypothesis.",
+    "properties": {
+     "eligible": {
+      "title": "Eligible",
+      "type": "boolean"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it may not; empty when eligible",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supported_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supported Hypothesis Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "eligible",
+     "reasons",
+     "supported_hypothesis_ids"
+    ],
+    "title": "ProposalGrounding",
+    "type": "object"
+   },
+   "RecordedOutcome": {
+    "additionalProperties": false,
+    "description": "What the deterministic selection rule recorded, on simulated results.",
+    "properties": {
+     "evidence_kind": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "outcome": {
+      "enum": [
+       "none_selected",
+       "selected"
+      ],
+      "title": "Outcome",
+      "type": "string"
+     },
+     "recommendation": {
+      "minLength": 1,
+      "title": "Recommendation",
+      "type": "string"
+     },
+     "recommended_intervention_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recommended Intervention Id"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "selected_intervention_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Selected Intervention Id"
+     },
+     "selection_reason": {
+      "minLength": 1,
+      "title": "Selection Reason",
+      "type": "string"
+     }
+    },
+    "required": [
+     "outcome",
+     "selected_intervention_id",
+     "selection_reason",
+     "recommended_intervention_id",
+     "recommendation"
+    ],
+    "title": "RecordedOutcome",
+    "type": "object"
+   },
+   "SimulatedMetric": {
+    "additionalProperties": false,
+    "description": "One candidate against the baseline on one metric, paired by seed (SUMO output).",
+    "properties": {
+     "baseline_mean": {
+      "title": "Baseline Mean",
+      "type": "number"
+     },
+     "better": {
+      "description": "'lower' or 'higher'",
+      "minLength": 1,
+      "title": "Better",
+      "type": "string"
+     },
+     "candidate": {
+      "minLength": 1,
+      "title": "Candidate",
+      "type": "string"
+     },
+     "candidate_mean": {
+      "title": "Candidate Mean",
+      "type": "number"
+     },
+     "ci95_difference": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Ci95 Difference",
+      "type": "array"
+     },
+     "evidence_kind": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "improvement_confirmed": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "survived the Holm correction; None when no improvement test was run",
+      "title": "Improvement Confirmed"
+     },
+     "mean_difference": {
+      "title": "Mean Difference",
+      "type": "number"
+     },
+     "metric_name": {
+      "minLength": 1,
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "n_seeds": {
+      "minimum": 1,
+      "title": "N Seeds",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sd_difference": {
+      "title": "Sd Difference",
+      "type": "number"
+     },
+     "unit": {
+      "minLength": 1,
+      "title": "Unit",
+      "type": "string"
+     },
+     "verdict": {
+      "minLength": 1,
+      "title": "Verdict",
+      "type": "string"
+     }
+    },
+    "required": [
+     "candidate",
+     "metric_name",
+     "unit",
+     "better",
+     "n_seeds",
+     "baseline_mean",
+     "candidate_mean",
+     "mean_difference",
+     "sd_difference",
+     "ci95_difference",
+     "verdict",
+     "improvement_confirmed"
+    ],
+    "title": "SimulatedMetric",
+    "type": "object"
+   },
+   "SimulationScope": {
+    "additionalProperties": false,
+    "description": "Which simulated runs the metrics come from.",
+    "properties": {
+     "baseline_manifest_sha256": {
+      "title": "Baseline Manifest Sha256",
+      "type": "string"
+     },
+     "created_at_utc": {
+      "format": "date-time",
+      "title": "Created At Utc",
+      "type": "string"
+     },
+     "evidence_kind": {
+      "const": "simulated",
+      "default": "simulated",
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "replay_window_s": {
+      "description": "simulation seconds compared",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "title": "Replay Window S",
+      "type": "array"
+     },
+     "run_id": {
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seeds": {
+      "items": {
+       "type": "integer"
+      },
+      "title": "Seeds",
+      "type": "array"
+     }
+    },
+    "required": [
+     "run_id",
+     "created_at_utc",
+     "seeds",
+     "replay_window_s",
+     "baseline_manifest_sha256"
+    ],
+    "title": "SimulationScope",
+    "type": "object"
+   },
+   "SourceFile": {
+    "additionalProperties": false,
+    "description": "One file the summary was copied from, as it was when the summary was built.",
+    "properties": {
+     "path": {
+      "description": "repository-relative POSIX path",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "role": {
+      "description": "its role in the manifest or pin file",
+      "minLength": 1,
+      "title": "Role",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "role",
+     "path",
+     "sha256"
+    ],
+    "title": "SourceFile",
+    "type": "object"
+   },
+   "ValidationOutcome": {
+    "additionalProperties": false,
+    "description": "The validator's verdict on one proposal. Accepted proposals become simulation candidates.",
+    "properties": {
+     "baseline_cycle_s": {
+      "title": "Baseline Cycle S",
+      "type": "number"
+     },
+     "cycle_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cycle S"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_durations_s": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "the candidate cycle, in compiled phase order, when accepted",
+      "title": "Phase Durations S"
+     },
+     "program_id": {
+      "title": "Program Id",
+      "type": "string"
+     },
+     "proposal_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the proposal's canonical JSON, so a candidate names what it came from",
+      "title": "Proposal Sha256"
+     },
+     "reasons": {
+      "description": "why it was rejected; empty when accepted",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "accepted",
+       "rejected"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "validated_at_utc": {
+      "format": "date-time",
+      "title": "Validated At Utc",
+      "type": "string"
+     },
+     "validator_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "None in outcomes before 0.2.0",
+      "title": "Validator Version"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "status",
+     "reasons",
+     "program_id",
+     "phase_durations_s",
+     "cycle_s",
+     "baseline_cycle_s",
+     "validated_at_utc"
+    ],
+    "title": "ValidationOutcome",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "The recorded decision, what it rests on, and what it cannot say.",
+  "properties": {
+   "assumptions": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Assumptions",
+    "type": "array"
+   },
+   "baseline": {
+    "$ref": "#/$defs/BaselineAssessment"
+   },
+   "candidates": {
+    "items": {
+     "$ref": "#/$defs/CandidateView"
+    },
+    "title": "Candidates",
+    "type": "array"
+   },
+   "demo_id": {
+    "minLength": 1,
+    "title": "Demo Id",
+    "type": "string"
+   },
+   "ensemble": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/EnsembleSummary"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   },
+   "hypotheses": {
+    "items": {
+     "$ref": "#/$defs/HypothesisView"
+    },
+    "title": "Hypotheses",
+    "type": "array"
+   },
+   "limitations": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Limitations",
+    "type": "array"
+   },
+   "metrics": {
+    "items": {
+     "$ref": "#/$defs/SimulatedMetric"
+    },
+    "title": "Metrics",
+    "type": "array"
+   },
+   "outcome": {
+    "$ref": "#/$defs/RecordedOutcome"
+   },
+   "record_format": {
+    "const": "decision_summary/1",
+    "default": "decision_summary/1",
+    "title": "Record Format",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "simulation": {
+    "$ref": "#/$defs/SimulationScope"
+   },
+   "sources": {
+    "items": {
+     "$ref": "#/$defs/SourceFile"
+    },
+    "title": "Sources",
+    "type": "array"
+   },
+   "title": {
+    "minLength": 1,
+    "title": "Title",
+    "type": "string"
+   }
+  },
+  "required": [
+   "demo_id",
+   "title",
+   "outcome",
+   "baseline",
+   "hypotheses",
+   "candidates",
+   "simulation",
+   "metrics",
+   "ensemble",
+   "assumptions",
+   "limitations",
+   "sources"
+  ],
+  "title": "DecisionSummary",
+  "type": "object"
+ },
+ "DirectionDisagreement": {
+  "additionalProperties": false,
+  "description": "A metric whose verdict differs between members; `opposite` when the signs differ.",
+  "properties": {
+   "ci95_difference": {
+    "additionalProperties": {
+     "maxItems": 2,
+     "minItems": 2,
+     "prefixItems": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "number"
+      }
+     ],
+     "type": "array"
+    },
+    "title": "Ci95 Difference",
+    "type": "object"
+   },
+   "mean_difference": {
+    "additionalProperties": {
+     "type": "number"
+    },
+    "title": "Mean Difference",
+    "type": "object"
+   },
+   "metric_name": {
+    "minLength": 1,
+    "title": "Metric Name",
+    "type": "string"
+   },
+   "opposite": {
+    "title": "Opposite",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "verdicts": {
+    "additionalProperties": {
+     "type": "string"
+    },
+    "title": "Verdicts",
+    "type": "object"
+   }
+  },
+  "required": [
+   "metric_name",
+   "verdicts",
+   "mean_difference",
+   "ci95_difference",
+   "opposite"
+  ],
+  "title": "DirectionDisagreement",
+  "type": "object"
+ },
+ "EnsembleCandidateMember": {
+  "additionalProperties": false,
+  "description": "One candidate on one member, as the verdict recorded it.",
+  "properties": {
+   "blocked_by": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Blocked By",
+    "type": "array"
+   },
+   "confirmed": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Confirmed",
+    "type": "array"
+   },
+   "held_off": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Held Off",
+    "type": "array"
+   },
+   "mean_delay_ci95_s": {
+    "anyOf": [
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Mean Delay Ci95 S"
+   },
+   "mean_delay_difference_s": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Mean Delay Difference S"
+   },
+   "member": {
+    "minLength": 1,
+    "title": "Member",
+    "type": "string"
+   },
+   "required": {
+    "title": "Required",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "minLength": 1,
+    "title": "Status",
+    "type": "string"
+   },
+   "supported": {
+    "title": "Supported",
+    "type": "boolean"
+   },
+   "worsens": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Worsens",
+    "type": "array"
+   }
+  },
+  "required": [
+   "member",
+   "required",
+   "supported",
+   "blocked_by",
+   "status",
+   "worsens",
+   "confirmed",
+   "held_off",
+   "mean_delay_difference_s",
+   "mean_delay_ci95_s"
+  ],
+  "title": "EnsembleCandidateMember",
+  "type": "object"
+ },
+ "EnsembleCandidateVerdict": {
+  "$defs": {
+   "DirectionDisagreement": {
+    "additionalProperties": false,
+    "description": "A metric whose verdict differs between members; `opposite` when the signs differ.",
+    "properties": {
+     "ci95_difference": {
+      "additionalProperties": {
+       "maxItems": 2,
+       "minItems": 2,
+       "prefixItems": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        }
+       ],
+       "type": "array"
+      },
+      "title": "Ci95 Difference",
+      "type": "object"
+     },
+     "mean_difference": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "title": "Mean Difference",
+      "type": "object"
+     },
+     "metric_name": {
+      "minLength": 1,
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "opposite": {
+      "title": "Opposite",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "verdicts": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Verdicts",
+      "type": "object"
+     }
+    },
+    "required": [
+     "metric_name",
+     "verdicts",
+     "mean_difference",
+     "ci95_difference",
+     "opposite"
+    ],
+    "title": "DirectionDisagreement",
+    "type": "object"
+   },
+   "EnsembleCandidateMember": {
+    "additionalProperties": false,
+    "description": "One candidate on one member, as the verdict recorded it.",
+    "properties": {
+     "blocked_by": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Blocked By",
+      "type": "array"
+     },
+     "confirmed": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Confirmed",
+      "type": "array"
+     },
+     "held_off": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Held Off",
+      "type": "array"
+     },
+     "mean_delay_ci95_s": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Delay Ci95 S"
+     },
+     "mean_delay_difference_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Delay Difference S"
+     },
+     "member": {
+      "minLength": 1,
+      "title": "Member",
+      "type": "string"
+     },
+     "required": {
+      "title": "Required",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "minLength": 1,
+      "title": "Status",
+      "type": "string"
+     },
+     "supported": {
+      "title": "Supported",
+      "type": "boolean"
+     },
+     "worsens": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Worsens",
+      "type": "array"
+     }
+    },
+    "required": [
+     "member",
+     "required",
+     "supported",
+     "blocked_by",
+     "status",
+     "worsens",
+     "confirmed",
+     "held_off",
+     "mean_delay_difference_s",
+     "mean_delay_ci95_s"
+    ],
+    "title": "EnsembleCandidateMember",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "candidate": {
+    "minLength": 1,
+    "title": "Candidate",
+    "type": "string"
+   },
+   "common_confirmed": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Common Confirmed",
+    "type": "array"
+   },
+   "direction_disagreements": {
+    "items": {
+     "$ref": "#/$defs/DirectionDisagreement"
+    },
+    "title": "Direction Disagreements",
+    "type": "array"
+   },
+   "members": {
+    "items": {
+     "$ref": "#/$defs/EnsembleCandidateMember"
+    },
+    "title": "Members",
+    "type": "array"
+   },
+   "not_supported_on": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Not Supported On",
+    "type": "array"
+   },
+   "reason": {
+    "minLength": 1,
+    "title": "Reason",
+    "type": "string"
+   },
+   "robust_harm": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Robust Harm",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "supported_on": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Supported On",
+    "type": "array"
+   },
+   "verdict": {
+    "minLength": 1,
+    "title": "Verdict",
+    "type": "string"
+   }
+  },
+  "required": [
+   "candidate",
+   "verdict",
+   "reason",
+   "supported_on",
+   "not_supported_on",
+   "common_confirmed",
+   "robust_harm",
+   "direction_disagreements",
+   "members"
+  ],
+  "title": "EnsembleCandidateVerdict",
+  "type": "object"
+ },
+ "EnsembleMember": {
+  "additionalProperties": false,
+  "description": "One signal-timeline version the candidates were re-run on.",
+  "properties": {
+   "baseline_assessment": {
+    "minLength": 1,
+    "title": "Baseline Assessment",
+    "type": "string"
+   },
+   "gate_passed": {
+    "title": "Gate Passed",
+    "type": "boolean"
+   },
+   "member": {
+    "minLength": 1,
+    "title": "Member",
+    "type": "string"
+   },
+   "required": {
+    "title": "Required",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "timeline_id": {
+    "minLength": 1,
+    "title": "Timeline Id",
+    "type": "string"
+   },
+   "timeline_sha256": {
+    "title": "Timeline Sha256",
+    "type": "string"
+   },
+   "version": {
+    "minLength": 1,
+    "title": "Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "member",
+   "version",
+   "required",
+   "baseline_assessment",
+   "timeline_id",
+   "timeline_sha256",
+   "gate_passed"
+  ],
+  "title": "EnsembleMember",
+  "type": "object"
+ },
+ "EnsembleSummary": {
+  "$defs": {
+   "DirectionDisagreement": {
+    "additionalProperties": false,
+    "description": "A metric whose verdict differs between members; `opposite` when the signs differ.",
+    "properties": {
+     "ci95_difference": {
+      "additionalProperties": {
+       "maxItems": 2,
+       "minItems": 2,
+       "prefixItems": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        }
+       ],
+       "type": "array"
+      },
+      "title": "Ci95 Difference",
+      "type": "object"
+     },
+     "mean_difference": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "title": "Mean Difference",
+      "type": "object"
+     },
+     "metric_name": {
+      "minLength": 1,
+      "title": "Metric Name",
+      "type": "string"
+     },
+     "opposite": {
+      "title": "Opposite",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "verdicts": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Verdicts",
+      "type": "object"
+     }
+    },
+    "required": [
+     "metric_name",
+     "verdicts",
+     "mean_difference",
+     "ci95_difference",
+     "opposite"
+    ],
+    "title": "DirectionDisagreement",
+    "type": "object"
+   },
+   "EnsembleCandidateMember": {
+    "additionalProperties": false,
+    "description": "One candidate on one member, as the verdict recorded it.",
+    "properties": {
+     "blocked_by": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Blocked By",
+      "type": "array"
+     },
+     "confirmed": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Confirmed",
+      "type": "array"
+     },
+     "held_off": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Held Off",
+      "type": "array"
+     },
+     "mean_delay_ci95_s": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Delay Ci95 S"
+     },
+     "mean_delay_difference_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Delay Difference S"
+     },
+     "member": {
+      "minLength": 1,
+      "title": "Member",
+      "type": "string"
+     },
+     "required": {
+      "title": "Required",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "minLength": 1,
+      "title": "Status",
+      "type": "string"
+     },
+     "supported": {
+      "title": "Supported",
+      "type": "boolean"
+     },
+     "worsens": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Worsens",
+      "type": "array"
+     }
+    },
+    "required": [
+     "member",
+     "required",
+     "supported",
+     "blocked_by",
+     "status",
+     "worsens",
+     "confirmed",
+     "held_off",
+     "mean_delay_difference_s",
+     "mean_delay_ci95_s"
+    ],
+    "title": "EnsembleCandidateMember",
+    "type": "object"
+   },
+   "EnsembleCandidateVerdict": {
+    "additionalProperties": false,
+    "properties": {
+     "candidate": {
+      "minLength": 1,
+      "title": "Candidate",
+      "type": "string"
+     },
+     "common_confirmed": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Common Confirmed",
+      "type": "array"
+     },
+     "direction_disagreements": {
+      "items": {
+       "$ref": "#/$defs/DirectionDisagreement"
+      },
+      "title": "Direction Disagreements",
+      "type": "array"
+     },
+     "members": {
+      "items": {
+       "$ref": "#/$defs/EnsembleCandidateMember"
+      },
+      "title": "Members",
+      "type": "array"
+     },
+     "not_supported_on": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Not Supported On",
+      "type": "array"
+     },
+     "reason": {
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+     },
+     "robust_harm": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Robust Harm",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supported_on": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supported On",
+      "type": "array"
+     },
+     "verdict": {
+      "minLength": 1,
+      "title": "Verdict",
+      "type": "string"
+     }
+    },
+    "required": [
+     "candidate",
+     "verdict",
+     "reason",
+     "supported_on",
+     "not_supported_on",
+     "common_confirmed",
+     "robust_harm",
+     "direction_disagreements",
+     "members"
+    ],
+    "title": "EnsembleCandidateVerdict",
+    "type": "object"
+   },
+   "EnsembleMember": {
+    "additionalProperties": false,
+    "description": "One signal-timeline version the candidates were re-run on.",
+    "properties": {
+     "baseline_assessment": {
+      "minLength": 1,
+      "title": "Baseline Assessment",
+      "type": "string"
+     },
+     "gate_passed": {
+      "title": "Gate Passed",
+      "type": "boolean"
+     },
+     "member": {
+      "minLength": 1,
+      "title": "Member",
+      "type": "string"
+     },
+     "required": {
+      "title": "Required",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "timeline_id": {
+      "minLength": 1,
+      "title": "Timeline Id",
+      "type": "string"
+     },
+     "timeline_sha256": {
+      "title": "Timeline Sha256",
+      "type": "string"
+     },
+     "version": {
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "member",
+     "version",
+     "required",
+     "baseline_assessment",
+     "timeline_id",
+     "timeline_sha256",
+     "gate_passed"
+    ],
+    "title": "EnsembleMember",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "The pre-registered timeline ensemble's verdicts; nothing is pooled across members.",
+  "properties": {
+   "candidates": {
+    "items": {
+     "$ref": "#/$defs/EnsembleCandidateVerdict"
+    },
+    "title": "Candidates",
+    "type": "array"
+   },
+   "evidence_kind": {
+    "const": "simulated",
+    "default": "simulated",
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "members": {
+    "items": {
+     "$ref": "#/$defs/EnsembleMember"
+    },
+    "title": "Members",
+    "type": "array"
+   },
+   "recommendation": {
+    "minLength": 1,
+    "title": "Recommendation",
+    "type": "string"
+   },
+   "recommended": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Recommended"
+   },
+   "robust_selection": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Robust Selection"
+   },
+   "rule": {
+    "minLength": 1,
+    "title": "Rule",
+    "type": "string"
+   },
+   "rule_version": {
+    "minLength": 1,
+    "title": "Rule Version",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "selection_reason": {
+    "minLength": 1,
+    "title": "Selection Reason",
+    "type": "string"
+   }
+  },
+  "required": [
+   "rule",
+   "rule_version",
+   "members",
+   "candidates",
+   "robust_selection",
+   "selection_reason",
+   "recommended",
+   "recommendation"
+  ],
+  "title": "EnsembleSummary",
+  "type": "object"
+ },
+ "HypothesisRecurrence": {
+  "additionalProperties": false,
+  "description": "How far a hypothesis recurs across replies to the same request (computed by code).",
+  "properties": {
+   "cluster_id": {
+    "minLength": 1,
+    "title": "Cluster Id",
+    "type": "string"
+   },
+   "in_replies": {
+    "minimum": 1,
+    "title": "In Replies",
+    "type": "integer"
+   },
+   "n_replies": {
+    "minimum": 1,
+    "title": "N Replies",
+    "type": "integer"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "shared_evidence_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Shared Evidence Ids",
+    "type": "array"
+   }
+  },
+  "required": [
+   "cluster_id",
+   "in_replies",
+   "n_replies",
+   "shared_evidence_ids"
+  ],
+  "title": "HypothesisRecurrence",
+  "type": "object"
+ },
+ "HypothesisView": {
+  "$defs": {
+   "Citation": {
+    "additionalProperties": false,
+    "description": "One evidence item a hypothesis cites, read back from the bundle the model was sent.",
+    "properties": {
+     "evidence_id": {
+      "minLength": 1,
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "kind": {
+      "anyOf": [
+       {
+        "enum": [
+         "observed",
+         "approximated",
+         "assumed",
+         "model_generated",
+         "simulated"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "as the bundle holds it; None when not in it",
+      "title": "Kind"
+     },
+     "recurrence": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/EvidenceRecurrence"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "how often replies to this request cite it; None when not counted"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stance": {
+      "enum": [
+       "supporting",
+       "contradicting"
+      ],
+      "title": "Stance",
+      "type": "string"
+     },
+     "summary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "as the bundle holds it; None when not in it",
+      "title": "Summary"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "stance",
+     "kind",
+     "summary",
+     "recurrence"
+    ],
+    "title": "Citation",
+    "type": "object"
+   },
+   "EvidenceRecurrence": {
+    "additionalProperties": false,
+    "properties": {
+     "cited_in": {
+      "description": "replies citing it at all",
+      "minimum": 0,
+      "title": "Cited In",
+      "type": "integer"
+     },
+     "contradicting_in": {
+      "description": "replies citing it against a hypothesis",
+      "minimum": 0,
+      "title": "Contradicting In",
+      "type": "integer"
+     },
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "replies": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Replies",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supporting_in": {
+      "description": "replies citing it in support of a hypothesis",
+      "minimum": 0,
+      "title": "Supporting In",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "supporting_in",
+     "contradicting_in",
+     "cited_in",
+     "replies"
+    ],
+    "title": "EvidenceRecurrence",
+    "type": "object"
+   },
+   "Hypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "alternative_explanations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Alternative Explanations",
+      "type": "array"
+     },
+     "assumptions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+     },
+     "claim_type": {
+      "anyOf": [
+       {
+        "enum": [
+         "causal",
+         "associative",
+         "descriptive"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "causal only for a stated mechanism",
+      "title": "Claim Type"
+     },
+     "confidence_label": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence Label",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "pattern": "^H[1-9][0-9]?$",
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "inference": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "what is concluded beyond the evidence",
+      "title": "Inference"
+     },
+     "limiting_factor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "one of LIMITING_FACTORS (0.3.0)",
+      "title": "Limiting Factor"
+     },
+     "missing_evidence": {
+      "default": [],
+      "description": "what would confirm or refute it",
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+     },
+     "observations": {
+      "default": [],
+      "description": "cited evidence, restated",
+      "items": {
+       "$ref": "#/$defs/ObservedFact"
+      },
+      "title": "Observations",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "assumptions",
+     "confidence_label",
+     "alternative_explanations"
+    ],
+    "title": "Hypothesis",
+    "type": "object"
+   },
+   "HypothesisGrounding": {
+    "additionalProperties": false,
+    "description": "Code's verdict on whether one hypothesis rests on the evidence it cites.",
+    "properties": {
+     "flags": {
+      "description": "weaknesses that do not make it unsupported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Flags",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it is unsupported; empty when supported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "supported",
+       "unsupported"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "supporting_kinds": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "evidence kind -> supporting items cited",
+      "title": "Supporting Kinds",
+      "type": "object"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "status",
+     "reasons",
+     "flags",
+     "supporting_kinds"
+    ],
+    "title": "HypothesisGrounding",
+    "type": "object"
+   },
+   "HypothesisRecurrence": {
+    "additionalProperties": false,
+    "description": "How far a hypothesis recurs across replies to the same request (computed by code).",
+    "properties": {
+     "cluster_id": {
+      "minLength": 1,
+      "title": "Cluster Id",
+      "type": "string"
+     },
+     "in_replies": {
+      "minimum": 1,
+      "title": "In Replies",
+      "type": "integer"
+     },
+     "n_replies": {
+      "minimum": 1,
+      "title": "N Replies",
+      "type": "integer"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "shared_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Shared Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "cluster_id",
+     "in_replies",
+     "n_replies",
+     "shared_evidence_ids"
+    ],
+    "title": "HypothesisRecurrence",
+    "type": "object"
+   },
+   "ObservedFact": {
+    "additionalProperties": false,
+    "description": "One cited evidence item restated without inference (prompt 0.3.0 onwards).",
+    "properties": {
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "statement"
+    ],
+    "title": "ObservedFact",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One Muse hypothesis with code's checks beside it.",
+  "properties": {
+   "citations": {
+    "items": {
+     "$ref": "#/$defs/Citation"
+    },
+    "title": "Citations",
+    "type": "array"
+   },
+   "evidence_kind": {
+    "const": "model_generated",
+    "default": "model_generated",
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "grounding": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/HypothesisGrounding"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   },
+   "hypothesis": {
+    "$ref": "#/$defs/Hypothesis"
+   },
+   "recurrence": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/HypothesisRecurrence"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "hypothesis",
+   "citations",
+   "grounding",
+   "recurrence"
+  ],
+  "title": "HypothesisView",
+  "type": "object"
+ },
+ "RecordedOutcome": {
+  "additionalProperties": false,
+  "description": "What the deterministic selection rule recorded, on simulated results.",
+  "properties": {
+   "evidence_kind": {
+    "const": "simulated",
+    "default": "simulated",
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "outcome": {
+    "enum": [
+     "none_selected",
+     "selected"
+    ],
+    "title": "Outcome",
+    "type": "string"
+   },
+   "recommendation": {
+    "minLength": 1,
+    "title": "Recommendation",
+    "type": "string"
+   },
+   "recommended_intervention_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Recommended Intervention Id"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "selected_intervention_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Selected Intervention Id"
+   },
+   "selection_reason": {
+    "minLength": 1,
+    "title": "Selection Reason",
+    "type": "string"
+   }
+  },
+  "required": [
+   "outcome",
+   "selected_intervention_id",
+   "selection_reason",
+   "recommended_intervention_id",
+   "recommendation"
+  ],
+  "title": "RecordedOutcome",
+  "type": "object"
+ },
+ "SimulatedMetric": {
+  "additionalProperties": false,
+  "description": "One candidate against the baseline on one metric, paired by seed (SUMO output).",
+  "properties": {
+   "baseline_mean": {
+    "title": "Baseline Mean",
+    "type": "number"
+   },
+   "better": {
+    "description": "'lower' or 'higher'",
+    "minLength": 1,
+    "title": "Better",
+    "type": "string"
+   },
+   "candidate": {
+    "minLength": 1,
+    "title": "Candidate",
+    "type": "string"
+   },
+   "candidate_mean": {
+    "title": "Candidate Mean",
+    "type": "number"
+   },
+   "ci95_difference": {
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Ci95 Difference",
+    "type": "array"
+   },
+   "evidence_kind": {
+    "const": "simulated",
+    "default": "simulated",
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "improvement_confirmed": {
+    "anyOf": [
+     {
+      "type": "boolean"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "survived the Holm correction; None when no improvement test was run",
+    "title": "Improvement Confirmed"
+   },
+   "mean_difference": {
+    "title": "Mean Difference",
+    "type": "number"
+   },
+   "metric_name": {
+    "minLength": 1,
+    "title": "Metric Name",
+    "type": "string"
+   },
+   "n_seeds": {
+    "minimum": 1,
+    "title": "N Seeds",
+    "type": "integer"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "sd_difference": {
+    "title": "Sd Difference",
+    "type": "number"
+   },
+   "unit": {
+    "minLength": 1,
+    "title": "Unit",
+    "type": "string"
+   },
+   "verdict": {
+    "minLength": 1,
+    "title": "Verdict",
+    "type": "string"
+   }
+  },
+  "required": [
+   "candidate",
+   "metric_name",
+   "unit",
+   "better",
+   "n_seeds",
+   "baseline_mean",
+   "candidate_mean",
+   "mean_difference",
+   "sd_difference",
+   "ci95_difference",
+   "verdict",
+   "improvement_confirmed"
+  ],
+  "title": "SimulatedMetric",
+  "type": "object"
+ },
+ "SimulationScope": {
+  "additionalProperties": false,
+  "description": "Which simulated runs the metrics come from.",
+  "properties": {
+   "baseline_manifest_sha256": {
+    "title": "Baseline Manifest Sha256",
+    "type": "string"
+   },
+   "created_at_utc": {
+    "format": "date-time",
+    "title": "Created At Utc",
+    "type": "string"
+   },
+   "evidence_kind": {
+    "const": "simulated",
+    "default": "simulated",
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "replay_window_s": {
+    "description": "simulation seconds compared",
+    "maxItems": 2,
+    "minItems": 2,
+    "prefixItems": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "number"
+     }
+    ],
+    "title": "Replay Window S",
+    "type": "array"
+   },
+   "run_id": {
+    "minLength": 1,
+    "title": "Run Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "seeds": {
+    "items": {
+     "type": "integer"
+    },
+    "title": "Seeds",
+    "type": "array"
+   }
+  },
+  "required": [
+   "run_id",
+   "created_at_utc",
+   "seeds",
+   "replay_window_s",
+   "baseline_manifest_sha256"
+  ],
+  "title": "SimulationScope",
+  "type": "object"
+ },
+ "SourceFile": {
+  "additionalProperties": false,
+  "description": "One file the summary was copied from, as it was when the summary was built.",
+  "properties": {
+   "path": {
+    "description": "repository-relative POSIX path",
+    "minLength": 1,
+    "title": "Path",
+    "type": "string"
+   },
+   "role": {
+    "description": "its role in the manifest or pin file",
+    "minLength": 1,
+    "title": "Role",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "sha256": {
+    "title": "Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "role",
+   "path",
+   "sha256"
+  ],
+  "title": "SourceFile",
+  "type": "object"
+ }
+}

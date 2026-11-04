@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1.0",
+  "demo_id": "ngsim-int2-ensemble-control",
+  "title": "Lankershim Boulevard at Universal Hollywood Drive (NGSIM intersection 2), 16 June 2005, 08:30-08:45",
+  "run_dir": "ngsim-int2-realism-experiment-20261029T122930Z",
+  "absent_allowed": [
+    "sam_overlay",
+    "frame_image"
+  ],
+  "files": {
+    "scenario": {
+      "path": "data/geometry/ngsim-lankershim-int2/scenario.json",
+      "sha256": "9d08eb6e033d2e60e81aaa10b5c6c6773fc4bb55058e39baae7224f59ff156a1"
+    },
+    "proposals": {
+      "path": "experiments/records/ngsim-int2-experiment-20261028T075803Z.json",
+      "sha256": "a97c71f8aa70c57012d6b007d9b50e8da0e80d359f67237dc234454e523a225c"
+    },
+    "muse_reply": {
+      "path": "cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.json",
+      "sha256": "2c94eb6f579b2ea02af7b391d17595732e6ea6125f80b3d60b10bcc38804a92d"
+    },
+    "timeline_estimate": {
+      "path": "data/geometry/ngsim-lankershim-int2/signal_estimate_v2.json",
+      "sha256": "2d4f85917ac9bb0a4b206042adeb3e231aaa3fef2e217eda8e54d0f98ab21fa1"
+    },
+    "baseline": {
+      "path": "experiments/records/ngsim-int2-realism-baseline-20261028T141919Z.json",
+      "sha256": "834fcabacff630f132efe3505ddbd47d2661e4ef2a204e6eece502bd5b153beb"
+    },
+    "validation": {
+      "path": "experiments/records/ngsim-int2-realism-validity-20261028T141919Z/validation/validation.json",
+      "sha256": "0b7b88aba5b7bdd33a4a78969a9ccbc66c2927ed9e7773830620a68ad2aecf08"
+    },
+    "assessment": {
+      "path": "data/geometry/ngsim-lankershim-int2/replay_assessments/ngsim-int2-realism-baseline-20261028T141919Z.json",
+      "sha256": "e5b3ec61b43135ba0fddff37c9233bf9a593eb365341a12e36cdec90d133b2c7"
+    },
+    "results": {
+      "path": "experiments/records/ngsim-int2-realism-experiment-20261029T122930Z.json",
+      "sha256": "76978d9f18a02dd4d97ef0926221437b385f524b5da2df1726f3854ea9e68ace"
+    },
+    "results_v1": {
+      "path": "experiments/records/ngsim-int2-realism-experiment-20261029T122910Z.json",
+      "sha256": "249f32e7b803212a4e08a714d3bc4b86caf22fa104bac76250cb6be7b0037429"
+    },
+    "assessment_v1": {
+      "path": "data/geometry/ngsim-lankershim-int2/replay_assessments/ngsim-int2-realism-baseline-20261028T135241Z.json",
+      "sha256": "cdb3a8863812bde8c62ae74e50a92b9d580cee37fd468a1f261973f2690d46ab"
+    },
+    "sam_record": {
+      "path": "experiments/records/ngsim-cam2-sam-20261028T151050Z.json",
+      "sha256": "93b93daf73ebbca198d61e9f1471f49dc5c941f898999641947490d2afdc577f"
+    },
+    "sam_overlay": {
+      "path": "experiments/records/ngsim-cam2-sam-20261028T151050Z/overlay.mp4",
+      "sha256": "87bb2d293c4f7940580e7e97edde8a09d0c9a43638db1feeb3e979914a6ebde5"
+    },
+    "sam_notice": {
+      "path": "experiments/records/ngsim-cam2-sam-20261028T151050Z/NOTICE.md",
+      "sha256": "a6e8738f07f9d7a8a0247b8b2b5b21b80d3154c8c336685831997c72273d0893"
+    },
+    "sam_review": {
+      "path": "experiments/records/ngsim-cam2-sam-20261028T151050Z/a3_review.json",
+      "sha256": "4ddd5c9cf20113d51f9a318440d637fe8323cf0964c62a82feb8952fbf5e1c36"
+    },
+    "ensemble": {
+      "path": "experiments/records/ngsim-int2-timeline-ensemble-20261029T123045Z.json",
+      "sha256": "abd15cd0db30e485dc4cd101ba1c702f39886df59a5b4c8e946a3a3dc59268d5"
+    },
+    "control_reallocation": {
+      "path": "experiments/records/synthetic-known-answer-reallocation-20261029T123315Z.json",
+      "sha256": "aead12e94c1d5b1826b83f63f0fa357b8746336985f99c10ac471f36a8e25757"
+    },
+    "control_long_cycle": {
+      "path": "experiments/records/synthetic-known-answer-long-cycle-20261029T123354Z.json",
+      "sha256": "b34459d0c20cde6755f1c7b49fa12a680ba80a25d4f152c377e9dcc04c288b55"
+    }
+  }
+}

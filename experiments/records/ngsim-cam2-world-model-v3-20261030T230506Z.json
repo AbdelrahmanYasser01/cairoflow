@@ -1,0 +1,366 @@
+{
+  "script": "scripts/build_camera_world_model_v3.py",
+  "created_at_utc": "2026-10-30T23:05:06+00:00",
+  "mode": "gate",
+  "label": "camera tracks (SAM 3.1 output) placed by our procedure and compared with published NGSIM trajectories; not ground truth on either side",
+  "gate_file": {
+    "path": "data/geometry/ngsim-lankershim-cam2/v2/camera_world_model_gate_v3.json",
+    "sha256": "92ff93e59f5f13d2a14490179b520fc36848e147b7324cb0094be59700417198"
+  },
+  "inputs_of": "cam2-int2-lane-gate-v3",
+  "inputs": {
+    "sam_tracks": "dd17803407dfef1421ae83cf7283aca73b8920a41b1418380db44979294e5149",
+    "sam_observations": "7ad49842eefa73c26b92d737fbe51ae517045372c0325cb491f35e4e6812861d",
+    "camera_clip_manifest": "bad0a04728f0a9d158caab7d0c000a8ee9119bbc799986136b4a905b933b808d",
+    "calibration_pairs": "d60301d19639f623f0eae510b576b34d49d58c2f05fa2e17fa26932348cf5c2d",
+    "world_model_geometry": "f8fe90a43d908c16f8e46a8aa91b076b110cd7c001e9c991544a00c22d4a4f04",
+    "reference_trajectories": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e"
+  },
+  "time_sync": {
+    "registered_source_second_at_0830": 120.0,
+    "statement": "source second 120.0 = 08:30:00.0; camera frame k of the excerpt is source second 970 + k/10, world-model window second 850.0 + k/10, and NGSIM tick round((850.0 + k/10) * 10) * 100 ms after 08:30:00.0",
+    "basis": "NGSIM frame_id 1201 at 08:30:00.0 counts frames from 08:28:00.0, so the video's first frame is 08:28:00.0 if it starts with the transcription; the full table starts at 08:28:00.2 and the metadata PDF says transcription ran from 8:28 a.m. (DATA_REGISTER.md section 15). The cross-correlation estimate, 119.7 s (half-width 0.8 s; 119.6-120.0 s by approach), cannot resolve 0.3 s.",
+    "other_candidate_source_second_at_0830": 119.7,
+    "role_of_other": "sensitivity and prediction 2 only; it decides nothing"
+  },
+  "calibration": {
+    "spec_sha256": "18d9828a43463098081b6b8f1a7bc5aef882b6ab0d3ab20109ea72386d71f114",
+    "fit_points": 29,
+    "check_median_m": 0.433,
+    "accepted_under_adr_018": false
+  },
+  "window_s": [
+    850.0,
+    880.0
+  ],
+  "counts": {
+    "input_observations": 2854,
+    "tracked_observations": 2850,
+    "projected_points": 2850,
+    "unprojected_points": 0,
+    "in_lane": 1871,
+    "outside_lanes": 979,
+    "ambiguous": 0,
+    "near_lane_boundary": 47
+  },
+  "metrics": {
+    "camera_tracks": 26,
+    "matched_tracks": 21,
+    "A_track_match_share": 0.8077,
+    "matched_points": 2657,
+    "B_points": 1534,
+    "B_point_lane_agreement": 0.9061,
+    "C_tracks": 18,
+    "C_track_lane_agreement": 0.9444,
+    "D_across_heading_p90_m": 1.004,
+    "J_points": 804,
+    "J_tracks": 17,
+    "J_across_heading_p90_m": 0.5427,
+    "across_median_m": 0.41,
+    "along_median_m": 1.371,
+    "error_2d_p90_m": 4.1977,
+    "v2_axis_lateral_p90_m": 1.9401,
+    "by_region": {
+      "approach": {
+        "points": 1306,
+        "tracks": 11,
+        "across_median_m": 0.5251,
+        "across_p90_m": 1.0865
+      },
+      "departure": {
+        "points": 242,
+        "tracks": 18,
+        "across_median_m": 0.1912,
+        "across_p90_m": 0.4814
+      },
+      "junction_interior": {
+        "points": 804,
+        "tracks": 17,
+        "across_median_m": 0.3147,
+        "across_p90_m": 0.5427
+      },
+      "unknown": {
+        "points": 305,
+        "tracks": 21,
+        "across_median_m": 0.2877,
+        "across_p90_m": 1.8554
+      }
+    },
+    "moving_along_by_direction": {
+      "EB": {
+        "points": 136,
+        "median_m": -0.4547
+      },
+      "NB": {
+        "points": 980,
+        "median_m": -0.1074
+      },
+      "SB": {
+        "points": 146,
+        "median_m": 0.0234
+      },
+      "WB": {
+        "points": 5,
+        "median_m": 0.3696
+      }
+    },
+    "stopped_along_by_direction": {
+      "NB": {
+        "points": 1219,
+        "median_m": 3.6875
+      }
+    },
+    "matched_vehicle_of_track": {
+      "cam2:car:t1": 1299,
+      "cam2:car:t10": 1297,
+      "cam2:car:t11": 1321,
+      "cam2:car:t12": 1331,
+      "cam2:car:t13": 1275,
+      "cam2:car:t14": 1296,
+      "cam2:car:t15": 1293,
+      "cam2:car:t19": 1314,
+      "cam2:car:t2": 1287,
+      "cam2:car:t20": 1349,
+      "cam2:car:t21": 1307,
+      "cam2:car:t22": 1322,
+      "cam2:car:t23": 1308,
+      "cam2:car:t24": 1286,
+      "cam2:car:t26": 1297,
+      "cam2:car:t3": 1264,
+      "cam2:car:t4": 1313,
+      "cam2:car:t5": 1334,
+      "cam2:car:t6": 1277,
+      "cam2:car:t8": 1289,
+      "cam2:car:t9": 1286
+    },
+    "window_excluded_points": 3
+  },
+  "gate": {
+    "schema_version": "0.1.0",
+    "gate_id": "cam2-int2-lane-gate-v3",
+    "gate_sha256": "92ff93e59f5f13d2a14490179b520fc36848e147b7324cb0094be59700417198",
+    "outcome": "go",
+    "metrics": {
+      "camera_tracks": 26,
+      "matched_tracks": 21,
+      "A_track_match_share": 0.8077,
+      "matched_points": 2657,
+      "B_points": 1534,
+      "B_point_lane_agreement": 0.9061,
+      "C_tracks": 18,
+      "C_track_lane_agreement": 0.9444,
+      "D_across_heading_p90_m": 1.004,
+      "J_points": 804,
+      "J_tracks": 17,
+      "J_across_heading_p90_m": 0.5427,
+      "across_median_m": 0.41,
+      "along_median_m": 1.371,
+      "error_2d_p90_m": 4.1977,
+      "v2_axis_lateral_p90_m": 1.9401,
+      "window_excluded_points": 3,
+      "J_judged": 1
+    },
+    "checks": {
+      "A_track_match_share": true,
+      "B_point_lane_agreement": true,
+      "C_track_lane_agreement": true,
+      "D_across_heading_p90_m": true,
+      "J_across_heading_p90_m": true
+    },
+    "reasons": []
+  },
+  "reported_not_gated": {
+    "sensitivity": {
+      "v3_at_other_sync": {
+        "matched_tracks": 19,
+        "matched_points": 2603,
+        "A_track_match_share": 0.7308,
+        "B_points": 1481,
+        "B_point_lane_agreement": 0.9048,
+        "C_tracks": 16,
+        "C_track_lane_agreement": 0.9375,
+        "D_across_heading_p90_m": 1.0524,
+        "J_points": 767,
+        "J_tracks": 16,
+        "J_across_heading_p90_m": 0.5427,
+        "outcome_if_it_decided": "go"
+      },
+      "v1_v2_procedure_at_registered_sync": {
+        "matched_tracks": 18,
+        "matched_points": 1547,
+        "B_point_lane_agreement": 0.8419,
+        "C_tracks": 15,
+        "C_track_lane_agreement": 0.9333,
+        "D_lateral_p90_m": 1.9579,
+        "along_median_m": 0.7654
+      },
+      "v1_v2_procedure_at_other_sync": {
+        "matched_tracks": 15,
+        "matched_points": 1401,
+        "B_point_lane_agreement": 0.7321,
+        "C_tracks": 12,
+        "C_track_lane_agreement": 0.8333,
+        "D_lateral_p90_m": 2.5304,
+        "along_median_m": 1.4411
+      },
+      "tracks_paired_with_another_vehicle_by_v1_v2": [],
+      "tracks_matched_by_v1_v2_only": [],
+      "tracks_matched_by_v3_only": [
+        "cam2:car:t15",
+        "cam2:car:t2",
+        "cam2:car:t9"
+      ]
+    },
+    "predictions": {
+      "1_registered_sync_moving_along_within_m": 0.75,
+      "1_tested_directions": {
+        "EB": {
+          "points": 136,
+          "median_m": -0.4547
+        },
+        "NB": {
+          "points": 980,
+          "median_m": -0.1074
+        },
+        "SB": {
+          "points": 146,
+          "median_m": 0.0234
+        }
+      },
+      "1_holds": true,
+      "2_other_sync_moving_along_beyond_m": 1.0,
+      "2_points": 1276,
+      "2_median_m": -2.8376,
+      "2_holds": true
+    }
+  },
+  "pairings": {
+    "cam2:car:t1": {
+      "vehicle": 1299,
+      "cost": 0.222439,
+      "frames": 287,
+      "candidate_frames": 287
+    },
+    "cam2:car:t10": {
+      "vehicle": 1297,
+      "cost": 0.135622,
+      "frames": 273,
+      "candidate_frames": 273
+    },
+    "cam2:car:t11": {
+      "vehicle": 1321,
+      "cost": 0.230685,
+      "frames": 274,
+      "candidate_frames": 274
+    },
+    "cam2:car:t12": {
+      "vehicle": 1331,
+      "cost": 0.70012,
+      "frames": 91,
+      "candidate_frames": 91
+    },
+    "cam2:car:t13": {
+      "vehicle": 1275,
+      "cost": 0.097539,
+      "frames": 41,
+      "candidate_frames": 41
+    },
+    "cam2:car:t14": {
+      "vehicle": 1296,
+      "cost": 0.374792,
+      "frames": 270,
+      "candidate_frames": 270
+    },
+    "cam2:car:t15": {
+      "vehicle": 1293,
+      "cost": 0.312091,
+      "frames": 254,
+      "candidate_frames": 254
+    },
+    "cam2:car:t19": {
+      "vehicle": 1314,
+      "cost": 0.02805,
+      "frames": 23,
+      "candidate_frames": 23
+    },
+    "cam2:car:t2": {
+      "vehicle": 1287,
+      "cost": 0.486557,
+      "frames": 228,
+      "candidate_frames": 228
+    },
+    "cam2:car:t20": {
+      "vehicle": 1349,
+      "cost": 0.075435,
+      "frames": 53,
+      "candidate_frames": 53
+    },
+    "cam2:car:t21": {
+      "vehicle": 1307,
+      "cost": 0.038225,
+      "frames": 18,
+      "candidate_frames": 18
+    },
+    "cam2:car:t22": {
+      "vehicle": 1322,
+      "cost": 0.076248,
+      "frames": 89,
+      "candidate_frames": 89
+    },
+    "cam2:car:t23": {
+      "vehicle": 1308,
+      "cost": 0.223243,
+      "frames": 5,
+      "candidate_frames": 5
+    },
+    "cam2:car:t24": {
+      "vehicle": 1286,
+      "cost": 0.232756,
+      "frames": 15,
+      "candidate_frames": 15
+    },
+    "cam2:car:t26": {
+      "vehicle": 1297,
+      "cost": 0.153424,
+      "frames": 10,
+      "candidate_frames": 10
+    },
+    "cam2:car:t3": {
+      "vehicle": 1264,
+      "cost": 0.011477,
+      "frames": 25,
+      "candidate_frames": 25
+    },
+    "cam2:car:t4": {
+      "vehicle": 1313,
+      "cost": 0.014703,
+      "frames": 32,
+      "candidate_frames": 32
+    },
+    "cam2:car:t5": {
+      "vehicle": 1334,
+      "cost": 0.350258,
+      "frames": 126,
+      "candidate_frames": 126
+    },
+    "cam2:car:t6": {
+      "vehicle": 1277,
+      "cost": 0.068327,
+      "frames": 55,
+      "candidate_frames": 55
+    },
+    "cam2:car:t8": {
+      "vehicle": 1289,
+      "cost": 0.47407,
+      "frames": 255,
+      "candidate_frames": 255
+    },
+    "cam2:car:t9": {
+      "vehicle": 1286,
+      "cost": 0.376227,
+      "frames": 233,
+      "candidate_frames": 233
+    }
+  },
+  "camera_layer_sha256": "93c623f1e500257086d939c52db4db378689767806d3d414487caeea1016b0ff"
+}

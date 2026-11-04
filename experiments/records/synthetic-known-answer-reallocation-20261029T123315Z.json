@@ -1,0 +1,6349 @@
+{
+  "label": "SYNTHETIC known-answer test of the evaluation and selection stage (positive and negative controls). The junction, its demand, its signal plans and every candidate are written in code; no proposer runs (Muse is not exercised), so this is not a test of discovery. It says nothing about the real NGSIM Lankershim intersection 2 baseline, or about any real junction.",
+  "experiment": {
+    "kind": "simulated",
+    "experiment_id": "experiment-baseline-synthetic-known-answer-20261029T123315Z-20261029T123315Z",
+    "manifest_sha256": "3a9f67d37d7f6b6707dea8020e1ab38d8dadd818cfa90e83cf0891e590488fb2",
+    "valid": false,
+    "reasons": [
+      "I12: seed 1: 76 vehicles unfinished at 1800 s; loaded 274, inserted 248, arrived 198",
+      "I12: seed 2: 119 vehicles unfinished at 1800 s; loaded 330, inserted 261, arrived 211",
+      "I12: seed 3: 98 vehicles unfinished at 1800 s; loaded 295, inserted 247, arrived 197",
+      "I12: seed 4: 102 vehicles unfinished at 1800 s; loaded 303, inserted 251, arrived 201",
+      "I12: seed 5: 89 vehicles unfinished at 1800 s; loaded 284, inserted 245, arrived 195",
+      "I12: seed 6: 102 vehicles unfinished at 1800 s; loaded 313, inserted 261, arrived 211",
+      "I12: seed 7: 94 vehicles unfinished at 1800 s; loaded 308, inserted 264, arrived 214",
+      "I12: seed 8: 95 vehicles unfinished at 1800 s; loaded 285, inserted 240, arrived 190",
+      "I12: seed 9: 101 vehicles unfinished at 1800 s; loaded 306, inserted 255, arrived 205",
+      "I12: seed 10: 84 vehicles unfinished at 1800 s; loaded 284, inserted 250, arrived 200",
+      "I12: seed 11: 87 vehicles unfinished at 1800 s; loaded 290, inserted 253, arrived 203",
+      "I12: seed 12: 106 vehicles unfinished at 1800 s; loaded 300, inserted 244, arrived 194",
+      "I12: seed 13: 133 vehicles unfinished at 1800 s; loaded 329, inserted 246, arrived 196",
+      "I12: seed 14: 124 vehicles unfinished at 1800 s; loaded 310, inserted 236, arrived 186",
+      "I12: seed 15: 88 vehicles unfinished at 1800 s; loaded 292, inserted 254, arrived 204",
+      "I12: seed 16: 92 vehicles unfinished at 1800 s; loaded 267, inserted 225, arrived 175",
+      "I12: seed 17: 104 vehicles unfinished at 1800 s; loaded 309, inserted 255, arrived 205",
+      "I12: seed 18: 115 vehicles unfinished at 1800 s; loaded 310, inserted 245, arrived 195",
+      "I12: seed 19: 112 vehicles unfinished at 1800 s; loaded 303, inserted 241, arrived 191",
+      "I12: seed 20: 72 vehicles unfinished at 1800 s; loaded 267, inserted 245, arrived 195"
+    ],
+    "skipped": [
+      "I7: the timing is the same as the baseline"
+    ],
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "sumo_runs": 260
+  },
+  "scenario": "reallocation",
+  "what_is_tested": "the evaluation and selection stage: the deterministic validator, paired SUMO runs, eligibility, paired comparisons, Holm's correction and the selection rule, on candidates whose answer is known in advance",
+  "what_is_not_tested": "discovery: no proposer runs and Muse is not exercised; the correction is the pre-registered answer itself, written by code",
+  "purpose": "Positive control with a trade-off. Does the evaluation and selection stage confirm a pre-registered correction of a green split known to be wrong, and how does its selection rule treat a correction that helps one axis and lengthens the other's red? Negative controls (the exact null and the mirror of the correction) and small perturbations of the bad plan go through the same pipeline.",
+  "design_history": "Designed and pre-registered before any simulation (2026-10-29). Its first run (synthetic-known-answer-20261029T112743Z) was made while the evaluation rules files were being changed, so it is not reproducible from one tree and is superseded (its record is kept in that run directory as superseded_record_rules_0.2.0_mixed_tree.json). Revised on 2026-10-29 after an independent review: framed as a test of the evaluation and selection stage, not of discovery; an exact null and the mirror of the correction added as negative controls; provenance from git. The design numbers are unchanged.",
+  "script": "scripts/run_synthetic_known_answer.py",
+  "module": "cairoflow_evaluation.known_answer",
+  "rules_version": "0.3.1",
+  "created_at_utc": "2026-10-29T12:33:15+00:00",
+  "run_dir": "experiments/runs/synthetic-known-answer-reallocation-20261029T123315Z",
+  "kinds": {
+    "assumed": "designed in code or computed analytically from the design (demand, plans, expectation, predictions, settings)",
+    "simulated": "computed from SUMO output files by the evaluation package"
+  },
+  "provenance": {
+    "git_at_start": {
+      "commit": "49adee3591de7cb9d62ce8bf8172bccdcfd3c698",
+      "files": [
+        "packages/contracts/cairoflow_contracts/evidence.py",
+        "packages/contracts/cairoflow_contracts/experiment.py",
+        "packages/contracts/cairoflow_contracts/reasoning.py",
+        "packages/contracts/cairoflow_contracts/report.py",
+        "packages/evaluation/cairoflow_evaluation/compare.py",
+        "packages/evaluation/cairoflow_evaluation/eligibility.py",
+        "packages/evaluation/cairoflow_evaluation/known_answer.py",
+        "packages/evaluation/cairoflow_evaluation/metrics.py",
+        "packages/evaluation/cairoflow_evaluation/report.py",
+        "packages/evaluation/cairoflow_evaluation/significance.py",
+        "packages/perception/cairoflow_perception/world_model.py",
+        "packages/reasoning/cairoflow_reasoning/evidence.py",
+        "packages/simulation/cairoflow_simulation/candidates.py",
+        "packages/simulation/cairoflow_simulation/demand.py",
+        "packages/simulation/cairoflow_simulation/geometry_compiler.py",
+        "packages/simulation/cairoflow_simulation/network.py",
+        "packages/simulation/cairoflow_simulation/runner.py",
+        "packages/simulation/cairoflow_simulation/validation.py",
+        "scripts/run_synthetic_known_answer.py"
+      ],
+      "dirty_files": [],
+      "clean": true
+    },
+    "code_sha256_at_start": {
+      "cairoflow_evaluation.known_answer": "631fa70bfc2630fdc660356f0f6ca972a3d56b60f0bddd7a77892eb28fe01b35",
+      "cairoflow_evaluation.compare": "361326d325c2077b86e4ee51dde36669a922cac202c288286482dc963401e0f4",
+      "cairoflow_evaluation.eligibility": "0b20740fd92fb57dd86f8c7c4720fbd9a5727ce854bb7eb7e3c5ff7a8408a22f",
+      "cairoflow_evaluation.significance": "90805890eb38c040ae8624d06e7e26010dc533b2a38c96e151d457a86ae12d6d",
+      "cairoflow_evaluation.metrics": "b0a4fa02a43e251aa4619b9db643ddea29c0d006d7a9ce43dff5e1afdbe11726",
+      "cairoflow_evaluation.report": "ff2080be7337423aa34625ebecaa640bcf6b3417735c835f3f153da4a4beda35",
+      "cairoflow_contracts.evidence": "4e2c35db8db1bbfdad635c76bf8f0e3ac631ffe71eece072f82f70b6da97e614",
+      "cairoflow_contracts.experiment": "8c6576b1889bfa9490d46271d6c8337edc68829ff6bc5c6671a7a34df8ef346e",
+      "cairoflow_contracts.reasoning": "b2c1e723d32332a2ae362c35bffb61fa2eff109f251016f5fc8b3d6351eb60a3",
+      "cairoflow_contracts.report": "b198bd759b037782781baa5158c966a123cce012eeb55e2d39734230ecbf6c78",
+      "cairoflow_perception.world_model": "600e823436016b2bbb8895a575297dbe2013b2b8d4e3da1fb401a2dedbaf4f96",
+      "cairoflow_reasoning.evidence": "0beab5af6039f6c0053102117909a863ed74986a9d5983ee71a3cfc561b7e110",
+      "cairoflow_simulation.validation": "32544bb9f7619adafe6324b1da8e1f578f0e9ba263014119705ce30dcd16721d",
+      "cairoflow_simulation.candidates": "f9a14cc71b06e267ce02dafb53e9d4565c5539a2a9ce4b5fd05c13f62949858c",
+      "cairoflow_simulation.runner": "00faacd497520e85bdd8a8224ffc4200d7ddf6adcd813327e76f40ad0a3d8d3b",
+      "cairoflow_simulation.geometry_compiler": "2d5cb555da9b8a8f5206d4d97c3df14f628b5639b34b6fbd1ff2a36618fc8264",
+      "cairoflow_simulation.demand": "ec499996ffbca6eff0dc6ae65fcd8a8dbc3714d221255a1381ee581c51a07bdb",
+      "cairoflow_simulation.network": "f94a43a4c1856d6942492ba00cb51d9819d75a128a25f67805ef85ade0b68501"
+    },
+    "note": "git commit and `git status --porcelain` of the files the run imports (and its script), at the start and at the end; and the SHA-256 of their source files",
+    "git_at_end": {
+      "commit": "49adee3591de7cb9d62ce8bf8172bccdcfd3c698",
+      "files": [
+        "packages/contracts/cairoflow_contracts/evidence.py",
+        "packages/contracts/cairoflow_contracts/experiment.py",
+        "packages/contracts/cairoflow_contracts/reasoning.py",
+        "packages/contracts/cairoflow_contracts/report.py",
+        "packages/evaluation/cairoflow_evaluation/compare.py",
+        "packages/evaluation/cairoflow_evaluation/eligibility.py",
+        "packages/evaluation/cairoflow_evaluation/known_answer.py",
+        "packages/evaluation/cairoflow_evaluation/metrics.py",
+        "packages/evaluation/cairoflow_evaluation/report.py",
+        "packages/evaluation/cairoflow_evaluation/significance.py",
+        "packages/perception/cairoflow_perception/world_model.py",
+        "packages/reasoning/cairoflow_reasoning/evidence.py",
+        "packages/simulation/cairoflow_simulation/candidates.py",
+        "packages/simulation/cairoflow_simulation/demand.py",
+        "packages/simulation/cairoflow_simulation/geometry_compiler.py",
+        "packages/simulation/cairoflow_simulation/network.py",
+        "packages/simulation/cairoflow_simulation/runner.py",
+        "packages/simulation/cairoflow_simulation/validation.py",
+        "scripts/run_synthetic_known_answer.py"
+      ],
+      "dirty_files": [],
+      "clean": true
+    },
+    "code_unchanged_during_run": true,
+    "clean_against_commit_at_start_and_end": true
+  },
+  "preregistration": {
+    "file": "preregistration.json",
+    "file_sha256": "933e54086948b8d6df4f8fd31fd591c29a2e90e00c0234464a9a2f21af924540",
+    "content_sha256": "dc0b34e2b5b03d14fcdc825d219543cde7ce3bff9c7805b9b2816f533163d5e1",
+    "content_sha256_note": "without written_at_utc: equal for runs of the same design, settings, seed and software",
+    "written_at_utc": "2026-10-29T12:33:15.636118+00:00",
+    "content": {
+      "label": "SYNTHETIC known-answer test of the evaluation and selection stage (positive and negative controls). The junction, its demand, its signal plans and every candidate are written in code; no proposer runs (Muse is not exercised), so this is not a test of discovery. It says nothing about the real NGSIM Lankershim intersection 2 baseline, or about any real junction.",
+      "experiment": "synthetic-known-answer",
+      "scenario": "reallocation",
+      "what_is_tested": "the evaluation and selection stage: the deterministic validator, paired SUMO runs, eligibility, paired comparisons, Holm's correction and the selection rule, on candidates whose answer is known in advance",
+      "what_is_not_tested": "discovery: no proposer runs and Muse is not exercised; the correction is the pre-registered answer itself, written by code",
+      "purpose": "Positive control with a trade-off. Does the evaluation and selection stage confirm a pre-registered correction of a green split known to be wrong, and how does its selection rule treat a correction that helps one axis and lengthens the other's red? Negative controls (the exact null and the mirror of the correction) and small perturbations of the bad plan go through the same pipeline.",
+      "design_history": "Designed and pre-registered before any simulation (2026-10-29). Its first run (synthetic-known-answer-20261029T112743Z) was made while the evaluation rules files were being changed, so it is not reproducible from one tree and is superseded (its record is kept in that run directory as superseded_record_rules_0.2.0_mixed_tree.json). Revised on 2026-10-29 after an independent review: framed as a test of the evaluation and selection stage, not of discovery; an exact null and the mirror of the correction added as negative controls; provenance from git. The design numbers are unchanged.",
+      "written_at_utc": "2026-10-29T12:33:15.636118+00:00",
+      "design": {
+        "kind": "assumed (designed in code; nothing observed)",
+        "design_sha256": "1181503cb4fde65430df3911bb4b806ffb9b502f3719fa7ace3805007d51fca4",
+        "scenario": "reallocation",
+        "correction_method": "webster_split_at_fixed_cycle",
+        "flows_veh_per_h": {
+          "N": 150,
+          "E": 300,
+          "S": 150,
+          "W": 300
+        },
+        "lanes_per_approach": 1,
+        "lane_width_m": 3.5,
+        "saturation_flow_veh_per_h_per_lane": 1800.0,
+        "bad_greens_s": {
+          "EW": 20,
+          "NS": 40
+        },
+        "yellow_s": 3,
+        "all_red_s": 2,
+        "lost_time_per_phase_s": 5.0,
+        "min_green_s": 5.0,
+        "arm_length_m": 200.0,
+        "stop_line_offset_m": 10.0,
+        "axes": {
+          "EW": [
+            "E",
+            "W"
+          ],
+          "NS": [
+            "N",
+            "S"
+          ]
+        },
+        "movements": "through only: N->S, E->W, S->N, W->E; one approach lane per arm",
+        "baseline_cycle_s": 70
+      },
+      "expectation": {
+        "kind": "assumed (analytical; computed from the design only, before any simulation)",
+        "method": "Webster (1958) green split at the baseline's cycle; clearances unchanged",
+        "formula": {
+          "flow_ratio": "y_i = max over the approaches served in phase i of q_a / (n_lanes_a * s)",
+          "total_lost_time": "L = n_phases * l",
+          "optimum_cycle": "C0 = (1.5 L + 5) / (1 - Y), with Y = sum_i y_i",
+          "effective_green": "g_i = (C - L) * y_i / Y",
+          "displayed_green": "G_i = g_i - I + l (with l = I, as assumed here, G_i = g_i)",
+          "whole_seconds": "largest remainder, keeping sum_i G_i = C - n_phases * I; a phase below the minimum green gets the minimum and the others share the rest in proportion",
+          "delay_for_predictions_only": "Webster (1958): d = C(1-lam)^2 / (2(1-lam*x)) + x^2/(2q(1-x)) - 0.65 (C/q^2)^(1/3) x^(2+5 lam), lam = G/C, x = q/(s*lam), q and s in veh/s",
+          "queues_for_predictions_only": "mean queue (veh) = q*d (Little's law); queue at the end of red (veh) = q*r with red r = C - G"
+        },
+        "assumptions": [
+          "saturation flow s = 1800 veh/h per lane (textbook base value, not calibrated against SUMO). Every approach has the same lanes, so s cancels out of the split; it matters for the optimum cycle and the degrees of saturation (see sensitivity)",
+          "lost time per phase l = 5 s, equal to the intergreen (yellow 3 s + all-red 2 s): start-up loss and use of the yellow assumed to cancel, so effective green = displayed green",
+          "cycle kept at the baseline's 70 s",
+          "yellow, all-red and phase order unchanged",
+          "minimum green 5 s (the validator's MIN_GREEN_S)",
+          "through movements only; no turning, pedestrian or lane-utilisation factors"
+        ],
+        "inputs": {
+          "flows_veh_per_h": {
+            "N": 150,
+            "E": 300,
+            "S": 150,
+            "W": 300
+          },
+          "lanes_per_approach": 1,
+          "saturation_flow_veh_per_h_per_lane": 1800.0,
+          "bad_greens_s": {
+            "EW": 20,
+            "NS": 40
+          },
+          "bad_cycle_s": 70,
+          "intergreen_s": 5,
+          "lost_time_per_phase_s": 5.0
+        },
+        "flow_ratios": {
+          "EW": 0.166667,
+          "NS": 0.083333
+        },
+        "cycle": {
+          "method": "kept at the baseline's cycle",
+          "cycle_s": 70,
+          "webster_optimum_cycle_s_information_only": 26.667
+        },
+        "Y": 0.25,
+        "total_lost_time_s": 10.0,
+        "effective_green_total_s": 60.0,
+        "effective_greens_s": {
+          "EW": 40.0,
+          "NS": 20.0
+        },
+        "displayed_greens_unrounded_s": {
+          "EW": 40.0,
+          "NS": 20.0
+        },
+        "greens_s": {
+          "EW": 40,
+          "NS": 20
+        },
+        "cycle_s": 70,
+        "sensitivity": {
+          "by_lost_time_per_phase_s": {
+            "3": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 41,
+                "NS": 19
+              }
+            },
+            "4": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 40,
+                "NS": 20
+              }
+            },
+            "5": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 40,
+                "NS": 20
+              }
+            },
+            "6": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 40,
+                "NS": 20
+              }
+            },
+            "7": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 39,
+                "NS": 21
+              }
+            }
+          },
+          "by_saturation_flow_veh_per_h_per_lane": {
+            "1500": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 40,
+                "NS": 20
+              }
+            },
+            "1800": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 40,
+                "NS": 20
+              }
+            },
+            "2000": {
+              "cycle_s": 70,
+              "greens_s": {
+                "EW": 40,
+                "NS": 20
+              }
+            }
+          },
+          "pre_registered_correction_judged_with_other_saturation_flows": {
+            "1500": {
+              "network_mean_delay_change_s": -7.969,
+              "pareto_improving": false,
+              "expected_eligible": false
+            },
+            "1800": {
+              "network_mean_delay_change_s": -6.049,
+              "pareto_improving": false,
+              "expected_eligible": false
+            },
+            "2000": {
+              "network_mean_delay_change_s": -5.56,
+              "pareto_improving": false,
+              "expected_eligible": false
+            }
+          }
+        }
+      },
+      "mirror": {
+        "raw_greens_s": {
+          "EW": 0,
+          "NS": 60
+        },
+        "greens_s": {
+          "EW": 5,
+          "NS": 55
+        },
+        "scale_factor": 1.0,
+        "adjusted": true,
+        "rule": "2 * bad - correction; if outside the validator's limits, scaled down to the maximum green and cycle keeping the split, then whole seconds with the minimum green"
+      },
+      "candidates": [
+        {
+          "intervention_id": "I1",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 17,
+            "NS": 40
+          },
+          "cycle_s": 67,
+          "change_from_baseline_s": {
+            "EW": -3,
+            "NS": 0
+          },
+          "perturbation_s": {
+            "EW": -3,
+            "NS": 0
+          },
+          "draw_index": 5
+        },
+        {
+          "intervention_id": "I2",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 19,
+            "NS": 43
+          },
+          "cycle_s": 72,
+          "change_from_baseline_s": {
+            "EW": -1,
+            "NS": 3
+          },
+          "perturbation_s": {
+            "EW": -1,
+            "NS": 3
+          },
+          "draw_index": 7
+        },
+        {
+          "intervention_id": "I3",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 25,
+            "NS": 45
+          },
+          "cycle_s": 80,
+          "change_from_baseline_s": {
+            "EW": 5,
+            "NS": 5
+          },
+          "perturbation_s": {
+            "EW": 5,
+            "NS": 5
+          },
+          "draw_index": 1
+        },
+        {
+          "intervention_id": "I4",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 21,
+            "NS": 45
+          },
+          "cycle_s": 76,
+          "change_from_baseline_s": {
+            "EW": 1,
+            "NS": 5
+          },
+          "perturbation_s": {
+            "EW": 1,
+            "NS": 5
+          },
+          "draw_index": 2
+        },
+        {
+          "intervention_id": "I5",
+          "role": "correction",
+          "role_text": "positive control: the pre-registered correction, written by code",
+          "greens_s": {
+            "EW": 40,
+            "NS": 20
+          },
+          "cycle_s": 70,
+          "change_from_baseline_s": {
+            "EW": 20,
+            "NS": -20
+          },
+          "perturbation_s": null,
+          "draw_index": null
+        },
+        {
+          "intervention_id": "I6",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 21,
+            "NS": 43
+          },
+          "cycle_s": 74,
+          "change_from_baseline_s": {
+            "EW": 1,
+            "NS": 3
+          },
+          "perturbation_s": {
+            "EW": 1,
+            "NS": 3
+          },
+          "draw_index": 4
+        },
+        {
+          "intervention_id": "I7",
+          "role": "null",
+          "role_text": "negative control: the exact null, the baseline plan itself relabelled. The validator rejects a timing equal to the baseline's ('the timing is the same as the baseline'), so it is expected never to be simulated and never selected. Had it run, its runs would equal the baseline's, every difference would be 0 and every improvement test untested (zero standard deviation)",
+          "greens_s": {
+            "EW": 20,
+            "NS": 40
+          },
+          "cycle_s": 70,
+          "change_from_baseline_s": {
+            "EW": 0,
+            "NS": 0
+          },
+          "perturbation_s": null,
+          "draw_index": null
+        },
+        {
+          "intervention_id": "I8",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 17,
+            "NS": 39
+          },
+          "cycle_s": 66,
+          "change_from_baseline_s": {
+            "EW": -3,
+            "NS": -1
+          },
+          "perturbation_s": {
+            "EW": -3,
+            "NS": -1
+          },
+          "draw_index": 0
+        },
+        {
+          "intervention_id": "I9",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 24,
+            "NS": 37
+          },
+          "cycle_s": 71,
+          "change_from_baseline_s": {
+            "EW": 4,
+            "NS": -3
+          },
+          "perturbation_s": {
+            "EW": 4,
+            "NS": -3
+          },
+          "draw_index": 6
+        },
+        {
+          "intervention_id": "I10",
+          "role": "control",
+          "role_text": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+          "greens_s": {
+            "EW": 17,
+            "NS": 44
+          },
+          "cycle_s": 71,
+          "change_from_baseline_s": {
+            "EW": -3,
+            "NS": 4
+          },
+          "perturbation_s": {
+            "EW": -3,
+            "NS": 4
+          },
+          "draw_index": 3
+        },
+        {
+          "intervention_id": "I11",
+          "role": "halfway",
+          "role_text": "half-way between the bad plan and the correction",
+          "greens_s": {
+            "EW": 30,
+            "NS": 30
+          },
+          "cycle_s": 70,
+          "change_from_baseline_s": {
+            "EW": 10,
+            "NS": -10
+          },
+          "perturbation_s": null,
+          "draw_index": null
+        },
+        {
+          "intervention_id": "I12",
+          "role": "mirror",
+          "role_text": "negative control: the correction's change applied in the opposite direction, moved into the validator's limits if needed; expected worse and never selected",
+          "greens_s": {
+            "EW": 5,
+            "NS": 55
+          },
+          "cycle_s": 70,
+          "change_from_baseline_s": {
+            "EW": -15,
+            "NS": 15
+          },
+          "perturbation_s": null,
+          "draw_index": null
+        }
+      ],
+      "roles": {
+        "correction": "I5",
+        "halfway": "I11",
+        "null": "I7",
+        "mirror": "I12"
+      },
+      "control_draw": {
+        "kind": "assumed (random design choice)",
+        "what_they_are": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+        "k": 8,
+        "seed": 20261029,
+        "generator": "numpy.random.default_rng([seed, 0]).integers(-5, 6) per phase, in phase order ['EW', 'NS']",
+        "range_s": [
+          -5,
+          5
+        ],
+        "applied_to": "the baseline (bad) greens; clearances unchanged, so the cycle changes by the sum of the two perturbations (validator: cycle within 30-180 s, greens within 5-90 s)",
+        "redrawn": []
+      },
+      "id_assignment": {
+        "method": "numpy.random.default_rng([seed, 1]).permutation over the canonical order (correction, half-way, null, mirror, perturbations in draw order)",
+        "seed": 20261029
+      },
+      "analytical_predictions": {
+        "kind": "assumed (analytical Webster model with the stated saturation flow; NOT calibrated against SUMO; used only to label directions)",
+        "dead_band_s": 1.0,
+        "metric_mapping": "mean_delay_s -> network mean delay; mean_queue_m.<arm> -> the arm's delay (Little's law, fixed arrivals); max_queue_m.<arm> -> the arm's red time; throughput -> no prediction",
+        "baseline": {
+          "greens_s": {
+            "EW": 20,
+            "NS": 40
+          },
+          "cycle_s": 70,
+          "red_s": {
+            "N": 30,
+            "E": 50,
+            "S": 30,
+            "W": 50
+          },
+          "degree_of_saturation": {
+            "N": 0.1458,
+            "E": 0.5833,
+            "S": 0.1458,
+            "W": 0.5833
+          },
+          "delay_s": {
+            "N": 7.31,
+            "E": 24.116,
+            "S": 7.31,
+            "W": 24.116
+          },
+          "network_mean_delay_s": 18.514,
+          "mean_queue_veh_littles_law": {
+            "N": 0.305,
+            "E": 2.01,
+            "S": 0.305,
+            "W": 2.01
+          },
+          "queue_at_end_of_red_veh": {
+            "N": 1.25,
+            "E": 4.167,
+            "S": 1.25,
+            "W": 4.167
+          }
+        },
+        "candidates": {
+          "I1": {
+            "greens_s": {
+              "EW": 17,
+              "NS": 40
+            },
+            "cycle_s": 67,
+            "red_s": {
+              "N": 27,
+              "E": 50,
+              "S": 27,
+              "W": 50
+            },
+            "degree_of_saturation": {
+              "N": 0.1396,
+              "E": 0.6569,
+              "S": 0.1396,
+              "W": 0.6569
+            },
+            "delay_s": {
+              "N": 6.205,
+              "E": 26.43,
+              "S": 6.205,
+              "W": 26.43
+            },
+            "network_mean_delay_s": 19.688,
+            "mean_queue_veh_littles_law": {
+              "N": 0.259,
+              "E": 2.202,
+              "S": 0.259,
+              "W": 2.202
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.125,
+              "E": 4.167,
+              "S": 1.125,
+              "W": 4.167
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 1.174,
+              "delay_s": {
+                "N": -1.105,
+                "E": 2.314,
+                "S": -1.105,
+                "W": 2.314
+              },
+              "red_s": {
+                "N": -3,
+                "E": 0,
+                "S": -3,
+                "W": 0
+              }
+            },
+            "direction": {
+              "mean_delay_s": "worse",
+              "delay": {
+                "N": "better",
+                "E": "worse",
+                "S": "better",
+                "W": "worse"
+              },
+              "red": {
+                "N": "better",
+                "E": "about_unchanged",
+                "S": "better",
+                "W": "about_unchanged"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I2": {
+            "greens_s": {
+              "EW": 19,
+              "NS": 43
+            },
+            "cycle_s": 72,
+            "red_s": {
+              "N": 29,
+              "E": 53,
+              "S": 29,
+              "W": 53
+            },
+            "degree_of_saturation": {
+              "N": 0.1395,
+              "E": 0.6316,
+              "S": 0.1395,
+              "W": 0.6316
+            },
+            "delay_s": {
+              "N": 6.642,
+              "E": 26.821,
+              "S": 6.642,
+              "W": 26.821
+            },
+            "network_mean_delay_s": 20.095,
+            "mean_queue_veh_littles_law": {
+              "N": 0.277,
+              "E": 2.235,
+              "S": 0.277,
+              "W": 2.235
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.208,
+              "E": 4.417,
+              "S": 1.208,
+              "W": 4.417
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 1.581,
+              "delay_s": {
+                "N": -0.668,
+                "E": 2.705,
+                "S": -0.668,
+                "W": 2.705
+              },
+              "red_s": {
+                "N": -1,
+                "E": 3,
+                "S": -1,
+                "W": 3
+              }
+            },
+            "direction": {
+              "mean_delay_s": "worse",
+              "delay": {
+                "N": "about_unchanged",
+                "E": "worse",
+                "S": "about_unchanged",
+                "W": "worse"
+              },
+              "red": {
+                "N": "better",
+                "E": "worse",
+                "S": "better",
+                "W": "worse"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I3": {
+            "greens_s": {
+              "EW": 25,
+              "NS": 45
+            },
+            "cycle_s": 80,
+            "red_s": {
+              "N": 35,
+              "E": 55,
+              "S": 35,
+              "W": 55
+            },
+            "degree_of_saturation": {
+              "N": 0.1481,
+              "E": 0.5333,
+              "S": 0.1481,
+              "W": 0.5333
+            },
+            "delay_s": {
+              "N": 8.659,
+              "E": 24.781,
+              "S": 8.659,
+              "W": 24.781
+            },
+            "network_mean_delay_s": 19.407,
+            "mean_queue_veh_littles_law": {
+              "N": 0.361,
+              "E": 2.065,
+              "S": 0.361,
+              "W": 2.065
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.458,
+              "E": 4.583,
+              "S": 1.458,
+              "W": 4.583
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 0.893,
+              "delay_s": {
+                "N": 1.349,
+                "E": 0.665,
+                "S": 1.349,
+                "W": 0.665
+              },
+              "red_s": {
+                "N": 5,
+                "E": 5,
+                "S": 5,
+                "W": 5
+              }
+            },
+            "direction": {
+              "mean_delay_s": "about_unchanged",
+              "delay": {
+                "N": "worse",
+                "E": "about_unchanged",
+                "S": "worse",
+                "W": "about_unchanged"
+              },
+              "red": {
+                "N": "worse",
+                "E": "worse",
+                "S": "worse",
+                "W": "worse"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I4": {
+            "greens_s": {
+              "EW": 21,
+              "NS": 45
+            },
+            "cycle_s": 76,
+            "red_s": {
+              "N": 31,
+              "E": 55,
+              "S": 31,
+              "W": 55
+            },
+            "degree_of_saturation": {
+              "N": 0.1407,
+              "E": 0.6032,
+              "S": 0.1407,
+              "W": 0.6032
+            },
+            "delay_s": {
+              "N": 7.172,
+              "E": 26.771,
+              "S": 7.172,
+              "W": 26.771
+            },
+            "network_mean_delay_s": 20.238,
+            "mean_queue_veh_littles_law": {
+              "N": 0.299,
+              "E": 2.231,
+              "S": 0.299,
+              "W": 2.231
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.292,
+              "E": 4.583,
+              "S": 1.292,
+              "W": 4.583
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 1.724,
+              "delay_s": {
+                "N": -0.138,
+                "E": 2.655,
+                "S": -0.138,
+                "W": 2.655
+              },
+              "red_s": {
+                "N": 1,
+                "E": 5,
+                "S": 1,
+                "W": 5
+              }
+            },
+            "direction": {
+              "mean_delay_s": "worse",
+              "delay": {
+                "N": "about_unchanged",
+                "E": "worse",
+                "S": "about_unchanged",
+                "W": "worse"
+              },
+              "red": {
+                "N": "worse",
+                "E": "worse",
+                "S": "worse",
+                "W": "worse"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I5": {
+            "greens_s": {
+              "EW": 40,
+              "NS": 20
+            },
+            "cycle_s": 70,
+            "red_s": {
+              "N": 50,
+              "E": 30,
+              "S": 50,
+              "W": 30
+            },
+            "degree_of_saturation": {
+              "N": 0.2917,
+              "E": 0.2917,
+              "S": 0.2917,
+              "W": 0.2917
+            },
+            "delay_s": {
+              "N": 20.596,
+              "E": 8.4,
+              "S": 20.596,
+              "W": 8.4
+            },
+            "network_mean_delay_s": 12.465,
+            "mean_queue_veh_littles_law": {
+              "N": 0.858,
+              "E": 0.7,
+              "S": 0.858,
+              "W": 0.7
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 2.083,
+              "E": 2.5,
+              "S": 2.083,
+              "W": 2.5
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": -6.049,
+              "delay_s": {
+                "N": 13.286,
+                "E": -15.716,
+                "S": 13.286,
+                "W": -15.716
+              },
+              "red_s": {
+                "N": 20,
+                "E": -20,
+                "S": 20,
+                "W": -20
+              }
+            },
+            "direction": {
+              "mean_delay_s": "better",
+              "delay": {
+                "N": "worse",
+                "E": "better",
+                "S": "worse",
+                "W": "better"
+              },
+              "red": {
+                "N": "worse",
+                "E": "better",
+                "S": "worse",
+                "W": "better"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I6": {
+            "greens_s": {
+              "EW": 21,
+              "NS": 43
+            },
+            "cycle_s": 74,
+            "red_s": {
+              "N": 31,
+              "E": 53,
+              "S": 31,
+              "W": 53
+            },
+            "degree_of_saturation": {
+              "N": 0.1434,
+              "E": 0.5873,
+              "S": 0.1434,
+              "W": 0.5873
+            },
+            "delay_s": {
+              "N": 7.37,
+              "E": 25.472,
+              "S": 7.37,
+              "W": 25.472
+            },
+            "network_mean_delay_s": 19.438,
+            "mean_queue_veh_littles_law": {
+              "N": 0.307,
+              "E": 2.123,
+              "S": 0.307,
+              "W": 2.123
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.292,
+              "E": 4.417,
+              "S": 1.292,
+              "W": 4.417
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 0.924,
+              "delay_s": {
+                "N": 0.06,
+                "E": 1.356,
+                "S": 0.06,
+                "W": 1.356
+              },
+              "red_s": {
+                "N": 1,
+                "E": 3,
+                "S": 1,
+                "W": 3
+              }
+            },
+            "direction": {
+              "mean_delay_s": "about_unchanged",
+              "delay": {
+                "N": "about_unchanged",
+                "E": "worse",
+                "S": "about_unchanged",
+                "W": "worse"
+              },
+              "red": {
+                "N": "worse",
+                "E": "worse",
+                "S": "worse",
+                "W": "worse"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I7": {
+            "greens_s": {
+              "EW": 20,
+              "NS": 40
+            },
+            "cycle_s": 70,
+            "red_s": {
+              "N": 30,
+              "E": 50,
+              "S": 30,
+              "W": 50
+            },
+            "degree_of_saturation": {
+              "N": 0.1458,
+              "E": 0.5833,
+              "S": 0.1458,
+              "W": 0.5833
+            },
+            "delay_s": {
+              "N": 7.31,
+              "E": 24.116,
+              "S": 7.31,
+              "W": 24.116
+            },
+            "network_mean_delay_s": 18.514,
+            "mean_queue_veh_littles_law": {
+              "N": 0.305,
+              "E": 2.01,
+              "S": 0.305,
+              "W": 2.01
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.25,
+              "E": 4.167,
+              "S": 1.25,
+              "W": 4.167
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 0.0,
+              "delay_s": {
+                "N": 0.0,
+                "E": 0.0,
+                "S": 0.0,
+                "W": 0.0
+              },
+              "red_s": {
+                "N": 0,
+                "E": 0,
+                "S": 0,
+                "W": 0
+              }
+            },
+            "direction": {
+              "mean_delay_s": "about_unchanged",
+              "delay": {
+                "N": "about_unchanged",
+                "E": "about_unchanged",
+                "S": "about_unchanged",
+                "W": "about_unchanged"
+              },
+              "red": {
+                "N": "about_unchanged",
+                "E": "about_unchanged",
+                "S": "about_unchanged",
+                "W": "about_unchanged"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I8": {
+            "greens_s": {
+              "EW": 17,
+              "NS": 39
+            },
+            "cycle_s": 66,
+            "red_s": {
+              "N": 27,
+              "E": 49,
+              "S": 27,
+              "W": 49
+            },
+            "degree_of_saturation": {
+              "N": 0.141,
+              "E": 0.6471,
+              "S": 0.141,
+              "W": 0.6471
+            },
+            "delay_s": {
+              "N": 6.301,
+              "E": 25.654,
+              "S": 6.301,
+              "W": 25.654
+            },
+            "network_mean_delay_s": 19.203,
+            "mean_queue_veh_littles_law": {
+              "N": 0.263,
+              "E": 2.138,
+              "S": 0.263,
+              "W": 2.138
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.125,
+              "E": 4.083,
+              "S": 1.125,
+              "W": 4.083
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 0.689,
+              "delay_s": {
+                "N": -1.009,
+                "E": 1.538,
+                "S": -1.009,
+                "W": 1.538
+              },
+              "red_s": {
+                "N": -3,
+                "E": -1,
+                "S": -3,
+                "W": -1
+              }
+            },
+            "direction": {
+              "mean_delay_s": "about_unchanged",
+              "delay": {
+                "N": "better",
+                "E": "worse",
+                "S": "better",
+                "W": "worse"
+              },
+              "red": {
+                "N": "better",
+                "E": "better",
+                "S": "better",
+                "W": "better"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I9": {
+            "greens_s": {
+              "EW": 24,
+              "NS": 37
+            },
+            "cycle_s": 71,
+            "red_s": {
+              "N": 34,
+              "E": 47,
+              "S": 34,
+              "W": 47
+            },
+            "degree_of_saturation": {
+              "N": 0.1599,
+              "E": 0.4931,
+              "S": 0.1599,
+              "W": 0.4931
+            },
+            "delay_s": {
+              "N": 9.241,
+              "E": 20.507,
+              "S": 9.241,
+              "W": 20.507
+            },
+            "network_mean_delay_s": 16.752,
+            "mean_queue_veh_littles_law": {
+              "N": 0.385,
+              "E": 1.709,
+              "S": 0.385,
+              "W": 1.709
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.417,
+              "E": 3.917,
+              "S": 1.417,
+              "W": 3.917
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": -1.762,
+              "delay_s": {
+                "N": 1.931,
+                "E": -3.609,
+                "S": 1.931,
+                "W": -3.609
+              },
+              "red_s": {
+                "N": 4,
+                "E": -3,
+                "S": 4,
+                "W": -3
+              }
+            },
+            "direction": {
+              "mean_delay_s": "better",
+              "delay": {
+                "N": "worse",
+                "E": "better",
+                "S": "worse",
+                "W": "better"
+              },
+              "red": {
+                "N": "worse",
+                "E": "better",
+                "S": "worse",
+                "W": "better"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I10": {
+            "greens_s": {
+              "EW": 17,
+              "NS": 44
+            },
+            "cycle_s": 71,
+            "red_s": {
+              "N": 27,
+              "E": 54,
+              "S": 27,
+              "W": 54
+            },
+            "degree_of_saturation": {
+              "N": 0.1345,
+              "E": 0.6961,
+              "S": 0.1345,
+              "W": 0.6961
+            },
+            "delay_s": {
+              "N": 5.85,
+              "E": 29.778,
+              "S": 5.85,
+              "W": 29.778
+            },
+            "network_mean_delay_s": 21.802,
+            "mean_queue_veh_littles_law": {
+              "N": 0.244,
+              "E": 2.481,
+              "S": 0.244,
+              "W": 2.481
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.125,
+              "E": 4.5,
+              "S": 1.125,
+              "W": 4.5
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": 3.288,
+              "delay_s": {
+                "N": -1.46,
+                "E": 5.662,
+                "S": -1.46,
+                "W": 5.662
+              },
+              "red_s": {
+                "N": -3,
+                "E": 4,
+                "S": -3,
+                "W": 4
+              }
+            },
+            "direction": {
+              "mean_delay_s": "worse",
+              "delay": {
+                "N": "better",
+                "E": "worse",
+                "S": "better",
+                "W": "worse"
+              },
+              "red": {
+                "N": "better",
+                "E": "worse",
+                "S": "better",
+                "W": "worse"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I11": {
+            "greens_s": {
+              "EW": 30,
+              "NS": 30
+            },
+            "cycle_s": 70,
+            "red_s": {
+              "N": 40,
+              "E": 40,
+              "S": 40,
+              "W": 40
+            },
+            "degree_of_saturation": {
+              "N": 0.1944,
+              "E": 0.3889,
+              "S": 0.1944,
+              "W": 0.3889
+            },
+            "delay_s": {
+              "N": 13.006,
+              "E": 14.919,
+              "S": 13.006,
+              "W": 14.919
+            },
+            "network_mean_delay_s": 14.281,
+            "mean_queue_veh_littles_law": {
+              "N": 0.542,
+              "E": 1.243,
+              "S": 0.542,
+              "W": 1.243
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 1.667,
+              "E": 3.333,
+              "S": 1.667,
+              "W": 3.333
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": -4.233,
+              "delay_s": {
+                "N": 5.696,
+                "E": -9.197,
+                "S": 5.696,
+                "W": -9.197
+              },
+              "red_s": {
+                "N": 10,
+                "E": -10,
+                "S": 10,
+                "W": -10
+              }
+            },
+            "direction": {
+              "mean_delay_s": "better",
+              "delay": {
+                "N": "worse",
+                "E": "better",
+                "S": "worse",
+                "W": "better"
+              },
+              "red": {
+                "N": "worse",
+                "E": "better",
+                "S": "worse",
+                "W": "better"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          },
+          "I12": {
+            "greens_s": {
+              "EW": 5,
+              "NS": 55
+            },
+            "cycle_s": 70,
+            "red_s": {
+              "N": 15,
+              "E": 65,
+              "S": 15,
+              "W": 65
+            },
+            "degree_of_saturation": {
+              "N": 0.1061,
+              "E": 2.3333,
+              "S": 0.1061,
+              "W": 2.3333
+            },
+            "delay_s": {
+              "N": 1.904,
+              "E": null,
+              "S": 1.904,
+              "W": null
+            },
+            "network_mean_delay_s": null,
+            "mean_queue_veh_littles_law": {
+              "N": 0.079,
+              "E": null,
+              "S": 0.079,
+              "W": null
+            },
+            "queue_at_end_of_red_veh": {
+              "N": 0.625,
+              "E": 5.417,
+              "S": 0.625,
+              "W": 5.417
+            },
+            "change_vs_baseline_s": {
+              "mean_delay_s": null,
+              "delay_s": {
+                "N": -5.406,
+                "E": null,
+                "S": -5.406,
+                "W": null
+              },
+              "red_s": {
+                "N": -15,
+                "E": 15,
+                "S": -15,
+                "W": 15
+              }
+            },
+            "direction": {
+              "mean_delay_s": "unknown (oversaturated: formula invalid)",
+              "delay": {
+                "N": "better",
+                "E": "unknown (oversaturated: formula invalid)",
+                "S": "better",
+                "W": "unknown (oversaturated: formula invalid)"
+              },
+              "red": {
+                "N": "better",
+                "E": "worse",
+                "S": "better",
+                "W": "worse"
+              }
+            },
+            "expected_eligible": false,
+            "pareto_improving": false
+          }
+        }
+      },
+      "pre_registered_predictions": {
+        "correction_reduces_mean_delay": true,
+        "correction_expected_pareto_improving": false,
+        "correction_expected_eligible": false,
+        "candidates_expected_eligible": [],
+        "null_expected": "rejected by the validator (same timing as the baseline); never simulated; never selected",
+        "null_expected_selected": false,
+        "mirror_expected": "worse: predicted mean delay change unknown: at least one approach oversaturated (degree of saturation 2.3333), so it is expected not to clear its demand (incomplete) and to be not selectable; never selected",
+        "mirror_expected_selected": false,
+        "definition": "expected eligible: predicted mean delay better and no approach's delay or red time predicted worse (beyond the dead-band). Pareto-improving: every approach's delay and red time predicted better"
+      },
+      "settings": {
+        "schema_version": "0.1.0",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "warmup_s": 300.0,
+        "horizon_s": 900.0,
+        "drain_s": 600.0,
+        "step_length_s": 1.0,
+        "time_to_teleport_s": 300.0
+      },
+      "rules": {
+        "rules_version": "0.3.1",
+        "calculation_version": "0.1.0",
+        "family_alpha": 0.05
+      },
+      "software": {
+        "python": "3.12.3",
+        "numpy": "2.5.4",
+        "eclipse-sumo": "1.28.0"
+      }
+    },
+    "file_sha256_before_simulation": "933e54086948b8d6df4f8fd31fd591c29a2e90e00c0234464a9a2f21af924540",
+    "simulation_started_at_utc": "2026-10-29T12:33:15.726081+00:00",
+    "file_sha256_after_run": "933e54086948b8d6df4f8fd31fd591c29a2e90e00c0234464a9a2f21af924540",
+    "unchanged_after_run": true,
+    "evidence_written_before_simulation": {
+      "file_hash_before_first_sumo_run_matches": true,
+      "written_not_after_simulation_start_by_clock": true
+    }
+  },
+  "baseline": {
+    "kind": "simulated (validity checks only; program and demand are assumed)",
+    "experiment_id": "baseline-synthetic-known-answer-20261029T123315Z",
+    "manifest_sha256": "617a7d272e38371024803269af02e3c8630e056e1c8f6a98a35897d221b78ea6",
+    "valid": true,
+    "reasons": [],
+    "reruns_identical": true,
+    "program_s": {
+      "p0_Ng_Er_Sg_Wr": 40.0,
+      "p1_Ny_Er_Sy_Wr": 3.0,
+      "p2_Nr_Er_Sr_Wr": 2.0,
+      "p3_Nr_Eg_Sr_Wg": 20.0,
+      "p4_Nr_Ey_Sr_Wy": 3.0,
+      "p5_Nr_Er_Sr_Wr": 2.0
+    },
+    "vehicles_per_seed": {
+      "1": 274,
+      "2": 330,
+      "3": 295,
+      "4": 303,
+      "5": 284,
+      "6": 313,
+      "7": 308,
+      "8": 285,
+      "9": 306,
+      "10": 284,
+      "11": 290,
+      "12": 300,
+      "13": 329,
+      "14": 310,
+      "15": 292,
+      "16": 267,
+      "17": 309,
+      "18": 310,
+      "19": 303,
+      "20": 267
+    },
+    "runs": [
+      {
+        "seed": 1,
+        "loaded": 274,
+        "arrived": 274,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 2,
+        "loaded": 330,
+        "arrived": 330,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 3,
+        "loaded": 295,
+        "arrived": 295,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 4,
+        "loaded": 303,
+        "arrived": 303,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 5,
+        "loaded": 284,
+        "arrived": 284,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 6,
+        "loaded": 313,
+        "arrived": 313,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 7,
+        "loaded": 308,
+        "arrived": 308,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 8,
+        "loaded": 285,
+        "arrived": 285,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 9,
+        "loaded": 306,
+        "arrived": 306,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 10,
+        "loaded": 284,
+        "arrived": 284,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 11,
+        "loaded": 290,
+        "arrived": 290,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 12,
+        "loaded": 300,
+        "arrived": 300,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 13,
+        "loaded": 329,
+        "arrived": 329,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 14,
+        "loaded": 310,
+        "arrived": 310,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 15,
+        "loaded": 292,
+        "arrived": 292,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 16,
+        "loaded": 267,
+        "arrived": 267,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 17,
+        "loaded": 309,
+        "arrived": 309,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 18,
+        "loaded": 310,
+        "arrived": 310,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 19,
+        "loaded": 303,
+        "arrived": 303,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      },
+      {
+        "seed": 20,
+        "loaded": 267,
+        "arrived": 267,
+        "teleports": 0,
+        "collisions": 0,
+        "valid": true
+      }
+    ]
+  },
+  "limitations": [
+    "SYNTHETIC known-answer test of the evaluation and selection stage (positive and negative controls). The junction, its demand, its signal plans and every candidate are written in code; no proposer runs (Muse is not exercised), so this is not a test of discovery. It says nothing about the real NGSIM Lankershim intersection 2 baseline, or about any real junction.",
+    "Report text written for counted demand does not apply to this designed demand: the clip length ('Counts come from a 3600 s clip; flow intervals are wide'), the note on stop-line discharge counts, and the Poisson 95% flow interval shown for each movement describe counting vehicles in a clip. Here the flows are designed, so those intervals carry no information.",
+    "The bundle's instruction to a model ('state expected effects in words, not numbers') does not apply: no model was asked; every candidate was written by code from the pre-registration.",
+    "The analytical Webster model is not calibrated against SUMO (saturation flow assumed); it only labels expected directions.",
+    "The small random perturbations change a deliberately bad plan by up to 5 s per green; they are not nulls. The exact null is rejected by the validator before simulation, so no simulated null exists.",
+    "In the baseline the queue was censored on arm E (vehicles held off at entry on seeds 6, 8, 17), arm S (vehicles held off at entry on seed 2), so those arms' queue claims are untestable for every candidate (lower bounds)."
+  ],
+  "validation": {
+    "kind": "assumed inputs, checked by the deterministic validator",
+    "outcomes": [
+      {
+        "intervention_id": "I1",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 40.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 17.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 67.0
+      },
+      {
+        "intervention_id": "I2",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 43.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 19.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 72.0
+      },
+      {
+        "intervention_id": "I3",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 45.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 25.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 80.0
+      },
+      {
+        "intervention_id": "I4",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 45.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 21.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 76.0
+      },
+      {
+        "intervention_id": "I5",
+        "role": "correction",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 20.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 40.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 70.0
+      },
+      {
+        "intervention_id": "I6",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 43.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 21.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 74.0
+      },
+      {
+        "intervention_id": "I7",
+        "role": "null",
+        "status": "rejected",
+        "reasons": [
+          "the timing is the same as the baseline"
+        ],
+        "phase_durations_s": null,
+        "cycle_s": null
+      },
+      {
+        "intervention_id": "I8",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 39.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 17.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 66.0
+      },
+      {
+        "intervention_id": "I9",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 37.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 24.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 71.0
+      },
+      {
+        "intervention_id": "I10",
+        "role": "control",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 44.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 17.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 71.0
+      },
+      {
+        "intervention_id": "I11",
+        "role": "halfway",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 30.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 30.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 70.0
+      },
+      {
+        "intervention_id": "I12",
+        "role": "mirror",
+        "status": "accepted",
+        "reasons": [],
+        "phase_durations_s": {
+          "p0_Ng_Er_Sg_Wr": 55.0,
+          "p1_Ny_Er_Sy_Wr": 3.0,
+          "p2_Nr_Er_Sr_Wr": 2.0,
+          "p3_Nr_Eg_Sr_Wg": 5.0,
+          "p4_Nr_Ey_Sr_Wy": 3.0,
+          "p5_Nr_Er_Sr_Wr": 2.0
+        },
+        "cycle_s": 70.0
+      }
+    ]
+  },
+  "eligibility": {
+    "kind": "simulated (classes from SUMO's own records)",
+    "candidates": [
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I1",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "8": {
+            "E": 2.0
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "8": {
+            "E": 4.1
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I3",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "8": {
+            "E": 4.1
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I4",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 3.4
+          },
+          "7": {
+            "W": 2.3
+          },
+          "8": {
+            "E": 2.0
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I5",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "8": {
+            "E": 4.1
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I6",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "7": {
+            "W": 2.3
+          },
+          "8": {
+            "E": 2.0
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I8",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "8": {
+            "E": 2.0
+          },
+          "17": {
+            "E": 6.4
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I9",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "8": {
+            "E": 4.1
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I10",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "7": {
+            "W": 2.3
+          },
+          "8": {
+            "E": 4.1
+          },
+          "16": {
+            "E": 2.5
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I11",
+        "status": "compared",
+        "run_classes": {
+          "1": "complete",
+          "2": "complete",
+          "3": "complete",
+          "4": "complete",
+          "5": "complete",
+          "6": "complete",
+          "7": "complete",
+          "8": "complete",
+          "9": "complete",
+          "10": "complete",
+          "11": "complete",
+          "12": "complete",
+          "13": "complete",
+          "14": "complete",
+          "15": "complete",
+          "16": "complete",
+          "17": "complete",
+          "18": "complete",
+          "19": "complete",
+          "20": "complete"
+        },
+        "not_inserted": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 0,
+          "19": 0,
+          "20": 0
+        },
+        "unfinished": [],
+        "reasons": [],
+        "censored_lanes": {},
+        "entry_blocked": {
+          "2": {
+            "S": 2.3
+          },
+          "6": {
+            "E": 1.0
+          },
+          "8": {
+            "E": 4.1
+          },
+          "17": {
+            "E": 4.0
+          }
+        }
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I12",
+        "status": "incomplete",
+        "run_classes": {
+          "1": "incomplete",
+          "2": "incomplete",
+          "3": "incomplete",
+          "4": "incomplete",
+          "5": "incomplete",
+          "6": "incomplete",
+          "7": "incomplete",
+          "8": "incomplete",
+          "9": "incomplete",
+          "10": "incomplete",
+          "11": "incomplete",
+          "12": "incomplete",
+          "13": "incomplete",
+          "14": "incomplete",
+          "15": "incomplete",
+          "16": "incomplete",
+          "17": "incomplete",
+          "18": "incomplete",
+          "19": "incomplete",
+          "20": "incomplete"
+        },
+        "not_inserted": {
+          "1": 26,
+          "2": 69,
+          "3": 48,
+          "4": 52,
+          "5": 39,
+          "6": 52,
+          "7": 44,
+          "8": 45,
+          "9": 51,
+          "10": 34,
+          "11": 37,
+          "12": 56,
+          "13": 83,
+          "14": 74,
+          "15": 38,
+          "16": 42,
+          "17": 54,
+          "18": 65,
+          "19": 62,
+          "20": 22
+        },
+        "unfinished": [
+          {
+            "schema_version": "0.1.0",
+            "seed": 1,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              637.92,
+              925.32
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 1,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              864.2,
+              1149.75
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 2,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              924.12,
+              1243.66
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 2,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 938.0,
+            "delay_lower_bound_range_s": [
+              972.02,
+              1223.27
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 3,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 938.0,
+            "delay_lower_bound_range_s": [
+              921.84,
+              1218.4
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 3,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              913.86,
+              1190.31
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 4,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              889.12,
+              1158.38
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 4,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              863.77,
+              1157.43
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 5,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              773.58,
+              1048.37
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 5,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 935.0,
+            "delay_lower_bound_range_s": [
+              922.34,
+              1249.56
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 6,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 935.0,
+            "delay_lower_bound_range_s": [
+              938.02,
+              1355.37
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 6,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              802.79,
+              1140.44
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 7,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              1051.94,
+              1273.32
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 7,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              815.83,
+              1184.02
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 8,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              858.65,
+              1161.13
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 8,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              919.77,
+              1255.9
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 9,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              779.95,
+              1067.92
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 9,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              989.44,
+              1191.25
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 10,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              958.17,
+              1185.5
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 10,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              658.71,
+              984.02
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 11,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              836.97,
+              1141.7
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 11,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              761.63,
+              1079.55
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 12,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              1011.35,
+              1246.73
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 12,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              874.03,
+              1106.37
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 13,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 935.0,
+            "delay_lower_bound_range_s": [
+              954.44,
+              1202.07
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 13,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              1078.56,
+              1238.72
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 14,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              1104.83,
+              1292.26
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 14,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              921.32,
+              1154.83
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 15,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              902.89,
+              1153.05
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 15,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              831.26,
+              1075.31
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 16,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              818.84,
+              1176.18
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 16,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              953.06,
+              1269.84
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 17,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              1108.53,
+              1303.49
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 17,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 935.0,
+            "delay_lower_bound_range_s": [
+              789.8,
+              1123.19
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 18,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              966.24,
+              1268.5
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 18,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              867.13,
+              1067.15
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 19,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              1018.91,
+              1187.63
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 19,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 936.0,
+            "delay_lower_bound_range_s": [
+              881.47,
+              1135.43
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 20,
+            "movement": "EW",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              890.87,
+              1126.89
+            ]
+          },
+          {
+            "schema_version": "0.1.0",
+            "seed": 20,
+            "movement": "WE",
+            "vehicles": 25,
+            "first_depart_s": 937.0,
+            "delay_lower_bound_range_s": [
+              734.48,
+              1009.2
+            ]
+          }
+        ],
+        "reasons": [
+          "seed 1: 50 vehicles still in the network (EW 25, WE 25) and 26 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 2: 50 vehicles still in the network (EW 25, WE 25) and 69 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 3: 50 vehicles still in the network (EW 25, WE 25) and 48 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 4: 50 vehicles still in the network (EW 25, WE 25) and 52 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 5: 50 vehicles still in the network (EW 25, WE 25) and 39 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 6: 50 vehicles still in the network (EW 25, WE 25) and 52 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 7: 50 vehicles still in the network (EW 25, WE 25) and 44 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 8: 50 vehicles still in the network (EW 25, WE 25) and 45 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 9: 50 vehicles still in the network (EW 25, WE 25) and 51 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 10: 50 vehicles still in the network (EW 25, WE 25) and 34 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 11: 50 vehicles still in the network (EW 25, WE 25) and 37 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 12: 50 vehicles still in the network (EW 25, WE 25) and 56 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 13: 50 vehicles still in the network (EW 25, WE 25) and 83 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 14: 50 vehicles still in the network (EW 25, WE 25) and 74 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 15: 50 vehicles still in the network (EW 25, WE 25) and 38 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 16: 50 vehicles still in the network (EW 25, WE 25) and 42 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 17: 50 vehicles still in the network (EW 25, WE 25) and 54 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 18: 50 vehicles still in the network (EW 25, WE 25) and 65 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 19: 50 vehicles still in the network (EW 25, WE 25) and 62 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+          "seed 20: 50 vehicles still in the network (EW 25, WE 25) and 22 not yet inserted at 1800 s, after a 600 s drain with no new demand"
+        ],
+        "censored_lanes": {
+          "1": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "2": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "3": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "4": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "5": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "6": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "7": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "8": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "9": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "10": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "11": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "12": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "13": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "14": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "15": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "16": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "17": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "18": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "19": [
+            "E_in_0",
+            "W_in_0"
+          ],
+          "20": [
+            "E_in_0",
+            "W_in_0"
+          ]
+        },
+        "entry_blocked": {
+          "1": {
+            "E": 4349.3,
+            "W": 13447.8
+          },
+          "2": {
+            "E": 15002.5,
+            "S": 2.3,
+            "W": 14043.4
+          },
+          "3": {
+            "E": 13686.8,
+            "W": 12881.5
+          },
+          "4": {
+            "E": 12321.1,
+            "W": 11182.9
+          },
+          "5": {
+            "E": 7549.6,
+            "W": 13922.9
+          },
+          "6": {
+            "E": 16955.8,
+            "W": 10286.0
+          },
+          "7": {
+            "E": 17402.8,
+            "W": 11383.6
+          },
+          "8": {
+            "E": 13314.3,
+            "W": 15287.8
+          },
+          "9": {
+            "E": 8105.5,
+            "W": 14217.0
+          },
+          "10": {
+            "E": 13982.4,
+            "W": 6210.4
+          },
+          "11": {
+            "E": 11764.7,
+            "W": 7904.3
+          },
+          "12": {
+            "E": 15577.8,
+            "W": 11507.8
+          },
+          "13": {
+            "E": 14115.0,
+            "W": 15872.8
+          },
+          "14": {
+            "E": 18051.7,
+            "W": 13207.8
+          },
+          "15": {
+            "E": 11926.0,
+            "W": 9540.6
+          },
+          "16": {
+            "E": 12416.6,
+            "W": 16384.5
+          },
+          "17": {
+            "E": 18682.1,
+            "W": 9377.8
+          },
+          "18": {
+            "E": 15661.4,
+            "W": 9226.7
+          },
+          "19": {
+            "E": 13858.2,
+            "W": 10996.9
+          },
+          "20": {
+            "E": 10895.6,
+            "W": 7612.6
+          }
+        }
+      }
+    ],
+    "baseline_censored_lanes": {},
+    "baseline_entry_blocked": {
+      "2": {
+        "S": 2.3
+      },
+      "6": {
+        "E": 1.0
+      },
+      "8": {
+        "E": 4.1
+      },
+      "17": {
+        "E": 4.0
+      }
+    }
+  },
+  "comparisons": {
+    "kind": "simulated (candidate - baseline, paired by seed; t interval)",
+    "rows": [
+      {
+        "candidate": "I1",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 23.48684,
+        "mean_difference": 2.313884,
+        "sd_difference": 2.242334,
+        "ci95_difference": [
+          1.264451,
+          3.363317
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 865.4,
+        "mean_difference": -27.2,
+        "sd_difference": 12.420696,
+        "ci95_difference": [
+          -33.012998,
+          -21.387002
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 20.286,
+        "mean_difference": 0.009,
+        "sd_difference": 8.774868,
+        "ci95_difference": [
+          -4.097718,
+          4.115718
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 71.6645,
+        "mean_difference": 5.621,
+        "sd_difference": 16.292822,
+        "ci95_difference": [
+          -2.004188,
+          13.246188
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 23.2755,
+        "mean_difference": -2.255,
+        "sd_difference": 13.997316,
+        "ci95_difference": [
+          -8.80587,
+          4.29587
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 66.407,
+        "mean_difference": 1.5005,
+        "sd_difference": 17.305905,
+        "ci95_difference": [
+          -6.59882,
+          9.59982
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.093094,
+        "mean_difference": -0.311148,
+        "sd_difference": 0.643639,
+        "ci95_difference": [
+          -0.612377,
+          -0.009919
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 14.384419,
+        "mean_difference": 2.489629,
+        "sd_difference": 3.26544,
+        "ci95_difference": [
+          0.961374,
+          4.017885
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 1.289599,
+        "mean_difference": -0.207671,
+        "sd_difference": 0.806534,
+        "ci95_difference": [
+          -0.585136,
+          0.169794
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I1",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 13.135871,
+        "mean_difference": 1.938558,
+        "sd_difference": 2.937771,
+        "ci95_difference": [
+          0.563654,
+          3.313461
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 22.954468,
+        "mean_difference": 1.781512,
+        "sd_difference": 1.88154,
+        "ci95_difference": [
+          0.900934,
+          2.66209
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 873.2,
+        "mean_difference": -19.4,
+        "sd_difference": 15.260544,
+        "ci95_difference": [
+          -26.542072,
+          -12.257928
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 22.9095,
+        "mean_difference": 2.6325,
+        "sd_difference": 9.501454,
+        "ci95_difference": [
+          -1.814266,
+          7.079266
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 70.1775,
+        "mean_difference": 4.134,
+        "sd_difference": 16.218594,
+        "ci95_difference": [
+          -3.456448,
+          11.724448
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 25.526,
+        "mean_difference": -0.0045,
+        "sd_difference": 11.152356,
+        "ci95_difference": [
+          -5.223903,
+          5.214903
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 67.5305,
+        "mean_difference": 2.624,
+        "sd_difference": 14.251082,
+        "ci95_difference": [
+          -4.045635,
+          9.293635
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.344281,
+        "mean_difference": -0.059961,
+        "sd_difference": 0.501123,
+        "ci95_difference": [
+          -0.294491,
+          0.174569
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 14.218623,
+        "mean_difference": 2.323834,
+        "sd_difference": 2.654232,
+        "ci95_difference": [
+          1.081629,
+          3.566038
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 1.285449,
+        "mean_difference": -0.211821,
+        "sd_difference": 0.700832,
+        "ci95_difference": [
+          -0.539816,
+          0.116175
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I2",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 12.968464,
+        "mean_difference": 1.771152,
+        "sd_difference": 2.247076,
+        "ci95_difference": [
+          0.7195,
+          2.822803
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 22.593936,
+        "mean_difference": 1.42098,
+        "sd_difference": 2.063856,
+        "ci95_difference": [
+          0.455077,
+          2.386883
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 905.6,
+        "mean_difference": 13.0,
+        "sd_difference": 10.848235,
+        "ci95_difference": [
+          7.922928,
+          18.077072
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 22.5015,
+        "mean_difference": 2.2245,
+        "sd_difference": 7.281602,
+        "ci95_difference": [
+          -1.183356,
+          5.632356
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 69.406,
+        "mean_difference": 3.3625,
+        "sd_difference": 14.501083,
+        "ci95_difference": [
+          -3.424138,
+          10.149138
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 26.2755,
+        "mean_difference": 0.745,
+        "sd_difference": 10.295029,
+        "ci95_difference": [
+          -4.073167,
+          5.563167
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 69.777,
+        "mean_difference": 4.8705,
+        "sd_difference": 13.155336,
+        "ci95_difference": [
+          -1.286316,
+          11.027316
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.844398,
+        "mean_difference": 0.440156,
+        "sd_difference": 0.721222,
+        "ci95_difference": [
+          0.102618,
+          0.777695
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 12.03003,
+        "mean_difference": 0.13524,
+        "sd_difference": 2.100153,
+        "ci95_difference": [
+          -0.84765,
+          1.118131
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 2.079787,
+        "mean_difference": 0.582517,
+        "sd_difference": 0.595985,
+        "ci95_difference": [
+          0.303591,
+          0.861443
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I3",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 11.589533,
+        "mean_difference": 0.392221,
+        "sd_difference": 1.897202,
+        "ci95_difference": [
+          -0.495687,
+          1.280128
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 22.494926,
+        "mean_difference": 1.32197,
+        "sd_difference": 1.801031,
+        "ci95_difference": [
+          0.479071,
+          2.164869
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 885.8,
+        "mean_difference": -6.8,
+        "sd_difference": 16.775923,
+        "ci95_difference": [
+          -14.651283,
+          1.051283
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 23.6485,
+        "mean_difference": 3.3715,
+        "sd_difference": 5.683446,
+        "ci95_difference": [
+          0.711596,
+          6.031404
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 67.508,
+        "mean_difference": 1.4645,
+        "sd_difference": 14.49443,
+        "ci95_difference": [
+          -5.319024,
+          8.248024
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 21.4045,
+        "mean_difference": -4.126,
+        "sd_difference": 12.037198,
+        "ci95_difference": [
+          -9.759517,
+          1.507517
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 64.8825,
+        "mean_difference": -0.024,
+        "sd_difference": 16.104905,
+        "ci95_difference": [
+          -7.561241,
+          7.513241
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.516013,
+        "mean_difference": 0.111771,
+        "sd_difference": 0.586808,
+        "ci95_difference": [
+          -0.162861,
+          0.386402
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 13.552175,
+        "mean_difference": 1.657386,
+        "sd_difference": 2.563024,
+        "ci95_difference": [
+          0.457867,
+          2.856904
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 1.308296,
+        "mean_difference": -0.188974,
+        "sd_difference": 0.623418,
+        "ci95_difference": [
+          -0.48074,
+          0.102791
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I4",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 12.866046,
+        "mean_difference": 1.668733,
+        "sd_difference": 2.14965,
+        "ci95_difference": [
+          0.662678,
+          2.674789
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 15.442816,
+        "mean_difference": -5.73014,
+        "sd_difference": 1.718651,
+        "ci95_difference": [
+          -6.534484,
+          -4.925796
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 895.2,
+        "mean_difference": 2.6,
+        "sd_difference": 9.560885,
+        "ci95_difference": [
+          -1.874581,
+          7.074581
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 32.2705,
+        "mean_difference": 11.9935,
+        "sd_difference": 8.892726,
+        "ci95_difference": [
+          7.831624,
+          16.155376
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 42.0295,
+        "mean_difference": -24.014,
+        "sd_difference": 12.783785,
+        "ci95_difference": [
+          -29.996927,
+          -18.031073
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 36.03,
+        "mean_difference": 10.4995,
+        "sd_difference": 8.912104,
+        "ci95_difference": [
+          6.328555,
+          14.670445
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 43.1585,
+        "mean_difference": -21.748,
+        "sd_difference": 9.082868,
+        "ci95_difference": [
+          -25.998864,
+          -17.497136
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 4.333385,
+        "mean_difference": 2.929143,
+        "sd_difference": 0.956385,
+        "ci95_difference": [
+          2.481546,
+          3.37674
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 3.655807,
+        "mean_difference": -8.238982,
+        "sd_difference": 2.134324,
+        "ci95_difference": [
+          -9.237865,
+          -7.240099
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 5.032057,
+        "mean_difference": 3.534787,
+        "sd_difference": 1.285872,
+        "ci95_difference": [
+          2.932987,
+          4.136586
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I5",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 3.365866,
+        "mean_difference": -7.831447,
+        "sd_difference": 1.810316,
+        "ci95_difference": [
+          -8.678691,
+          -6.984203
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 23.191525,
+        "mean_difference": 2.018569,
+        "sd_difference": 1.616052,
+        "ci95_difference": [
+          1.262242,
+          2.774896
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 890.4,
+        "mean_difference": -2.2,
+        "sd_difference": 8.751541,
+        "ci95_difference": [
+          -6.2958,
+          1.8958
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 22.1545,
+        "mean_difference": 1.8775,
+        "sd_difference": 8.381872,
+        "ci95_difference": [
+          -2.045292,
+          5.800292
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 71.6645,
+        "mean_difference": 5.621,
+        "sd_difference": 11.655373,
+        "ci95_difference": [
+          0.16618,
+          11.07582
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 24.3945,
+        "mean_difference": -1.136,
+        "sd_difference": 6.997404,
+        "ci95_difference": [
+          -4.410848,
+          2.138848
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 65.6585,
+        "mean_difference": 0.752,
+        "sd_difference": 14.167641,
+        "ci95_difference": [
+          -5.878584,
+          7.382584
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.451868,
+        "mean_difference": 0.047626,
+        "sd_difference": 0.615941,
+        "ci95_difference": [
+          -0.24064,
+          0.335892
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 13.108191,
+        "mean_difference": 1.213402,
+        "sd_difference": 2.052007,
+        "ci95_difference": [
+          0.253044,
+          2.173759
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 1.582748,
+        "mean_difference": 0.085478,
+        "sd_difference": 0.777162,
+        "ci95_difference": [
+          -0.278241,
+          0.449196
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I6",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 13.204531,
+        "mean_difference": 2.007218,
+        "sd_difference": 1.89846,
+        "ci95_difference": [
+          1.118722,
+          2.895715
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 22.609046,
+        "mean_difference": 1.43609,
+        "sd_difference": 2.078692,
+        "ci95_difference": [
+          0.463244,
+          2.408937
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 896.2,
+        "mean_difference": 3.6,
+        "sd_difference": 6.976653,
+        "ci95_difference": [
+          0.334864,
+          6.865136
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 21.4,
+        "mean_difference": 1.123,
+        "sd_difference": 8.524739,
+        "ci95_difference": [
+          -2.866655,
+          5.112655
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 70.533,
+        "mean_difference": 4.4895,
+        "sd_difference": 12.750781,
+        "ci95_difference": [
+          -1.477981,
+          10.456981
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 22.5275,
+        "mean_difference": -3.003,
+        "sd_difference": 13.633463,
+        "ci95_difference": [
+          -9.383584,
+          3.377584
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 63.0405,
+        "mean_difference": -1.866,
+        "sd_difference": 12.609836,
+        "ci95_difference": [
+          -7.767517,
+          4.035517
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.112885,
+        "mean_difference": -0.291357,
+        "sd_difference": 0.558442,
+        "ci95_difference": [
+          -0.552713,
+          -0.030001
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 13.410557,
+        "mean_difference": 1.515768,
+        "sd_difference": 2.370032,
+        "ci95_difference": [
+          0.406571,
+          2.624964
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 1.151835,
+        "mean_difference": -0.345435,
+        "sd_difference": 0.696837,
+        "ci95_difference": [
+          -0.671561,
+          -0.019309
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I8",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 12.085933,
+        "mean_difference": 0.888621,
+        "sd_difference": 2.874253,
+        "ci95_difference": [
+          -0.456556,
+          2.233797
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 19.048103,
+        "mean_difference": -2.124853,
+        "sd_difference": 1.355748,
+        "ci95_difference": [
+          -2.759355,
+          -1.490351
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 873.8,
+        "mean_difference": -18.8,
+        "sd_difference": 11.83038,
+        "ci95_difference": [
+          -24.336725,
+          -13.263275
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 22.908,
+        "mean_difference": 2.631,
+        "sd_difference": 7.407433,
+        "ci95_difference": [
+          -0.835745,
+          6.097745
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 62.294,
+        "mean_difference": -3.7495,
+        "sd_difference": 12.275996,
+        "ci95_difference": [
+          -9.494777,
+          1.995777
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 28.148,
+        "mean_difference": 2.6175,
+        "sd_difference": 7.001673,
+        "ci95_difference": [
+          -0.659346,
+          5.894346
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 57.7805,
+        "mean_difference": -7.126,
+        "sd_difference": 10.738471,
+        "ci95_difference": [
+          -12.151701,
+          -2.100299
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.860294,
+        "mean_difference": 0.456052,
+        "sd_difference": 0.485875,
+        "ci95_difference": [
+          0.228658,
+          0.683446
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 9.662711,
+        "mean_difference": -2.232078,
+        "sd_difference": 1.468028,
+        "ci95_difference": [
+          -2.919128,
+          -1.545028
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 1.979121,
+        "mean_difference": 0.481851,
+        "sd_difference": 0.326241,
+        "ci95_difference": [
+          0.329167,
+          0.634535
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I9",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 9.104457,
+        "mean_difference": -2.092856,
+        "sd_difference": 1.766737,
+        "ci95_difference": [
+          -2.919705,
+          -1.266007
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 25.249239,
+        "mean_difference": 4.076283,
+        "sd_difference": 3.144707,
+        "ci95_difference": [
+          2.604532,
+          5.548034
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 860.2,
+        "mean_difference": -32.4,
+        "sd_difference": 13.850328,
+        "ci95_difference": [
+          -38.882078,
+          -25.917922
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 18.7775,
+        "mean_difference": -1.4995,
+        "sd_difference": 6.241466,
+        "ci95_difference": [
+          -4.420563,
+          1.421563
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 74.651,
+        "mean_difference": 8.6075,
+        "sd_difference": 16.373343,
+        "ci95_difference": [
+          0.944628,
+          16.270372
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 23.643,
+        "mean_difference": -1.8875,
+        "sd_difference": 7.252835,
+        "ci95_difference": [
+          -5.281892,
+          1.506892
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 69.749,
+        "mean_difference": 4.8425,
+        "sd_difference": 16.823059,
+        "ci95_difference": [
+          -3.030844,
+          12.715844
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 1.094343,
+        "mean_difference": -0.309899,
+        "sd_difference": 0.409941,
+        "ci95_difference": [
+          -0.501755,
+          -0.118043
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 16.373422,
+        "mean_difference": 4.478633,
+        "sd_difference": 4.322231,
+        "ci95_difference": [
+          2.45579,
+          6.501476
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 1.119214,
+        "mean_difference": -0.378056,
+        "sd_difference": 0.470156,
+        "ci95_difference": [
+          -0.598093,
+          -0.158018
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I10",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 14.910869,
+        "mean_difference": 3.713556,
+        "sd_difference": 4.312899,
+        "ci95_difference": [
+          1.695081,
+          5.732032
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 21.172956,
+        "candidate_mean": 17.292698,
+        "mean_difference": -3.880258,
+        "sd_difference": 1.006804,
+        "ci95_difference": [
+          -4.351451,
+          -3.409065
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 895.0,
+        "mean_difference": 2.4,
+        "sd_difference": 8.146036,
+        "ci95_difference": [
+          -1.412418,
+          6.212418
+        ],
+        "verdict": "inconclusive",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 28.8565,
+        "mean_difference": 8.5795,
+        "sd_difference": 8.774422,
+        "ci95_difference": [
+          4.472991,
+          12.686009
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 53.286,
+        "mean_difference": -12.7575,
+        "sd_difference": 8.466595,
+        "ci95_difference": [
+          -16.719943,
+          -8.795057
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 30.4,
+        "mean_difference": 4.8695,
+        "sd_difference": 5.027431,
+        "ci95_difference": [
+          2.516617,
+          7.222383
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 53.2865,
+        "mean_difference": -11.62,
+        "sd_difference": 7.49904,
+        "ci95_difference": [
+          -15.129618,
+          -8.110382
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 2.768789,
+        "mean_difference": 1.364547,
+        "sd_difference": 0.773835,
+        "ci95_difference": [
+          1.002385,
+          1.726709
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 7.036163,
+        "mean_difference": -4.858627,
+        "sd_difference": 1.377603,
+        "ci95_difference": [
+          -5.503358,
+          -4.213896
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 3.006775,
+        "mean_difference": 1.509505,
+        "sd_difference": 0.667033,
+        "ci95_difference": [
+          1.197327,
+          1.821682
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I11",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 6.543108,
+        "mean_difference": -4.654205,
+        "sd_difference": 1.099628,
+        "ci95_difference": [
+          -5.168841,
+          -4.139569
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "n": 20,
+        "baseline_mean": 892.6,
+        "candidate_mean": 489.4,
+        "mean_difference": -403.2,
+        "sd_difference": 56.977927,
+        "ci95_difference": [
+          -429.866184,
+          -376.533816
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 20.277,
+        "candidate_mean": 10.225,
+        "mean_difference": -10.052,
+        "sd_difference": 7.748785,
+        "ci95_difference": [
+          -13.678501,
+          -6.425499
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 66.0435,
+        "candidate_mean": 188.999,
+        "mean_difference": 122.9555,
+        "sd_difference": 12.936973,
+        "ci95_difference": [
+          116.90088,
+          129.01012
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 25.5305,
+        "candidate_mean": 15.414,
+        "mean_difference": -10.1165,
+        "sd_difference": 6.565127,
+        "ci95_difference": [
+          -13.189039,
+          -7.043961
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 64.9065,
+        "candidate_mean": 189.465,
+        "mean_difference": 124.5585,
+        "sd_difference": 11.745086,
+        "ci95_difference": [
+          119.061694,
+          130.055306
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.404242,
+        "candidate_mean": 0.227064,
+        "mean_difference": -1.177178,
+        "sd_difference": 0.447556,
+        "ci95_difference": [
+          -1.386638,
+          -0.967718
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.89479,
+        "candidate_mean": 167.985586,
+        "mean_difference": 156.090796,
+        "sd_difference": 5.733014,
+        "ci95_difference": [
+          153.407693,
+          158.773899
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 1.49727,
+        "candidate_mean": 0.305806,
+        "mean_difference": -1.191464,
+        "sd_difference": 0.537835,
+        "ci95_difference": [
+          -1.443176,
+          -0.939752
+        ],
+        "verdict": "improves",
+        "shared_state_seeds": []
+      },
+      {
+        "candidate": "I12",
+        "metric": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "n": 20,
+        "baseline_mean": 11.197313,
+        "candidate_mean": 167.668107,
+        "mean_difference": 156.470794,
+        "sd_difference": 6.538355,
+        "ci95_difference": [
+          153.410785,
+          159.530804
+        ],
+        "verdict": "worsens",
+        "shared_state_seeds": []
+      }
+    ]
+  },
+  "holm": {
+    "kind": "simulated",
+    "family_alpha": 0.05,
+    "planned_tests": 55,
+    "tests": [
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I1",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": -4.614836,
+        "p_value": 0.00018901,
+        "holm_threshold": 0.0011363636363636365,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I1",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I1",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": 2.16192,
+        "p_value": 0.0435925,
+        "holm_threshold": 0.0015151515151515152,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I1",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I1",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": -2.951045,
+        "p_value": 0.00820295,
+        "holm_threshold": 0.001388888888888889,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I10",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": -5.796944,
+        "p_value": 1.3853e-05,
+        "holm_threshold": 0.0010638297872340426,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I10",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I10",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": 3.380756,
+        "p_value": 0.00313808,
+        "holm_threshold": 0.00125,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I10",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I10",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I11",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": 17.235769,
+        "p_value": 4.66869e-13,
+        "holm_threshold": 0.0009433962264150943,
+        "confirmed": true
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I11",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I11",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": -7.88597,
+        "p_value": 2.07291e-07,
+        "holm_threshold": 0.0010204081632653062,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I11",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I11",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": 18.928435,
+        "p_value": 8.64515e-14,
+        "holm_threshold": 0.000925925925925926,
+        "confirmed": true
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I12",
+        "metric_name": "mean_delay_s",
+        "n": 0,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I12",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I12",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": 11.762774,
+        "p_value": 3.62728e-10,
+        "holm_threshold": 0.001,
+        "confirmed": true
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I12",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I12",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": -4.234385,
+        "p_value": 0.000448709,
+        "holm_threshold": 0.0011627906976744186,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": 0.535106,
+        "p_value": 0.598784,
+        "holm_threshold": 0.001724137931034483,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": -3.524951,
+        "p_value": 0.00226344,
+        "holm_threshold": 0.0012195121951219512,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I3",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": -3.079098,
+        "p_value": 0.00617607,
+        "holm_threshold": 0.0013513513513513514,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I3",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I3",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": -2.729309,
+        "p_value": 0.0133187,
+        "holm_threshold": 0.0014285714285714286,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I3",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I3",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": -0.924554,
+        "p_value": 0.366792,
+        "holm_threshold": 0.0016129032258064516,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I4",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": -3.282581,
+        "p_value": 0.00391598,
+        "holm_threshold": 0.001282051282051282,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I4",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I4",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": -0.851821,
+        "p_value": 0.404923,
+        "holm_threshold": 0.0016666666666666668,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I4",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I4",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I5",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": 14.910511,
+        "p_value": 6.11466e-12,
+        "holm_threshold": 0.0009615384615384616,
+        "confirmed": true
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I5",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I5",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": -13.696917,
+        "p_value": 2.69177e-11,
+        "holm_threshold": 0.000980392156862745,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I5",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I5",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": 19.34651,
+        "p_value": 5.82067e-14,
+        "holm_threshold": 0.0009090909090909091,
+        "confirmed": true
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I6",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": -5.58603,
+        "p_value": 2.18487e-05,
+        "holm_threshold": 0.0010869565217391304,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I6",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I6",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": -0.345796,
+        "p_value": 0.733295,
+        "holm_threshold": 0.0017857142857142859,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I6",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I6",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I8",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": -3.08963,
+        "p_value": 0.00603292,
+        "holm_threshold": 0.0013157894736842105,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I8",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I8",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": 2.333256,
+        "p_value": 0.0307763,
+        "holm_threshold": 0.0014705882352941176,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I8",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I8",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": -1.382632,
+        "p_value": 0.182814,
+        "holm_threshold": 0.0015625,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I9",
+        "metric_name": "mean_delay_s",
+        "n": 20,
+        "t_statistic": 7.009143,
+        "p_value": 1.12647e-06,
+        "holm_threshold": 0.0010416666666666667,
+        "confirmed": true
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I9",
+        "metric_name": "mean_queue_m.E",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I9",
+        "metric_name": "mean_queue_m.N",
+        "n": 20,
+        "t_statistic": -4.197636,
+        "p_value": 0.000487941,
+        "holm_threshold": 0.0011904761904761906,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I9",
+        "metric_name": "mean_queue_m.S",
+        "n": 20,
+        "t_statistic": null,
+        "p_value": null,
+        "holm_threshold": null,
+        "confirmed": false
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I9",
+        "metric_name": "mean_queue_m.W",
+        "n": 20,
+        "t_statistic": 5.29764,
+        "p_value": 4.10718e-05,
+        "holm_threshold": 0.0011111111111111111,
+        "confirmed": true
+      }
+    ]
+  },
+  "report": {
+    "selected_intervention_id": null,
+    "selected_role": null,
+    "selection_reason": "None selected: I1 worsens mean_delay_s, throughput_veh_per_h, mean_queue_m.E, mean_queue_m.W; I2 worsens mean_delay_s, throughput_veh_per_h, mean_queue_m.E, mean_queue_m.W; I3 worsens mean_delay_s, mean_queue_m.N, mean_queue_m.S; I4 worsens mean_delay_s, max_queue_m.N, mean_queue_m.E, mean_queue_m.W; I5 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S; I6 worsens mean_delay_s, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; I8 worsens mean_delay_s, mean_queue_m.E; I9 worsens throughput_veh_per_h, mean_queue_m.N, mean_queue_m.S; I10 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; I11 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S; I12 is incomplete and worsens throughput_veh_per_h, max_queue_m.E, max_queue_m.W, mean_queue_m.E, mean_queue_m.W.",
+    "selection_recomputed_matches": true,
+    "recommended_intervention_id": null,
+    "recommendation": "Nothing is recommended: no candidate was selected.",
+    "trace_problems": [],
+    "report_json_sha256": "058552e4bc858fb047be09975c7923aef7f4fc9fa1e42744cd577e1e9d95355a",
+    "report_md_sha256": "78b6bdbd9064ed290198714ed0394de83ee705db0927701f429f33c822ad7162"
+  },
+  "outcome": {
+    "kind": "simulated results read from the decision report and evaluation; predictions are assumed (analytical, uncalibrated)",
+    "label": "SYNTHETIC known-answer test of the evaluation and selection stage (positive and negative controls). The junction, its demand, its signal plans and every candidate are written in code; no proposer runs (Muse is not exercised), so this is not a test of discovery. It says nothing about the real NGSIM Lankershim intersection 2 baseline, or about any real junction.",
+    "what_is_tested": "the evaluation and selection stage: the deterministic validator, paired SUMO runs, eligibility, paired comparisons, Holm's correction and the selection rule, on candidates whose answer is known in advance",
+    "what_is_not_tested": "discovery: no proposer runs and Muse is not exercised; the correction is the pre-registered answer itself, written by code",
+    "scenario": "reallocation",
+    "rules_version": "0.3.1",
+    "selected_intervention_id": null,
+    "selected_role": null,
+    "selection_reason": "None selected: I1 worsens mean_delay_s, throughput_veh_per_h, mean_queue_m.E, mean_queue_m.W; I2 worsens mean_delay_s, throughput_veh_per_h, mean_queue_m.E, mean_queue_m.W; I3 worsens mean_delay_s, mean_queue_m.N, mean_queue_m.S; I4 worsens mean_delay_s, max_queue_m.N, mean_queue_m.E, mean_queue_m.W; I5 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S; I6 worsens mean_delay_s, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; I8 worsens mean_delay_s, mean_queue_m.E; I9 worsens throughput_veh_per_h, mean_queue_m.N, mean_queue_m.S; I10 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W; I11 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S; I12 is incomplete and worsens throughput_veh_per_h, max_queue_m.E, max_queue_m.W, mean_queue_m.E, mean_queue_m.W.",
+    "known_correction": {
+      "intervention_id": "I5",
+      "greens_s": {
+        "EW": 40,
+        "NS": 20
+      },
+      "validator": "accepted",
+      "simulation_status": "compared",
+      "selected": false,
+      "eligible": false,
+      "why_not_selected": "I5 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S",
+      "holm_confirmed_improvements": [
+        "mean_delay_s",
+        "mean_queue_m.W"
+      ],
+      "worsens_uncorrected": [
+        "max_queue_m.N",
+        "max_queue_m.S",
+        "mean_queue_m.N",
+        "mean_queue_m.S"
+      ],
+      "uninformative": [],
+      "role": "positive control",
+      "expected_pareto_improving": false,
+      "expected_eligible": false
+    },
+    "halfway_plan": {
+      "intervention_id": "I11",
+      "greens_s": {
+        "EW": 30,
+        "NS": 30
+      },
+      "validator": "accepted",
+      "simulation_status": "compared",
+      "selected": false,
+      "eligible": false,
+      "why_not_selected": "I11 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S",
+      "holm_confirmed_improvements": [
+        "mean_delay_s",
+        "mean_queue_m.W"
+      ],
+      "worsens_uncorrected": [
+        "max_queue_m.N",
+        "max_queue_m.S",
+        "mean_queue_m.N",
+        "mean_queue_m.S"
+      ],
+      "uninformative": []
+    },
+    "null": {
+      "intervention_id": "I7",
+      "greens_s": {
+        "EW": 20,
+        "NS": 40
+      },
+      "validator": "rejected",
+      "simulation_status": "not_simulated",
+      "selected": false,
+      "eligible": false,
+      "why_not_selected": "rejected by the validator: the timing is the same as the baseline",
+      "holm_confirmed_improvements": [],
+      "worsens_uncorrected": [],
+      "uninformative": [],
+      "as_expected": true,
+      "role": "negative control",
+      "expected": "rejected by the validator (same timing as the baseline); never simulated; never selected"
+    },
+    "mirror": {
+      "intervention_id": "I12",
+      "greens_s": {
+        "EW": 5,
+        "NS": 55
+      },
+      "validator": "accepted",
+      "simulation_status": "incomplete",
+      "selected": false,
+      "eligible": false,
+      "why_not_selected": "I12 is incomplete and worsens throughput_veh_per_h, max_queue_m.E, max_queue_m.W, mean_queue_m.E, mean_queue_m.W",
+      "holm_confirmed_improvements": [
+        "mean_queue_m.N"
+      ],
+      "worsens_uncorrected": [
+        "throughput_veh_per_h",
+        "max_queue_m.E",
+        "max_queue_m.W",
+        "mean_queue_m.E",
+        "mean_queue_m.W"
+      ],
+      "uninformative": [],
+      "as_expected": true,
+      "role": "negative control",
+      "expected": "worse: predicted mean delay change unknown: at least one approach oversaturated (degree of saturation 2.3333), so it is expected not to clear its demand (incomplete) and to be not selectable; never selected"
+    },
+    "random_perturbations": {
+      "what_they_are": "a small perturbation (every green moved by an integer in [-5, +5] s) of the deliberately bad plan. Not a null: it may genuinely improve or worsen; its analytical prediction is recorded",
+      "count": 8,
+      "with_holm_confirmed_improvement": {
+        "count": 1,
+        "candidates": [
+          {
+            "intervention_id": "I9",
+            "metrics": [
+              "mean_delay_s",
+              "mean_queue_m.W"
+            ]
+          }
+        ],
+        "note": "not a false-positive count: these are perturbations of a deliberately bad plan, which may genuinely improve"
+      },
+      "worsening_any_metric": {
+        "count": 8,
+        "candidates": [
+          {
+            "intervention_id": "I1",
+            "metrics": [
+              "mean_delay_s",
+              "throughput_veh_per_h",
+              "mean_queue_m.E",
+              "mean_queue_m.W"
+            ]
+          },
+          {
+            "intervention_id": "I2",
+            "metrics": [
+              "mean_delay_s",
+              "throughput_veh_per_h",
+              "mean_queue_m.E",
+              "mean_queue_m.W"
+            ]
+          },
+          {
+            "intervention_id": "I3",
+            "metrics": [
+              "mean_delay_s",
+              "mean_queue_m.N",
+              "mean_queue_m.S"
+            ]
+          },
+          {
+            "intervention_id": "I4",
+            "metrics": [
+              "mean_delay_s",
+              "max_queue_m.N",
+              "mean_queue_m.E",
+              "mean_queue_m.W"
+            ]
+          },
+          {
+            "intervention_id": "I6",
+            "metrics": [
+              "mean_delay_s",
+              "max_queue_m.E",
+              "mean_queue_m.E",
+              "mean_queue_m.W"
+            ]
+          },
+          {
+            "intervention_id": "I8",
+            "metrics": [
+              "mean_delay_s",
+              "mean_queue_m.E"
+            ]
+          },
+          {
+            "intervention_id": "I9",
+            "metrics": [
+              "throughput_veh_per_h",
+              "mean_queue_m.N",
+              "mean_queue_m.S"
+            ]
+          },
+          {
+            "intervention_id": "I10",
+            "metrics": [
+              "mean_delay_s",
+              "throughput_veh_per_h",
+              "max_queue_m.E",
+              "mean_queue_m.E",
+              "mean_queue_m.W"
+            ]
+          }
+        ]
+      },
+      "not_compared": {},
+      "eligible": []
+    },
+    "false_positives": {
+      "definition": "a Holm-confirmed improvement (any candidate, any improvement metric) whose pre-registered analytical change for that metric has the opposite sign, i.e. is predicted > 0 (worse) by any amount. The reference is an uncalibrated Webster model (see model_agreement), so a count here is a disagreement with that model, not proof of a spurious result",
+      "count": 0,
+      "among_perturbations": 0,
+      "beyond_dead_band": 0,
+      "items": [],
+      "opportunities": 16,
+      "opportunities_definition": "tested improvement claims (p-value computed) whose predicted change is > 0: the claims that would be false positives if confirmed",
+      "rule_of_three_upper_bound_95": 0.1875,
+      "rule_of_three_note": "3/n when 0 of n; it treats the claims as independent, which they are not (they share the baseline runs)"
+    },
+    "model_agreement": {
+      "note": "verdicts against an uncalibrated Webster model (assumed saturation flow): agree = improves/better, worsens/worse or inconclusive/about unchanged",
+      "counts": {
+        "agree": 65,
+        "no_prediction": 13,
+        "predicted_change_not_resolved": 28,
+        "significant_where_about_unchanged_predicted": 3
+      },
+      "predicted_comparisons": 96,
+      "agreement_rate": 0.6771,
+      "sign_agreement_when_both_decided": 1.0,
+      "opposite_cases": [],
+      "confirmed_where_about_unchanged_predicted": {}
+    },
+    "censoring": {
+      "lane_filled": {},
+      "entry_blocked": {
+        "S": [
+          2
+        ],
+        "E": [
+          6,
+          8,
+          17
+        ]
+      },
+      "queue_claims_untestable_for_every_candidate": [
+        "mean_queue_m.E",
+        "max_queue_m.E",
+        "mean_queue_m.S",
+        "max_queue_m.S"
+      ],
+      "text": "In the baseline the queue was censored on arm E (vehicles held off at entry on seeds 6, 8, 17), arm S (vehicles held off at entry on seed 2), so those arms' queue claims are untestable for every candidate (lower bounds)."
+    },
+    "missed_improvements": {
+      "definition": "improvement metrics predicted better (beyond the 1 s dead-band) that Holm did not confirm, untestable ones included",
+      "by_candidate": {
+        "I1": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "I5": [
+          "mean_queue_m.E"
+        ],
+        "I8": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "I9": [
+          "mean_queue_m.E"
+        ],
+        "I10": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "I11": [
+          "mean_queue_m.E"
+        ],
+        "I12": [
+          "mean_queue_m.S"
+        ]
+      },
+      "uncorrected_improves_not_holm_confirmed": {
+        "I1": [
+          "mean_queue_m.N"
+        ],
+        "I3": [
+          "throughput_veh_per_h"
+        ],
+        "I5": [
+          "max_queue_m.E",
+          "max_queue_m.W",
+          "mean_queue_m.E"
+        ],
+        "I8": [
+          "throughput_veh_per_h",
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "I9": [
+          "max_queue_m.W",
+          "mean_queue_m.E"
+        ],
+        "I10": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "I11": [
+          "max_queue_m.E",
+          "max_queue_m.W",
+          "mean_queue_m.E"
+        ],
+        "I12": [
+          "max_queue_m.N",
+          "max_queue_m.S",
+          "mean_queue_m.S"
+        ]
+      }
+    },
+    "pre_registered_vs_observed": {
+      "expected_eligible": [],
+      "eligible": [],
+      "selected_was_expected_eligible": null,
+      "null_as_expected": true,
+      "mirror_as_expected": true
+    },
+    "per_candidate": {
+      "I1": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [
+          "mean_delay_s",
+          "throughput_veh_per_h",
+          "mean_queue_m.E",
+          "mean_queue_m.W"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "mean_queue_m.N"
+        ],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I1 worsens mean_delay_s, throughput_veh_per_h, mean_queue_m.E, mean_queue_m.W",
+        "selected": false,
+        "missed_predicted_improvements": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I2": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [
+          "mean_delay_s",
+          "throughput_veh_per_h",
+          "mean_queue_m.E",
+          "mean_queue_m.W"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I2 worsens mean_delay_s, throughput_veh_per_h, mean_queue_m.E, mean_queue_m.W",
+        "selected": false,
+        "missed_predicted_improvements": [],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I3": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [
+          "mean_delay_s",
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "throughput_veh_per_h"
+        ],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I3 worsens mean_delay_s, mean_queue_m.N, mean_queue_m.S",
+        "selected": false,
+        "missed_predicted_improvements": [],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I4": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [
+          "mean_delay_s",
+          "max_queue_m.N",
+          "mean_queue_m.E",
+          "mean_queue_m.W"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I4 worsens mean_delay_s, max_queue_m.N, mean_queue_m.E, mean_queue_m.W",
+        "selected": false,
+        "missed_predicted_improvements": [],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I5": {
+        "role": "correction",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [
+          "mean_delay_s",
+          "mean_queue_m.W"
+        ],
+        "worsens_uncorrected": [
+          "max_queue_m.N",
+          "max_queue_m.S",
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "max_queue_m.E",
+          "max_queue_m.W",
+          "mean_queue_m.E"
+        ],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I5 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S",
+        "selected": false,
+        "missed_predicted_improvements": [
+          "mean_queue_m.E"
+        ],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I6": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [
+          "mean_delay_s",
+          "max_queue_m.E",
+          "mean_queue_m.E",
+          "mean_queue_m.W"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I6 worsens mean_delay_s, max_queue_m.E, mean_queue_m.E, mean_queue_m.W",
+        "selected": false,
+        "missed_predicted_improvements": [],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I7": {
+        "role": "null",
+        "validator": "rejected",
+        "simulation_status": "not_simulated",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "rejected by the validator: the timing is the same as the baseline",
+        "selected": false,
+        "missed_predicted_improvements": [],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I8": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [
+          "mean_delay_s",
+          "mean_queue_m.E"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "throughput_veh_per_h",
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I8 worsens mean_delay_s, mean_queue_m.E",
+        "selected": false,
+        "missed_predicted_improvements": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I9": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [
+          "mean_delay_s",
+          "mean_queue_m.W"
+        ],
+        "worsens_uncorrected": [
+          "throughput_veh_per_h",
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "max_queue_m.W",
+          "mean_queue_m.E"
+        ],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I9 worsens throughput_veh_per_h, mean_queue_m.N, mean_queue_m.S",
+        "selected": false,
+        "missed_predicted_improvements": [
+          "mean_queue_m.E"
+        ],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I10": {
+        "role": "control",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [],
+        "worsens_uncorrected": [
+          "mean_delay_s",
+          "throughput_veh_per_h",
+          "max_queue_m.E",
+          "mean_queue_m.E",
+          "mean_queue_m.W"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I10 worsens mean_delay_s, throughput_veh_per_h, max_queue_m.E, mean_queue_m.E, mean_queue_m.W",
+        "selected": false,
+        "missed_predicted_improvements": [
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I11": {
+        "role": "halfway",
+        "validator": "accepted",
+        "simulation_status": "compared",
+        "holm_confirmed_improvements": [
+          "mean_delay_s",
+          "mean_queue_m.W"
+        ],
+        "worsens_uncorrected": [
+          "max_queue_m.N",
+          "max_queue_m.S",
+          "mean_queue_m.N",
+          "mean_queue_m.S"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "max_queue_m.E",
+          "max_queue_m.W",
+          "mean_queue_m.E"
+        ],
+        "held_off_arms": [],
+        "eligible": false,
+        "not_eligible_because": "I11 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S",
+        "selected": false,
+        "missed_predicted_improvements": [
+          "mean_queue_m.E"
+        ],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      },
+      "I12": {
+        "role": "mirror",
+        "validator": "accepted",
+        "simulation_status": "incomplete",
+        "holm_confirmed_improvements": [
+          "mean_queue_m.N"
+        ],
+        "worsens_uncorrected": [
+          "throughput_veh_per_h",
+          "max_queue_m.E",
+          "max_queue_m.W",
+          "mean_queue_m.E",
+          "mean_queue_m.W"
+        ],
+        "uninformative": [],
+        "improves_uncorrected_not_holm_confirmed": [
+          "max_queue_m.N",
+          "max_queue_m.S",
+          "mean_queue_m.S"
+        ],
+        "held_off_arms": [
+          "E",
+          "W"
+        ],
+        "eligible": false,
+        "not_eligible_because": "I12 is incomplete and worsens throughput_veh_per_h, max_queue_m.E, max_queue_m.W, mean_queue_m.E, mean_queue_m.W",
+        "selected": false,
+        "missed_predicted_improvements": [
+          "mean_queue_m.S"
+        ],
+        "confirmed_contradicting_prediction": [],
+        "confirmed_where_about_unchanged_predicted": []
+      }
+    },
+    "conclusion": "[reallocation] Known-answer test of the evaluation and selection stage (no proposer runs; Muse is not exercised). Positive control: the pre-registered correction I5 (greens {'EW': 40, 'NS': 20} s) was NOT selected (I5 worsens max_queue_m.N, max_queue_m.S, mean_queue_m.N, mean_queue_m.S); its Holm-confirmed improvements: mean_delay_s, mean_queue_m.W. Negative controls: the exact null I7 was rejected by the validator before simulation and not selected; the mirror I12 was simulated (incomplete) and not selected. Of 8 small perturbations of the bad plan (not nulls), 1 had a Holm-confirmed improvement and 8 worsened at least one metric. False positives (a confirmed improvement contradicting the pre-registered direction of an uncalibrated Webster model, which agreed with 65 of 96 predicted comparisons, 68%, and was opposite in 0): 0 of 16 confirmable claims predicted worse (rule-of-three 95% upper bound 0.19). In the baseline the queue was censored on arm E (vehicles held off at entry on seeds 6, 8, 17), arm S (vehicles held off at entry on seed 2), so those arms' queue claims are untestable for every candidate (lower bounds). Selected: none. SYNTHETIC known-answer test of the evaluation and selection stage (positive and negative controls). The junction, its demand, its signal plans and every candidate are written in code; no proposer runs (Muse is not exercised), so this is not a test of discovery. It says nothing about the real NGSIM Lankershim intersection 2 baseline, or about any real junction."
+  },
+  "runtime": {
+    "wall_clock_s": 33.7
+  }
+}

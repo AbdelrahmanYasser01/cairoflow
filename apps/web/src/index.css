@@ -1,0 +1,259 @@
+@import "tailwindcss";
+@import "./design/tokens.css";
+@import "./design/theme.css";
+
+@layer base {
+  html {
+    background: var(--asphalt-0);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    color: var(--paint-1);
+    background: var(--asphalt-0);
+    font-family: var(--font-text);
+    font-size: var(--text-body);
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--rule-2) transparent;
+  }
+
+  ::selection {
+    color: var(--amber-ink);
+    background: var(--amber);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 1ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* The one column grid. Every page aligns to this and nothing else. */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+
+  /* Page frame inside the shell. */
+  .page {
+    padding-inline: var(--margin);
+  }
+
+  /* The scroll container of every page. A focused control always clears the bottom bar, and the
+     gutter keeps the right edge still between routes that scroll and routes that do not. */
+  .shell-main {
+    scroll-padding-top: var(--sp-4);
+    scroll-padding-bottom: calc(var(--bottom-bar) + var(--sp-4));
+  }
+
+  /* Skip to content and a route change both land here, so a keyboard user sees where they are. */
+  .shell-main:focus-visible {
+    outline: none;
+  }
+
+  html[data-keys] .shell-main:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: -2px;
+  }
+
+  @media (min-width: 64rem) {
+    .shell-main {
+      scroll-padding-bottom: var(--sp-6);
+      scrollbar-gutter: stable;
+    }
+  }
+
+  /* Data set in mono, the instrument voice. */
+  .mono {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    line-height: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  /* A table of record: rules and alignment, no bands, no zebra. */
+  .ledger {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: -0.01em;
+  }
+
+  .ledger th {
+    padding: 0 var(--sp-4) var(--sp-2) 0;
+    color: var(--paint-3);
+    font-weight: 400;
+    text-align: left;
+    border-bottom: 1px solid var(--rule-2);
+  }
+
+  .ledger td {
+    padding: var(--sp-3) var(--sp-4) var(--sp-3) 0;
+    border-bottom: 1px solid var(--rule-1);
+    vertical-align: baseline;
+  }
+
+  .ledger th:last-child,
+  .ledger td:last-child {
+    padding-right: 0;
+  }
+
+  /* A ledger on the page grid: its columns are grid columns, so they line up with everything
+     above and below it. Rows carry the rule, so it runs unbroken across the column gaps. */
+  .ledger-grid {
+    display: grid;
+    width: 100%;
+    margin: 0;
+    column-gap: var(--gutter);
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    line-height: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .ledger-grid thead,
+  .ledger-grid tbody,
+  .ledger-grid tr {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
+
+  .ledger-grid tr {
+    align-items: baseline;
+    padding-block: var(--sp-3);
+    border-bottom: 1px solid var(--rule-1);
+  }
+
+  .ledger-grid thead tr {
+    padding-block: 0 var(--sp-2);
+    border-bottom-color: var(--rule-2);
+  }
+
+  .ledger-grid th {
+    min-width: 0;
+    padding: 0;
+    color: var(--paint-3);
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .ledger-grid td {
+    min-width: 0;
+    padding: 0;
+    color: var(--paint-2);
+  }
+
+  .ledger-grid tbody th {
+    color: var(--paint-1);
+  }
+
+  .ledger-grid .is-end {
+    text-align: right;
+  }
+
+  /* Below 640px a ledger becomes one record per row. No field is dropped. */
+  @media (max-width: 39.99rem) {
+    .ledger-grid,
+    .ledger-grid tbody,
+    .ledger-grid tr {
+      display: block;
+    }
+
+    .ledger-grid thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+
+    .ledger-grid tbody th,
+    .ledger-grid td {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      padding-block: 2px;
+      text-align: right;
+    }
+
+    .ledger-grid tbody th {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .ledger-grid td::before {
+      content: attr(data-label);
+      color: var(--paint-3);
+      text-align: left;
+    }
+
+    .ledger-grid td.is-stack {
+      display: block;
+      text-align: left;
+    }
+
+    .ledger-grid td.is-stack::before {
+      display: block;
+      margin-bottom: 2px;
+    }
+  }
+
+  /* A value that is deliberately not there. */
+  .absent {
+    color: var(--paint-3);
+  }
+}

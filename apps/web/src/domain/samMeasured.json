@@ -1,0 +1,24 @@
+{
+  "format": "sam_measured_extract/1",
+  "analysis_id": "cv-hero-sam",
+  "parent_analysis": "cv-hero-dev",
+  "label": "agreement with a correlated reference on dev frames, not accuracy",
+  "measured_record": {
+    "path": "experiments/records/sam-refine-20261104T125401Z/measured.json",
+    "sha256": "94fe72f555961ef6b3825769f7055701333545c954ee577cda4c8be78f4e9653"
+  },
+  "run_record": {
+    "path": "experiments/records/sam-refine-20261104T125239Z/run.json",
+    "sha256": "b3e26054da09885f5c30682dd92268297fd0f35c59303e53b6340ae6b52ddee7"
+  },
+  "window_source_s": [970.0, 1000.0],
+  "across_road_error_m": {
+    "interpolated_position": 0.487,
+    "sam_position": 0.339
+  },
+  "recall": {
+    "with_sam_boxes": 0.8493,
+    "same_rows_interpolated": 0.8497
+  },
+  "long_vehicles_in_window": 2
+}

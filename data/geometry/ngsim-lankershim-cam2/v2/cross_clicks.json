@@ -1,0 +1,59 @@
+{
+  "reader": "Claude (Opus 5.5), visual reading in the session of 2026-10-28",
+  "date": "2026-10-28",
+  "method": "Lead vehicle per cross-street approach lane read on 5x gridded crops of synced source frames chosen by scripts/checkpoints_ngsim_cam2.py select-cross (NGSIM has a stopped vehicle near the limit line). Front = downstream end of the body (west arm: bottom end; east arm: top end), about +-2 px; low-contrast or ambiguous vehicles skipped. Paired with NGSIM by scripts/checkpoints_ngsim_cam2.py, which requires the NGSIM vehicle to be stopped.",
+  "source_video_sha256": "04ef7435be3a107e7321900c384bb1ee7703ce753a122559cd2937fef341f530",
+  "frames": [
+    {"frame": 1817, "arm": "W", "lanes": {
+      "W_EB_kerb": {"front_px": [214, 63.6]},
+      "W_EB_mid": {"front_px": [229, 66.5]},
+      "W_EB_inner": {"front_px": [248, 54]}}},
+    {"frame": 3197, "arm": "W", "lanes": {
+      "W_EB_inner": {"front_px": [248, 53.5]}}},
+    {"frame": 5127, "arm": "W", "lanes": {
+      "W_EB_kerb": {"front_px": [214.5, 62]},
+      "W_EB_inner": {"front_px": [249, 40], "note": "well back from the line"}}},
+    {"frame": 6217, "arm": "W", "lanes": {
+      "W_EB_kerb": {"front_px": [213.5, 54]},
+      "W_EB_inner": {"front_px": [249, 54]}}},
+    {"frame": 9207, "arm": "W", "lanes": {
+      "W_EB_kerb": {"front_px": [214, 60]}}},
+    {"frame": 3597, "arm": "E", "lanes": {
+      "E_WB_right": {"front_px": [326, 279.5]},
+      "E_WB_through": {"front_px": [307, 288], "note": "dark car, low contrast"}}},
+    {"frame": 4207, "arm": "E", "lanes": {
+      "E_WB_right": {"front_px": [328, 288]},
+      "E_WB_through": {"front_px": [306.5, 285]}}},
+    {"frame": 5287, "arm": "E", "lanes": {
+      "E_WB_through": {"front_px": [306, 287]}}},
+    {"frame": 7007, "arm": "E", "lanes": {
+      "E_WB_through": {"front_px": [309, 280]},
+      "E_WB_right": {"front_px": [326.5, 274], "note": "over the zebra edge"}}},
+    {"frame": 8557, "arm": "E", "lanes": {
+      "E_WB_left": {"front_px": [288, 290]},
+      "E_WB_through": {"front_px": [310.5, 298]}}},
+    {"frame": 1787, "arm": "E", "lanes": {
+      "E_WB_right": {"front_px": [326, 280]}}},
+    {"frame": 2767, "arm": "E", "lanes": {
+      "E_WB_through": {"front_px": [309, 295], "note": "light grey car, moderate contrast"}}},
+    {"frame": 5887, "arm": "E", "lanes": {
+      "E_WB_through": {"front_px": [306, 286], "note": "dark car, low contrast"}}},
+    {"frame": 7707, "arm": "E", "lanes": {
+      "E_WB_left": {"front_px": [288, 293]}}},
+    {"frame": 9157, "arm": "E", "lanes": {
+      "E_WB_left": {"front_px": [288.5, 291], "note": "looks like the 8557 car, 60 s later"},
+      "E_WB_through": {"front_px": [310.5, 299], "note": "looks like the 8557 car, 60 s later"}}},
+    {"frame": 3897, "arm": "E", "lanes": {
+      "E_WB_right": {"front_px": [327, 298]},
+      "E_WB_through": {"front_px": [306, 287], "note": "dark car, low contrast; maybe the 3597 car"}}},
+    {"frame": 4957, "arm": "E", "lanes": {
+      "E_WB_right": {"front_px": [326.5, 279]}}},
+    {"frame": 6187, "arm": "E", "lanes": {
+      "E_WB_through": {"front_px": [306, 286], "note": "dark car, low contrast; maybe the 5887 car"}}},
+    {"frame": 6617, "arm": "E", "lanes": {
+      "E_WB_through": {"front_px": [309, 287]}}},
+    {"frame": 8167, "arm": "E", "lanes": {
+      "E_WB_left": {"front_px": [288.5, 292]},
+      "E_WB_right": {"front_px": [326, 278], "note": "dark car, low contrast"}}}
+  ]
+}

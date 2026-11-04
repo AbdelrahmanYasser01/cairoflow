@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Node
+node_modules/
+*.tsbuildinfo
+
+# Secrets: the committed template is .env.example
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Local state the app and the scripts rebuild
+var/
+data/raw/
+data/processed/
+data/analyses/
+data/uploads/
+data/demo/ngsim-int2-worldview.json
+experiments/runs/
+
+# Model caches: only the Muse replies the demo replays are kept
+cache/*
+!cache/muse/
+cache/muse/*
+!cache/muse/NOTICE.md
+!cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.json
+!cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.r2.json
+!cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.r3.json
+!cache/muse/ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad.r4.json
+
+# Footage stays out of this repository; see data/sample/LICENSE.md
+*.mp4
+*.m4v
+*.mov
+*.avi
+*.mkv
+*.webm
+*.mpg
+*.mpeg
+
+# Model weights
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.safetensors

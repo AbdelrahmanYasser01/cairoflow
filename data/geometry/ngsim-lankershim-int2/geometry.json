@@ -1,0 +1,886 @@
+{
+  "schema_version": "0.1.0",
+  "geometry_id": "ngsim-int2-c74ef7cc6d92",
+  "clip_id": "ngsim-lankershim-int2-0830-0845",
+  "calibration_spec_sha256": null,
+  "ground_source_sha256": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e",
+  "ground_frame": "local_enu_junction_m",
+  "drives_on": "right",
+  "lanes": [
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N11",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          1.005,
+          20.472
+        ],
+        [
+          1.005,
+          106.599
+        ],
+        [
+          -2.054,
+          106.599
+        ],
+        [
+          -2.054,
+          20.472
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 11: median 0.52 m right of the N arm axis over 17348 rows at 20.5-50.5 m; edges midway to neighbours; turns: observed use left 51"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N12",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -2.054,
+          20.472
+        ],
+        [
+          -2.054,
+          106.599
+        ],
+        [
+          -5.161,
+          106.599
+        ],
+        [
+          -5.161,
+          20.472
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 12: median 3.58 m right of the N arm axis over 27373 rows at 20.5-50.5 m; edges midway to neighbours; turns: observed use left 82"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N1",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -5.161,
+          20.472
+        ],
+        [
+          -5.161,
+          106.599
+        ],
+        [
+          -8.182,
+          106.599
+        ],
+        [
+          -8.182,
+          20.472
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 1: median 6.74 m right of the N arm axis over 12463 rows at 20.5-50.5 m; edges midway to neighbours; turns: observed use through 102"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N2",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -8.182,
+          20.472
+        ],
+        [
+          -8.182,
+          106.599
+        ],
+        [
+          -11.152,
+          106.599
+        ],
+        [
+          -11.152,
+          20.472
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 2: median 9.63 m right of the N arm axis over 9334 rows at 20.5-50.5 m; edges midway to neighbours; turns: observed use through 103"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N3",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -11.152,
+          20.472
+        ],
+        [
+          -11.152,
+          106.599
+        ],
+        [
+          -14.136,
+          106.599
+        ],
+        [
+          -14.136,
+          20.472
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 3: median 12.68 m right of the N arm axis over 10245 rows at 20.5-50.5 m; edges midway to neighbours; turns: observed use through 118, right 1"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N31",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -14.136,
+          20.472
+        ],
+        [
+          -14.136,
+          106.599
+        ],
+        [
+          -17.053,
+          106.599
+        ],
+        [
+          -17.053,
+          20.472
+        ]
+      ],
+      "allowed_turns": [
+        "right"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 31: median 15.59 m right of the N arm axis over 693 rows at 20.5-50.5 m; edges midway to neighbours; turns: observed use right 27"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Nx1",
+      "arm": "N",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          1.098,
+          25.0
+        ],
+        [
+          1.098,
+          55.0
+        ],
+        [
+          4.017,
+          55.0
+        ],
+        [
+          4.017,
+          25.0
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 1: median 2.56 m left of inbound travel over 1406 rows at 25.0-55.0 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Nx2",
+      "arm": "N",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          4.017,
+          25.0
+        ],
+        [
+          4.017,
+          55.0
+        ],
+        [
+          6.979,
+          55.0
+        ],
+        [
+          6.979,
+          25.0
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 2: median 5.48 m left of inbound travel over 2915 rows at 25.0-55.0 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Nx3",
+      "arm": "N",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          6.979,
+          25.0
+        ],
+        [
+          6.979,
+          55.0
+        ],
+        [
+          9.986,
+          55.0
+        ],
+        [
+          9.986,
+          25.0
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 3: median 8.48 m left of inbound travel over 3570 rows at 25.0-55.0 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E1",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          13.368,
+          0.966
+        ],
+        [
+          24.943,
+          0.966
+        ],
+        [
+          24.943,
+          4.179
+        ],
+        [
+          13.368,
+          4.179
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 1: median 2.57 m right of the E arm axis over 1322 rows at 13.4-24.9 m; edges midway to neighbours; turns: observed use left 5"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E2",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          13.368,
+          4.179
+        ],
+        [
+          24.943,
+          4.179
+        ],
+        [
+          24.943,
+          7.505
+        ],
+        [
+          13.368,
+          7.505
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 2: median 5.79 m right of the E arm axis over 2639 rows at 13.4-24.9 m; edges midway to neighbours; turns: observed use left 1, through 8"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E3",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          13.368,
+          7.505
+        ],
+        [
+          24.943,
+          7.505
+        ],
+        [
+          24.943,
+          10.941
+        ],
+        [
+          13.368,
+          10.941
+        ]
+      ],
+      "allowed_turns": [
+        "right"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 3: median 9.22 m right of the E arm axis over 1626 rows at 13.4-24.9 m; edges midway to neighbours; turns: observed use right 37"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Ex1",
+      "arm": "E",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          19.648,
+          -2.909
+        ],
+        [
+          29.2,
+          -2.909
+        ],
+        [
+          29.2,
+          -6.636
+        ],
+        [
+          19.648,
+          -6.636
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 1: median 4.77 m left of inbound travel over 385 rows at 19.6-29.2 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Ex2",
+      "arm": "E",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          19.648,
+          -6.636
+        ],
+        [
+          29.2,
+          -6.636
+        ],
+        [
+          29.2,
+          -10.351
+        ],
+        [
+          19.648,
+          -10.351
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 2: median 8.50 m left of inbound travel over 610 rows at 19.6-29.2 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Ex3",
+      "arm": "E",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          19.648,
+          -10.351
+        ],
+        [
+          29.2,
+          -10.351
+        ],
+        [
+          29.2,
+          -14.055
+        ],
+        [
+          19.648,
+          -14.055
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 3: median 12.20 m left of inbound travel over 890 rows at 19.6-29.2 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S11",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -1.007,
+          -20.226
+        ],
+        [
+          -1.007,
+          -101.179
+        ],
+        [
+          1.631,
+          -101.179
+        ],
+        [
+          1.631,
+          -20.226
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 11: median 0.31 m right of the S arm axis over 1601 rows at 20.2-50.2 m; edges midway to neighbours; turns: observed use left 15, through 1"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S1",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          1.631,
+          -20.226
+        ],
+        [
+          1.631,
+          -101.179
+        ],
+        [
+          4.491,
+          -101.179
+        ],
+        [
+          4.491,
+          -20.226
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 1: median 2.95 m right of the S arm axis over 11636 rows at 20.2-50.2 m; edges midway to neighbours; turns: observed use through 56"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S2",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          4.491,
+          -20.226
+        ],
+        [
+          4.491,
+          -101.179
+        ],
+        [
+          7.586,
+          -101.179
+        ],
+        [
+          7.586,
+          -20.226
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 2: median 6.03 m right of the S arm axis over 18072 rows at 20.2-50.2 m; edges midway to neighbours; turns: observed use through 86"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S3",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          7.586,
+          -20.226
+        ],
+        [
+          7.586,
+          -101.179
+        ],
+        [
+          10.863,
+          -101.179
+        ],
+        [
+          10.863,
+          -20.226
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 3: median 9.14 m right of the S arm axis over 23630 rows at 20.2-50.2 m; edges midway to neighbours; turns: observed use through 107, right 1"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S4",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          10.863,
+          -20.226
+        ],
+        [
+          10.863,
+          -101.179
+        ],
+        [
+          14.312,
+          -101.179
+        ],
+        [
+          14.312,
+          -20.226
+        ]
+      ],
+      "allowed_turns": [
+        "right"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 4: median 12.59 m right of the S arm axis over 5498 rows at 20.2-50.2 m; edges midway to neighbours; turns: observed use right 81"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Sx1",
+      "arm": "S",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          -3.487,
+          -25.0
+        ],
+        [
+          -3.487,
+          -55.0
+        ],
+        [
+          -6.916,
+          -55.0
+        ],
+        [
+          -6.916,
+          -25.0
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 1: median 5.20 m left of inbound travel over 3122 rows at 25.0-55.0 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Sx2",
+      "arm": "S",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          -6.916,
+          -25.0
+        ],
+        [
+          -6.916,
+          -55.0
+        ],
+        [
+          -10.123,
+          -55.0
+        ],
+        [
+          -10.123,
+          -25.0
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 2: median 8.63 m left of inbound travel over 2389 rows at 25.0-55.0 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "Sx3",
+      "arm": "S",
+      "direction": "exit",
+      "polygon_m": [
+        [
+          -10.123,
+          -25.0
+        ],
+        [
+          -10.123,
+          -55.0
+        ],
+        [
+          -13.108,
+          -55.0
+        ],
+        [
+          -13.108,
+          -25.0
+        ]
+      ],
+      "allowed_turns": [],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 3: median 11.62 m left of inbound travel over 2859 rows at 25.0-55.0 m"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W1",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -16.521,
+          0.957
+        ],
+        [
+          -26.196,
+          0.957
+        ],
+        [
+          -26.196,
+          -2.475
+        ],
+        [
+          -16.521,
+          -2.475
+        ]
+      ],
+      "allowed_turns": [
+        "left"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 1: median 0.76 m right of the W arm axis over 811 rows at 16.5-26.2 m; edges midway to neighbours; turns: observed use left 27"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W2",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -16.521,
+          -2.475
+        ],
+        [
+          -26.196,
+          -2.475
+        ],
+        [
+          -26.196,
+          -5.768
+        ],
+        [
+          -16.521,
+          -5.768
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 2: median 4.19 m right of the W arm axis over 262 rows at 16.5-26.2 m; edges midway to neighbours; turns: observed use through 9"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W3",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -16.521,
+          -5.768
+        ],
+        [
+          -26.196,
+          -5.768
+        ],
+        [
+          -26.196,
+          -8.92
+        ],
+        [
+          -16.521,
+          -8.92
+        ]
+      ],
+      "allowed_turns": [
+        "through",
+        "right"
+      ],
+      "provenance": "approximated",
+      "source": "NGSIM lane_id 3: median 7.34 m right of the W arm axis over 176 rows at 16.5-26.2 m; edges midway to neighbours; turns: observed use through 25, right 2"
+    }
+  ],
+  "gates": [
+    {
+      "schema_version": "0.1.0",
+      "arm": "N",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          1.098,
+          20.472
+        ],
+        [
+          -17.897,
+          20.472
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 20.47 m from the centre: nearer of the pooled queue heads' most advanced decile and the first tracked distance, less 0.5 m, spanning inbound vehicles at that distance; not the painted limit line"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "N",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          9.982,
+          25.0
+        ],
+        [
+          0.956,
+          25.0
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 25.00 m from the centre, inside the distance to which exiting vehicles are tracked"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "E",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          13.368,
+          0.97
+        ],
+        [
+          13.368,
+          12.654
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 13.37 m from the centre: nearer of the pooled queue heads' most advanced decile and the first tracked distance, less 0.5 m, spanning inbound vehicles at that distance; not the painted limit line"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "E",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          19.648,
+          -16.739
+        ],
+        [
+          19.648,
+          -2.458
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 19.65 m from the centre, inside the distance to which exiting vehicles are tracked"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "S",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          -1.618,
+          -20.226
+        ],
+        [
+          16.256,
+          -20.226
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 20.23 m from the centre: nearer of the pooled queue heads' most advanced decile and the first tracked distance, less 0.5 m, spanning inbound vehicles at that distance; not the painted limit line"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "S",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          -13.928,
+          -25.0
+        ],
+        [
+          -4.208,
+          -25.0
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 25.00 m from the centre, inside the distance to which exiting vehicles are tracked"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "W",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          -16.521,
+          1.862
+        ],
+        [
+          -16.521,
+          -12.85
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 16.52 m from the centre: nearer of the pooled queue heads' most advanced decile and the first tracked distance, less 0.5 m, spanning inbound vehicles at that distance; not the painted limit line"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "W",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          -24.278,
+          14.38
+        ],
+        [
+          -24.278,
+          1.3
+        ]
+      ],
+      "provenance": "approximated",
+      "source": "counting line 24.28 m from the centre, inside the distance to which exiting vehicles are tracked"
+    }
+  ]
+}

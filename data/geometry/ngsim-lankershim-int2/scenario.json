@@ -1,0 +1,2460 @@
+{
+  "script": "scripts/build_ngsim_int2_scenario.py",
+  "created_at_utc": "2026-10-28T07:43:04+00:00",
+  "input": {
+    "path": "data/raw/ngsim-lankershim/trajectories/lankershim-0830-0845.csv",
+    "sha256": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e",
+    "licence": "CC BY-SA 3.0 Unported",
+    "attribution": "Derived from U.S. Department of Transportation, Federal Highway Administration, Next Generation Simulation (NGSIM) Lankershim Boulevard vehicle trajectories, data.transportation.gov dataset 8ect-6jqj (DOI 10.21949/1504477)",
+    "changes": "aggregated by CairoFlow's fixed rules (cairoflow_perception.ngsim_junction)"
+  },
+  "camera_input": "none: no pixels, no calibration, no image registration (ADR-019)",
+  "software": {
+    "numpy": "2.5.4",
+    "eclipse-sumo": "1.28.0"
+  },
+  "window": {
+    "id": "ngsim-lankershim-int2-0830-0845",
+    "start": "2005-06-16 08:30:00.0 PDT",
+    "start_global_time_ms": 1118935800000,
+    "duration_s": 900.0
+  },
+  "frame": {
+    "origin_state_plane_ft": [
+      6452083.0,
+      1873176.0
+    ],
+    "crs": "EPSG:2229 NAD83 / California zone 5 (ftUS)",
+    "rotation": "+y = Lankershim northbound (mean grid bearing of NB through rows)",
+    "bearing_deg": 25.8215,
+    "rows": 37118
+  },
+  "policies": {
+    "junction": {
+      "frame_radius_m": 60.0,
+      "frame_min_speed_m_s": 3.0,
+      "frame_min_rows": 100,
+      "box_half_size_m": 110.0,
+      "arm_min_distance_m": 8.0,
+      "moving_m_s": 0.5,
+      "stopped_m_s": 0.3,
+      "stopped_zone_max_m": 80.0,
+      "min_head_samples": 50,
+      "head_quantile": 0.9,
+      "first_tracked_quantile": 0.05,
+      "gate_margin_m": 0.5,
+      "gate_span_window_m": 1.5,
+      "gate_span_quantile": 0.005,
+      "gate_span_pad_m": 1.0,
+      "exit_distance_m": 25.0,
+      "exit_backoff_m": 1.0,
+      "lane_band_m": 30.0,
+      "min_band_m": 5.0,
+      "polygon_length_m": 100.0,
+      "polygon_backoff_m": 2.0,
+      "min_lane_rows": 100,
+      "min_lane_spacing_m": 2.0,
+      "max_lane_width_m": 4.0,
+      "min_turn_share": 0.05,
+      "min_turn_count": 2,
+      "heavy_length_m": 7.5
+    },
+    "signal": {
+      "service_gap_s": 25.0,
+      "startup_lost_s": 2.0,
+      "yellow_s": 4.0,
+      "all_red_s": 1.0,
+      "min_green_s": 5.0,
+      "min_reference_crossings": 20,
+      "min_window_crossings": 2,
+      "protected_left_max_share": 0.2,
+      "follow_min_share": 0.5,
+      "min_follow_crossings": 5,
+      "service_margin_s": 2.0,
+      "time_step_s": 1.0
+    },
+    "world_model": {
+      "contact_sigma_px": 2.0,
+      "speed_half_window_s": 0.5,
+      "stopped_speed_m_s": 1.0,
+      "max_queue_spacing_m": 12.0,
+      "lane_lookback_s": 2.0,
+      "queue_interval_s": 1.0,
+      "require_accepted_calibration": true
+    }
+  },
+  "rows_in_study_box": 377040,
+  "series": 1015,
+  "heavy_series": 24,
+  "arms": {
+    "N": {
+      "arm": "N",
+      "stop_gate_m": 20.472,
+      "stop_position_m": 23.135,
+      "queue_heads": {
+        "1": {
+          "most_advanced_decile_m": 21.029,
+          "median_m": 23.135,
+          "least_advanced_decile_m": 30.505,
+          "samples": 3344
+        },
+        "2": {
+          "most_advanced_decile_m": 20.446,
+          "median_m": 22.498,
+          "least_advanced_decile_m": 24.873,
+          "samples": 3083
+        },
+        "3": {
+          "most_advanced_decile_m": 22.534,
+          "median_m": 23.549,
+          "least_advanced_decile_m": 29.756,
+          "samples": 2594
+        },
+        "11": {
+          "most_advanced_decile_m": 20.643,
+          "median_m": 22.115,
+          "least_advanced_decile_m": 26.729,
+          "samples": 5032
+        },
+        "12": {
+          "most_advanced_decile_m": 20.952,
+          "median_m": 23.154,
+          "least_advanced_decile_m": 35.046,
+          "samples": 6065
+        }
+      },
+      "first_tracked_p5_m": 108.599,
+      "first_tracked_p95_m": 109.956,
+      "exit_gate_m": 25.0,
+      "last_tracked_p5_m": 108.305,
+      "last_tracked_p95_m": 109.914,
+      "approach": [
+        {
+          "lane_id": 11,
+          "rows": 17348,
+          "centre_m": 0.524,
+          "inner_m": -1.005,
+          "outer_m": 2.054
+        },
+        {
+          "lane_id": 12,
+          "rows": 27373,
+          "centre_m": 3.584,
+          "inner_m": 2.054,
+          "outer_m": 5.161
+        },
+        {
+          "lane_id": 1,
+          "rows": 12463,
+          "centre_m": 6.738,
+          "inner_m": 5.161,
+          "outer_m": 8.182
+        },
+        {
+          "lane_id": 2,
+          "rows": 9334,
+          "centre_m": 9.626,
+          "inner_m": 8.182,
+          "outer_m": 11.152
+        },
+        {
+          "lane_id": 3,
+          "rows": 10245,
+          "centre_m": 12.677,
+          "inner_m": 11.152,
+          "outer_m": 14.136
+        },
+        {
+          "lane_id": 31,
+          "rows": 693,
+          "centre_m": 15.594,
+          "inner_m": 14.136,
+          "outer_m": 17.053
+        }
+      ],
+      "exits": [
+        {
+          "lane_id": 1,
+          "rows": 1406,
+          "centre_m": 2.557,
+          "inner_m": 1.098,
+          "outer_m": 4.017
+        },
+        {
+          "lane_id": 2,
+          "rows": 2915,
+          "centre_m": 5.476,
+          "inner_m": 4.017,
+          "outer_m": 6.979
+        },
+        {
+          "lane_id": 3,
+          "rows": 3570,
+          "centre_m": 8.482,
+          "inner_m": 6.979,
+          "outer_m": 9.986
+        }
+      ],
+      "approach_band_m": [
+        20.472,
+        50.472
+      ],
+      "exit_band_m": [
+        25.0,
+        55.0
+      ],
+      "stop_gate_span_m": [
+        -1.098,
+        17.897
+      ],
+      "exit_gate_span_m": [
+        -9.982,
+        -0.956
+      ],
+      "notes": []
+    },
+    "E": {
+      "arm": "E",
+      "stop_gate_m": 13.368,
+      "stop_position_m": 16.956,
+      "queue_heads": {
+        "1": {
+          "most_advanced_decile_m": 16.904,
+          "median_m": 16.956,
+          "least_advanced_decile_m": 23.053,
+          "samples": 1268
+        },
+        "2": {
+          "most_advanced_decile_m": 16.082,
+          "median_m": 16.563,
+          "least_advanced_decile_m": 23.024,
+          "samples": 2148
+        },
+        "3": {
+          "most_advanced_decile_m": 17.787,
+          "median_m": 19.802,
+          "least_advanced_decile_m": 20.557,
+          "samples": 833
+        }
+      },
+      "first_tracked_p5_m": 13.868,
+      "first_tracked_p95_m": 23.943,
+      "exit_gate_m": 19.648,
+      "last_tracked_p5_m": 20.648,
+      "last_tracked_p95_m": 29.2,
+      "approach": [
+        {
+          "lane_id": 1,
+          "rows": 1322,
+          "centre_m": 2.573,
+          "inner_m": 0.966,
+          "outer_m": 4.179
+        },
+        {
+          "lane_id": 2,
+          "rows": 2639,
+          "centre_m": 5.786,
+          "inner_m": 4.179,
+          "outer_m": 7.505
+        },
+        {
+          "lane_id": 3,
+          "rows": 1626,
+          "centre_m": 9.223,
+          "inner_m": 7.505,
+          "outer_m": 10.941
+        }
+      ],
+      "exits": [
+        {
+          "lane_id": 1,
+          "rows": 385,
+          "centre_m": 4.773,
+          "inner_m": 2.909,
+          "outer_m": 6.636
+        },
+        {
+          "lane_id": 2,
+          "rows": 610,
+          "centre_m": 8.499,
+          "inner_m": 6.636,
+          "outer_m": 10.351
+        },
+        {
+          "lane_id": 3,
+          "rows": 890,
+          "centre_m": 12.203,
+          "inner_m": 10.351,
+          "outer_m": 14.055
+        }
+      ],
+      "approach_band_m": [
+        13.368,
+        24.943
+      ],
+      "exit_band_m": [
+        19.648,
+        29.2
+      ],
+      "stop_gate_span_m": [
+        0.97,
+        12.654
+      ],
+      "exit_gate_span_m": [
+        -16.739,
+        -2.458
+      ],
+      "notes": []
+    },
+    "S": {
+      "arm": "S",
+      "stop_gate_m": 20.226,
+      "stop_position_m": 22.392,
+      "queue_heads": {
+        "1": {
+          "most_advanced_decile_m": 19.908,
+          "median_m": 21.968,
+          "least_advanced_decile_m": 23.467,
+          "samples": 4152
+        },
+        "2": {
+          "most_advanced_decile_m": 21.758,
+          "median_m": 22.395,
+          "least_advanced_decile_m": 29.885,
+          "samples": 5047
+        },
+        "3": {
+          "most_advanced_decile_m": 21.525,
+          "median_m": 22.392,
+          "least_advanced_decile_m": 28.103,
+          "samples": 5459
+        },
+        "4": {
+          "most_advanced_decile_m": 22.683,
+          "median_m": 26.075,
+          "least_advanced_decile_m": 34.815,
+          "samples": 593
+        },
+        "11": {
+          "most_advanced_decile_m": 20.726,
+          "median_m": 20.726,
+          "least_advanced_decile_m": 28.33,
+          "samples": 1084
+        }
+      },
+      "first_tracked_p5_m": 103.179,
+      "first_tracked_p95_m": 109.96,
+      "exit_gate_m": 25.0,
+      "last_tracked_p5_m": 105.666,
+      "last_tracked_p95_m": 109.673,
+      "approach": [
+        {
+          "lane_id": 11,
+          "rows": 1601,
+          "centre_m": 0.312,
+          "inner_m": -1.007,
+          "outer_m": 1.631
+        },
+        {
+          "lane_id": 1,
+          "rows": 11636,
+          "centre_m": 2.949,
+          "inner_m": 1.631,
+          "outer_m": 4.491
+        },
+        {
+          "lane_id": 2,
+          "rows": 18072,
+          "centre_m": 6.033,
+          "inner_m": 4.491,
+          "outer_m": 7.586
+        },
+        {
+          "lane_id": 3,
+          "rows": 23630,
+          "centre_m": 9.139,
+          "inner_m": 7.586,
+          "outer_m": 10.863
+        },
+        {
+          "lane_id": 4,
+          "rows": 5498,
+          "centre_m": 12.588,
+          "inner_m": 10.863,
+          "outer_m": 14.312
+        }
+      ],
+      "exits": [
+        {
+          "lane_id": 1,
+          "rows": 3122,
+          "centre_m": 5.201,
+          "inner_m": 3.487,
+          "outer_m": 6.916
+        },
+        {
+          "lane_id": 2,
+          "rows": 2389,
+          "centre_m": 8.63,
+          "inner_m": 6.916,
+          "outer_m": 10.123
+        },
+        {
+          "lane_id": 3,
+          "rows": 2859,
+          "centre_m": 11.616,
+          "inner_m": 10.123,
+          "outer_m": 13.108
+        }
+      ],
+      "approach_band_m": [
+        20.226,
+        50.226
+      ],
+      "exit_band_m": [
+        25.0,
+        55.0
+      ],
+      "stop_gate_span_m": [
+        -1.618,
+        16.256
+      ],
+      "exit_gate_span_m": [
+        -13.928,
+        -4.208
+      ],
+      "notes": []
+    },
+    "W": {
+      "arm": "W",
+      "stop_gate_m": 16.521,
+      "stop_position_m": null,
+      "queue_heads": {
+        "1": {
+          "most_advanced_decile_m": 24.69,
+          "median_m": 24.987,
+          "least_advanced_decile_m": 24.988,
+          "samples": 776
+        },
+        "2": {
+          "most_advanced_decile_m": 25.118,
+          "median_m": 25.118,
+          "least_advanced_decile_m": 25.196,
+          "samples": 220
+        },
+        "3": {
+          "most_advanced_decile_m": 23.798,
+          "median_m": 24.438,
+          "least_advanced_decile_m": 24.438,
+          "samples": 158
+        }
+      },
+      "first_tracked_p5_m": 17.021,
+      "first_tracked_p95_m": 24.778,
+      "exit_gate_m": 24.278,
+      "last_tracked_p5_m": 25.278,
+      "last_tracked_p95_m": 29.251,
+      "approach": [
+        {
+          "lane_id": 1,
+          "rows": 811,
+          "centre_m": 0.759,
+          "inner_m": -0.957,
+          "outer_m": 2.475
+        },
+        {
+          "lane_id": 2,
+          "rows": 262,
+          "centre_m": 4.191,
+          "inner_m": 2.475,
+          "outer_m": 5.768
+        },
+        {
+          "lane_id": 3,
+          "rows": 176,
+          "centre_m": 7.344,
+          "inner_m": 5.768,
+          "outer_m": 8.92
+        }
+      ],
+      "exits": [],
+      "approach_band_m": [
+        16.521,
+        26.196
+      ],
+      "exit_band_m": [
+        24.278,
+        29.278
+      ],
+      "stop_gate_span_m": [
+        -1.862,
+        12.85
+      ],
+      "exit_gate_span_m": [
+        -14.38,
+        -1.3
+      ],
+      "notes": [
+        "stop position not observable: vehicles are first tracked at about 24.778 m, where they stop (24.987 m)"
+      ]
+    }
+  },
+  "turns": {
+    "per_lane": {
+      "N11": "observed use left 51",
+      "N12": "observed use left 82",
+      "N1": "observed use through 102",
+      "N2": "observed use through 103",
+      "N3": "observed use through 118, right 1",
+      "N31": "observed use right 27",
+      "E1": "observed use left 5",
+      "E2": "observed use left 1, through 8",
+      "E3": "observed use right 37",
+      "S11": "observed use left 15, through 1",
+      "S1": "observed use through 56",
+      "S2": "observed use through 86",
+      "S3": "observed use through 107, right 1",
+      "S4": "observed use right 81",
+      "W1": "observed use left 27",
+      "W2": "observed use through 9",
+      "W3": "observed use through 25, right 2"
+    },
+    "notes": []
+  },
+  "movements": [
+    {
+      "approach": "N",
+      "exit": "E",
+      "turn": "left",
+      "count_veh": 133,
+      "flow_veh_per_h": 532.0,
+      "flow_ci95_veh_per_h": [
+        445.432483,
+        630.480135
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "N",
+      "exit": "S",
+      "turn": "through",
+      "count_veh": 323,
+      "flow_veh_per_h": 1292.0,
+      "flow_ci95_veh_per_h": [
+        1154.926552,
+        1440.866987
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "N",
+      "exit": "W",
+      "turn": "right",
+      "count_veh": 28,
+      "flow_veh_per_h": 112.0,
+      "flow_ci95_veh_per_h": [
+        74.423187,
+        161.871184
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "E",
+      "exit": "S",
+      "turn": "left",
+      "count_veh": 6,
+      "flow_veh_per_h": 24.0,
+      "flow_ci95_veh_per_h": [
+        8.807577,
+        52.237896
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "E",
+      "exit": "W",
+      "turn": "through",
+      "count_veh": 8,
+      "flow_veh_per_h": 32.0,
+      "flow_ci95_veh_per_h": [
+        13.815329,
+        63.052757
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "E",
+      "exit": "N",
+      "turn": "right",
+      "count_veh": 37,
+      "flow_veh_per_h": 148.0,
+      "flow_ci95_veh_per_h": [
+        104.205658,
+        203.998505
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "S",
+      "exit": "W",
+      "turn": "left",
+      "count_veh": 15,
+      "flow_veh_per_h": 60.0,
+      "flow_ci95_veh_per_h": [
+        33.581545,
+        98.960875
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "S",
+      "exit": "N",
+      "turn": "through",
+      "count_veh": 250,
+      "flow_veh_per_h": 1000.0,
+      "flow_ci95_veh_per_h": [
+        879.871983,
+        1131.95082
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "S",
+      "exit": "E",
+      "turn": "right",
+      "count_veh": 82,
+      "flow_veh_per_h": 328.0,
+      "flow_ci95_veh_per_h": [
+        260.868134,
+        407.134485
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "W",
+      "exit": "N",
+      "turn": "left",
+      "count_veh": 27,
+      "flow_veh_per_h": 108.0,
+      "flow_ci95_veh_per_h": [
+        71.172681,
+        157.13433
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "W",
+      "exit": "E",
+      "turn": "through",
+      "count_veh": 34,
+      "flow_veh_per_h": 136.0,
+      "flow_ci95_veh_per_h": [
+        94.183954,
+        190.046368
+      ],
+      "lane_unknown": 0
+    },
+    {
+      "approach": "W",
+      "exit": "S",
+      "turn": "right",
+      "count_veh": 3,
+      "flow_veh_per_h": 12.0,
+      "flow_ci95_veh_per_h": [
+        2.474688,
+        35.069092
+      ],
+      "lane_unknown": 1
+    }
+  ],
+  "ambiguous": {
+    "total": 10,
+    "by_reason": {
+      "crossed the N exit line without a stop-line crossing": 5,
+      "crossed the N stop line": 1,
+      "crossed the S stop line": 2,
+      "crossed the S exit line without a stop-line crossing": 2
+    }
+  },
+  "turn_code_agreement": {
+    "rule": "NGSIM movement code of the row nearest each counted vehicle's stop-line crossing",
+    "ours_vs_ngsim": {
+      "left": {
+        "through": 61,
+        "left": 120
+      },
+      "right": {
+        "right": 150
+      },
+      "through": {
+        "through": 615
+      }
+    },
+    "agreeing": 885,
+    "total": 946,
+    "share": 0.9355
+  },
+  "code_census": {
+    "rule": "NGSIM direction and movement of each vehicle's first int_id 2 row in the window",
+    "cells": {
+      "E left": {
+        "ngsim": 6,
+        "counted": 6
+      },
+      "E right": {
+        "ngsim": 39,
+        "counted": 37
+      },
+      "E through": {
+        "ngsim": 8,
+        "counted": 8
+      },
+      "N left": {
+        "ngsim": 132,
+        "counted": 133
+      },
+      "N right": {
+        "ngsim": 29,
+        "counted": 28
+      },
+      "N through": {
+        "ngsim": 325,
+        "counted": 323
+      },
+      "S left": {
+        "ngsim": 16,
+        "counted": 15
+      },
+      "S right": {
+        "ngsim": 82,
+        "counted": 82
+      },
+      "S through": {
+        "ngsim": 252,
+        "counted": 250
+      },
+      "W left": {
+        "ngsim": 29,
+        "counted": 27
+      },
+      "W right": {
+        "ngsim": 4,
+        "counted": 3
+      },
+      "W through": {
+        "ngsim": 34,
+        "counted": 34
+      }
+    },
+    "ngsim_total": 956,
+    "counted_total": 946
+  },
+  "signal_estimate": {
+    "heads": {
+      "N left": "own: 133 left crossings, 5% while the opposite through was being served",
+      "W left": "none: 8 opposing through crossings, too few to test protection",
+      "S left": "follows N left: 67% of its 15 left crossings fall in N's protected-left service",
+      "N all": "own: 323 through crossings",
+      "S all": "own: 250 through crossings",
+      "W all": "own: 34 through crossings",
+      "E all": "own, sparse: 14 through and left crossings (0% of them in W's service, so it does not follow it)"
+    },
+    "greens": {
+      "N all": {
+        "greens": 9,
+        "median_green_s": 46.0,
+        "min_green_s": 29.0,
+        "max_green_s": 62.0
+      },
+      "N left": {
+        "greens": 9,
+        "median_green_s": 21.0,
+        "min_green_s": 14.0,
+        "max_green_s": 25.0
+      },
+      "E all": {
+        "greens": 8,
+        "median_green_s": 5.0,
+        "min_green_s": 5.0,
+        "max_green_s": 5.0
+      },
+      "S all": {
+        "greens": 9,
+        "median_green_s": 31.0,
+        "min_green_s": 26.0,
+        "max_green_s": 44.0
+      },
+      "S left": {
+        "greens": 6,
+        "median_green_s": 9.0,
+        "min_green_s": 4.0,
+        "max_green_s": 22.0
+      },
+      "W all": {
+        "greens": 7,
+        "median_green_s": 9.0,
+        "min_green_s": 5.0,
+        "max_green_s": 26.0
+      }
+    },
+    "dropped": [
+      "N all: 1 crossing at 34.6056 s, outside any window",
+      "S all: 1 crossing at 531.392 s, outside any window",
+      "W all: 1 crossing at 218.901 s, outside any window",
+      "N left: 1 crossing at 688.08 s, outside any window",
+      "S left following N left 243-265 s: conflicts leave no green",
+      "S left following N left 534-563 s: conflicts leave no green",
+      "S left following N left 832-850 s: conflicts leave no green"
+    ],
+    "adjustments": [
+      "N left: 14-53 s ended at 40 s, before S all starts at 41 s",
+      "N left: 140-168 s ended at 165 s, before S all starts at 166 s",
+      "N left: 334-382 s ended at 359 s, before S all starts at 360 s",
+      "N all: 346-405 s ended at 401 s, before W all starts at 402 s",
+      "N left: 436-460 s ended at 459 s, before S all starts at 460 s",
+      "N left: 534-569 s ended at 563 s, before S all starts at 564 s",
+      "S all: 564-617 s ended at 600 s, before E all starts at 601 s",
+      "N left: 739-778 s ended at 765 s, before S all starts at 766 s",
+      "S left following N left: 140-165 s cut to 140-163 s to avoid a conflicting head",
+      "S left following N left: 334-359 s cut to 334-345 s to avoid a conflicting head",
+      "S left following N left: 436-459 s cut to 436-444 s to avoid a conflicting head",
+      "S left following N left: 634-655 s cut to 634-648 s to avoid a conflicting head",
+      "S left following N left: 739-765 s cut to 739-751 s to avoid a conflicting head"
+    ],
+    "consistency": [
+      {
+        "approach": "N",
+        "turn": "left",
+        "head": "left",
+        "crossings": 133,
+        "during_known_state": 133,
+        "during_green_or_yellow": 125,
+        "share": 0.9398
+      },
+      {
+        "approach": "N",
+        "turn": "through",
+        "head": "all",
+        "crossings": 323,
+        "during_known_state": 322,
+        "during_green_or_yellow": 321,
+        "share": 0.9969
+      },
+      {
+        "approach": "N",
+        "turn": "right",
+        "head": "all",
+        "crossings": 28,
+        "during_known_state": 28,
+        "during_green_or_yellow": 20,
+        "share": 0.7143
+      },
+      {
+        "approach": "E",
+        "turn": "left",
+        "head": "all",
+        "crossings": 6,
+        "during_known_state": 6,
+        "during_green_or_yellow": 6,
+        "share": 1.0
+      },
+      {
+        "approach": "E",
+        "turn": "through",
+        "head": "all",
+        "crossings": 8,
+        "during_known_state": 8,
+        "during_green_or_yellow": 8,
+        "share": 1.0
+      },
+      {
+        "approach": "E",
+        "turn": "right",
+        "head": "all",
+        "crossings": 37,
+        "during_known_state": 34,
+        "during_green_or_yellow": 7,
+        "share": 0.2059
+      },
+      {
+        "approach": "S",
+        "turn": "left",
+        "head": "left",
+        "crossings": 15,
+        "during_known_state": 15,
+        "during_green_or_yellow": 9,
+        "share": 0.6
+      },
+      {
+        "approach": "S",
+        "turn": "through",
+        "head": "all",
+        "crossings": 250,
+        "during_known_state": 250,
+        "during_green_or_yellow": 248,
+        "share": 0.992
+      },
+      {
+        "approach": "S",
+        "turn": "right",
+        "head": "all",
+        "crossings": 82,
+        "during_known_state": 81,
+        "during_green_or_yellow": 39,
+        "share": 0.4815
+      },
+      {
+        "approach": "W",
+        "turn": "left",
+        "head": "all",
+        "crossings": 27,
+        "during_known_state": 26,
+        "during_green_or_yellow": 20,
+        "share": 0.7692
+      },
+      {
+        "approach": "W",
+        "turn": "through",
+        "head": "all",
+        "crossings": 34,
+        "during_known_state": 34,
+        "during_green_or_yellow": 33,
+        "share": 0.9706
+      },
+      {
+        "approach": "W",
+        "turn": "right",
+        "head": "all",
+        "crossings": 3,
+        "during_known_state": 3,
+        "during_green_or_yellow": 2,
+        "share": 0.6667
+      }
+    ],
+    "consistency_note": "windows are built from the through (and protected-left) crossings, so those shares are near 100% by construction; right turns and permissive lefts are the informative rows",
+    "onset_check": {
+      "N": {
+        "onsets_with_a_waiting_vehicle": 7,
+        "departure_minus_onset_s": [
+          3.1,
+          3.1,
+          2.4,
+          2.6,
+          1.7,
+          5.1,
+          2.0
+        ],
+        "departures_before_onset": 0
+      },
+      "E": {
+        "onsets_with_a_waiting_vehicle": 3,
+        "departure_minus_onset_s": [
+          1.9,
+          1.4,
+          2.8
+        ],
+        "departures_before_onset": 0
+      },
+      "S": {
+        "onsets_with_a_waiting_vehicle": 8,
+        "departure_minus_onset_s": [
+          2.3,
+          2.4,
+          2.8,
+          3.2,
+          3.7,
+          2.0,
+          1.7,
+          3.1
+        ],
+        "departures_before_onset": 0
+      },
+      "W": {
+        "onsets_with_a_waiting_vehicle": 1,
+        "departure_minus_onset_s": [
+          0.5
+        ],
+        "departures_before_onset": 0
+      }
+    },
+    "representative_cycle": {
+      "start_s": 564.0,
+      "end_s": 663.0,
+      "length_s": 99.0,
+      "qualifying_cuts": 7,
+      "candidate_cuts": 25,
+      "physical_cycles_in_window": 7,
+      "median_length_s": 99.0,
+      "onset_spacing_range_s": [
+        80.0,
+        201.0
+      ],
+      "greens_in_cycle_s": {
+        "N all": 45.0,
+        "N left": 17.0,
+        "E all": 5.0,
+        "S all": 32.0,
+        "S left": 10.0,
+        "W all": 12.0
+      },
+      "median_greens_s": {
+        "N all": 46.0,
+        "N left": 21.0,
+        "E all": 5.0,
+        "S all": 31.0,
+        "S left": 9.0,
+        "W all": 9.0
+      },
+      "distance_from_medians_s": 10.0,
+      "rule": "qualifying cut (every head green, none unknown, closes legally) whose head greens and length are nearest their medians (summed |difference|); earliest on a tie"
+    }
+  },
+  "queues": [
+    {
+      "lane_id": "E1",
+      "samples_1s": 900,
+      "max_queued_veh": 2,
+      "max_length_m": 9.69,
+      "max_is_lower_bound": true,
+      "censored_samples": 224,
+      "max_at_s": 654.0,
+      "end_of_red_samples": 7,
+      "end_of_red_median_veh": 0.0,
+      "end_of_red_median_length_m": 0.0
+    },
+    {
+      "lane_id": "E2",
+      "samples_1s": 900,
+      "max_queued_veh": 2,
+      "max_length_m": 10.03,
+      "max_is_lower_bound": true,
+      "censored_samples": 391,
+      "max_at_s": 426.0,
+      "end_of_red_samples": 7,
+      "end_of_red_median_veh": 1.0,
+      "end_of_red_median_length_m": 3.17
+    },
+    {
+      "lane_id": "E3",
+      "samples_1s": 900,
+      "max_queued_veh": 2,
+      "max_length_m": 8.6,
+      "max_is_lower_bound": true,
+      "censored_samples": 191,
+      "max_at_s": 373.0,
+      "end_of_red_samples": 7,
+      "end_of_red_median_veh": 0.0,
+      "end_of_red_median_length_m": 0.0
+    },
+    {
+      "lane_id": "N1",
+      "samples_1s": 900,
+      "max_queued_veh": 7,
+      "max_length_m": 59.24,
+      "max_is_lower_bound": false,
+      "censored_samples": 0,
+      "max_at_s": 256.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 3.0,
+      "end_of_red_median_length_m": 16.14
+    },
+    {
+      "lane_id": "N11",
+      "samples_1s": 900,
+      "max_queued_veh": 6,
+      "max_length_m": 35.78,
+      "max_is_lower_bound": false,
+      "censored_samples": 0,
+      "max_at_s": 141.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 4.0,
+      "end_of_red_median_length_m": 23.27
+    },
+    {
+      "lane_id": "N12",
+      "samples_1s": 900,
+      "max_queued_veh": 13,
+      "max_length_m": 83.92,
+      "max_is_lower_bound": true,
+      "censored_samples": 100,
+      "max_at_s": 115.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 7.5,
+      "end_of_red_median_length_m": 52.73
+    },
+    {
+      "lane_id": "N2",
+      "samples_1s": 900,
+      "max_queued_veh": 10,
+      "max_length_m": 69.68,
+      "max_is_lower_bound": false,
+      "censored_samples": 0,
+      "max_at_s": 755.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 1.0,
+      "end_of_red_median_length_m": 3.41
+    },
+    {
+      "lane_id": "N3",
+      "samples_1s": 900,
+      "max_queued_veh": 12,
+      "max_length_m": 82.59,
+      "max_is_lower_bound": true,
+      "censored_samples": 8,
+      "max_at_s": 159.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 2.0,
+      "end_of_red_median_length_m": 9.69
+    },
+    {
+      "lane_id": "N31",
+      "samples_1s": 900,
+      "max_queued_veh": 1,
+      "max_length_m": 1.73,
+      "max_is_lower_bound": false,
+      "censored_samples": 0,
+      "max_at_s": 179.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 0.0,
+      "end_of_red_median_length_m": 0.0
+    },
+    {
+      "lane_id": "S1",
+      "samples_1s": 900,
+      "max_queued_veh": 6,
+      "max_length_m": 46.78,
+      "max_is_lower_bound": false,
+      "censored_samples": 0,
+      "max_at_s": 562.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 4.0,
+      "end_of_red_median_length_m": 21.98
+    },
+    {
+      "lane_id": "S11",
+      "samples_1s": 900,
+      "max_queued_veh": 2,
+      "max_length_m": 8.6,
+      "max_is_lower_bound": false,
+      "censored_samples": 0,
+      "max_at_s": 0.0,
+      "end_of_red_samples": 5,
+      "end_of_red_median_veh": 1.0,
+      "end_of_red_median_length_m": 5.98
+    },
+    {
+      "lane_id": "S2",
+      "samples_1s": 900,
+      "max_queued_veh": 10,
+      "max_length_m": 77.58,
+      "max_is_lower_bound": true,
+      "censored_samples": 18,
+      "max_at_s": 463.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 7.0,
+      "end_of_red_median_length_m": 43.28
+    },
+    {
+      "lane_id": "S3",
+      "samples_1s": 900,
+      "max_queued_veh": 12,
+      "max_length_m": 80.06,
+      "max_is_lower_bound": true,
+      "censored_samples": 42,
+      "max_at_s": 542.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 8.5,
+      "end_of_red_median_length_m": 58.35
+    },
+    {
+      "lane_id": "S4",
+      "samples_1s": 900,
+      "max_queued_veh": 3,
+      "max_length_m": 15.99,
+      "max_is_lower_bound": false,
+      "censored_samples": 0,
+      "max_at_s": 282.0,
+      "end_of_red_samples": 8,
+      "end_of_red_median_veh": 0.0,
+      "end_of_red_median_length_m": 0.0
+    },
+    {
+      "lane_id": "W1",
+      "samples_1s": 900,
+      "max_queued_veh": 1,
+      "max_length_m": 8.47,
+      "max_is_lower_bound": true,
+      "censored_samples": 152,
+      "max_at_s": 95.0,
+      "end_of_red_samples": 6,
+      "end_of_red_median_veh": 0.0,
+      "end_of_red_median_length_m": 0.0
+    },
+    {
+      "lane_id": "W2",
+      "samples_1s": 900,
+      "max_queued_veh": 1,
+      "max_length_m": 8.7,
+      "max_is_lower_bound": true,
+      "censored_samples": 81,
+      "max_at_s": 495.0,
+      "end_of_red_samples": 6,
+      "end_of_red_median_veh": 0.0,
+      "end_of_red_median_length_m": 0.0
+    },
+    {
+      "lane_id": "W3",
+      "samples_1s": 900,
+      "max_queued_veh": 1,
+      "max_length_m": 8.02,
+      "max_is_lower_bound": true,
+      "censored_samples": 145,
+      "max_at_s": 501.0,
+      "end_of_red_samples": 6,
+      "end_of_red_median_veh": 0.5,
+      "end_of_red_median_length_m": 3.29
+    }
+  ],
+  "signal_notes": [],
+  "baseline": {
+    "run_dir": "experiments/runs/ngsim-int2-baseline-20261028T074304Z",
+    "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+    "valid": true,
+    "valid_means": "run validity: no teleports or collisions, every vehicle arrived; not model validity",
+    "reasons": [],
+    "reruns_identical": true,
+    "settings": {
+      "schema_version": "0.1.0",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "warmup_s": 300.0,
+      "horizon_s": 900.0,
+      "drain_s": 600.0,
+      "step_length_s": 1.0,
+      "time_to_teleport_s": 300.0
+    },
+    "compile_options": {
+      "arm_length_m": 200.0,
+      "speed_limit_m_s": 13.89,
+      "default_exit_lanes": 2,
+      "default_lane_width_m": 3.2,
+      "program_id": "ngsim_int2_cycle",
+      "cycle_start_s": 564.0,
+      "right_turn_on_red": true
+    },
+    "demand_options": {
+      "speed_factor_sd": 0.1,
+      "speed_factor_min": 0.8,
+      "speed_factor_max": 1.2
+    },
+    "vehicle_types": {
+      "passenger": "vClass=\"passenger\" length=\"5.0\" minGap=\"2.5\" accel=\"2.6\" decel=\"4.5\" sigma=\"0.5\" maxSpeed=\"55.56\"",
+      "bus": "vClass=\"bus\" length=\"12.0\" minGap=\"2.5\" accel=\"1.2\" decel=\"4.0\" sigma=\"0.5\" maxSpeed=\"27.78\"",
+      "truck": "vClass=\"truck\" length=\"10.0\" minGap=\"2.5\" accel=\"1.3\" decel=\"4.0\" sigma=\"0.5\" maxSpeed=\"36.11\"",
+      "motorcycle": "vClass=\"motorcycle\" length=\"2.2\" minGap=\"2.0\" accel=\"3.0\" decel=\"7.0\" sigma=\"0.5\" maxSpeed=\"55.56\""
+    },
+    "right_turn_on_red": {
+      "label": "synthetic (a modelling choice)",
+      "observed_right_turners_on_red_by_approach": {
+        "N": {
+          "crossings_with_known_state": 28,
+          "share_on_red": 0.2857
+        },
+        "E": {
+          "crossings_with_known_state": 34,
+          "share_on_red": 0.7941
+        },
+        "S": {
+          "crossings_with_known_state": 81,
+          "share_on_red": 0.5185
+        },
+        "W": {
+          "crossings_with_known_state": 3,
+          "share_on_red": 0.3333
+        }
+      },
+      "ablation_without_it": {
+        "valid": false,
+        "reasons": [
+          "seed 1: 7 vehicles unfinished at 1800 s; loaded 1214, inserted 1214, arrived 1207",
+          "seed 2: 19 vehicles unfinished at 1800 s; loaded 1243, inserted 1243, arrived 1224",
+          "seed 3: 28 vehicles unfinished at 1800 s; loaded 1261, inserted 1257, arrived 1233",
+          "seed 4: 20 vehicles unfinished at 1800 s; loaded 1258, inserted 1258, arrived 1238",
+          "seed 5: 5 vehicles unfinished at 1800 s; loaded 1223, inserted 1223, arrived 1218"
+        ]
+      }
+    },
+    "net_sha256": "bc08809d3484bd87e383da1338f3b618e69912348e7f548b82296331c1ebdbb3",
+    "link_count": 18,
+    "cycle_s": 99.0,
+    "cycle_start_s": 564.0,
+    "phases": [
+      {
+        "name": "p0_Ng_Er_Sg_Wr_NLr_SLr",
+        "duration_s": 31.0,
+        "state": "GGGGrrsrrGGGGrsrrr"
+      },
+      {
+        "name": "p1_Ny_Er_Sg_Wr_NLr_SLr",
+        "duration_s": 1.0,
+        "state": "yyyyrrsrrGGGGrsrrr"
+      },
+      {
+        "name": "p2_Ny_Er_Sy_Wr_NLr_SLr",
+        "duration_s": 3.0,
+        "state": "yyyyrrsrryyyyrsrrr"
+      },
+      {
+        "name": "p3_Nr_Er_Sy_Wr_NLr_SLr",
+        "duration_s": 1.0,
+        "state": "srrrrrsrryyyyrsrrr"
+      },
+      {
+        "name": "p4_Nr_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 1.0,
+        "state": "srrrrrsrrsrrrrsrrr"
+      },
+      {
+        "name": "p5_Nr_Eg_Sr_Wr_NLr_SLr",
+        "duration_s": 5.0,
+        "state": "srrrrrGGGsrrrrsrrr"
+      },
+      {
+        "name": "p6_Nr_Ey_Sr_Wr_NLr_SLr",
+        "duration_s": 4.0,
+        "state": "srrrrryyysrrrrsrrr"
+      },
+      {
+        "name": "p7_Nr_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 5.0,
+        "state": "srrrrrsrrsrrrrsrrr"
+      },
+      {
+        "name": "p8_Nr_Er_Sr_Wg_NLr_SLr",
+        "duration_s": 12.0,
+        "state": "srrrrrsrrsrrrrGGGG"
+      },
+      {
+        "name": "p9_Nr_Er_Sr_Wy_NLr_SLr",
+        "duration_s": 4.0,
+        "state": "srrrrrsrrsrrrryyyy"
+      },
+      {
+        "name": "p10_Nr_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 3.0,
+        "state": "srrrrrsrrsrrrrsrrr"
+      },
+      {
+        "name": "p11_Nr_Er_Sr_Wr_NLg_SLg",
+        "duration_s": 10.0,
+        "state": "srrrGGsrrsrrrGsrrr"
+      },
+      {
+        "name": "p12_Nr_Er_Sr_Wr_NLg_SLy",
+        "duration_s": 4.0,
+        "state": "srrrGGsrrsrrrysrrr"
+      },
+      {
+        "name": "p13_Nr_Er_Sr_Wr_NLg_SLr",
+        "duration_s": 1.0,
+        "state": "srrrGGsrrsrrrrsrrr"
+      },
+      {
+        "name": "p14_Ng_Er_Sr_Wr_NLg_SLr",
+        "duration_s": 2.0,
+        "state": "GGGGGGsrrsrrrrsrrr"
+      },
+      {
+        "name": "p15_Ng_Er_Sr_Wr_NLy_SLr",
+        "duration_s": 4.0,
+        "state": "GGGGyysrrsrrrrsrrr"
+      },
+      {
+        "name": "p16_Ng_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 8.0,
+        "state": "GGGGrrsrrsrrrrsrrr"
+      }
+    ],
+    "parameter_labels": {
+      "synthetic": 11,
+      "approximated": 46
+    },
+    "demand_notes": [],
+    "runs": [
+      {
+        "seed": 1,
+        "loaded": 1214,
+        "arrived": 1214,
+        "teleports": 0,
+        "collisions": 0,
+        "emergency_braking": 0,
+        "valid": true,
+        "tripinfo_sha256": "157e9049188daf1c3a9c47f6a12929870706ecfd1f70940e1fb592b1054a262a"
+      },
+      {
+        "seed": 2,
+        "loaded": 1243,
+        "arrived": 1243,
+        "teleports": 0,
+        "collisions": 0,
+        "emergency_braking": 0,
+        "valid": true,
+        "tripinfo_sha256": "48b554ba828083d9140f695b68843e229fed314b2972fc05d4b59e4116549454"
+      },
+      {
+        "seed": 3,
+        "loaded": 1261,
+        "arrived": 1261,
+        "teleports": 0,
+        "collisions": 0,
+        "emergency_braking": 0,
+        "valid": true,
+        "tripinfo_sha256": "93cfe01fd8532c7107bfdb73a62def81ccd9a917649bce322ba665d9dbbf54b8"
+      },
+      {
+        "seed": 4,
+        "loaded": 1258,
+        "arrived": 1258,
+        "teleports": 0,
+        "collisions": 0,
+        "emergency_braking": 0,
+        "valid": true,
+        "tripinfo_sha256": "4c12f54b9c4f20a9806e4c5fbcdaf5031fc30466009b3155af2f7155a2310c20"
+      },
+      {
+        "seed": 5,
+        "loaded": 1223,
+        "arrived": 1223,
+        "teleports": 0,
+        "collisions": 0,
+        "emergency_braking": 0,
+        "valid": true,
+        "tripinfo_sha256": "597574251ecfa186e47732822a25eca6a1b11751a6faccc7becd86d0a17b6c35"
+      }
+    ],
+    "manifest_sha256": "a48949c8a4dc0b951db08c82558f19b2158204de65e288c5020c71e918ef7112",
+    "metrics": {
+      "simulated": {
+        "mean_delay_s": {
+          "mean": 32.869,
+          "sd": 4.961,
+          "seeds": 5,
+          "unit": "s"
+        },
+        "throughput_veh_per_h": {
+          "mean": 3744.8,
+          "sd": 31.673,
+          "seeds": 5,
+          "unit": "veh/h"
+        },
+        "max_queue_m.N": {
+          "mean": 99.516,
+          "sd": 30.328,
+          "seeds": 5,
+          "unit": "m"
+        },
+        "max_queue_m.E": {
+          "mean": 28.804,
+          "sd": 12.675,
+          "seeds": 5,
+          "unit": "m"
+        },
+        "max_queue_m.S": {
+          "mean": 79.034,
+          "sd": 8.898,
+          "seeds": 5,
+          "unit": "m"
+        },
+        "max_queue_m.W": {
+          "mean": 43.518,
+          "sd": 11.862,
+          "seeds": 5,
+          "unit": "m"
+        },
+        "mean_queue_m.N": {
+          "mean": 43.061,
+          "sd": 15.704,
+          "seeds": 5,
+          "unit": "m"
+        },
+        "mean_queue_m.E": {
+          "mean": 4.802,
+          "sd": 1.259,
+          "seeds": 5,
+          "unit": "m"
+        },
+        "mean_queue_m.S": {
+          "mean": 20.975,
+          "sd": 1.608,
+          "seeds": 5,
+          "unit": "m"
+        },
+        "mean_queue_m.W": {
+          "mean": 10.31,
+          "sd": 2.431,
+          "seeds": 5,
+          "unit": "m"
+        }
+      },
+      "simulated_per_seed": [
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "mean_delay_s",
+          "value": 32.802422,
+          "unit": "s",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 933,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/tripinfo.xml",
+          "source_sha256": "157e9049188daf1c3a9c47f6a12929870706ecfd1f70940e1fb592b1054a262a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "throughput_veh_per_h",
+          "value": 3752.0,
+          "unit": "veh/h",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 938,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/tripinfo.xml",
+          "source_sha256": "157e9049188daf1c3a9c47f6a12929870706ecfd1f70940e1fb592b1054a262a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "max_queue_m.N",
+          "value": 88.52,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "max_queue_m.E",
+          "value": 20.13,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "max_queue_m.S",
+          "value": 86.01,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "max_queue_m.W",
+          "value": 36.01,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "mean_queue_m.N",
+          "value": 43.640489,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "mean_queue_m.E",
+          "value": 4.3335,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "mean_queue_m.S",
+          "value": 22.863444,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 1,
+          "metric_name": "mean_queue_m.W",
+          "value": 8.806556,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+          "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "mean_delay_s",
+          "value": 41.308567,
+          "unit": "s",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 928,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/tripinfo.xml",
+          "source_sha256": "48b554ba828083d9140f695b68843e229fed314b2972fc05d4b59e4116549454",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "throughput_veh_per_h",
+          "value": 3708.0,
+          "unit": "veh/h",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 927,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/tripinfo.xml",
+          "source_sha256": "48b554ba828083d9140f695b68843e229fed314b2972fc05d4b59e4116549454",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "max_queue_m.N",
+          "value": 153.49,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "max_queue_m.E",
+          "value": 21.04,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "max_queue_m.S",
+          "value": 68.57,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "max_queue_m.W",
+          "value": 28.52,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "mean_queue_m.N",
+          "value": 69.641944,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "mean_queue_m.E",
+          "value": 4.414567,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "mean_queue_m.S",
+          "value": 21.062344,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 2,
+          "metric_name": "mean_queue_m.W",
+          "value": 9.237267,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+          "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "mean_delay_s",
+          "value": 28.535998,
+          "unit": "s",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 937,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/tripinfo.xml",
+          "source_sha256": "93cfe01fd8532c7107bfdb73a62def81ccd9a917649bce322ba665d9dbbf54b8",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "throughput_veh_per_h",
+          "value": 3756.0,
+          "unit": "veh/h",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 939,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/tripinfo.xml",
+          "source_sha256": "93cfe01fd8532c7107bfdb73a62def81ccd9a917649bce322ba665d9dbbf54b8",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "max_queue_m.N",
+          "value": 81.01,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "max_queue_m.E",
+          "value": 42.63,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "max_queue_m.S",
+          "value": 81.03,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "max_queue_m.W",
+          "value": 43.52,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "mean_queue_m.N",
+          "value": 30.579733,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "mean_queue_m.E",
+          "value": 6.095722,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "mean_queue_m.S",
+          "value": 20.302911,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 3,
+          "metric_name": "mean_queue_m.W",
+          "value": 7.890344,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+          "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "mean_delay_s",
+          "value": 31.217432,
+          "unit": "s",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 919,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/tripinfo.xml",
+          "source_sha256": "4c12f54b9c4f20a9806e4c5fbcdaf5031fc30466009b3155af2f7155a2310c20",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "throughput_veh_per_h",
+          "value": 3788.0,
+          "unit": "veh/h",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 947,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/tripinfo.xml",
+          "source_sha256": "4c12f54b9c4f20a9806e4c5fbcdaf5031fc30466009b3155af2f7155a2310c20",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "max_queue_m.N",
+          "value": 86.04,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "max_queue_m.E",
+          "value": 17.61,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "max_queue_m.S",
+          "value": 71.02,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "max_queue_m.W",
+          "value": 58.53,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "mean_queue_m.N",
+          "value": 38.555089,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "mean_queue_m.E",
+          "value": 3.134156,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "mean_queue_m.S",
+          "value": 18.669544,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 4,
+          "metric_name": "mean_queue_m.W",
+          "value": 11.835033,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+          "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "mean_delay_s",
+          "value": 30.481996,
+          "unit": "s",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 917,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/tripinfo.xml",
+          "source_sha256": "597574251ecfa186e47732822a25eca6a1b11751a6faccc7becd86d0a17b6c35",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "throughput_veh_per_h",
+          "value": 3720.0,
+          "unit": "veh/h",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 930,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/tripinfo.xml",
+          "source_sha256": "597574251ecfa186e47732822a25eca6a1b11751a6faccc7becd86d0a17b6c35",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "max_queue_m.N",
+          "value": 88.52,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "max_queue_m.E",
+          "value": 42.61,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "max_queue_m.S",
+          "value": 88.54,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "max_queue_m.W",
+          "value": 51.01,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "mean_queue_m.N",
+          "value": 32.886844,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "mean_queue_m.E",
+          "value": 6.031133,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "mean_queue_m.S",
+          "value": 21.977911,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        },
+        {
+          "schema_version": "0.1.0",
+          "experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z",
+          "arm": "baseline",
+          "seed": 5,
+          "metric_name": "mean_queue_m.W",
+          "value": 13.779967,
+          "unit": "m",
+          "window_s": [
+            300.0,
+            1200.0
+          ],
+          "sample_size": 900,
+          "source_output_file": "experiments/runs/ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+          "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+          "calculation_version": "0.1.0",
+          "kind": "simulated"
+        }
+      ],
+      "observed": {
+        "throughput_veh_per_h": 3784.0,
+        "max_queue_m.N": {
+          "value": 83.92,
+          "lower_bound": true,
+          "censored_seconds": 108,
+          "seconds": 900
+        },
+        "mean_queue_m.N": {
+          "value": 30.57,
+          "lower_bound": true
+        },
+        "max_queue_m.E": {
+          "value": 10.03,
+          "lower_bound": true,
+          "censored_seconds": 563,
+          "seconds": 900
+        },
+        "mean_queue_m.E": {
+          "value": 3.04,
+          "lower_bound": true
+        },
+        "max_queue_m.S": {
+          "value": 80.06,
+          "lower_bound": true,
+          "censored_seconds": 52,
+          "seconds": 900
+        },
+        "mean_queue_m.S": {
+          "value": 21.93,
+          "lower_bound": true
+        }
+      },
+      "not_observable": [
+        "queues on arm W"
+      ],
+      "notes": [
+        "simulated: window [warm-up, warm-up + horizon) of each seed; observed: the 900 s trajectory window",
+        "throughput is demand-derived: demand is generated at the observed counts, so its agreement shows the demand was served, not that the signal model is right",
+        "simulated queue: SUMO queueing_length of the longest approach lane per step, from SUMO's stop line; observed queue: counting gate to the front of the last queued vehicle (one vehicle length shorter), within the observed lane length",
+        "an observed value marked lower_bound includes seconds when the queue reached the end of the observed lane (censored)",
+        "cross-street queues are not observable: those arms are tracked only from about their limit lines",
+        "delay is not observed here; no observed counterpart is given"
+      ]
+    }
+  },
+  "processed_outputs": {
+    "dir": "data/processed/ngsim-int2/20261028T074304Z",
+    "sha256": {
+      "geometry.json": "8d1385d2b9ea4fbb2c087780db96aaa151afebe80153cc4858df0bf2dda34928",
+      "signal_timeline.json": "148e63e9c01483e8849adab9ad463c08c07cbc5c4e41c51eb1295d6c1f7300fd",
+      "world_model.json": "09452b7b604be76c7d352413622e55ea6f3d82eeff837563ea4854faed22ce43"
+    }
+  }
+}

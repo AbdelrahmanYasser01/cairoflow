@@ -1,0 +1,18 @@
+{
+  "gate_id": "cv-int2-v2",
+  "created_at": "2026-11-04T12:15:00Z",
+  "blocks": {
+    "formula": "floor((source_s - 120) / 60)",
+    "dev": "even",
+    "held_out": "odd"
+  },
+  "metrics": {
+    "vehicle_recall": { "comparator": ">=", "threshold": 0.7, "min_n": 1000 },
+    "precision_proxy": { "comparator": ">=", "threshold": 0.8, "min_n": 1000 },
+    "across_heading_p90_m": { "comparator": "<=", "threshold": 1.5, "min_n": 1000 },
+    "lane_agreement": { "comparator": ">=", "threshold": 0.85, "min_n": 500 },
+    "entering_count_error_share": { "comparator": "<=", "threshold": 0.2, "min_n": 100 },
+    "turning_matrix_agreement": { "comparator": ">=", "threshold": 0.8, "min_n": 100 },
+    "speed_abs_error_median_m_s": { "comparator": "<=", "threshold": 1.0, "min_n": 1000 }
+  }
+}

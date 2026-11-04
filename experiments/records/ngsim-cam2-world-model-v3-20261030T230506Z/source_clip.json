@@ -1,0 +1,1907 @@
+{
+  "schema_version": "0.1.0",
+  "clip_id": "eed18b52e9db6567",
+  "licence": {
+    "schema_version": "0.1.0",
+    "source_id": "ngsim-lankershim-videos",
+    "source_url": "https://data.transportation.gov/Automobiles/Next-Generation-Simulation-NGSIM-Program-Lankershi/uv3e-y54k",
+    "licence_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+    "attribution": "U.S. Department of Transportation Federal Highway Administration. (2016). Next Generation Simulation (NGSIM) Program Lankershim Boulevard Videos. [Dataset]. Provided by ITS DataHub through Data.transportation.gov. Accessed 2026-10-27 from http://doi.org/10.21949/1504477. Licensed CC BY-SA 4.0. More: https://ops.fhwa.dot.gov/trafficanalysistools/ngsim.htm",
+    "accessed_on": "2026-10-27",
+    "register_ref": "docs/DATA_REGISTER.md sections 6-10",
+    "permits_commercial_use": true,
+    "permits_cloud_processing": true,
+    "permits_redistribution": true,
+    "share_alike": true,
+    "synthetic": false
+  },
+  "source_file_name": "lankershim-camera2-0830am-0845am.avi",
+  "source_sha256": "04ef7435be3a107e7321900c384bb1ee7703ce753a122559cd2937fef341f530",
+  "source_stream": {
+    "schema_version": "0.1.0",
+    "codec": "mpeg4",
+    "pixel_format": "yuv420p",
+    "width_px": 640,
+    "height_px": 480,
+    "fps": 10.00001000001,
+    "frame_count": 11220,
+    "duration_s": 1121.998878
+  },
+  "trim": {
+    "schema_version": "0.1.0",
+    "start_s": 970.0,
+    "duration_s": 30.0
+  },
+  "target_fps": 10,
+  "output_file": "clip.mp4",
+  "output_sha256": "eed18b52e9db65676a28f74928b82e7439c91582978ac69365d48597cca970bf",
+  "output_stream": {
+    "schema_version": "0.1.0",
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "width_px": 640,
+    "height_px": 480,
+    "fps": 10.0,
+    "frame_count": 300,
+    "duration_s": 30.0
+  },
+  "ffmpeg_command": [
+    "ffmpeg",
+    "-nostdin",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-ss",
+    "970",
+    "-t",
+    "30",
+    "-i",
+    "{source}",
+    "-map",
+    "0:v:0",
+    "-an",
+    "-sn",
+    "-dn",
+    "-vf",
+    "fps=10,scale=trunc(iw/2)*2:trunc(ih/2)*2",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "18",
+    "-pix_fmt",
+    "yuv420p",
+    "-map_metadata",
+    "-1",
+    "-fflags",
+    "+bitexact",
+    "-flags:v",
+    "+bitexact",
+    "-movflags",
+    "+faststart",
+    "{output}"
+  ],
+  "frames": [
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 0,
+      "timestamp_s": 0.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 1,
+      "timestamp_s": 0.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 2,
+      "timestamp_s": 0.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 3,
+      "timestamp_s": 0.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 4,
+      "timestamp_s": 0.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 5,
+      "timestamp_s": 0.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 6,
+      "timestamp_s": 0.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 7,
+      "timestamp_s": 0.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 8,
+      "timestamp_s": 0.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 9,
+      "timestamp_s": 0.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 10,
+      "timestamp_s": 1.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 11,
+      "timestamp_s": 1.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 12,
+      "timestamp_s": 1.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 13,
+      "timestamp_s": 1.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 14,
+      "timestamp_s": 1.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 15,
+      "timestamp_s": 1.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 16,
+      "timestamp_s": 1.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 17,
+      "timestamp_s": 1.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 18,
+      "timestamp_s": 1.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 19,
+      "timestamp_s": 1.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 20,
+      "timestamp_s": 2.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 21,
+      "timestamp_s": 2.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 22,
+      "timestamp_s": 2.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 23,
+      "timestamp_s": 2.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 24,
+      "timestamp_s": 2.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 25,
+      "timestamp_s": 2.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 26,
+      "timestamp_s": 2.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 27,
+      "timestamp_s": 2.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 28,
+      "timestamp_s": 2.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 29,
+      "timestamp_s": 2.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 30,
+      "timestamp_s": 3.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 31,
+      "timestamp_s": 3.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 32,
+      "timestamp_s": 3.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 33,
+      "timestamp_s": 3.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 34,
+      "timestamp_s": 3.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 35,
+      "timestamp_s": 3.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 36,
+      "timestamp_s": 3.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 37,
+      "timestamp_s": 3.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 38,
+      "timestamp_s": 3.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 39,
+      "timestamp_s": 3.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 40,
+      "timestamp_s": 4.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 41,
+      "timestamp_s": 4.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 42,
+      "timestamp_s": 4.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 43,
+      "timestamp_s": 4.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 44,
+      "timestamp_s": 4.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 45,
+      "timestamp_s": 4.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 46,
+      "timestamp_s": 4.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 47,
+      "timestamp_s": 4.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 48,
+      "timestamp_s": 4.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 49,
+      "timestamp_s": 4.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 50,
+      "timestamp_s": 5.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 51,
+      "timestamp_s": 5.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 52,
+      "timestamp_s": 5.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 53,
+      "timestamp_s": 5.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 54,
+      "timestamp_s": 5.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 55,
+      "timestamp_s": 5.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 56,
+      "timestamp_s": 5.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 57,
+      "timestamp_s": 5.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 58,
+      "timestamp_s": 5.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 59,
+      "timestamp_s": 5.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 60,
+      "timestamp_s": 6.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 61,
+      "timestamp_s": 6.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 62,
+      "timestamp_s": 6.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 63,
+      "timestamp_s": 6.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 64,
+      "timestamp_s": 6.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 65,
+      "timestamp_s": 6.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 66,
+      "timestamp_s": 6.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 67,
+      "timestamp_s": 6.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 68,
+      "timestamp_s": 6.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 69,
+      "timestamp_s": 6.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 70,
+      "timestamp_s": 7.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 71,
+      "timestamp_s": 7.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 72,
+      "timestamp_s": 7.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 73,
+      "timestamp_s": 7.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 74,
+      "timestamp_s": 7.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 75,
+      "timestamp_s": 7.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 76,
+      "timestamp_s": 7.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 77,
+      "timestamp_s": 7.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 78,
+      "timestamp_s": 7.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 79,
+      "timestamp_s": 7.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 80,
+      "timestamp_s": 8.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 81,
+      "timestamp_s": 8.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 82,
+      "timestamp_s": 8.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 83,
+      "timestamp_s": 8.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 84,
+      "timestamp_s": 8.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 85,
+      "timestamp_s": 8.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 86,
+      "timestamp_s": 8.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 87,
+      "timestamp_s": 8.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 88,
+      "timestamp_s": 8.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 89,
+      "timestamp_s": 8.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 90,
+      "timestamp_s": 9.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 91,
+      "timestamp_s": 9.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 92,
+      "timestamp_s": 9.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 93,
+      "timestamp_s": 9.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 94,
+      "timestamp_s": 9.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 95,
+      "timestamp_s": 9.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 96,
+      "timestamp_s": 9.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 97,
+      "timestamp_s": 9.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 98,
+      "timestamp_s": 9.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 99,
+      "timestamp_s": 9.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 100,
+      "timestamp_s": 10.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 101,
+      "timestamp_s": 10.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 102,
+      "timestamp_s": 10.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 103,
+      "timestamp_s": 10.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 104,
+      "timestamp_s": 10.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 105,
+      "timestamp_s": 10.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 106,
+      "timestamp_s": 10.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 107,
+      "timestamp_s": 10.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 108,
+      "timestamp_s": 10.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 109,
+      "timestamp_s": 10.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 110,
+      "timestamp_s": 11.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 111,
+      "timestamp_s": 11.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 112,
+      "timestamp_s": 11.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 113,
+      "timestamp_s": 11.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 114,
+      "timestamp_s": 11.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 115,
+      "timestamp_s": 11.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 116,
+      "timestamp_s": 11.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 117,
+      "timestamp_s": 11.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 118,
+      "timestamp_s": 11.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 119,
+      "timestamp_s": 11.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 120,
+      "timestamp_s": 12.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 121,
+      "timestamp_s": 12.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 122,
+      "timestamp_s": 12.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 123,
+      "timestamp_s": 12.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 124,
+      "timestamp_s": 12.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 125,
+      "timestamp_s": 12.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 126,
+      "timestamp_s": 12.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 127,
+      "timestamp_s": 12.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 128,
+      "timestamp_s": 12.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 129,
+      "timestamp_s": 12.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 130,
+      "timestamp_s": 13.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 131,
+      "timestamp_s": 13.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 132,
+      "timestamp_s": 13.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 133,
+      "timestamp_s": 13.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 134,
+      "timestamp_s": 13.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 135,
+      "timestamp_s": 13.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 136,
+      "timestamp_s": 13.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 137,
+      "timestamp_s": 13.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 138,
+      "timestamp_s": 13.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 139,
+      "timestamp_s": 13.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 140,
+      "timestamp_s": 14.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 141,
+      "timestamp_s": 14.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 142,
+      "timestamp_s": 14.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 143,
+      "timestamp_s": 14.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 144,
+      "timestamp_s": 14.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 145,
+      "timestamp_s": 14.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 146,
+      "timestamp_s": 14.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 147,
+      "timestamp_s": 14.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 148,
+      "timestamp_s": 14.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 149,
+      "timestamp_s": 14.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 150,
+      "timestamp_s": 15.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 151,
+      "timestamp_s": 15.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 152,
+      "timestamp_s": 15.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 153,
+      "timestamp_s": 15.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 154,
+      "timestamp_s": 15.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 155,
+      "timestamp_s": 15.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 156,
+      "timestamp_s": 15.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 157,
+      "timestamp_s": 15.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 158,
+      "timestamp_s": 15.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 159,
+      "timestamp_s": 15.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 160,
+      "timestamp_s": 16.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 161,
+      "timestamp_s": 16.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 162,
+      "timestamp_s": 16.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 163,
+      "timestamp_s": 16.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 164,
+      "timestamp_s": 16.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 165,
+      "timestamp_s": 16.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 166,
+      "timestamp_s": 16.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 167,
+      "timestamp_s": 16.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 168,
+      "timestamp_s": 16.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 169,
+      "timestamp_s": 16.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 170,
+      "timestamp_s": 17.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 171,
+      "timestamp_s": 17.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 172,
+      "timestamp_s": 17.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 173,
+      "timestamp_s": 17.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 174,
+      "timestamp_s": 17.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 175,
+      "timestamp_s": 17.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 176,
+      "timestamp_s": 17.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 177,
+      "timestamp_s": 17.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 178,
+      "timestamp_s": 17.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 179,
+      "timestamp_s": 17.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 180,
+      "timestamp_s": 18.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 181,
+      "timestamp_s": 18.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 182,
+      "timestamp_s": 18.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 183,
+      "timestamp_s": 18.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 184,
+      "timestamp_s": 18.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 185,
+      "timestamp_s": 18.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 186,
+      "timestamp_s": 18.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 187,
+      "timestamp_s": 18.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 188,
+      "timestamp_s": 18.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 189,
+      "timestamp_s": 18.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 190,
+      "timestamp_s": 19.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 191,
+      "timestamp_s": 19.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 192,
+      "timestamp_s": 19.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 193,
+      "timestamp_s": 19.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 194,
+      "timestamp_s": 19.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 195,
+      "timestamp_s": 19.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 196,
+      "timestamp_s": 19.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 197,
+      "timestamp_s": 19.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 198,
+      "timestamp_s": 19.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 199,
+      "timestamp_s": 19.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 200,
+      "timestamp_s": 20.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 201,
+      "timestamp_s": 20.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 202,
+      "timestamp_s": 20.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 203,
+      "timestamp_s": 20.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 204,
+      "timestamp_s": 20.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 205,
+      "timestamp_s": 20.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 206,
+      "timestamp_s": 20.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 207,
+      "timestamp_s": 20.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 208,
+      "timestamp_s": 20.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 209,
+      "timestamp_s": 20.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 210,
+      "timestamp_s": 21.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 211,
+      "timestamp_s": 21.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 212,
+      "timestamp_s": 21.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 213,
+      "timestamp_s": 21.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 214,
+      "timestamp_s": 21.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 215,
+      "timestamp_s": 21.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 216,
+      "timestamp_s": 21.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 217,
+      "timestamp_s": 21.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 218,
+      "timestamp_s": 21.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 219,
+      "timestamp_s": 21.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 220,
+      "timestamp_s": 22.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 221,
+      "timestamp_s": 22.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 222,
+      "timestamp_s": 22.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 223,
+      "timestamp_s": 22.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 224,
+      "timestamp_s": 22.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 225,
+      "timestamp_s": 22.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 226,
+      "timestamp_s": 22.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 227,
+      "timestamp_s": 22.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 228,
+      "timestamp_s": 22.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 229,
+      "timestamp_s": 22.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 230,
+      "timestamp_s": 23.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 231,
+      "timestamp_s": 23.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 232,
+      "timestamp_s": 23.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 233,
+      "timestamp_s": 23.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 234,
+      "timestamp_s": 23.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 235,
+      "timestamp_s": 23.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 236,
+      "timestamp_s": 23.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 237,
+      "timestamp_s": 23.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 238,
+      "timestamp_s": 23.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 239,
+      "timestamp_s": 23.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 240,
+      "timestamp_s": 24.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 241,
+      "timestamp_s": 24.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 242,
+      "timestamp_s": 24.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 243,
+      "timestamp_s": 24.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 244,
+      "timestamp_s": 24.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 245,
+      "timestamp_s": 24.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 246,
+      "timestamp_s": 24.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 247,
+      "timestamp_s": 24.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 248,
+      "timestamp_s": 24.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 249,
+      "timestamp_s": 24.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 250,
+      "timestamp_s": 25.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 251,
+      "timestamp_s": 25.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 252,
+      "timestamp_s": 25.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 253,
+      "timestamp_s": 25.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 254,
+      "timestamp_s": 25.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 255,
+      "timestamp_s": 25.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 256,
+      "timestamp_s": 25.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 257,
+      "timestamp_s": 25.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 258,
+      "timestamp_s": 25.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 259,
+      "timestamp_s": 25.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 260,
+      "timestamp_s": 26.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 261,
+      "timestamp_s": 26.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 262,
+      "timestamp_s": 26.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 263,
+      "timestamp_s": 26.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 264,
+      "timestamp_s": 26.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 265,
+      "timestamp_s": 26.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 266,
+      "timestamp_s": 26.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 267,
+      "timestamp_s": 26.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 268,
+      "timestamp_s": 26.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 269,
+      "timestamp_s": 26.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 270,
+      "timestamp_s": 27.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 271,
+      "timestamp_s": 27.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 272,
+      "timestamp_s": 27.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 273,
+      "timestamp_s": 27.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 274,
+      "timestamp_s": 27.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 275,
+      "timestamp_s": 27.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 276,
+      "timestamp_s": 27.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 277,
+      "timestamp_s": 27.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 278,
+      "timestamp_s": 27.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 279,
+      "timestamp_s": 27.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 280,
+      "timestamp_s": 28.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 281,
+      "timestamp_s": 28.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 282,
+      "timestamp_s": 28.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 283,
+      "timestamp_s": 28.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 284,
+      "timestamp_s": 28.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 285,
+      "timestamp_s": 28.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 286,
+      "timestamp_s": 28.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 287,
+      "timestamp_s": 28.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 288,
+      "timestamp_s": 28.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 289,
+      "timestamp_s": 28.9
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 290,
+      "timestamp_s": 29.0
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 291,
+      "timestamp_s": 29.1
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 292,
+      "timestamp_s": 29.2
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 293,
+      "timestamp_s": 29.3
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 294,
+      "timestamp_s": 29.4
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 295,
+      "timestamp_s": 29.5
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 296,
+      "timestamp_s": 29.6
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 297,
+      "timestamp_s": 29.7
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 298,
+      "timestamp_s": 29.8
+    },
+    {
+      "schema_version": "0.1.0",
+      "clip_id": "eed18b52e9db6567",
+      "frame_index": 299,
+      "timestamp_s": 29.9
+    }
+  ],
+  "provenance": {
+    "schema_version": "0.1.0",
+    "kind": "observed",
+    "produced_by": "cairoflow_perception.ingest",
+    "produced_at_utc": "2026-10-30T22:50:53.098784Z",
+    "input_sha256": [
+      "04ef7435be3a107e7321900c384bb1ee7703ce753a122559cd2937fef341f530"
+    ],
+    "parameters": {
+      "target_fps": 10,
+      "preset": "medium",
+      "crf": 18
+    },
+    "software": {
+      "ffmpeg": "6.1.1-3ubuntu5",
+      "cairoflow": "0.0.1"
+    },
+    "cached": false
+  }
+}

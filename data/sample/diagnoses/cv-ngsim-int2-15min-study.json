@@ -1,0 +1,473 @@
+{
+ "schema_version": "0.1.0",
+ "label": "model-generated hypotheses; not a measurement",
+ "analysis_id": "cv-ngsim-int2-15min-study",
+ "analysis_record_sha256": "af85ed772411287af9a32c6e5ca0983a33d02e951525478f28a120029f74646b",
+ "model": "muse-spark-1.3",
+ "prompt_version": "cv-0.1.0",
+ "created_at_utc": "2026-11-04T14:42:34Z",
+ "evidence": [
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.total",
+   "statement": "Counted tracks (site)",
+   "value": 967.0,
+   "unit": "tracks",
+   "evidence_kind": "approximated",
+   "status": "ungated"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:flow.entering",
+   "statement": "Entering flow (site)",
+   "value": null,
+   "unit": "veh/h",
+   "evidence_kind": "approximated",
+   "status": "gate_fail"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:speed.mean_moving",
+   "statement": "Mean moving speed (site)",
+   "value": 7.84,
+   "unit": "m/s",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:stopped.share",
+   "statement": "Share of time stopped (site)",
+   "value": 0.537,
+   "unit": "share",
+   "evidence_kind": "approximated",
+   "status": "ungated"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.arm.n",
+   "statement": "Entering from N (arm:N)",
+   "value": null,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_fail"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.arm.e",
+   "statement": "Entering from E (arm:E)",
+   "value": null,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_fail"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.arm.s",
+   "statement": "Entering from S (arm:S)",
+   "value": null,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_fail"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.arm.w",
+   "statement": "Entering from W (arm:W)",
+   "value": null,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_fail"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.class.bus",
+   "statement": "Bus (class:bus)",
+   "value": 6.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "ungated"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.class.car",
+   "statement": "Car (class:car)",
+   "value": 923.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "ungated"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.class.motorcycle",
+   "statement": "Motorcycle (class:motorcycle)",
+   "value": 5.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "ungated"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "metric:vehicles.class.truck",
+   "statement": "Truck (class:truck)",
+   "value": 33.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "ungated"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:E-N",
+   "statement": "Vehicles from arm E leaving by arm N (right)",
+   "value": 22.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:E-S",
+   "statement": "Vehicles from arm E leaving by arm S (left)",
+   "value": 4.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:E-W",
+   "statement": "Vehicles from arm E leaving by arm W (through)",
+   "value": 4.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:N-E",
+   "statement": "Vehicles from arm N leaving by arm E (left)",
+   "value": 101.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:N-S",
+   "statement": "Vehicles from arm N leaving by arm S (through)",
+   "value": 302.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:N-W",
+   "statement": "Vehicles from arm N leaving by arm W (right)",
+   "value": 22.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:S-E",
+   "statement": "Vehicles from arm S leaving by arm E (right)",
+   "value": 82.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:S-N",
+   "statement": "Vehicles from arm S leaving by arm N (through)",
+   "value": 217.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:S-W",
+   "statement": "Vehicles from arm S leaving by arm W (left)",
+   "value": 11.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:W-E",
+   "statement": "Vehicles from arm W leaving by arm E (through)",
+   "value": 14.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:W-N",
+   "statement": "Vehicles from arm W leaving by arm N (left)",
+   "value": 19.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  },
+  {
+   "schema_version": "0.1.0",
+   "evidence_id": "movement:W-S",
+   "statement": "Vehicles from arm W leaving by arm S (right)",
+   "value": 3.0,
+   "unit": "veh",
+   "evidence_kind": "approximated",
+   "status": "gate_pass"
+  }
+ ],
+ "replicates": [
+  {
+   "schema_version": "0.1.0",
+   "replicate": 1,
+   "status": "ok",
+   "failure": null,
+   "request_key": "2e36b579cdb6bd07589821354fcfb60de3281da822f149cdda71ca6c31edaf8d",
+   "from_cache": false,
+   "cost_usd": 0.02364775,
+   "citation_problems": [],
+   "unsupported_numbers": [],
+   "diagnosis": {
+    "schema_version": "0.1.0",
+    "summary": "Counted tracks show north-south through and related turning activity with high share of time stopped, suggesting north-south load or turning interaction as possible limits, but key entering flows are withheld and per-movement and stopped-share values lack independent validation, so measurement artefact remains a competing explanation.",
+    "hypotheses": [
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "h-ns-through",
+      "statement": "Operation is limited by heavy north-south through demand, with the N-S and S-N through movements dominating the validated turn counts and producing high stopped time.",
+      "supporting_evidence_ids": [
+       "movement:N-S",
+       "movement:S-N",
+       "metric:vehicles.total",
+       "metric:stopped.share"
+      ],
+      "contradicting_evidence_ids": [
+       "metric:speed.mean_moving"
+      ],
+      "confidence": "low",
+      "how_to_check": "Obtain an independent on-road classified count by arm and movement over the same period with manual validation of queues, plus signal state logs, to confirm whether north-south through demand is the main load and source of stopped time."
+     },
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "h-turn-friction",
+      "statement": "Operation is limited by turning friction where N-E left and S-E right flows interact with opposing through flows, creating stops disproportionate to through volume alone.",
+      "supporting_evidence_ids": [
+       "movement:N-E",
+       "movement:S-E",
+       "metric:stopped.share"
+      ],
+      "contradicting_evidence_ids": [
+       "movement:E-S",
+       "movement:S-W",
+       "movement:W-S"
+      ],
+      "confidence": "low",
+      "how_to_check": "Measure lane-specific arrivals, turning queues and discharge interactions on the road with signal state, to test whether left and right turning flows conflict with through flows."
+     },
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "h-artifact",
+      "statement": "The apparent pattern reflects computer-vision limits rather than a true operational limit, with missed stopped vehicles, mid-view starts retained in totals and turns, coarse arm quadrants and window cut-off distorting the distribution and stopped share.",
+      "supporting_evidence_ids": [
+       "metric:vehicles.total",
+       "metric:stopped.share",
+       "metric:vehicles.class.car"
+      ],
+      "contradicting_evidence_ids": [
+       "metric:speed.mean_moving",
+       "movement:N-S",
+       "movement:S-N"
+      ],
+      "confidence": "medium",
+      "how_to_check": "Repeat counting with independent on-road manual counts and tracked queue observations that capture stopped vehicles and window-edge effects, with per-movement validation, to test whether the apparent dominance and stopped share persist."
+     }
+    ],
+    "limitations": [
+     "Entering flow and entering counts by arm were withheld and cannot be used to infer demand, capacity or balance.",
+     "No signal timing, phasing, saturation flow, queue length or delay-cause data are in evidence, so stopped time cannot be attributed to a signal or bottleneck.",
+     "Ground positions are approximate and along-road distances are not accepted; speed agreement when moving is empirical and not a calibrated speed measurement.",
+     "Arms and turns are coarse quadrants from first and last track points; a track cut off by the window has no exit and no turn.",
+     "Counted totals include mid-view starts that are either restarted tracks or queued vehicles first seen moving, while entering definitions exclude them.",
+     "The detector misses some stopped vehicles on visual check and some track points are interpolated across missed detections, so stopped share and totals are uncertain.",
+     "Turning agreement was checked pooled and not movement by movement, so no single movement count is individually validated.",
+     "Vehicle classes without a detector label are inferred from rough size and boxes and tracks are not ground truth with no value measured on the road.",
+     "Footage is historical and from a different city and period than the present junction operation, and part of the image is window frame with flagged points."
+    ]
+   }
+  },
+  {
+   "schema_version": "0.1.0",
+   "replicate": 2,
+   "status": "ok",
+   "failure": null,
+   "request_key": "2e36b579cdb6bd07589821354fcfb60de3281da822f149cdda71ca6c31edaf8d",
+   "from_cache": false,
+   "cost_usd": 0.01988355,
+   "citation_problems": [],
+   "unsupported_numbers": [],
+   "diagnosis": {
+    "schema_version": "0.1.0",
+    "summary": "Tracks suggest operation centred on north-south through movements with substantial stopped time and a notable north to east left movement within a car-dominated fleet, with detector misses and coarse movement definitions limiting certainty.",
+    "hypotheses": [
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "through-demand",
+      "statement": "Junction operation is limited by heavy north to south and south to north through demand relative to east and west movements.",
+      "supporting_evidence_ids": [
+       "movement:N-S",
+       "movement:S-N",
+       "movement:W-E",
+       "movement:E-W",
+       "metric:vehicles.total"
+      ],
+      "contradicting_evidence_ids": [],
+      "confidence": "medium",
+      "how_to_check": "Collect independent on-road manual classified counts by movement with simultaneous signal state logging and queue observation on the same approaches to verify relative through demand."
+     },
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "queuing-delay",
+      "statement": "Junction operation is limited by queuing and delay reflected in a high share of time stopped.",
+      "supporting_evidence_ids": [
+       "metric:stopped.share",
+       "metric:speed.mean_moving",
+       "metric:vehicles.total"
+      ],
+      "contradicting_evidence_ids": [],
+      "confidence": "medium",
+      "how_to_check": "Measure on-road queue lengths, stopped time and discharge behaviour with independent signal state records to determine whether stopped time reflects signal-related queuing."
+     },
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "left-turn-friction",
+      "statement": "Junction operation is limited by friction between the north to east left movement and opposing north-south through flow.",
+      "supporting_evidence_ids": [
+       "movement:N-E",
+       "movement:N-S",
+       "movement:S-N"
+      ],
+      "contradicting_evidence_ids": [
+       "movement:S-W",
+       "movement:E-S",
+       "movement:W-N"
+      ],
+      "confidence": "low",
+      "how_to_check": "Obtain lane-resolved on-road observations of left-turn arrivals, opposing through flow and yielding and blocking behaviour to test whether the north to east left movement interacts with through flow."
+     },
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "car-dominated-flow",
+      "statement": "Junction operation is limited by volume of cars rather than by heavy-vehicle composition, with cars dominating counted tracks.",
+      "supporting_evidence_ids": [
+       "metric:vehicles.class.car",
+       "metric:vehicles.class.truck",
+       "metric:vehicles.class.bus",
+       "metric:vehicles.class.motorcycle"
+      ],
+      "contradicting_evidence_ids": [],
+      "confidence": "low",
+      "how_to_check": "Undertake independent on-road classified counts with verified vehicle dimensions to confirm fleet mix and whether heavy vehicles contribute to operational limitation."
+     }
+    ],
+    "limitations": [
+     "This evidence cannot show signal timing or phase operation, so stopped time cannot be attributed to signal control from this evidence alone.",
+     "This evidence cannot show entering flow or totals by arm because those values were withheld and must not be inferred.",
+     "This evidence cannot show reliable movement-level turning volumes on its own because turning agreement was checked pooled and arms and turns are coarse quadrants with window-cut tracks lacking exits.",
+     "This evidence cannot show full demand or stopped-vehicle exposure because the detector missed stopped vehicles on visual check and tracks beginning mid-view were excluded from entering counts while retained elsewhere.",
+     "This evidence cannot show calibrated speed or along-road distance because ground positions rely on an approximated homography with only empirical agreement for moving speed.",
+     "This evidence cannot show fleet mix with certainty because classes without a detector label were inferred from rough size and tracks include interpolation and fragments."
+    ]
+   }
+  },
+  {
+   "schema_version": "0.1.0",
+   "replicate": 3,
+   "status": "ok",
+   "failure": null,
+   "request_key": "2e36b579cdb6bd07589821354fcfb60de3281da822f149cdda71ca6c31edaf8d",
+   "from_cache": false,
+   "cost_usd": 0.018195,
+   "citation_problems": [],
+   "unsupported_numbers": [],
+   "diagnosis": {
+    "schema_version": "0.1.0",
+    "summary": "Overhead tracking shows many counted tracks dominated by cars with north-south through movements and eastward turns present, alongside substantial stopped time while movement when moving remains at the gated value.",
+    "hypotheses": [
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "H-A",
+      "statement": "Junction operation is limited mainly by high demand for through travel between north and south arms.",
+      "supporting_evidence_ids": [
+       "movement:N-S",
+       "movement:S-N",
+       "metric:vehicles.total",
+       "metric:vehicles.class.car"
+      ],
+      "contradicting_evidence_ids": [
+       "metric:speed.mean_moving"
+      ],
+      "confidence": "medium",
+      "how_to_check": "Separate independent counts of approach demand and exit service by arm from on-road observation over multiple signal cycles, with turning movements recorded independently."
+     },
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "H-B",
+      "statement": "Junction operation is limited mainly by time spent stopped due to signal control or queuing rather than by moving conditions.",
+      "supporting_evidence_ids": [
+       "metric:stopped.share"
+      ],
+      "contradicting_evidence_ids": [
+       "metric:speed.mean_moving"
+      ],
+      "confidence": "low",
+      "how_to_check": "Independent measurement of queue formation and discharge by approach from roadside observation, together with direct recording of signal states."
+     },
+     {
+      "schema_version": "0.1.0",
+      "hypothesis_id": "H-C",
+      "statement": "Junction operation is limited mainly by turning interactions toward the east arm from north and south entries.",
+      "supporting_evidence_ids": [
+       "movement:N-E",
+       "movement:S-E"
+      ],
+      "contradicting_evidence_ids": [
+       "movement:N-S",
+       "movement:S-N"
+      ],
+      "confidence": "low",
+      "how_to_check": "Independent observation of turning paths and conflict area occupancy, with separate recording of turning versus through queues by approach."
+     }
+    ],
+    "limitations": [
+     "Withheld entering flow and arm entry values cannot be used to infer demand or balance.",
+     "Movement counts were checked only pooled, so no single movement count is independently validated on its own.",
+     "The detector misses some stopped vehicles and some tracks begin mid-view and are excluded from entering counts, so entering demand can run low while totals mix different track types.",
+     "Positions come from an approximated camera mapping with along-road distances not accepted, speed is shown only as gated agreement and not as calibrated measurement, and some points are interpolated with short fragments excluded from counts.",
+     "Vehicle classes without detector labels are inferred from rough size, and arms and turns are coarse quadrants with window-cut tracks lacking exit and turn.",
+     "No signal timing, lane layout, priority, pedestrian, or downstream condition information is present in the evidence."
+    ]
+   }
+  }
+ ],
+ "provenance": {
+  "schema_version": "0.1.0",
+  "kind": "model_generated",
+  "produced_by": "muse-spark-1.3",
+  "produced_at_utc": "2026-11-04T14:42:34Z",
+  "input_sha256": [
+   "af85ed772411287af9a32c6e5ca0983a33d02e951525478f28a120029f74646b",
+   "2e36b579cdb6bd07589821354fcfb60de3281da822f149cdda71ca6c31edaf8d"
+  ],
+  "parameters": {},
+  "software": {},
+  "cached": false
+ }
+}

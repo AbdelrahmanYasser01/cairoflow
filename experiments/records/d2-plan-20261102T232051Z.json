@@ -1,0 +1,14 @@
+{
+  "arm": "D2",
+  "label": null,
+  "outcome": "no_feasible_plan",
+  "plan_sha256": null,
+  "program": null,
+  "record_sha256": "799261df95d0fd319e5262c6d23458d464956f66cc845ed111801b3727516f88",
+  "reported": "not_testable",
+  "rule": "d2-rule-v1",
+  "script": "scripts/run_d2_search_experiment.py",
+  "search_record": "d2-search-20261102T232051Z.json",
+  "search_record_sha256": "a3346014a5669f7efd8a4b2ebe8bf1762172110db605da18593e7728e96f93e9",
+  "selection_record_sha256": "69026217743f80a066f57a73ed72d6a67900f60e75ef2df0e030f5372bf33550"
+}

@@ -1,0 +1,1131 @@
+{
+  "schema": "cairoflow-a3-review-sheet/0.1.0",
+  "clip_id": "4c0895cd84a81758",
+  "clip_sha256": "4c0895cd84a81758e3c7c6932afa48db160a8d258d963070125f184d86ce4dd3",
+  "tracks_sha256": "40474d5ee78adf85ce5873ab2d11e1335d22aba85734320c94724a3857cb581e",
+  "protocol": {
+    "sample_frames": [
+      0,
+      20,
+      40,
+      60,
+      80,
+      99
+    ],
+    "roi_bottom_px": 410,
+    "verdicts": {
+      "vehicle": "covers most of exactly one motor vehicle",
+      "not_vehicle": "no motor vehicle under most of the box",
+      "partial": "covers less than about half of one vehicle, or covers two or more"
+    },
+    "missed": "motor vehicles at least half visible above image row 410 that no box covers most of (parked or moving, on or off the road)",
+    "switches": "how often a crop shows a different vehicle from the crop before it",
+    "strip_step_frames": 10
+  },
+  "boxes": [
+    {
+      "frame": 0,
+      "box": 1,
+      "track_id": "car:t13",
+      "bbox_xyxy_px": [
+        42.0,
+        226.0,
+        76.0,
+        240.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 2,
+      "track_id": "car:t15",
+      "bbox_xyxy_px": [
+        86.0,
+        225.0,
+        119.0,
+        238.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 3,
+      "track_id": "car:t7",
+      "bbox_xyxy_px": [
+        94.0,
+        245.0,
+        128.0,
+        260.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 4,
+      "track_id": "car:t1",
+      "bbox_xyxy_px": [
+        232.0,
+        136.0,
+        257.0,
+        163.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 5,
+      "track_id": "car:t9",
+      "bbox_xyxy_px": [
+        251.0,
+        194.0,
+        273.0,
+        216.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 6,
+      "track_id": "car:t2",
+      "bbox_xyxy_px": [
+        253.0,
+        234.0,
+        277.0,
+        262.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 7,
+      "track_id": "car:t12",
+      "bbox_xyxy_px": [
+        317.0,
+        170.0,
+        341.0,
+        183.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 8,
+      "track_id": "car:t10",
+      "bbox_xyxy_px": [
+        323.0,
+        192.0,
+        351.0,
+        208.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 9,
+      "track_id": "car:t11",
+      "bbox_xyxy_px": [
+        337.0,
+        231.0,
+        359.0,
+        253.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 10,
+      "track_id": "car:t3",
+      "bbox_xyxy_px": [
+        448.0,
+        153.0,
+        477.0,
+        165.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 11,
+      "track_id": "car:t5",
+      "bbox_xyxy_px": [
+        449.0,
+        120.0,
+        475.0,
+        133.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 12,
+      "track_id": "car:t16",
+      "bbox_xyxy_px": [
+        455.0,
+        185.0,
+        479.0,
+        197.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 13,
+      "track_id": "car:t6",
+      "bbox_xyxy_px": [
+        466.0,
+        216.0,
+        492.0,
+        230.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 14,
+      "track_id": "car:t8",
+      "bbox_xyxy_px": [
+        516.0,
+        138.0,
+        541.0,
+        151.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 15,
+      "track_id": "car:t14",
+      "bbox_xyxy_px": [
+        557.0,
+        124.0,
+        582.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 0,
+      "box": 16,
+      "track_id": "car:t4",
+      "bbox_xyxy_px": [
+        604.0,
+        124.0,
+        626.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 1,
+      "track_id": "car:t13",
+      "bbox_xyxy_px": [
+        42.0,
+        226.0,
+        75.0,
+        240.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 2,
+      "track_id": "car:t15",
+      "bbox_xyxy_px": [
+        86.0,
+        226.0,
+        119.0,
+        239.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 3,
+      "track_id": "car:t7",
+      "bbox_xyxy_px": [
+        94.0,
+        246.0,
+        128.0,
+        259.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 4,
+      "track_id": "car:t9",
+      "bbox_xyxy_px": [
+        217.0,
+        277.0,
+        231.0,
+        305.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 5,
+      "track_id": "car:t2",
+      "bbox_xyxy_px": [
+        240.0,
+        338.0,
+        253.0,
+        371.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 6,
+      "track_id": "car:t12",
+      "bbox_xyxy_px": [
+        248.0,
+        198.0,
+        274.0,
+        223.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 7,
+      "track_id": "car:t10",
+      "bbox_xyxy_px": [
+        253.0,
+        244.0,
+        275.0,
+        272.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 8,
+      "track_id": "car:t1",
+      "bbox_xyxy_px": [
+        272.0,
+        56.0,
+        290.0,
+        84.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 9,
+      "track_id": "car:t16",
+      "bbox_xyxy_px": [
+        405.0,
+        184.0,
+        431.0,
+        197.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 10,
+      "track_id": "car:t11",
+      "bbox_xyxy_px": [
+        408.0,
+        216.0,
+        433.0,
+        229.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 11,
+      "track_id": "car:t3",
+      "bbox_xyxy_px": [
+        448.0,
+        153.0,
+        477.0,
+        166.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 12,
+      "track_id": "car:t5",
+      "bbox_xyxy_px": [
+        449.0,
+        120.0,
+        475.0,
+        134.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 13,
+      "track_id": "car:t8",
+      "bbox_xyxy_px": [
+        512.0,
+        138.0,
+        537.0,
+        151.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 14,
+      "track_id": "car:t14",
+      "bbox_xyxy_px": [
+        545.0,
+        123.0,
+        569.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 15,
+      "track_id": "car:t6",
+      "bbox_xyxy_px": [
+        573.0,
+        217.0,
+        596.0,
+        230.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 20,
+      "box": 16,
+      "track_id": "car:t4",
+      "bbox_xyxy_px": [
+        577.0,
+        124.0,
+        600.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 1,
+      "track_id": "car:t13",
+      "bbox_xyxy_px": [
+        42.0,
+        226.0,
+        76.0,
+        241.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 2,
+      "track_id": "car:t15",
+      "bbox_xyxy_px": [
+        86.0,
+        226.0,
+        119.0,
+        239.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 3,
+      "track_id": "car:t7",
+      "bbox_xyxy_px": [
+        94.0,
+        245.0,
+        128.0,
+        259.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 4,
+      "track_id": "car:t12",
+      "bbox_xyxy_px": [
+        212.0,
+        284.0,
+        228.0,
+        314.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 5,
+      "track_id": "car:t9",
+      "bbox_xyxy_px": [
+        219.0,
+        400.0,
+        235.0,
+        421.0
+      ],
+      "contact_above_roi": false
+    },
+    {
+      "frame": 40,
+      "box": 6,
+      "track_id": "car:t10",
+      "bbox_xyxy_px": [
+        241.0,
+        355.0,
+        253.0,
+        386.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 7,
+      "track_id": "car:t16",
+      "bbox_xyxy_px": [
+        344.0,
+        186.0,
+        370.0,
+        200.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 8,
+      "track_id": "car:t3",
+      "bbox_xyxy_px": [
+        448.0,
+        153.0,
+        477.0,
+        166.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 9,
+      "track_id": "car:t5",
+      "bbox_xyxy_px": [
+        449.0,
+        120.0,
+        475.0,
+        134.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 10,
+      "track_id": "car:t8",
+      "bbox_xyxy_px": [
+        512.0,
+        138.0,
+        537.0,
+        151.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 11,
+      "track_id": "car:t14",
+      "bbox_xyxy_px": [
+        543.0,
+        123.0,
+        569.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 40,
+      "box": 12,
+      "track_id": "car:t4",
+      "bbox_xyxy_px": [
+        571.0,
+        124.0,
+        593.0,
+        135.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 1,
+      "track_id": "car:t13",
+      "bbox_xyxy_px": [
+        42.0,
+        226.0,
+        75.0,
+        241.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 2,
+      "track_id": "car:t15",
+      "bbox_xyxy_px": [
+        86.0,
+        226.0,
+        119.0,
+        239.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 3,
+      "track_id": "car:t7",
+      "bbox_xyxy_px": [
+        94.0,
+        246.0,
+        128.0,
+        259.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 4,
+      "track_id": "car:t12",
+      "bbox_xyxy_px": [
+        204.0,
+        401.0,
+        221.0,
+        420.0
+      ],
+      "contact_above_roi": false
+    },
+    {
+      "frame": 60,
+      "box": 5,
+      "track_id": "car:t16",
+      "bbox_xyxy_px": [
+        276.0,
+        211.0,
+        301.0,
+        234.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 6,
+      "track_id": "car:t3",
+      "bbox_xyxy_px": [
+        448.0,
+        153.0,
+        477.0,
+        166.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 7,
+      "track_id": "car:t5",
+      "bbox_xyxy_px": [
+        449.0,
+        120.0,
+        475.0,
+        134.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 8,
+      "track_id": "car:t8",
+      "bbox_xyxy_px": [
+        512.0,
+        138.0,
+        537.0,
+        151.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 9,
+      "track_id": "car:t14",
+      "bbox_xyxy_px": [
+        542.0,
+        123.0,
+        567.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 10,
+      "track_id": "car:t4",
+      "bbox_xyxy_px": [
+        571.0,
+        124.0,
+        593.0,
+        135.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 60,
+      "box": 11,
+      "track_id": "car:t17",
+      "bbox_xyxy_px": [
+        625.0,
+        215.0,
+        640.0,
+        226.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 1,
+      "track_id": "car:t13",
+      "bbox_xyxy_px": [
+        42.0,
+        226.0,
+        75.0,
+        241.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 2,
+      "track_id": "car:t15",
+      "bbox_xyxy_px": [
+        86.0,
+        226.0,
+        119.0,
+        239.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 3,
+      "track_id": "car:t7",
+      "bbox_xyxy_px": [
+        94.0,
+        245.0,
+        128.0,
+        260.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 4,
+      "track_id": "car:t16",
+      "bbox_xyxy_px": [
+        242.0,
+        289.0,
+        257.0,
+        317.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 5,
+      "track_id": "car:t3",
+      "bbox_xyxy_px": [
+        448.0,
+        153.0,
+        477.0,
+        166.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 6,
+      "track_id": "car:t5",
+      "bbox_xyxy_px": [
+        449.0,
+        120.0,
+        475.0,
+        134.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 7,
+      "track_id": "car:t8",
+      "bbox_xyxy_px": [
+        512.0,
+        138.0,
+        537.0,
+        151.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 8,
+      "track_id": "car:t14",
+      "bbox_xyxy_px": [
+        541.0,
+        123.0,
+        565.0,
+        135.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 80,
+      "box": 9,
+      "track_id": "car:t4",
+      "bbox_xyxy_px": [
+        571.0,
+        124.0,
+        593.0,
+        135.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 1,
+      "track_id": "car:t13",
+      "bbox_xyxy_px": [
+        42.0,
+        226.0,
+        75.0,
+        240.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 2,
+      "track_id": "car:t15",
+      "bbox_xyxy_px": [
+        86.0,
+        226.0,
+        119.0,
+        239.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 3,
+      "track_id": "car:t7",
+      "bbox_xyxy_px": [
+        94.0,
+        246.0,
+        128.0,
+        260.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 4,
+      "track_id": "car:t16",
+      "bbox_xyxy_px": [
+        247.0,
+        397.0,
+        262.0,
+        422.0
+      ],
+      "contact_above_roi": false
+    },
+    {
+      "frame": 99,
+      "box": 5,
+      "track_id": "car:t3",
+      "bbox_xyxy_px": [
+        448.0,
+        153.0,
+        477.0,
+        166.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 6,
+      "track_id": "car:t5",
+      "bbox_xyxy_px": [
+        450.0,
+        120.0,
+        475.0,
+        133.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 7,
+      "track_id": "car:t8",
+      "bbox_xyxy_px": [
+        512.0,
+        138.0,
+        537.0,
+        151.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 8,
+      "track_id": "car:t14",
+      "bbox_xyxy_px": [
+        541.0,
+        123.0,
+        565.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    },
+    {
+      "frame": 99,
+      "box": 9,
+      "track_id": "car:t4",
+      "bbox_xyxy_px": [
+        570.0,
+        124.0,
+        593.0,
+        136.0
+      ],
+      "contact_above_roi": true
+    }
+  ],
+  "strips": [
+    {
+      "track_id": "car:t1",
+      "frames": [
+        0,
+        10,
+        20,
+        30
+      ]
+    },
+    {
+      "track_id": "car:t2",
+      "frames": [
+        0,
+        10,
+        20,
+        30
+      ]
+    },
+    {
+      "track_id": "car:t3",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t4",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t5",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t6",
+      "frames": [
+        0,
+        10,
+        20,
+        30
+      ]
+    },
+    {
+      "track_id": "car:t7",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t8",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t9",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40
+      ]
+    },
+    {
+      "track_id": "car:t10",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40
+      ]
+    },
+    {
+      "track_id": "car:t11",
+      "frames": [
+        0,
+        10,
+        20,
+        30
+      ]
+    },
+    {
+      "track_id": "car:t12",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60
+      ]
+    },
+    {
+      "track_id": "car:t13",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t14",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t15",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t16",
+      "frames": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        99
+      ]
+    },
+    {
+      "track_id": "car:t17",
+      "frames": [
+        50,
+        60
+      ]
+    },
+    {
+      "track_id": "car:t18",
+      "frames": [
+        70
+      ]
+    }
+  ],
+  "sheet_id": "5bd3638edaaa613d1f4cb6e02ebe1e3e78ff0e7c49adf26cf945dae1824eae15"
+}

@@ -1,0 +1,18 @@
+# CairoFlow demo URLs, in the order a walkthrough opens them. One local path per line; '#' starts
+# a comment. scripts/demo_run.sh serves them all from cairoflow_api.serve: first the web app's six
+# pages and its API, then the report pages. Without a build of apps/web its pages answer with
+# instructions to build it. The ?e= and ?zoom= URLs need the Git-ignored World Model view;
+# demo_run.sh --check requires each to show the entity and zoom it asks for.
+/
+/intersections
+/vision
+/twin
+/analytics
+/evidence
+/api/v1/health
+/api/v1/analyses
+/demo
+/flow
+/flow?e=movement:NE
+/flow?e=queue:N12
+/flow?zoom=full

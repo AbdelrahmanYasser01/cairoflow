@@ -1,0 +1,1594 @@
+{
+  "script": "scripts/reevaluate_ngsim_int2_experiment.py",
+  "created_at_utc": "2026-10-28T12:25:01+00:00",
+  "run_dir": "experiments/runs/ngsim-int2-reevaluation-20261028T122501Z",
+  "source_run": "experiments/runs/ngsim-int2-experiment-20261028T084336Z",
+  "source_hashes": {
+    "bundle.json": "4f82f0957b8f626c9c88a449f70e30ea84b74ec1a9fc0ed2090b84f25f5f6797",
+    "reasoning.json": "893fe8be9c3d9b94e1c983efae4f02cc3d61211a67609b240c7726aa790a66b4",
+    "outcomes.json": "3be4b06766aefa9372252d59076a3fd72f43e07918cadffaeddb15ca5df061ed",
+    "experiment/experiment_manifest.json": "419b07ca9b3d556d191f724ed1c4ed189c085d03e0606b740fefdfb5320318b5",
+    "experiment/evaluation.json": "e65c4122ffa26bb0a2baec5f3314fbd372da1f58284f4e7c79caa66d508aaa21"
+  },
+  "sumo_outputs": {
+    "checked_against_recorded_evaluation": 20,
+    "tripinfo_checked_against_run_records": "all",
+    "queue_xml_without_a_recorded_hash": [
+      "candidates/I1/runs/seed_1/queue.xml",
+      "candidates/I1/runs/seed_2/queue.xml",
+      "candidates/I1/runs/seed_3/queue.xml",
+      "candidates/I1/runs/seed_4/queue.xml",
+      "candidates/I1/runs/seed_5/queue.xml",
+      "candidates/I3/runs/seed_1/queue.xml",
+      "candidates/I3/runs/seed_2/queue.xml",
+      "candidates/I3/runs/seed_3/queue.xml",
+      "candidates/I3/runs/seed_4/queue.xml",
+      "candidates/I3/runs/seed_5/queue.xml"
+    ],
+    "note": "queue.xml of runs the recorded evaluation did not compare (I1, I3) has no recorded hash anywhere, so it is read as found; tripinfo.xml of every run is checked against its RunRecord"
+  },
+  "rules_version": "0.2.0",
+  "label": "simulated",
+  "eligibility": [
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "status": "incomplete",
+      "run_classes": {
+        "1": "complete",
+        "2": "complete",
+        "3": "complete",
+        "4": "incomplete",
+        "5": "incomplete"
+      },
+      "not_inserted": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "unfinished": [
+        {
+          "schema_version": "0.1.0",
+          "seed": 4,
+          "movement": "WN",
+          "vehicles": 3,
+          "first_depart_s": 1086.0,
+          "delay_lower_bound_range_s": [
+            607.53,
+            698.32
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "seed": 5,
+          "movement": "WN",
+          "vehicles": 2,
+          "first_depart_s": 1188.0,
+          "delay_lower_bound_range_s": [
+            590.54,
+            597.35
+          ]
+        }
+      ],
+      "reasons": [
+        "seed 4: 3 vehicles still in the network (WN 3) and 0 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+        "seed 5: 2 vehicles still in the network (WN 2) and 0 not yet inserted at 1800 s, after a 600 s drain with no new demand"
+      ],
+      "censored_lanes": {}
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "status": "compared",
+      "run_classes": {
+        "1": "complete",
+        "2": "complete",
+        "3": "complete",
+        "4": "complete",
+        "5": "complete"
+      },
+      "not_inserted": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "unfinished": [],
+      "reasons": [],
+      "censored_lanes": {}
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "status": "incomplete",
+      "run_classes": {
+        "1": "complete",
+        "2": "incomplete",
+        "3": "incomplete",
+        "4": "incomplete",
+        "5": "incomplete"
+      },
+      "not_inserted": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "unfinished": [
+        {
+          "schema_version": "0.1.0",
+          "seed": 2,
+          "movement": "WN",
+          "vehicles": 2,
+          "first_depart_s": 1165.0,
+          "delay_lower_bound_range_s": [
+            607.96,
+            610.51
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "seed": 3,
+          "movement": "WN",
+          "vehicles": 2,
+          "first_depart_s": 1153.0,
+          "delay_lower_bound_range_s": [
+            607.65,
+            621.67
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "seed": 4,
+          "movement": "WN",
+          "vehicles": 12,
+          "first_depart_s": 951.0,
+          "delay_lower_bound_range_s": [
+            613.42,
+            821.94
+          ]
+        },
+        {
+          "schema_version": "0.1.0",
+          "seed": 5,
+          "movement": "WN",
+          "vehicles": 11,
+          "first_depart_s": 957.0,
+          "delay_lower_bound_range_s": [
+            597.83,
+            818.02
+          ]
+        }
+      ],
+      "reasons": [
+        "seed 2: 2 vehicles still in the network (WN 2) and 0 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+        "seed 3: 2 vehicles still in the network (WN 2) and 0 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+        "seed 4: 12 vehicles still in the network (WN 12) and 0 not yet inserted at 1800 s, after a 600 s drain with no new demand",
+        "seed 5: 11 vehicles still in the network (WN 11) and 0 not yet inserted at 1800 s, after a 600 s drain with no new demand"
+      ],
+      "censored_lanes": {
+        "4": [
+          "W_in_2"
+        ]
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "throughput_veh_per_h",
+      "unit": "veh/h",
+      "better": "higher",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        3752.0,
+        3708.0,
+        3756.0,
+        3788.0,
+        3720.0
+      ],
+      "candidate_values": [
+        3728.0,
+        3644.0,
+        3752.0,
+        3656.0,
+        3664.0
+      ],
+      "differences": [
+        -24.0,
+        -64.0,
+        -4.0,
+        -132.0,
+        -56.0
+      ],
+      "baseline_mean": 3744.8,
+      "candidate_mean": 3688.8,
+      "mean_difference": -56.0,
+      "sd_difference": 48.908077,
+      "ci95_difference": [
+        -116.717663,
+        4.717663
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "max_queue_m.N",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        88.52,
+        153.49,
+        81.01,
+        86.04,
+        88.52
+      ],
+      "candidate_values": [
+        103.23,
+        161.06,
+        81.05,
+        83.52,
+        101.05
+      ],
+      "differences": [
+        14.71,
+        7.57,
+        0.04,
+        -2.52,
+        12.53
+      ],
+      "baseline_mean": 99.516,
+      "candidate_mean": 105.982,
+      "mean_difference": 6.466,
+      "sd_difference": 7.54977,
+      "ci95_difference": [
+        -2.906775,
+        15.838775
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "max_queue_m.E",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        20.13,
+        21.04,
+        42.63,
+        17.61,
+        42.61
+      ],
+      "candidate_values": [
+        21.05,
+        27.61,
+        65.22,
+        27.71,
+        21.01
+      ],
+      "differences": [
+        0.92,
+        6.57,
+        22.59,
+        10.1,
+        -21.6
+      ],
+      "baseline_mean": 28.804,
+      "candidate_mean": 32.52,
+      "mean_difference": 3.716,
+      "sd_difference": 16.231498,
+      "ci95_difference": [
+        -16.434836,
+        23.866836
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "max_queue_m.S",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        86.01,
+        68.57,
+        81.03,
+        71.02,
+        88.54
+      ],
+      "candidate_values": [
+        58.54,
+        63.6,
+        73.52,
+        80.93,
+        81.05
+      ],
+      "differences": [
+        -27.47,
+        -4.97,
+        -7.51,
+        9.91,
+        -7.49
+      ],
+      "baseline_mean": 79.034,
+      "candidate_mean": 71.528,
+      "mean_difference": -7.506,
+      "sd_difference": 13.307046,
+      "ci95_difference": [
+        -24.026231,
+        9.014231
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "max_queue_m.W",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        36.01,
+        28.52,
+        43.52,
+        58.53,
+        51.01
+      ],
+      "candidate_values": [
+        58.52,
+        58.51,
+        81.04,
+        156.03,
+        118.52
+      ],
+      "differences": [
+        22.51,
+        29.99,
+        37.52,
+        97.5,
+        67.51
+      ],
+      "baseline_mean": 43.518,
+      "candidate_mean": 94.524,
+      "mean_difference": 51.006,
+      "sd_difference": 31.103217,
+      "ci95_difference": [
+        12.392446,
+        89.619554
+      ],
+      "verdict": "worsens"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.N",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        43.640489,
+        69.641944,
+        30.579733,
+        38.555089,
+        32.886844
+      ],
+      "candidate_values": [
+        47.760278,
+        82.430889,
+        31.7819,
+        42.350511,
+        33.956989
+      ],
+      "differences": [
+        4.119789,
+        12.788945,
+        1.202167,
+        3.795422,
+        1.070145
+      ],
+      "baseline_mean": 43.06082,
+      "candidate_mean": 47.656113,
+      "mean_difference": 4.595294,
+      "sd_difference": 4.794314,
+      "ci95_difference": [
+        -1.35668,
+        10.547267
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.E",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        4.3335,
+        4.414567,
+        6.095722,
+        3.134156,
+        6.031133
+      ],
+      "candidate_values": [
+        4.689411,
+        4.219211,
+        6.483778,
+        6.908244,
+        4.506767
+      ],
+      "differences": [
+        0.355911,
+        -0.195356,
+        0.388056,
+        3.774088,
+        -1.524366
+      ],
+      "baseline_mean": 4.801816,
+      "candidate_mean": 5.361482,
+      "mean_difference": 0.559667,
+      "sd_difference": 1.956829,
+      "ci95_difference": [
+        -1.869668,
+        2.989001
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.S",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        22.863444,
+        21.062344,
+        20.302911,
+        18.669544,
+        21.977911
+      ],
+      "candidate_values": [
+        16.761878,
+        17.412244,
+        19.573211,
+        15.727956,
+        20.035544
+      ],
+      "differences": [
+        -6.101566,
+        -3.6501,
+        -0.7297,
+        -2.941588,
+        -1.942367
+      ],
+      "baseline_mean": 20.975231,
+      "candidate_mean": 17.902167,
+      "mean_difference": -3.073064,
+      "sd_difference": 2.018162,
+      "ci95_difference": [
+        -5.578542,
+        -0.567587
+      ],
+      "verdict": "improves"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.W",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        8.806556,
+        9.237267,
+        7.890344,
+        11.835033,
+        13.779967
+      ],
+      "candidate_values": [
+        21.569967,
+        29.833378,
+        51.829256,
+        62.924067,
+        50.488111
+      ],
+      "differences": [
+        12.763411,
+        20.596111,
+        43.938912,
+        51.089034,
+        36.708144
+      ],
+      "baseline_mean": 10.309833,
+      "candidate_mean": 43.328956,
+      "mean_difference": 33.019122,
+      "sd_difference": 15.99998,
+      "ci95_difference": [
+        13.155708,
+        52.882537
+      ],
+      "verdict": "worsens"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_delay_s",
+      "unit": "s",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        32.802422,
+        41.308567,
+        28.535998,
+        31.217432,
+        30.481996
+      ],
+      "candidate_values": [
+        30.586452,
+        32.455323,
+        29.327962,
+        30.900348,
+        30.946085
+      ],
+      "differences": [
+        -2.21597,
+        -8.853244,
+        0.791964,
+        -0.317084,
+        0.464089
+      ],
+      "baseline_mean": 32.869283,
+      "candidate_mean": 30.843234,
+      "mean_difference": -2.026049,
+      "sd_difference": 3.990902,
+      "ci95_difference": [
+        -6.980614,
+        2.928516
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "throughput_veh_per_h",
+      "unit": "veh/h",
+      "better": "higher",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        3752.0,
+        3708.0,
+        3756.0,
+        3788.0,
+        3720.0
+      ],
+      "candidate_values": [
+        3760.0,
+        3776.0,
+        3732.0,
+        3760.0,
+        3728.0
+      ],
+      "differences": [
+        8.0,
+        68.0,
+        -24.0,
+        -28.0,
+        8.0
+      ],
+      "baseline_mean": 3744.8,
+      "candidate_mean": 3751.2,
+      "mean_difference": 6.4,
+      "sd_difference": 38.429156,
+      "ci95_difference": [
+        -41.308449,
+        54.108449
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "max_queue_m.N",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        88.52,
+        153.49,
+        81.01,
+        86.04,
+        88.52
+      ],
+      "candidate_values": [
+        81.02,
+        93.49,
+        83.58,
+        88.55,
+        93.56
+      ],
+      "differences": [
+        -7.5,
+        -60.0,
+        2.57,
+        2.51,
+        5.04
+      ],
+      "baseline_mean": 99.516,
+      "candidate_mean": 88.04,
+      "mean_difference": -11.476,
+      "sd_difference": 27.550244,
+      "ci95_difference": [
+        -45.678662,
+        22.726662
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "max_queue_m.E",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        20.13,
+        21.04,
+        42.63,
+        17.61,
+        42.61
+      ],
+      "candidate_values": [
+        20.1,
+        27.62,
+        42.62,
+        17.61,
+        27.61
+      ],
+      "differences": [
+        -0.03,
+        6.58,
+        -0.01,
+        0.0,
+        -15.0
+      ],
+      "baseline_mean": 28.804,
+      "candidate_mean": 27.112,
+      "mean_difference": -1.692,
+      "sd_difference": 7.968423,
+      "ci95_difference": [
+        -11.584518,
+        8.200518
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "max_queue_m.S",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        86.01,
+        68.57,
+        81.03,
+        71.02,
+        88.54
+      ],
+      "candidate_values": [
+        88.51,
+        73.51,
+        96.02,
+        73.57,
+        88.53
+      ],
+      "differences": [
+        2.5,
+        4.94,
+        14.99,
+        2.55,
+        -0.01
+      ],
+      "baseline_mean": 79.034,
+      "candidate_mean": 84.028,
+      "mean_difference": 4.994,
+      "sd_difference": 5.855684,
+      "ci95_difference": [
+        -2.275626,
+        12.263626
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "max_queue_m.W",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        36.01,
+        28.52,
+        43.52,
+        58.53,
+        51.01
+      ],
+      "candidate_values": [
+        28.54,
+        28.53,
+        43.53,
+        58.53,
+        51.02
+      ],
+      "differences": [
+        -7.47,
+        0.01,
+        0.01,
+        0.0,
+        0.01
+      ],
+      "baseline_mean": 43.518,
+      "candidate_mean": 42.03,
+      "mean_difference": -1.488,
+      "sd_difference": 3.344042,
+      "ci95_difference": [
+        -5.639511,
+        2.663511
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.N",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        43.640489,
+        69.641944,
+        30.579733,
+        38.555089,
+        32.886844
+      ],
+      "candidate_values": [
+        34.554222,
+        36.802844,
+        28.089744,
+        31.5363,
+        30.968089
+      ],
+      "differences": [
+        -9.086267,
+        -32.8391,
+        -2.489989,
+        -7.018789,
+        -1.918755
+      ],
+      "baseline_mean": 43.06082,
+      "candidate_mean": 32.39024,
+      "mean_difference": -10.67058,
+      "sd_difference": 12.755444,
+      "ci95_difference": [
+        -26.506017,
+        5.164857
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.E",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        4.3335,
+        4.414567,
+        6.095722,
+        3.134156,
+        6.031133
+      ],
+      "candidate_values": [
+        3.801122,
+        4.806189,
+        6.043167,
+        3.969933,
+        5.199933
+      ],
+      "differences": [
+        -0.532378,
+        0.391622,
+        -0.052555,
+        0.835777,
+        -0.8312
+      ],
+      "baseline_mean": 4.801816,
+      "candidate_mean": 4.764069,
+      "mean_difference": -0.037747,
+      "sd_difference": 0.674879,
+      "ci95_difference": [
+        -0.875586,
+        0.800092
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.S",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        22.863444,
+        21.062344,
+        20.302911,
+        18.669544,
+        21.977911
+      ],
+      "candidate_values": [
+        24.097678,
+        22.267822,
+        22.733667,
+        21.980589,
+        24.325744
+      ],
+      "differences": [
+        1.234234,
+        1.205478,
+        2.430756,
+        3.311045,
+        2.347833
+      ],
+      "baseline_mean": 20.975231,
+      "candidate_mean": 23.0811,
+      "mean_difference": 2.105869,
+      "sd_difference": 0.892608,
+      "ci95_difference": [
+        0.997727,
+        3.214011
+      ],
+      "verdict": "worsens"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.W",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        8.806556,
+        9.237267,
+        7.890344,
+        11.835033,
+        13.779967
+      ],
+      "candidate_values": [
+        7.816333,
+        9.961644,
+        9.261744,
+        11.910233,
+        12.613133
+      ],
+      "differences": [
+        -0.990223,
+        0.724377,
+        1.3714,
+        0.0752,
+        -1.166834
+      ],
+      "baseline_mean": 10.309833,
+      "candidate_mean": 10.312617,
+      "mean_difference": 0.002784,
+      "sd_difference": 1.090083,
+      "ci95_difference": [
+        -1.350515,
+        1.356083
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "throughput_veh_per_h",
+      "unit": "veh/h",
+      "better": "higher",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        3752.0,
+        3708.0,
+        3756.0,
+        3788.0,
+        3720.0
+      ],
+      "candidate_values": [
+        3712.0,
+        3716.0,
+        3740.0,
+        3600.0,
+        3636.0
+      ],
+      "differences": [
+        -40.0,
+        8.0,
+        -16.0,
+        -188.0,
+        -84.0
+      ],
+      "baseline_mean": 3744.8,
+      "candidate_mean": 3680.8,
+      "mean_difference": -64.0,
+      "sd_difference": 77.201036,
+      "ci95_difference": [
+        -159.84238,
+        31.84238
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "max_queue_m.N",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        88.52,
+        153.49,
+        81.01,
+        86.04,
+        88.52
+      ],
+      "candidate_values": [
+        81.05,
+        96.02,
+        66.04,
+        81.04,
+        86.08
+      ],
+      "differences": [
+        -7.47,
+        -57.47,
+        -14.97,
+        -5.0,
+        -2.44
+      ],
+      "baseline_mean": 99.516,
+      "candidate_mean": 82.046,
+      "mean_difference": -17.47,
+      "sd_difference": 22.845414,
+      "ci95_difference": [
+        -45.831781,
+        10.891781
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "max_queue_m.E",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        20.13,
+        21.04,
+        42.63,
+        17.61,
+        42.61
+      ],
+      "candidate_values": [
+        13.55,
+        27.67,
+        65.14,
+        27.66,
+        21.09
+      ],
+      "differences": [
+        -6.58,
+        6.63,
+        22.51,
+        10.05,
+        -21.52
+      ],
+      "baseline_mean": 28.804,
+      "candidate_mean": 31.022,
+      "mean_difference": 2.218,
+      "sd_difference": 16.833513,
+      "ci95_difference": [
+        -18.680217,
+        23.116217
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "max_queue_m.S",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        86.01,
+        68.57,
+        81.03,
+        71.02,
+        88.54
+      ],
+      "candidate_values": [
+        73.54,
+        71.02,
+        88.51,
+        88.58,
+        88.51
+      ],
+      "differences": [
+        -12.47,
+        2.45,
+        7.48,
+        17.56,
+        -0.03
+      ],
+      "baseline_mean": 79.034,
+      "candidate_mean": 82.032,
+      "mean_difference": 2.998,
+      "sd_difference": 10.964355,
+      "ci95_difference": [
+        -10.613862,
+        16.609862
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "max_queue_m.W",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        36.01,
+        28.52,
+        43.52,
+        58.53,
+        51.01
+      ],
+      "candidate_values": [
+        81.06,
+        103.52,
+        103.53,
+        177.78,
+        163.53
+      ],
+      "differences": [
+        45.05,
+        75.0,
+        60.01,
+        119.25,
+        112.52
+      ],
+      "baseline_mean": 43.518,
+      "candidate_mean": 125.884,
+      "mean_difference": 82.366,
+      "sd_difference": 32.466235,
+      "ci95_difference": [
+        42.060307,
+        122.671693
+      ],
+      "verdict": "worsens"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.N",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        43.640489,
+        69.641944,
+        30.579733,
+        38.555089,
+        32.886844
+      ],
+      "candidate_values": [
+        31.317667,
+        36.041656,
+        27.0589,
+        30.071689,
+        28.285344
+      ],
+      "differences": [
+        -12.322822,
+        -33.600288,
+        -3.520833,
+        -8.4834,
+        -4.6015
+      ],
+      "baseline_mean": 43.06082,
+      "candidate_mean": 30.555051,
+      "mean_difference": -12.505769,
+      "sd_difference": 12.292256,
+      "ci95_difference": [
+        -27.766173,
+        2.754636
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.E",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        4.3335,
+        4.414567,
+        6.095722,
+        3.134156,
+        6.031133
+      ],
+      "candidate_values": [
+        4.458344,
+        3.798156,
+        4.504544,
+        5.279522,
+        3.720322
+      ],
+      "differences": [
+        0.124844,
+        -0.616411,
+        -1.591178,
+        2.145366,
+        -2.310811
+      ],
+      "baseline_mean": 4.801816,
+      "candidate_mean": 4.352178,
+      "mean_difference": -0.449638,
+      "sd_difference": 1.721843,
+      "ci95_difference": [
+        -2.587245,
+        1.687969
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.S",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        22.863444,
+        21.062344,
+        20.302911,
+        18.669544,
+        21.977911
+      ],
+      "candidate_values": [
+        22.775422,
+        21.681244,
+        23.662022,
+        20.210167,
+        22.738556
+      ],
+      "differences": [
+        -0.088022,
+        0.6189,
+        3.359111,
+        1.540623,
+        0.760645
+      ],
+      "baseline_mean": 20.975231,
+      "candidate_mean": 22.213482,
+      "mean_difference": 1.238251,
+      "sd_difference": 1.319108,
+      "ci95_difference": [
+        -0.399374,
+        2.875877
+      ],
+      "verdict": "inconclusive"
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.W",
+      "unit": "m",
+      "better": "lower",
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "baseline_values": [
+        8.806556,
+        9.237267,
+        7.890344,
+        11.835033,
+        13.779967
+      ],
+      "candidate_values": [
+        35.711011,
+        57.7417,
+        63.381567,
+        79.874067,
+        80.197433
+      ],
+      "differences": [
+        26.904455,
+        48.504433,
+        55.491223,
+        68.039034,
+        66.417466
+      ],
+      "baseline_mean": 10.309833,
+      "candidate_mean": 63.381156,
+      "mean_difference": 53.071322,
+      "sd_difference": 16.685093,
+      "ci95_difference": [
+        32.357364,
+        73.78528
+      ],
+      "verdict": "worsens"
+    }
+  ],
+  "improvement_tests": [
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_delay_s",
+      "n": 0,
+      "t_statistic": null,
+      "p_value": null,
+      "holm_threshold": null,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.E",
+      "n": 5,
+      "t_statistic": -0.639531,
+      "p_value": 0.557267,
+      "holm_threshold": 0.0071428571428571435,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.N",
+      "n": 5,
+      "t_statistic": -2.143245,
+      "p_value": 0.0987273,
+      "holm_threshold": 0.004545454545454546,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.S",
+      "n": 5,
+      "t_statistic": 3.40487,
+      "p_value": 0.0271553,
+      "holm_threshold": 0.0038461538461538464,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I1",
+      "metric_name": "mean_queue_m.W",
+      "n": 5,
+      "t_statistic": -4.614568,
+      "p_value": 0.00992151,
+      "holm_threshold": 0.0035714285714285718,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_delay_s",
+      "n": 5,
+      "t_statistic": 1.135178,
+      "p_value": 0.319708,
+      "holm_threshold": 0.00625,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.E",
+      "n": 5,
+      "t_statistic": 0.125067,
+      "p_value": 0.906504,
+      "holm_threshold": 0.01,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.N",
+      "n": 5,
+      "t_statistic": 1.870585,
+      "p_value": 0.13474,
+      "holm_threshold": 0.005555555555555556,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.S",
+      "n": 5,
+      "t_statistic": -5.275402,
+      "p_value": 0.00618941,
+      "holm_threshold": 0.0033333333333333335,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I2",
+      "metric_name": "mean_queue_m.W",
+      "n": 5,
+      "t_statistic": -0.005711,
+      "p_value": 0.995717,
+      "holm_threshold": 0.0125,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_delay_s",
+      "n": 0,
+      "t_statistic": null,
+      "p_value": null,
+      "holm_threshold": null,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.E",
+      "n": 5,
+      "t_statistic": 0.583921,
+      "p_value": 0.590616,
+      "holm_threshold": 0.008333333333333333,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.N",
+      "n": 5,
+      "t_statistic": 2.274908,
+      "p_value": 0.0852643,
+      "holm_threshold": 0.004166666666666667,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.S",
+      "n": 5,
+      "t_statistic": -2.099004,
+      "p_value": 0.10377,
+      "holm_threshold": 0.005,
+      "confirmed": false
+    },
+    {
+      "schema_version": "0.1.0",
+      "candidate": "I3",
+      "metric_name": "mean_queue_m.W",
+      "n": 5,
+      "t_statistic": null,
+      "p_value": null,
+      "holm_threshold": null,
+      "confirmed": false
+    }
+  ],
+  "report": {
+    "selected_intervention_id": null,
+    "selection_reason": "None selected: I1 is incomplete and worsens max_queue_m.W, mean_queue_m.W; I2 worsens mean_queue_m.S; I3 is incomplete and worsens max_queue_m.W, mean_queue_m.W.",
+    "recommended_intervention_id": null,
+    "recommendation": "Nothing is recommended: no candidate was selected.",
+    "baseline_assessment_status": "not_validated",
+    "trace_problems": [],
+    "report_json_sha256": "e0b3be5828bbe7d0b4e2851a71ff450cfdd40bf118dd4a3239d2080314699ebc",
+    "report_md_sha256": "a14c0050fb848ec215c45596909f96e59493e1d4fc521a55afb4dc3a0fa6ea88",
+    "text": "report.md holds model text, labelled; it stays in the run directory"
+  },
+  "tripinfo": {
+    "source/experiment/candidates/I1/runs/seed_1/tripinfo.xml": "ebebfb0abfcb22e120458b65dd6008f14d3dc6c4b0b01ee7dc4db12b3552c432",
+    "source/experiment/candidates/I1/runs/seed_2/tripinfo.xml": "36f23b9f526156a5c3bbcbe528fc1928cb315e3ddc45c0d08bf33f21072f5f57",
+    "source/experiment/candidates/I1/runs/seed_3/tripinfo.xml": "67a0b684dfe558c4331861aa5b05f9a4c4906ad34812b3b5a4f676df676de49a",
+    "source/experiment/candidates/I1/runs/seed_4/tripinfo.xml": "177d4b85b2179853c5e82debadbe0e04d11a122ee5e6b0744c20898390ae0bcb",
+    "source/experiment/candidates/I1/runs/seed_5/tripinfo.xml": "b3a2995d6ec69a457544ec543b0e8971c30b8727db4bc4a0591c411f8d6ff690",
+    "source/experiment/candidates/I2/runs/seed_1/tripinfo.xml": "6c0fb6c1cd14c820a718261bfc814419e47b0b4f1fc27c3fad91426e85b38d00",
+    "source/experiment/candidates/I2/runs/seed_2/tripinfo.xml": "cfdf03abffaf543dc692c19e0af1d2ed4086496e4818fc112311f1e70cb51000",
+    "source/experiment/candidates/I2/runs/seed_3/tripinfo.xml": "805e21805435b4f8967c56f62b78b6d33e98181f3e85b3e7c7e319fce63f7172",
+    "source/experiment/candidates/I2/runs/seed_4/tripinfo.xml": "f2522c80170fab46e34b3732a7db15c8d02e66b7c801b8008a4c2395a34829b6",
+    "source/experiment/candidates/I2/runs/seed_5/tripinfo.xml": "bd425bca5d05ae0bd31cd859c7d5b554a4d71f1109bb75cc937c364bebddc719",
+    "source/experiment/candidates/I3/runs/seed_1/tripinfo.xml": "8e78f96a40c1cb5926f7bf0997be072dfc1242b78a37273be75277b133f2a81f",
+    "source/experiment/candidates/I3/runs/seed_2/tripinfo.xml": "65a8ee500e0ce92891c5d21b4f583ebc70657308f5e862f07c93b5269b980294",
+    "source/experiment/candidates/I3/runs/seed_3/tripinfo.xml": "76bd24d1e2522dcc7336fa8c9c62ad0463e987a9d39d20af2e7bd82f0a7533de",
+    "source/experiment/candidates/I3/runs/seed_4/tripinfo.xml": "e9059d211e800b8848285a9397d58cce72ab0ccf4978c8ed1d979e3c7819a62d",
+    "source/experiment/candidates/I3/runs/seed_5/tripinfo.xml": "53509b500bbaaaa86c55457d3e6744478fcf53cf00f80cb5f0421afbab4ed83b"
+  }
+}

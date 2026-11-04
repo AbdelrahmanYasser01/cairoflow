@@ -1,0 +1,357 @@
+{
+  "script": "scripts/compare_muse_runs.py",
+  "created_at_utc": "2026-10-30T21:42:20+00:00",
+  "label": "model output compared by code; counts and categories only",
+  "same_bundle": true,
+  "bundle_ids": [
+    "22548ce9b8413d3b"
+  ],
+  "same_request": true,
+  "runs": [
+    {
+      "record": "experiments/records/cairoflow-20261030T213806Z-r1.json",
+      "replicate": 1,
+      "request_id": "2e299bd7-6703-4131-9d95-a115b40c9918",
+      "cost_usd": 0.04103475,
+      "usage": {
+        "input_tokens": 8902,
+        "output_tokens": 7037,
+        "total_tokens": 15939,
+        "cached_tokens": 0,
+        "reasoning_tokens": 4548
+      },
+      "leading_factor": "protected_left_capacity",
+      "hypotheses": [
+        {
+          "id": "H1",
+          "limiting_factor": "protected_left_capacity",
+          "claim_type": "causal",
+          "confidence": "medium",
+          "supporting": [
+            "mv.NE",
+            "q.N12",
+            "q.N11",
+            "qr.N12",
+            "qr.N11",
+            "sig.program"
+          ],
+          "contradicting": [
+            "q.S3",
+            "qr.S3"
+          ],
+          "grounding": "supported",
+          "flags": [],
+          "missing_evidence_items": 4
+        },
+        {
+          "id": "H2",
+          "limiting_factor": "through_capacity",
+          "claim_type": "causal",
+          "confidence": "medium",
+          "supporting": [
+            "mv.SN",
+            "q.S3",
+            "q.S2",
+            "qr.S3",
+            "qr.S2",
+            "sig.program"
+          ],
+          "contradicting": [
+            "q.N12",
+            "qr.N12"
+          ],
+          "grounding": "supported",
+          "flags": [],
+          "missing_evidence_items": 4
+        }
+      ],
+      "proposal_phase_changes": {
+        "I1": {
+          "p0_Ng_Er_Sg_Wr_NLr_SLr": "shorter",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter",
+          "p11_Nr_Er_Sr_Wr_NLg_SLg": "longer"
+        },
+        "I2": {
+          "p0_Ng_Er_Sg_Wr_NLr_SLr": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter",
+          "p11_Nr_Er_Sr_Wr_NLg_SLg": "shorter"
+        },
+        "I3": {
+          "p0_Ng_Er_Sg_Wr_NLr_SLr": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter",
+          "p11_Nr_Er_Sr_Wr_NLg_SLg": "longer",
+          "p16_Ng_Er_Sr_Wr_NLr_SLr": "longer"
+        }
+      },
+      "validation": {
+        "I1": "accepted",
+        "I2": "accepted",
+        "I3": "accepted"
+      },
+      "simulated_verdicts": {
+        "I1:mean_delay_s": "worsens",
+        "I1:throughput_veh_per_h": "worsens",
+        "I2:mean_delay_s": "worsens",
+        "I2:throughput_veh_per_h": "worsens",
+        "I3:mean_delay_s": "improves",
+        "I3:throughput_veh_per_h": "worsens"
+      },
+      "selected": null,
+      "recommended": null,
+      "integrity": "verified"
+    },
+    {
+      "record": "experiments/records/cairoflow-20261030T213929Z-r2.json",
+      "replicate": 2,
+      "request_id": "b996dea2-3202-4bfd-ab63-3e807c3007c0",
+      "cost_usd": 0.03569675,
+      "usage": {
+        "input_tokens": 8902,
+        "output_tokens": 5781,
+        "total_tokens": 14683,
+        "cached_tokens": 0,
+        "reasoning_tokens": 3962
+      },
+      "leading_factor": "protected_left_capacity",
+      "hypotheses": [
+        {
+          "id": "H1",
+          "limiting_factor": "protected_left_capacity",
+          "claim_type": "causal",
+          "confidence": "medium",
+          "supporting": [
+            "mv.NE",
+            "q.N12",
+            "qr.N12",
+            "qr.N11",
+            "sig.program"
+          ],
+          "contradicting": [
+            "qr.S11"
+          ],
+          "grounding": "supported",
+          "flags": [],
+          "missing_evidence_items": 3
+        },
+        {
+          "id": "H2",
+          "limiting_factor": "through_capacity",
+          "claim_type": "causal",
+          "confidence": "medium",
+          "supporting": [
+            "mv.NS",
+            "mv.SN",
+            "q.S3",
+            "qr.S3",
+            "qr.S2",
+            "sig.program"
+          ],
+          "contradicting": [
+            "qr.S4",
+            "q.S4"
+          ],
+          "grounding": "supported",
+          "flags": [],
+          "missing_evidence_items": 3
+        }
+      ],
+      "proposal_phase_changes": {
+        "I1": {
+          "p11_Nr_Er_Sr_Wr_NLg_SLg": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter"
+        },
+        "I2": {
+          "p0_Ng_Er_Sg_Wr_NLr_SLr": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter"
+        },
+        "I3": {
+          "p0_Ng_Er_Sg_Wr_NLr_SLr": "longer",
+          "p11_Nr_Er_Sr_Wr_NLg_SLg": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter"
+        }
+      },
+      "validation": {
+        "I1": "accepted",
+        "I2": "accepted",
+        "I3": "accepted"
+      },
+      "simulated_verdicts": {
+        "I1:mean_delay_s": "improves",
+        "I1:throughput_veh_per_h": "worsens",
+        "I2:mean_delay_s": "improves",
+        "I2:throughput_veh_per_h": "worsens",
+        "I3:mean_delay_s": "improves",
+        "I3:throughput_veh_per_h": "worsens"
+      },
+      "selected": null,
+      "recommended": null,
+      "integrity": "verified"
+    },
+    {
+      "record": "experiments/records/cairoflow-20261030T214027Z-r3.json",
+      "replicate": 3,
+      "request_id": "da461e8e-5e99-4036-a8ce-1ae5073ba53d",
+      "cost_usd": 0.0429005,
+      "usage": {
+        "input_tokens": 8902,
+        "output_tokens": 7476,
+        "total_tokens": 16378,
+        "cached_tokens": 0,
+        "reasoning_tokens": 4264
+      },
+      "leading_factor": "through_capacity",
+      "hypotheses": [
+        {
+          "id": "H1",
+          "limiting_factor": "through_capacity",
+          "claim_type": "causal",
+          "confidence": "medium",
+          "supporting": [
+            "mv.NS",
+            "mv.SN",
+            "qr.S3",
+            "qr.S2",
+            "qr.N1",
+            "sig.program"
+          ],
+          "contradicting": [
+            "q.S4",
+            "qr.S4",
+            "q.N31"
+          ],
+          "grounding": "supported",
+          "flags": [],
+          "missing_evidence_items": 4
+        },
+        {
+          "id": "H2",
+          "limiting_factor": "protected_left_capacity",
+          "claim_type": "causal",
+          "confidence": "medium",
+          "supporting": [
+            "mv.NE",
+            "q.N12",
+            "qr.N12",
+            "q.N11",
+            "qr.N11",
+            "sig.program"
+          ],
+          "contradicting": [
+            "mv.SW",
+            "qr.S11",
+            "q.N31"
+          ],
+          "grounding": "supported",
+          "flags": [],
+          "missing_evidence_items": 4
+        }
+      ],
+      "proposal_phase_changes": {
+        "I1": {
+          "p0_Ng_Er_Sg_Wr_NLr_SLr": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter"
+        },
+        "I2": {
+          "p11_Nr_Er_Sr_Wr_NLg_SLg": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter"
+        },
+        "I3": {
+          "p0_Ng_Er_Sg_Wr_NLr_SLr": "longer",
+          "p11_Nr_Er_Sr_Wr_NLg_SLg": "longer",
+          "p8_Nr_Er_Sr_Wg_NLr_SLr": "shorter",
+          "p16_Ng_Er_Sr_Wr_NLr_SLr": "shorter"
+        }
+      },
+      "validation": {
+        "I1": "accepted",
+        "I2": "accepted",
+        "I3": "accepted"
+      },
+      "simulated_verdicts": {
+        "I1:mean_delay_s": "improves",
+        "I1:throughput_veh_per_h": "worsens",
+        "I2:mean_delay_s": "worsens",
+        "I2:throughput_veh_per_h": "worsens",
+        "I3:mean_delay_s": "improves",
+        "I3:throughput_veh_per_h": "worsens"
+      },
+      "selected": null,
+      "recommended": null,
+      "integrity": "verified"
+    }
+  ],
+  "agreement": {
+    "leading_factor_counts": {
+      "protected_left_capacity": 2,
+      "through_capacity": 1
+    },
+    "leading_factor_unanimous": false,
+    "leading_support_jaccard": {
+      "1-2": 0.8333,
+      "1-3": 0.0909,
+      "2-3": 0.1
+    },
+    "factors_in_every_run": [
+      "protected_left_capacity",
+      "through_capacity"
+    ],
+    "factors_in_any_run": [
+      "protected_left_capacity",
+      "through_capacity"
+    ],
+    "phase_directions_in_every_run": [
+      [
+        "p0_Ng_Er_Sg_Wr_NLr_SLr",
+        "longer"
+      ],
+      [
+        "p11_Nr_Er_Sr_Wr_NLg_SLg",
+        "longer"
+      ],
+      [
+        "p8_Nr_Er_Sr_Wg_NLr_SLr",
+        "shorter"
+      ]
+    ],
+    "phase_directions_in_any_run": [
+      [
+        "p0_Ng_Er_Sg_Wr_NLr_SLr",
+        "longer"
+      ],
+      [
+        "p0_Ng_Er_Sg_Wr_NLr_SLr",
+        "shorter"
+      ],
+      [
+        "p11_Nr_Er_Sr_Wr_NLg_SLg",
+        "longer"
+      ],
+      [
+        "p11_Nr_Er_Sr_Wr_NLg_SLg",
+        "shorter"
+      ],
+      [
+        "p16_Ng_Er_Sr_Wr_NLr_SLr",
+        "longer"
+      ],
+      [
+        "p16_Ng_Er_Sr_Wr_NLr_SLr",
+        "shorter"
+      ],
+      [
+        "p8_Nr_Er_Sr_Wg_NLr_SLr",
+        "shorter"
+      ]
+    ]
+  },
+  "uncertainty": {
+    "model": "confidence labels per hypothesis, and disagreement between runs on the leading factor and on the proposed directions (above)",
+    "confidence_labels": {
+      "medium": 6
+    },
+    "input_evidence": "items the replies name as missing from the bundle, by how many hypotheses name them (text kept in the run directories)",
+    "missing_evidence_mentions": 22,
+    "missing_evidence_named_by_more_than_one_hypothesis": 0
+  },
+  "total_cost_usd": 0.119632
+}

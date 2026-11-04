@@ -1,0 +1,244 @@
+{
+  "script": "scripts/build_camera_world_model.py",
+  "created_at_utc": "2026-10-30T21:32:26+00:00",
+  "run_dir": "experiments/runs/ngsim-cam2-world-model-20261030T213226Z",
+  "label": "camera tracks (SAM 3.1 output) placed by our procedure and compared with published NGSIM trajectories; not ground truth on either side",
+  "gate_file": {
+    "path": "data/geometry/ngsim-lankershim-cam2/v2/camera_world_model_gate.json",
+    "sha256": "f8bef45d276400e366bf8429b07ead9d3bf826638fad6b2b5aa7864a881ec97d"
+  },
+  "inputs": {
+    "sam_tracks": "40474d5ee78adf85ce5873ab2d11e1335d22aba85734320c94724a3857cb581e",
+    "sam_observations": "26e0327a0bc1d220d48981725aca28b99e7b08b3910fcbd10ecd0e10d60b0075",
+    "camera_clip_manifest": "94577af1bdba25dcdb72eca98f39271b11bd1db3e1c469fe5bf88ec205dcf919",
+    "calibration_pairs": "d60301d19639f623f0eae510b576b34d49d58c2f05fa2e17fa26932348cf5c2d",
+    "world_model_geometry": "f8fe90a43d908c16f8e46a8aa91b076b110cd7c001e9c991544a00c22d4a4f04",
+    "reference_trajectories": "c74ef7cc6d92aec6efb165bd40f4eccf788ae568988076eefb41196021f5520e"
+  },
+  "calibration": {
+    "spec_sha256": "18d9828a43463098081b6b8f1a7bc5aef882b6ab0d3ab20109ea72386d71f114",
+    "fit_points": 29,
+    "check_median_m": 0.433,
+    "accepted_under_adr_018": false
+  },
+  "window_s": [
+    250.3,
+    260.3
+  ],
+  "counts": {
+    "input_observations": 1227,
+    "tracked_observations": 1226,
+    "projected_points": 1226,
+    "unprojected_points": 0,
+    "in_lane": 919,
+    "outside_lanes": 307,
+    "ambiguous": 0,
+    "near_lane_boundary": 12,
+    "reference_vehicles_without_heading": 0
+  },
+  "metrics": {
+    "camera_tracks": 18,
+    "matched_tracks": 13,
+    "A_track_match_share": 0.7222,
+    "matched_points": 539,
+    "B_points": 328,
+    "B_point_lane_agreement": 0.9177,
+    "C_tracks": 7,
+    "C_track_lane_agreement": 0.8571,
+    "D_lateral_p90_m": 1.3244,
+    "lateral_median_m": 0.454,
+    "along_median_m": 1.8472,
+    "along_p90_m": 2.2505,
+    "matched_points_near_lane_boundary": 5,
+    "reference_vehicles_in_a_lane": 67,
+    "reference_vehicles_matched": 12,
+    "matched_vehicle_of_track": {
+      "cam2:car:t1": 497,
+      "cam2:car:t10": 443,
+      "cam2:car:t11": 562,
+      "cam2:car:t12": 314,
+      "cam2:car:t13": 556,
+      "cam2:car:t15": 1429,
+      "cam2:car:t16": 479,
+      "cam2:car:t17": 562,
+      "cam2:car:t2": 434,
+      "cam2:car:t5": 520,
+      "cam2:car:t6": 526,
+      "cam2:car:t7": 494,
+      "cam2:car:t9": 1425
+    }
+  },
+  "gate": {
+    "schema_version": "0.1.0",
+    "gate_id": "cam2-int2-lane-gate-v1",
+    "gate_sha256": "f8bef45d276400e366bf8429b07ead9d3bf826638fad6b2b5aa7864a881ec97d",
+    "outcome": "no_go",
+    "metrics": {
+      "camera_tracks": 18,
+      "matched_tracks": 13,
+      "A_track_match_share": 0.7222,
+      "matched_points": 539,
+      "B_points": 328,
+      "B_point_lane_agreement": 0.9177,
+      "C_tracks": 7,
+      "C_track_lane_agreement": 0.8571,
+      "D_lateral_p90_m": 1.3244,
+      "lateral_median_m": 0.454,
+      "along_median_m": 1.8472,
+      "along_p90_m": 2.2505,
+      "matched_points_near_lane_boundary": 5,
+      "reference_vehicles_in_a_lane": 67,
+      "reference_vehicles_matched": 12
+    },
+    "checks": {
+      "A_track_match_share": true,
+      "B_point_lane_agreement": true,
+      "C_track_lane_agreement": false,
+      "D_lateral_p90_m": true
+    },
+    "reasons": [
+      "C_track_lane_agreement is 0.8571, the rule needs >= 0.8 over >= 8 tracks (got 7)"
+    ]
+  },
+  "lane_presence": {
+    "Ex1": 3,
+    "Ex2": 2,
+    "Ex3": 1,
+    "N1": 1,
+    "N11": 1,
+    "N2": 1,
+    "N3": 3,
+    "Nx2": 2,
+    "S2": 2,
+    "S3": 1
+  },
+  "tracks": [
+    {
+      "track_id": "cam2:car:t1",
+      "points": 36,
+      "lane_id": null,
+      "lane_share": null,
+      "matched_ngsim_vehicle": 497
+    },
+    {
+      "track_id": "cam2:car:t10",
+      "points": 50,
+      "lane_id": "Ex1",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 443
+    },
+    {
+      "track_id": "cam2:car:t11",
+      "points": 39,
+      "lane_id": "Nx2",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 562
+    },
+    {
+      "track_id": "cam2:car:t12",
+      "points": 63,
+      "lane_id": "Ex3",
+      "lane_share": 0.8,
+      "matched_ngsim_vehicle": 314
+    },
+    {
+      "track_id": "cam2:car:t13",
+      "points": 100,
+      "lane_id": "S2",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 556
+    },
+    {
+      "track_id": "cam2:car:t14",
+      "points": 100,
+      "lane_id": "N3",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": null
+    },
+    {
+      "track_id": "cam2:car:t15",
+      "points": 100,
+      "lane_id": "S2",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 1429
+    },
+    {
+      "track_id": "cam2:car:t16",
+      "points": 100,
+      "lane_id": "N11",
+      "lane_share": 0.7778,
+      "matched_ngsim_vehicle": 479
+    },
+    {
+      "track_id": "cam2:car:t17",
+      "points": 16,
+      "lane_id": null,
+      "lane_share": null,
+      "matched_ngsim_vehicle": 562
+    },
+    {
+      "track_id": "cam2:car:t18",
+      "points": 15,
+      "lane_id": null,
+      "lane_share": null,
+      "matched_ngsim_vehicle": null
+    },
+    {
+      "track_id": "cam2:car:t2",
+      "points": 32,
+      "lane_id": "Ex1",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 434
+    },
+    {
+      "track_id": "cam2:car:t3",
+      "points": 100,
+      "lane_id": "N1",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": null
+    },
+    {
+      "track_id": "cam2:car:t4",
+      "points": 100,
+      "lane_id": "N3",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": null
+    },
+    {
+      "track_id": "cam2:car:t5",
+      "points": 100,
+      "lane_id": "N3",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 520
+    },
+    {
+      "track_id": "cam2:car:t6",
+      "points": 32,
+      "lane_id": "Nx2",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 526
+    },
+    {
+      "track_id": "cam2:car:t7",
+      "points": 100,
+      "lane_id": "S3",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 494
+    },
+    {
+      "track_id": "cam2:car:t8",
+      "points": 100,
+      "lane_id": "N2",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": null
+    },
+    {
+      "track_id": "cam2:car:t9",
+      "points": 43,
+      "lane_id": "Ex2",
+      "lane_share": 1.0,
+      "matched_ngsim_vehicle": 1425
+    }
+  ],
+  "camera_layer_sha256": null
+}

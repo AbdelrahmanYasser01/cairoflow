@@ -1,0 +1,283 @@
+{
+  "schema_version": "0.1.0",
+  "program_id": "ngsim_int2_cycle",
+  "timeline_id": "ngsim-int2-signals-c74ef7cc6d92",
+  "label": "trajectory-derived",
+  "annotation_sha256": null,
+  "cycle_start_s": 564.0,
+  "cycle_s": 99.0,
+  "phases": [
+    {
+      "schema_version": "0.1.0",
+      "name": "p0_Ng_Er_Sg_Wr_NLr_SLr",
+      "duration_s": 31.0,
+      "state": "GGGGrrsrrGGGGrsrrr",
+      "arm_states": {
+        "N": "green",
+        "E": "red",
+        "S": "green",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p1_Ny_Er_Sg_Wr_NLr_SLr",
+      "duration_s": 1.0,
+      "state": "yyyyrrsrrGGGGrsrrr",
+      "arm_states": {
+        "N": "yellow",
+        "E": "red",
+        "S": "green",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p2_Ny_Er_Sy_Wr_NLr_SLr",
+      "duration_s": 3.0,
+      "state": "yyyyrrsrryyyyrsrrr",
+      "arm_states": {
+        "N": "yellow",
+        "E": "red",
+        "S": "yellow",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p3_Nr_Er_Sy_Wr_NLr_SLr",
+      "duration_s": 1.0,
+      "state": "srrrrrsrryyyyrsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "yellow",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p4_Nr_Er_Sr_Wr_NLr_SLr",
+      "duration_s": 1.0,
+      "state": "srrrrrsrrsrrrrsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p5_Nr_Eg_Sr_Wr_NLr_SLr",
+      "duration_s": 5.0,
+      "state": "srrrrrGGGsrrrrsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "green",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p6_Nr_Ey_Sr_Wr_NLr_SLr",
+      "duration_s": 4.0,
+      "state": "srrrrryyysrrrrsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "yellow",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p7_Nr_Er_Sr_Wr_NLr_SLr",
+      "duration_s": 5.0,
+      "state": "srrrrrsrrsrrrrsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p8_Nr_Er_Sr_Wg_NLr_SLr",
+      "duration_s": 12.0,
+      "state": "srrrrrsrrsrrrrGGGG",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "green"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p9_Nr_Er_Sr_Wy_NLr_SLr",
+      "duration_s": 4.0,
+      "state": "srrrrrsrrsrrrryyyy",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "yellow"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p10_Nr_Er_Sr_Wr_NLr_SLr",
+      "duration_s": 3.0,
+      "state": "srrrrrsrrsrrrrsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p11_Nr_Er_Sr_Wr_NLg_SLg",
+      "duration_s": 10.0,
+      "state": "srrrGGsrrsrrrGsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "green",
+        "S": "green"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p12_Nr_Er_Sr_Wr_NLg_SLy",
+      "duration_s": 4.0,
+      "state": "srrrGGsrrsrrrysrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "green",
+        "S": "yellow"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p13_Nr_Er_Sr_Wr_NLg_SLr",
+      "duration_s": 1.0,
+      "state": "srrrGGsrrsrrrrsrrr",
+      "arm_states": {
+        "N": "red",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "green",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p14_Ng_Er_Sr_Wr_NLg_SLr",
+      "duration_s": 2.0,
+      "state": "GGGGGGsrrsrrrrsrrr",
+      "arm_states": {
+        "N": "green",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "green",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p15_Ng_Er_Sr_Wr_NLy_SLr",
+      "duration_s": 4.0,
+      "state": "GGGGyysrrsrrrrsrrr",
+      "arm_states": {
+        "N": "green",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "yellow",
+        "S": "red"
+      }
+    },
+    {
+      "schema_version": "0.1.0",
+      "name": "p16_Ng_Er_Sr_Wr_NLr_SLr",
+      "duration_s": 8.0,
+      "state": "GGGGrrsrrsrrrrsrrr",
+      "arm_states": {
+        "N": "green",
+        "E": "red",
+        "S": "red",
+        "W": "red"
+      },
+      "left_states": {
+        "N": "red",
+        "S": "red"
+      }
+    }
+  ]
+}

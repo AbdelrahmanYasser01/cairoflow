@@ -1,0 +1,297 @@
+{
+  "classes": {
+    "after": {
+      "bus": 1,
+      "car": 97,
+      "motorcycle": 1,
+      "truck": 3
+    },
+    "after_by_source": {
+      "detector": 97,
+      "sam": 5
+    },
+    "before": {
+      "car": 97,
+      "motorcycle": 1,
+      "truck": 4
+    }
+  },
+  "created_at_utc": "2026-11-04T12:47:16+00:00",
+  "dev_block_14": {
+    "after": {
+      "entering_by_arm": {
+        "E": {
+          "camera": 2,
+          "reference": 0
+        },
+        "N": {
+          "camera": 49,
+          "reference": 55
+        },
+        "S": {
+          "camera": 32,
+          "reference": 36
+        },
+        "W": {
+          "camera": 0,
+          "reference": 0
+        }
+      },
+      "entering_count_error_share": {
+        "n": 91,
+        "value": 0.1319
+      },
+      "frames_scored": 600,
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 4,
+        "S": 5,
+        "W": 0
+      },
+      "precision_proxy": {
+        "ci95": [
+          0.8808,
+          0.9601
+        ],
+        "n": 11501,
+        "numerator": 10632,
+        "value": 0.9244
+      },
+      "tracks": {
+        "paired": 99,
+        "with_points": 102
+      },
+      "turning_matrix_agreement": {
+        "n": 71,
+        "value": 0.9577
+      },
+      "vehicle_recall": {
+        "ci95": [
+          0.7675,
+          0.9026
+        ],
+        "n": 12171,
+        "numerator": 10181,
+        "value": 0.8365
+      }
+    },
+    "before": {
+      "entering_by_arm": {
+        "E": {
+          "camera": 2,
+          "reference": 0
+        },
+        "N": {
+          "camera": 49,
+          "reference": 55
+        },
+        "S": {
+          "camera": 32,
+          "reference": 36
+        },
+        "W": {
+          "camera": 0,
+          "reference": 0
+        }
+      },
+      "entering_count_error_share": {
+        "n": 91,
+        "value": 0.1319
+      },
+      "frames_scored": 600,
+      "mid_view_by_arm": {
+        "E": 0,
+        "N": 4,
+        "S": 5,
+        "W": 0
+      },
+      "precision_proxy": {
+        "ci95": [
+          0.8851,
+          0.9622
+        ],
+        "n": 10858,
+        "numerator": 10065,
+        "value": 0.927
+      },
+      "tracks": {
+        "paired": 99,
+        "with_points": 102
+      },
+      "turning_matrix_agreement": {
+        "n": 71,
+        "value": 0.9577
+      },
+      "vehicle_recall": {
+        "ci95": [
+          0.724,
+          0.8563
+        ],
+        "n": 12171,
+        "numerator": 9631,
+        "value": 0.7913
+      }
+    }
+  },
+  "label": "agreement with a correlated reference on dev frames, not accuracy",
+  "movement_cells": {
+    "after": 71,
+    "before": 70
+  },
+  "parent": "cv-hero-dev",
+  "refined": "cv-hero-sam",
+  "rows": {
+    "after": {
+      "interpolated": 323,
+      "interpolated_share": 0.0273,
+      "rows": 11824,
+      "sam_refined": 643
+    },
+    "before": {
+      "interpolated": 909,
+      "interpolated_share": 0.0772,
+      "rows": 11767,
+      "sam_refined": 0
+    }
+  },
+  "script": "scripts/cv_sam_refine.py --measure",
+  "tracks_status": {
+    "after": {
+      "complete": 71,
+      "partial": 31
+    },
+    "before": {
+      "complete": 70,
+      "partial": 32
+    }
+  },
+  "w3": {
+    "added_rows_past_track_end": {
+      "matched": 1,
+      "matched_share": 1.0,
+      "median_abs_across_m": 0.223,
+      "median_abs_along_m": 0.031,
+      "rows": 1
+    },
+    "after": {
+      "any_exposure": {
+        "denominator": 55,
+        "numerator": 54,
+        "value": 0.9818
+      },
+      "precision_proxy": {
+        "denominator": 5071,
+        "numerator": 4767,
+        "value": 0.9401
+      },
+      "recall": {
+        "denominator": 5322,
+        "numerator": 4520,
+        "value": 0.8493
+      }
+    },
+    "before": {
+      "any_exposure": {
+        "denominator": 55,
+        "numerator": 54,
+        "value": 0.9818
+      },
+      "precision_proxy": {
+        "denominator": 4794,
+        "numerator": 4504,
+        "value": 0.9395
+      },
+      "recall": {
+        "denominator": 5322,
+        "numerator": 4258,
+        "value": 0.8001
+      }
+    },
+    "control_all_interpolated_rows_counted": {
+      "any_exposure": {
+        "denominator": 55,
+        "numerator": 54,
+        "value": 0.9818
+      },
+      "precision_proxy": {
+        "denominator": 5214,
+        "numerator": 4913,
+        "value": 0.9423
+      },
+      "recall": {
+        "denominator": 5322,
+        "numerator": 4663,
+        "value": 0.8762
+      }
+    },
+    "control_same_rows_interpolated": {
+      "any_exposure": {
+        "denominator": 55,
+        "numerator": 54,
+        "value": 0.9818
+      },
+      "precision_proxy": {
+        "denominator": 5070,
+        "numerator": 4769,
+        "value": 0.9406
+      },
+      "recall": {
+        "denominator": 5322,
+        "numerator": 4522,
+        "value": 0.8497
+      }
+    },
+    "replaced_rows_interpolated_position": {
+      "matched": 265,
+      "matched_share": 0.9601,
+      "median_abs_across_m": 0.487,
+      "median_abs_along_m": 0.592,
+      "rows": 276
+    },
+    "replaced_rows_sam_position": {
+      "matched": 265,
+      "matched_share": 0.9601,
+      "median_abs_across_m": 0.339,
+      "median_abs_along_m": 0.554,
+      "rows": 276
+    },
+    "stored_ground_path_after": {
+      "any_exposure": {
+        "denominator": 55,
+        "numerator": 54,
+        "value": 0.9818
+      },
+      "precision_proxy": {
+        "denominator": 5071,
+        "numerator": 4774,
+        "value": 0.9414
+      },
+      "recall": {
+        "denominator": 5322,
+        "numerator": 4521,
+        "value": 0.8495
+      }
+    },
+    "stored_ground_path_before": {
+      "any_exposure": {
+        "denominator": 55,
+        "numerator": 54,
+        "value": 0.9818
+      },
+      "precision_proxy": {
+        "denominator": 4794,
+        "numerator": 4507,
+        "value": 0.9401
+      },
+      "recall": {
+        "denominator": 5322,
+        "numerator": 4266,
+        "value": 0.8016
+      }
+    }
+  },
+  "w3_source_s": [
+    970.0,
+    1000.0
+  ]
+}

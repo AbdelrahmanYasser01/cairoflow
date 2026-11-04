@@ -1,0 +1,198 @@
+{
+  "schema": "cairoflow-timeline-ensemble/0.1.0",
+  "ensemble_id": "ngsim-int2-timeline-ensemble-1",
+  "written_on": "2026-10-29",
+  "decision": "ADR-025",
+  "status": "pre-registered: written and to be committed before any replay baseline or candidate experiment is run on v2a or v2b",
+  "label": "the timelines are trajectory-derived (estimated from stop-line crossings; no signal head or controller log was read); every result read under this design is simulated",
+  "purpose": "The real junction (NGSIM Lankershim intersection 2, 2005-06-16 08:30-08:45 PDT) has no signal log, so its timeline is estimated, and the estimate has choices the evidence does not settle. A candidate's verdict changed sign between the two committed versions (I1 mean delay +5.40 s [5.13, 5.67] on version 1, -0.75 s [-0.90, -0.60] on version 2), and seed intervals do not carry timeline uncertainty. The ensemble replays the same observed vehicles under every defensible timeline and reports a verdict only where it holds on all of them; otherwise it reports the disagreement.",
+  "inputs": {
+    "scenario_record_sha256": "9d08eb6e033d2e60e81aaa10b5c6c6773fc4bb55058e39baae7224f59ff156a1",
+    "world_model_sha256": "09452b7b604be76c7d352413622e55ea6f3d82eeff837563ea4854faed22ce43",
+    "estimator": "cairoflow_perception.ngsim_junction.estimate_signal_timeline with the scenario record's SignalPolicy; members differ only in the two SignalRevision flags",
+    "builder": "scripts/build_ngsim_int2_timeline_ensemble.py (v2a, v2b)",
+    "candidates": "the three outcomes the validator accepted on 2026-10-28 (experiments/runs/ngsim-int2-experiment-20261028T084336Z outcomes.json, hash-checked against its report.json): I1, I2, I3. Each was validated on the cut cycle and is mapped onto a replay by phase identity (cairoflow_simulation.replay_candidates). No new candidate is generated and no model is called."
+  },
+  "evaluation_rules_version": "0.3.0",
+  "members": [
+    {
+      "id": "T1",
+      "version": "v1",
+      "required": true,
+      "permissive_left_evidence": false,
+      "yellow_from_last_crossing": false,
+      "timeline_file": "signal_timeline.json",
+      "timeline_sha256": "71a114a4a2e1e3e922e0b8684010633288ad6425943434c49eb06ca99e44ab9b",
+      "timeline_id": "ngsim-int2-signals-c74ef7cc6d92",
+      "estimate_file": null,
+      "estimate_sha256": null,
+      "rationale": "The scenario record's timeline (ADR-019), unchanged. Permissive left turners count only where an arm's throughs are too few, because they also cross at the end of green; each yellow ends just after the last crossing, so greens are lower bounds.",
+      "evidence": "West green in the window 68 s; all heads red for 111 s of [118, 751) (including two 1 s clearances), 32 s of it at 211-243 s while west lefts crossed; west lefts 6 of 23 and west throughs 1 of 30 shown red.",
+      "reproduces": {
+        "baseline_record": "experiments/records/ngsim-int2-realism-baseline-20261028T135241Z.json",
+        "experiment_record": "experiments/records/ngsim-int2-realism-experiment-20261028T135556Z.json"
+      }
+    },
+    {
+      "id": "T2",
+      "version": "v2",
+      "required": true,
+      "permissive_left_evidence": true,
+      "yellow_from_last_crossing": true,
+      "timeline_file": "signal_timeline_v2.json",
+      "timeline_sha256": "5eb55b93a53ec643467680c6339095171dd09e5aad1e0d897ea5f555032c3968",
+      "timeline_id": "ngsim-int2-signals-c74ef7cc6d92-v2",
+      "estimate_file": "signal_estimate_v2.json",
+      "estimate_sha256": "2d4f85917ac9bb0a4b206042adeb3e231aaa3fef2e217eda8e54d0f98ab21fa1",
+      "rationale": "Version 2 (ADR-023, DATA_REGISTER.md §22), unchanged. An arm with no left head counts its permissive lefts as green evidence (they move only on that green); each yellow starts at the last crossing, so every reference vehicle crosses in green.",
+      "evidence": "West green in the window 114 s; all heads red for 49 s; no west left or west through shown red.",
+      "reproduces": {
+        "baseline_record": "experiments/records/ngsim-int2-realism-baseline-20261028T141919Z.json",
+        "experiment_record": "experiments/records/ngsim-int2-realism-experiment-20261028T142330Z.json"
+      }
+    },
+    {
+      "id": "T3",
+      "version": "v2a",
+      "required": true,
+      "permissive_left_evidence": true,
+      "yellow_from_last_crossing": false,
+      "timeline_file": "signal_timeline_v2a.json",
+      "timeline_sha256": "215acd637de6c1d408b5ad767263e05c68c8dff4aea6a783bbba2faaee18a875",
+      "timeline_id": "ngsim-int2-signals-c74ef7cc6d92-v2a",
+      "estimate_file": "signal_estimate_v2a.json",
+      "estimate_sha256": "d8ccc6a066388f3941e8eba10943dd9af74c13f66eef1b8bd68e7c0efa625a7e",
+      "rationale": "The permissive-left rule of version 2 with the yellow placement of version 1: restores the west greens served only by permissive lefts, without lengthening any green past its last crossing.",
+      "evidence": "West green in the window 91 s; all heads red for 84 s; no west left or west through shown red; north and south greens as version 1.",
+      "reproduces": null
+    },
+    {
+      "id": "T4",
+      "version": "v2b",
+      "required": true,
+      "permissive_left_evidence": false,
+      "yellow_from_last_crossing": true,
+      "timeline_file": "signal_timeline_v2b.json",
+      "timeline_sha256": "f5bf4f413d50b29a0c9739e4734ac63083560fb0f6562a4a073fa687d8deceba",
+      "timeline_id": "ngsim-int2-signals-c74ef7cc6d92-v2b",
+      "estimate_file": "signal_estimate_v2b.json",
+      "estimate_sha256": "5818005e99ecd382e732ab867a2d1e7c92162447b8620f4c6e0a0be9f284e2b6",
+      "rationale": "The yellow placement of version 2 with the permissive-left rule of version 1: every green runs to its last crossing, but greens served only by permissive lefts stay out.",
+      "evidence": "West green in the window 84 s; all heads red for 83 s; west lefts 5 of 23 and west throughs 1 of 30 shown red; north and south greens as version 2.",
+      "reproduces": null
+    }
+  ],
+  "why_all_four_are_required": "Neither axis is settled by the evidence, and each setting is a bound rather than the truth. Permissive lefts: off drops greens in which only lefts crossed (west lefts crossed while version 1 shows every head red); on lengthens greens by lefts that sneak through at their end. Yellow: at the end, the last vehicle crosses at the very end of yellow; at the start, nobody uses the yellow; the truth lies between. The axes interact: the west green in the window is 68, 91, 84 and 114 s on T1-T4, so adding the two separate effects (107 s) misses version 2 by 7 s. The west green is what I1 and I3 cut, and T3 and T4 lie between the two versions on which I1's delay verdict changes sign.",
+  "replay": {
+    "window_s": [118.0, 751.0],
+    "observed_vehicles": 731,
+    "seeds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "drain_s": 600.0,
+    "cut_cycle_start_s": 564.0,
+    "baseline_build": "scripts/build_ngsim_int2_realism.py --timeline v1|v2|v2a|v2b --record",
+    "experiment": "scripts/run_ngsim_int2_realism_experiment.py BASELINE_DIR --record",
+    "ensemble": "scripts/run_ngsim_int2_timeline_ensemble.py --member T1=... --member T2=... --member T3=... --member T4=... --record",
+    "same_frame_note": "Every member replays the same 731 observed vehicles over the same window with the same seeds and settings. Cross-street entries are anchored to each member's own greens (trace_demand), so each member is a self-consistent reconstruction."
+  },
+  "admissibility_gate": {
+    "G1": "Provenance: the timeline is derived by estimate_signal_timeline from the committed world model and policy with only the two SignalRevision flags changed, and the same run reproduces the committed version 1 (signal_timeline.json) and version 2 (signal_timeline_v2.json) byte for byte, or nothing is written.",
+    "G2": "No conflicting heads: no second in which two conflicting heads (cairoflow_perception.ngsim_junction.heads_conflict) both show green or yellow, and no phase of the compiled replay program giving priority green to two foe links (the validator's check 7 applied to the replay program).",
+    "G3": "Same frame: the known window equals version 1's, [118, 751) s, so the same observed vehicles are replayed; the cut cycle at 564 s compiles (it drives the drain); the compiled replay program shows the timeline second by second (0 seconds differing).",
+    "G4": "No worse than version 1 on the evidence: in [118, 751), no through or left movement has more of its observed stop-line crossings shown red than on version 1 (right turns excluded: right turn on red is legal and modelled).",
+    "G5": "A valid replay baseline: valid on all 20 pre-registered seeds, with 0 teleports, 0 collisions, every vehicle inserted and arrived, and reruns identical.",
+    "where_checked": "G1, G2 (timeline), G3 (window and cut) and G4 by scripts/build_ngsim_int2_timeline_ensemble.py; G2 (program) and G3 (window, program) by scripts/build_ngsim_int2_realism.py before any run; G5 by the baseline build; all five again by scripts/run_ngsim_int2_timeline_ensemble.py from the files.",
+    "on_failure": "A member that fails is reported and the ensemble gives no verdict; it is never replaced by a tuned or substitute timeline, and the gate is never changed after a result.",
+    "results_at_registration": {
+      "T1": "passes G1-G5 (recorded baseline 20261028T135241Z: valid, reruns identical; rebuilt on 2026-10-29 outside the repository with the generalised build: same network, program and demand hashes, and identical tripinfo on all 20 seeds)",
+      "T2": "passes G1-G5 (recorded baseline 20261028T141919Z; rebuilt likewise with identical hashes and tripinfo)",
+      "T3": "passes G1-G4: G1 and G4 and the timeline parts of G2 and G3 in signal_estimate_v2a.json; the compiled parts on a throwaway compile (0 priority conflicts, 0 seconds where the replay program differs from the timeline). G5 not yet run: no baseline was built before this design was committed",
+      "T4": "as T3 (signal_estimate_v2b.json)"
+    }
+  },
+  "cross_timeline_rule": {
+    "version": "0.1.0",
+    "code": "cairoflow_evaluation.ensemble.ensemble_verdict",
+    "per_member": "Each member is an ordinary replay experiment evaluated on its own under rules 0.3.0: paired 95% t intervals over seeds 1-20, uncorrected worsening, Holm's correction over that member's own planned family (3 candidates x the improvement metrics), entry blocking, and uninformative maximum queues. Per-member eligibility is read from cairoflow_evaluation.report.candidate_standings, not reimplemented.",
+    "supported_on_a_member": "All of: (1) the structural precondition holds there; (2) every comparison of the candidate has exactly the planned paired seeds 1-20, and it has a comparison for every metric the baseline measured; (3) its standing is eligible: compared on every seed, no metric worsens, no more vehicles held off the network at any entry than the baseline, at least one Holm-confirmed improvement.",
+    "robust_improvement": "Supported on every required member (T1-T4). The improvements it claims are those confirmed on every required member; if none is common to all, that is stated.",
+    "timeline_dependent": "Supported on some required members but not all; the record gives the per-member table (status, worsened metrics, confirmed improvements, entry blocking, mean-delay difference and interval, phase mapping) and why it fails on each.",
+    "no_support": "Supported on no required member.",
+    "robust_harm": "A metric that worsens on every required member.",
+    "direction_disagreements": "Every metric whose verdict is not the same on every member, with each member's verdict, mean difference and interval; flagged opposite when one member says improves and another worsens.",
+    "multiplicity": "Holm's family stays per member, as fixed by each experiment. Requiring confirmation on every required member is an intersection-union test, so a false robust claim is no more likely than one member's family-wise 5%; no further correction is applied.",
+    "never": "Values are never pooled, averaged or weighted across members, and no member is dropped or down-weighted after its result is seen.",
+    "selection": "Among robust improvements: most Holm-confirmed improvements on the candidate's worst member, then the smallest worst-member mean-delay difference, then the lower intervention number.",
+    "recommendation": "A robust selection is a recommendation only when every required member's baseline is assessed as validated. None is (T1 and T2 partially validated; T3 and T4 not assessed), so nothing can be recommended under this design."
+  },
+  "structural_precondition": {
+    "rule": "A candidate is the same plan on a member only if each of its phase changes (a cut-cycle phase, mapped onto the replay by phase identity) applies to at least one replayed phase there. A change that applies to 0 phases means the candidate is not the same plan on that member, so it cannot be supported there and cannot be robust. The applied, clamped and already-shorter counts are read from the candidate networks' notes and recorded per member.",
+    "found_from_mapping_alone": "Computed on 2026-10-29 by compiling each member's replay program and mapping the three validated outcomes onto it, with no simulation. I1 (west -6 s, north/south through +9 s) and I2 (north/south through -5 s, protected lefts +5 s) apply on all four members; I1's west change applies to 14, 15, 15 and 14 phases on T1-T4, of which 3, 1, 2 and 2 stop at the 5 s minimum. I3's north-only +4 s applies to 9 phases on T1 and T3 but to 0 on T2 and T4 (every such phase is already shorter than 5 s), so I3 fails the precondition on T2 and T4 and cannot be a robust improvement."
+  },
+  "already_known_when_written": [
+    "The candidates' results on T1 (experiments/records/ngsim-int2-realism-experiment-20261028T135556Z.json, rules 0.2.0) and on T2 (ngsim-int2-realism-experiment-20261028T142330Z.json) were known: on T1 every candidate worsens mean delay (I1 +5.40 s, I2 +3.29 s, I3 +3.74 s) and none is selected; on T2 I1 improves mean delay (-0.75 s, Holm-confirmed) but worsens throughput and the west and east queues, I2 and I3 worsen delay, and none is selected.",
+    "The I3 mapping finding above was known from the structure alone (on T2 it was also in the recorded experiment's notes).",
+    "The new members' timeline-level statistics (west green, all-red seconds, crossings shown red) were computed before this design was written; no baseline or candidate run on T3 or T4 had been made.",
+    "Rules 0.3.0 (ADR-024: uninformative maximum queues, entry blocking) were committed (bb87450) while this design was written, before any member was evaluated under them; every member is evaluated under them, T1 and T2 included, so T1 and T2 are re-evaluated rather than read from their rules 0.2.0 records.",
+    "A smoke test of the ensemble runner read the existing T1 and T2 experiments (rules 0.2.0) with the rules check bypassed; it reproduced the already-known results (no candidate eligible on either) and is not a result of this ensemble."
+  ],
+  "excluded_variants": [
+    {
+      "variant": "start-up lost time 1 s or 3 s (instead of 2 s)",
+      "evidence": "All 19 lead vehicles waiting at an estimated onset pass 2 m/s 0.5-5.1 s after it (median 2.4 s); none moves before it (scenario.json onset_check).",
+      "reason": "1 s would put the west lead vehicle's departure (0.5 s) before its green. Either value shifts every onset by 1 s, which moves the known window to [119, 752) or [117, 750): other observed vehicles would be replayed, and the cut at 564 s no longer compiles."
+    },
+    {
+      "variant": "service gap other than 25 s",
+      "evidence": "No gap between consecutive reference crossings on any head falls in [22.1, 32.5) s; 30 s gives byte-identical timelines.",
+      "reason": "Fixed by the data. Below 22.1 s the west lull at 408-430 s (its own green, no conflicting green) would be split; above 32.5 s windows merge across real phase changes."
+    },
+    {
+      "variant": "minimum window of 1 crossing (instead of 2)",
+      "evidence": "It turns lone crossings (south through at 531.4 s, north left at 688.1 s, west at 218.9 s on version 1) into 5 s greens.",
+      "reason": "A lone crossing is not evidence of a phase; doing so lowers agreement elsewhere (south left 0.60 to 0.53, south through 0.992 to 0.984 in green or yellow)."
+    },
+    {
+      "variant": "yellow 4 s, all-red 1 s, minimum green 5 s changed",
+      "evidence": "Synthetic constants; the trajectories carry no evidence for them.",
+      "reason": "Not propagated. The yellow-placement axis already brackets where the last crossing sits within green and yellow. East greens are 5 s clamps, i.e. lower bounds; a longer value would be unobserved."
+    },
+    {
+      "variant": "fill red gaps up to the next conflicting onset (an upper bound on greens)",
+      "evidence": "All heads show red for 111, 84, 83 and 49 s of the window on T1-T4.",
+      "reason": "Rejected by ADR-023: it invents green time in which nobody crossed."
+    },
+    {
+      "variant": "other head structures (a protected west left, the south left not following the north left, the east following the west)",
+      "evidence": "North left: 5% of lefts during the opposing through (threshold 20%); south left: 67% in the north left's service (threshold 50%); east: 0% in the west's service; a west protected left cannot be tested (8 east throughs, fewer than 20).",
+      "reason": "Each decision clears its threshold with margin or cannot be tested; a different head set would also change phase signatures, so the candidates would map onto different phases (other plans)."
+    },
+    {
+      "variant": "trim the later window instead of the earlier one at a conflict",
+      "evidence": "Onsets are the best-evidenced point (19 of 19 confirmed by lead-vehicle departures); green ends are the weakest.",
+      "reason": "The existing order keeps the better evidence."
+    },
+    {
+      "variant": "rules tuned until the paired crossing lags are smallest",
+      "evidence": "The lags are measured on the same crossings the timeline is estimated from.",
+      "reason": "Rejected by ADR-023: it would fit the noise."
+    },
+    {
+      "variant": "a bootstrap of the estimate (resampled crossings)",
+      "evidence": "Not built.",
+      "reason": "Deferred: a different method, not a choice among rules; it would need its own design."
+    }
+  ],
+  "assumptions": [
+    "The two SignalRevision axes are the estimation choices the evidence leaves open; the others are fixed by the data or are synthetic constants this design does not propagate.",
+    "The candidates are carried onto each member by phase identity; where a change applies to fewer phases, or is clamped at the minimum green, the plan differs between members, and the per-member mapping is recorded.",
+    "Every member replays one observed 10.5 minute realisation; the 20 seeds measure SUMO's microscopic noise, not demand uncertainty.",
+    "Cross-street entries are anchored to each member's own greens, so cross-street demand timing differs between members by construction."
+  ],
+  "limitations": [
+    "The ensemble brackets two rule choices; it is not a probability distribution over timelines, and a robust verdict is not a calibrated probability.",
+    "Synthetic constants (yellow, all-red, minimum green, start-up lost time), east greens that are lower bounds, red gaps, the window edges, south over-stopping and right turners' stops remain unpropagated.",
+    "West and east results are not trusted on their own (ADR-022), and mean delay has no observed counterpart.",
+    "No member's baseline is assessed as validated, so nothing found under this design is a recommendation.",
+    "The agreement of any timeline with the crossings is internal consistency: the timelines are estimated from the same crossings."
+  ]
+}

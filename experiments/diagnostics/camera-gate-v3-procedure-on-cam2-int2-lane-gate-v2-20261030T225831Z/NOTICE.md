@@ -1,0 +1,3 @@
+# Gate v3's procedure on cam2-int2-lane-gate-v2's data: exploration (CC BY-SA 4.0)
+
+`points.json` and `comparison.json` derive from SAM 3.1 boxes on NGSIM Lankershim camera 2 footage (source seconds 390-420), U.S. Department of Transportation Federal Highway Administration. (2016). Next Generation Simulation (NGSIM) Program Lankershim Boulevard Videos. [Dataset]. Provided by ITS DataHub through Data.transportation.gov. Accessed 2026-10-27 from http://doi.org/10.21949/1504477. Licensed CC BY-SA 4.0. More: https://ops.fhwa.dot.gov/trafficanalysistools/ngsim.htm and from the NGSIM trajectories (CC BY-SA 3.0; see the repository NOTICE). Shared under CC BY-SA 4.0, as the overlay (decision D3). Not a gate result; model output and our measurements, not ground truth.

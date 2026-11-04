@@ -1,0 +1,1810 @@
+{
+ "EvidenceBundle": {
+  "$defs": {
+   "EvidenceItem": {
+    "additionalProperties": false,
+    "description": "One fact the model may cite, summarised by code from a world-model or network value.",
+    "properties": {
+     "evidence_id": {
+      "description": "e.g. 'mv.SN' or 'net.S.arm_length'",
+      "pattern": "^[a-z]+(\\.[A-Za-z0-9_@-]+)+$",
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "kind": {
+      "description": "observed, approximated, assumed, ... as recorded",
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "kind",
+     "summary"
+    ],
+    "title": "EvidenceItem",
+    "type": "object"
+   },
+   "PhaseOption": {
+    "additionalProperties": false,
+    "description": "One phase of the compiled cycle and whether a signal_timing proposal may change it.",
+    "properties": {
+     "adjustable": {
+      "description": "only green phases; clearance intervals are fixed",
+      "title": "Adjustable",
+      "type": "boolean"
+     },
+     "duration_s": {
+      "exclusiveMinimum": 0,
+      "title": "Duration S",
+      "type": "number"
+     },
+     "green_arms": {
+      "items": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ],
+       "type": "string"
+      },
+      "title": "Green Arms",
+      "type": "array"
+     },
+     "green_left_arms": {
+      "default": [],
+      "description": "arms whose protected left is green",
+      "items": {
+       "enum": [
+        "N",
+        "E",
+        "S",
+        "W"
+       ],
+       "type": "string"
+      },
+      "title": "Green Left Arms",
+      "type": "array"
+     },
+     "max_green_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Max Green S"
+     },
+     "min_green_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Min Green S"
+     },
+     "phase_name": {
+      "title": "Phase Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phase_name",
+     "duration_s",
+     "green_arms",
+     "adjustable"
+    ],
+    "title": "PhaseOption",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "bundle_id": {
+    "description": "first 16 hex digits of the SHA-256 of the content",
+    "title": "Bundle Id",
+    "type": "string"
+   },
+   "clip_id": {
+    "title": "Clip Id",
+    "type": "string"
+   },
+   "conventions": {
+    "default": [],
+    "description": "naming conventions the model must follow (e.g. what arm N means); left out of the JSON when empty, so bundles made before the field existed keep their ids",
+    "items": {
+     "type": "string"
+    },
+    "title": "Conventions",
+    "type": "array"
+   },
+   "items": {
+    "items": {
+     "$ref": "#/$defs/EvidenceItem"
+    },
+    "title": "Items",
+    "type": "array"
+   },
+   "limitations": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Limitations",
+    "type": "array"
+   },
+   "net_sha256": {
+    "title": "Net Sha256",
+    "type": "string"
+   },
+   "phases": {
+    "items": {
+     "$ref": "#/$defs/PhaseOption"
+    },
+    "title": "Phases",
+    "type": "array"
+   },
+   "program_id": {
+    "title": "Program Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "world_model_sha256": {
+    "title": "World Model Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "bundle_id",
+   "clip_id",
+   "world_model_sha256",
+   "net_sha256",
+   "program_id",
+   "phases",
+   "items",
+   "limitations"
+  ],
+  "title": "EvidenceBundle",
+  "type": "object"
+ },
+ "EvidenceItem": {
+  "additionalProperties": false,
+  "description": "One fact the model may cite, summarised by code from a world-model or network value.",
+  "properties": {
+   "evidence_id": {
+    "description": "e.g. 'mv.SN' or 'net.S.arm_length'",
+    "pattern": "^[a-z]+(\\.[A-Za-z0-9_@-]+)+$",
+    "title": "Evidence Id",
+    "type": "string"
+   },
+   "kind": {
+    "description": "observed, approximated, assumed, ... as recorded",
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Kind",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "summary": {
+    "minLength": 1,
+    "title": "Summary",
+    "type": "string"
+   }
+  },
+  "required": [
+   "evidence_id",
+   "kind",
+   "summary"
+  ],
+  "title": "EvidenceItem",
+  "type": "object"
+ },
+ "GroundingReport": {
+  "$defs": {
+   "HypothesisGrounding": {
+    "additionalProperties": false,
+    "description": "Code's verdict on whether one hypothesis rests on the evidence it cites.",
+    "properties": {
+     "flags": {
+      "description": "weaknesses that do not make it unsupported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Flags",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it is unsupported; empty when supported",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "supported",
+       "unsupported"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "supporting_kinds": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "evidence kind -> supporting items cited",
+      "title": "Supporting Kinds",
+      "type": "object"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "status",
+     "reasons",
+     "flags",
+     "supporting_kinds"
+    ],
+    "title": "HypothesisGrounding",
+    "type": "object"
+   },
+   "ProposalGrounding": {
+    "additionalProperties": false,
+    "description": "Whether one proposal may go to planning: it must address a supported hypothesis.",
+    "properties": {
+     "eligible": {
+      "title": "Eligible",
+      "type": "boolean"
+     },
+     "intervention_id": {
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "reasons": {
+      "description": "why it may not; empty when eligible",
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "supported_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supported Hypothesis Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "eligible",
+     "reasons",
+     "supported_hypothesis_ids"
+    ],
+    "title": "ProposalGrounding",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Deterministic evidence checks on one reply (cairoflow_reasoning.grounding, P0-3). A valid\nJSON reply is not a valid diagnosis: only proposals that address a supported hypothesis go\non to the validator and the simulator.",
+  "properties": {
+   "bundle_id": {
+    "title": "Bundle Id",
+    "type": "string"
+   },
+   "competing_hypotheses": {
+    "description": "at least two hypotheses are supported",
+    "title": "Competing Hypotheses",
+    "type": "boolean"
+   },
+   "hypotheses": {
+    "items": {
+     "$ref": "#/$defs/HypothesisGrounding"
+    },
+    "title": "Hypotheses",
+    "type": "array"
+   },
+   "missing_evidence": {
+    "description": "every missing item the model named",
+    "items": {
+     "type": "string"
+    },
+    "title": "Missing Evidence",
+    "type": "array"
+   },
+   "notes": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Notes",
+    "type": "array"
+   },
+   "proposals": {
+    "items": {
+     "$ref": "#/$defs/ProposalGrounding"
+    },
+    "title": "Proposals",
+    "type": "array"
+   },
+   "request_key": {
+    "title": "Request Key",
+    "type": "string"
+   },
+   "rules_version": {
+    "title": "Rules Version",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "rules_version",
+   "bundle_id",
+   "request_key",
+   "hypotheses",
+   "proposals",
+   "competing_hypotheses",
+   "missing_evidence",
+   "notes"
+  ],
+  "title": "GroundingReport",
+  "type": "object"
+ },
+ "Hypothesis": {
+  "$defs": {
+   "ObservedFact": {
+    "additionalProperties": false,
+    "description": "One cited evidence item restated without inference (prompt 0.3.0 onwards).",
+    "properties": {
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "statement"
+    ],
+    "title": "ObservedFact",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "alternative_explanations": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Alternative Explanations",
+    "type": "array"
+   },
+   "assumptions": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Assumptions",
+    "type": "array"
+   },
+   "claim_type": {
+    "anyOf": [
+     {
+      "enum": [
+       "causal",
+       "associative",
+       "descriptive"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "causal only for a stated mechanism",
+    "title": "Claim Type"
+   },
+   "confidence_label": {
+    "enum": [
+     "low",
+     "medium",
+     "high"
+    ],
+    "title": "Confidence Label",
+    "type": "string"
+   },
+   "contradicting_evidence_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Contradicting Evidence Ids",
+    "type": "array"
+   },
+   "hypothesis_id": {
+    "pattern": "^H[1-9][0-9]?$",
+    "title": "Hypothesis Id",
+    "type": "string"
+   },
+   "inference": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "what is concluded beyond the evidence",
+    "title": "Inference"
+   },
+   "limiting_factor": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "one of LIMITING_FACTORS (0.3.0)",
+    "title": "Limiting Factor"
+   },
+   "missing_evidence": {
+    "default": [],
+    "description": "what would confirm or refute it",
+    "items": {
+     "type": "string"
+    },
+    "title": "Missing Evidence",
+    "type": "array"
+   },
+   "observations": {
+    "default": [],
+    "description": "cited evidence, restated",
+    "items": {
+     "$ref": "#/$defs/ObservedFact"
+    },
+    "title": "Observations",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "statement": {
+    "minLength": 1,
+    "title": "Statement",
+    "type": "string"
+   },
+   "supporting_evidence_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Supporting Evidence Ids",
+    "type": "array"
+   }
+  },
+  "required": [
+   "hypothesis_id",
+   "statement",
+   "supporting_evidence_ids",
+   "contradicting_evidence_ids",
+   "assumptions",
+   "confidence_label",
+   "alternative_explanations"
+  ],
+  "title": "Hypothesis",
+  "type": "object"
+ },
+ "HypothesisGrounding": {
+  "additionalProperties": false,
+  "description": "Code's verdict on whether one hypothesis rests on the evidence it cites.",
+  "properties": {
+   "flags": {
+    "description": "weaknesses that do not make it unsupported",
+    "items": {
+     "type": "string"
+    },
+    "title": "Flags",
+    "type": "array"
+   },
+   "hypothesis_id": {
+    "title": "Hypothesis Id",
+    "type": "string"
+   },
+   "reasons": {
+    "description": "why it is unsupported; empty when supported",
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "supported",
+     "unsupported"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "supporting_kinds": {
+    "additionalProperties": {
+     "type": "integer"
+    },
+    "description": "evidence kind -> supporting items cited",
+    "title": "Supporting Kinds",
+    "type": "object"
+   }
+  },
+  "required": [
+   "hypothesis_id",
+   "status",
+   "reasons",
+   "flags",
+   "supporting_kinds"
+  ],
+  "title": "HypothesisGrounding",
+  "type": "object"
+ },
+ "InterventionProposal": {
+  "$defs": {
+   "PhaseChange": {
+    "additionalProperties": false,
+    "properties": {
+     "green_s": {
+      "title": "Green S",
+      "type": "number"
+     },
+     "phase_name": {
+      "minLength": 1,
+      "title": "Phase Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phase_name",
+     "green_s"
+    ],
+    "title": "PhaseChange",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "properties": {
+   "addresses_hypothesis_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Addresses Hypothesis Ids",
+    "type": "array"
+   },
+   "evidence_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Evidence Ids",
+    "type": "array"
+   },
+   "expected_tradeoffs": {
+    "description": "words only; no predicted metrics",
+    "items": {
+     "type": "string"
+    },
+    "title": "Expected Tradeoffs",
+    "type": "array"
+   },
+   "intervention_id": {
+    "pattern": "^I[1-9][0-9]?$",
+    "title": "Intervention Id",
+    "type": "string"
+   },
+   "phase_changes": {
+    "items": {
+     "$ref": "#/$defs/PhaseChange"
+    },
+    "title": "Phase Changes",
+    "type": "array"
+   },
+   "preconditions": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Preconditions",
+    "type": "array"
+   },
+   "rationale": {
+    "minLength": 1,
+    "title": "Rationale",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "target_program": {
+    "title": "Target Program",
+    "type": "string"
+   },
+   "type": {
+    "description": "checked against the allowlist later",
+    "pattern": "^[a-z_]+$",
+    "title": "Type",
+    "type": "string"
+   }
+  },
+  "required": [
+   "intervention_id",
+   "type",
+   "target_program",
+   "phase_changes",
+   "rationale",
+   "expected_tradeoffs",
+   "preconditions",
+   "addresses_hypothesis_ids",
+   "evidence_ids"
+  ],
+  "title": "InterventionProposal",
+  "type": "object"
+ },
+ "ObservedFact": {
+  "additionalProperties": false,
+  "description": "One cited evidence item restated without inference (prompt 0.3.0 onwards).",
+  "properties": {
+   "evidence_id": {
+    "title": "Evidence Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "statement": {
+    "minLength": 1,
+    "title": "Statement",
+    "type": "string"
+   }
+  },
+  "required": [
+   "evidence_id",
+   "statement"
+  ],
+  "title": "ObservedFact",
+  "type": "object"
+ },
+ "PhaseChange": {
+  "additionalProperties": false,
+  "properties": {
+   "green_s": {
+    "title": "Green S",
+    "type": "number"
+   },
+   "phase_name": {
+    "minLength": 1,
+    "title": "Phase Name",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "phase_name",
+   "green_s"
+  ],
+  "title": "PhaseChange",
+  "type": "object"
+ },
+ "PhaseOption": {
+  "additionalProperties": false,
+  "description": "One phase of the compiled cycle and whether a signal_timing proposal may change it.",
+  "properties": {
+   "adjustable": {
+    "description": "only green phases; clearance intervals are fixed",
+    "title": "Adjustable",
+    "type": "boolean"
+   },
+   "duration_s": {
+    "exclusiveMinimum": 0,
+    "title": "Duration S",
+    "type": "number"
+   },
+   "green_arms": {
+    "items": {
+     "enum": [
+      "N",
+      "E",
+      "S",
+      "W"
+     ],
+     "type": "string"
+    },
+    "title": "Green Arms",
+    "type": "array"
+   },
+   "green_left_arms": {
+    "default": [],
+    "description": "arms whose protected left is green",
+    "items": {
+     "enum": [
+      "N",
+      "E",
+      "S",
+      "W"
+     ],
+     "type": "string"
+    },
+    "title": "Green Left Arms",
+    "type": "array"
+   },
+   "max_green_s": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Max Green S"
+   },
+   "min_green_s": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Min Green S"
+   },
+   "phase_name": {
+    "title": "Phase Name",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "phase_name",
+   "duration_s",
+   "green_arms",
+   "adjustable"
+  ],
+  "title": "PhaseOption",
+  "type": "object"
+ },
+ "ProposalGrounding": {
+  "additionalProperties": false,
+  "description": "Whether one proposal may go to planning: it must address a supported hypothesis.",
+  "properties": {
+   "eligible": {
+    "title": "Eligible",
+    "type": "boolean"
+   },
+   "intervention_id": {
+    "title": "Intervention Id",
+    "type": "string"
+   },
+   "reasons": {
+    "description": "why it may not; empty when eligible",
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "supported_hypothesis_ids": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Supported Hypothesis Ids",
+    "type": "array"
+   }
+  },
+  "required": [
+   "intervention_id",
+   "eligible",
+   "reasons",
+   "supported_hypothesis_ids"
+  ],
+  "title": "ProposalGrounding",
+  "type": "object"
+ },
+ "ReasoningOutput": {
+  "$defs": {
+   "Hypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "alternative_explanations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Alternative Explanations",
+      "type": "array"
+     },
+     "assumptions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+     },
+     "claim_type": {
+      "anyOf": [
+       {
+        "enum": [
+         "causal",
+         "associative",
+         "descriptive"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "causal only for a stated mechanism",
+      "title": "Claim Type"
+     },
+     "confidence_label": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence Label",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "pattern": "^H[1-9][0-9]?$",
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "inference": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "what is concluded beyond the evidence",
+      "title": "Inference"
+     },
+     "limiting_factor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "one of LIMITING_FACTORS (0.3.0)",
+      "title": "Limiting Factor"
+     },
+     "missing_evidence": {
+      "default": [],
+      "description": "what would confirm or refute it",
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+     },
+     "observations": {
+      "default": [],
+      "description": "cited evidence, restated",
+      "items": {
+       "$ref": "#/$defs/ObservedFact"
+      },
+      "title": "Observations",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "assumptions",
+     "confidence_label",
+     "alternative_explanations"
+    ],
+    "title": "Hypothesis",
+    "type": "object"
+   },
+   "InterventionProposal": {
+    "additionalProperties": false,
+    "properties": {
+     "addresses_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Addresses Hypothesis Ids",
+      "type": "array"
+     },
+     "evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+     },
+     "expected_tradeoffs": {
+      "description": "words only; no predicted metrics",
+      "items": {
+       "type": "string"
+      },
+      "title": "Expected Tradeoffs",
+      "type": "array"
+     },
+     "intervention_id": {
+      "pattern": "^I[1-9][0-9]?$",
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_changes": {
+      "items": {
+       "$ref": "#/$defs/PhaseChange"
+      },
+      "title": "Phase Changes",
+      "type": "array"
+     },
+     "preconditions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Preconditions",
+      "type": "array"
+     },
+     "rationale": {
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "target_program": {
+      "title": "Target Program",
+      "type": "string"
+     },
+     "type": {
+      "description": "checked against the allowlist later",
+      "pattern": "^[a-z_]+$",
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "type",
+     "target_program",
+     "phase_changes",
+     "rationale",
+     "expected_tradeoffs",
+     "preconditions",
+     "addresses_hypothesis_ids",
+     "evidence_ids"
+    ],
+    "title": "InterventionProposal",
+    "type": "object"
+   },
+   "ObservedFact": {
+    "additionalProperties": false,
+    "description": "One cited evidence item restated without inference (prompt 0.3.0 onwards).",
+    "properties": {
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "statement"
+    ],
+    "title": "ObservedFact",
+    "type": "object"
+   },
+   "PhaseChange": {
+    "additionalProperties": false,
+    "properties": {
+     "green_s": {
+      "title": "Green S",
+      "type": "number"
+     },
+     "phase_name": {
+      "minLength": 1,
+      "title": "Phase Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phase_name",
+     "green_s"
+    ],
+    "title": "PhaseChange",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "The model's reply, after schema validation: at least two of each.",
+  "properties": {
+   "hypotheses": {
+    "items": {
+     "$ref": "#/$defs/Hypothesis"
+    },
+    "minItems": 2,
+    "title": "Hypotheses",
+    "type": "array"
+   },
+   "interventions": {
+    "items": {
+     "$ref": "#/$defs/InterventionProposal"
+    },
+    "minItems": 2,
+    "title": "Interventions",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "hypotheses",
+   "interventions"
+  ],
+  "title": "ReasoningOutput",
+  "type": "object"
+ },
+ "ReasoningResult": {
+  "$defs": {
+   "Hypothesis": {
+    "additionalProperties": false,
+    "properties": {
+     "alternative_explanations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Alternative Explanations",
+      "type": "array"
+     },
+     "assumptions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+     },
+     "claim_type": {
+      "anyOf": [
+       {
+        "enum": [
+         "causal",
+         "associative",
+         "descriptive"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "causal only for a stated mechanism",
+      "title": "Claim Type"
+     },
+     "confidence_label": {
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Confidence Label",
+      "type": "string"
+     },
+     "contradicting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Contradicting Evidence Ids",
+      "type": "array"
+     },
+     "hypothesis_id": {
+      "pattern": "^H[1-9][0-9]?$",
+      "title": "Hypothesis Id",
+      "type": "string"
+     },
+     "inference": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "what is concluded beyond the evidence",
+      "title": "Inference"
+     },
+     "limiting_factor": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "one of LIMITING_FACTORS (0.3.0)",
+      "title": "Limiting Factor"
+     },
+     "missing_evidence": {
+      "default": [],
+      "description": "what would confirm or refute it",
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+     },
+     "observations": {
+      "default": [],
+      "description": "cited evidence, restated",
+      "items": {
+       "$ref": "#/$defs/ObservedFact"
+      },
+      "title": "Observations",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     },
+     "supporting_evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "hypothesis_id",
+     "statement",
+     "supporting_evidence_ids",
+     "contradicting_evidence_ids",
+     "assumptions",
+     "confidence_label",
+     "alternative_explanations"
+    ],
+    "title": "Hypothesis",
+    "type": "object"
+   },
+   "InterventionProposal": {
+    "additionalProperties": false,
+    "properties": {
+     "addresses_hypothesis_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Addresses Hypothesis Ids",
+      "type": "array"
+     },
+     "evidence_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+     },
+     "expected_tradeoffs": {
+      "description": "words only; no predicted metrics",
+      "items": {
+       "type": "string"
+      },
+      "title": "Expected Tradeoffs",
+      "type": "array"
+     },
+     "intervention_id": {
+      "pattern": "^I[1-9][0-9]?$",
+      "title": "Intervention Id",
+      "type": "string"
+     },
+     "phase_changes": {
+      "items": {
+       "$ref": "#/$defs/PhaseChange"
+      },
+      "title": "Phase Changes",
+      "type": "array"
+     },
+     "preconditions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Preconditions",
+      "type": "array"
+     },
+     "rationale": {
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "target_program": {
+      "title": "Target Program",
+      "type": "string"
+     },
+     "type": {
+      "description": "checked against the allowlist later",
+      "pattern": "^[a-z_]+$",
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "intervention_id",
+     "type",
+     "target_program",
+     "phase_changes",
+     "rationale",
+     "expected_tradeoffs",
+     "preconditions",
+     "addresses_hypothesis_ids",
+     "evidence_ids"
+    ],
+    "title": "InterventionProposal",
+    "type": "object"
+   },
+   "ObservedFact": {
+    "additionalProperties": false,
+    "description": "One cited evidence item restated without inference (prompt 0.3.0 onwards).",
+    "properties": {
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "evidence_id",
+     "statement"
+    ],
+    "title": "ObservedFact",
+    "type": "object"
+   },
+   "PhaseChange": {
+    "additionalProperties": false,
+    "properties": {
+     "green_s": {
+      "title": "Green S",
+      "type": "number"
+     },
+     "phase_name": {
+      "minLength": 1,
+      "title": "Phase Name",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phase_name",
+     "green_s"
+    ],
+    "title": "PhaseChange",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   },
+   "ReasoningOutput": {
+    "additionalProperties": false,
+    "description": "The model's reply, after schema validation: at least two of each.",
+    "properties": {
+     "hypotheses": {
+      "items": {
+       "$ref": "#/$defs/Hypothesis"
+      },
+      "minItems": 2,
+      "title": "Hypotheses",
+      "type": "array"
+     },
+     "interventions": {
+      "items": {
+       "$ref": "#/$defs/InterventionProposal"
+      },
+      "minItems": 2,
+      "title": "Interventions",
+      "type": "array"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "hypotheses",
+     "interventions"
+    ],
+    "title": "ReasoningOutput",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "One diagnosis: the model's output plus where it came from and what was wrong with it.",
+  "properties": {
+   "bundle_id": {
+    "title": "Bundle Id",
+    "type": "string"
+   },
+   "estimated_cost_usd": {
+    "minimum": 0,
+    "title": "Estimated Cost Usd",
+    "type": "number"
+   },
+   "model": {
+    "title": "Model",
+    "type": "string"
+   },
+   "output": {
+    "$ref": "#/$defs/ReasoningOutput"
+   },
+   "problems": {
+    "description": "citations of unknown evidence or hypotheses",
+    "items": {
+     "type": "string"
+    },
+    "title": "Problems",
+    "type": "array"
+   },
+   "prompt_version": {
+    "title": "Prompt Version",
+    "type": "string"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "request_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Request Id"
+   },
+   "request_key": {
+    "title": "Request Key",
+    "type": "string"
+   },
+   "response_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Response Id"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "usage": {
+    "additionalProperties": {
+     "type": "integer"
+    },
+    "title": "Usage",
+    "type": "object"
+   }
+  },
+  "required": [
+   "bundle_id",
+   "request_key",
+   "response_id",
+   "request_id",
+   "model",
+   "prompt_version",
+   "output",
+   "problems",
+   "usage",
+   "estimated_cost_usd",
+   "provenance"
+  ],
+  "title": "ReasoningResult",
+  "type": "object"
+ },
+ "ValidationOutcome": {
+  "additionalProperties": false,
+  "description": "The validator's verdict on one proposal. Accepted proposals become simulation candidates.",
+  "properties": {
+   "baseline_cycle_s": {
+    "title": "Baseline Cycle S",
+    "type": "number"
+   },
+   "cycle_s": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Cycle S"
+   },
+   "intervention_id": {
+    "title": "Intervention Id",
+    "type": "string"
+   },
+   "phase_durations_s": {
+    "anyOf": [
+     {
+      "items": {
+       "type": "number"
+      },
+      "type": "array"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "description": "the candidate cycle, in compiled phase order, when accepted",
+    "title": "Phase Durations S"
+   },
+   "program_id": {
+    "title": "Program Id",
+    "type": "string"
+   },
+   "proposal_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "the proposal's canonical JSON, so a candidate names what it came from",
+    "title": "Proposal Sha256"
+   },
+   "reasons": {
+    "description": "why it was rejected; empty when accepted",
+    "items": {
+     "type": "string"
+    },
+    "title": "Reasons",
+    "type": "array"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "accepted",
+     "rejected"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "validated_at_utc": {
+    "format": "date-time",
+    "title": "Validated At Utc",
+    "type": "string"
+   },
+   "validator_version": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "None in outcomes before 0.2.0",
+    "title": "Validator Version"
+   }
+  },
+  "required": [
+   "intervention_id",
+   "status",
+   "reasons",
+   "program_id",
+   "phase_durations_s",
+   "cycle_s",
+   "baseline_cycle_s",
+   "validated_at_utc"
+  ],
+  "title": "ValidationOutcome",
+  "type": "object"
+ }
+}

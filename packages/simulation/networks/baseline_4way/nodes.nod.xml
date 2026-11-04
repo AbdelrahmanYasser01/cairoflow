@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CairoFlow baseline four-way intersection: nodes.
+     Coordinates: SUMO network metres, x east, y north, origin at junction centre C.
+     Assumption: symmetric geometry with 200 m arms. Placeholder until calibrated against a clip. -->
+<nodes>
+    <node id="C" x="0" y="0" type="traffic_light"/>
+    <node id="N" x="0" y="200" type="dead_end"/>
+    <node id="E" x="200" y="0" type="dead_end"/>
+    <node id="S" x="0" y="-200" type="dead_end"/>
+    <node id="W" x="-200" y="0" type="dead_end"/>
+</nodes>

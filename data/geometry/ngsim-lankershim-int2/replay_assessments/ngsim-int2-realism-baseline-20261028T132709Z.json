@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "baseline_manifest_sha256": "63d5d47c6ccb8d32b2e9172bf200e5d50aa6b1634883fea9502a8b48d3fffda6",
+  "status": "partially_validated",
+  "summary": "The replay baseline reproduces the timing of Lankershim's through traffic (paired stop-line crossings within 4 s; north travel time inside the observed interval), but it over-stops on the south and on right turns, slows left turns, and holds back the west vehicles served at the window start and several west left turns by one to two cycles; no delay is observed, and its 20 seeds replay one observed 10.5 minutes. It is not validated for estimating intervention effects.",
+  "findings": [
+    "North through: paired crossing lag +0.0 to +0.3 s (median per seed); travel time 18.9 s against 17.2 s [12.3, 23.5] observed; share stopping 30.6% against 24.1% [19.0, 30.1], just outside the observed interval.",
+    "South through: crossings 3.1 to 3.8 s early, yet 79.6% stop against 66.9% [59.3, 73.7] observed; start-up headways err in opposite directions on N and S, so no global calibration was made.",
+    "Turns: N and S left travel times 64.6 s and 70.1 s against 56.3 [49.3, 63.0] and 46.4 [34.5, 64.7] observed; right turners stop far more often (N 44% against 11%, S 60% against 37%).",
+    "West: through crossings 0.2 to 1.2 s early in median, but only 41% within 5 s pooled: the 11 west vehicles (7 through, 3 left, 1 right) crossing in the green already on at the window start enter at the arm start at 0 s, miss it and wait about 180 s. Left turns lag +12 s in median (single vehicles up to two cycles): besides those 3, 6 cross while the estimated timeline shows red (west windows it drops), 2 queue behind them and 2 cross after its green ends (lower bounds); DATA_REGISTER.md §20. The 3 west right turners lag about +168 s in median.",
+    "Window ends: 7 vehicles are queued on N at simulated 0 s against 22 observed; at the end N and S hold 23 and 14 against 16 and 9 (single instants, no interval).",
+    "Not validatable: mean delay, the east and west queues (observed only near the limit line); throughput is circular, one for one.",
+    "Record caveat: validation.md states the pre-anchoring cross-street rule among its assumptions; the run used discharge anchoring (trace_vehicles.json options, NOTICE.md). The numbers are unaffected; the script now reads the rule from the vehicle table.",
+    "Uncertainty: every seed replays the same vehicles, so intervals measure SUMO's microscopic noise for one observed realisation, not demand uncertainty."
+  ],
+  "evidence": {
+    "experiments/records/ngsim-int2-realism-baseline-20261028T132709Z.json": "3026abf1e01e24c71be87d05316fcd9b7ce6a55c26feb80595d68f2372f8e572",
+    "experiments/records/ngsim-int2-realism-validity-20261028T132709Z/NOTICE.md": "683557a817c882b4f30237e834f8fa05d2ce613b47512cf13c7d907f7be39eed",
+    "experiments/records/ngsim-int2-realism-validity-20261028T132709Z/validation/validation.json": "5bc86b4d6bea96d6a7edd1f431f87bf92540f952a2ec18f192420d07d97318ea",
+    "experiments/records/ngsim-int2-realism-validity-20261028T132709Z/validation/validation.md": "f39e6f4eea2de9f189d4779311189e5414eb3d0abf949d87b5d2376884151577"
+  },
+  "assessed_on": "2026-10-28",
+  "documented_in": "docs/DATA_REGISTER.md §§18-20"
+}

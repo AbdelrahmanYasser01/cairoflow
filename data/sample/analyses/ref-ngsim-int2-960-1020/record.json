@@ -1,0 +1,436 @@
+{
+ "schema_version": "0.1.0",
+ "record_format": "analysis/1",
+ "analysis_id": "ref-ngsim-int2-960-1020",
+ "title": "NGSIM reference, source 960-1020 s",
+ "mode": "precomputed",
+ "data_origin": "reference_dataset",
+ "site_id": "ngsim-lankershim-int2",
+ "created_at_utc": "2026-11-03T22:48:55Z",
+ "source": {
+  "schema_version": "0.1.0",
+  "source_id": "ngsim-lankershim-trajectories",
+  "title": "NGSIM Lankershim Boulevard vehicle trajectories, 08:30-08:45",
+  "site_name": "Lankershim Blvd at Universal Hollywood Dr, Los Angeles",
+  "captured": "16 June 2005",
+  "licence_name": "CC BY-SA 3.0 (this derived data: CC BY-SA 4.0)",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+  "attribution": "U.S. Department of Transportation Federal Highway Administration. (2016). Next Generation Simulation (NGSIM) Program Lankershim Boulevard Videos. [Dataset]. Provided by ITS DataHub through Data.transportation.gov. Accessed 2026-10-27 from http://doi.org/10.21949/1504477. Licensed CC BY-SA 4.0. More: https://ops.fhwa.dot.gov/trafficanalysistools/ngsim.htm",
+  "source_file": "data/raw/ngsim-lankershim/trajectories/lankershim-0830-0845.csv",
+  "source_sha256": null,
+  "uploaded_by_user": false
+ },
+ "fps": 10.0,
+ "frame_count": 600,
+ "frame_stride": 1,
+ "width_px": 640,
+ "height_px": 480,
+ "source_start_s": 960.0,
+ "window_offset_s": 120.0,
+ "calibration": {
+  "schema_version": "0.1.0",
+  "mode": "calibrated",
+  "ground_frame": "local_enu_junction_m",
+  "image_to_ground": [
+   [
+    0.0014073755378175119,
+    0.15758938333715514,
+    -31.22356829104763
+   ],
+   [
+    0.1604080241583132,
+    -0.014284313268136131,
+    -39.836385295514276
+   ],
+   [
+    -0.0004554076619969053,
+    0.000195832883443189,
+    1.0
+   ]
+  ],
+  "spec_sha256": "18d9828a43463098081b6b8f1a7bc5aef882b6ab0d3ab20109ea72386d71f114",
+  "accepted_along_road": false,
+  "valid_windows_s": [
+   [
+    970.0,
+    1000.0
+   ]
+  ],
+  "valid_below_row_px": 410,
+  "origin_lat_deg": 34.1390320740147,
+  "origin_lon_deg": -118.36214356208536,
+  "bearing_deg": 25.8215,
+  "notes": [
+   "Ground positions are published by NGSIM; the image boxes are those positions projected through the camera homography, so they are approximate."
+  ]
+ },
+ "stages": [
+  {
+   "schema_version": "0.1.0",
+   "stage": "read_reference",
+   "tool": "cairoflow_perception.ngsim",
+   "version": "9762fb3",
+   "licence": "MIT (code); data CC BY-SA",
+   "weights_sha256": null,
+   "device": null,
+   "frames_in": null,
+   "items_out": 112,
+   "elapsed_s": null,
+   "cached": false,
+   "cost_usd": null,
+   "parameters": {}
+  }
+ ],
+ "gates": [],
+ "metrics": [
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.total",
+   "label": "Vehicles in view",
+   "value": 112.0,
+   "unit": "veh",
+   "scope": "site",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "flow.entering",
+   "label": "Entering flow",
+   "value": 6060.0,
+   "unit": "veh/h",
+   "scope": "site",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "speed.mean_moving",
+   "label": "Mean moving speed",
+   "value": 10.25,
+   "unit": "m/s",
+   "scope": "site",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "stopped.share",
+   "label": "Share of time stopped",
+   "value": 0.298,
+   "unit": "share",
+   "scope": "site",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.arm.n",
+   "label": "Entering from N",
+   "value": 59.0,
+   "unit": "veh",
+   "scope": "arm:N",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.arm.e",
+   "label": "Entering from E",
+   "value": 0.0,
+   "unit": "veh",
+   "scope": "arm:E",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.arm.s",
+   "label": "Entering from S",
+   "value": 42.0,
+   "unit": "veh",
+   "scope": "arm:S",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.arm.w",
+   "label": "Entering from W",
+   "value": 0.0,
+   "unit": "veh",
+   "scope": "arm:W",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.class.bus",
+   "label": "Bus",
+   "value": 2.0,
+   "unit": "veh",
+   "scope": "class:bus",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.class.car",
+   "label": "Car",
+   "value": 107.0,
+   "unit": "veh",
+   "scope": "class:car",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.class.motorcycle",
+   "label": "Motorcycle",
+   "value": 1.0,
+   "unit": "veh",
+   "scope": "class:motorcycle",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "metric_id": "vehicles.class.truck",
+   "label": "Truck",
+   "value": 2.0,
+   "unit": "veh",
+   "scope": "class:truck",
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "ci95": null
+  }
+ ],
+ "series": [
+  {
+   "schema_version": "0.1.0",
+   "series_id": "entering.arm.n",
+   "label": "Entering from N",
+   "unit": "veh",
+   "scope": "arm:N",
+   "bin_s": 10.0,
+   "start_s": 0.0,
+   "values": [
+    9.0,
+    1.0,
+    11.0,
+    14.0,
+    13.0,
+    11.0
+   ],
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "series_id": "entering.arm.e",
+   "label": "Entering from E",
+   "unit": "veh",
+   "scope": "arm:E",
+   "bin_s": 10.0,
+   "start_s": 0.0,
+   "values": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "series_id": "entering.arm.s",
+   "label": "Entering from S",
+   "unit": "veh",
+   "scope": "arm:S",
+   "bin_s": 10.0,
+   "start_s": 0.0,
+   "values": [
+    21.0,
+    4.0,
+    3.0,
+    3.0,
+    5.0,
+    6.0
+   ],
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "series_id": "entering.arm.w",
+   "label": "Entering from W",
+   "unit": "veh",
+   "scope": "arm:W",
+   "bin_s": 10.0,
+   "start_s": 0.0,
+   "values": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "evidence_kind": "observed",
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null
+  }
+ ],
+ "movements": [
+  {
+   "schema_version": "0.1.0",
+   "approach": "N",
+   "exit_arm": "E",
+   "turn": "left",
+   "count": 5,
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "reference_count": 5
+  },
+  {
+   "schema_version": "0.1.0",
+   "approach": "N",
+   "exit_arm": "S",
+   "turn": "through",
+   "count": 29,
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "reference_count": 29
+  },
+  {
+   "schema_version": "0.1.0",
+   "approach": "N",
+   "exit_arm": "W",
+   "turn": "right",
+   "count": 4,
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "reference_count": 4
+  },
+  {
+   "schema_version": "0.1.0",
+   "approach": "S",
+   "exit_arm": "E",
+   "turn": "right",
+   "count": 4,
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "reference_count": 4
+  },
+  {
+   "schema_version": "0.1.0",
+   "approach": "S",
+   "exit_arm": "N",
+   "turn": "through",
+   "count": 31,
+   "status": "ungated",
+   "reason": "read from the published NGSIM trajectories; not a camera measurement",
+   "gate_id": null,
+   "reference_count": 31
+  }
+ ],
+ "artifacts": [
+  {
+   "schema_version": "0.1.0",
+   "role": "trajectories",
+   "path": "trajectories.bin",
+   "sha256": "d9b11b54e80278aa0336f2a7fea6b29d238150353364fe1d39f35ef63d7d6e3c",
+   "bytes": 351932,
+   "media_type": "application/octet-stream",
+   "bundled": true,
+   "licence_note": null,
+   "rebuild_hint": null
+  },
+  {
+   "schema_version": "0.1.0",
+   "role": "tracks",
+   "path": "tracks.json",
+   "sha256": "ad15b925402aaeb034a8ed26359211173f7300921e9322c47fc8d14c408e796a",
+   "bytes": 42932,
+   "media_type": "application/json",
+   "bundled": true,
+   "licence_note": null,
+   "rebuild_hint": null
+  }
+ ],
+ "decision_ref": {
+  "schema_version": "0.1.0",
+  "run_id": "ngsim-int2-realism-experiment-20261029T122930Z",
+  "report_sha256": null,
+  "outcome": "none_selected",
+  "summary": "No intervention selected or recommended: every candidate worsens at least one metric, and the baseline is only partially validated.",
+  "linked_to_cv": false
+ },
+ "disclosures": [
+  "Reference data: these vehicles come from the published NGSIM file, not from video analysis by this system.",
+  "Vehicle classes are inferred from published lengths; the file has no class column.",
+  "Footage and trajectories are from Los Angeles in 2005, not Cairo."
+ ],
+ "provenance": {
+  "schema_version": "0.1.0",
+  "kind": "observed",
+  "produced_by": "scripts/build_reference_analysis.py",
+  "produced_at_utc": "2026-11-03T22:48:55Z",
+  "input_sha256": [],
+  "parameters": {
+   "start_s": 960.0,
+   "duration_s": 60.0
+  },
+  "software": {},
+  "cached": false
+ }
+}

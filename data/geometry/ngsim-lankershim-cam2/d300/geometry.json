@@ -1,0 +1,591 @@
+{
+  "schema_version": "0.1.0",
+  "geometry_id": "ngsim-lankershim-cam2-provisional-d300",
+  "clip_id": "fd74a18fdb99bc73",
+  "calibration_spec_sha256": "c9112db70e4a84c86450df42802059a3310989fc9fc102e44361d07be88b609c",
+  "ground_frame": "local_enu_junction_m",
+  "drives_on": "right",
+  "lanes": [
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E1",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          25.333,
+          16.0
+        ],
+        [
+          84.667,
+          16.0
+        ],
+        [
+          84.667,
+          12.444
+        ],
+        [
+          25.333,
+          12.444
+        ]
+      ],
+      "allowed_turns": [
+        "through",
+        "right"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E2",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          25.333,
+          12.444
+        ],
+        [
+          84.667,
+          12.444
+        ],
+        [
+          84.667,
+          8.889
+        ],
+        [
+          25.333,
+          8.889
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E3",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          25.333,
+          8.889
+        ],
+        [
+          84.667,
+          8.889
+        ],
+        [
+          84.667,
+          5.333
+        ],
+        [
+          25.333,
+          5.333
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E4",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          25.333,
+          5.333
+        ],
+        [
+          84.667,
+          5.333
+        ],
+        [
+          84.667,
+          1.778
+        ],
+        [
+          25.333,
+          1.778
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "E5",
+      "arm": "E",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          25.333,
+          1.778
+        ],
+        [
+          84.667,
+          1.778
+        ],
+        [
+          84.667,
+          -1.778
+        ],
+        [
+          25.333,
+          -1.778
+        ]
+      ],
+      "allowed_turns": [
+        "left",
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W1",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -57.333,
+          -12.667
+        ],
+        [
+          -24.667,
+          -12.667
+        ],
+        [
+          -24.667,
+          -16.0
+        ],
+        [
+          -57.333,
+          -16.0
+        ]
+      ],
+      "allowed_turns": [
+        "through",
+        "right"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W2",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -57.333,
+          -9.333
+        ],
+        [
+          -24.667,
+          -9.333
+        ],
+        [
+          -24.667,
+          -12.667
+        ],
+        [
+          -57.333,
+          -12.667
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W3",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -57.333,
+          -5.778
+        ],
+        [
+          -24.667,
+          -5.778
+        ],
+        [
+          -24.667,
+          -9.333
+        ],
+        [
+          -57.333,
+          -9.333
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "W4",
+      "arm": "W",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -57.333,
+          -2.222
+        ],
+        [
+          -24.667,
+          -2.222
+        ],
+        [
+          -24.667,
+          -5.778
+        ],
+        [
+          -57.333,
+          -5.778
+        ]
+      ],
+      "allowed_turns": [
+        "left",
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N1",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -11.778,
+          42.222
+        ],
+        [
+          -7.556,
+          42.222
+        ],
+        [
+          -7.556,
+          20.0
+        ],
+        [
+          -11.778,
+          20.0
+        ]
+      ],
+      "allowed_turns": [
+        "through",
+        "right"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N2",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -7.556,
+          42.222
+        ],
+        [
+          -3.333,
+          42.222
+        ],
+        [
+          -3.333,
+          20.0
+        ],
+        [
+          -7.556,
+          20.0
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "N3",
+      "arm": "N",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          -3.333,
+          42.222
+        ],
+        [
+          0.889,
+          42.222
+        ],
+        [
+          0.889,
+          20.0
+        ],
+        [
+          -3.333,
+          20.0
+        ]
+      ],
+      "allowed_turns": [
+        "left",
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S1",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          11.111,
+          -22.222
+        ],
+        [
+          16.0,
+          -22.222
+        ],
+        [
+          16.0,
+          -48.889
+        ],
+        [
+          11.111,
+          -48.889
+        ]
+      ],
+      "allowed_turns": [
+        "through",
+        "right"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S2",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          6.444,
+          -22.222
+        ],
+        [
+          11.111,
+          -22.222
+        ],
+        [
+          11.111,
+          -48.889
+        ],
+        [
+          6.444,
+          -48.889
+        ]
+      ],
+      "allowed_turns": [
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "lane_id": "S3",
+      "arm": "S",
+      "direction": "approach",
+      "polygon_m": [
+        [
+          1.556,
+          -22.222
+        ],
+        [
+          6.444,
+          -22.222
+        ],
+        [
+          6.444,
+          -48.889
+        ],
+        [
+          1.556,
+          -48.889
+        ]
+      ],
+      "allowed_turns": [
+        "left",
+        "through"
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); lane count observed, turns assumed (arrows unreadable); metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    }
+  ],
+  "gates": [
+    {
+      "schema_version": "0.1.0",
+      "arm": "E",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          25.333,
+          16.0
+        ],
+        [
+          25.333,
+          -1.778
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "E",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          27.111,
+          -2.222
+        ],
+        [
+          27.111,
+          -16.0
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "W",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          -24.667,
+          -2.222
+        ],
+        [
+          -24.667,
+          -16.0
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "W",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          -26.222,
+          16.0
+        ],
+        [
+          -26.222,
+          -1.778
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "N",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          -11.778,
+          20.0
+        ],
+        [
+          0.889,
+          20.0
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "N",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          1.556,
+          21.111
+        ],
+        [
+          16.0,
+          21.111
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "S",
+      "role": "stop_line",
+      "segment_m": [
+        [
+          1.556,
+          -22.222
+        ],
+        [
+          16.0,
+          -22.222
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    },
+    {
+      "schema_version": "0.1.0",
+      "arm": "S",
+      "role": "exit_line",
+      "segment_m": [
+        [
+          -11.778,
+          -22.222
+        ],
+        [
+          0.889,
+          -22.222
+        ]
+      ],
+      "provenance": "synthetic",
+      "source": "frame 0 of the camera 2 08:30 excerpts (source t = 60 s); line position read from the image; metres from an assumed 3.66 m lane width and a vertical view (synthetic)"
+    }
+  ]
+}

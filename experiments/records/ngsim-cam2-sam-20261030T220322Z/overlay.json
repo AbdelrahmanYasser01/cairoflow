@@ -1,0 +1,13 @@
+{
+  "clip_id": "1cdde9001352b591",
+  "clip_sha256": "1cdde9001352b591afe88a38ad317ff79471afabf3c879a4d9bcc95afd8257d1",
+  "tracks_sha256": "790c3649b1ef0501677a31bea9712b87e262fa017b7bb65b34f3df6362154f1a",
+  "track_count": 25,
+  "drawn_boxes": 2214,
+  "trail_frames": 10,
+  "output_file": "overlay.mp4",
+  "output_sha256": "719e86c26d038d7bc54c74ffbdca88554903fe22f6cfad5ade2a4d0de06c993d",
+  "frame_count": 300,
+  "fps": 10,
+  "produced_at_utc": "2026-10-30T22:03:22Z"
+}

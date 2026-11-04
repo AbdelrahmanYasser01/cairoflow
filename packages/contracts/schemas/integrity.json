@@ -1,0 +1,386 @@
+{
+ "ArtifactHash": {
+  "additionalProperties": false,
+  "description": "One file the experiment is defined by or produced.",
+  "properties": {
+   "comments_stripped": {
+    "default": false,
+    "description": "hash of the XML with comments removed",
+    "title": "Comments Stripped",
+    "type": "boolean"
+   },
+   "name": {
+    "description": "e.g. 'bundle', 'net:I1', 'tripinfo:baseline:3'",
+    "minLength": 1,
+    "title": "Name",
+    "type": "string"
+   },
+   "path": {
+    "description": "POSIX path relative to the run directory",
+    "minLength": 1,
+    "title": "Path",
+    "type": "string"
+   },
+   "role": {
+    "enum": [
+     "config",
+     "input",
+     "simulator_output",
+     "metrics",
+     "report"
+    ],
+    "title": "Role",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "sha256": {
+    "title": "Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "name",
+   "path",
+   "role",
+   "sha256"
+  ],
+  "title": "ArtifactHash",
+  "type": "object"
+ },
+ "ExperimentIdentity": {
+  "$defs": {
+   "ArtifactHash": {
+    "additionalProperties": false,
+    "description": "One file the experiment is defined by or produced.",
+    "properties": {
+     "comments_stripped": {
+      "default": false,
+      "description": "hash of the XML with comments removed",
+      "title": "Comments Stripped",
+      "type": "boolean"
+     },
+     "name": {
+      "description": "e.g. 'bundle', 'net:I1', 'tripinfo:baseline:3'",
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "path": {
+      "description": "POSIX path relative to the run directory",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "role": {
+      "enum": [
+       "config",
+       "input",
+       "simulator_output",
+       "metrics",
+       "report"
+      ],
+      "title": "Role",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sha256": {
+      "title": "Sha256",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "path",
+     "role",
+     "sha256"
+    ],
+    "title": "ArtifactHash",
+    "type": "object"
+   },
+   "RunSettings": {
+    "additionalProperties": false,
+    "description": "Shared by the baseline and every candidate (ADR-008).",
+    "properties": {
+     "drain_s": {
+      "default": 600.0,
+      "description": "no new vehicles; lets the network empty",
+      "minimum": 0,
+      "title": "Drain S",
+      "type": "number"
+     },
+     "horizon_s": {
+      "default": 900.0,
+      "description": "measurement window after warm-up",
+      "exclusiveMinimum": 0,
+      "title": "Horizon S",
+      "type": "number"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "seeds": {
+      "default": [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "items": {
+       "type": "integer"
+      },
+      "minItems": 1,
+      "title": "Seeds",
+      "type": "array"
+     },
+     "step_length_s": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "title": "Step Length S",
+      "type": "number"
+     },
+     "time_to_teleport_s": {
+      "default": 300.0,
+      "exclusiveMinimum": 0,
+      "title": "Time To Teleport S",
+      "type": "number"
+     },
+     "warmup_s": {
+      "default": 300.0,
+      "minimum": 0,
+      "title": "Warmup S",
+      "type": "number"
+     }
+    },
+    "title": "RunSettings",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "What one experiment is: written next to its report as integrity.json.",
+  "properties": {
+   "artifacts": {
+    "items": {
+     "$ref": "#/$defs/ArtifactHash"
+    },
+    "minItems": 1,
+    "title": "Artifacts",
+    "type": "array"
+   },
+   "data_sources": {
+    "default": [],
+    "description": "the report's data sources, which it is rebuilt with too",
+    "items": {
+     "type": "string"
+    },
+    "title": "Data Sources",
+    "type": "array"
+   },
+   "experiment_id": {
+    "minLength": 1,
+    "title": "Experiment Id",
+    "type": "string"
+   },
+   "extra_limitations": {
+    "description": "limitations the producer added to the report; the report is rebuilt with them",
+    "items": {
+     "type": "string"
+    },
+    "title": "Extra Limitations",
+    "type": "array"
+   },
+   "identity_sha256": {
+    "title": "Identity Sha256",
+    "type": "string"
+   },
+   "identity_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Identity Version",
+    "type": "string"
+   },
+   "report_id": {
+    "minLength": 1,
+    "title": "Report Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "settings": {
+    "$ref": "#/$defs/RunSettings"
+   },
+   "simulator": {
+    "additionalProperties": {
+     "type": "string"
+    },
+    "description": "the sumo binary's --version line, the wheel",
+    "title": "Simulator",
+    "type": "object"
+   }
+  },
+  "required": [
+   "experiment_id",
+   "report_id",
+   "settings",
+   "simulator",
+   "extra_limitations",
+   "artifacts",
+   "identity_sha256"
+  ],
+  "title": "ExperimentIdentity",
+  "type": "object"
+ },
+ "IntegrityCheck": {
+  "additionalProperties": false,
+  "properties": {
+   "detail": {
+    "title": "Detail",
+    "type": "string"
+   },
+   "name": {
+    "title": "Name",
+    "type": "string"
+   },
+   "passed": {
+    "title": "Passed",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   }
+  },
+  "required": [
+   "name",
+   "passed",
+   "detail"
+  ],
+  "title": "IntegrityCheck",
+  "type": "object"
+ },
+ "IntegrityVerdict": {
+  "$defs": {
+   "IntegrityCheck": {
+    "additionalProperties": false,
+    "properties": {
+     "detail": {
+      "title": "Detail",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "passed": {
+      "title": "Passed",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "passed",
+     "detail"
+    ],
+    "title": "IntegrityCheck",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "The verifier's finding about one run directory.",
+  "properties": {
+   "checked_at_utc": {
+    "format": "date-time",
+    "title": "Checked At Utc",
+    "type": "string"
+   },
+   "checks": {
+    "items": {
+     "$ref": "#/$defs/IntegrityCheck"
+    },
+    "title": "Checks",
+    "type": "array"
+   },
+   "identity_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "title": "Identity Sha256"
+   },
+   "missing": {
+    "description": "artifacts the verification needed and lacked",
+    "items": {
+     "type": "string"
+    },
+    "title": "Missing",
+    "type": "array"
+   },
+   "problems": {
+    "items": {
+     "type": "string"
+    },
+    "title": "Problems",
+    "type": "array"
+   },
+   "run_dir": {
+    "title": "Run Dir",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "verified",
+     "failed",
+     "unverifiable"
+    ],
+    "title": "Status",
+    "type": "string"
+   }
+  },
+  "required": [
+   "status",
+   "run_dir",
+   "identity_sha256",
+   "checked_at_utc",
+   "checks",
+   "missing",
+   "problems"
+  ],
+  "title": "IntegrityVerdict",
+  "type": "object"
+ }
+}

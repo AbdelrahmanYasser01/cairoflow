@@ -1,0 +1,2779 @@
+{
+  "script": "scripts/run_ngsim_int2_experiment.py",
+  "created_at_utc": "2026-10-28T07:58:03+00:00",
+  "run_dir": "experiments/runs/ngsim-int2-experiment-20261028T075803Z",
+  "inputs": {
+    "scenario_record_sha256": "9d08eb6e033d2e60e81aaa10b5c6c6773fc4bb55058e39baae7224f59ff156a1",
+    "world_model_sha256": "09452b7b604be76c7d352413622e55ea6f3d82eeff837563ea4854faed22ce43",
+    "baseline_manifest_sha256": "a48949c8a4dc0b951db08c82558f19b2158204de65e288c5020c71e918ef7112",
+    "baseline_experiment_id": "baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z"
+  },
+  "evidence_bundle": {
+    "bundle_id": "94d8ba7f75925ed4",
+    "items": 105,
+    "phases": [
+      {
+        "phase": "p0_Ng_Er_Sg_Wr_NLr_SLr",
+        "duration_s": 31.0,
+        "adjustable": true
+      },
+      {
+        "phase": "p1_Ny_Er_Sg_Wr_NLr_SLr",
+        "duration_s": 1.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p2_Ny_Er_Sy_Wr_NLr_SLr",
+        "duration_s": 3.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p3_Nr_Er_Sy_Wr_NLr_SLr",
+        "duration_s": 1.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p4_Nr_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 1.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p5_Nr_Eg_Sr_Wr_NLr_SLr",
+        "duration_s": 5.0,
+        "adjustable": true
+      },
+      {
+        "phase": "p6_Nr_Ey_Sr_Wr_NLr_SLr",
+        "duration_s": 4.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p7_Nr_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 5.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p8_Nr_Er_Sr_Wg_NLr_SLr",
+        "duration_s": 12.0,
+        "adjustable": true
+      },
+      {
+        "phase": "p9_Nr_Er_Sr_Wy_NLr_SLr",
+        "duration_s": 4.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p10_Nr_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 3.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p11_Nr_Er_Sr_Wr_NLg_SLg",
+        "duration_s": 10.0,
+        "adjustable": true
+      },
+      {
+        "phase": "p12_Nr_Er_Sr_Wr_NLg_SLy",
+        "duration_s": 4.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p13_Nr_Er_Sr_Wr_NLg_SLr",
+        "duration_s": 1.0,
+        "adjustable": true
+      },
+      {
+        "phase": "p14_Ng_Er_Sr_Wr_NLg_SLr",
+        "duration_s": 2.0,
+        "adjustable": true
+      },
+      {
+        "phase": "p15_Ng_Er_Sr_Wr_NLy_SLr",
+        "duration_s": 4.0,
+        "adjustable": false
+      },
+      {
+        "phase": "p16_Ng_Er_Sr_Wr_NLr_SLr",
+        "duration_s": 8.0,
+        "adjustable": true
+      }
+    ],
+    "extra_limitations": [
+      "The evidence comes from published NGSIM vehicle trajectories (Lankershim Boulevard, 2005-06-16 08:30-08:45), not from camera tracking; no camera calibration is used.",
+      "The signal timeline and program are estimated from stop-line discharges: green onsets and ends are approximated; yellow 4 s, start-up 2 s, clearance 1 s and minimum green 5 s are assumed. The real control appears actuated (onset spacing 80-201 s); the simulation repeats one observed 99 s cycle.",
+      "Queue lengths marked 'at least' reach the end of the observed lane; cross-street queues are observable only near the limit line (east) or not at all (west).",
+      "In the simulation right turns may go on red after stopping (assumed)."
+    ]
+  },
+  "muse_request": {
+    "label": "model_generated",
+    "model": "muse-spark-1.3",
+    "prompt_version": "0.1.0",
+    "request_key": "ddfb8029b1e8810e65b2ad986e0da99be630b86e6d7c86669007e2a197ef47ad",
+    "request_id": "125dca97-bafc-4215-8d1c-6ca0433ef30c",
+    "response_id": "resp_6ae1ab232d6734548cef4e03",
+    "replayed_from_cache": false,
+    "request_bytes": 31540,
+    "upper_bound_cost_usd": 0.049462,
+    "usage": {
+      "input_tokens": 8449,
+      "output_tokens": 4998,
+      "total_tokens": 13447,
+      "cached_tokens": 0,
+      "reasoning_tokens": 3810
+    },
+    "cost_usd_at_published_rates": 0.03180275,
+    "citation_problems": [],
+    "text": "kept in reasoning.json (run directory) and the cache; not committed"
+  },
+  "hypotheses": [
+    {
+      "hypothesis_id": "H1",
+      "confidence_label": "medium",
+      "supporting_evidence_ids": [
+        "mv.NS",
+        "mv.SN",
+        "qr.S3",
+        "qr.S2",
+        "qr.S1",
+        "q.S3",
+        "q.S2",
+        "qr.N1",
+        "sig.program"
+      ],
+      "contradicting_evidence_ids": [
+        "qr.N2",
+        "qr.N3",
+        "qr.S4",
+        "q.N31"
+      ]
+    },
+    {
+      "hypothesis_id": "H2",
+      "confidence_label": "low",
+      "supporting_evidence_ids": [
+        "mv.NE",
+        "q.N12",
+        "qr.N12",
+        "q.N11",
+        "qr.N11",
+        "sig.program"
+      ],
+      "contradicting_evidence_ids": [
+        "mv.SW",
+        "qr.S11",
+        "q.S11",
+        "qr.N2"
+      ]
+    }
+  ],
+  "proposals": [
+    {
+      "intervention_id": "I1",
+      "type": "signal_timing",
+      "target_program": "ngsim_int2_cycle",
+      "phase_changes": [
+        {
+          "phase_name": "p0_Ng_Er_Sg_Wr_NLr_SLr",
+          "green_s": 40.0
+        },
+        {
+          "phase_name": "p8_Nr_Er_Sr_Wg_NLr_SLr",
+          "green_s": 6.0
+        }
+      ],
+      "addresses_hypothesis_ids": [
+        "H1"
+      ],
+      "evidence_ids": [
+        "mv.NS",
+        "mv.SN",
+        "qr.S3",
+        "qr.S2",
+        "mv.WE",
+        "qr.W2",
+        "sig.program"
+      ]
+    },
+    {
+      "intervention_id": "I2",
+      "type": "signal_timing",
+      "target_program": "ngsim_int2_cycle",
+      "phase_changes": [
+        {
+          "phase_name": "p0_Ng_Er_Sg_Wr_NLr_SLr",
+          "green_s": 26.0
+        },
+        {
+          "phase_name": "p11_Nr_Er_Sr_Wr_NLg_SLg",
+          "green_s": 15.0
+        }
+      ],
+      "addresses_hypothesis_ids": [
+        "H2"
+      ],
+      "evidence_ids": [
+        "mv.NE",
+        "q.N12",
+        "qr.N12",
+        "qr.N11",
+        "mv.NS",
+        "sig.program"
+      ]
+    },
+    {
+      "intervention_id": "I3",
+      "type": "signal_timing",
+      "target_program": "ngsim_int2_cycle",
+      "phase_changes": [
+        {
+          "phase_name": "p8_Nr_Er_Sr_Wg_NLr_SLr",
+          "green_s": 5.0
+        },
+        {
+          "phase_name": "p11_Nr_Er_Sr_Wr_NLg_SLg",
+          "green_s": 16.0
+        },
+        {
+          "phase_name": "p16_Ng_Er_Sr_Wr_NLr_SLr",
+          "green_s": 12.0
+        }
+      ],
+      "addresses_hypothesis_ids": [
+        "H1",
+        "H2"
+      ],
+      "evidence_ids": [
+        "mv.NS",
+        "mv.SN",
+        "mv.NE",
+        "qr.S3",
+        "qr.N12",
+        "qr.W2",
+        "sig.program"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "schema_version": "0.1.0",
+      "intervention_id": "I1",
+      "status": "accepted",
+      "reasons": [],
+      "program_id": "ngsim_int2_cycle",
+      "phase_durations_s": [
+        40.0,
+        1.0,
+        3.0,
+        1.0,
+        1.0,
+        5.0,
+        4.0,
+        5.0,
+        6.0,
+        4.0,
+        3.0,
+        10.0,
+        4.0,
+        1.0,
+        2.0,
+        4.0,
+        8.0
+      ],
+      "cycle_s": 102.0,
+      "baseline_cycle_s": 99.0,
+      "validated_at_utc": "2026-10-28T07:58:03Z"
+    },
+    {
+      "schema_version": "0.1.0",
+      "intervention_id": "I2",
+      "status": "accepted",
+      "reasons": [],
+      "program_id": "ngsim_int2_cycle",
+      "phase_durations_s": [
+        26.0,
+        1.0,
+        3.0,
+        1.0,
+        1.0,
+        5.0,
+        4.0,
+        5.0,
+        12.0,
+        4.0,
+        3.0,
+        15.0,
+        4.0,
+        1.0,
+        2.0,
+        4.0,
+        8.0
+      ],
+      "cycle_s": 99.0,
+      "baseline_cycle_s": 99.0,
+      "validated_at_utc": "2026-10-28T07:58:03Z"
+    },
+    {
+      "schema_version": "0.1.0",
+      "intervention_id": "I3",
+      "status": "accepted",
+      "reasons": [],
+      "program_id": "ngsim_int2_cycle",
+      "phase_durations_s": [
+        31.0,
+        1.0,
+        3.0,
+        1.0,
+        1.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        3.0,
+        16.0,
+        4.0,
+        1.0,
+        2.0,
+        4.0,
+        12.0
+      ],
+      "cycle_s": 102.0,
+      "baseline_cycle_s": 99.0,
+      "validated_at_utc": "2026-10-28T07:58:03Z"
+    }
+  ],
+  "experiment": {
+    "label": "simulated",
+    "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+    "valid": false,
+    "reasons": [
+      "I1: seed 4: 3 vehicles unfinished at 1800 s; loaded 1258, inserted 1258, arrived 1255",
+      "I1: seed 5: 2 vehicles unfinished at 1800 s; loaded 1223, inserted 1223, arrived 1221",
+      "I3: seed 2: 2 vehicles unfinished at 1800 s; loaded 1243, inserted 1243, arrived 1241",
+      "I3: seed 3: 2 vehicles unfinished at 1800 s; loaded 1261, inserted 1261, arrived 1259",
+      "I3: seed 4: 12 vehicles unfinished at 1800 s; loaded 1258, inserted 1258, arrived 1246",
+      "I3: seed 5: 11 vehicles unfinished at 1800 s; loaded 1223, inserted 1223, arrived 1212"
+    ],
+    "skipped": [],
+    "candidates": [
+      {
+        "intervention_id": "I1",
+        "valid": false,
+        "cycle_s": 102.0,
+        "runs": [
+          {
+            "seed": 1,
+            "loaded": 1214,
+            "arrived": 1214,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "ebebfb0abfcb22e120458b65dd6008f14d3dc6c4b0b01ee7dc4db12b3552c432"
+          },
+          {
+            "seed": 2,
+            "loaded": 1243,
+            "arrived": 1243,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "36f23b9f526156a5c3bbcbe528fc1928cb315e3ddc45c0d08bf33f21072f5f57"
+          },
+          {
+            "seed": 3,
+            "loaded": 1261,
+            "arrived": 1261,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "67a0b684dfe558c4331861aa5b05f9a4c4906ad34812b3b5a4f676df676de49a"
+          },
+          {
+            "seed": 4,
+            "loaded": 1258,
+            "arrived": 1255,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": false,
+            "tripinfo_sha256": "177d4b85b2179853c5e82debadbe0e04d11a122ee5e6b0744c20898390ae0bcb"
+          },
+          {
+            "seed": 5,
+            "loaded": 1223,
+            "arrived": 1221,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": false,
+            "tripinfo_sha256": "b3a2995d6ec69a457544ec543b0e8971c30b8727db4bc4a0591c411f8d6ff690"
+          }
+        ]
+      },
+      {
+        "intervention_id": "I2",
+        "valid": true,
+        "cycle_s": 99.0,
+        "runs": [
+          {
+            "seed": 1,
+            "loaded": 1214,
+            "arrived": 1214,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "6c0fb6c1cd14c820a718261bfc814419e47b0b4f1fc27c3fad91426e85b38d00"
+          },
+          {
+            "seed": 2,
+            "loaded": 1243,
+            "arrived": 1243,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "cfdf03abffaf543dc692c19e0af1d2ed4086496e4818fc112311f1e70cb51000"
+          },
+          {
+            "seed": 3,
+            "loaded": 1261,
+            "arrived": 1261,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "805e21805435b4f8967c56f62b78b6d33e98181f3e85b3e7c7e319fce63f7172"
+          },
+          {
+            "seed": 4,
+            "loaded": 1258,
+            "arrived": 1258,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "f2522c80170fab46e34b3732a7db15c8d02e66b7c801b8008a4c2395a34829b6"
+          },
+          {
+            "seed": 5,
+            "loaded": 1223,
+            "arrived": 1223,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "bd425bca5d05ae0bd31cd859c7d5b554a4d71f1109bb75cc937c364bebddc719"
+          }
+        ]
+      },
+      {
+        "intervention_id": "I3",
+        "valid": false,
+        "cycle_s": 102.0,
+        "runs": [
+          {
+            "seed": 1,
+            "loaded": 1214,
+            "arrived": 1214,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": true,
+            "tripinfo_sha256": "8e78f96a40c1cb5926f7bf0997be072dfc1242b78a37273be75277b133f2a81f"
+          },
+          {
+            "seed": 2,
+            "loaded": 1243,
+            "arrived": 1241,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": false,
+            "tripinfo_sha256": "65a8ee500e0ce92891c5d21b4f583ebc70657308f5e862f07c93b5269b980294"
+          },
+          {
+            "seed": 3,
+            "loaded": 1261,
+            "arrived": 1259,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": false,
+            "tripinfo_sha256": "76bd24d1e2522dcc7336fa8c9c62ad0463e987a9d39d20af2e7bd82f0a7533de"
+          },
+          {
+            "seed": 4,
+            "loaded": 1258,
+            "arrived": 1246,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": false,
+            "tripinfo_sha256": "e9059d211e800b8848285a9397d58cce72ab0ccf4978c8ed1d979e3c7819a62d"
+          },
+          {
+            "seed": 5,
+            "loaded": 1223,
+            "arrived": 1212,
+            "teleports": 0,
+            "collisions": 0,
+            "valid": false,
+            "tripinfo_sha256": "53509b500bbaaaa86c55457d3e6744478fcf53cf00f80cb5f0421afbab4ed83b"
+          }
+        ]
+      }
+    ],
+    "manifest_sha256": "70d22761d3c00cf9ac39af8bac1decdfbedcd9fefb80fdf695cc616e211ae681"
+  },
+  "evaluation": {
+    "schema_version": "0.1.0",
+    "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+    "calculation_version": "0.1.0",
+    "metrics": [
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "mean_delay_s",
+        "value": 32.802422,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 933,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/tripinfo.xml",
+        "source_sha256": "157e9049188daf1c3a9c47f6a12929870706ecfd1f70940e1fb592b1054a262a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3752.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 938,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/tripinfo.xml",
+        "source_sha256": "157e9049188daf1c3a9c47f6a12929870706ecfd1f70940e1fb592b1054a262a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "max_queue_m.N",
+        "value": 88.52,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "max_queue_m.E",
+        "value": 20.13,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "max_queue_m.S",
+        "value": 86.01,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "max_queue_m.W",
+        "value": 36.01,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "mean_queue_m.N",
+        "value": 43.640489,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "mean_queue_m.E",
+        "value": 4.3335,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "mean_queue_m.S",
+        "value": 22.863444,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 1,
+        "metric_name": "mean_queue_m.W",
+        "value": 8.806556,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_1/queue.xml",
+        "source_sha256": "ee95a4f5c8a389f4ebdb136f8fa690994d60ffc32049d7483530927e6f2b1dd2",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "mean_delay_s",
+        "value": 41.308567,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 928,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/tripinfo.xml",
+        "source_sha256": "48b554ba828083d9140f695b68843e229fed314b2972fc05d4b59e4116549454",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3708.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 927,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/tripinfo.xml",
+        "source_sha256": "48b554ba828083d9140f695b68843e229fed314b2972fc05d4b59e4116549454",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "max_queue_m.N",
+        "value": 153.49,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "max_queue_m.E",
+        "value": 21.04,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "max_queue_m.S",
+        "value": 68.57,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "max_queue_m.W",
+        "value": 28.52,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "mean_queue_m.N",
+        "value": 69.641944,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "mean_queue_m.E",
+        "value": 4.414567,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "mean_queue_m.S",
+        "value": 21.062344,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 2,
+        "metric_name": "mean_queue_m.W",
+        "value": 9.237267,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_2/queue.xml",
+        "source_sha256": "a164a8ca55cba411db0531fa5da584361acf0c72396fb0de708c36e3b67e90ba",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "mean_delay_s",
+        "value": 28.535998,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 937,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/tripinfo.xml",
+        "source_sha256": "93cfe01fd8532c7107bfdb73a62def81ccd9a917649bce322ba665d9dbbf54b8",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3756.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 939,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/tripinfo.xml",
+        "source_sha256": "93cfe01fd8532c7107bfdb73a62def81ccd9a917649bce322ba665d9dbbf54b8",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "max_queue_m.N",
+        "value": 81.01,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "max_queue_m.E",
+        "value": 42.63,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "max_queue_m.S",
+        "value": 81.03,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "max_queue_m.W",
+        "value": 43.52,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "mean_queue_m.N",
+        "value": 30.579733,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "mean_queue_m.E",
+        "value": 6.095722,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "mean_queue_m.S",
+        "value": 20.302911,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 3,
+        "metric_name": "mean_queue_m.W",
+        "value": 7.890344,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_3/queue.xml",
+        "source_sha256": "6ec85f12e2c209ef03513351e9ef50eee5a253ffd331fc9e6d197c296c9aa0ed",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "mean_delay_s",
+        "value": 31.217432,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 919,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/tripinfo.xml",
+        "source_sha256": "4c12f54b9c4f20a9806e4c5fbcdaf5031fc30466009b3155af2f7155a2310c20",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3788.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 947,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/tripinfo.xml",
+        "source_sha256": "4c12f54b9c4f20a9806e4c5fbcdaf5031fc30466009b3155af2f7155a2310c20",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "max_queue_m.N",
+        "value": 86.04,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "max_queue_m.E",
+        "value": 17.61,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "max_queue_m.S",
+        "value": 71.02,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "max_queue_m.W",
+        "value": 58.53,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "mean_queue_m.N",
+        "value": 38.555089,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "mean_queue_m.E",
+        "value": 3.134156,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "mean_queue_m.S",
+        "value": 18.669544,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 4,
+        "metric_name": "mean_queue_m.W",
+        "value": 11.835033,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_4/queue.xml",
+        "source_sha256": "2791597c191548fd4d225d5bd8de78b654939de69ff8cf166ae91a31a442912a",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "mean_delay_s",
+        "value": 30.481996,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 917,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/tripinfo.xml",
+        "source_sha256": "597574251ecfa186e47732822a25eca6a1b11751a6faccc7becd86d0a17b6c35",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3720.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 930,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/tripinfo.xml",
+        "source_sha256": "597574251ecfa186e47732822a25eca6a1b11751a6faccc7becd86d0a17b6c35",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "max_queue_m.N",
+        "value": 88.52,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "max_queue_m.E",
+        "value": 42.61,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "max_queue_m.S",
+        "value": 88.54,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "max_queue_m.W",
+        "value": 51.01,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "mean_queue_m.N",
+        "value": 32.886844,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "mean_queue_m.E",
+        "value": 6.031133,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "mean_queue_m.S",
+        "value": 21.977911,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "baseline",
+        "seed": 5,
+        "metric_name": "mean_queue_m.W",
+        "value": 13.779967,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "../../ngsim-int2-baseline-20261028T074304Z/runs/seed_5/queue.xml",
+        "source_sha256": "33759778626ac0c397036778f6d679544c94af97a7825d9e8024dca4a24c3758",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "mean_delay_s",
+        "value": 30.586452,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 933,
+        "source_output_file": "candidates/I2/runs/seed_1/tripinfo.xml",
+        "source_sha256": "6c0fb6c1cd14c820a718261bfc814419e47b0b4f1fc27c3fad91426e85b38d00",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3760.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 940,
+        "source_output_file": "candidates/I2/runs/seed_1/tripinfo.xml",
+        "source_sha256": "6c0fb6c1cd14c820a718261bfc814419e47b0b4f1fc27c3fad91426e85b38d00",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "max_queue_m.N",
+        "value": 81.02,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "max_queue_m.E",
+        "value": 20.1,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "max_queue_m.S",
+        "value": 88.51,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "max_queue_m.W",
+        "value": 28.54,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "mean_queue_m.N",
+        "value": 34.554222,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "mean_queue_m.E",
+        "value": 3.801122,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "mean_queue_m.S",
+        "value": 24.097678,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 1,
+        "metric_name": "mean_queue_m.W",
+        "value": 7.816333,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_1/queue.xml",
+        "source_sha256": "e3f871b0d5ea953bb5fbeb2fdbc59fcd98127260c77fff1de2c9e9c5827028df",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "mean_delay_s",
+        "value": 32.455323,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 928,
+        "source_output_file": "candidates/I2/runs/seed_2/tripinfo.xml",
+        "source_sha256": "cfdf03abffaf543dc692c19e0af1d2ed4086496e4818fc112311f1e70cb51000",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3776.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 944,
+        "source_output_file": "candidates/I2/runs/seed_2/tripinfo.xml",
+        "source_sha256": "cfdf03abffaf543dc692c19e0af1d2ed4086496e4818fc112311f1e70cb51000",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "max_queue_m.N",
+        "value": 93.49,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "max_queue_m.E",
+        "value": 27.62,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "max_queue_m.S",
+        "value": 73.51,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "max_queue_m.W",
+        "value": 28.53,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "mean_queue_m.N",
+        "value": 36.802844,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "mean_queue_m.E",
+        "value": 4.806189,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "mean_queue_m.S",
+        "value": 22.267822,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 2,
+        "metric_name": "mean_queue_m.W",
+        "value": 9.961644,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_2/queue.xml",
+        "source_sha256": "186c2beb6ec1b5fa76ce8890eb3aba367f773fc7a66ef5fa9bb235686fd70de0",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "mean_delay_s",
+        "value": 29.327962,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 937,
+        "source_output_file": "candidates/I2/runs/seed_3/tripinfo.xml",
+        "source_sha256": "805e21805435b4f8967c56f62b78b6d33e98181f3e85b3e7c7e319fce63f7172",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3732.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 933,
+        "source_output_file": "candidates/I2/runs/seed_3/tripinfo.xml",
+        "source_sha256": "805e21805435b4f8967c56f62b78b6d33e98181f3e85b3e7c7e319fce63f7172",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "max_queue_m.N",
+        "value": 83.58,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "max_queue_m.E",
+        "value": 42.62,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "max_queue_m.S",
+        "value": 96.02,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "max_queue_m.W",
+        "value": 43.53,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "mean_queue_m.N",
+        "value": 28.089744,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "mean_queue_m.E",
+        "value": 6.043167,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "mean_queue_m.S",
+        "value": 22.733667,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 3,
+        "metric_name": "mean_queue_m.W",
+        "value": 9.261744,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_3/queue.xml",
+        "source_sha256": "ceb6dea74a8ae0577847371ec3864bbd8f764a8f8fabc191e3b6733d10273777",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "mean_delay_s",
+        "value": 30.900348,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 919,
+        "source_output_file": "candidates/I2/runs/seed_4/tripinfo.xml",
+        "source_sha256": "f2522c80170fab46e34b3732a7db15c8d02e66b7c801b8008a4c2395a34829b6",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3760.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 940,
+        "source_output_file": "candidates/I2/runs/seed_4/tripinfo.xml",
+        "source_sha256": "f2522c80170fab46e34b3732a7db15c8d02e66b7c801b8008a4c2395a34829b6",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "max_queue_m.N",
+        "value": 88.55,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "max_queue_m.E",
+        "value": 17.61,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "max_queue_m.S",
+        "value": 73.57,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "max_queue_m.W",
+        "value": 58.53,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "mean_queue_m.N",
+        "value": 31.5363,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "mean_queue_m.E",
+        "value": 3.969933,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "mean_queue_m.S",
+        "value": 21.980589,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 4,
+        "metric_name": "mean_queue_m.W",
+        "value": 11.910233,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_4/queue.xml",
+        "source_sha256": "8c1dd2f2956b0fe50101501f803701a60fac4fd26f2237a0f3797150336a4069",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "mean_delay_s",
+        "value": 30.946085,
+        "unit": "s",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 917,
+        "source_output_file": "candidates/I2/runs/seed_5/tripinfo.xml",
+        "source_sha256": "bd425bca5d05ae0bd31cd859c7d5b554a4d71f1109bb75cc937c364bebddc719",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "throughput_veh_per_h",
+        "value": 3728.0,
+        "unit": "veh/h",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 932,
+        "source_output_file": "candidates/I2/runs/seed_5/tripinfo.xml",
+        "source_sha256": "bd425bca5d05ae0bd31cd859c7d5b554a4d71f1109bb75cc937c364bebddc719",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "max_queue_m.N",
+        "value": 93.56,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "max_queue_m.E",
+        "value": 27.61,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "max_queue_m.S",
+        "value": 88.53,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "max_queue_m.W",
+        "value": 51.02,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "mean_queue_m.N",
+        "value": 30.968089,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "mean_queue_m.E",
+        "value": 5.199933,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "mean_queue_m.S",
+        "value": 24.325744,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      },
+      {
+        "schema_version": "0.1.0",
+        "experiment_id": "experiment-baseline-ngsim-lankershim-int2-0830-0845-20261028T074304Z-20261028T075803Z",
+        "arm": "I2",
+        "seed": 5,
+        "metric_name": "mean_queue_m.W",
+        "value": 12.613133,
+        "unit": "m",
+        "window_s": [
+          300.0,
+          1200.0
+        ],
+        "sample_size": 900,
+        "source_output_file": "candidates/I2/runs/seed_5/queue.xml",
+        "source_sha256": "e6d43ea7d4f54f297c31a6ba84b36ddd6826c653383e7dc94a1763a07afebb9c",
+        "calculation_version": "0.1.0",
+        "kind": "simulated"
+      }
+    ],
+    "comparisons": [
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_delay_s",
+        "unit": "s",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          32.802422,
+          41.308567,
+          28.535998,
+          31.217432,
+          30.481996
+        ],
+        "candidate_values": [
+          30.586452,
+          32.455323,
+          29.327962,
+          30.900348,
+          30.946085
+        ],
+        "differences": [
+          -2.21597,
+          -8.853244,
+          0.791964,
+          -0.317084,
+          0.464089
+        ],
+        "baseline_mean": 32.869283,
+        "candidate_mean": 30.843234,
+        "mean_difference": -2.026049,
+        "sd_difference": 3.990902,
+        "ci95_difference": [
+          -6.980614,
+          2.928516
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "throughput_veh_per_h",
+        "unit": "veh/h",
+        "better": "higher",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          3752.0,
+          3708.0,
+          3756.0,
+          3788.0,
+          3720.0
+        ],
+        "candidate_values": [
+          3760.0,
+          3776.0,
+          3732.0,
+          3760.0,
+          3728.0
+        ],
+        "differences": [
+          8.0,
+          68.0,
+          -24.0,
+          -28.0,
+          8.0
+        ],
+        "baseline_mean": 3744.8,
+        "candidate_mean": 3751.2,
+        "mean_difference": 6.4,
+        "sd_difference": 38.429156,
+        "ci95_difference": [
+          -41.308449,
+          54.108449
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "max_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          88.52,
+          153.49,
+          81.01,
+          86.04,
+          88.52
+        ],
+        "candidate_values": [
+          81.02,
+          93.49,
+          83.58,
+          88.55,
+          93.56
+        ],
+        "differences": [
+          -7.5,
+          -60.0,
+          2.57,
+          2.51,
+          5.04
+        ],
+        "baseline_mean": 99.516,
+        "candidate_mean": 88.04,
+        "mean_difference": -11.476,
+        "sd_difference": 27.550244,
+        "ci95_difference": [
+          -45.678662,
+          22.726662
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "max_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          20.13,
+          21.04,
+          42.63,
+          17.61,
+          42.61
+        ],
+        "candidate_values": [
+          20.1,
+          27.62,
+          42.62,
+          17.61,
+          27.61
+        ],
+        "differences": [
+          -0.03,
+          6.58,
+          -0.01,
+          0.0,
+          -15.0
+        ],
+        "baseline_mean": 28.804,
+        "candidate_mean": 27.112,
+        "mean_difference": -1.692,
+        "sd_difference": 7.968423,
+        "ci95_difference": [
+          -11.584518,
+          8.200518
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "max_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          86.01,
+          68.57,
+          81.03,
+          71.02,
+          88.54
+        ],
+        "candidate_values": [
+          88.51,
+          73.51,
+          96.02,
+          73.57,
+          88.53
+        ],
+        "differences": [
+          2.5,
+          4.94,
+          14.99,
+          2.55,
+          -0.01
+        ],
+        "baseline_mean": 79.034,
+        "candidate_mean": 84.028,
+        "mean_difference": 4.994,
+        "sd_difference": 5.855684,
+        "ci95_difference": [
+          -2.275626,
+          12.263626
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "max_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          36.01,
+          28.52,
+          43.52,
+          58.53,
+          51.01
+        ],
+        "candidate_values": [
+          28.54,
+          28.53,
+          43.53,
+          58.53,
+          51.02
+        ],
+        "differences": [
+          -7.47,
+          0.01,
+          0.01,
+          0.0,
+          0.01
+        ],
+        "baseline_mean": 43.518,
+        "candidate_mean": 42.03,
+        "mean_difference": -1.488,
+        "sd_difference": 3.344042,
+        "ci95_difference": [
+          -5.639511,
+          2.663511
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.N",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          43.640489,
+          69.641944,
+          30.579733,
+          38.555089,
+          32.886844
+        ],
+        "candidate_values": [
+          34.554222,
+          36.802844,
+          28.089744,
+          31.5363,
+          30.968089
+        ],
+        "differences": [
+          -9.086267,
+          -32.8391,
+          -2.489989,
+          -7.018789,
+          -1.918755
+        ],
+        "baseline_mean": 43.06082,
+        "candidate_mean": 32.39024,
+        "mean_difference": -10.67058,
+        "sd_difference": 12.755444,
+        "ci95_difference": [
+          -26.506017,
+          5.164857
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.E",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          4.3335,
+          4.414567,
+          6.095722,
+          3.134156,
+          6.031133
+        ],
+        "candidate_values": [
+          3.801122,
+          4.806189,
+          6.043167,
+          3.969933,
+          5.199933
+        ],
+        "differences": [
+          -0.532378,
+          0.391622,
+          -0.052555,
+          0.835777,
+          -0.8312
+        ],
+        "baseline_mean": 4.801816,
+        "candidate_mean": 4.764069,
+        "mean_difference": -0.037747,
+        "sd_difference": 0.674879,
+        "ci95_difference": [
+          -0.875586,
+          0.800092
+        ],
+        "verdict": "inconclusive"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.S",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          22.863444,
+          21.062344,
+          20.302911,
+          18.669544,
+          21.977911
+        ],
+        "candidate_values": [
+          24.097678,
+          22.267822,
+          22.733667,
+          21.980589,
+          24.325744
+        ],
+        "differences": [
+          1.234234,
+          1.205478,
+          2.430756,
+          3.311045,
+          2.347833
+        ],
+        "baseline_mean": 20.975231,
+        "candidate_mean": 23.0811,
+        "mean_difference": 2.105869,
+        "sd_difference": 0.892608,
+        "ci95_difference": [
+          0.997727,
+          3.214011
+        ],
+        "verdict": "worsens"
+      },
+      {
+        "schema_version": "0.1.0",
+        "candidate": "I2",
+        "metric_name": "mean_queue_m.W",
+        "unit": "m",
+        "better": "lower",
+        "seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "baseline_values": [
+          8.806556,
+          9.237267,
+          7.890344,
+          11.835033,
+          13.779967
+        ],
+        "candidate_values": [
+          7.816333,
+          9.961644,
+          9.261744,
+          11.910233,
+          12.613133
+        ],
+        "differences": [
+          -0.990223,
+          0.724377,
+          1.3714,
+          0.0752,
+          -1.166834
+        ],
+        "baseline_mean": 10.309833,
+        "candidate_mean": 10.312617,
+        "mean_difference": 0.002784,
+        "sd_difference": 1.090083,
+        "ci95_difference": [
+          -1.350515,
+          1.356083
+        ],
+        "verdict": "inconclusive"
+      }
+    ],
+    "excluded": [
+      "I1: seed 4: 3 vehicles unfinished at 1800 s; loaded 1258, inserted 1258, arrived 1255; seed 5: 2 vehicles unfinished at 1800 s; loaded 1223, inserted 1223, arrived 1221",
+      "I3: seed 2: 2 vehicles unfinished at 1800 s; loaded 1243, inserted 1243, arrived 1241; seed 3: 2 vehicles unfinished at 1800 s; loaded 1261, inserted 1261, arrived 1259; seed 4: 12 vehicles unfinished at 1800 s; loaded 1258, inserted 1258, arrived 1246; seed 5: 11 vehicles unfinished at 1800 s; loaded 1223, inserted 1223, arrived 1212"
+    ]
+  },
+  "report": {
+    "selected_intervention_id": null,
+    "trace_problems": [],
+    "report_json_sha256": "c44cc1fe2ef4938b6184fe538fd840c36f73d6685c20d331aa1de5b91915b39d",
+    "report_md_sha256": "d6347d80bd5bd7d96abe958d1d0d1a232c26db8fe788900df5b8ffe34725514a",
+    "text": "report.md holds model text, labelled; it stays in the run directory"
+  }
+}

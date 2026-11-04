@@ -1,0 +1,2701 @@
+{
+ "AnalysisRecord": {
+  "$defs": {
+   "ArtifactRef": {
+    "additionalProperties": false,
+    "description": "One file of an analysis. `bundled` False means it is rebuilt locally, not distributed.",
+    "properties": {
+     "bundled": {
+      "default": true,
+      "title": "Bundled",
+      "type": "boolean"
+     },
+     "bytes": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Bytes"
+     },
+     "licence_note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Licence Note"
+     },
+     "media_type": {
+      "minLength": 1,
+      "title": "Media Type",
+      "type": "string"
+     },
+     "path": {
+      "description": "relative to the analysis directory",
+      "minLength": 1,
+      "title": "Path",
+      "type": "string"
+     },
+     "rebuild_hint": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "how to get it when it is not bundled",
+      "title": "Rebuild Hint"
+     },
+     "role": {
+      "enum": [
+       "trajectories",
+       "tracks",
+       "density",
+       "annotated_video",
+       "source_video",
+       "report"
+      ],
+      "title": "Role",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Sha256"
+     }
+    },
+    "required": [
+     "role",
+     "path",
+     "media_type"
+    ],
+    "title": "ArtifactRef",
+    "type": "object"
+   },
+   "CalibrationState": {
+    "additionalProperties": false,
+    "description": "How image pixels reach the ground, and how far that is trusted.",
+    "properties": {
+     "accepted_along_road": {
+      "default": false,
+      "description": "False: along-road distances are not accepted (ADR-018)",
+      "title": "Accepted Along Road",
+      "type": "boolean"
+     },
+     "bearing_deg": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "junction +y axis, degrees from grid north",
+      "title": "Bearing Deg"
+     },
+     "ground_frame": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "'local_enu_junction_m' when calibrated",
+      "title": "Ground Frame"
+     },
+     "image_to_ground": {
+      "anyOf": [
+       {
+        "items": {
+         "maxItems": 3,
+         "minItems": 3,
+         "prefixItems": [
+          {
+           "type": "number"
+          },
+          {
+           "type": "number"
+          },
+          {
+           "type": "number"
+          }
+         ],
+         "type": "array"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "3x3 homography, image pixels to ground metres, row-major",
+      "title": "Image To Ground"
+     },
+     "mode": {
+      "enum": [
+       "calibrated",
+       "uncalibrated"
+      ],
+      "title": "Mode",
+      "type": "string"
+     },
+     "notes": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "origin_lat_deg": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Origin Lat Deg"
+     },
+     "origin_lon_deg": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Origin Lon Deg"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "spec_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Spec Sha256"
+     },
+     "valid_below_row_px": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "rows at or past this one are outside the measured region",
+      "title": "Valid Below Row Px"
+     },
+     "valid_windows_s": {
+      "default": [],
+      "description": "source-second windows where a gate measured placement",
+      "items": {
+       "maxItems": 2,
+       "minItems": 2,
+       "prefixItems": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        }
+       ],
+       "type": "array"
+      },
+      "title": "Valid Windows S",
+      "type": "array"
+     }
+    },
+    "required": [
+     "mode"
+    ],
+    "title": "CalibrationState",
+    "type": "object"
+   },
+   "DecisionRef": {
+    "additionalProperties": false,
+    "description": "The decision record shown beside this analysis, and whether this analysis fed it.",
+    "properties": {
+     "linked_to_cv": {
+      "description": "False: the decision used the published trajectories, not this CV output",
+      "title": "Linked To Cv",
+      "type": "boolean"
+     },
+     "outcome": {
+      "enum": [
+       "none_selected",
+       "selected",
+       "not_run"
+      ],
+      "title": "Outcome",
+      "type": "string"
+     },
+     "report_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Report Sha256"
+     },
+     "run_id": {
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+     }
+    },
+    "required": [
+     "run_id",
+     "outcome",
+     "summary",
+     "linked_to_cv"
+    ],
+    "title": "DecisionRef",
+    "type": "object"
+   },
+   "GateOutcome": {
+    "additionalProperties": false,
+    "description": "One registered check on one metric over one split of the footage.",
+    "properties": {
+     "comparator": {
+      "enum": [
+       "<=",
+       ">="
+      ],
+      "title": "Comparator",
+      "type": "string"
+     },
+     "gate_id": {
+      "minLength": 1,
+      "title": "Gate Id",
+      "type": "string"
+     },
+     "gate_sha256": {
+      "description": "the registered gate file, committed before the read",
+      "title": "Gate Sha256",
+      "type": "string"
+     },
+     "measured": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Measured"
+     },
+     "metric": {
+      "minLength": 1,
+      "title": "Metric",
+      "type": "string"
+     },
+     "n": {
+      "minimum": 0,
+      "title": "N",
+      "type": "integer"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Note"
+     },
+     "passed": {
+      "title": "Passed",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "scope": {
+      "minLength": 1,
+      "title": "Scope",
+      "type": "string"
+     },
+     "split": {
+      "enum": [
+       "dev",
+       "held_out"
+      ],
+      "title": "Split",
+      "type": "string"
+     },
+     "threshold": {
+      "title": "Threshold",
+      "type": "number"
+     }
+    },
+    "required": [
+     "gate_id",
+     "gate_sha256",
+     "metric",
+     "scope",
+     "split",
+     "comparator",
+     "threshold",
+     "n",
+     "passed"
+    ],
+    "title": "GateOutcome",
+    "type": "object"
+   },
+   "Metric": {
+    "additionalProperties": false,
+    "description": "One number shown to a person, with what it is and how far it can be trusted.",
+    "properties": {
+     "ci95": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Ci95"
+     },
+     "evidence_kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "gate_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Gate Id"
+     },
+     "label": {
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+     },
+     "metric_id": {
+      "pattern": "^[a-z0-9][a-z0-9_.:-]*$",
+      "title": "Metric Id",
+      "type": "string"
+     },
+     "reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "required unless status is gate_pass",
+      "title": "Reason"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "scope": {
+      "description": "what it covers, e.g. 'site' or 'arm:N'",
+      "minLength": 1,
+      "title": "Scope",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "gate_pass",
+       "gate_fail",
+       "ungated",
+       "not_available"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unit": {
+      "description": "'veh', 'veh/h', 'm', 'm/s', 'share', ...",
+      "minLength": 1,
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Value"
+     }
+    },
+    "required": [
+     "metric_id",
+     "label",
+     "unit",
+     "scope",
+     "evidence_kind",
+     "status"
+    ],
+    "title": "Metric",
+    "type": "object"
+   },
+   "MetricSeries": {
+    "additionalProperties": false,
+    "description": "Equal-width time bins of one measure; a bin with no value is None, never zero.",
+    "properties": {
+     "bin_s": {
+      "exclusiveMinimum": 0,
+      "title": "Bin S",
+      "type": "number"
+     },
+     "evidence_kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+     },
+     "gate_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Gate Id"
+     },
+     "label": {
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+     },
+     "reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Reason"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "scope": {
+      "minLength": 1,
+      "title": "Scope",
+      "type": "string"
+     },
+     "series_id": {
+      "pattern": "^[a-z0-9][a-z0-9_.:-]*$",
+      "title": "Series Id",
+      "type": "string"
+     },
+     "start_s": {
+      "description": "start of the first bin",
+      "minimum": 0,
+      "title": "Start S",
+      "type": "number"
+     },
+     "status": {
+      "enum": [
+       "gate_pass",
+       "gate_fail",
+       "ungated",
+       "not_available"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unit": {
+      "minLength": 1,
+      "title": "Unit",
+      "type": "string"
+     },
+     "values": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Values",
+      "type": "array"
+     }
+    },
+    "required": [
+     "series_id",
+     "label",
+     "unit",
+     "scope",
+     "bin_s",
+     "start_s",
+     "values",
+     "evidence_kind",
+     "status"
+    ],
+    "title": "MetricSeries",
+    "type": "object"
+   },
+   "MovementCell": {
+    "additionalProperties": false,
+    "description": "One cell of the turning-movement matrix for an analysed window.",
+    "properties": {
+     "approach": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Approach",
+      "type": "string"
+     },
+     "count": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Count"
+     },
+     "exit_arm": {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "title": "Exit Arm",
+      "type": "string"
+     },
+     "gate_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Gate Id"
+     },
+     "reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Reason"
+     },
+     "reference_count": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "same cell counted from the NGSIM trajectories, for comparison",
+      "title": "Reference Count"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "gate_pass",
+       "gate_fail",
+       "ungated",
+       "not_available"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "turn": {
+      "enum": [
+       "left",
+       "through",
+       "right",
+       "u_turn"
+      ],
+      "title": "Turn",
+      "type": "string"
+     }
+    },
+    "required": [
+     "approach",
+     "exit_arm",
+     "turn",
+     "status"
+    ],
+    "title": "MovementCell",
+    "type": "object"
+   },
+   "Provenance": {
+    "additionalProperties": false,
+    "description": "Who or what produced a piece of evidence, from which inputs, with which settings.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "description": "True when replayed from cache, not produced live",
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "input_sha256": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Input Sha256",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "observed",
+       "approximated",
+       "assumed",
+       "model_generated",
+       "simulated"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "produced_at_utc": {
+      "format": "date-time",
+      "title": "Produced At Utc",
+      "type": "string"
+     },
+     "produced_by": {
+      "description": "module path or model id",
+      "minLength": 1,
+      "title": "Produced By",
+      "type": "string"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "software": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "description": "name -> version",
+      "title": "Software",
+      "type": "object"
+     }
+    },
+    "required": [
+     "kind",
+     "produced_by",
+     "produced_at_utc"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   },
+   "StageReceipt": {
+    "additionalProperties": false,
+    "description": "What one pipeline stage actually did: the tool, its inputs and its output count.",
+    "properties": {
+     "cached": {
+      "default": false,
+      "title": "Cached",
+      "type": "boolean"
+     },
+     "cost_usd": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Cost Usd"
+     },
+     "device": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Device"
+     },
+     "elapsed_s": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Elapsed S"
+     },
+     "frames_in": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Frames In"
+     },
+     "items_out": {
+      "anyOf": [
+       {
+        "minimum": 0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Items Out"
+     },
+     "licence": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Licence"
+     },
+     "parameters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "title": "Parameters",
+      "type": "object"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stage": {
+      "minLength": 1,
+      "title": "Stage",
+      "type": "string"
+     },
+     "tool": {
+      "minLength": 1,
+      "title": "Tool",
+      "type": "string"
+     },
+     "version": {
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+     },
+     "weights_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Weights Sha256"
+     }
+    },
+    "required": [
+     "stage",
+     "tool",
+     "version"
+    ],
+    "title": "StageReceipt",
+    "type": "object"
+   },
+   "VideoSource": {
+    "additionalProperties": false,
+    "description": "Which footage this analysis came from. Pixels may be absent; the identity is not.",
+    "properties": {
+     "attribution": {
+      "description": "exact text to show wherever pixels appear",
+      "minLength": 1,
+      "title": "Attribution",
+      "type": "string"
+     },
+     "captured": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "when it was filmed, as published",
+      "title": "Captured"
+     },
+     "licence_name": {
+      "minLength": 1,
+      "title": "Licence Name",
+      "type": "string"
+     },
+     "licence_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Licence Url"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "site_name": {
+      "minLength": 1,
+      "title": "Site Name",
+      "type": "string"
+     },
+     "source_file": {
+      "minLength": 1,
+      "title": "Source File",
+      "type": "string"
+     },
+     "source_id": {
+      "minLength": 1,
+      "title": "Source Id",
+      "type": "string"
+     },
+     "source_sha256": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Source Sha256"
+     },
+     "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+     },
+     "uploaded_by_user": {
+      "default": false,
+      "title": "Uploaded By User",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "source_id",
+     "title",
+     "site_name",
+     "licence_name",
+     "attribution",
+     "source_file"
+    ],
+    "title": "VideoSource",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "Everything one analysis claims, what backs it, and what it cannot say.",
+  "properties": {
+   "analysis_id": {
+    "pattern": "^[a-z0-9][a-z0-9-]*$",
+    "title": "Analysis Id",
+    "type": "string"
+   },
+   "artifacts": {
+    "items": {
+     "$ref": "#/$defs/ArtifactRef"
+    },
+    "title": "Artifacts",
+    "type": "array"
+   },
+   "calibration": {
+    "$ref": "#/$defs/CalibrationState"
+   },
+   "created_at_utc": {
+    "format": "date-time",
+    "title": "Created At Utc",
+    "type": "string"
+   },
+   "data_origin": {
+    "enum": [
+     "camera_cv",
+     "reference_dataset"
+    ],
+    "title": "Data Origin",
+    "type": "string"
+   },
+   "decision_ref": {
+    "anyOf": [
+     {
+      "$ref": "#/$defs/DecisionRef"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null
+   },
+   "disclosures": {
+    "description": "limits a reader must see beside the numbers",
+    "items": {
+     "type": "string"
+    },
+    "title": "Disclosures",
+    "type": "array"
+   },
+   "fps": {
+    "exclusiveMinimum": 0,
+    "title": "Fps",
+    "type": "number"
+   },
+   "frame_count": {
+    "exclusiveMinimum": 0,
+    "title": "Frame Count",
+    "type": "integer"
+   },
+   "frame_stride": {
+    "default": 1,
+    "minimum": 1,
+    "title": "Frame Stride",
+    "type": "integer"
+   },
+   "gates": {
+    "default": [],
+    "items": {
+     "$ref": "#/$defs/GateOutcome"
+    },
+    "title": "Gates",
+    "type": "array"
+   },
+   "height_px": {
+    "exclusiveMinimum": 0,
+    "title": "Height Px",
+    "type": "integer"
+   },
+   "metrics": {
+    "items": {
+     "$ref": "#/$defs/Metric"
+    },
+    "title": "Metrics",
+    "type": "array"
+   },
+   "mode": {
+    "enum": [
+     "precomputed",
+     "live"
+    ],
+    "title": "Mode",
+    "type": "string"
+   },
+   "movements": {
+    "default": [],
+    "items": {
+     "$ref": "#/$defs/MovementCell"
+    },
+    "title": "Movements",
+    "type": "array"
+   },
+   "provenance": {
+    "$ref": "#/$defs/Provenance"
+   },
+   "record_format": {
+    "const": "analysis/1",
+    "default": "analysis/1",
+    "title": "Record Format",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "series": {
+    "default": [],
+    "items": {
+     "$ref": "#/$defs/MetricSeries"
+    },
+    "title": "Series",
+    "type": "array"
+   },
+   "site_id": {
+    "minLength": 1,
+    "title": "Site Id",
+    "type": "string"
+   },
+   "source": {
+    "$ref": "#/$defs/VideoSource"
+   },
+   "source_start_s": {
+    "description": "first analysed second of the source video",
+    "minimum": 0,
+    "title": "Source Start S",
+    "type": "number"
+   },
+   "stages": {
+    "items": {
+     "$ref": "#/$defs/StageReceipt"
+    },
+    "title": "Stages",
+    "type": "array"
+   },
+   "title": {
+    "minLength": 1,
+    "title": "Title",
+    "type": "string"
+   },
+   "width_px": {
+    "exclusiveMinimum": 0,
+    "title": "Width Px",
+    "type": "integer"
+   },
+   "window_offset_s": {
+    "description": "source second minus this gives the NGSIM window second",
+    "title": "Window Offset S",
+    "type": "number"
+   }
+  },
+  "required": [
+   "analysis_id",
+   "title",
+   "mode",
+   "data_origin",
+   "site_id",
+   "created_at_utc",
+   "source",
+   "fps",
+   "frame_count",
+   "width_px",
+   "height_px",
+   "source_start_s",
+   "window_offset_s",
+   "calibration",
+   "stages",
+   "metrics",
+   "artifacts",
+   "disclosures",
+   "provenance"
+  ],
+  "title": "AnalysisRecord",
+  "type": "object"
+ },
+ "ArtifactRef": {
+  "additionalProperties": false,
+  "description": "One file of an analysis. `bundled` False means it is rebuilt locally, not distributed.",
+  "properties": {
+   "bundled": {
+    "default": true,
+    "title": "Bundled",
+    "type": "boolean"
+   },
+   "bytes": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "integer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Bytes"
+   },
+   "licence_note": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Licence Note"
+   },
+   "media_type": {
+    "minLength": 1,
+    "title": "Media Type",
+    "type": "string"
+   },
+   "path": {
+    "description": "relative to the analysis directory",
+    "minLength": 1,
+    "title": "Path",
+    "type": "string"
+   },
+   "rebuild_hint": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "how to get it when it is not bundled",
+    "title": "Rebuild Hint"
+   },
+   "role": {
+    "enum": [
+     "trajectories",
+     "tracks",
+     "density",
+     "annotated_video",
+     "source_video",
+     "report"
+    ],
+    "title": "Role",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Sha256"
+   }
+  },
+  "required": [
+   "role",
+   "path",
+   "media_type"
+  ],
+  "title": "ArtifactRef",
+  "type": "object"
+ },
+ "CalibrationState": {
+  "additionalProperties": false,
+  "description": "How image pixels reach the ground, and how far that is trusted.",
+  "properties": {
+   "accepted_along_road": {
+    "default": false,
+    "description": "False: along-road distances are not accepted (ADR-018)",
+    "title": "Accepted Along Road",
+    "type": "boolean"
+   },
+   "bearing_deg": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "junction +y axis, degrees from grid north",
+    "title": "Bearing Deg"
+   },
+   "ground_frame": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "'local_enu_junction_m' when calibrated",
+    "title": "Ground Frame"
+   },
+   "image_to_ground": {
+    "anyOf": [
+     {
+      "items": {
+       "maxItems": 3,
+       "minItems": 3,
+       "prefixItems": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        },
+        {
+         "type": "number"
+        }
+       ],
+       "type": "array"
+      },
+      "type": "array"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "3x3 homography, image pixels to ground metres, row-major",
+    "title": "Image To Ground"
+   },
+   "mode": {
+    "enum": [
+     "calibrated",
+     "uncalibrated"
+    ],
+    "title": "Mode",
+    "type": "string"
+   },
+   "notes": {
+    "default": [],
+    "items": {
+     "type": "string"
+    },
+    "title": "Notes",
+    "type": "array"
+   },
+   "origin_lat_deg": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Origin Lat Deg"
+   },
+   "origin_lon_deg": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Origin Lon Deg"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "spec_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Spec Sha256"
+   },
+   "valid_below_row_px": {
+    "anyOf": [
+     {
+      "type": "integer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "rows at or past this one are outside the measured region",
+    "title": "Valid Below Row Px"
+   },
+   "valid_windows_s": {
+    "default": [],
+    "description": "source-second windows where a gate measured placement",
+    "items": {
+     "maxItems": 2,
+     "minItems": 2,
+     "prefixItems": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "number"
+      }
+     ],
+     "type": "array"
+    },
+    "title": "Valid Windows S",
+    "type": "array"
+   }
+  },
+  "required": [
+   "mode"
+  ],
+  "title": "CalibrationState",
+  "type": "object"
+ },
+ "DecisionRef": {
+  "additionalProperties": false,
+  "description": "The decision record shown beside this analysis, and whether this analysis fed it.",
+  "properties": {
+   "linked_to_cv": {
+    "description": "False: the decision used the published trajectories, not this CV output",
+    "title": "Linked To Cv",
+    "type": "boolean"
+   },
+   "outcome": {
+    "enum": [
+     "none_selected",
+     "selected",
+     "not_run"
+    ],
+    "title": "Outcome",
+    "type": "string"
+   },
+   "report_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Report Sha256"
+   },
+   "run_id": {
+    "minLength": 1,
+    "title": "Run Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "summary": {
+    "minLength": 1,
+    "title": "Summary",
+    "type": "string"
+   }
+  },
+  "required": [
+   "run_id",
+   "outcome",
+   "summary",
+   "linked_to_cv"
+  ],
+  "title": "DecisionRef",
+  "type": "object"
+ },
+ "GateOutcome": {
+  "additionalProperties": false,
+  "description": "One registered check on one metric over one split of the footage.",
+  "properties": {
+   "comparator": {
+    "enum": [
+     "<=",
+     ">="
+    ],
+    "title": "Comparator",
+    "type": "string"
+   },
+   "gate_id": {
+    "minLength": 1,
+    "title": "Gate Id",
+    "type": "string"
+   },
+   "gate_sha256": {
+    "description": "the registered gate file, committed before the read",
+    "title": "Gate Sha256",
+    "type": "string"
+   },
+   "measured": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Measured"
+   },
+   "metric": {
+    "minLength": 1,
+    "title": "Metric",
+    "type": "string"
+   },
+   "n": {
+    "minimum": 0,
+    "title": "N",
+    "type": "integer"
+   },
+   "note": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Note"
+   },
+   "passed": {
+    "title": "Passed",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "scope": {
+    "minLength": 1,
+    "title": "Scope",
+    "type": "string"
+   },
+   "split": {
+    "enum": [
+     "dev",
+     "held_out"
+    ],
+    "title": "Split",
+    "type": "string"
+   },
+   "threshold": {
+    "title": "Threshold",
+    "type": "number"
+   }
+  },
+  "required": [
+   "gate_id",
+   "gate_sha256",
+   "metric",
+   "scope",
+   "split",
+   "comparator",
+   "threshold",
+   "n",
+   "passed"
+  ],
+  "title": "GateOutcome",
+  "type": "object"
+ },
+ "Metric": {
+  "additionalProperties": false,
+  "description": "One number shown to a person, with what it is and how far it can be trusted.",
+  "properties": {
+   "ci95": {
+    "anyOf": [
+     {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "number"
+       }
+      ],
+      "type": "array"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Ci95"
+   },
+   "evidence_kind": {
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "gate_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Gate Id"
+   },
+   "label": {
+    "minLength": 1,
+    "title": "Label",
+    "type": "string"
+   },
+   "metric_id": {
+    "pattern": "^[a-z0-9][a-z0-9_.:-]*$",
+    "title": "Metric Id",
+    "type": "string"
+   },
+   "reason": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "required unless status is gate_pass",
+    "title": "Reason"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "scope": {
+    "description": "what it covers, e.g. 'site' or 'arm:N'",
+    "minLength": 1,
+    "title": "Scope",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "gate_pass",
+     "gate_fail",
+     "ungated",
+     "not_available"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "unit": {
+    "description": "'veh', 'veh/h', 'm', 'm/s', 'share', ...",
+    "minLength": 1,
+    "title": "Unit",
+    "type": "string"
+   },
+   "value": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Value"
+   }
+  },
+  "required": [
+   "metric_id",
+   "label",
+   "unit",
+   "scope",
+   "evidence_kind",
+   "status"
+  ],
+  "title": "Metric",
+  "type": "object"
+ },
+ "MetricSeries": {
+  "additionalProperties": false,
+  "description": "Equal-width time bins of one measure; a bin with no value is None, never zero.",
+  "properties": {
+   "bin_s": {
+    "exclusiveMinimum": 0,
+    "title": "Bin S",
+    "type": "number"
+   },
+   "evidence_kind": {
+    "enum": [
+     "observed",
+     "approximated",
+     "assumed",
+     "model_generated",
+     "simulated"
+    ],
+    "title": "Evidence Kind",
+    "type": "string"
+   },
+   "gate_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Gate Id"
+   },
+   "label": {
+    "minLength": 1,
+    "title": "Label",
+    "type": "string"
+   },
+   "reason": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Reason"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "scope": {
+    "minLength": 1,
+    "title": "Scope",
+    "type": "string"
+   },
+   "series_id": {
+    "pattern": "^[a-z0-9][a-z0-9_.:-]*$",
+    "title": "Series Id",
+    "type": "string"
+   },
+   "start_s": {
+    "description": "start of the first bin",
+    "minimum": 0,
+    "title": "Start S",
+    "type": "number"
+   },
+   "status": {
+    "enum": [
+     "gate_pass",
+     "gate_fail",
+     "ungated",
+     "not_available"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "unit": {
+    "minLength": 1,
+    "title": "Unit",
+    "type": "string"
+   },
+   "values": {
+    "items": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "title": "Values",
+    "type": "array"
+   }
+  },
+  "required": [
+   "series_id",
+   "label",
+   "unit",
+   "scope",
+   "bin_s",
+   "start_s",
+   "values",
+   "evidence_kind",
+   "status"
+  ],
+  "title": "MetricSeries",
+  "type": "object"
+ },
+ "MovementCell": {
+  "additionalProperties": false,
+  "description": "One cell of the turning-movement matrix for an analysed window.",
+  "properties": {
+   "approach": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Approach",
+    "type": "string"
+   },
+   "count": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "integer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Count"
+   },
+   "exit_arm": {
+    "enum": [
+     "N",
+     "E",
+     "S",
+     "W"
+    ],
+    "title": "Exit Arm",
+    "type": "string"
+   },
+   "gate_id": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Gate Id"
+   },
+   "reason": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Reason"
+   },
+   "reference_count": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "integer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "same cell counted from the NGSIM trajectories, for comparison",
+    "title": "Reference Count"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "status": {
+    "enum": [
+     "gate_pass",
+     "gate_fail",
+     "ungated",
+     "not_available"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "turn": {
+    "enum": [
+     "left",
+     "through",
+     "right",
+     "u_turn"
+    ],
+    "title": "Turn",
+    "type": "string"
+   }
+  },
+  "required": [
+   "approach",
+   "exit_arm",
+   "turn",
+   "status"
+  ],
+  "title": "MovementCell",
+  "type": "object"
+ },
+ "StageReceipt": {
+  "additionalProperties": false,
+  "description": "What one pipeline stage actually did: the tool, its inputs and its output count.",
+  "properties": {
+   "cached": {
+    "default": false,
+    "title": "Cached",
+    "type": "boolean"
+   },
+   "cost_usd": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Cost Usd"
+   },
+   "device": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Device"
+   },
+   "elapsed_s": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Elapsed S"
+   },
+   "frames_in": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "integer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Frames In"
+   },
+   "items_out": {
+    "anyOf": [
+     {
+      "minimum": 0,
+      "type": "integer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Items Out"
+   },
+   "licence": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Licence"
+   },
+   "parameters": {
+    "additionalProperties": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "integer"
+      },
+      {
+       "type": "number"
+      },
+      {
+       "type": "boolean"
+      }
+     ]
+    },
+    "title": "Parameters",
+    "type": "object"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "stage": {
+    "minLength": 1,
+    "title": "Stage",
+    "type": "string"
+   },
+   "tool": {
+    "minLength": 1,
+    "title": "Tool",
+    "type": "string"
+   },
+   "version": {
+    "minLength": 1,
+    "title": "Version",
+    "type": "string"
+   },
+   "weights_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Weights Sha256"
+   }
+  },
+  "required": [
+   "stage",
+   "tool",
+   "version"
+  ],
+  "title": "StageReceipt",
+  "type": "object"
+ },
+ "TrackEntry": {
+  "additionalProperties": false,
+  "description": "One vehicle: where its rows sit in trajectories.bin and what it did.",
+  "properties": {
+   "approach": {
+    "anyOf": [
+     {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Approach"
+   },
+   "class_confidence": {
+    "anyOf": [
+     {
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Class Confidence"
+   },
+   "class_source": {
+    "enum": [
+     "detector",
+     "size",
+     "sam",
+     "reference_dataset",
+     "none"
+    ],
+    "title": "Class Source",
+    "type": "string"
+   },
+   "exit_arm": {
+    "anyOf": [
+     {
+      "enum": [
+       "N",
+       "E",
+       "S",
+       "W"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Exit Arm"
+   },
+   "first_row": {
+    "description": "row of its first point; row = first_row + i",
+    "minimum": 0,
+    "title": "First Row",
+    "type": "integer"
+   },
+   "length_m": {
+    "anyOf": [
+     {
+      "exclusiveMinimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Length M"
+   },
+   "n": {
+    "description": "points, one per frame; gaps are interpolated and flagged",
+    "exclusiveMinimum": 0,
+    "title": "N",
+    "type": "integer"
+   },
+   "reference_vehicle_id": {
+    "anyOf": [
+     {
+      "type": "integer"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "the NGSIM vehicle this is, for a reference analysis or a paired track",
+    "title": "Reference Vehicle Id"
+   },
+   "sam_refined": {
+    "default": false,
+    "title": "Sam Refined",
+    "type": "boolean"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "start_frame": {
+    "description": "analysis frame of its first point",
+    "minimum": 0,
+    "title": "Start Frame",
+    "type": "integer"
+   },
+   "status": {
+    "enum": [
+     "complete",
+     "partial",
+     "fragment"
+    ],
+    "title": "Status",
+    "type": "string"
+   },
+   "track_id": {
+    "minimum": 0,
+    "title": "Track Id",
+    "type": "integer"
+   },
+   "turn": {
+    "anyOf": [
+     {
+      "enum": [
+       "left",
+       "through",
+       "right",
+       "u_turn"
+      ],
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Turn"
+   },
+   "vehicle_class": {
+    "enum": [
+     "car",
+     "truck",
+     "bus",
+     "motorcycle",
+     "vehicle",
+     "unknown"
+    ],
+    "title": "Vehicle Class",
+    "type": "string"
+   },
+   "width_m": {
+    "anyOf": [
+     {
+      "exclusiveMinimum": 0,
+      "type": "number"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Width M"
+   }
+  },
+  "required": [
+   "track_id",
+   "first_row",
+   "start_frame",
+   "n",
+   "vehicle_class",
+   "class_source",
+   "status"
+  ],
+  "title": "TrackEntry",
+  "type": "object"
+ },
+ "TrackIndex": {
+  "$defs": {
+   "TrackEntry": {
+    "additionalProperties": false,
+    "description": "One vehicle: where its rows sit in trajectories.bin and what it did.",
+    "properties": {
+     "approach": {
+      "anyOf": [
+       {
+        "enum": [
+         "N",
+         "E",
+         "S",
+         "W"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Approach"
+     },
+     "class_confidence": {
+      "anyOf": [
+       {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Class Confidence"
+     },
+     "class_source": {
+      "enum": [
+       "detector",
+       "size",
+       "sam",
+       "reference_dataset",
+       "none"
+      ],
+      "title": "Class Source",
+      "type": "string"
+     },
+     "exit_arm": {
+      "anyOf": [
+       {
+        "enum": [
+         "N",
+         "E",
+         "S",
+         "W"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Exit Arm"
+     },
+     "first_row": {
+      "description": "row of its first point; row = first_row + i",
+      "minimum": 0,
+      "title": "First Row",
+      "type": "integer"
+     },
+     "length_m": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Length M"
+     },
+     "n": {
+      "description": "points, one per frame; gaps are interpolated and flagged",
+      "exclusiveMinimum": 0,
+      "title": "N",
+      "type": "integer"
+     },
+     "reference_vehicle_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "description": "the NGSIM vehicle this is, for a reference analysis or a paired track",
+      "title": "Reference Vehicle Id"
+     },
+     "sam_refined": {
+      "default": false,
+      "title": "Sam Refined",
+      "type": "boolean"
+     },
+     "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "start_frame": {
+      "description": "analysis frame of its first point",
+      "minimum": 0,
+      "title": "Start Frame",
+      "type": "integer"
+     },
+     "status": {
+      "enum": [
+       "complete",
+       "partial",
+       "fragment"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "track_id": {
+      "minimum": 0,
+      "title": "Track Id",
+      "type": "integer"
+     },
+     "turn": {
+      "anyOf": [
+       {
+        "enum": [
+         "left",
+         "through",
+         "right",
+         "u_turn"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Turn"
+     },
+     "vehicle_class": {
+      "enum": [
+       "car",
+       "truck",
+       "bus",
+       "motorcycle",
+       "vehicle",
+       "unknown"
+      ],
+      "title": "Vehicle Class",
+      "type": "string"
+     },
+     "width_m": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Width M"
+     }
+    },
+    "required": [
+     "track_id",
+     "first_row",
+     "start_frame",
+     "n",
+     "vehicle_class",
+     "class_source",
+     "status"
+    ],
+    "title": "TrackEntry",
+    "type": "object"
+   }
+  },
+  "additionalProperties": false,
+  "description": "The vehicles of one analysis, in trajectories.bin row order.",
+  "properties": {
+   "analysis_id": {
+    "minLength": 1,
+    "title": "Analysis Id",
+    "type": "string"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "tracks": {
+    "items": {
+     "$ref": "#/$defs/TrackEntry"
+    },
+    "title": "Tracks",
+    "type": "array"
+   },
+   "trajectories_sha256": {
+    "title": "Trajectories Sha256",
+    "type": "string"
+   }
+  },
+  "required": [
+   "analysis_id",
+   "trajectories_sha256",
+   "tracks"
+  ],
+  "title": "TrackIndex",
+  "type": "object"
+ },
+ "VideoSource": {
+  "additionalProperties": false,
+  "description": "Which footage this analysis came from. Pixels may be absent; the identity is not.",
+  "properties": {
+   "attribution": {
+    "description": "exact text to show wherever pixels appear",
+    "minLength": 1,
+    "title": "Attribution",
+    "type": "string"
+   },
+   "captured": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "description": "when it was filmed, as published",
+    "title": "Captured"
+   },
+   "licence_name": {
+    "minLength": 1,
+    "title": "Licence Name",
+    "type": "string"
+   },
+   "licence_url": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Licence Url"
+   },
+   "schema_version": {
+    "const": "0.1.0",
+    "default": "0.1.0",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "site_name": {
+    "minLength": 1,
+    "title": "Site Name",
+    "type": "string"
+   },
+   "source_file": {
+    "minLength": 1,
+    "title": "Source File",
+    "type": "string"
+   },
+   "source_id": {
+    "minLength": 1,
+    "title": "Source Id",
+    "type": "string"
+   },
+   "source_sha256": {
+    "anyOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "null"
+     }
+    ],
+    "default": null,
+    "title": "Source Sha256"
+   },
+   "title": {
+    "minLength": 1,
+    "title": "Title",
+    "type": "string"
+   },
+   "uploaded_by_user": {
+    "default": false,
+    "title": "Uploaded By User",
+    "type": "boolean"
+   }
+  },
+  "required": [
+   "source_id",
+   "title",
+   "site_name",
+   "licence_name",
+   "attribution",
+   "source_file"
+  ],
+  "title": "VideoSource",
+  "type": "object"
+ }
+}
