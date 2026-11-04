@@ -76,7 +76,7 @@ function CandidateCard({ entry, verdict }: { entry: CandidateEntry; verdict: str
           {cycle !== null && base !== null ? <span className="mono text-micro text-paint-3">{`cycle ${base} → ${cycle} s`}</span> : null}
         </div>
         <div className="flex items-baseline justify-between gap-3">
-          <span className="mono text-label text-paint-2">{SIMULATOR}</span>
+          <span className="mono text-label text-paint-2">{`${SIMULATOR} verdict`}</span>
           <span className={`mono text-label ${verdict === "no_support" ? "text-stop" : "text-paint-1"}`}>{verdict ? asWords(verdict) : "Not on record"}</span>
         </div>
       </div>

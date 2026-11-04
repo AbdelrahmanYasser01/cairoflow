@@ -354,7 +354,7 @@ function Fork({ lit }: { lit: "recommend" | "abstain" | null }) {
   const on = (branch: "recommend" | "abstain") => lit === branch;
   const stroke = (branch: "recommend" | "abstain") => (on(branch) ? "var(--amber)" : "var(--paint-4)");
   return (
-    <div className="flex items-center gap-4" aria-label={lit ? `Branch taken: ${lit === "abstain" ? "Abstain" : "Recommend"}` : "No branch taken"}>
+    <div role="img" className="flex items-center gap-4" aria-label={lit ? `Branch taken: ${lit === "abstain" ? "Abstain" : "Recommend"}` : "No branch taken"}>
       <svg width="120" height="64" viewBox="0 0 120 64" aria-hidden="true" className="shrink-0">
         <path d="M0 32 H40" stroke={lit ? "var(--amber)" : "var(--paint-4)"} strokeWidth="2" fill="none" />
         <path d="M40 32 C60 32 60 10 82 10 H120" stroke={stroke("recommend")} strokeWidth={on("recommend") ? 2 : 1} strokeDasharray={on("recommend") ? "0" : "3 3"} fill="none" />

@@ -77,7 +77,7 @@ function Scale({
   const atLeast = gate.comparator === ">=";
   const failed = !gate.passed;
   return (
-    <div className="relative h-10">
+    <div className="relative h-11">
       <div className="absolute inset-x-0 top-3 h-3.5 border-y border-rule-1 bg-asphalt-1">
         {/* The side of the limit that fails, hatched. */}
         <span
@@ -106,7 +106,7 @@ function Scale({
           style={{ left: `${limitAt}%` }}
         />
       </div>
-      <div aria-hidden="true" className="absolute inset-x-0 top-[30px]">
+      <div aria-hidden="true" className="absolute inset-x-0 top-[34px]">
         {ticks.map((tick, index) => (
           <span
             key={tick}
@@ -245,10 +245,13 @@ export function GateBoard({ record, index }: { record: AnalysisRecord; index?: s
                 <span className="text-[56px] text-paint-4">{` / ${total}`}</span>
               </p>
               <div className="mt-3 flex gap-1" aria-hidden="true">
-                {gates.map((gate) => (
-                  <span
+                {gates.map((gate, index) => (
+                  <motion.span
                     key={gate.metric}
-                    className={`h-1.5 flex-1 ${gate.passed ? "bg-go/70" : "bg-stop shadow-[0_0_10px_rgba(240,82,79,0.8)]"}`}
+                    className={`h-1.5 flex-1 origin-left ${gate.passed ? "bg-go/70" : "bg-stop shadow-[0_0_10px_rgba(240,82,79,0.8)]"}`}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.4, ease: EASE, delay: 0.15 + index * 0.07 }}
                   />
                 ))}
               </div>
