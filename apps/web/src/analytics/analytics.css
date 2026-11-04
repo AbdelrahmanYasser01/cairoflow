@@ -1,0 +1,12 @@
+/* Analytics page: ribbons fade and thicken together when the pointer picks one out. */
+.cf-ribbon {
+  transition:
+    opacity 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    stroke-width 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-ribbon {
+    transition: none;
+  }
+}
