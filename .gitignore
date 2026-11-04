@@ -58,3 +58,4 @@ cache/muse/*
 
 # Local agent tooling state
 .claude-flow/
+.claude/worktrees/
