@@ -35,7 +35,7 @@ function Rail() {
               aria-label={label}
               className={({ isActive }) =>
                 `relative flex h-[68px] flex-col items-center justify-center gap-1.5 transition-colors duration-150 focus-visible:-outline-offset-2 ${
-                  isActive ? "text-paint-1" : "text-paint-3 hover:text-paint-1"
+                  isActive ? "bg-linear-to-r from-amber/10 to-transparent text-paint-1" : "text-paint-3 hover:bg-asphalt-1 hover:text-paint-1"
                 }`
               }
             >

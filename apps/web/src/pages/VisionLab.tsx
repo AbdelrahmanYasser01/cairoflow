@@ -93,7 +93,7 @@ const TRACKS_ONLY = "tracks";
 const REFERENCE_SYNC_NOTE = "Published positions, not frame-synced: moving boxes run ahead of the cars";
 
 /** Room the left column keeps for its heading, transport and attribution, in pixels. */
-const HEAD_PX = 112;
+const HEAD_PX = 132;
 const FOOT_PX = 126;
 const NOTICE_PX = 56;
 const PROGRESS_PX = 160;
