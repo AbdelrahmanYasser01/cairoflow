@@ -80,6 +80,7 @@ function paintMasks(context: CanvasRenderingContext2D, paint: Paint): void {
       else context.lineTo(x * scaleX, y * scaleY);
     });
     context.closePath();
+    context.shadowColor = tone; // only drawn where the stage has turned a glow on
     context.globalAlpha = MASK_FILL_ALPHA;
     context.fillStyle = tone;
     context.fill();
@@ -103,6 +104,7 @@ function paintOverlay(context: CanvasRenderingContext2D, paint: Paint): void {
     const outside = ((t.pointFlags[row] as number) & POINT_OUTSIDE_VALID_REGION) !== 0;
     context.globalAlpha = outside ? 0.45 : 1;
     context.strokeStyle = picked ? colour.pick : colour.box;
+    context.shadowColor = context.strokeStyle;
     context.lineWidth = picked ? 2 : 1.25;
     context.setLineDash(outside ? [3, 3] : []);
 
@@ -345,7 +347,8 @@ function longExposure(
   const sy = (size.height / record.height_px) * unit;
   context.strokeStyle = tone;
   context.lineWidth = 1;
-  context.globalAlpha = 0.07;
+  // A short run has few tracks, so each is drawn brighter: the lanes should show either way.
+  context.globalAlpha = Math.min(0.2, 0.06 + 8 / Math.max(1, tracks.length));
   context.globalCompositeOperation = "lighter";
   for (const entry of tracks) {
     const end = entry.first_row + entry.n;

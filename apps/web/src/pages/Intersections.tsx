@@ -15,6 +15,7 @@ import {
   SkeletonRows,
   StatusMark,
   Tooltip,
+  useElementSize,
   type LedgerColumn,
 } from "../design";
 import { Instrument, PageHead } from "../design/Instrument";
@@ -81,6 +82,81 @@ function corridorNote(row: CorridorIntersection | undefined, reference: Analysis
   );
 }
 
+const STRIP_H = 150;
+const BAR_MAX = 64;
+
+/**
+ * The corridor as a strip: one node per published intersection, each carrying its vehicle count as
+ * a bar. The one with video analysis is lit. Positions along the strip are order only, not distance.
+ */
+function CorridorStrip({ rows }: { rows: readonly CorridorIntersection[] }) {
+  const [box, size] = useElementSize<HTMLDivElement>();
+  const ordered = [...rows].sort((a, b) => a.int_id - b.int_id);
+  const most = Math.max(1, ...ordered.map((row) => row.unique_vehicles));
+  const width = size.width;
+  const pad = 56;
+  const step = ordered.length > 1 ? (width - pad * 2) / (ordered.length - 1) : 0;
+  const axis = 104;
+  return (
+    <div ref={box} className="relative mb-8 border-y border-rule-1" style={{ height: STRIP_H }}>
+      <div aria-hidden="true" className="survey-grid absolute inset-0 [mask-image:none] opacity-60" />
+      {width > 0 ? (
+        <svg width={width} height={STRIP_H} className="absolute inset-0" role="img" aria-label="Corridor intersections by vehicle count">
+          <line x1={pad - 36} x2={width - pad + 36} y1={axis} y2={axis} stroke="var(--paint-4)" strokeWidth={1} />
+          <line
+            x1={pad - 36}
+            x2={width - pad + 36}
+            y1={axis + 4}
+            y2={axis + 4}
+            stroke="var(--amber)"
+            strokeOpacity={0.55}
+            strokeWidth={1}
+            strokeDasharray="10 8"
+          />
+          {ordered.map((row, index) => {
+            const x = pad + index * step;
+            const bar = (row.unique_vehicles / most) * BAR_MAX;
+            const lit = row.has_video_analysis;
+            const tone = lit ? "var(--amber)" : "var(--paint-4)";
+            return (
+              <g key={row.int_id}>
+                <motion.rect
+                  x={x - 9}
+                  width={18}
+                  initial={{ height: 0, y: axis - 6 }}
+                  animate={{ height: bar, y: axis - 6 - bar }}
+                  transition={{ duration: DUR.slow * 2, ease: EASE, delay: index * 0.06 }}
+                  fill={lit ? "var(--amber)" : "var(--asphalt-3)"}
+                  stroke={tone}
+                  strokeWidth={1}
+                />
+                <text
+                  x={x}
+                  y={axis - 14 - bar}
+                  textAnchor="middle"
+                  className="font-display"
+                  fontSize={18}
+                  fill={lit ? "var(--paint-1)" : "var(--paint-2)"}
+                >
+                  {row.unique_vehicles.toLocaleString("en-US")}
+                </text>
+                <rect x={x - 5} y={axis - 3} width={10} height={10} fill="var(--asphalt-0)" stroke={tone} strokeWidth={lit ? 2 : 1} />
+                {lit ? (
+                  <rect x={x - 11} y={axis - 9} width={22} height={22} fill="none" stroke="var(--amber)" strokeOpacity={0.35} className="lamp-live" />
+                ) : null}
+                <text x={x} y={axis + 30} textAnchor="middle" className="mono" fontSize={11} fill={lit ? "var(--amber)" : "var(--paint-3)"}>
+                  {`INT ${row.int_id} · ${row.mean_moving_speed_m_s.toFixed(1)} m/s`}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      ) : null}
+      <span className="eyebrow absolute top-2 left-0">Lankershim corridor · vehicles</span>
+    </div>
+  );
+}
+
 function Corridor() {
   const corridor = useCorridor();
   const { catalog } = useAnalysis();
@@ -92,6 +168,7 @@ function Corridor() {
   const note = corridorNote(corridor.data.intersections.find((row) => row.has_video_analysis), reference);
   return (
     <>
+      <CorridorStrip rows={corridor.data.intersections} />
       <Ledger
         caption="Intersections of the published corridor"
         columns={CORRIDOR_COLUMNS}
