@@ -60,10 +60,11 @@ export function OdMatrix({
               </th>
               {ARMS.map((to) => {
                 const cell = find(from, to);
-                if (from === to || !cell || cell.count == null) {
+                if (!cell || cell.count == null) {
                   return (
                     <td key={to} className="p-[2px]">
                       <div
+                        role="img"
                         aria-label={from === to ? "U-turn: none recorded" : "None recorded"}
                         className="h-[4.75rem] border border-dashed border-rule-1"
                       />
