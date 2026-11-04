@@ -4,6 +4,7 @@ import { Instrument, PageHead } from "../design/Instrument";
 import { decisionFor } from "../domain/chain";
 import { samFacts } from "../domain/sam";
 import { GateBoard } from "../evidence/GateBoard";
+import { PlacementBar } from "../evidence/Placement";
 import { Limitations, RecordStrip } from "../evidence/Limits";
 import { useInView } from "../evidence/useInView";
 import { Candidates, Hypotheses } from "../evidence/Proposals";
@@ -11,7 +12,6 @@ import { ChainGraph, PipelineFlow } from "../evidence/Provenance";
 import { DecisionVerdict, SimulationMatrix } from "../evidence/Verdict";
 import { useChain } from "../instruments/Chain";
 import { ModelReading } from "../instruments/ModelReading";
-import { PlacementWindow } from "../instruments/Receipts";
 import { SamChanged } from "../instruments/SamChanged";
 import { DECISION_URL } from "../lib/analysis";
 import { analysisLabel, useAnalysis } from "../state/analysis";
@@ -196,7 +196,7 @@ export function EvidenceReports() {
         ) : null}
         <Instrument className="grid grid-cols-1 gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <RecordStrip decision={paired} record={record} />
-          {record ? <PlacementWindow record={record} /> : null}
+          {record ? <PlacementBar record={record} /> : null}
         </Instrument>
       </div>
     </div>
