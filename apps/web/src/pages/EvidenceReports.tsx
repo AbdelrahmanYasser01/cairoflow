@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, ButtonLink, EmptyState, ErrorState, Label } from "../design";
 import { Instrument, PageHead } from "../design/Instrument";
@@ -6,6 +5,7 @@ import { decisionFor } from "../domain/chain";
 import { samFacts } from "../domain/sam";
 import { GateBoard } from "../evidence/GateBoard";
 import { Limitations, RecordStrip } from "../evidence/Limits";
+import { useInView } from "../evidence/useInView";
 import { Candidates, Hypotheses } from "../evidence/Proposals";
 import { ChainGraph, PipelineFlow } from "../evidence/Provenance";
 import { DecisionVerdict, SimulationMatrix } from "../evidence/Verdict";
@@ -54,37 +54,6 @@ function ExportReport({ ready }: { ready: boolean }) {
       )}
     </div>
   );
-}
-
-/** Which section is in view, for the index. */
-function useInView(ids: readonly string[]): string | null {
-  const [active, setActive] = useState<string | null>(null);
-  const key = ids.join(",");
-  useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    const seen = new Map<string, number>();
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) seen.set(entry.target.id, entry.isIntersecting ? entry.boundingClientRect.top : Infinity);
-        const visible = [...seen.entries()].filter(([, top]) => top !== Infinity).sort((a, b) => a[1] - b[1]);
-        if (visible[0]) setActive(visible[0][0]);
-      },
-      { rootMargin: "-15% 0px -55% 0px" },
-    );
-    let frame = 0;
-    let tries = 0;
-    const attach = () => {
-      const found = key.split(",").map((id) => document.getElementById(id)).filter((node): node is HTMLElement => node !== null);
-      found.forEach((node) => observer.observe(node));
-      if (found.length < key.split(",").length && (tries += 1) < 120) frame = requestAnimationFrame(attach);
-    };
-    attach();
-    return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
-    };
-  }, [key]);
-  return active;
 }
 
 /** Where everything on this long page is. */

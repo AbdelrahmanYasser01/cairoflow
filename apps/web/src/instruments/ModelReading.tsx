@@ -79,15 +79,15 @@ function HypothesisCard({
       <ModelQuote text={hypothesis.statement} lines={4} />
       <div className="flex flex-col gap-2">
         {hypothesis.supporting_evidence_ids.length > 0 ? (
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="mono w-14 shrink-0 text-micro tracking-[0.08em] text-paint-3 uppercase">For</span>
-            {chips(hypothesis.supporting_evidence_ids, false)}
+          <div className="grid grid-cols-[3.75rem_minmax(0,1fr)] items-start gap-x-2">
+            <span className="mono pt-1 text-micro tracking-[0.08em] text-paint-3 uppercase">For</span>
+            <span className="flex flex-wrap gap-1.5">{chips(hypothesis.supporting_evidence_ids, false)}</span>
           </div>
         ) : null}
         {hypothesis.contradicting_evidence_ids.length > 0 ? (
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="mono w-14 shrink-0 text-micro tracking-[0.08em] text-paint-3 uppercase">Against</span>
-            {chips(hypothesis.contradicting_evidence_ids, true)}
+          <div className="grid grid-cols-[3.75rem_minmax(0,1fr)] items-start gap-x-2">
+            <span className="mono pt-1 text-micro tracking-[0.08em] text-paint-3 uppercase">Against</span>
+            <span className="flex flex-wrap gap-1.5">{chips(hypothesis.contradicting_evidence_ids, true)}</span>
           </div>
         ) : null}
       </div>

@@ -310,7 +310,7 @@ export function DecisionVerdict({
         </div>
       ) : (
         <div className="mt-5 grid grid-cols-1 gap-x-10 gap-y-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
-          <div className="relative overflow-hidden border border-rule-2 bg-asphalt-1 px-6 pt-5 pb-6">
+          <div className="relative overflow-hidden border border-rule-2 bg-asphalt-1 bg-[radial-gradient(var(--rule-1)_1px,transparent_1px)] [background-size:16px_16px] px-6 pt-5 pb-6">
             <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] bg-amber" />
             <Kicker tone="amber">Verdict</Kicker>
             <p className="mt-3 font-display text-[clamp(44px,5.2vw,76px)] leading-[0.92] font-medium tracking-[-0.02em] text-paint-1">
@@ -324,7 +324,7 @@ export function DecisionVerdict({
               </p>
             ) : null}
           </div>
-          <div className="flex flex-col justify-between gap-5">
+          <div className="flex flex-col gap-8">
             <div>
               <Kicker>To recommend, both must hold</Kicker>
               <ul className="m-0 mt-3 flex list-none flex-col gap-0 p-0">
@@ -355,12 +355,25 @@ function Fork({ lit }: { lit: "recommend" | "abstain" | null }) {
       <svg width="120" height="64" viewBox="0 0 120 64" aria-hidden="true" className="shrink-0">
         <path d="M0 32 H40" stroke={lit ? "var(--amber)" : "var(--paint-4)"} strokeWidth="2" fill="none" />
         <path d="M40 32 C60 32 60 10 82 10 H120" stroke={stroke("recommend")} strokeWidth={on("recommend") ? 2 : 1} strokeDasharray={on("recommend") ? "0" : "3 3"} fill="none" />
-        <path d="M40 32 C60 32 60 54 82 54 H120" stroke={stroke("abstain")} strokeWidth={on("abstain") ? 2 : 1} strokeDasharray={on("abstain") ? "0" : "3 3"} fill="none" />
+        {on("abstain") ? (
+          <motion.path
+            d="M40 32 C60 32 60 54 82 54 H120"
+            stroke="var(--amber)"
+            strokeWidth={2}
+            fill="none"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.1, ease: EASE, delay: 0.3 }}
+          />
+        ) : (
+          <path d="M40 32 C60 32 60 54 82 54 H120" stroke={stroke("abstain")} strokeWidth={1} strokeDasharray="3 3" fill="none" />
+        )}
         <rect x="36" y="28" width="8" height="8" fill="var(--asphalt-0)" stroke={lit ? "var(--amber)" : "var(--paint-4)"} />
       </svg>
-      <div className="flex flex-col gap-3">
-        <span className={`font-display text-head leading-none ${on("recommend") ? "text-paint-1" : "text-paint-4"}`}>Recommend</span>
-        <span className={`font-display text-head leading-none ${on("abstain") ? "text-amber" : "text-paint-4"}`}>Abstain</span>
+      <div className="flex h-16 flex-col justify-between py-px">
+        <span className={`font-display text-head leading-[18px] ${on("recommend") ? "text-paint-1" : "text-paint-4"}`}>Recommend</span>
+        <span className={`font-display text-head leading-[18px] ${on("abstain") ? "text-amber" : "text-paint-4"}`}>Abstain</span>
       </div>
     </div>
   );

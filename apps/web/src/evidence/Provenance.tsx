@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "motion/react";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { EvidenceGlyph, SkeletonRows, STATUS, StatusMark } from "../design";
@@ -28,7 +29,7 @@ function Node({ stage }: { stage: ChainReading }) {
         <span className="relative flex h-6 items-center">
           <span
             aria-hidden="true"
-            className="relative z-10 size-3.5 border"
+            className="relative z-10 size-4 border"
             style={{
               background: fill,
               borderColor: has ? fill : "var(--paint-4)",
@@ -46,6 +47,23 @@ function Node({ stage }: { stage: ChainReading }) {
         </span>
       </Link>
     </li>
+  );
+}
+
+/** A mark running along a branch: evidence moves within a branch and never across the break. */
+function Pulse() {
+  const still = useReducedMotion();
+  if (still) return null;
+  return (
+    <span aria-hidden="true" className="pointer-events-none absolute top-[11px] right-6 left-1.5 h-px overflow-hidden">
+      <motion.span
+        className="absolute top-0 h-px w-16"
+        style={{ background: "linear-gradient(90deg, transparent, var(--amber), transparent)" }}
+        initial={{ left: "-10%" }}
+        animate={{ left: "100%" }}
+        transition={{ duration: 3.2, ease: "linear", repeat: Infinity, repeatDelay: 0.8 }}
+      />
+    </span>
   );
 }
 
@@ -78,6 +96,7 @@ export function ChainGraph({ stages, waiting }: { stages: readonly ChainReading[
                   <Kicker>{label}</Kicker>
                   <div className="relative mt-2">
                     <span aria-hidden="true" className="absolute top-[11px] right-6 left-1.5 h-px bg-paint-4" />
+                    <Pulse />
                     <ol className="relative m-0 flex list-none gap-0 p-0">
                       {members.map((stage) => (
                         <Node key={stage.id} stage={stage} />

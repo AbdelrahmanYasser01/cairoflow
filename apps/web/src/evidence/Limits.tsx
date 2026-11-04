@@ -53,7 +53,7 @@ function Cell({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="min-w-0 bg-asphalt-0 px-3 py-2.5">
       <Kicker>{label}</Kicker>
-      <span className="mono mt-1 block truncate text-label text-paint-1" title={typeof children === "string" ? children : undefined}>
+      <span className="mono mt-1 block text-label [overflow-wrap:anywhere] text-paint-1">
         {children}
       </span>
     </div>

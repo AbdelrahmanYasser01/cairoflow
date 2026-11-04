@@ -77,8 +77,8 @@ function Scale({
   const atLeast = gate.comparator === ">=";
   const failed = !gate.passed;
   return (
-    <div className="relative h-9">
-      <div className="absolute inset-x-0 top-3 h-3 border-y border-rule-1 bg-asphalt-1">
+    <div className="relative h-10">
+      <div className="absolute inset-x-0 top-3 h-3.5 border-y border-rule-1 bg-asphalt-1">
         {/* The side of the limit that fails, hatched. */}
         <span
           aria-hidden="true"
@@ -106,11 +106,11 @@ function Scale({
           style={{ left: `${limitAt}%` }}
         />
       </div>
-      <div aria-hidden="true" className="absolute inset-x-0 top-[26px]">
-        {ticks.map((tick) => (
+      <div aria-hidden="true" className="absolute inset-x-0 top-[30px]">
+        {ticks.map((tick, index) => (
           <span
             key={tick}
-            className="mono absolute -translate-x-1/2 text-micro leading-none text-paint-4"
+            className={`mono absolute text-micro leading-none text-paint-4 ${index === 0 ? "" : index === ticks.length - 1 ? "-translate-x-full" : "-translate-x-1/2"}`}
             style={{ left: `${pct(tick, domain)}%` }}
           >
             {tickWords(gate, tick)}
@@ -121,50 +121,58 @@ function Scale({
   );
 }
 
+/** A half-width for the magnified scale: six misses wide, rounded up to one significant figure. */
+function loupeHalf(miss: number, unit: Unit): number {
+  const raw = Math.max(miss * 6, unit === "share" ? 0.01 : 0.05);
+  const step = 10 ** Math.floor(Math.log10(raw));
+  return Math.ceil(raw / step) * step;
+}
+
 /** The failed check magnified around its limit, so a near miss reads as one. */
 function Loupe({ gate }: { gate: GateOutcome }) {
   if (gate.measured == null) return null;
+  const unit = unitOf(gate.metric);
   const miss = Math.abs(gate.measured - gate.threshold);
-  const half = Math.max(miss * 6, unitOf(gate.metric) === "share" ? 0.01 : 0.05);
+  const half = loupeHalf(miss, unit);
   const domain: [number, number] = [gate.threshold - half, gate.threshold + half];
   const limitAt = pct(gate.threshold, domain);
   const at = pct(gate.measured, domain);
   const left = Math.min(limitAt, at);
   const width = Math.abs(at - limitAt);
+  const zoom = Math.round((domainOf(gate)[1] - domainOf(gate)[0]) / (2 * half));
   return (
-    <div className="relative mt-1 border border-stop/40 bg-[rgba(240,82,79,0.05)] px-3 pt-2 pb-5">
-      <div className="flex items-baseline justify-between">
-        <span className="mono text-micro tracking-[0.08em] text-stop uppercase">Magnified at the limit</span>
-        <span className="mono text-micro text-paint-3">{`×${Math.round(1 / (2 * half))}`}</span>
+    <div className="relative mt-2 border border-stop/40 bg-[rgba(240,82,79,0.05)] px-4 pt-2.5 pb-6">
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="mono text-micro tracking-[0.1em] whitespace-nowrap text-stop uppercase">{`Magnified ×${zoom}`}</span>
+        <span className="mono text-micro whitespace-nowrap text-paint-3">
+          <span className="text-stop">{`+${measuredWords(miss)}`}</span> over the limit
+        </span>
       </div>
-      <div className="relative mt-3 h-4">
+      <div className="relative mt-4 h-4">
         <div className="absolute inset-x-0 top-1/2 h-px bg-rule-2" />
+        {[-1, -0.5, 0.5, 1].map((step) => (
+          <span key={step} aria-hidden="true" className="absolute top-[5px] h-[6px] w-px bg-paint-4" style={{ left: `${50 + step * 50}%` }} />
+        ))}
         <span aria-hidden="true" className="absolute top-[-6px] bottom-[-6px] w-px bg-amber" style={{ left: `${limitAt}%` }} />
         <motion.span
           aria-hidden="true"
           className="absolute top-1/2 h-[6px] -translate-y-1/2"
-          style={{ left: `${left}%`, background: "var(--stop)", boxShadow: "0 0 12px rgba(240,82,79,0.7)" }}
+          style={{ left: `${left}%`, background: "var(--stop)", boxShadow: "0 0 14px rgba(240,82,79,0.75)" }}
           initial={{ width: 0 }}
           whileInView={{ width: `${width}%` }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.6 }}
         />
-        <span aria-hidden="true" className="absolute top-[-8px] bottom-[-8px] w-[2px] bg-stop" style={{ left: `${at}%` }} />
-        <span
-          className="mono absolute top-[-22px] -translate-x-1/2 text-label whitespace-nowrap text-stop"
-          style={{ left: `${(limitAt + at) / 2}%` }}
-        >
-          {`+${measuredWords(miss)}`}
-        </span>
+        <span aria-hidden="true" className="absolute top-[-8px] bottom-[-8px] w-[2px] -translate-x-1/2 bg-stop" style={{ left: `${at}%` }} />
       </div>
-      <div aria-hidden="true" className="relative mt-1">
-        {[domain[0], gate.threshold, domain[1]].map((tick) => (
+      <div aria-hidden="true" className="relative mt-1.5">
+        {[domain[0], gate.threshold, domain[1]].map((tick, index) => (
           <span
             key={tick}
-            className={`mono absolute -translate-x-1/2 text-micro leading-none ${tick === gate.threshold ? "text-amber" : "text-paint-4"}`}
+            className={`mono absolute text-micro leading-none whitespace-nowrap ${index === 1 ? "-translate-x-1/2 text-amber" : "text-paint-4"} ${index === 2 ? "-translate-x-full" : ""}`}
             style={{ left: `${pct(tick, domain)}%` }}
           >
-            {tick === gate.threshold ? `limit ${limitWords(tick)}` : measuredWords(tick)}
+            {index === 1 ? `limit ${tickWords(gate, tick)}` : tickWords(gate, tick)}
           </span>
         ))}
       </div>
@@ -179,13 +187,13 @@ function GateRow({ gate, index }: { gate: GateOutcome; index: number }) {
   const hint = `${gate.metric} ${gate.comparator} ${limitWords(gate.threshold)}, measured ${gate.measured == null ? "nothing" : measuredWords(gate.measured)}. ${gateGloss(gate.metric) ?? ""}`;
   return (
     <li
-      className={`relative grid grid-cols-1 items-center gap-x-6 gap-y-2 border-b border-rule-1 py-3.5 pr-2 md:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_6.5rem_7.5rem_5.5rem_6.5rem] ${
+      className={`relative grid grid-cols-1 items-center gap-x-6 gap-y-2 border-b border-rule-1 py-3.5 pr-2 md:grid-cols-[minmax(0,14rem)_minmax(0,1fr)_8rem_7.5rem] ${
         failed ? "bg-[linear-gradient(90deg,rgba(240,82,79,0.10),rgba(240,82,79,0)_70%)] pl-4" : "pl-4"
       }`}
     >
       {failed ? <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-stop" /> : null}
       <div className="min-w-0" title={hint}>
-        <span className={`block font-display text-head leading-tight ${failed ? "text-paint-1" : "text-paint-1"}`}>
+        <span className="block font-display text-head leading-tight text-paint-1">
           {gateName(gate.metric)}
         </span>
         <span className="mono mt-0.5 block text-micro text-paint-3">{`n ${gate.n.toLocaleString("en-US")}${gate.split === "held_out" ? "" : " · dev"}`}</span>
@@ -194,14 +202,15 @@ function GateRow({ gate, index }: { gate: GateOutcome; index: number }) {
         <Scale gate={gate} domain={domain} delay={0.15 + index * 0.07} ticks={ticks} />
         {failed ? <Loupe gate={gate} /> : null}
       </div>
-      <div className={`mono text-right text-num-s leading-none ${failed ? "text-stop" : "text-paint-1"}`}>
-        {gate.measured == null ? <span className="text-paint-3">None</span> : gateReading(gate.metric, gate.measured)}
+      <div className="text-right">
+        <span className={`mono block text-num-s leading-none ${failed ? "text-stop" : "text-paint-1"}`}>
+          {gate.measured == null ? <span className="text-paint-3">None</span> : gateReading(gate.metric, gate.measured)}
+        </span>
+        <span className="mono mt-1.5 block text-micro text-paint-3">
+          {comparatorWord(gate.comparator)} <span className="text-paint-2">{gateLimit(gate.metric, gate.threshold)}</span>
+        </span>
       </div>
-      <div className="mono text-right text-label text-paint-2">
-        <span className="text-paint-3">{comparatorWord(gate.comparator)}</span> {gateLimit(gate.metric, gate.threshold)}
-      </div>
-      <div className="mono text-right text-label text-paint-3">{gate.n.toLocaleString("en-US")}</div>
-      <div className="flex justify-end">
+      <div className="flex justify-end whitespace-nowrap">
         <StatusMark status={failed ? "gate_fail" : "gate_pass"} />
       </div>
     </li>
@@ -258,12 +267,10 @@ export function GateBoard({ record }: { record: AnalysisRecord }) {
             ) : null}
           </div>
           <div className="min-w-0">
-            <div className="mono hidden grid-cols-[minmax(0,15rem)_minmax(0,1fr)_6.5rem_7.5rem_5.5rem_6.5rem] gap-x-6 border-b border-rule-2 pr-2 pb-2 pl-4 text-micro tracking-[0.08em] text-paint-3 uppercase md:grid">
+            <div className="mono hidden grid-cols-[minmax(0,14rem)_minmax(0,1fr)_8rem_7.5rem] gap-x-6 border-b border-rule-2 pr-2 pb-2 pl-4 text-micro tracking-[0.08em] text-paint-3 uppercase md:grid">
               <span>Check</span>
               <span>Scale · limit in amber</span>
-              <span className="text-right">Measured</span>
-              <span className="text-right">Limit</span>
-              <span className="text-right">Sample</span>
+              <span className="text-right">Measured · limit</span>
               <span className="text-right">Outcome</span>
             </div>
             <ul className="m-0 list-none p-0" aria-label="Registered gates read for this analysis">
