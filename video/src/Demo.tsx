@@ -9,6 +9,7 @@ import { C, F, FPS } from "./theme";
 export type DemoProps = {
   captures: SceneProps["captures"];
   slots: SceneProps["slots"];
+  footage?: string;
   showSlotLabels: boolean;
   captions: boolean;
 };
@@ -80,6 +81,7 @@ export const Demo: FC<DemoProps> = (props) => {
     dur,
     captures: props.captures as Partial<Record<keyof SceneProps["captures"], Clip>>,
     slots: props.slots,
+    footage: props.footage,
     showSlotLabels: props.showSlotLabels,
   });
   return (

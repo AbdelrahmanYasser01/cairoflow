@@ -60,3 +60,4 @@ cache/muse/*
 video/node_modules
 video/out
 video/public/captures
+video/public/footage

@@ -22,8 +22,10 @@ import { C, F } from "./theme";
 
 export type SceneProps = {
   dur: number;
-  captures: Partial<Record<"twin" | "command" | "evidence" | "analytics" | "vision", Clip>>;
+  captures: Partial<Record<"twin" | "command" | "evidence" | "analytics" | "vision" | "sam", Clip>>;
   slots: Partial<Record<"h1" | "h2", string>>;
+  /** The annotated NGSIM render (scripts/render_annotated_video.py), when dropped in public/footage/. */
+  footage?: string;
   showSlotLabels: boolean;
 };
 
@@ -170,14 +172,18 @@ export function Place({ dur, slots, showSlotLabels }: SceneProps) {
 }
 
 /* 4. Camera lane: detector and tracker, on the real Vision Lab. */
-export function Tracks({ dur, captures }: SceneProps) {
+export function Tracks({ dur, captures, footage }: SceneProps) {
   const frame = useCurrentFrame();
   const chain = ["Video", "Detector", "Tracker", "Trajectories", "Placement"];
   return (
     <SceneFade dur={dur}>
       <Backdrop glow={0.2} />
-      <Screen clip={captures.vision} label="Vision Lab" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.0} zoomTo={1.1} originX={40} originY={45} />
-      <SourceTag at={4}>Vision Lab · camera output</SourceTag>
+      {footage ? (
+        <Screen clip={{ src: footage, durationInFrames: dur }} label="Annotated footage" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.0} zoomTo={1.06} />
+      ) : (
+        <Screen clip={captures.vision ?? captures.sam} label="Vision Lab" x={M} y={170} w={1120} h={630} dur={dur} zoomFrom={1.0} zoomTo={1.1} originX={40} originY={45} />
+      )}
+      <SourceTag at={4}>{footage ? "NGSIM camera · annotated · CC BY-SA 4.0" : "Vision Lab · camera output"}</SourceTag>
       <div style={{ position: "absolute", left: 1300, top: 170, width: 540 }}>
         <Kicker color={C.paint3}>Camera lane</Kicker>
         <div style={{ marginTop: 26 }}>
@@ -193,13 +199,13 @@ export function Tracks({ dur, captures }: SceneProps) {
           })}
         </div>
         <div style={{ height: 1, background: C.rule2, margin: "34px 0 26px", width: 520 * prog(frame, 80, 20) }} />
-        <Rise at={110} style={{ fontFamily: F.display, fontWeight: 700, fontSize: 200, color: C.paint1, lineHeight: 0.9 }}>
-          <Counter to={TRACKS.value} at={110} len={50} />
+        <Rise at={156} style={{ fontFamily: F.display, fontWeight: 700, fontSize: 200, color: C.paint1, lineHeight: 0.9 }}>
+          <Counter to={TRACKS.value} at={156} len={50} />
         </Rise>
-        <Rise at={120} style={{ fontFamily: F.mono, fontSize: 30, color: C.paint2, marginTop: 10 }}>
+        <Rise at={166} style={{ fontFamily: F.mono, fontSize: 30, color: C.paint2, marginTop: 10 }}>
           tracks · {SITE.study}
         </Rise>
-        <Rise at={170} style={{ display: "flex", gap: 28, marginTop: 26 }}>
+        <Rise at={228} style={{ display: "flex", gap: 28, marginTop: 26 }}>
           <StatusMark status="approximated" />
           <StatusMark status="ungated" />
         </Rise>
@@ -223,10 +229,10 @@ export function Sam({ dur }: SceneProps) {
   const boxH = (boxW * vh) / vw;
   const draw = prog(frame, 6, 30);
   const rows: { at: number; big: string; small: string; tone?: string; count?: number }[] = [
-    { at: 60, big: String(SAM.replaced), small: "interpolated rows replaced", count: SAM.replaced },
-    { at: 120, big: `${SAM.interpolatedBefore} → ${SAM.interpolatedAfter}`, small: "interpolated share" },
-    { at: 170, big: `${SAM.acrossBefore} → ${SAM.acrossAfter}`, small: "across-road error, median" },
-    { at: 220, big: `${SAM.alongBefore} → ${SAM.alongAfter}`, small: "along-road error: no gain", tone: C.paint3 },
+    { at: 150, big: String(SAM.replaced), small: "interpolated rows replaced", count: SAM.replaced },
+    { at: 196, big: `${SAM.interpolatedBefore} → ${SAM.interpolatedAfter}`, small: "interpolated share" },
+    { at: 246, big: `${SAM.acrossBefore} → ${SAM.acrossAfter}`, small: "across-road error, median" },
+    { at: 292, big: `${SAM.alongBefore} → ${SAM.alongAfter}`, small: "along-road error: no gain", tone: C.paint3 },
   ];
   return (
     <SceneFade dur={dur}>
@@ -266,7 +272,7 @@ export function Sam({ dur }: SceneProps) {
             <div style={{ fontFamily: F.mono, fontSize: 24, color: C.paint3, marginTop: 8 }}>{row.small}</div>
           </Rise>
         ))}
-        <Rise at={262} style={{ display: "flex", gap: 24, alignItems: "center", marginTop: 6 }}>
+        <Rise at={330} style={{ display: "flex", gap: 24, alignItems: "center", marginTop: 6 }}>
           <StatusMark status="ungated" size={20} />
           <span style={{ fontFamily: F.mono, fontSize: 20, color: C.paint3 }}>seeded from detector tracks · {SAM.cost}</span>
         </Rise>
@@ -305,7 +311,7 @@ export function Gate({ dur }: SceneProps) {
   const trackX = 600;
   const trackW = 860;
   const lineX = trackX + trackW * 0.72;
-  const lineDraw = prog(frame, 40, 36, easeInOut);
+  const lineDraw = prog(frame, 24, 36, easeInOut);
   const fails = CHECKS.findIndex((c) => !c.pass);
   return (
     <SceneFade dur={dur}>
@@ -323,12 +329,12 @@ export function Gate({ dur }: SceneProps) {
       </div>
       {/* The committed line. */}
       <div style={{ position: "absolute", left: lineX - 1.5, top: top - 30, width: 3, height: (CHECKS.length * rowH + 20) * lineDraw, background: C.amber, boxShadow: `0 0 18px ${C.amber}88` }} />
-      <div style={{ position: "absolute", left: lineX - 120, top: top - 70, width: 240, textAlign: "center", fontFamily: F.mono, fontSize: 18, letterSpacing: "0.14em", color: C.amber, opacity: prog(frame, 60, 14) }}>
+      <div style={{ position: "absolute", left: lineX - 120, top: top - 70, width: 240, textAlign: "center", fontFamily: F.mono, fontSize: 18, letterSpacing: "0.14em", color: C.amber, opacity: prog(frame, 44, 14) }}>
         LIMIT
       </div>
       {CHECKS.map((check, i) => {
         const y = top + i * rowH;
-        const start = 110 + i * 34;
+        const start = 228 + i * 22;
         const isFail = !check.pass;
         const p = prog(frame, start, isFail ? 64 : 34, isFail ? Easing.inOut(Easing.cubic) : ease);
         const ratio = check.value / check.limit;
@@ -338,7 +344,7 @@ export function Gate({ dur }: SceneProps) {
         const color = done ? (check.pass ? C.go : C.stop) : C.paint2;
         const passLeft = check.sense === "atMost";
         return (
-          <div key={check.label} style={{ position: "absolute", left: 0, top: y, width: 1920, height: rowH, opacity: prog(frame, 80 + i * 4, 14) }}>
+          <div key={check.label} style={{ position: "absolute", left: 0, top: y, width: 1920, height: rowH, opacity: prog(frame, 50 + i * 4, 14) }}>
             <div style={{ position: "absolute", left: M, top: 18, fontFamily: F.text, fontWeight: 500, fontSize: 32, color: isFail && done ? C.stop : C.paint1 }}>{check.label}</div>
             <div
               style={{
@@ -395,11 +401,11 @@ export function Gate({ dur }: SceneProps) {
             width: 1920 - 2 * M + 48,
             height: rowH,
             border: `1px solid ${C.stop}`,
-            opacity: prog(frame, 110 + fails * 34 + 70, 10),
+            opacity: prog(frame, 228 + fails * 22 + 70, 10),
           }}
         />
       ) : null}
-      <Rise at={470} style={{ position: "absolute", left: M, top: 980 - 70, fontFamily: F.display, fontWeight: 600, fontSize: 54, color: C.paint1 }}>
+      <Rise at={440}style={{ position: "absolute", left: M, top: 980 - 70, fontFamily: F.display, fontWeight: 600, fontSize: 54, color: C.paint1 }}>
         Six pass. One misses by <span style={{ color: C.stop }}>{MISS}</span>.
       </Rise>
     </SceneFade>
@@ -412,7 +418,7 @@ export function Withheld({ dur, captures }: SceneProps) {
   const card = prog(frame, 30, 20);
   return (
     <SceneFade dur={dur}>
-      <Screen clip={captures.command} label="Command center" dur={dur} frameless zoomFrom={1.0} zoomTo={1.06} originX={30} originY={40} />
+      <Screen clip={captures.command} label="Command center" dur={dur} frameless zoomFrom={1.02} zoomTo={1.16} originX={6} originY={62} />
       <AbsoluteFill style={{ background: "linear-gradient(90deg, transparent 40%, rgba(10,12,14,0.9) 75%)" }} />
       <SourceTag at={4}>Command center</SourceTag>
       <div
@@ -490,7 +496,7 @@ export function Muse({ dur }: SceneProps) {
       </div>
       {MUSE.supporting.map((id, i) => {
         const appear = prog(frame, 176 + i * 8, 12);
-        const fly = prog(frame, 236 + i * 20, 22, easeInOut);
+        const fly = prog(frame, 290 + i * 20, 22, easeInOut);
         const target = MUSE.evidence.indexOf(id);
         const x0 = M + i * 262;
         const y0 = chipY;
@@ -511,7 +517,7 @@ export function Muse({ dur }: SceneProps) {
               fontFamily: F.mono,
               fontSize: fly > 0 ? 20 - fly * 2 : 20,
               color: C.model,
-              opacity: appear * (1 - prog(frame, 236 + i * 20 + 24, 8)),
+              opacity: appear * (1 - prog(frame, 290 + i * 20 + 24, 8)),
               whiteSpace: "nowrap",
             }}
           >
@@ -525,7 +531,7 @@ export function Muse({ dur }: SceneProps) {
         </Rise>
         {MUSE.evidence.map((id, i) => {
           const hitIndex = MUSE.supporting.indexOf(id);
-          const hit = hitIndex >= 0 ? prog(frame, 236 + hitIndex * 20 + 22, 6) : 0;
+          const hit = hitIndex >= 0 ? prog(frame, 290 + hitIndex * 20 + 22, 6) : 0;
           return (
             <div key={id} style={{ height: rowH, display: "flex", alignItems: "center", gap: 14, fontFamily: F.mono, fontSize: 19, color: hit > 0.5 ? C.paint1 : C.paint4, opacity: prog(frame, 14 + i * 1.5, 10) }}>
               <span style={{ width: 18, color: C.go, opacity: hit }}>✓</span>
@@ -534,7 +540,7 @@ export function Muse({ dur }: SceneProps) {
           );
         })}
       </div>
-      <Rise at={330} style={{ position: "absolute", left: M, top: 850, display: "flex", gap: 56, fontFamily: F.mono, fontSize: 30, color: C.paint2 }}>
+      <Rise at={392} style={{ position: "absolute", left: M, top: 850, display: "flex", gap: 56, fontFamily: F.mono, fontSize: 30, color: C.paint2 }}>
         <span>
           <span style={{ color: C.paint1 }}>{MUSE.replicates}</span> runs
         </span>
@@ -585,12 +591,12 @@ export function Sumo({ dur }: SceneProps) {
       ))}
       {SUMO.candidates.map((cand, r) => {
         const y = rowTop + r * rowStep;
-        const verdict = prog(frame, 300 + r * 22, 14);
+        const verdict = prog(frame, 310 + r * 22, 14);
         return (
           <div key={cand.id}>
             <div style={{ position: "absolute", left: M, top: y + 4, fontFamily: F.mono, fontWeight: 600, fontSize: 34, color: verdict > 0.5 ? C.stop : C.paint1 }}>{cand.id}</div>
             {Array.from({ length: SUMO.seeds * SUMO.timelines }, (_, c) => {
-              const on = prog(frame, 56 + c * 2.1 + r * 10, 8);
+              const on = prog(frame, 140 + c * 1.6 + r * 10, 8);
               return (
                 <div
                   key={c}
@@ -612,7 +618,7 @@ export function Sumo({ dur }: SceneProps) {
           </div>
         );
       })}
-      <Rise at={380} style={{ position: "absolute", left: M, top: 830, fontFamily: F.mono, fontSize: 22, color: C.paint3, lineHeight: 1.7 }}>
+      <Rise at={390} style={{ position: "absolute", left: M, top: 830, fontFamily: F.mono, fontSize: 22, color: C.paint3, lineHeight: 1.7 }}>
         <div>inputs: {SUMO.inputs}</div>
         <div>baseline: {SUMO.baseline}</div>
       </Rise>

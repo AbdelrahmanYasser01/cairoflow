@@ -47,15 +47,20 @@ if (existsSync(manifestPath)) {
 }
 const slots = {};
 for (const id of ["h1", "h2"]) if (existsSync(join(ROOT, "public", "slots", `${id}.mp4`))) slots[id] = `slots/${id}.mp4`;
+// The annotated NGSIM footage, rendered locally (see docs/VIDEO.md), replaces the Vision Lab clip.
+const footage = existsSync(join(ROOT, "public", "footage", "annotated.mp4")) ? "footage/annotated.mp4" : undefined;
 const props = {
   captures,
   slots,
+  ...(footage ? { footage } : {}),
   showSlotLabels: !flag("final"),
   captions: !flag("no-captions"),
 };
 const propsPath = join(OUT, "props.json");
 writeFileSync(propsPath, JSON.stringify(props, null, 2));
-console.log(`[render] captures: ${Object.keys(captures).join(", ") || "none"}; slots: ${Object.keys(slots).join(", ") || "none"}`);
+console.log(
+  `[render] captures: ${Object.keys(captures).join(", ") || "none"}; slots: ${Object.keys(slots).join(", ") || "none"}; footage: ${footage ? "yes" : "no"}`,
+);
 
 const browser = headlessShell();
 const common = [`--props=${propsPath}`, ...(browser ? [`--browser-executable=${browser}`] : []), "--log=warn"];

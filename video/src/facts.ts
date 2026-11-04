@@ -30,7 +30,7 @@ export type Check = {
 export const CHECKS: Check[] = [
   { label: "Recall", value: 0.761, shown: "0.761", limit: 0.7, limitShown: "≥ 0.70", sense: "atLeast", pass: true },
   { label: "Matched to NGSIM", value: 0.863, shown: "0.863", limit: 0.8, limitShown: "≥ 0.80", sense: "atLeast", pass: true },
-  { label: "Position error p90", value: 1.39, shown: "1.39 m", limit: 1.5, limitShown: "≤ 1.5 m", sense: "atMost", pass: true },
+  { label: "Across-road error p90", value: 1.39, shown: "1.39 m", limit: 1.5, limitShown: "≤ 1.5 m", sense: "atMost", pass: true },
   { label: "Lane agreement", value: 0.881, shown: "0.881", limit: 0.85, limitShown: "≥ 0.85", sense: "atLeast", pass: true },
   { label: "Turning agreement", value: 0.847, shown: "0.847", limit: 0.8, limitShown: "≥ 0.80", sense: "atLeast", pass: true },
   { label: "Median speed error", value: 0.48, shown: "0.48 m/s", limit: 1.0, limitShown: "≤ 1.0 m/s", sense: "atMost", pass: true },

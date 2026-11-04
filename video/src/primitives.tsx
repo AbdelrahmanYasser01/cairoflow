@@ -46,7 +46,6 @@ export function Rise({
       style={{
         opacity: p * (1 - q),
         transform: `translateY(${(1 - p) * y}px)`,
-        filter: p < 1 ? `blur(${(1 - p) * 6}px)` : undefined,
         ...style,
       }}
     >
@@ -196,16 +195,18 @@ export function Backdrop({ grid = true, glow = 0.12 }: { grid?: boolean; glow?: 
       {grid ? (
         <AbsoluteFill
           style={{
-            backgroundImage: `linear-gradient(${C.rule1}55 1px, transparent 1px), linear-gradient(90deg, ${C.rule1}55 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(${C.rule1}40 1px, transparent 1px), linear-gradient(90deg, ${C.rule1}40 1px, transparent 1px)`,
             backgroundSize: "80px 80px",
             backgroundPosition: `${drift}px ${drift * 0.5}px`,
-            maskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%)",
-            WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%)",
           }}
         />
       ) : null}
-      <AbsoluteFill style={{ background: `radial-gradient(ellipse 60% 50% at 50% 45%, rgba(245,166,35,${glow * 0.25}) 0%, transparent 70%)` }} />
-      <AbsoluteFill style={{ background: "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.65) 100%)" }} />
+      {/* One gradient for the glow and the vignette together: cheap to rasterise in software. */}
+      <AbsoluteFill
+        style={{
+          background: `radial-gradient(ellipse 75% 70% at 50% 45%, rgba(245,166,35,${glow * 0.06}) 0%, rgba(10,12,14,0) 45%, rgba(0,0,0,0.7) 100%)`,
+        }}
+      />
     </AbsoluteFill>
   );
 }
@@ -315,12 +316,11 @@ export function Slot({
         <SlotPlaceholder frame={frame} />
       )}
       <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(10,12,14,0.92) 0%, rgba(10,12,14,0.55) 45%, rgba(10,12,14,0.15) 100%)" }} />
-      {showLabel || !src ? (
-        <div style={{ position: "absolute", right: 64, top: 56, fontFamily: F.mono, fontSize: 18, letterSpacing: "0.16em", color: C.paint3, textTransform: "uppercase", textAlign: "right", lineHeight: 1.6 }}>
-          {src ? "" : `Higgsfield slot ${id} · `}Illustrative, not data
-          {showLabel && !src ? <div style={{ color: C.paint4 }}>{label}</div> : null}
-        </div>
-      ) : null}
+      {/* Always on screen, with or without the generated shot: it is not footage of the site. */}
+      <div style={{ position: "absolute", right: 64, top: 56, fontFamily: F.mono, fontSize: 18, letterSpacing: "0.16em", color: C.paint3, textTransform: "uppercase", textAlign: "right", lineHeight: 1.6 }}>
+        {showLabel ? `Higgsfield slot ${id} · ` : ""}Illustrative, not data
+        {showLabel && !src ? <div style={{ color: C.paint4 }}>{label}</div> : null}
+      </div>
     </AbsoluteFill>
   );
 }

@@ -411,8 +411,21 @@ const CLIPS = {
       await sleep(2500);
     },
   },
-  // (e) Vision Lab: the SAM analysis and its masks.
+  // (e1) Vision Lab on the 15-minute study: tracks over the camera view.
   vision: {
+    url: "/vision",
+    async run(page) {
+      await sleep(1500);
+      await press(page, /^tracks$/i);
+      const play = page.getByRole("button", { name: /^play/i }).first();
+      if ((await play.count()) > 0) await play.click({ timeout: 2000 }).catch(() => {});
+      await sleep(6000);
+      await press(page, /^boxes$/i);
+      await sleep(5000);
+    },
+  },
+  // (e2) Vision Lab on the SAM window: its masks.
+  sam: {
     url: "/vision",
     async run(page) {
       await sleep(1500);
