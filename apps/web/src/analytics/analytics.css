@@ -1,23 +1,4 @@
-/* Analytics page motion. Flow dashes travel from approach to exit; reduced motion holds them still. */
-@keyframes cf-flow {
-  to {
-    stroke-dashoffset: -52;
-  }
-}
-
-.cf-flow {
-  animation: cf-flow 1.7s linear infinite;
-}
-
-@keyframes cf-scan {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
+/* Analytics page: ribbons fade and thicken together when the pointer picks one out. */
 .cf-ribbon {
   transition:
     opacity 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -25,7 +6,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cf-flow {
-    animation: none;
+  .cf-ribbon {
+    transition: none;
   }
 }

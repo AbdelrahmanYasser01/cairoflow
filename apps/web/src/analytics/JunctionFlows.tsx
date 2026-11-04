@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useMemo, type ReactElement } from "react";
 import { DUR, EASE, EVIDENCE, Label, StatusMark, type EvidenceKind } from "../design";
 import { ARM_NAMES, TURNS } from "../domain/vocabulary";
@@ -9,6 +9,9 @@ import "./analytics.css";
 const ARMS: readonly Arm[] = ["N", "E", "S", "W"];
 const TO_NAME: Record<Arm, string> = { N: "north", E: "east", S: "south", W: "west" };
 const turnLabel = (turn: string) => TURNS.find((item) => item.id === turn)?.label ?? turn;
+/** Flow dots move at one speed, in view units per second; their spacing follows the count. */
+const FLOW_SPEED = 34;
+const flowPeriod = (count: number, busiest: number) => Math.round(14 + 96 * (1 - Math.sqrt(count / busiest)));
 const POOLED_NOTE = "Turning counts were checked pooled over held-out blocks, not movement by movement.";
 
 export interface Pairing {
@@ -185,6 +188,8 @@ export function JunctionFlows({
   onActive: (key: string | null) => void;
 }) {
   const drawn = useMemo(() => ribbons(movements), [movements]);
+  const still = useReducedMotion() ?? false;
+  const busiest = Math.max(1, ...movements.map((cell) => cell.count ?? 0));
   const colour = EVIDENCE[pairing.kind].colour;
   const isLit = (cell: MovementCell) =>
     active ? movementKey(cell) === active : focus ? cell.approach === focus : true;
@@ -310,22 +315,28 @@ export function JunctionFlows({
           />
         ))}
 
-        {/* Flow: dashes travel from approach to exit. */}
-        {drawn.map((ribbon) => (
-          <path
-            key={`flow${ribbon.key}`}
-            className="cf-flow cf-ribbon"
-            d={ribbon.d}
-            fill="none"
-            stroke={pairing.kind === "observed" ? "var(--asphalt-0)" : "var(--paint-1)"}
-            strokeOpacity={0.85}
-            strokeWidth={Math.min(3, Math.max(1, ribbon.width * 0.22))}
-            strokeDasharray="2 24"
-            strokeLinecap="round"
-            opacity={isLit(ribbon.cell) ? 1 : 0}
-            pointerEvents="none"
-          />
-        ))}
+        {/* Flow: dots travel from approach to exit, closer together on busier movements. */}
+        {drawn.map((ribbon) => {
+          const period = flowPeriod(ribbon.cell.count ?? 0, busiest);
+          return (
+            <motion.path
+              key={`flow${ribbon.key}`}
+              className="cf-ribbon"
+              d={ribbon.d}
+              fill="none"
+              stroke={pairing.kind === "observed" ? "var(--asphalt-0)" : "var(--paint-1)"}
+              strokeOpacity={0.85}
+              strokeWidth={Math.min(3, Math.max(1, ribbon.width * 0.22))}
+              strokeDasharray={`2 ${period - 2}`}
+              strokeLinecap="round"
+              opacity={isLit(ribbon.cell) ? 1 : 0}
+              pointerEvents="none"
+              initial={{ strokeDashoffset: 0 }}
+              animate={still ? { strokeDashoffset: 0 } : { strokeDashoffset: -period }}
+              transition={still ? { duration: 0 } : { duration: period / FLOW_SPEED, ease: "linear", repeat: Infinity }}
+            />
+          );
+        })}
 
         {/* Hit areas, wider than thin ribbons. */}
         {drawn.map((ribbon) => (
