@@ -1,43 +1,72 @@
 #!/usr/bin/env node
-// Replaces frames of the full render with a re-rendered range, so one scene can be fixed without
+// Replaces frames of the full render with re-rendered ranges, so a scene can be fixed without
 // rendering the whole cut again:
 //
-//   node video/scripts/render.mjs --frames=4140-4559 --out=video/out/patch.mp4
-//   node video/scripts/splice.mjs video/out/patch.mp4 4140
+//   node video/scripts/render.mjs --frames=4200-4559 --out=video/out/patch.mp4
+//   node video/scripts/splice.mjs video/out/patch.mp4 4200 [another.mp4 720 ...]
 //
-// The patch covers frames [start, start + its length) of out/cairoflow-demo.mp4. The result is
-// re-encoded with the same settings (H.264, yuv420p, CRF 18, 30 fps) and replaces the original.
+// Each patch covers frames [start, start + its length) of out/cairoflow-demo.mp4 (or BASE=...).
+// The result is re-encoded once with the render's settings (H.264, yuv420p, CRF 18, 30 fps) and
+// replaces the original.
 import { spawnSync } from "node:child_process";
 import { renameSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const [patch, startArg, baseArg] = process.argv.slice(2);
-if (!patch || startArg === undefined) {
-  console.error("usage: splice.mjs <patch.mp4> <start frame> [base.mp4]");
+const args = process.argv.slice(2);
+if (args.length < 2 || args.length % 2 !== 0) {
+  console.error("usage: splice.mjs <patch.mp4> <start frame> [<patch.mp4> <start frame> ...]");
   process.exit(2);
 }
-const base = baseArg ? resolve(baseArg) : join(ROOT, "out", "cairoflow-demo.mp4");
-const start = Number(startArg);
-const count = Number(
-  spawnSync("ffprobe", ["-v", "error", "-count_packets", "-select_streams", "v:0", "-show_entries", "stream=nb_read_packets", "-of", "csv=p=0", patch], {
-    encoding: "utf8",
-  }).stdout.trim(),
-);
-const end = start + count;
+const base = process.env.BASE ? resolve(process.env.BASE) : join(ROOT, "out", "cairoflow-demo.mp4");
+const frames = (file) =>
+  Number(
+    spawnSync("ffprobe", ["-v", "error", "-count_packets", "-select_streams", "v:0", "-show_entries", "stream=nb_read_packets", "-of", "csv=p=0", file], {
+      encoding: "utf8",
+    }).stdout.trim(),
+  );
+const patches = [];
+for (let i = 0; i < args.length; i += 2) {
+  const file = resolve(args[i]);
+  const start = Number(args[i + 1]);
+  patches.push({ file, start, end: start + frames(file) });
+}
+patches.sort((a, b) => a.start - b.start);
+const total = frames(base);
+
+// Segments in order: base gaps and patches.
+const inputs = ["-i", base];
+const parts = [];
+let cursor = 0;
+patches.forEach((p, k) => {
+  parts.push({ kind: "base", from: cursor, to: p.start });
+  parts.push({ kind: "patch", index: k + 1 });
+  inputs.push("-i", p.file);
+  cursor = p.end;
+});
+parts.push({ kind: "base", from: cursor, to: total });
+const baseParts = parts.filter((p) => p.kind === "base" && p.to > p.from);
+let filter = `[0:v]split=${baseParts.length}${baseParts.map((_, i) => `[s${i}]`).join("")};`;
+const labels = [];
+let b = 0;
+parts.forEach((p, i) => {
+  if (p.kind === "base") {
+    if (p.to <= p.from) return;
+    filter += `[s${b}]trim=start_frame=${p.from}:end_frame=${p.to},setpts=PTS-STARTPTS[p${i}];`;
+    b += 1;
+  } else {
+    filter += `[${p.index}:v]setpts=PTS-STARTPTS[p${i}];`;
+  }
+  labels.push(`[p${i}]`);
+});
+filter += `${labels.join("")}concat=n=${labels.length}:v=1:a=0,fps=30,format=yuv420p[v]`;
 const tmp = base.replace(/\.mp4$/, ".spliced.mp4");
-const filter =
-  `[0:v]split=2[s0][s1];` +
-  `[s0]trim=start_frame=0:end_frame=${start},setpts=PTS-STARTPTS[a];` +
-  `[1:v]setpts=PTS-STARTPTS[b];` +
-  `[s1]trim=start_frame=${end},setpts=PTS-STARTPTS[c];` +
-  `[a][b][c]concat=n=3:v=1:a=0,fps=30,format=yuv420p[v]`;
 const r = spawnSync(
   "ffmpeg",
-  ["-y", "-loglevel", "error", "-i", base, "-i", resolve(patch), "-filter_complex", filter, "-map", "[v]", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-movflags", "+faststart", tmp],
+  ["-y", "-loglevel", "error", ...inputs, "-filter_complex", filter, "-map", "[v]", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-movflags", "+faststart", tmp],
   { stdio: "inherit" },
 );
 if (r.status !== 0) process.exit(r.status ?? 1);
 renameSync(tmp, base);
-console.log(`spliced ${count} frames at ${start} into ${base}`);
+console.log(`spliced ${patches.map((p) => `${p.start}-${p.end - 1}`).join(", ")} into ${base} (${total} frames)`);
