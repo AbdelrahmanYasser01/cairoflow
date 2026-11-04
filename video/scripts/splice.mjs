@@ -28,9 +28,10 @@ const count = Number(
 const end = start + count;
 const tmp = base.replace(/\.mp4$/, ".spliced.mp4");
 const filter =
-  `[0:v]trim=start_frame=0:end_frame=${start},setpts=PTS-STARTPTS[a];` +
+  `[0:v]split=2[s0][s1];` +
+  `[s0]trim=start_frame=0:end_frame=${start},setpts=PTS-STARTPTS[a];` +
   `[1:v]setpts=PTS-STARTPTS[b];` +
-  `[0:v]trim=start_frame=${end},setpts=PTS-STARTPTS[c];` +
+  `[s1]trim=start_frame=${end},setpts=PTS-STARTPTS[c];` +
   `[a][b][c]concat=n=3:v=1:a=0,fps=30,format=yuv420p[v]`;
 const r = spawnSync(
   "ffmpeg",
