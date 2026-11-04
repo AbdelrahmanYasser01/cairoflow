@@ -385,7 +385,7 @@ export function Gate({ dur }: SceneProps) {
               {check.pass ? "PASS" : "FAIL"}
             </div>
             {isFail ? (
-              <div style={{ position: "absolute", left: lineX + 30, top: -34, fontFamily: F.mono, fontSize: 24, color: C.stop, opacity: prog(frame, start + 76, 12) }}>
+              <div style={{ position: "absolute", left: lineX + 24, top: 50, fontFamily: F.mono, fontSize: 22, color: C.stop, opacity: prog(frame, start + 76, 12) }}>
                 over by {MISS}
               </div>
             ) : null}

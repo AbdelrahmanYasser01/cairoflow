@@ -73,7 +73,7 @@ export function TypeOn({
   const done = shown >= text.length;
   const blink = Math.floor(frame / 15) % 2 === 0;
   return (
-    <span style={{ whiteSpace: "pre", ...style }}>
+    <span style={{ whiteSpace: "pre-wrap", ...style }}>
       {frame >= at ? text.slice(0, shown) : ""}
       {caret && frame >= at - 10 && (!done || blink) ? (
         <span style={{ display: "inline-block", width: "0.55em", height: "0.9em", marginLeft: "0.06em", background: C.amber, verticalAlign: "-0.08em" }} />
