@@ -268,7 +268,7 @@ export function JunctionFlows({
             className="cf-flow cf-ribbon"
             d={ribbon.d}
             fill="none"
-            stroke="var(--paint-1)"
+            stroke={pairing.kind === "observed" ? "var(--asphalt-0)" : "var(--paint-1)"}
             strokeOpacity={0.85}
             strokeWidth={Math.min(3, Math.max(1, ribbon.width * 0.22))}
             strokeDasharray="2 24"

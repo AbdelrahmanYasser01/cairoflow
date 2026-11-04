@@ -15,6 +15,7 @@ import { isCalibrated, measuredCoverage } from "../domain/footage";
 import { countsNote, recordWords, withheldBy } from "../domain/gates";
 import { enteringRule, entryBins, findMetric, plainReason } from "../domain/metrics";
 import { ARMS, ARM_NAMES } from "../domain/vocabulary";
+import { AgreementPlot } from "../analytics/AgreementPlot";
 import { JunctionFlows, type Pairing } from "../analytics/JunctionFlows";
 import { Kpis } from "../analytics/Kpis";
 import { OdMatrix } from "../analytics/OdMatrix";
@@ -138,7 +139,16 @@ function Ready({ loaded }: { loaded: LoadedAnalysis }) {
             meta={<Label>{pairing.paired ? "Camera · NGSIM" : `${pairing.main} count`}</Label>}
           >
             {placeable ? (
-              <OdMatrix movements={movements} pairing={pairing} focus={picked} active={active} onActive={setActive} />
+              <>
+                <OdMatrix movements={movements} pairing={pairing} focus={picked} active={active} onActive={setActive} />
+                <AgreementPlot
+                  record={record}
+                  movements={movements}
+                  pairing={pairing}
+                  active={active}
+                  onActive={setActive}
+                />
+              </>
             ) : (
               <p className="mt-3 text-paint-2">No movements recorded.</p>
             )}

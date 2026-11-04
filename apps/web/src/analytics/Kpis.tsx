@@ -115,7 +115,7 @@ function Kpi({ metric, record }: { metric: Metric; record: AnalysisRecord }) {
           <WithheldValue what={metric.label} withheld={withheld} />
         ) : value === null && !counted ? (
           <>
-            <span className="block font-display text-num-l leading-none font-medium tracking-[-0.01em] text-paint-4">
+            <span className="block pt-3 font-display text-num-m leading-none font-medium tracking-[-0.01em] whitespace-nowrap text-paint-4">
               Not available
             </span>
             <span className="mt-4 block">
