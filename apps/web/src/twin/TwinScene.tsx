@@ -149,7 +149,9 @@ function Lights({ shadows, room }: { shadows: boolean; room: string }) {
   return (
     <>
       <fog attach="fog" args={[room, 520, 1250]} />
-      <hemisphereLight args={["#8ea3b8", "#14181c", 0.5]} />
+      <hemisphereLight args={["#8ea3b8", "#14181c", 0.42]} />
+      {/* Warm, low and shadowless from the far side: sodium light off the street, lifting the shade. */}
+      <directionalLight position={[110, 40, -90]} intensity={0.32} color="#f2c48a" />
       <directionalLight
         position={[-90, 150, 70]}
         intensity={1.15}
@@ -211,7 +213,7 @@ function World({
     () => [
       ...armLabels(model.site),
       scaleBarLabel(model.bounds),
-      ...(mode === "geo" && anchor ? geoTickLabels(model.bounds, anchor) : []),
+      ...(mode === "geo" && anchor ? geoTickLabels(model.bounds, anchor, model.network) : []),
     ],
     [model, mode, anchor],
   );
@@ -338,7 +340,7 @@ function World({
           <SceneLabels labels={labels} insets={insets} />
           <ScaleBar bounds={model.bounds} palette={palette} />
           <Compass anchor={anchor} insets={insets} hidden={panelPx > 0} />
-          {geo && anchor ? <GeoTicks bounds={model.bounds} palette={palette} /> : null}
+          {geo && anchor ? <GeoTicks bounds={model.bounds} network={model.network} palette={palette} /> : null}
           <Rig
             rt={rt}
             mode={mode}

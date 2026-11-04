@@ -695,17 +695,20 @@ export function TwinProvenance({
         </div>
       );
     }
+    // One quiet line: each status as its glyph (name and meaning on hover), then the detail behind Limits.
     return (
       <section
         data-twin-chrome
-        className={`flex flex-wrap items-center gap-x-4 gap-y-0.5 border border-rule-2 bg-asphalt-1 px-2 py-1 ${className}`}
+        className={`flex flex-wrap items-center gap-x-2 gap-y-0.5 border border-rule-1 bg-asphalt-0/80 px-1.5 py-0.5 backdrop-blur-sm ${className}`}
       >
-        <EvidenceBadge kind={positionsKind(record)} note={positionsNote(record)} />
-        <EvidenceBadge kind="approximated" note="Road geometry approximate" />
-        <EvidenceBadge kind="assumed" note="Bodies schematic" />
-        <span className="mono text-paint-3">{stateLine}</span>
+        <span className="flex items-center" aria-label="Evidence status of this view">
+          <EvidenceBadge compact kind={positionsKind(record)} note={positionsNote(record)} />
+          <EvidenceBadge compact kind="approximated" note="Road geometry approximate" />
+          <EvidenceBadge compact kind="assumed" note="Bodies schematic" />
+        </span>
+        <span className="mono text-[12px] text-paint-3">{geo ? "No basemap" : "Approximate reconstruction"}</span>
         {alert}
-        <Button tone="text" className="min-h-5 shrink-0 text-[14px]" aria-expanded={false} onClick={() => setOpen(true)}>
+        <Button tone="text" className="min-h-5 shrink-0 text-[13px]" aria-expanded={false} onClick={() => setOpen(true)}>
           Limits
         </Button>
       </section>
@@ -824,7 +827,7 @@ export function TwinDensityLegend({
   return (
     <div
       data-twin-chrome
-      className={`mono flex items-center gap-2 border border-rule-2 bg-asphalt-1 px-2 py-1 text-paint-2 ${className}`}
+      className={`mono flex items-center gap-2 border border-rule-1 bg-asphalt-0/80 px-1.5 py-0.5 text-[12px] text-paint-2 backdrop-blur-sm ${className}`}
     >
       <span className="text-paint-1">{counts.hidden ? "Positions hidden" : `${counts.onScreen} on screen`}</span>
       {showDensity ? (
@@ -836,13 +839,15 @@ export function TwinDensityLegend({
             className="h-2 w-16"
             style={{ background: "linear-gradient(90deg, var(--rule-2), var(--paint-3) 62%, var(--paint-1))" }}
           />
-          <span>{geo ? "Taller column = more vehicle time spent here" : "Brighter = more vehicle time spent here"}</span>
+          <span title={geo ? "Taller column: more vehicle time spent here" : "Brighter: more vehicle time spent here"}>
+            {geo ? "Height = vehicle time" : "Brightness = vehicle time"}
+          </span>
         </>
       ) : null}
       {hint && trackId === null && counts.onScreen > 0 ? (
         <>
           <span className="text-paint-4">|</span>
-          <span className="text-paint-3">Click a vehicle to read its record</span>
+          <span className="text-paint-3">Click a vehicle</span>
         </>
       ) : null}
     </div>

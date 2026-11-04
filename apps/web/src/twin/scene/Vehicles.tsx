@@ -20,7 +20,7 @@ import { FORM_HEIGHT_M, FORMS } from "../model";
 import { overlayNode, toCanvasPixels } from "./overlay";
 import { LEVEL, ORDER, toWorldZ, type Palette, type Runtime } from "./runtime";
 
-/** Lamps emit a little without a light on them. Kept under the bloom threshold on purpose. */
+/** Lamps emit without a light on them. Headlamps just cross the bloom threshold: a soft glow, no more. */
 function vehicleMaterial(): MeshStandardMaterial {
   const material = new MeshStandardMaterial({
     vertexColors: true,
@@ -38,8 +38,8 @@ function vehicleMaterial(): MeshStandardMaterial {
         "#include <emissivemap_fragment>",
         `#include <emissivemap_fragment>
          totalEmissiveRadiance += vGlow > 0.0
-           ? vec3(0.92, 0.86, 0.72) * vGlow
-           : vec3(0.62, 0.30, 0.06) * (-vGlow);`,
+           ? vec3(0.92, 0.86, 0.72) * vGlow * 1.65
+           : vec3(0.62, 0.30, 0.06) * (-vGlow) * 1.4;`,
       );
   };
   return material;

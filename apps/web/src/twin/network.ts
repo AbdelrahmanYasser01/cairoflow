@@ -182,6 +182,40 @@ export function buildNetwork(site: SiteGeometry, trajectories: Trajectories | nu
   return { sections, outline, kerbs, offRoad };
 }
 
+/** On the carriageway or its sidewalks, give or take `margin`. Corners are taken square. */
+export function onStreet(network: RoadNetwork, u: number, v: number, margin = SIDEWALK_M + 1): boolean {
+  const { N, E, S, W } = network.sections;
+  return (
+    (v >= 0 && u >= N.lo - margin && u <= N.hi + margin) ||
+    (v <= 0 && u >= S.lo - margin && u <= S.hi + margin) ||
+    (u >= 0 && v >= E.lo - margin && v <= E.hi + margin) ||
+    (u <= 0 && v >= W.lo - margin && v <= W.hi + margin)
+  );
+}
+
+/** A ground line with the stretches that would cross the street taken out. */
+export function clipToVerge(network: RoadNetwork, from: Point2, to: Point2, step = 0.25): [Point2, Point2][] {
+  const length = Math.hypot(to[0] - from[0], to[1] - from[1]);
+  const count = Math.max(1, Math.ceil(length / step));
+  const at = (k: number): Point2 => [
+    from[0] + ((to[0] - from[0]) * k) / count,
+    from[1] + ((to[1] - from[1]) * k) / count,
+  ];
+  const runs: [Point2, Point2][] = [];
+  let start: Point2 | null = null;
+  for (let k = 0; k <= count; k++) {
+    const point = at(k);
+    const clear = !onStreet(network, point[0], point[1]);
+    if (clear && !start) start = point;
+    if ((!clear || k === count) && start) {
+      const end = clear ? point : at(k - 1);
+      if (Math.hypot(end[0] - start[0], end[1] - start[1]) > step) runs.push([start, end]);
+      start = null;
+    }
+  }
+  return runs;
+}
+
 /** A lane polygon with its far end pushed out to the end of the arm, for its paint. */
 export function extendLane(polygon: readonly Point2[], arm: Arm, reach = ARM_REACH_M): Point2[] {
   const { along } = AXIS[arm];
