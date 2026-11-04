@@ -56,9 +56,19 @@ function ExportReport({ ready }: { ready: boolean }) {
   );
 }
 
+type SectionId = (typeof SECTIONS)[number]["id"];
+
+const shownSections = (sam: boolean) => SECTIONS.filter(({ id }) => sam || id !== "what-sam-changed");
+
+/** A section's place in the index, as the index numbers it. */
+const sectionNumber = (sam: boolean, id: SectionId) => {
+  const at = shownSections(sam).findIndex((entry) => entry.id === id);
+  return at < 0 ? undefined : String(at + 1).padStart(2, "0");
+};
+
 /** Where everything on this long page is. */
 function SectionIndex({ sam }: { sam: boolean }) {
-  const shown = SECTIONS.filter(({ id }) => sam || id !== "what-sam-changed");
+  const shown = shownSections(sam);
   const active = useInView(shown.map(({ id }) => id));
   return (
     <nav
@@ -94,6 +104,8 @@ export function EvidenceReports() {
   const chain = useChain(loaded);
   const waiting = state.status === "loading" || (loaded !== null && decision.status === "loading");
   const linkedToCamera = record?.decision_ref?.linked_to_cv ?? false;
+  const sam = record ? samFacts(record) !== null : false;
+  const number = (id: SectionId) => (record ? sectionNumber(sam, id) : undefined);
 
   return (
     <div className="page pb-16">
@@ -103,7 +115,7 @@ export function EvidenceReports() {
         meta={<ExportReport ready={paired !== null} />}
       />
 
-      {record ? <SectionIndex sam={samFacts(record) !== null} /> : null}
+      {record ? <SectionIndex sam={sam} /> : null}
 
       {state.status === "error" ? (
         <Instrument className="mb-8">
@@ -133,30 +145,30 @@ export function EvidenceReports() {
       <div className="flex flex-col gap-16">
         {record ? (
           <Instrument>
-            <GateBoard record={record} />
+            <GateBoard record={record} index={number("gates")} />
           </Instrument>
         ) : null}
         <Instrument>
-          <DecisionVerdict decision={paired} waiting={waiting} linkedToCamera={linkedToCamera} />
+          <DecisionVerdict decision={paired} waiting={waiting} linkedToCamera={linkedToCamera} index={number("decision")} />
         </Instrument>
         {paired ? (
           <Instrument>
-            <SimulationMatrix decision={paired} />
+            <SimulationMatrix decision={paired} index={number("simulation")} />
           </Instrument>
         ) : null}
         {paired ? (
           <Instrument>
-            <Candidates decision={paired} />
+            <Candidates decision={paired} index={number("candidates")} />
           </Instrument>
         ) : null}
         {paired ? (
           <Instrument>
-            <Hypotheses decision={paired} />
+            <Hypotheses decision={paired} index={number("hypotheses")} />
           </Instrument>
         ) : null}
         {record ? (
           <Instrument>
-            <ModelReading analysisId={record.analysis_id} />
+            <ModelReading analysisId={record.analysis_id} index={number("model-replies")} />
           </Instrument>
         ) : null}
         {loaded ? (
@@ -165,16 +177,16 @@ export function EvidenceReports() {
           </Instrument>
         ) : null}
         <Instrument>
-          <ChainGraph stages={chain} waiting={waiting} />
+          <ChainGraph stages={chain} waiting={waiting} index={number("provenance")} />
         </Instrument>
         {record ? (
           <Instrument>
-            <PipelineFlow record={record} />
+            <PipelineFlow record={record} index={number("pipeline")} />
           </Instrument>
         ) : null}
         {record ? (
           <Instrument>
-            <Limitations decision={paired} record={record} />
+            <Limitations decision={paired} record={record} index={number("limitations")} />
           </Instrument>
         ) : null}
         <Instrument className="grid grid-cols-1 gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">

@@ -41,8 +41,9 @@ function Node({ stage }: { stage: ChainReading }) {
           {stage.label}
         </span>
         <span className="mono mt-1 block text-micro text-paint-3">{stage.brief}</span>
-        <span className="mt-2 flex items-center gap-2">
+        <span className="mt-2.5 flex items-center gap-2">
           <StatusMark status={stage.status} decorative />
+          <span className="mono text-micro text-paint-2">{STATUS[stage.status].label}</span>
           {stage.evidence ? <EvidenceGlyph kind={stage.evidence} size={10} /> : null}
         </span>
       </Link>
@@ -68,13 +69,18 @@ function Pulse() {
 }
 
 /** The chain as two lines with a break between them: camera tracks fed no decision. */
-export function ChainGraph({ stages, waiting }: { stages: readonly ChainReading[]; waiting: boolean }) {
+export function ChainGraph({ stages, waiting, index }: { stages: readonly ChainReading[]; waiting: boolean; index?: string }) {
   return (
     <section id="provenance" className="scroll-mt-24">
       <SectionHead
-        index="07"
+        index={index}
         title="Provenance"
-        meta={<StatusMark status={stages.some((stage) => stage.status !== "not_available") ? "ungated" : "not_available"} bare note="Each stage shows its own record. Links between stages are not verified here." />}
+        meta={
+          <>
+            <span className="mono text-micro text-paint-3">Links between stages not verified</span>
+            <StatusMark status={stages.some((stage) => stage.status !== "not_available") ? "ungated" : "not_available"} bare note="Each stage shows its own record. Links between stages are not verified here." />
+          </>
+        }
       />
       {waiting ? (
         <div className="mt-4">
@@ -87,14 +93,15 @@ export function ChainGraph({ stages, waiting }: { stages: readonly ChainReading[
             return (
               <Fragment key={id}>
                 {index > 0 ? (
-                  <div aria-hidden="true" className="hidden w-28 flex-col items-center pt-7 lg:flex">
+                  <div aria-hidden="true" className="hidden w-24 flex-col items-center pt-[42px] lg:flex">
                     <span className="h-px w-full border-t border-dashed border-stop/70" />
                     <span className="mono mt-2 text-center text-micro leading-tight text-stop">No link</span>
+                    <span className="mono mt-1 text-center text-micro leading-tight text-paint-4">camera fed no decision</span>
                   </div>
                 ) : null}
-                <section aria-label={label} className="min-w-0">
+                <section aria-label={label} className="min-w-0 border border-rule-1 bg-asphalt-1 px-4 pt-3 pb-4">
                   <Kicker>{label}</Kicker>
-                  <div className="relative mt-2">
+                  <div className="relative mt-3">
                     <span aria-hidden="true" className="absolute top-[11px] right-6 left-1.5 h-px bg-paint-4" />
                     <Pulse />
                     <ol className="relative m-0 flex list-none gap-0 p-0">
@@ -109,7 +116,6 @@ export function ChainGraph({ stages, waiting }: { stages: readonly ChainReading[
           })}
         </div>
       )}
-      <p className="mono mt-4 text-micro text-paint-3">Each stage shows its own record · links between stages not verified</p>
     </section>
   );
 }
@@ -122,14 +128,14 @@ function short(tool: string): string {
 }
 
 /** Every stage the analysis went through, as a flow with the time each one took. */
-export function PipelineFlow({ record }: { record: AnalysisRecord }) {
+export function PipelineFlow({ record, index }: { record: AnalysisRecord; index?: string }) {
   const stages = record.stages;
   const longest = Math.max(...stages.map((stage) => stage.elapsed_s ?? 0), 0);
   const copyleft = stages.filter((stage) => stage.licence && COPYLEFT.test(stage.licence));
   return (
     <section id="pipeline" className="scroll-mt-24">
       <SectionHead
-        index="08"
+        index={index}
         title="Pipeline"
         meta={
           copyleft.length > 0 ? (

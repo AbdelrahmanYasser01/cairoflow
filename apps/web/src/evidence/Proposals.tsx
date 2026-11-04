@@ -84,11 +84,11 @@ function CandidateCard({ entry, verdict }: { entry: CandidateEntry; verdict: str
   );
 }
 
-export function Candidates({ decision }: { decision: DecisionSummary }) {
+export function Candidates({ decision, index }: { decision: DecisionSummary; index?: string }) {
   const verdicts = new Map(decision.ensemble.candidates.map((entry) => [entry.candidate, entry.verdict]));
   return (
     <section id="candidates" className="scroll-mt-24">
-      <SectionHead index="04" title="Candidates" meta={<EvidenceBadge kind="model_generated" note={`Proposed by Muse, checked by code, run in ${SIMULATOR}`} />} />
+      <SectionHead index={index} title="Candidates" meta={<EvidenceBadge kind="model_generated" note={`Proposed by Muse, checked by code, run in ${SIMULATOR}`} />} />
       <ul className="m-0 mt-4 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-3">
         {decision.candidates.map((entry) => (
           <CandidateCard key={entry.intervention_id} entry={entry} verdict={verdicts.get(entry.intervention_id)} />
@@ -101,14 +101,14 @@ export function Candidates({ decision }: { decision: DecisionSummary }) {
 /** The reply's slip sits with the words it corrects. */
 const SLIPPED = /northbound left/i;
 
-export function Hypotheses({ decision }: { decision: DecisionSummary }) {
+export function Hypotheses({ decision, index }: { decision: DecisionSummary; index?: string }) {
   const slip = decision.limitations.find((line) => line.startsWith("Known slip"));
   const ledTo = (id: string) =>
     decision.candidates.filter((entry) => entry.proposal.addresses_hypothesis_ids?.includes(id)).map((entry) => entry.intervention_id);
   return (
     <section id="hypotheses" className="scroll-mt-24">
       <SectionHead
-        index="05"
+        index={index}
         title="Hypotheses"
         meta={
           <>

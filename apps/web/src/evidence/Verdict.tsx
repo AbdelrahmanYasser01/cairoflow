@@ -82,7 +82,7 @@ function Glyph({ cell, measures, delay }: { cell: MemberCell; measures: readonly
 }
 
 /** Every candidate on every signal timeline, measure by measure: the evidence behind the verdict. */
-export function SimulationMatrix({ decision }: { decision: DecisionSummary }) {
+export function SimulationMatrix({ decision, index }: { decision: DecisionSummary; index?: string }) {
   const measures = [...new Set(decision.metrics.map((row) => row.metric_name))];
   const members = (decision.ensemble.members as MemberInfo[]).filter((member) => member.required);
   const seeds = decision.simulation.seeds.length;
@@ -90,7 +90,7 @@ export function SimulationMatrix({ decision }: { decision: DecisionSummary }) {
   return (
     <section id="simulation" className="scroll-mt-24">
       <SectionHead
-        index="03"
+        index={index}
         title="Simulation"
         meta={
           <EvidenceBadge
@@ -276,10 +276,12 @@ export function DecisionVerdict({
   decision,
   waiting,
   linkedToCamera,
+  index,
 }: {
   decision: DecisionSummary | null;
   waiting: boolean;
   linkedToCamera: boolean;
+  index?: string;
 }) {
   const status = decision?.baseline.status ?? null;
   const allowed = status ? recommendationAllowed(status) : false;
@@ -300,7 +302,7 @@ export function DecisionVerdict({
   return (
     <section id="decision" className="scroll-mt-24">
       <SectionHead
-        index="02"
+        index={index}
         title="Decision"
         meta={decision ? <EvidenceBadge kind={decision.outcome.evidence_kind} note="Computed under a recorded configuration" /> : null}
       />

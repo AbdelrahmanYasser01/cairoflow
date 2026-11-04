@@ -218,6 +218,7 @@ function Replies({ record }: { record: CvDiagnosisRecord }) {
   const current = record.replicates.find((replicate) => replicate.replicate === chosen) ?? record.replicates[0];
   return (
     <>
+      <p className="mono mt-3 text-label text-paint-3">Meta Muse Spark read this camera run · for a person to test</p>
       <div className="mt-4 grid grid-cols-1 gap-px border border-rule-1 bg-rule-1 md:grid-cols-[1.2fr_1fr_1fr_1.4fr]">
         <div className="bg-asphalt-0 px-4 py-3">
           <Kicker>Model</Kicker>
@@ -271,14 +272,14 @@ function Replies({ record }: { record: CvDiagnosisRecord }) {
 }
 
 /** Muse's reading of a camera analysis. Nothing here is a measurement. */
-export function ModelReading({ analysisId }: { analysisId: string | null }) {
+export function ModelReading({ analysisId, index }: { analysisId: string | null; index?: string }) {
   const diagnosis = useDiagnosis(analysisId);
   const { catalog, select } = useAnalysis();
   const study = catalog.status === "ready" ? catalog.analyses.find((row) => row.id === DEFAULT_ANALYSIS) : undefined;
   return (
     <section id="model-replies" className="scroll-mt-24">
       <SectionHead
-        index="06"
+        index={index}
         title="Muse's reading"
         meta={
           <>
@@ -287,7 +288,6 @@ export function ModelReading({ analysisId }: { analysisId: string | null }) {
           </>
         }
       />
-      <p className="mono mt-3 text-label text-paint-3">Meta Muse Spark read this camera run · for a person to test</p>
       {analysisId === null ? (
         <EmptyState className="mt-3" title="No analysis loaded" />
       ) : diagnosis.status === "loading" ? (

@@ -18,14 +18,14 @@ const LEADING: readonly RegExp[] = [
   /Ground positions are approximated/,
 ];
 
-export function Limitations({ decision, record }: { decision: DecisionSummary | null; record: AnalysisRecord }) {
+export function Limitations({ decision, record, index }: { decision: DecisionSummary | null; record: AnalysisRecord; index?: string }) {
   const lines = [...record.disclosures, ...samMeasuredDisclosures(record), ...(decision?.limitations ?? [])];
   const leading = LEADING.flatMap((pattern) => lines.find((line) => pattern.test(line)) ?? []);
   const ordered = [...leading, ...lines.filter((line) => !leading.includes(line))];
   const first = ordered[0];
   return (
     <section id="limitations" className="scroll-mt-24">
-      <SectionHead index="09" title="Limitations" meta={<span className="mono text-label text-paint-3">{`${lines.length} on record`}</span>} />
+      <SectionHead index={index} title="Limitations" meta={<span className="mono text-label text-paint-3">{`${lines.length} on record`}</span>} />
       {first ? (
         <details className="group mt-3">
           <summary className="flex cursor-pointer list-none items-baseline gap-3 py-2">
@@ -69,7 +69,7 @@ export function RecordStrip({ decision, record }: { decision: DecisionSummary | 
   const fed = decision ? (record?.decision_ref?.linked_to_cv ? "Yes" : "No, published trajectories") : NONE;
   return (
     <section aria-label="Reproducibility" className="min-w-0">
-      <SectionHead index="10" title="Reproducibility" />
+      <SectionHead title="Reproducibility" />
       <div className="mt-4 grid grid-cols-2 gap-px border border-rule-1 bg-rule-1 md:grid-cols-5">
         <Cell label="Analysis">{record?.analysis_id ?? NONE}</Cell>
         <Cell label="Detector">{detector ? `${detector.tool}, ${detector.licence ?? "licence not recorded"}` : NONE}</Cell>

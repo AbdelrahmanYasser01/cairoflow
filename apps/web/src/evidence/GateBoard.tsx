@@ -218,7 +218,7 @@ function GateRow({ gate, index }: { gate: GateOutcome; index: number }) {
 }
 
 /** The registered checks read for this analysis, drawn as instruments. */
-export function GateBoard({ record }: { record: AnalysisRecord }) {
+export function GateBoard({ record, index }: { record: AnalysisRecord; index?: string }) {
   const gates = record.gates ?? [];
   const { passed, total } = gatesPassed(record);
   const withheld = figuresWithheld(record);
@@ -228,7 +228,7 @@ export function GateBoard({ record }: { record: AnalysisRecord }) {
   const allHeldOut = gates.every((gate) => gate.split === "held_out");
   return (
     <section id="gates" className="scroll-mt-24">
-      <SectionHead index="01" title="Gates" meta={gates[0] ? <span className="mono text-label text-paint-3">{gates[0].gate_id}</span> : null} />
+      <SectionHead index={index} title="Gates" meta={gates[0] ? <span className="mono text-label text-paint-3">{gates[0].gate_id}</span> : null} />
       {gates.length === 0 ? (
         <EmptyState
           className="mt-3"

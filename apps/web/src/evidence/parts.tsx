@@ -17,11 +17,11 @@ export function Kicker({ children, tone = "dim" }: { children: ReactNode; tone?:
 }
 
 /** A section's heading: an index number, a title and a hairline. */
-export function SectionHead({ index, title, meta }: { index: string; title: string; meta?: ReactNode }) {
+export function SectionHead({ index, title, meta }: { index?: string | undefined; title: string; meta?: ReactNode }) {
   return (
     <header className="flex items-end justify-between gap-4 border-b border-rule-2 pb-2.5">
       <h2 className="flex items-baseline gap-3 font-display text-[22px] leading-none font-medium tracking-[-0.005em] text-paint-1">
-        <span className="mono text-label font-normal text-amber">{index}</span>
+        {index ? <span className="mono text-label font-normal text-amber">{index}</span> : null}
         {title}
       </h2>
       {meta ? <div className="flex min-w-0 items-center gap-3">{meta}</div> : null}
