@@ -143,15 +143,118 @@ function fillet(corner: Point2, from: Point2, to: Point2, radius: number): Point
   return points;
 }
 
-export function kerbLines(sections: Record<Arm, ArmSection>, reach = ARM_REACH_M): Point2[][] {
+/**
+ * A side entrance off one kerb: vehicles were seen beyond the widened kerb here (a driveway or
+ * side street), so the road opens out to take them. Along range and the across coordinate it reaches.
+ */
+export interface Spur {
+  arm: Arm;
+  side: "lo" | "hi";
+  from: number;
+  to: number;
+  reach: number;
+}
+
+const SPUR_BIN_M = 3;
+const SPUR_MAX_M = 16;
+
+function spursFor(sections: Record<Arm, ArmSection>, trajectories: Trajectories | null, scale: number): Spur[] {
+  if (!trajectories) return [];
+  const { gx, gy } = trajectories;
+  const found = new Map<string, { arm: Arm; side: "lo" | "hi"; bin: number; reach: number }>();
+  for (let i = 0; i < gx.length; i++) {
+    if (gx[i] === NO_GROUND) continue;
+    const point: Point2 = [gx[i] * scale, gy[i] * scale];
+    for (const arm of ARMS) {
+      const section = sections[arm];
+      const { along, across } = AXIS[arm];
+      const a = dot(point, along);
+      // Clear of the corner kerb returns, so a notch never folds back over one.
+      if (a < section.mouth + ARM_CLEAR_M + CORNER_RADIUS_M + 6) continue;
+      const c = dot(point, across);
+      const side = c > section.hi ? "hi" : c < section.lo ? "lo" : null;
+      if (!side) continue;
+      const over = side === "hi" ? c - section.hi : section.lo - c;
+      if (over > SPUR_MAX_M) continue;
+      const bin = Math.floor(a / SPUR_BIN_M);
+      const key = `${arm}${side}${bin}`;
+      const reach = side === "hi" ? c + BODY_MARGIN_M : c - BODY_MARGIN_M;
+      const seen = found.get(key);
+      if (!seen) found.set(key, { arm, side, bin, reach });
+      else seen.reach = side === "hi" ? Math.max(seen.reach, reach) : Math.min(seen.reach, reach);
+    }
+  }
+  const spurs: Spur[] = [];
+  const entries = [...found.values()].sort((p, q) =>
+    p.arm === q.arm ? (p.side === q.side ? p.bin - q.bin : p.side < q.side ? -1 : 1) : p.arm < q.arm ? -1 : 1,
+  );
+  for (const entry of entries) {
+    const last = spurs[spurs.length - 1];
+    const from = entry.bin * SPUR_BIN_M - 1.5;
+    const to = (entry.bin + 1) * SPUR_BIN_M + 1.5;
+    if (last && last.arm === entry.arm && last.side === entry.side && from <= last.to + SPUR_BIN_M) {
+      last.to = to;
+      last.reach = entry.side === "hi" ? Math.max(last.reach, entry.reach) : Math.min(last.reach, entry.reach);
+    } else {
+      spurs.push({ arm: entry.arm, side: entry.side, from, to, reach: entry.reach });
+    }
+  }
+  return spurs;
+}
+
+/** The notch a spur makes in a kerb, in the kerb's direction of travel. */
+function spurPoints(spur: Spur, kerb: number, towardCentre: boolean): Point2[] {
+  const { along, across } = AXIS[spur.arm];
+  const at = (a: number, c: number): Point2 => [along[0] * a + across[0] * c, along[1] * a + across[1] * c];
+  const [near, far] = [spur.from, spur.to];
+  return towardCentre
+    ? [at(far, kerb), at(far, spur.reach), at(near, spur.reach), at(near, kerb)]
+    : [at(near, kerb), at(near, spur.reach), at(far, spur.reach), at(far, kerb)];
+}
+
+function notches(spurs: readonly Spur[], arm: Arm, side: "lo" | "hi", kerb: number, towardCentre: boolean): Point2[] {
+  const mine = spurs.filter((spur) => spur.arm === arm && spur.side === side);
+  mine.sort((p, q) => (towardCentre ? q.from - p.from : p.from - q.from));
+  return mine.flatMap((spur) => spurPoints(spur, kerb, towardCentre));
+}
+
+export function kerbLines(
+  sections: Record<Arm, ArmSection>,
+  spurs: readonly Spur[] = [],
+  reach = ARM_REACH_M,
+): Point2[][] {
   const { N, E, S, W } = sections;
   const r = CORNER_RADIUS_M;
   return [
     // North arm's east kerb round to the east arm's north kerb.
-    [[N.hi, reach], ...fillet([N.hi, E.hi], [0, -1], [1, 0], r), [reach, E.hi]],
-    [[reach, E.lo], ...fillet([S.hi, E.lo], [-1, 0], [0, -1], r), [S.hi, -reach]],
-    [[S.lo, -reach], ...fillet([S.lo, W.lo], [0, 1], [-1, 0], r), [-reach, W.lo]],
-    [[-reach, W.hi], ...fillet([N.lo, W.hi], [1, 0], [0, 1], r), [N.lo, reach]],
+    [
+      [N.hi, reach],
+      ...notches(spurs, "N", "hi", N.hi, true),
+      ...fillet([N.hi, E.hi], [0, -1], [1, 0], r),
+      ...notches(spurs, "E", "hi", E.hi, false),
+      [reach, E.hi],
+    ],
+    [
+      [reach, E.lo],
+      ...notches(spurs, "E", "lo", E.lo, true),
+      ...fillet([S.hi, E.lo], [-1, 0], [0, -1], r),
+      ...notches(spurs, "S", "hi", S.hi, false),
+      [S.hi, -reach],
+    ],
+    [
+      [S.lo, -reach],
+      ...notches(spurs, "S", "lo", S.lo, true),
+      ...fillet([S.lo, W.lo], [0, 1], [-1, 0], r),
+      ...notches(spurs, "W", "lo", W.lo, false),
+      [-reach, W.lo],
+    ],
+    [
+      [-reach, W.hi],
+      ...notches(spurs, "W", "hi", W.hi, true),
+      ...fillet([N.lo, W.hi], [1, 0], [0, 1], r),
+      ...notches(spurs, "N", "lo", N.lo, false),
+      [N.lo, reach],
+    ],
   ];
 }
 
@@ -169,7 +272,7 @@ export function insidePolygon(polygon: readonly Point2[], u: number, v: number):
 export function buildNetwork(site: SiteGeometry, trajectories: Trajectories | null, scale: number): RoadNetwork {
   const sections = sectionsFrom(site);
   widen(sections, trajectories, scale);
-  const kerbs = kerbLines(sections);
+  const kerbs = kerbLines(sections, spursFor(sections, trajectories, scale));
   const outline = kerbs.flat();
   let offRoad = 0;
   if (trajectories) {
