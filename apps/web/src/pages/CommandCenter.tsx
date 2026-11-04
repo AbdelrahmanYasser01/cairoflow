@@ -21,7 +21,7 @@ import { DataSlot } from "../design/DataSlot";
 import { Instrument } from "../design/Instrument";
 import { baselineLabel, decisionFor, whatWouldChange } from "../domain/chain";
 import { isCalibrated } from "../domain/footage";
-import { withheldBy } from "../domain/gates";
+import { gateName, gatesPassed, withheldBy } from "../domain/gates";
 import { findMetric, readMetric } from "../domain/metrics";
 import { ARM_ORDER, fitAcross, fitToBand, onArm, projector, sitePlan, type PlanFrame, type SitePlanArms } from "../domain/plan";
 import { ACTIVE_SITE, SITE_NAME_NOTE } from "../domain/site";
@@ -53,6 +53,39 @@ const REPLAY_CLOCK_ID = "hero-replay-clock";
 
 const HEADLINE_METRICS = ["flow.entering", "speed.mean_moving", "stopped.share"];
 
+/** One lamp per committed check, in the record's order: the run's scorecard at a glance. */
+function GateStrip() {
+  const { state } = useAnalysis();
+  if (state.status !== "ready") return null;
+  const { record } = state.loaded;
+  const gates = record.gates ?? [];
+  if (gates.length === 0) return null;
+  const { passed, total } = gatesPassed(record);
+  const blind = gates.every((gate) => gate.split === "held_out");
+  return (
+    <Link
+      to="/evidence#gates"
+      className="group inline-flex items-center gap-3 self-start"
+      aria-label={`${passed} of ${total} checks passed${blind ? ", held-out read" : ""}`}
+    >
+      <span aria-hidden="true" className="flex gap-1">
+        {gates.map((gate, index) => (
+          <motion.span
+            key={`${gate.metric}-${index}`}
+            title={`${gateName(gate.metric)}: ${gate.passed ? "passed" : "failed"}`}
+            initial={{ opacity: 0, scaleY: 0.2 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            transition={{ duration: DUR.base, ease: EASE, delay: 0.15 + index * 0.05 }}
+            className={`block h-3 w-5 ${gate.passed ? "bg-go" : "bg-stop shadow-[0_0_10px_var(--stop)]"}`}
+          />
+        ))}
+      </span>
+      <span className="mono text-paint-1 group-hover:text-amber">{`${passed} of ${total} checks passed`}</span>
+      {blind ? <span className="mono text-paint-3">held-out read</span> : null}
+    </Link>
+  );
+}
+
 function Headline() {
   const { state } = useAnalysis();
   const uploaded = state.status === "ready" && state.loaded.record.source.uploaded_by_user ? state.loaded.record : null;
@@ -69,6 +102,7 @@ function Headline() {
   }
   return (
     <>
+      <GateStrip />
       <p className="eyebrow eyebrow-dot mt-auto">NGSIM intersection 2</p>
       <h1
         title={SITE_NAME_NOTE}
