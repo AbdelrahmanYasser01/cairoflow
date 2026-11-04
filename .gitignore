@@ -55,3 +55,6 @@ cache/muse/*
 *.pth
 *.ckpt
 *.safetensors
+
+# Local agent tooling state
+.claude-flow/
