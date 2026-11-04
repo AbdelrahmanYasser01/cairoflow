@@ -15,6 +15,7 @@ Built for the Meta Global AI Developer Hackathon 2026, using SAM 3.1 and Muse Sp
 - **Meta models.** SAM 3.1 refines the tracks on a 60-second window and gives per-vehicle masks. Muse Spark reads the checked evidence and writes hypotheses for an engineer, and it proposes signal changes, which validators and SUMO then test. Code checks every model citation against the evidence.
 - **What happened.** 6 of 7 held-out checks passed. Entering counts missed by 0.0033, so the app withholds them. Each of the three interventions tested in simulation made something worse, so the app recommends none. Refusing to publish unchecked numbers is the point of the product.
 - **Try it.** Five commands, offline, no API key: see [From a fresh clone](#from-a-fresh-clone). The suite has about 1,800 tests (Python and web).
+- **Watch it.** The demo video is cut from captures of the real app. Its Remotion source is in [`video/`](video/), and [docs/VIDEO.md](docs/VIDEO.md) has the storyboard, the voice-over and the commands to re-render it.
 
 | Digital twin, on the same clock as the video | Evidence: each figure next to its pre-committed limit |
 |---|---|

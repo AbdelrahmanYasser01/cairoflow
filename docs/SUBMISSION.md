@@ -41,6 +41,10 @@ One site, one camera, 2005. No Cairo data, despite the name. Agreement with NGSI
 
 Counterfactual scenarios (demand growth, lane closures, turn bans), a second site with independent labels, and live control through TraCI.
 
+## Demo video
+
+About two and a half minutes at 1080p, cut from Playwright captures of the real app with Remotion. Captions are burned in, so it works muted. The source is in `video/`, and the storyboard, voice-over script and optional Higgsfield shot prompts are in [VIDEO.md](VIDEO.md).
+
 ## Attribution (needed on any video that shows the footage)
 
 > U.S. Department of Transportation Federal Highway Administration. (2016). Next Generation Simulation (NGSIM) Program Lankershim Boulevard Videos. [Dataset]. Provided by ITS DataHub through Data.transportation.gov. Accessed 2026-10-27 from http://doi.org/10.21949/1504477. Licensed CC BY-SA 4.0.
