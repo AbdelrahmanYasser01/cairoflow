@@ -34,6 +34,8 @@ import {
 import { indexMasks, maskFrameNote, nearestMask } from "../domain/masks";
 import { findMetric } from "../domain/metrics";
 import { MODE_LABEL } from "../domain/vocabulary";
+import { SAM_ANALYSIS } from "../domain/analyses";
+import { MetaModels } from "../instruments/MetaModels";
 import { ClipStage, TrackStage, type FrameTrack, type OverlayMode } from "../instruments/ClipStage";
 import { FrameCorners, LivePanel, LiveStage, RecentJobs, RunProgress, UNCALIBRATED_NOTE } from "../instruments/LiveAnalysis";
 import {
@@ -91,9 +93,9 @@ const TRACKS_ONLY = "tracks";
 const REFERENCE_SYNC_NOTE = "Published positions, not frame-synced: moving boxes run ahead of the cars";
 
 /** Room the left column keeps for its heading, transport and attribution, in pixels. */
-const HEAD_PX = 112;
+const HEAD_PX = 132;
 const FOOT_PX = 126;
-const NOTICE_PX = 118;
+const NOTICE_PX = 56;
 const PROGRESS_PX = 160;
 const SIDE_MIN_PX = 392;
 /** The aspect of the stage before a job has given it one: the camera's. */
@@ -113,14 +115,14 @@ type Footage =
 
 const CHOSEN: TrackNotice = {
   title: "Tracks only",
-  why: "The stored tracks, playing on the shared clock with no video under them.",
+  why: "Stored tracks on the shared clock.",
   hint: null,
   licence: null,
 };
 
 const PLAY_FAILED: TrackNotice = {
-  title: "This video wouldn't play",
-  why: "Playback carries on with the stored tracks, on the shared clock.",
+  title: "Video wouldn't play",
+  why: "Stored tracks on the shared clock.",
   hint: null,
   licence: null,
 };
@@ -128,15 +130,15 @@ const PLAY_FAILED: TrackNotice = {
 function noticeFor(probe: Resource<ArtifactProbe>): TrackNotice {
   if (probe.status === "ready" && !probe.data.available && probe.data.rebuildHint) {
     return {
-      title: "The video isn't on this server",
-      why: "Source video is not distributed with the public repository. Playback carries on with the stored tracks, on the shared clock. To rebuild the video, run:",
+      title: "Tracks only",
+      why: "Footage not distributed. Rebuild locally:",
       hint: probe.data.rebuildHint,
       licence: probe.data.licenceNote,
     };
   }
   return {
-    title: "No video for this analysis",
-    why: "This server has no footage covering it. Playback carries on with the stored tracks, on the shared clock.",
+    title: "Tracks only",
+    why: "No footage on this server.",
     hint: null,
     licence: null,
   };
@@ -234,10 +236,7 @@ function FrameNote({
           SAM 3.1 masks, model-generated
         </Link>
       ) : mode === "off" ? null : (
-        <EvidenceBadge
-          kind={reference ? "approximated" : record.provenance.kind}
-          note={inset ? drawn : reference ? `${drawn} ${from}` : `${drawn} ${from}, not ground truth`}
-        />
+        <EvidenceBadge kind={reference ? "approximated" : record.provenance.kind} note={inset ? drawn : `${drawn} ${from}`} />
       )}
       {maskNote ? <Label tone="body">{maskNote}</Label> : null}
       {outside ? <Label tone="body">Placement not checked at this moment</Label> : null}
@@ -258,14 +257,13 @@ function AnalysisPanel({
   hasAnnotated,
   loaded,
   onFootage,
-  onLive,
 }: {
   clips: readonly FootageSource[];
   footage: Footage;
   hasAnnotated: boolean;
   loaded: LoadedAnalysis;
   onFootage: (id: string) => void;
-  onLive: () => void;
+  onLive?: () => void;
 }) {
   const { record } = loaded;
   const stage = record.stages.find((item) => item.stage === "detect") ?? record.stages[0];
@@ -300,11 +298,6 @@ function AnalysisPanel({
         {...(isCalibrated(record) ? { evidence: "approximated" as const } : {})}
       />
       {isCalibrated(record) ? null : <p className="mt-2 leading-snug text-paint-2">{UNCALIBRATED_NOTE}</p>}
-      <div className="mt-4">
-        <Button block onClick={onLive}>
-          New live analysis
-        </Button>
-      </div>
     </Panel>
   );
 }
@@ -379,12 +372,41 @@ function TrackList({
 /** Said beside the player, not over it: the tracks keep the whole frame. */
 function FootageNotice({ notice }: { notice: TrackNotice }) {
   return (
-    <div className="border-b border-rule-1 py-2.5">
-      <p className="m-0 font-display text-head leading-6 font-medium text-paint-1">{notice.title}</p>
-      <p className="m-0 mt-0.5 leading-snug text-paint-2">{notice.why}</p>
-      {notice.hint ? <code className="mono mt-1.5 block break-all text-paint-1 select-all">{notice.hint}</code> : null}
-      {notice.licence ? <p className="m-0 mt-1 leading-snug text-paint-3">{`That video ${notice.licence}.`}</p> : null}
+    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-rule-1 py-2">
+      <span className="eyebrow eyebrow-dot">{notice.title}</span>
+      <span className="mono text-paint-2">{notice.why}</span>
+      {notice.hint ? (
+        <details className="basis-full">
+          <summary className="mono cursor-pointer text-paint-3 underline decoration-rule-2 underline-offset-4 hover:text-paint-1">
+            Rebuild command
+          </summary>
+          <code className="mono mt-1.5 block break-all text-paint-1 select-all">{notice.hint}</code>
+          {notice.licence ? <p className="m-0 mt-1 text-micro leading-snug text-paint-3">{`That video ${notice.licence}.`}</p> : null}
+        </details>
+      ) : null}
     </div>
+  );
+}
+
+/** The masks live on one 60 s window: one press loads it, and the stage opens on masks. */
+function SamJump() {
+  const { select } = useAnalysis();
+  return (
+    <div className="flex items-center justify-between gap-3 border-t border-rule-1 pt-2">
+      <span className="mono text-paint-3">Masks: 60 s window</span>
+      <Button tone="text" className="font-normal" onClick={() => select(SAM_ANALYSIS)}>
+        Load SAM 3.1 masks
+      </Button>
+    </div>
+  );
+}
+
+function MasksOn() {
+  return (
+    <p className="mono m-0 flex items-center gap-2 border-t border-rule-1 pt-2 text-paint-2">
+      <span aria-hidden="true" className="lamp-live inline-block size-1.5 bg-ev-model-generated" />
+      SAM 3.1 masks on this run
+    </p>
   );
 }
 
@@ -439,7 +461,7 @@ function Ready({
   const maskNote = overlayMode === "masks" && masks && reading.frame !== null ? maskFrameNote(masks, reading.frame) : null;
   const samRows = tracks.filter((track) => track.samRefined).length;
   const speedStored = findMetric(record, "speed.mean_moving")?.value != null;
-  const onFrame = samRows > 0 ? `${tracks.length} on frame, ${samRows} with a SAM box` : `${tracks.length} on frame`;
+  const onFrame = samRows > 0 ? `${tracks.length} on frame · ${samRows} SAM boxes` : `${tracks.length} on frame`;
 
   const videoWidth = Math.max(
     320,
@@ -575,6 +597,13 @@ function Ready({
                       onPick={pick}
                     />
                     <FrameCorners />
+                    <p
+                      className="eyebrow pointer-events-none absolute top-2 left-2 m-0 flex items-center gap-2 bg-asphalt-0/80 px-2 py-1"
+                      title="Every stored position of every track, drawn faintly. No video pixels."
+                    >
+                      <span aria-hidden="true" className="lamp-live inline-block size-1.5 bg-ev-approximated" />
+                      Long exposure · every stored track · no video
+                    </p>
                   </>
                 )}
               </div>
@@ -593,7 +622,7 @@ function Ready({
           {shown.kind === "tracks" ? <FootageNotice notice={shown.notice} /> : null}
           <Transport state={reading} reason="Transport idle: footage not ready" {...transport} />
           {/* The record's attribution text, shown wherever its pixels appear. */}
-          <p className="pb-3 text-micro leading-snug text-paint-3">
+          <p className="truncate pb-3 text-micro leading-snug text-paint-3" title={`${record.source.licence_name}. ${record.source.attribution}`}>
             {reading.frame !== null ? `Source second ${(record.source_start_s + reading.frame / record.fps).toFixed(1)}. ` : ""}
             {record.source.licence_name}. {record.source.attribution}
           </p>
@@ -615,9 +644,13 @@ function Ready({
             onLive={() => onView("live")}
           />
         </div>
+        <div className="relative shrink-0 border border-rule-1 bg-asphalt-1 px-4 pt-3 pb-2">
+          <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-ev-model-generated/60" />
+          <MetaModels large footer={outlined ? <MasksOn /> : <SamJump />} />
+        </div>
         <Panel
           title="Tracks on this frame"
-          meta={<Label>{speedStored ? onFrame : `${onFrame}. Speed withheld for this run`}</Label>}
+          meta={<Label>{speedStored ? onFrame : `${onFrame} · speed withheld`}</Label>}
           className="flex min-h-48 flex-1 flex-col lg:min-h-0"
         >
           <TrackList tracks={tracks} selected={selected} speed={speedStored} onPick={pick} />
@@ -740,7 +773,7 @@ export function VisionLab() {
         <EmptyState
           size="stage"
           title="No analysis loaded"
-          reason="Footage opens with an analysis, so every box drawn over it can be traced to a record."
+          reason="Every box drawn here traces to an analysis record."
           action={
             <>
               <ButtonLink to="/intersections">Choose an analysis</ButtonLink>

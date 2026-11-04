@@ -180,7 +180,7 @@ export function LiveStage({ run, aspect }: { run: LiveRun | null; aspect: number
               <EmptyState
                 size="stage"
                 title="No live run"
-                reason="Start a job and its annotated frames appear here as the worker writes them."
+                reason="Annotated frames appear here as the worker writes them."
               />
             )}
           </div>

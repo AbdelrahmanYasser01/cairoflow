@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   Absent,
@@ -15,16 +16,19 @@ import {
   SkeletonRows,
   StatusMark,
   Tooltip,
+  useElementSize,
   type LedgerColumn,
 } from "../design";
 import { Instrument, PageHead } from "../design/Instrument";
 import { analysisName } from "../domain/analyses";
-import { clipSpan, coveredS, footageFor } from "../domain/footage";
-import { ARM_ORDER, sitePlan } from "../domain/plan";
+import { clipSpan, coveredS, footageFor, isCalibrated } from "../domain/footage";
+import { ARM_ORDER, fitAcross, sitePlan } from "../domain/plan";
 import { ACTIVE_SITE, SITE_NAME_NOTE, groundFrameName, siteName, siteNameStatusLabel } from "../domain/site";
 import { MODE_LABEL } from "../domain/vocabulary";
-import { SitePlanCanvas } from "../instruments/SitePlan";
-import type { AnalysisSummary, CorridorIntersection, FootageSource } from "../lib/analysis";
+import { SitePlan, SitePlanCanvas } from "../instruments/SitePlan";
+import { LiveTraffic } from "../design/LiveTraffic";
+import type { SiteGeometry } from "../twin/site";
+import type { AnalysisSummary, CorridorIntersection, FootageSource, LoadedAnalysis } from "../lib/analysis";
 import { useAnalysis } from "../state/analysis";
 import { useCorridor, useSite, useSources } from "../state/resources";
 
@@ -81,6 +85,81 @@ function corridorNote(row: CorridorIntersection | undefined, reference: Analysis
   );
 }
 
+const STRIP_H = 150;
+const BAR_MAX = 64;
+
+/**
+ * The corridor as a strip: one node per published intersection, each carrying its vehicle count as
+ * a bar. The one with video analysis is lit. Positions along the strip are order only, not distance.
+ */
+function CorridorStrip({ rows }: { rows: readonly CorridorIntersection[] }) {
+  const [box, size] = useElementSize<HTMLDivElement>();
+  const ordered = [...rows].sort((a, b) => a.int_id - b.int_id);
+  const most = Math.max(1, ...ordered.map((row) => row.unique_vehicles));
+  const width = size.width;
+  const pad = 56;
+  const step = ordered.length > 1 ? (width - pad * 2) / (ordered.length - 1) : 0;
+  const axis = 104;
+  return (
+    <div ref={box} className="relative mb-8 border-y border-rule-1" style={{ height: STRIP_H }}>
+      <div aria-hidden="true" className="survey-grid absolute inset-0 [mask-image:none] opacity-60" />
+      {width > 0 ? (
+        <svg width={width} height={STRIP_H} className="absolute inset-0" role="img" aria-label="Corridor intersections by vehicle count">
+          <line x1={pad - 36} x2={width - pad + 36} y1={axis} y2={axis} stroke="var(--paint-4)" strokeWidth={1} />
+          <line
+            x1={pad - 36}
+            x2={width - pad + 36}
+            y1={axis + 4}
+            y2={axis + 4}
+            stroke="var(--amber)"
+            strokeOpacity={0.55}
+            strokeWidth={1}
+            strokeDasharray="10 8"
+          />
+          {ordered.map((row, index) => {
+            const x = pad + index * step;
+            const bar = (row.unique_vehicles / most) * BAR_MAX;
+            const lit = row.has_video_analysis;
+            const tone = lit ? "var(--amber)" : "var(--paint-4)";
+            return (
+              <g key={row.int_id}>
+                <motion.rect
+                  x={x - 9}
+                  width={18}
+                  initial={{ height: 0, y: axis - 6 }}
+                  animate={{ height: bar, y: axis - 6 - bar }}
+                  transition={{ duration: DUR.slow * 2, ease: EASE, delay: index * 0.06 }}
+                  fill={lit ? "var(--amber)" : "var(--asphalt-3)"}
+                  stroke={tone}
+                  strokeWidth={1}
+                />
+                <text
+                  x={x}
+                  y={axis - 14 - bar}
+                  textAnchor="middle"
+                  className="font-display"
+                  fontSize={18}
+                  fill={lit ? "var(--paint-1)" : "var(--paint-2)"}
+                >
+                  {row.unique_vehicles.toLocaleString("en-US")}
+                </text>
+                <rect x={x - 5} y={axis - 3} width={10} height={10} fill="var(--asphalt-0)" stroke={tone} strokeWidth={lit ? 2 : 1} />
+                {lit ? (
+                  <rect x={x - 11} y={axis - 9} width={22} height={22} fill="none" stroke="var(--amber)" strokeOpacity={0.35} className="lamp-live" />
+                ) : null}
+                <text x={x} y={axis + 30} textAnchor="middle" className="mono" fontSize={11} fill={lit ? "var(--amber)" : "var(--paint-3)"}>
+                  {`INT ${row.int_id} · ${row.mean_moving_speed_m_s.toFixed(1)} m/s`}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      ) : null}
+      <span className="eyebrow absolute top-2 left-0">Lankershim corridor · vehicles</span>
+    </div>
+  );
+}
+
 function Corridor() {
   const corridor = useCorridor();
   const { catalog } = useAnalysis();
@@ -92,6 +171,7 @@ function Corridor() {
   const note = corridorNote(corridor.data.intersections.find((row) => row.has_video_analysis), reference);
   return (
     <>
+      <CorridorStrip rows={corridor.data.intersections} />
       <Ledger
         caption="Intersections of the published corridor"
         columns={CORRIDOR_COLUMNS}
@@ -101,7 +181,14 @@ function Corridor() {
       <div className="mt-2">
         <EvidenceBadge kind={corridor.data.evidence_kind} note={corridor.data.evidence_note} />
       </div>
-      {note ? <p className="mt-1 max-w-[60rem] leading-snug text-paint-3">{note}</p> : null}
+      {note ? (
+        <details className="mt-1 max-w-[60rem]">
+          <summary className="mono cursor-pointer text-paint-3 underline decoration-rule-2 underline-offset-4 hover:text-paint-1">
+            Why the counts differ
+          </summary>
+          <p className="mt-1 leading-snug text-paint-2">{note}</p>
+        </details>
+      ) : null}
     </>
   );
 }
@@ -283,8 +370,8 @@ function SiteRecord() {
             reason={pending}
             quiet
           />
-          <p className="mt-2 leading-snug text-paint-3">
-            {`${SITE_NAME_NOTE}. Camera counts classify a track by where it first appeared; these lines are not where they are counted.`}
+          <p className="mono mt-2 text-paint-3" title="Camera counts classify a track by where it first appeared.">
+            {`${SITE_NAME_NOTE}. Counts use track origin, not these lines.`}
           </p>
         </>
       )}
@@ -292,10 +379,28 @@ function SiteRecord() {
   );
 }
 
+/** The plan with the loaded run replayed on it: the same drawing the Command Center opens on. */
+function ReplayPlan({ site, loaded }: { site: SiteGeometry; loaded: LoadedAnalysis }) {
+  const [box, size] = useElementSize<HTMLDivElement>();
+  const frame = useMemo(() => fitAcross(size.width, size.height, PLAN_M, 0.5, 0.5), [size.width, size.height]);
+  return (
+    <div ref={box} className="relative h-[340px] overflow-hidden">
+      {size.width > 0 ? (
+        <>
+          <SitePlan site={site} frame={frame} continuation className="absolute inset-0" />
+          <LiveTraffic loaded={loaded} frame={frame} />
+        </>
+      ) : null}
+    </div>
+  );
+}
+
 export function Intersections() {
   const site = useSite();
   const corridor = useCorridor();
+  const { state } = useAnalysis();
   const siteData = site.status === "ready" ? site.data : null;
+  const replay = state.status === "ready" && isCalibrated(state.loaded.record) ? state.loaded : null;
   const analysed =
     corridor.status === "ready" ? corridor.data.intersections.filter((row) => row.has_video_analysis).length : null;
 
@@ -317,16 +422,18 @@ export function Intersections() {
 
       <div className="grid-12 mt-10 gap-y-10">
         <Instrument className="col-span-12 flex flex-col gap-10 lg:col-span-7">
-          <Panel title="Analyses" meta={<Label>The whole app reads the one loaded here</Label>}>
+          <Panel title="Analyses" meta={<Label>Loads app-wide</Label>}>
             <Analyses />
           </Panel>
           <Panel title="Footage">
             <Footage />
           </Panel>
-          <EmptyState
-            size="line"
-            title="No other site is registered. An uploaded video runs uncalibrated, in image pixels, and its record says its licence was not verified."
-          />
+          <p
+            className="mono text-paint-3"
+            title="An uploaded video runs uncalibrated, in image pixels, and its record says its licence was not verified."
+          >
+            One site registered. Uploads run uncalibrated.
+          </p>
         </Instrument>
 
         <Instrument className="col-span-12 flex min-h-0 flex-col gap-10 lg:col-span-5">
@@ -340,13 +447,18 @@ export function Intersections() {
               transition={{ duration: DUR.slow, ease: EASE }}
               className="mt-3"
             >
-              <SitePlanCanvas site={siteData} metres={PLAN_M} className="h-[340px]" />
+              {siteData && replay ? (
+                <ReplayPlan site={siteData} loaded={replay} />
+              ) : (
+                <SitePlanCanvas site={siteData} metres={PLAN_M} className="h-[340px]" />
+              )}
             </motion.div>
             <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
               {siteData ? (
                 <>
-                  <EvidenceBadge kind="approximated" note="Lanes derived from trajectories" />
-                  <EvidenceBadge kind="assumed" note="Road past the tracked lanes" />
+                  {replay ? <EvidenceBadge kind="approximated" note="Replay, camera tracks" /> : null}
+                  <EvidenceBadge kind="approximated" note="Lanes from tracks" />
+                  <EvidenceBadge kind="assumed" note="Road beyond" />
                 </>
               ) : (
                 <EvidenceBadge kind="assumed" note="Schematic, not surveyed" />

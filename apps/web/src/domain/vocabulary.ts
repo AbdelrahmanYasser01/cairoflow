@@ -5,13 +5,13 @@
 
 /** `STAGES` in cairoflow_contracts/provenance.py, in chain order. */
 export const CHAIN_STAGES = [
-  { id: "source_record", label: "Source", holds: "The dataset file or clip, by hash" },
-  { id: "observation", label: "Observation", holds: "Model responses, tracks and dataset samples" },
-  { id: "world_entity", label: "World entity", holds: "Entities of the traffic world model" },
-  { id: "problem_statement", label: "Problem", holds: "The problem as stated, with its evidence" },
-  { id: "intervention", label: "Intervention", holds: "A proposal, checked by code" },
-  { id: "experiment", label: "Experiment", holds: "Simulator runs against a baseline" },
-  { id: "decision_report", label: "Decision", holds: "The report and what it recommends" },
+  { id: "source_record", label: "Source", holds: "Source file, by hash" },
+  { id: "observation", label: "Observation", holds: "Tracks, samples, model replies" },
+  { id: "world_entity", label: "World entity", holds: "World-model entities" },
+  { id: "problem_statement", label: "Problem", holds: "Stated problem, with evidence" },
+  { id: "intervention", label: "Intervention", holds: "Proposal, checked by code" },
+  { id: "experiment", label: "Experiment", holds: "Simulator runs vs baseline" },
+  { id: "decision_report", label: "Decision", holds: "Report and recommendation" },
 ] as const;
 
 export type ChainStageId = (typeof CHAIN_STAGES)[number]["id"];
@@ -46,7 +46,7 @@ export const VEHICLE_CLASSES = [
   { id: "truck", label: "Truck" },
   { id: "bus", label: "Bus" },
   { id: "motorcycle", label: "Motorcycle" },
-  { id: "vehicle", label: "Vehicle, class unresolved" },
+  { id: "vehicle", label: "Unclassified" },
   { id: "unknown", label: "Unknown" },
 ] as const;
 

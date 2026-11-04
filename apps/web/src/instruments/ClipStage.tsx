@@ -80,6 +80,7 @@ function paintMasks(context: CanvasRenderingContext2D, paint: Paint): void {
       else context.lineTo(x * scaleX, y * scaleY);
     });
     context.closePath();
+    context.shadowColor = tone; // only drawn where the stage has turned a glow on
     context.globalAlpha = MASK_FILL_ALPHA;
     context.fillStyle = tone;
     context.fill();
@@ -103,6 +104,7 @@ function paintOverlay(context: CanvasRenderingContext2D, paint: Paint): void {
     const outside = ((t.pointFlags[row] as number) & POINT_OUTSIDE_VALID_REGION) !== 0;
     context.globalAlpha = outside ? 0.45 : 1;
     context.strokeStyle = picked ? colour.pick : colour.box;
+    context.shadowColor = context.strokeStyle;
     context.lineWidth = picked ? 2 : 1.25;
     context.setLineDash(outside ? [3, 3] : []);
 
@@ -303,7 +305,7 @@ export function ClipStage({
   }
 
   return (
-    <div ref={box} className="relative size-full bg-asphalt-1">
+    <div ref={box} className="track-plate relative size-full">
       {clip.video_url ? (
         <video
           ref={videoRef}
@@ -320,6 +322,46 @@ export function ClipStage({
       <canvas ref={canvas} onClick={pick} aria-hidden="true" className="absolute inset-0 size-full cursor-crosshair" />
     </div>
   );
+}
+
+/**
+ * Every stored position of every track, drawn once at low alpha: a long exposure of the run. With
+ * no video, the lanes the vehicles used appear out of their own tracks. Nothing here is a picture.
+ */
+function longExposure(
+  loaded: LoadedAnalysis,
+  size: { width: number; height: number },
+  tone: string,
+): HTMLCanvasElement | null {
+  if (typeof document === "undefined" || size.width === 0 || size.height === 0) return null;
+  const surface = document.createElement("canvas");
+  const scale = window.devicePixelRatio || 1;
+  surface.width = Math.round(size.width * scale);
+  surface.height = Math.round(size.height * scale);
+  const context = surface.getContext("2d");
+  if (!context) return null;
+  context.setTransform(scale, 0, 0, scale, 0, 0);
+  const { trajectories: t, tracks, record } = loaded;
+  const unit = t.header.pxScale;
+  const sx = (size.width / record.width_px) * unit;
+  const sy = (size.height / record.height_px) * unit;
+  context.strokeStyle = tone;
+  context.lineWidth = 1;
+  // A short run has few tracks, so each is drawn brighter: the lanes should show either way.
+  context.globalAlpha = Math.min(0.2, 0.06 + 8 / Math.max(1, tracks.length));
+  context.globalCompositeOperation = "lighter";
+  for (const entry of tracks) {
+    const end = entry.first_row + entry.n;
+    context.beginPath();
+    for (let row = entry.first_row; row < end; row += 2) {
+      const x = (t.x[row] as number) * sx;
+      const y = (t.y[row] as number) * sy;
+      if (row === entry.first_row) context.moveTo(x, y);
+      else context.lineTo(x, y);
+    }
+    context.stroke();
+  }
+  return surface;
 }
 
 /**
@@ -356,6 +398,7 @@ export function TrackStage({
     if (!surface || !context || size.width === 0) return;
 
     const colour = prepareCanvas(surface, context, size);
+    const exposure = longExposure(loaded, size, colour.box);
     const lastFrame = Math.max(0, record.frame_count - 1);
     let lastReading = 0;
     let lastList = 0;
@@ -364,6 +407,9 @@ export function TrackStage({
     const paint = (value: number) => {
       const frame = Math.min(Math.round(value), lastFrame);
       context.clearRect(0, 0, size.width, size.height);
+      if (exposure) context.drawImage(exposure, 0, 0, size.width, size.height);
+      context.shadowColor = colour.box;
+      context.shadowBlur = 6;
       paintOverlay(context, {
         loaded,
         frame,
@@ -374,6 +420,7 @@ export function TrackStage({
         scaleY: size.height / record.height_px,
         colour,
       });
+      context.shadowBlur = 0;
       // Only playback is throttled. Stopped, each emit is a real change, such as a step's seek
       // straight after its pause, and the reading left on screen has to be the last one.
       const now = performance.now();
@@ -411,7 +458,7 @@ export function TrackStage({
   }
 
   return (
-    <div ref={box} className="relative size-full bg-asphalt-1">
+    <div ref={box} className="track-plate relative size-full">
       <canvas ref={canvas} onClick={pick} aria-hidden="true" className="absolute inset-0 size-full cursor-crosshair" />
     </div>
   );
