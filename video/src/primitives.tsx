@@ -229,6 +229,7 @@ export function Screen({
   originY = 50,
   dur,
   startAt = 0,
+  playbackRate = 1,
   frameless = false,
 }: {
   clip?: Clip;
@@ -243,6 +244,7 @@ export function Screen({
   originY?: number;
   dur: number;
   startAt?: number;
+  playbackRate?: number;
   frameless?: boolean;
 }) {
   const frame = useCurrentFrame();
@@ -266,6 +268,7 @@ export function Screen({
           <OffthreadVideo
             src={staticFile(clip.src)}
             startFrom={startAt}
+            playbackRate={playbackRate}
             muted
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />

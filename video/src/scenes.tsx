@@ -458,9 +458,10 @@ export function Evidence({ dur, captures }: SceneProps) {
   const statuses = ["checked", "approximated", "assumed", "ungated", "simulated", "model"] as const;
   return (
     <SceneFade dur={dur}>
-      {/* Starts 4.5 s into the clip, once the page has scrolled the whole gate table above the key's band. */}
-      <Screen clip={captures.evidence} label="Evidence" dur={dur} frameless zoomFrom={1.0} zoomTo={1.04} startAt={135} />
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 64%, rgba(10,12,14,0.96) 78%, rgba(10,12,14,0.96) 100%)" }} />
+      {/* Holds on the gate table: starts 4.5 s into the clip, once the page has scrolled the whole table
+          above the key's band, and plays at 0.4x so the page's next long scroll never comes into view. */}
+      <Screen clip={captures.evidence} label="Evidence" dur={dur} frameless zoomFrom={1.0} zoomTo={1.04} startAt={135} playbackRate={0.4} />
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 64%, rgba(10,12,14,0.97) 77%, rgb(10,12,14) 82%)" }} />
       <div style={{ position: "absolute", left: M, bottom: 200, display: "flex", gap: 44 }}>
         {statuses.map((s, i) => (
           <Rise key={s} at={20 + i * 6}>

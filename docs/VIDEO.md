@@ -17,9 +17,9 @@ the voice-over is burned in as captions wherever the on-screen type doesn't alre
 - The two Higgsfield shots are illustrative. They stay labelled "Illustrative, not data" on screen. The
   submission cut is rendered with `--final`, so the slot ids are hidden and only that label shows.
 - How this cut was made: one full render from clips of the merged build, then the scenes that changed were
-  re-rendered and spliced in (see [Fix one scene](#fix-one-scene-without-a-full-render)). The twin is
-  frame-stepped; the command center, evidence, analytics and Vision Lab clips were re-captured with
-  `--screencast` after the last UI pass.
+  re-rendered and spliced in (see [Fix one scene](#fix-one-scene-without-a-full-render)). All five clips
+  were re-captured after the last UI pass: the twin frame-stepped, the command center, evidence, analytics
+  and Vision Lab with `--screencast`.
 
 ## Storyboard
 
@@ -36,7 +36,7 @@ Frames are at 30 fps; each scene runs 12 frames into the next for the crossfade.
 | 1:00 | 1800-2021 | Analytics | Analytics page capture (counted tracks, Withheld entering flow, the turning-movement diagram and matrix), slow push toward the diagram. | (the app: Traffic Analytics · Turning movements) | "Turning movements, arm by arm, straight from the tracks." |
 | 1:07 | 2010-2621 | The gate | Seven instruments. One amber LIMIT line is drawn first, top to bottom, through every row (each limit normalised to the same x). Bars then fill one by one; "at least" checks must cross the line, "at most" checks must stop short. Six lamps go green. The last bar creeps over the line and goes red. | Agreement gate · held-out · Seven checks. Limits first. · ● vs published NGSIM trajectories · 7 held-out blocks · one read · Recall 0.761 ≥ 0.70 · Matched to NGSIM 0.863 ≥ 0.80 · Across-road error p90 1.39 m ≤ 1.5 m · Lane agreement 0.881 ≥ 0.85 · Turning agreement 0.847 ≥ 0.80 · Median speed error 0.48 m/s ≤ 1.0 m/s · Entering count error 0.2033 ≤ 0.20 FAIL · over by 0.0033 · Six pass. One misses by 0.0033. | "Before a single held-out read, we committed limits for seven checks against the published NGSIM trajectories. Recall. Matching. Position. Lanes. Turns. Speed. Six pass. Entering counts miss, by zero point zero zero three three." |
 | 1:27 | 2610-2891 | Withheld | Command center capture, pushing in on the Withheld figure; a card slides in at right with a red rule. | Entering flow · ⊘ Withheld · gate failed: 0.2033 > 0.20 · No value. The reason, in its place. | "So the product withholds entering flow and shows the reason in its place. The limit stays." |
-| 1:36 | 2880-3071 | Evidence | Evidence page capture: the gate table (the withheld entering figures, the magnified miss), gliding down toward the decision. The evidence key rises along the bottom on a dark band. | ● Checked ◐ Approximated ◌ Assumed ◌ Ungated ▦ Simulated ◇ Model output | "Every headline figure carries its evidence, and its gate." |
+| 1:36 | 2880-3071 | Evidence | Evidence page capture held on the gate table (all seven rows, the withheld entering figures, the magnified miss): it starts 4.5 s into the clip and plays at 0.4x. The evidence key rises along the bottom on a dark band. | ● Checked ◐ Approximated ◌ Assumed ◌ Ungated ▦ Simulated ◇ Model output | "Every headline figure carries its evidence, and its gate." |
 | 1:42 | 3060-3521 | Muse Spark | The first hypothesis from `data/sample/diagnoses` types out under a pink model-output rule. Its four cited ids become chips that fly across and snap onto the 24 evidence ids of the record; each lands with a green tick. | Muse Spark · Meta · ◇ Model output · muse-spark-1.3 · h-ns-through · confidence low · CITES · EVIDENCE IDS · 24 · FROM THE RECORD · 3 runs · 0 citation problems · 0 unsupported numbers | "Meta's Muse Spark reads the record and writes hypotheses. Model output, labelled as such. Every citation is checked by code. Three runs, zero problems." |
 | 1:57 | 3510-4001 | SUMO | A 3 x 80 matrix: candidates I1, I2, I3 against 20 seeds in each of 4 timelines. Cells light blue as runs land, then each row turns red and lists what it worsened (from `decision_summary.json`). | SUMO · decision lane · Muse proposes. SUMO tests. · ◇ 3 proposals → ▦ 20 seeds × 4 timelines each · I1 worsens 4 · I2 worsens 7 · I3 worsens 5 · inputs: published NGSIM trajectories, not camera output · baseline: 2 timelines partly validated, 2 not assessed | "Then Muse proposes signal changes. SUMO tests three candidates, twenty seeds, four timelines. Every candidate makes something worse." |
 | 2:13 | 3990-4211 | Decision | Type only. | Decision · Nothing recommended. · ▦ every candidate worsened a metric / no validated baseline | "So CairoFlow recommends nothing." |
@@ -218,7 +218,7 @@ records:
 |---|---|---|---|---|
 | `twin` | `/twin` | 12.6 s | 4x, Oblique, Play; then Along Lankershim at 4 s, Plan at 8.5 s | Digital twin |
 | `command` | `/` | 10 s | The page fits one screen; its camera-tracks replay keeps running | Withheld |
-| `evidence` | `/evidence` | 11 s | Glides the gate table up, then slowly toward the decision; the scene uses 4.5 s to 10.9 s | Evidence |
+| `evidence` | `/evidence` | 11 s | Glides the gate table up, then on toward the decision; the scene holds on the table (from 4.5 s, at 0.4x) | Evidence |
 | `analytics` | `/analytics` | 13 s | Glides to "Turning movements"; the scene uses 5 s to 12.4 s | Analytics |
 | `vision` | `/vision` | 12 s | 15-minute study: Tracks, Play | Camera lane |
 | `sam` | `/vision` | screencast only | The SAM 3.1 window: Masks, Play | Camera lane, if `vision` is missing |
