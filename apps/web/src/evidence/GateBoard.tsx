@@ -233,11 +233,15 @@ export function GateBoard({ record, index }: { record: AnalysisRecord; index?: s
     <section id="gates" className="scroll-mt-24">
       <SectionHead index={index} title="Gates" meta={gates[0] ? <span className="mono text-label text-paint-3">{gates[0].gate_id}</span> : null} />
       {gates.length === 0 ? (
-        <EmptyState
-          className="mt-3"
-          title="No gate read for this analysis"
-          reason="Its figures stay ungated until a registered gate compares them with a reference."
-        />
+        record.data_origin === "reference_dataset" ? (
+          <EmptyState className="mt-3" title="Reference data" reason="Gates score camera runs against it." />
+        ) : (
+          <EmptyState
+            className="mt-3"
+            title="No gate read for this analysis"
+            reason="Its figures stay ungated until a registered gate compares them with a reference."
+          />
+        )
       ) : (
         <div className="mt-4 grid grid-cols-1 gap-x-10 gap-y-6 xl:grid-cols-[17rem_minmax(0,1fr)]">
           <div className="flex flex-col gap-5">

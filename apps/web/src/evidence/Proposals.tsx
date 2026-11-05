@@ -136,7 +136,7 @@ export function Hypotheses({ decision, index }: { decision: DecisionSummary; ind
               <ModelQuote text={hypothesis.statement} lines={4} />
               {slip && SLIPPED.test(hypothesis.statement) ? (
                 <p className="m-0 text-label leading-snug text-paint-3">
-                  <span className="mono mr-1.5 text-micro tracking-[0.08em] text-amber uppercase">Slip</span>
+                  <span className="mono mr-1.5 text-micro tracking-[0.08em] text-amber uppercase">Model slip</span>
                   {slip.replace(/^Known slip in the model text:\s*/, "")}
                 </p>
               ) : null}
