@@ -161,6 +161,29 @@ not demand, and the pull-quote notes that "validated" is the model's word.
 
 The final cut runs 2:58, with the voice at 1.08x.
 
+## How a fresh panel scored the final cut
+
+Three independent judges (a Meta platform lead, a traffic engineer, a demo-craft judge), each
+given only dense frames, the transcript, the README and the rubric, scored the final cut 6.10,
+5.60 and 6.53 weighted (mean 6.08, against 5.85 for the first cut): Impact 5.0, Meta tooling 5.2,
+Demo 7.0, Technical depth 7.7. All three put the Demo in the top tenth of the field and named the
+same standout, the cold open on the film's own failure paid off by the validator code.
+
+What holds the score down is the project, not the cut, and the film can't change it honestly:
+
+- No real footage. The NGSIM source host is blocked on the build machine and the repository
+  keeps pixels out; the source is CC BY-SA 4.0, so a version with annotated footage
+  (`scripts/fetch_ngsim_data.py --download camera2`, then `scripts/render_annotated_video.py`)
+  would show SAM's masks on real vehicles. This is the biggest single gain for a live final.
+- How the gate would run at a city junction with no published reference is never said.
+- SAM's agreement is circular by design (seeded with the tracker's boxes), and the README's
+  stronger SAM results (across-road error 0.37 to 0.29 m on SAM rows; mask length correcting a
+  bus the detector called a truck) were left out for time.
+- The decision lane runs on the published trajectories, not the camera output.
+
+Cut-level notes left for a later pass: a shorter opening beat before the hook, less time on the
+static 20.33 %, more time in the 3D twin, and the caption strip over the SAM panel at 1:08.
+
 ## Calls made without the user (the brief asked for autonomy)
 
 - Hybrid approach and no AI-generated b-roll, for the reasons in Approaches.
