@@ -446,7 +446,7 @@ export function TwinFilters({
   );
   const untouched =
     active.timeS === null && Object.values(active.hidden).every((hidden) => hidden.size === 0);
-  const keptLabel = model ? `${kept} of ${model.tracks.length} tracks` : "";
+  const keptLabel = model ? `${kept} of ${model.tracks.length} stored tracks` : "";
 
   if (!open) {
     return (

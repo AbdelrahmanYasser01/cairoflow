@@ -38,7 +38,7 @@ export function OdMatrix({
     <div className="mt-3" onMouseLeave={() => onActive(null)}>
       <table className="w-full table-fixed border-collapse">
         <caption className="sr-only">
-          {`Turning movements, approach by exit. Each cell: ${pairing.main.toLowerCase()} count${pairing.paired ? ", then the published NGSIM count" : ""}.`}
+          {`Turning movements, approach by exit. Each cell: ${pairing.main === "NGSIM" ? pairing.main : pairing.main.toLowerCase()} count${pairing.paired ? ", then the published NGSIM count" : ""}.`}
         </caption>
         <thead>
           <tr>
