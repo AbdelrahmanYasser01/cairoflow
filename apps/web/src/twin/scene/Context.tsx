@@ -10,7 +10,7 @@ import type { TwinModel } from "../model";
 import { fadeFrame, toWorldZ, type Palette } from "./runtime";
 
 /** Blocks stay well inside the floor's fade, so none stands out in the dark past the ground. */
-const FLOOR_REACH = 0.8;
+const FLOOR_REACH = 0.85;
 const FLOOR_M = 3;
 const BAY_M = 4;
 const SILL_M = 0.9;

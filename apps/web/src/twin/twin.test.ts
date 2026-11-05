@@ -547,6 +547,12 @@ describe("road network", () => {
       }
     }
     expect(onRoad).toBe(0);
+    // Low enough near the road that a camera ray at 8 degrees or more clears every block.
+    const near = blocks.filter((b) => b.uMin > 0 && b.vMin > 0);
+    for (const block of near) {
+      const fromRoad = Math.min(block.uMin - network.sections.N.hi, block.vMin - network.sections.E.hi) + 1.25;
+      expect(block.height).toBeLessThanOrEqual(1 + fromRoad * Math.tan((8 * Math.PI) / 180) + 1e-9);
+    }
     // Nothing stands on the side entrance vehicles used.
     expect(blocks.some((b) => b.uMin <= 18 && b.uMax >= 18 && b.vMin <= 82 && b.vMax >= 82)).toBe(false);
   });

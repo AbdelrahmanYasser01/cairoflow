@@ -32,16 +32,26 @@ const DEPTHS = [20, 30, 16, 26];
 const HEIGHTS = [4.2, 6.4, 3.4, 5.6, 7.2, 4.8];
 export const CONTEXT_MAX_HEIGHT_M = Math.max(...HEIGHTS);
 
-type Quadrant = { su: 1 | -1; sv: 1 | -1; u0: number; v0: number };
+/**
+ * Heights stay under a plane rising at this angle from the kerb side of the nearest lane, so a
+ * camera ray that reaches a vehicle from higher than this passes over every block. The lowest
+ * camera, Along Lankershim, looks down at 11 degrees.
+ */
+const CLEAR_RAY_DEG = 8;
+const VEHICLE_TOP_M = 1;
+const LANE_INSET_M = 1.25;
+
+type Quadrant = { su: 1 | -1; sv: 1 | -1; u0: number; v0: number; edgeU: number; edgeV: number };
 
 function quadrants(network: RoadNetwork): Quadrant[] {
   const { N, E, S, W } = network.sections;
-  const gap = SIDEWALK_M + CONTEXT_SETBACK_M;
+  // One metre more than the sampled setback, so the nearest lots clear the sidewalk test.
+  const gap = SIDEWALK_M + CONTEXT_SETBACK_M + 1;
   return [
-    { su: 1, sv: 1, u0: N.hi + gap, v0: E.hi + gap },
-    { su: 1, sv: -1, u0: S.hi + gap, v0: E.lo - gap },
-    { su: -1, sv: -1, u0: S.lo - gap, v0: W.lo - gap },
-    { su: -1, sv: 1, u0: N.lo - gap, v0: W.hi + gap },
+    { su: 1, sv: 1, u0: N.hi + gap, v0: E.hi + gap, edgeU: N.hi, edgeV: E.hi },
+    { su: 1, sv: -1, u0: S.hi + gap, v0: E.lo - gap, edgeU: S.hi, edgeV: E.lo },
+    { su: -1, sv: -1, u0: S.lo - gap, v0: W.lo - gap, edgeU: S.lo, edgeV: W.lo },
+    { su: -1, sv: 1, u0: N.lo - gap, v0: W.hi + gap, edgeU: N.lo, edgeV: W.hi },
   ];
 }
 
@@ -83,7 +93,8 @@ export function contextBlocks(
 ): ContextBlock[] {
   const blocks: ContextBlock[] = [];
   let seed = 0;
-  for (const { su, sv, u0, v0 } of quadrants(network)) {
+  const slope = Math.tan((CLEAR_RAY_DEG * Math.PI) / 180);
+  for (const { su, sv, u0, v0, edgeU, edgeV } of quadrants(network)) {
     let along = 0;
     for (let row = 0; row < 8; row++) {
       const depth = DEPTHS[(row + seed) % DEPTHS.length] as number;
@@ -110,7 +121,12 @@ export function contextBlocks(
         if (!corners.every(([u, v]) => limit(u, v))) continue;
         if (avoid.some((mark) => overlaps(mark, rect))) continue;
         if (!blockClear(network, coverage, rect)) continue;
-        blocks.push({ ...rect, height: HEIGHTS[(row * 3 + col + seed) % HEIGHTS.length] as number });
+        const nearU = su > 0 ? rect.uMin : rect.uMax;
+        const nearV = sv > 0 ? rect.vMin : rect.vMax;
+        const fromRoad = Math.min(Math.abs(nearU - edgeU), Math.abs(nearV - edgeV)) + LANE_INSET_M;
+        const ceiling = VEHICLE_TOP_M + fromRoad * slope;
+        const height = Math.min(HEIGHTS[(row * 3 + col + seed) % HEIGHTS.length] as number, ceiling);
+        blocks.push({ ...rect, height });
       }
       along += depth + ALLEY_M;
     }

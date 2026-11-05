@@ -68,7 +68,7 @@ export function AgreementPlot({
               <g key={tick} fontFamily="var(--font-mono)" fontSize="11" fill="var(--paint-3)">
                 <line x1={x(tick)} x2={x(tick)} y1={PAD.top} y2={PAD.top + plotH} stroke="var(--rule-1)" />
                 <line x1={PAD.left} x2={PAD.left + plotW} y1={y(tick)} y2={y(tick)} stroke="var(--rule-1)" />
-                <text x={x(tick)} y={HEIGHT_PX - 14} textAnchor="middle">
+                <text x={x(tick)} y={HEIGHT_PX - 14} textAnchor={tick === ticks[ticks.length - 1] ? "end" : "middle"}>
                   {tick}
                 </text>
                 <text x={PAD.left - 8} y={y(tick) + 4} textAnchor="end">

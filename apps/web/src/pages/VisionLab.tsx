@@ -131,7 +131,7 @@ function noticeFor(probe: Resource<ArtifactProbe>): TrackNotice {
   if (probe.status === "ready" && !probe.data.available && probe.data.rebuildHint) {
     return {
       title: "Tracks only",
-      why: "Footage not distributed. Rebuild locally:",
+      why: "Footage not distributed.",
       hint: probe.data.rebuildHint,
       licence: probe.data.licenceNote,
     };
@@ -268,7 +268,7 @@ function AnalysisPanel({
   const { record } = loaded;
   const stage = record.stages.find((item) => item.stage === "detect") ?? record.stages[0];
   const refined = record.stages.find((item) => item.stage === "sam_refine");
-  const detector = stage ? `${stage.tool} ${stage.version}` : undefined;
+  const detector = stage ? `${stage.tool} · ${stage.version}` : undefined;
   const seconds = footage.kind === "video" ? coveredS(footage.clip, record) : analysisSpan(record)[1] - analysisSpan(record)[0];
   const options = [
     // A clip with none of this run in it would open on an empty frame, so it's offered only if already open.
@@ -378,7 +378,7 @@ function FootageNotice({ notice }: { notice: TrackNotice }) {
       {notice.hint ? (
         <details className="basis-full">
           <summary className="mono cursor-pointer text-paint-3 underline decoration-rule-2 underline-offset-4 hover:text-paint-1">
-            Rebuild command
+            Rebuild it locally
           </summary>
           <code className="mono mt-1.5 block break-all text-paint-1 select-all">{notice.hint}</code>
           {notice.licence ? <p className="m-0 mt-1 text-micro leading-snug text-paint-3">{`That video ${notice.licence}.`}</p> : null}
