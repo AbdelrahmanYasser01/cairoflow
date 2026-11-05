@@ -142,7 +142,7 @@ export const Footnote: React.FC<{ from: number; to?: number; children: ReactNode
   const t = useSec();
   return (
     <div style={{ position: "absolute", left: 0, right: 0, top: y, display: "flex", justifyContent: "center", opacity: shown(t, from, to, 0.4) }}>
-      <div style={{ maxWidth: 1480, padding: "8px 18px", background: "rgba(10,12,14,0.9)", border: `1px solid ${C.rule1}`, borderRadius: 6, fontFamily: F.mono, fontSize: 18, lineHeight: 1.5, color: C.paint2, textAlign: "center" }}>{children}</div>
+      <div style={{ maxWidth: 1480, padding: "8px 18px", background: "rgba(10,12,14,0.9)", border: `1px solid ${C.rule1}`, borderRadius: 6, fontFamily: F.mono, fontSize: 21, lineHeight: 1.45, color: C.paint2, textAlign: "center" }}>{children}</div>
     </div>
   );
 };

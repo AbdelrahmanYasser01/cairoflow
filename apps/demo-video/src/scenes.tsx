@@ -52,7 +52,7 @@ export const S00Open: React.FC = () => {
           <div style={{ width: 700 * line, height: 4, background: C.amber }} />
         </div>
         <div style={{ marginTop: 30, fontFamily: F.text, fontWeight: 500, fontSize: 48, color: C.paint1, opacity: ramp(t, 0.8, 1.5) }}>Traffic intelligence that shows its working.</div>
-        <div style={{ marginTop: 40, fontFamily: F.mono, fontSize: 21, color: C.paint2, letterSpacing: "0.08em", opacity: ramp(t, 1.3, 2.0) }}>META GLOBAL AI DEVELOPER HACKATHON 2026 · SAM 3.1 · MUSE SPARK</div>
+        <div style={{ marginTop: 40, fontFamily: F.mono, fontSize: 27, color: C.paint2, letterSpacing: "0.08em", opacity: ramp(t, 1.3, 2.0) }}>META GLOBAL AI DEVELOPER HACKATHON 2026 · SAM 3.1 · MUSE SPARK</div>
       </div>
       <div style={{ position: "absolute", right: 70, top: 56, fontFamily: F.mono, fontSize: 18, color: C.paint2, textAlign: "right", opacity: ramp(t, 1.0, 1.7), background: "rgba(10,12,14,0.7)", padding: "8px 14px", borderRadius: 5 }}>
         The app's digital twin, on its committed records
@@ -110,8 +110,8 @@ export const S01Cold: React.FC = () => {
 /* 3 ─ The problem, over the product's command page. */
 export const S03Problem: React.FC = () => {
   const { seconds } = scene("s03_problem");
-  const [c3] = cue("s03_problem", 3);
-  const [c2] = cue("s03_problem", 2);
+  const [c3] = cue("s03_problem", 2);
+  const [c2] = cue("s03_problem", 1);
   return (
     <Edge seconds={seconds}>
       <Ground />
@@ -120,14 +120,14 @@ export const S03Problem: React.FC = () => {
         kind="still"
         keys={[
           { t: 0, x: 960, y: 540, z: 1.0 },
-          { t: c2 - 0.6, x: 620, y: 520, z: 1.16 },
-          { t: c2 + 0.9, x: 430, y: 660, z: 1.75 },
-          { t: seconds, x: 440, y: 665, z: 1.82 },
+          { t: c2 - 0.4, x: 960, y: 540, z: 1.0 },
+          { t: c2 + 1.0, x: 560, y: 617, z: 1.7 },
+          { t: seconds, x: 565, y: 620, z: 1.76 },
         ]}
       >
-        <Callout x={112} y={604} w={218} h={74} from={c3 + 0.0} color={C.stop} label="GATE FAILED" />
-        <Callout x={341} y={604} w={172} h={74} from={c3 + 0.55} color={C.go} label="GATE PASSED" />
-        <Callout x={524} y={604} w={196} h={74} from={c3 + 1.1} color={C.amber} label="UNGATED" />
+        <Callout x={112} y={604} w={218} h={112} from={c3 + 0.0} color={C.stop} label="GATE FAILED" />
+        <Callout x={341} y={604} w={172} h={112} from={c3 + 0.55} color={C.go} label="GATE PASSED" />
+        <Callout x={524} y={604} w={196} h={112} from={c3 + 1.1} color={C.amber} label="UNGATED" />
       </Shot>
     </Edge>
   );
@@ -234,20 +234,22 @@ export const S04Vision: React.FC = () => {
   const [c2] = cue("s04_vision", 2);
   const [c3] = cue("s04_vision", 3);
   const [c4] = cue("s04_vision", 4);
+  const [c5] = cue("s04_vision", 5);
   const aEnd = c1 - 0.2;
   const bEnd = c2 - 0.2;
   const cEnd = c3 - 0.2;
   const dEnd = c4 - 0.25;
-  const eLen = seconds - dEnd;
+  const e1 = c5 - 0.2 - dEnd;
+  const e2 = seconds - (c5 - 0.2);
   return (
     <Edge seconds={seconds}>
       <Ground />
       <Sequence durationInFrames={f(aEnd)} layout="none">
-        <Shot src="clips/vision_boxes.mp4" kind="video" keys={[{ t: 0, x: 960, y: 540, z: 1.0 }, { t: aEnd, x: 760, y: 520, z: 1.1 }]} />
+        <Shot src="clips/vision_boxes.mp4" kind="video" keys={[{ t: 0, x: 570, y: 450, z: 1.38 }, { t: aEnd, x: 600, y: 440, z: 1.46 }]} />
         <Chip x={200} y={760} from={0.4} to={aEnd} title="Vision Lab · 15-minute study" sub="NGSIM camera 2 · Lankershim Blvd, Los Angeles · 16 June 2005" />
       </Sequence>
       <Sequence from={f(aEnd)} durationInFrames={f(bEnd - aEnd)} layout="none">
-        <Shot src="clips/vision_tracks.mp4" kind="video" keys={[{ t: 0, x: 560, y: 520, z: 1.3 }, { t: bEnd - aEnd, x: 600, y: 500, z: 1.2 }]} />
+        <Shot src="clips/vision_tracks.mp4" kind="video" keys={[{ t: 0, x: 560, y: 450, z: 1.46 }, { t: bEnd - aEnd, x: 590, y: 440, z: 1.4 }]} />
         <Chip x={200} y={760} from={0.3} to={bEnd - aEnd} title="Local detector + tracker" sub="967 counted tracks over fifteen minutes" />
       </Sequence>
       <Sequence from={f(bEnd)} durationInFrames={f(cEnd - bEnd)} layout="none">
@@ -256,10 +258,16 @@ export const S04Vision: React.FC = () => {
       <Sequence from={f(cEnd)} durationInFrames={f(dEnd - cEnd)} layout="none">
         <Seeded />
       </Sequence>
-      <Sequence from={f(dEnd)} durationInFrames={f(eLen)} layout="none">
-        <Shot src="clips/vision_sam.mp4" kind="video" playbackRate={7 / (eLen + 0.1)} keys={[{ t: 0, x: 600, y: 470, z: 1.25 }, { t: eLen, x: 640, y: 470, z: 1.32 }]} />
+      <Sequence from={f(dEnd)} durationInFrames={f(e1)} layout="none">
+        <Shot src="clips/vision_sam.mp4" kind="video" playbackRate={7 / (e1 + 0.1)} keys={[{ t: 0, x: 600, y: 450, z: 1.4 }, { t: e1, x: 630, y: 450, z: 1.46 }]} />
         <Agreed />
-        <Chip x={200} y={760} from={c4 - dEnd + 6.2} to={eLen} title="SAM 3.1 masks · model-generated" sub="outlines from SAM, on the shared clock" color={C.model} />
+        <Chip x={200} y={760} from={e1 - 3.2} to={e1} title="SAM 3.1 masks · model-generated" sub="outlines from SAM, on the shared clock" color={C.model} />
+      </Sequence>
+      <Sequence from={f(c5 - 0.2)} durationInFrames={f(e2)} layout="none">
+        <Shot src="stills/command.png" kind="still" keys={[{ t: 0, x: 1740, y: 985, z: 2.5 }, { t: e2, x: 1745, y: 990, z: 2.8 }]}>
+          <Callout x={1608} y={944} w={262} h={52} from={0.6} color={C.model} label="SAM'S OWN BOXES" />
+        </Shot>
+        <Footnote from={1.2} to={e2} y={850}>Those rows matched the published reference no more often than before: 542 of 586 either way. One 60-second dev window.</Footnote>
       </Sequence>
     </Edge>
   );
@@ -285,7 +293,7 @@ export const S05Twin: React.FC = () => {
           src="clips/twin_select.mp4"
           kind="video"
           playbackRate={6 / (bLen + 0.1)}
-          keys={[{ t: 0, x: 960, y: 540, z: 1.0 }, { t: label - 0.4, x: 960, y: 540, z: 1.0 }, { t: label + 0.8, x: 760, y: 900, z: 1.4 }, { t: bLen, x: 760, y: 905, z: 1.44 }]}
+          keys={[{ t: 0, x: 960, y: 540, z: 1.0 }, { t: 0.6, x: 1450, y: 470, z: 1.55 }, { t: label - 0.4, x: 1450, y: 470, z: 1.55 }, { t: label + 0.8, x: 760, y: 900, z: 1.4 }, { t: bLen, x: 760, y: 905, z: 1.44 }]}
         >
           <Callout x={1558} y={168} w={322} h={600} from={0.25} to={label - 0.15} label="ITS RECORD" />
           <Callout x={116} y={940} w={1534} h={32} from={label + 0.6} spot label="EVERY APPROXIMATION, LABELLED" />
@@ -298,10 +306,8 @@ export const S05Twin: React.FC = () => {
 /* 6 ─ Analytics. */
 export const S06Analytics: React.FC = () => {
   const { seconds } = scene("s06_analytics");
-  const [c1] = cue("s06_analytics", 1);
-  const aEnd = 2.9;
+  const aEnd = 2.4;
   const bLen = seconds - aEnd;
-  const r1 = c1 - aEnd;
   return (
     <Edge seconds={seconds}>
       <Ground />
@@ -314,15 +320,16 @@ export const S06Analytics: React.FC = () => {
           kind="still"
           keys={[
             { t: 0, x: 300, y: 230, z: 1.7 },
-            { t: 1.3, x: 300, y: 230, z: 1.7 },
-            { t: 2.4, x: 625, y: 830, z: 1.15 },
-            { t: r1 - 0.2, x: 625, y: 830, z: 1.15 },
-            { t: r1 + 0.8, x: 1520, y: 720, z: 1.75 },
-            { t: bLen, x: 1520, y: 722, z: 1.8 },
+            { t: 1.4, x: 300, y: 230, z: 1.7 },
+            { t: 2.3, x: 625, y: 830, z: 1.15 },
+            { t: 3.3, x: 625, y: 830, z: 1.15 },
+            { t: 4.2, x: 1560, y: 760, z: 1.7 },
+            { t: bLen, x: 1565, y: 762, z: 1.75 },
           ]}
         >
-          <Callout x={112} y={178} w={150} h={66} from={0.3} to={2.2} label="COUNTED TRACKS" />
-          <Callout x={1664} y={677} w={72} h={26} from={r1 + 0.9} label="CAMERA / PUBLISHED" />
+          <Callout x={112} y={178} w={150} h={66} from={0.3} to={1.9} label="COUNTED TRACKS" />
+          <Callout x={1664} y={677} w={72} h={26} from={4.4} pad={5} />
+          <Callout x={1156} y={842} w={640} h={22} from={4.6} pad={6} />
         </Shot>
       </Sequence>
     </Edge>
@@ -343,7 +350,7 @@ const GATE = [
 /** When each passing row reports, seconds from the scene start (the edit puts a tick on each). */
 export const gatePassTimes = (): number[] => {
   const [c4] = cue("s07_gate", 4);
-  return GATE.map((row, i) => (row.pass ? c4 + 0.05 + (i > 4 ? i - 1 : i) * 0.19 : -1)).filter((x) => x >= 0);
+  return GATE.map((row, i) => (row.pass ? c4 + 1.3 + (i > 4 ? i - 1 : i) * 0.19 : -1)).filter((x) => x >= 0);
 };
 
 const Blocks: React.FC<{ t: number }> = ({ t }) => {
@@ -432,7 +439,7 @@ export const S07Gate: React.FC = () => {
     <Edge seconds={seconds}>
       <Ground />
       <AbsoluteFill style={{ opacity: tableA }}>
-        <GateTable t={t} reveal={c1} passFrom={1e6} failAt={1e6} limitAt={1e6} />
+        <GateTable t={t} reveal={0.5} passFrom={1e6} failAt={1e6} limitAt={1e6} />
       </AbsoluteFill>
       <AbsoluteFill style={{ opacity: blocks * (1 - agree) }}>
         <Sequence from={f(c2)} layout="none">
@@ -449,7 +456,7 @@ export const S07Gate: React.FC = () => {
         <div style={{ fontFamily: F.mono, fontSize: 22, color: C.paint2, marginTop: 30 }}>The reference shares the video. No independent labels exist.</div>
       </AbsoluteFill>
       <AbsoluteFill style={{ opacity: tableB }}>
-        <GateTable t={t} reveal={-10} passFrom={c4 + 0.05} failAt={c5} limitAt={c6} />
+        <GateTable t={t} reveal={-10} passFrom={c4 + 1.3} failAt={c5} limitAt={c6} />
       </AbsoluteFill>
     </Edge>
   );
@@ -514,11 +521,11 @@ export const S08Withheld: React.FC = () => {
     <Edge seconds={seconds}>
       <Ground />
       <Sequence durationInFrames={f(aEnd)} layout="none">
-        <Shot src="stills/evidence_gates.png" kind="still" keys={[{ t: 0, x: 960, y: 520, z: 1.0 }, { t: 1.2, x: 960, y: 600, z: 1.05 }, { t: aEnd, x: 960, y: 605, z: 1.08 }]}>
+        <Shot src="stills/evidence_gates.png" kind="still" keys={[{ t: 0, x: 960, y: 520, z: 1.0 }, { t: 1.1, x: 800, y: 575, z: 1.4 }, { t: aEnd, x: 800, y: 580, z: 1.44 }]}>
           <Callout x={112} y={546} w={1772} h={60} from={0.5} color={C.stop} label="GATE FAILED" />
           <Callout x={112} y={742} w={965} h={44} from={c1 + 0.1} label="NOT MOVED" />
         </Shot>
-        <Chip x={1110} y={660} from={0.6} to={aEnd} title="The miss" sub="0.2033 against at most 0.20: over by 0.0033" color={C.stop} width={560} />
+        <Miss from={0.7} to={aEnd} />
       </Sequence>
       <Sequence from={f(aEnd)} durationInFrames={f(bEnd - aEnd)} layout="none">
         <Shot src="stills/analytics_check_open.png" kind="still" keys={[{ t: 0, x: 470, y: 300, z: 1.45 }, { t: 1.6, x: 470, y: 300, z: 1.45 }, { t: 2.6, x: 450, y: 560, z: 1.45 }, { t: bEnd - aEnd, x: 450, y: 565, z: 1.5 }]}>
@@ -530,6 +537,35 @@ export const S08Withheld: React.FC = () => {
         <Contract />
       </Sequence>
     </Edge>
+  );
+};
+
+/** The arithmetic of the miss, large enough to read. */
+const Miss: React.FC<{ from: number; to: number }> = ({ from, to }) => {
+  const t = useSec();
+  return (
+    <div style={{ position: "absolute", left: 0, right: 0, top: 800, display: "flex", justifyContent: "center", opacity: shown(t, from, to, 0.35) }}>
+      <div style={{ fontFamily: F.mono, fontSize: 44, color: C.paint1, background: "rgba(10,12,14,0.94)", border: `1px solid ${C.rule2}`, borderRadius: 8, padding: "12px 30px" }}>
+        0.2033 − 0.2000 = <span style={{ color: C.stop }}>0.0033</span>
+      </div>
+    </div>
+  );
+};
+
+/** One Muse Spark hypothesis, word for word from data/sample/diagnoses, labelled as model output. */
+const PullQuote: React.FC<{ from: number }> = ({ from }) => {
+  const t = useSec();
+  const a = ramp(t, from, from + 0.5);
+  return (
+    <AbsoluteFill style={{ opacity: a, background: "rgba(10,12,14,0.88)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ width: 1380, marginTop: -60, padding: "44px 56px", background: C.bg1, border: `1px solid ${C.model}77`, borderRadius: 12, transform: `translateY(${(1 - a) * 16}px)` }}>
+        <Kicker color={C.model} style={{ fontSize: 21 }}>Model-generated · Muse Spark · reply 1 of 3</Kicker>
+        <div style={{ fontFamily: F.text, fontWeight: 500, fontSize: 46, lineHeight: 1.32, color: C.paint1, marginTop: 22 }}>
+          “Operation is limited by heavy north-south through demand, with the N-S and S-N through movements dominating the validated turn counts and producing high stopped time.”
+        </div>
+        <div style={{ fontFamily: F.mono, fontSize: 22, color: C.paint2, marginTop: 26 }}>The model's own confidence: low · a hypothesis for a person to test</div>
+      </div>
+    </AbsoluteFill>
   );
 };
 
@@ -556,10 +592,11 @@ export const S09Muse: React.FC = () => {
       >
         <Callout x={964} y={62} w={322} h={22} from={1.3} to={c1} color={C.model} label="MODEL-GENERATED" />
         <Callout x={116} y={322} w={520} h={94} from={c1 + 0.9} to={c2} color={C.approx} label="CITATIONS RESOLVE TO EVIDENCE IDS" />
-        <Callout x={114} y={234} w={430} h={22} from={c2 + 0.9} color={C.go} label="CHECKED BY CODE" />
+        <Callout x={114} y={234} w={430} h={22} from={c2 + 0.1} to={c2 + 2.2} color={C.go} label="CHECKED BY CODE" />
       </Shot>
       <Chip x={1170} y={600} from={c1 + 0.3} to={c2 - 0.1} title="Reply schema" sub="No numeric field. Code flags any number in its text that no evidence holds." color={C.model} width={540} />
-      <Chip x={1170} y={600} from={c2 + 0.2} title="muse-spark-1.3 · 3 replies" sub="3 of 3 usable, checked by code. None cited the withheld counts." color={C.go} width={540} />
+      <Chip x={1170} y={600} from={c2 + 0.1} to={c2 + 2.3} title="3 of 3 replies usable" sub="Checked by code: no citation problem, no unsupported number." color={C.go} width={540} />
+      <PullQuote from={c2 + 2.4} />
     </Edge>
   );
 };
@@ -587,11 +624,11 @@ export const S10Decision: React.FC = () => {
             { t: aEnd, x: 700, y: 765, z: 1.38 },
           ]}
         >
-          <Callout x={112} y={455} w={1176} h={46} from={0.5} to={c1} color={C.sim} label="SUMO · 3 CANDIDATES · 20 PAIRED SEEDS · 4 SIGNAL TIMELINES" />
           <Callout x={112} y={168} w={360} h={104} from={c1 + 0.6} to={c1 + 3.1} color={C.assumed} label="NO VALIDATED BASELINE" />
           <Callout x={604} y={556} w={300} h={490} from={c1 + 3.3} color={C.stop} label="EVERY CANDIDATE WORSENS SOMETHING" />
         </Shot>
-        <Footnote from={0.8} to={aEnd} y={880}>This decision used the published NGSIM trajectories, not this camera analysis.</Footnote>
+        <Chip x={1120} y={96} from={0.6} to={c1} title="SUMO · 3 candidates" sub="20 paired runs on each of 4 signal timelines" color={C.sim} width={600} />
+        <Footnote from={0.8} to={aEnd} y={872}>This decision used the published NGSIM trajectories, not this camera analysis.</Footnote>
       </Sequence>
       <Sequence from={f(aEnd)} durationInFrames={f(bLen)} layout="none">
         <Shot src="stills/evidence_decision.png" kind="still" keys={[{ t: 0, x: 760, y: 270, z: 1.7 }, { t: bLen, x: 760, y: 275, z: 1.85 }]}>
@@ -618,7 +655,8 @@ export const S11Close: React.FC = () => {
           <Logo size={120} />
           <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 150, color: C.paint1, lineHeight: 1 }}>CairoFlow</div>
         </div>
-        <div style={{ marginTop: 36, fontFamily: F.text, fontWeight: 500, fontSize: 52, color: C.paint1, opacity: ramp(t, 0.6, 1.3) }}>
+        <div style={{ marginTop: 30, fontFamily: F.mono, fontSize: 24, letterSpacing: "0.12em", color: C.paint2, opacity: ramp(t, 0.5, 1.1) }}>DECISION SUPPORT FOR TRAFFIC ENGINEERS</div>
+        <div style={{ marginTop: 26, fontFamily: F.text, fontWeight: 500, fontSize: 52, color: C.paint1, opacity: ramp(t, 1.4, 2.1) }}>
           It tells you what it knows, <span style={{ color: C.amber }}>and what it doesn't.</span>
         </div>
         <div style={{ marginTop: 64, display: "flex", gap: 56, fontFamily: F.mono, fontSize: 23, color: C.paint2, opacity: ramp(t, 2.0, 2.7) }}>
@@ -630,7 +668,7 @@ export const S11Close: React.FC = () => {
         </div>
         <div style={{ marginTop: 26, fontFamily: F.mono, fontSize: 24, color: C.amber, opacity: ramp(t, 2.4, 3.1) }}>github.com/AbdelrahmanYasser01/cairoflow</div>
       </div>
-      <div style={{ position: "absolute", left: 160, right: 160, bottom: 46, textAlign: "center", fontFamily: F.mono, fontSize: 15, lineHeight: 1.6, color: C.paint3, opacity: ramp(t, 3.2, 3.9) }}>
+      <div style={{ position: "absolute", left: 160, right: 160, bottom: 46, textAlign: "center", fontFamily: F.mono, fontSize: 18, lineHeight: 1.55, color: C.paint3, opacity: ramp(t, 3.2, 3.9) }}>
         Derived tracks: NGSIM Lankershim Boulevard data, U.S. Department of Transportation Federal Highway Administration, CC BY-SA 4.0. Los Angeles, 2005; no Cairo data.
         <br />Decision support only: nothing here controls real traffic. Voice: Kokoro, synthetic. Score: original. This film: CC BY-SA 4.0.
       </div>

@@ -69,7 +69,7 @@ def main() -> None:
     tick, whoosh = load(AUDIO / "sfx_tick.wav"), load(AUDIO / "sfx_whoosh.wav")
     six = vo["s07_gate"]["captions"][4]["start"]  # "Six checks passed."; rows report from here
     for k in range(6):
-        add(bus, tick, starts["s07_gate"] + frames(six + 0.05 + k * 0.19), 0.55)
+        add(bus, tick, starts["s07_gate"] + frames(six + 1.3 + k * 0.19), 0.55)
     for sid in WHOOSH_BEFORE:
         add(bus, whoosh, max(0, starts[sid] - frames(0.45)), 0.5)
 
