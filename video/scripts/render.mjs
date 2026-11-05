@@ -5,7 +5,8 @@
 //   npm --prefix video run render:draft      faster: half-size frames, same length (check only)
 //   node video/scripts/render.mjs --frames=0-299         one range
 //   node video/scripts/render.mjs --stills=150,2400      PNG stills into out/stills/
-//   node video/scripts/render.mjs --bundle               bundle once into out/bundle (public/ included)
+//   node video/scripts/render.mjs --bundle               bundle once into out/bundle (public/ included;
+//                                                        --bundle=<dir> for another folder)
 //   node video/scripts/render.mjs --entry=out/bundle --frames=720-1061 --out=out/p1.mp4
 //                                                        render from that bundle, no re-bundling
 //
@@ -70,7 +71,7 @@ console.log(
 const entry = value("entry") ? resolve(value("entry")) : "src/index.ts";
 if (flag("bundle")) {
   const cliBundle = join(ROOT, "node_modules", ".bin", "remotion");
-  const out = join(OUT, "bundle");
+  const out = value("bundle") ? resolve(value("bundle")) : join(OUT, "bundle");
   console.log(`[render] remotion bundle src/index.ts --out-dir=${out}`);
   const r = spawnSync(cliBundle, ["bundle", "src/index.ts", `--out-dir=${out}`, "--log=warn"], { cwd: ROOT, stdio: "inherit" });
   process.exit(r.status ?? 1);
