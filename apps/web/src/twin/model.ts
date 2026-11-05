@@ -11,6 +11,7 @@ import {
   type TrackEntry,
   type Trajectories,
 } from "../lib/analysis";
+import { buildNetwork, type RoadNetwork } from "./network";
 import type { Point2, SiteGeometry } from "./site";
 
 export const FORMS = ["car", "truck", "bus", "motorcycle", "plain"] as const;
@@ -104,6 +105,8 @@ export interface TwinModel extends LoadedAnalysis {
   /** The furthest vehicles alone. A camera may see only part of the site, and a close view follows that. */
   vehicleReach: readonly Point2[];
   coverage: Coverage | null;
+  /** Carriageway, kerbs and arm sections: lanes widened to where vehicles were seen. Approximate. */
+  network: RoadNetwork;
   /** Vehicles alive per equal time bin, for the time filter's strip. */
   timeline: Uint16Array;
 }
@@ -392,6 +395,7 @@ export function buildModel(id: string, loaded: LoadedAnalysis, site: SiteGeometr
     footprint: [...site.lanes.flatMap((lane) => lane.polygon_m), ...vehicleReach],
     vehicleReach,
     coverage: placeable ? buildCoverage(trajectories, bounds, scale) : null,
+    network: buildNetwork(site, placeable ? trajectories : null, scale),
     timeline,
   };
 }

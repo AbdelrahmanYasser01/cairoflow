@@ -43,3 +43,5 @@ Typing a window inside a held-out block shows why it's refused and offers valid 
 Any recording that shows the footage is an adaptation of the NGSIM video, so it must carry this credit, and be shared under CC BY-SA 4.0:
 
 > U.S. Department of Transportation Federal Highway Administration. (2016). Next Generation Simulation (NGSIM) Program Lankershim Boulevard Videos. [Dataset]. Provided by ITS DataHub through Data.transportation.gov. Accessed 2026-10-27 from http://doi.org/10.21949/1504477. Licensed CC BY-SA 4.0. More: https://ops.fhwa.dot.gov/trafficanalysistools/ngsim.htm
+
+Submission form text: [SUBMISSION.md](SUBMISSION.md).

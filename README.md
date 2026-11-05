@@ -6,9 +6,26 @@ CairoFlow turns one recorded overhead video, a 2005 NGSIM camera with a placemen
 
 Built for the Meta Global AI Developer Hackathon 2026, using SAM 3.1 and Muse Spark.
 
+![Command view: 6 of 7 checks passed, the entering-flow figure is withheld because its check failed, and the decision panel says nothing is recommended](docs/images/home.webp)
+
+## In one minute
+
+- **The problem.** Traffic analytics from cameras usually come as confident numbers with no way to tell which ones hold up. Engineers act on them anyway.
+- **What CairoFlow does.** It turns one overhead video into tracks, turning counts, speeds and a 3D twin. Then it scores every headline figure against limits fixed in advance, on footage it was never tuned on. A figure that fails its check isn't shown. The app shows the reason instead.
+- **Meta models.** SAM 3.1 refines the tracks on a 60-second window and gives per-vehicle masks. Muse Spark reads the checked evidence and writes hypotheses for an engineer, and it proposes signal changes, which validators and SUMO then test. Code checks every model citation against the evidence.
+- **What happened.** 6 of 7 held-out checks passed. Entering counts missed by 0.0033, so the app withholds them. Each of the three interventions tested in simulation made something worse, so the app recommends none. Refusing to publish unchecked numbers is the point of the product.
+- **Try it.** Five commands, offline, no API key: see [From a fresh clone](#from-a-fresh-clone). The suite has about 1,800 tests (Python and web).
+- **Watch it.** The demo video is cut from captures of the real app. Its Remotion source is in [`video/`](video/), and [docs/VIDEO.md](docs/VIDEO.md) has the storyboard, the voice-over and the commands to re-render it.
+
+| Digital twin: one road network, tracked vehicles on the video's clock | Evidence: each check against the limit fixed before the read |
+|---|---|
+| ![3D twin of the junction: a continuous road network with tracked vehicles and context blocks](docs/images/twin.webp) | ![Gate panel: six checks pass, entering count error misses its limit by 0.33 points, magnified](docs/images/evidence.webp) |
+
+![Analytics: turning movements as ribbons sized by count, an approach-by-exit matrix with camera and NGSIM counts, and the withheld entering flow](docs/images/analytics.webp)
+
 ## What it found
 
-The site is Lankershim Blvd at Universal Hollywood Dr, Los Angeles, filmed for the NGSIM programme on 16 June 2005. The street names come from a present-day map, not the dataset. The 15-minute study counted 967 tracks. That total has no gate behind it and includes tracks that restarted mid-view; the published reference lists 1,015 vehicles over a larger area. These results come from the local detector and tracker: SAM wasn't part of this run.
+The site is Lankershim Blvd at Universal Hollywood Dr, Los Angeles, filmed for the NGSIM programme on 16 June 2005. The street names come from a present-day map, not the dataset. The 15-minute study counted 967 tracks. That total has no gate behind it and includes tracks that restarted mid-view; the published reference has 1,015 vehicle runs over a larger area. These results come from the local detector and tracker: SAM wasn't part of this run.
 
 We committed limits for seven checks against the published NGSIM trajectories before the first held-out read. The footage is split into alternating 60-second blocks: the detector, tracker and thresholds were tuned on the even ones, and the seven odd ones were scored once. The first read died with its session and produced no result, so a second gate with identical limits took its own single read.
 
@@ -135,7 +152,7 @@ Meta API spend since the delivery [ledger](experiments/records/meta-spend-202611
 - **Vehicle classes are unchecked.** NGSIM publishes a `v_class` field (motorcycle, auto, truck), but the columns we fetched leave it out, so classes weren't compared and class counts stay ungated.
 - **Speed is agreement only.** Along-road distances from this homography aren't accepted as measurements. Speed is shown because, on vehicles moving at 2 m/s or more, it agreed with NGSIM within the limit. That agreement is empirical, not a property of the homography. Stopped share has no gate, because that check doesn't cover stopped time.
 - **The seeds measure simulator noise.** The 20 seeds vary SUMO's noise on one replayed 10.5-minute window, not demand.
-- **The twin is approximate.** Road geometry is derived from trajectories, and vehicle bodies are schematic.
+- **The twin is approximate.** Road geometry is derived from trajectories, vehicle bodies are schematic, and the blocks beside the road are context, not surveyed buildings.
 - **Decision support only.** Nothing here controls real traffic.
 
 ## Data and licences

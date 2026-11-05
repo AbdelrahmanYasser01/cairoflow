@@ -78,3 +78,21 @@ export type Palette = ReturnType<typeof readPalette>;
 export function toWorldZ(v: number): number {
   return -v;
 }
+
+/**
+ * Where the floor fades into the room: an ellipse round the measured area. The ground, the road,
+ * its paint and the kerbs all fade on this one ellipse, so the arms run out into the dark together.
+ */
+export function fadeFrame(bounds: { uMin: number; uMax: number; vMin: number; vMax: number }): {
+  centre: [number, number];
+  radius: [number, number];
+} {
+  return {
+    centre: [(bounds.uMin + bounds.uMax) / 2, (bounds.vMin + bounds.vMax) / 2],
+    radius: [(bounds.uMax - bounds.uMin) / 2 + 70, (bounds.vMax - bounds.vMin) / 2 + 70],
+  };
+}
+
+/** Fade start and end, in units of that ellipse. */
+export const FADE_FROM = 0.86;
+export const FADE_TO = 1.32;

@@ -1,0 +1,29 @@
+{
+  "name": "@cairoflow/video",
+  "private": true,
+  "version": "0.1.0",
+  "description": "CairoFlow demo video: a Remotion composition plus a Playwright capture of the real app.",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "capture": "node capture/capture.mjs",
+    "render": "node scripts/render.mjs",
+    "render:draft": "node scripts/render.mjs --draft",
+    "sheet": "node scripts/contact-sheet.mjs",
+    "splice": "node scripts/splice.mjs",
+    "prepare-data": "node scripts/prepare-data.mjs"
+  },
+  "dependencies": {
+    "@fontsource/barlow": "5.3.0",
+    "@fontsource/barlow-semi-condensed": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@remotion/cli": "4.0.540",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.540"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "playwright": "1.63.0"
+  }
+}
