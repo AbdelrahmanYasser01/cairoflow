@@ -1,0 +1,263 @@
+{
+ "voice": "af_heart",
+ "speed": 1.08,
+ "scenes": [
+  {
+   "id": "s00_open",
+   "lead": 0.5,
+   "hold": 0.2,
+   "lines": [
+    {
+     "say": "Cairo Flow turns one recorded traffic video into tracked vehicles, turning counts, and an approximate three D twin of the junction.",
+     "show": "CairoFlow turns one recorded traffic video into tracked vehicles, turning counts, and an approximate 3D twin of the junction.",
+     "pause": 0.7
+    }
+   ]
+  },
+  {
+   "id": "s01_cold",
+   "lead": 1.0,
+   "hold": 0.3,
+   "lines": [
+    {
+     "say": "Twenty point three three percent.",
+     "show": "20.33 percent.",
+     "pause": 0.7
+    },
+    {
+     "say": "That's how far our count of vehicles entering the junction was from the published reference.",
+     "show": "That's how far our count of vehicles entering the junction was from the published reference.",
+     "pause": 0.5
+    },
+    {
+     "say": "Our limit was twenty percent, and we fixed it before the held out read.",
+     "show": "Our limit was 20 percent, and we fixed it before the held-out read.",
+     "pause": 0.7
+    },
+    {
+     "say": "So in this fifteen minute study, Cairo Flow refuses to show you those counts.",
+     "show": "So in this fifteen-minute study, CairoFlow refuses to show you those counts.",
+     "pause": 0.9
+    }
+   ]
+  },
+  {
+   "id": "s03_problem",
+   "lead": 0.2,
+   "hold": 0.2,
+   "lines": [
+    {
+     "say": "Cities re-time signals and rebuild junctions from traffic counts.",
+     "show": "Cities re-time signals and rebuild junctions from traffic counts.",
+     "pause": 0.31
+    },
+    {
+     "say": "But a vision model won't tell you when its count is wrong.",
+     "show": "But a vision model won't tell you when its count is wrong.",
+     "pause": 0.4
+    },
+    {
+     "say": "So we built a pipeline where every headline figure shows its gate status.",
+     "show": "So we built a pipeline where every headline figure shows its gate status.",
+     "pause": 0.7
+    }
+   ]
+  },
+  {
+   "id": "s04_vision",
+   "lead": 0.2,
+   "hold": 0.2,
+   "lines": [
+    {
+     "say": "One overhead camera. Lankershim Boulevard, Los Angeles.",
+     "show": "One overhead camera: Lankershim Boulevard, Los Angeles.",
+     "pause": 0.35
+    },
+    {
+     "say": "The footage isn't redistributed, so you see the stored tracks from the local detector and tracker.",
+     "show": "The footage isn't redistributed, so you see the stored tracks from the local detector and tracker.",
+     "pause": 0.4
+    },
+    {
+     "say": "Asked for car, Sam three point one followed at most sixteen vehicles, and none that arrived later.",
+     "show": "Asked for \"car\", SAM 3.1 followed at most 16 vehicles, and none that arrived later.",
+     "pause": 0.35
+    },
+    {
+     "say": "So on one sixty second window, we gave it our tracked boxes as its prompts.",
+     "show": "So on one 60-second window, we gave it our tracked boxes as its prompts.",
+     "pause": 0.35
+    },
+    {
+     "say": "It agreed with nine thousand nine hundred of ten thousand, eight hundred fifty eight observed rows. A consistency check, not independent confirmation.",
+     "show": "It agreed with 9,900 of 10,858 observed rows. A consistency check, not independent confirmation.",
+     "pause": 0.35
+    },
+    {
+     "say": "Its own boxes replaced five hundred eighty six rows our tracker had filled in.",
+     "show": "Its own boxes replaced 586 rows our tracker had filled in.",
+     "pause": 0.53
+    }
+   ]
+  },
+  {
+   "id": "s05_twin",
+   "lead": 0.2,
+   "hold": 0.2,
+   "lines": [
+    {
+     "say": "The fifteen minute record drives a three D twin of the junction, on one shared clock.",
+     "show": "The fifteen-minute record drives a 3D twin of the junction, on one shared clock.",
+     "pause": 0.35
+    },
+    {
+     "say": "Click any vehicle to read its record.",
+     "show": "Click any vehicle to read its record.",
+     "pause": 0.35
+    },
+    {
+     "say": "Approximations are labelled, on screen.",
+     "show": "Approximations are labelled, on screen.",
+     "pause": 0.53
+    }
+   ]
+  },
+  {
+   "id": "s06_analytics",
+   "lead": 0.2,
+   "hold": 0.3,
+   "lines": [
+    {
+     "say": "Counted tracks become turning movements, set beside the published reference. Across all twelve, eight hundred one, against nine hundred eleven.",
+     "show": "Counted tracks become turning movements, set beside the published reference. Across all twelve: 801 against 911.",
+     "pause": 0.53
+    }
+   ]
+  },
+  {
+   "id": "s07_gate",
+   "lead": 0.3,
+   "hold": 0.2,
+   "lines": [
+    {
+     "say": "Then comes the gate.",
+     "show": "Then comes the gate.",
+     "pause": 0.4
+    },
+    {
+     "say": "Before the test, we committed seven limits.",
+     "show": "Before the test, we committed seven limits.",
+     "pause": 0.35
+    },
+    {
+     "say": "We tuned the detector and tracker on alternating minutes of footage, then scored the held out minutes once, against the published N G Sim trajectories.",
+     "show": "We tuned the detector and tracker on alternating minutes of footage, then scored the held-out minutes once, against the published NGSIM trajectories.",
+     "pause": 0.31
+    },
+    {
+     "say": "That's agreement, not accuracy. The reference comes from the same video.",
+     "show": "That's agreement, not accuracy: the reference comes from the same video.",
+     "pause": 0.48
+    },
+    {
+     "say": "Pooled across the held out minutes, six checks passed.",
+     "show": "Pooled across the held-out minutes, six checks passed.",
+     "pause": 0.53
+    },
+    {
+     "say": "Entering counts came in at twenty point three three percent error.",
+     "show": "Entering counts came in at 20.33 percent error.",
+     "pause": 0.31
+    },
+    {
+     "say": "The limit was twenty.",
+     "show": "The limit was 20.",
+     "pause": 0.8
+    }
+   ]
+  },
+  {
+   "id": "s08_withheld",
+   "lead": 0.2,
+   "hold": 0.2,
+   "lines": [
+    {
+     "say": "A miss of a third of a percentage point.",
+     "show": "A miss of a third of a percentage point.",
+     "pause": 0.44
+    },
+    {
+     "say": "We didn't move the line.",
+     "show": "We didn't move the line.",
+     "pause": 0.4
+    },
+    {
+     "say": "So the fifteen minute study shows no entering flow figure. Only the reason.",
+     "show": "So the fifteen-minute study shows no entering-flow figure. Only the reason.",
+     "pause": 0.4
+    },
+    {
+     "say": "A withheld value is absent, not zero. The data contract won't let a failed metric carry a number.",
+     "show": "A withheld value is absent, not zero. The data contract won't let a failed metric carry a number.",
+     "pause": 0.7
+    }
+   ]
+  },
+  {
+   "id": "s09_muse",
+   "lead": 0.2,
+   "hold": 0.3,
+   "lines": [
+    {
+     "say": "Muse Spark reads that evidence, and writes hypotheses for a person to test.",
+     "show": "Muse Spark reads that evidence, and writes hypotheses for a person to test.",
+     "pause": 0.35
+    },
+    {
+     "say": "Its reply schema has no numeric field, and code checks that every citation exists.",
+     "show": "Its reply schema has no numeric field, and code checks that every citation exists.",
+     "pause": 0.4
+    },
+    {
+     "say": "All three replies passed. Here's one hypothesis, word for word, labelled as model output.",
+     "show": "All three replies passed. Here's one hypothesis, word for word, labelled as model output.",
+     "pause": 2.0
+    }
+   ]
+  },
+  {
+   "id": "s10_decision",
+   "lead": 0.2,
+   "hold": 0.2,
+   "lines": [
+    {
+     "say": "For the decision, which used published N G Sim trajectories rather than our camera output, Sumo tested three signal changes Muse proposed.",
+     "show": "For the decision, which used published NGSIM trajectories rather than our camera output, SUMO tested three signal changes Muse proposed.",
+     "pause": 0.35
+    },
+    {
+     "say": "In simulation, every one made something worse, and the simulator's baseline isn't validated.",
+     "show": "In simulation, every one made something worse, and the simulator's baseline isn't validated.",
+     "pause": 0.4
+    },
+    {
+     "say": "So Cairo Flow recommends nothing. And shows you why.",
+     "show": "So CairoFlow recommends nothing. And shows you why.",
+     "pause": 0.9
+    }
+   ]
+  },
+  {
+   "id": "s11_close",
+   "lead": 0.4,
+   "hold": 0.8,
+   "lines": [
+    {
+     "say": "Cairo Flow. Decision support for traffic engineers. It tells you what it knows, and what it doesn't.",
+     "show": "CairoFlow. Decision support for traffic engineers. It tells you what it knows, and what it doesn't.",
+     "pause": 0.9
+    }
+   ]
+  }
+ ]
+}
