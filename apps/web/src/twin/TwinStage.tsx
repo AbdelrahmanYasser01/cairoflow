@@ -115,6 +115,11 @@ export function TwinStage({ visibleKinds, analysisId, chrome = true }: TwinStage
 
       {chrome ? (
         <>
+          {/* Under the panels, over the scene: the page title stays legible when vehicles pass behind it. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-linear-to-b from-asphalt-0/80 via-asphalt-0/35 to-transparent"
+          />
           <div data-twin-chrome className="absolute top-margin right-margin hidden lg:block">
             <TwinViewSwitch />
           </div>

@@ -19,6 +19,12 @@ export const CHAIN_BRANCHES: readonly { id: ChainBranch; label: string }[] = [
   { id: "published", label: "Published NGSIM trajectories" },
 ];
 
+/** The first branch's name for the analysis on screen: a reference analysis is not camera output. */
+export function branchLabel(branch: ChainBranch, record: AnalysisRecord | null): string {
+  if (branch === "camera" && record?.data_origin === "reference_dataset") return "This analysis · NGSIM reference";
+  return CHAIN_BRANCHES.find((entry) => entry.id === branch)?.label ?? branch;
+}
+
 const BRANCH_OF: Record<ChainStageId, ChainBranch> = {
   source_record: "camera",
   observation: "camera",
@@ -121,12 +127,22 @@ function reading(id: ChainStageId, inputs: ChainInputs): Reading {
     case "observation": {
       if (!record) return none(id, "No analysis loaded");
       const tracks = record.metrics.find((metric) => metric.metric_id === "vehicles.total")?.value;
+      const gates = record.gates ?? [];
+      const passed = gates.filter((gate) => gate.passed).length;
+      const origin = record.data_origin === "reference_dataset" ? "Published reference trajectories" : "Tracks from camera analysis";
+      const tally = tracks == null ? null : `${count(tracks, "counted track")}, ungated`;
+      // The lamp reports the record's checks, so the brief names the checks, never a figure they did not gate.
       return {
         id,
         status: observationStatus(record),
         evidence: record.provenance.kind,
-        brief: tracks == null ? "Tracks on record" : count(tracks, "counted track"),
-        detail: record.data_origin === "reference_dataset" ? "Published reference trajectories" : "Tracks from camera analysis",
+        brief:
+          gates.length > 0
+            ? `${passed} of ${gates.length} checks passed`
+            : tracks == null
+              ? "Tracks on record"
+              : count(tracks, "counted track"),
+        detail: gates.length > 0 && tally ? `${origin} · ${tally}` : origin,
       };
     }
     case "world_entity":

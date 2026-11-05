@@ -13,6 +13,8 @@ import {
   METRES_PER_US_FOOT,
 } from "./geo";
 import { createSample, displayHeadings, lerpAngle, positionAnchorOf, sampleFrame } from "./model";
+import { buildNetwork, clipToVerge, insidePolygon, onStreet } from "./network";
+import { CONTEXT_MAX_HEIGHT_M, contextBlocks } from "./context";
 import { parseAnalysisRows, parseSite } from "./site";
 
 const SCALE = 0.02;
@@ -472,5 +474,96 @@ describe("site parsing", () => {
       valid: false,
     });
     expect(parseAnalysisRows(null)).toEqual([]);
+  });
+});
+
+describe("road network", () => {
+  const rect = (u0: number, u1: number, v0: number, v1: number) => [
+    [u0, v0],
+    [u1, v0],
+    [u1, v1],
+    [u0, v1],
+  ];
+  const lane = (id: string, arm: string, direction: string, polygon: number[][]) => ({
+    lane_id: id,
+    arm,
+    direction,
+    polygon_m: polygon,
+    allowed_turns: ["through"],
+    provenance: "approximated",
+    source: "test",
+  });
+  const site = parseSite({
+    lanes: [
+      lane("N1", "N", "approach", rect(-7, 0, 20, 100)),
+      lane("Nx", "N", "exit", rect(0, 7, 25, 55)),
+      lane("S1", "S", "approach", rect(0, 7, -100, -20)),
+      lane("E1", "E", "approach", rect(14, 40, 0, 7)),
+      lane("W1", "W", "approach", rect(-40, -14, -7, 0)),
+    ],
+    gates: [],
+  });
+  // Metres to stored units at the test's ground scale.
+  const at = (points: number[][]) =>
+    trajectories({ gx: points.map(([u]) => Math.round(u / SCALE)), gy: points.map(([, v]) => Math.round(v / SCALE)) });
+
+  it("is one closed outline that holds every lane and the junction box", () => {
+    const network = buildNetwork(site, null, SCALE);
+    for (const [u, v] of [[-3, 60], [3, 40], [3, -60], [30, 3], [-30, -3], [0, 0], [-6, 10], [6, -10]]) {
+      expect(insidePolygon(network.outline, u, v)).toBe(true);
+    }
+    // Off the corners of the box and well clear of every arm.
+    expect(insidePolygon(network.outline, 40, 40)).toBe(false);
+    expect(insidePolygon(network.outline, -40, -40)).toBe(false);
+    // The arms run on past the data to the scene edge.
+    expect(insidePolygon(network.outline, 3, 300)).toBe(true);
+    expect(insidePolygon(network.outline, -300, -3)).toBe(true);
+  });
+
+  it("widens to where vehicles drove, so none is drawn off the asphalt", () => {
+    const network = buildNetwork(site, at([[9.5, 40], [-3, 60], [3, -60]]), SCALE);
+    expect(network.sections.N.hi).toBeGreaterThanOrEqual(9.5);
+    expect(network.offRoad).toBe(0);
+  });
+
+  it("opens a side entrance where vehicles left the arm, rather than widening all of it", () => {
+    const network = buildNetwork(site, at([[18, 80], [19, 82], [17.5, 84]]), SCALE);
+    expect(network.offRoad).toBe(0);
+    expect(network.sections.N.hi).toBeLessThan(17.5);
+    expect(insidePolygon(network.outline, 18, 50)).toBe(false);
+  });
+
+  it("stands context blocks only on clear ground, off the road, sidewalks and side entrances", () => {
+    const network = buildNetwork(site, at([[18, 80], [19, 82], [17.5, 84]]), SCALE);
+    const blocks = contextBlocks(network, null, (u, v) => Math.hypot(u, v) < 200);
+    expect(blocks.length).toBeGreaterThan(4);
+    let onRoad = 0;
+    for (const block of blocks) {
+      expect(block.height).toBeLessThanOrEqual(CONTEXT_MAX_HEIGHT_M);
+      for (let u = block.uMin; u <= block.uMax; u += 1) {
+        for (let v = block.vMin; v <= block.vMax; v += 1) {
+          if (onStreet(network, u, v) || insidePolygon(network.outline, u, v)) onRoad++;
+        }
+      }
+    }
+    expect(onRoad).toBe(0);
+    // Low enough near the road that a camera ray at 8 degrees or more clears every block.
+    const near = blocks.filter((b) => b.uMin > 0 && b.vMin > 0);
+    for (const block of near) {
+      const fromRoad = Math.min(block.uMin - network.sections.N.hi, block.vMin - network.sections.E.hi) + 1.25;
+      expect(block.height).toBeLessThanOrEqual(1 + fromRoad * Math.tan((8 * Math.PI) / 180) + 1e-9);
+    }
+    // Nothing stands on the side entrance vehicles used.
+    expect(blocks.some((b) => b.uMin <= 18 && b.uMax >= 18 && b.vMin <= 82 && b.vMax >= 82)).toBe(false);
+  });
+
+  it("keeps the geo axes off the street", () => {
+    const network = buildNetwork(site, null, SCALE);
+    const runs = clipToVerge(network, [-60, -150], [-60, 150]);
+    expect(runs.length).toBe(2);
+    for (const [from, to] of runs) {
+      expect(onStreet(network, from[0], from[1])).toBe(false);
+      expect(onStreet(network, to[0], to[1])).toBe(false);
+    }
   });
 });

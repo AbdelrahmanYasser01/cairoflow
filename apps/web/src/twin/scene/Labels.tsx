@@ -9,6 +9,7 @@ import {
   type GeoAnchor,
 } from "../geo";
 import type { Bounds } from "../model";
+import { clipToVerge, onStreet, type RoadNetwork } from "../network";
 import type { Arm, Point2, SiteGeometry } from "../site";
 import { CHROME_ATTRIBUTE, overlayNode, toCanvasPixels } from "./overlay";
 import { LEVEL, ORDER, toWorldZ, type Insets, type Palette } from "./runtime";
@@ -66,7 +67,7 @@ export function SceneLabels({ labels, insets }: { labels: readonly LabelSpec[]; 
     const host = overlayNode(gl, "div", "pointer-events-none absolute inset-0 overflow-hidden");
     placed.current = labels.map((spec) => {
       const node = document.createElement("div");
-      node.className = "mono absolute top-0 left-0 whitespace-nowrap bg-asphalt-0/70 px-1 text-paint-3 select-none";
+      node.className = "mono absolute top-0 left-0 whitespace-nowrap bg-asphalt-0/90 px-1 text-paint-3 select-none";
       node.style.opacity = "0";
       node.style.transition = "opacity 160ms linear";
       node.style.willChange = "transform";
@@ -161,7 +162,7 @@ export function armLabels(site: SiteGeometry): LabelSpec[] {
     return {
       id: `arm-${arm}`,
       at: [at[0], ARM_LABEL_HEIGHT_M, at[1]],
-      lines: [{ text: `${arm} arm`, tone: "text-paint-1" }, { text: `${entry.in} in, ${entry.out} out` }],
+      lines: [{ text: `${arm} · ${entry.in} in ${entry.out} out`, tone: "text-paint-2 text-[11px] tracking-wide" }],
     };
   });
 }
@@ -205,6 +206,12 @@ const SCALE_STEP_M = 10;
 
 function scaleBarStart(bounds: Bounds): Point2 {
   return [bounds.uMax + 10, bounds.vMin + 6];
+}
+
+/** The ground the scale bar takes, with room round it, for anything that must keep clear of it. */
+export function scaleBarRect(bounds: Bounds) {
+  const [u, v] = scaleBarStart(bounds);
+  return { uMin: u - 4, uMax: u + 10, vMin: v - 4, vMax: v + SCALE_BAR_M + 4 };
 }
 
 export function scaleBarLabel(bounds: Bounds): LabelSpec {
@@ -350,7 +357,7 @@ function tickLines(anchor: GeoAnchor, u: number, v: number, axis: string): Label
 }
 
 /** Each names one point of the junction frame in WGS84 and EPSG:2229. */
-export function geoTickLabels(bounds: Bounds, anchor: GeoAnchor): LabelSpec[] {
+export function geoTickLabels(bounds: Bounds, anchor: GeoAnchor, network?: RoadNetwork): LabelSpec[] {
   const { edgeU, edgeV, top, right } = geoEdges(bounds);
   const specs: LabelSpec[] = [];
   const signed = (value: number) => `${value >= 0 ? "+" : ""}${value}`;
@@ -370,11 +377,12 @@ export function geoTickLabels(bounds: Bounds, anchor: GeoAnchor): LabelSpec[] {
       lines: tickLines(anchor, u, edgeV, `${signed(u)} m across`),
     });
   }
-  return specs;
+  // A tick label on the street would sit on the traffic; the ticks either side carry the axis.
+  return network ? specs.filter((spec) => !onStreet(network, spec.at[0], spec.at[2], 12)) : specs;
 }
 
 /** Geo mode's axis lines and ticks. */
-export function GeoTicks({ bounds, palette }: { bounds: Bounds; palette: Palette }) {
+export function GeoTicks({ bounds, network, palette }: { bounds: Bounds; network: RoadNetwork; palette: Palette }) {
   const segments = useMemo(() => {
     const { edgeU, edgeV, top, right } = geoEdges(bounds);
     const lines: Segment[] = [
@@ -387,8 +395,9 @@ export function GeoTicks({ bounds, palette }: { bounds: Bounds; palette: Palette
     for (let u = Math.ceil(edgeU / TICK_STEP_M) * TICK_STEP_M; u <= right; u += TICK_STEP_M) {
       lines.push([[u, edgeV - 3], [u, edgeV]]);
     }
-    return lines;
-  }, [bounds]);
+    // The axes stop at the verge: nothing but the road and its paint lies on the road.
+    return lines.flatMap(([from, to]) => clipToVerge(network, from, to));
+  }, [bounds, network]);
   return <GroundLines segments={segments} colour={palette.paintFaint} />;
 }
 

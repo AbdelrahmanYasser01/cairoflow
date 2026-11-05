@@ -1,6 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import {
+  AdditiveBlending,
   BoxGeometry,
   BufferAttribute,
   Color,
@@ -188,7 +189,19 @@ export function Columns({
     return cols * rows;
   }, [bounds]);
   const geometry = useMemo(columnGeometry, []);
-  const material = useMemo(() => new MeshBasicMaterial({ vertexColors: true }), []);
+  // Light, not solid: additive and slim, so a column reads as a measure standing on the lane, never
+  // as a building on the road. Height and tone still carry the value.
+  const material = useMemo(
+    () =>
+      new MeshBasicMaterial({
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.78,
+        blending: AdditiveBlending,
+        depthWrite: false,
+      }),
+    [],
+  );
   const mesh = useRef<InstancedMesh>(null);
   const target = useRef(new Float32Array(capacity));
   const shown = useRef(new Float32Array(capacity));
@@ -237,7 +250,7 @@ export function Columns({
     const cells = grid.current;
     if (!node || !cells || settled.current) return;
     const ease = 1 - Math.exp(-delta * 7);
-    const side = COLUMN_CELL_M * 0.6;
+    const side = COLUMN_CELL_M * 0.42;
     const colours = node.instanceColor?.array as Float32Array;
     let moving = false;
     let slot = 0;

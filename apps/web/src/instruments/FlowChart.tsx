@@ -1,25 +1,31 @@
+import { motion } from "motion/react";
 import { useState } from "react";
-import { Label, useElementSize } from "../design";
+import { DUR, EASE, EVIDENCE, Label, StatusMark, useElementSize, type EvidenceKind, type Status } from "../design";
 import { niceAxis, type Bin } from "../domain/metrics";
 
-const HEIGHT_PX = 232;
-const PLOT = { top: 22, right: 0, bottom: 26, left: 34 };
+const HEIGHT_PX = 240;
+const PLOT = { top: 26, right: 0, bottom: 26, left: 34 };
 /** Minimum room for one x-axis label, in pixels. */
 const TICK_ROOM_PX = 56;
 
 /**
- * Entering vehicles per bin. Columns are the whole junction; picking an arm draws that arm in amber
- * against the whole. A bin with no value is left empty, never drawn as zero.
+ * Entering vehicles per bin. Columns are the whole junction, in the colour of their evidence kind;
+ * picking an arm draws that arm in amber against the whole. A bin with no value is left empty,
+ * never drawn as zero.
  */
 export function FlowChart({
   bins,
   binS,
   picked,
+  kind = "approximated",
+  status,
 }: {
   bins: readonly Bin[];
   binS: number;
   /** The name of the arm picked out, when a filter is on. */
   picked: string | null;
+  kind?: EvidenceKind;
+  status?: Status;
 }) {
   const [ref, { width }] = useElementSize<HTMLDivElement>();
   const [hover, setHover] = useState<number | null>(null);
@@ -29,9 +35,10 @@ export function FlowChart({
   const plotW = Math.max(0, width - PLOT.left - PLOT.right);
   const plotH = HEIGHT_PX - PLOT.top - PLOT.bottom;
   const band = bins.length > 0 ? plotW / bins.length : 0;
-  const bar = Math.max(2, band * 0.46);
+  const bar = Math.max(2, band * 0.62);
   const y = (value: number) => PLOT.top + plotH - (value / top) * plotH;
   const x = (index: number) => PLOT.left + index * band + (band - bar) / 2;
+  const colour = EVIDENCE[kind].colour;
 
   const ticks: number[] = [];
   for (let value = 0; value <= top; value += step) ticks.push(value);
@@ -46,6 +53,7 @@ export function FlowChart({
   }, null);
   const shown = hover ?? peak;
   const summary = picked ? `${picked} against all arms` : "All arms";
+  const shownValue = shown === null ? null : measure(bins[shown] as Bin);
 
   return (
     <div ref={ref} className="relative mt-3">
@@ -58,6 +66,12 @@ export function FlowChart({
           aria-label={`Entering vehicles per ${binS} seconds. ${summary}. The table after this chart lists every value.`}
           onMouseLeave={() => setHover(null)}
         >
+          <defs>
+            <linearGradient id="cf-bar-fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset={0} stopColor={colour} stopOpacity="0.95" />
+              <stop offset={1} stopColor={colour} stopOpacity="0.35" />
+            </linearGradient>
+          </defs>
           {ticks.map((tick) => (
             <g key={tick}>
               <line
@@ -66,6 +80,7 @@ export function FlowChart({
                 y1={y(tick)}
                 y2={y(tick)}
                 stroke={tick === 0 ? "var(--paint-4)" : "var(--rule-1)"}
+                strokeDasharray={tick === 0 ? undefined : "2 4"}
               />
               <text
                 x={PLOT.left - 8}
@@ -79,24 +94,46 @@ export function FlowChart({
               </text>
             </g>
           ))}
+          {hover !== null && shown !== null && shownValue !== null ? (
+            <line
+              x1={x(shown) + bar / 2}
+              x2={x(shown) + bar / 2}
+              y1={PLOT.top - 6}
+              y2={y(0)}
+              stroke="var(--paint-4)"
+              strokeDasharray="2 3"
+            />
+          ) : null}
           {bins.map((bin, index) => (
             <g key={bin.startS}>
               {bin.total !== null ? (
-                <rect
+                <motion.rect
                   x={x(index)}
                   y={y(bin.total)}
                   width={bar}
                   height={y(0) - y(bin.total)}
-                  fill={picked ? "var(--paint-4)" : shown === index ? "var(--paint-1)" : "var(--paint-3)"}
+                  fill={picked ? "var(--paint-4)" : "url(#cf-bar-fade)"}
+                  opacity={picked || shown === index || hover === null ? 1 : 0.55}
+                  style={{ transformBox: "fill-box", transformOrigin: "bottom" }}
+                  initial={{ scaleY: 0 }}
+                  animate={{ scaleY: 1 }}
+                  transition={{ duration: DUR.slow * 2, ease: EASE, delay: index * 0.04 }}
                 />
               ) : null}
+              {bin.total !== null && !picked ? (
+                <rect x={x(index)} y={y(bin.total)} width={bar} height={2} fill={colour} />
+              ) : null}
               {picked && bin.selected !== null ? (
-                <rect
+                <motion.rect
                   x={x(index)}
                   y={y(bin.selected)}
                   width={bar}
                   height={y(0) - y(bin.selected)}
                   fill="var(--amber)"
+                  style={{ transformBox: "fill-box", transformOrigin: "bottom" }}
+                  initial={{ scaleY: 0 }}
+                  animate={{ scaleY: 1 }}
+                  transition={{ duration: DUR.slow, ease: EASE, delay: index * 0.03 }}
                 />
               ) : null}
               {index % every === 0 ? (
@@ -121,16 +158,16 @@ export function FlowChart({
               />
             </g>
           ))}
-          {shown !== null && measure(bins[shown] as Bin) !== null ? (
+          {shown !== null && shownValue !== null ? (
             <text
               x={x(shown) + bar / 2}
-              y={y(measure(bins[shown] as Bin) as number) - 6}
+              y={y(shownValue) - 8}
               textAnchor="middle"
               fill="var(--paint-1)"
               fontFamily="var(--font-mono)"
-              fontSize="12"
+              fontSize="13"
             >
-              {measure(bins[shown] as Bin)}
+              {hover === null ? `Peak ${shownValue}` : shownValue}
             </text>
           ) : null}
         </svg>
@@ -152,10 +189,14 @@ export function FlowChart({
               </span>
             </>
           ) : (
-            <Label tone="body">All arms</Label>
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true" className="size-2" style={{ background: colour }} />
+              <Label tone="body">All arms</Label>
+            </span>
           )}
+          {status ? <StatusMark status={status} /> : null}
         </span>
-        <Label>Seconds from the start of the analysis</Label>
+        <Label>Seconds from start</Label>
       </div>
 
       <table className="sr-only">
