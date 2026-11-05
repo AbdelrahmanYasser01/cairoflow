@@ -1,0 +1,143 @@
+1
+00:00:00,500 --> 00:00:08,370
+CairoFlow turns one recorded traffic video into tracked vehicles, turning counts, and an approximate 3D twin of the junction.
+
+2
+00:00:10,020 --> 00:00:11,821
+20.33 percent.
+
+3
+00:00:12,271 --> 00:00:16,897
+That's how far our count of vehicles entering the junction was from the published reference.
+
+4
+00:00:17,147 --> 00:00:20,941
+Our limit was 20 percent, and we fixed it before the held-out read.
+
+5
+00:00:21,391 --> 00:00:25,875
+So in this fifteen-minute study, CairoFlow refuses to show you those counts.
+
+6
+00:00:27,025 --> 00:00:31,013
+Cities re-time signals and rebuild junctions from traffic counts.
+
+7
+00:00:31,073 --> 00:00:34,024
+But a vision model won't tell you when its count is wrong.
+
+8
+00:00:34,174 --> 00:00:38,376
+So we built a pipeline where every headline figure shows its gate status.
+
+9
+00:00:39,226 --> 00:00:42,923
+One overhead camera: Lankershim Boulevard, Los Angeles.
+
+10
+00:00:43,023 --> 00:00:48,071
+The footage isn't redistributed, so you see the stored tracks from the local detector and tracker.
+
+11
+00:00:48,221 --> 00:00:53,911
+Asked for "car", SAM 3.1 followed at most 16 vehicles, and none that arrived later.
+
+12
+00:00:54,011 --> 00:00:58,363
+So on one 60-second window, we gave it our tracked boxes as its prompts.
+
+13
+00:00:58,463 --> 00:01:07,675
+It agreed with 9,900 of 10,858 observed rows. A consistency check, not independent confirmation.
+
+14
+00:01:07,775 --> 00:01:12,379
+Its own boxes replaced 586 rows our tracker had filled in.
+
+15
+00:01:13,059 --> 00:01:17,838
+The fifteen-minute record drives a 3D twin of the junction, on one shared clock.
+
+16
+00:01:17,938 --> 00:01:19,996
+Click any vehicle to read its record.
+
+17
+00:01:20,096 --> 00:01:22,510
+Approximations are labelled, on screen.
+
+18
+00:01:23,190 --> 00:01:31,552
+Counted tracks become turning movements, set beside the published reference. Across all twelve: 801 against 911.
+
+19
+00:01:32,432 --> 00:01:33,708
+Then comes the gate.
+
+20
+00:01:33,858 --> 00:01:36,309
+Before the test, we committed seven limits.
+
+21
+00:01:36,409 --> 00:01:45,073
+We tuned the detector and tracker on alternating minutes of footage, then scored the held-out minutes once, against the published NGSIM trajectories.
+
+22
+00:01:45,133 --> 00:01:49,213
+That's agreement, not accuracy: the reference comes from the same video.
+
+23
+00:01:49,443 --> 00:01:52,375
+Pooled across the held-out minutes, six checks passed.
+
+24
+00:01:52,655 --> 00:01:56,009
+Entering counts came in at 20.33 percent error.
+
+25
+00:01:56,069 --> 00:01:57,358
+The limit was 20.
+
+26
+00:01:58,608 --> 00:02:00,952
+A miss of a third of a percentage point.
+
+27
+00:02:01,142 --> 00:02:02,445
+We didn't move the line.
+
+28
+00:02:02,595 --> 00:02:06,874
+So the fifteen-minute study shows no entering-flow figure. Only the reason.
+
+29
+00:02:07,024 --> 00:02:13,066
+A withheld value is absent, not zero. The data contract won't let a failed metric carry a number.
+
+30
+00:02:13,916 --> 00:02:18,596
+Muse Spark reads that evidence, and writes hypotheses for a person to test.
+
+31
+00:02:18,696 --> 00:02:24,130
+Its reply schema has no numeric field, and code checks that every citation exists.
+
+32
+00:02:24,280 --> 00:02:29,907
+All three replies passed. Here's one hypothesis, word for word, labelled as model output.
+
+33
+00:02:32,157 --> 00:02:40,794
+For the decision, which used published NGSIM trajectories rather than our camera output, SUMO tested three signal changes Muse proposed.
+
+34
+00:02:40,894 --> 00:02:46,283
+In simulation, every one made something worse, and the simulator's baseline isn't validated.
+
+35
+00:02:46,433 --> 00:02:49,622
+So CairoFlow recommends nothing. And shows you why.
+
+36
+00:02:50,872 --> 00:02:56,629
+CairoFlow. Decision support for traffic engineers. It tells you what it knows, and what it doesn't.

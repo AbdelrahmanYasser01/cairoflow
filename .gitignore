@@ -48,6 +48,8 @@ cache/muse/*
 *.webm
 *.mpg
 *.mpeg
+# The submission film: app captures and derived tracks only, no NGSIM footage
+!docs/demo/CairoFlow-demo.mp4
 
 # Model weights
 *.onnx

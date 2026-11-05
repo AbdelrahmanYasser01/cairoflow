@@ -15,7 +15,9 @@ Built for the Meta Global AI Developer Hackathon 2026, using SAM 3.1 and Muse Sp
 - **Meta models.** SAM 3.1 refines the tracks on a 60-second window and gives per-vehicle masks. Muse Spark reads the checked evidence and writes hypotheses for an engineer, and it proposes signal changes, which validators and SUMO then test. Code checks every model citation against the evidence.
 - **What happened.** 6 of 7 held-out checks passed. Entering counts missed by 0.0033, so the app withholds them. Each of the three interventions tested in simulation made something worse, so the app recommends none. Refusing to publish unchecked numbers is the point of the product.
 - **Try it.** Five commands, offline, no API key: see [From a fresh clone](#from-a-fresh-clone). The suite has about 1,800 tests (Python and web).
-- **Watch it.** The demo video is cut from captures of the real app. Its Remotion source is in [`video/`](video/), and [docs/VIDEO.md](docs/VIDEO.md) has the storyboard, the voice-over and the commands to re-render it.
+- **Watch it.** [The 3-minute demo film](docs/demo/CairoFlow-demo.mp4) (2:58, 1080p, captions in [`CairoFlow-demo.srt`](docs/demo/CairoFlow-demo.srt)) is cut from captures of the real app, and every line in it maps to [the claims register](docs/CLAIMS.md). Its Remotion source is in [`apps/demo-video/`](apps/demo-video/README.md). A second cut's source is in [`video/`](video/), with [docs/VIDEO.md](docs/VIDEO.md).
+
+[![CairoFlow demo film, 2:58: click to watch](docs/demo/CairoFlow-thumbnail.png)](docs/demo/CairoFlow-demo.mp4)
 
 | Digital twin: one road network, tracked vehicles on the video's clock | Evidence: each check against the limit fixed before the read |
 |---|---|
