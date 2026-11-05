@@ -160,8 +160,14 @@ export function ChainGraph({
 const COPYLEFT = /AGPL/i;
 
 function short(tool: string): string {
-  const parts = tool.split(/[./]/);
+  const parts = tool.split("/");
   return parts[parts.length - 1] ?? tool;
+}
+
+/** A stage id as words: "sam_refine" reads "SAM refine". */
+function stageName(stage: string): string {
+  const words = stage.replace(/_/g, " ").replace(/\bsam\b/gi, "SAM");
+  return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
 /** Every stage the analysis went through, as a flow with the time each one took. */
@@ -208,9 +214,9 @@ function PipelineNode({ stage, index, longest }: { stage: StageReceipt; index: n
   return (
     <li className="flex min-w-0 flex-col gap-2 border-r border-b border-rule-1 bg-asphalt-0 p-3" title={detail}>
       <span className="mono text-micro text-paint-4">{String(index + 1).padStart(2, "0")}</span>
-      <span className="font-display text-head leading-none text-paint-1 capitalize">{stage.stage}</span>
+      <span className="font-display text-head leading-none text-paint-1">{stageName(stage.stage)}</span>
       <span className="mono truncate text-micro text-paint-3">{short(stage.tool)}</span>
-      <span className={`mono text-micro ${copyleft ? "text-amber" : "text-paint-3"}`}>{stage.licence ?? "No licence"}</span>
+      <span className={`mono text-micro ${copyleft ? "text-amber" : "text-paint-3"}`}>{stage.licence ?? "Licence not recorded"}</span>
       <span className="mono mt-auto text-label text-paint-1">
         {stage.items_out == null ? "None" : stage.items_out.toLocaleString("en-US")}
         <span className="ml-1 text-micro text-paint-4">out</span>

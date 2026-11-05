@@ -202,7 +202,7 @@ function Chain() {
           Evidence
         </ButtonLink>
       </div>
-      <ChainRail stages={stages} />
+      <ChainRail stages={stages} record={state.status === "ready" ? state.loaded.record : null} />
     </>
   );
 }
@@ -366,7 +366,7 @@ function ArmCounts({ loaded, arms, frame }: { loaded: LoadedAnalysis; arms: Site
 }
 
 /** Replay on: what the dots are, and the source second they show. */
-function ReplayChip() {
+function ReplayChip({ reference = false }: { reference?: boolean }) {
   return (
     <span className="mono inline-flex items-center gap-2 border border-rule-2 bg-asphalt-1/80 px-2 py-0.5 text-paint-2">
       <span aria-hidden="true" className="lamp-live inline-block size-1.5 bg-ev-approximated" />
@@ -374,7 +374,7 @@ function ReplayChip() {
       <span id={REPLAY_CLOCK_ID} className="text-paint-1">
         --:--
       </span>
-      <span className="text-paint-3">camera tracks</span>
+      <span className="text-paint-3">{reference ? "NGSIM tracks" : "camera tracks"}</span>
     </span>
   );
 }
@@ -385,7 +385,7 @@ function PlanNotes({ hasSite, loaded }: { hasSite: boolean; loaded: LoadedAnalys
   const counted = loaded && calibrated ? findMetric(loaded.record, "vehicles.arm.n") : null;
   return (
     <>
-      {calibrated ? <ReplayChip /> : null}
+      {calibrated ? <ReplayChip reference={loaded?.record.data_origin === "reference_dataset"} /> : null}
       <EvidenceBadge kind="approximated" note="Lanes from tracks" />
       <EvidenceBadge kind="assumed" note="Road beyond" />
       {counted && counted.status !== "gate_fail" ? (

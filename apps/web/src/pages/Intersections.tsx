@@ -468,7 +468,12 @@ export function Intersections() {
             <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
               {siteData ? (
                 <>
-                  {replay ? <EvidenceBadge kind="approximated" note="Replay, camera tracks" /> : null}
+                  {replay ? (
+                    <EvidenceBadge
+                      kind="approximated"
+                      note={replay.record.data_origin === "reference_dataset" ? "Replay, NGSIM tracks" : "Replay, camera tracks"}
+                    />
+                  ) : null}
                   <EvidenceBadge kind="approximated" note="Lanes from tracks" />
                   <EvidenceBadge kind="assumed" note="Road beyond" />
                 </>

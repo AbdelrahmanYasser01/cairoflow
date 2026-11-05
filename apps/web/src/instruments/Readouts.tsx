@@ -36,7 +36,7 @@ export function Readout({
         {withheld ? (
           <WithheldFigure what={metric.label} withheld={withheld} size={size} />
         ) : grouped ? (
-          <Absent reason="Withheld" />
+          <Absent reason="Not measured" />
         ) : (
           <Numeral
             value={counted ? counted.count : value}

@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { EvidenceBadge, Label, StatusMark, STATUS } from "../design";
-import { CHAIN_BRANCHES, decisionFor, readChain, type ChainBranch, type ChainReading } from "../domain/chain";
+import { CHAIN_BRANCHES, branchLabel, decisionFor, readChain, type ChainBranch, type ChainReading } from "../domain/chain";
+import type { AnalysisRecord } from "../lib/analysis";
 import type { LoadedAnalysis } from "../lib/analysis";
 import { useDecision, useSite } from "../state/resources";
 
@@ -65,10 +66,11 @@ function RailStage({ stage }: { stage: ChainReading }) {
  * The compact chain: two branches side by side, with a gap where the line stops. The gap is the
  * claim. Camera tracks did not feed the decision, so no line is drawn from one to the other.
  */
-export function ChainRail({ stages }: { stages: readonly ChainReading[] }) {
+export function ChainRail({ stages, record = null }: { stages: readonly ChainReading[]; record?: AnalysisRecord | null }) {
   return (
     <div className="mt-2 grid grid-cols-1 gap-x-8 gap-y-3 lg:grid-cols-[3fr_4fr]">
-      {CHAIN_BRANCHES.map(({ id, label }) => {
+      {CHAIN_BRANCHES.map(({ id }) => {
+        const label = branchLabel(id, record);
         const members = inBranch(stages, id);
         return (
           <section key={id} aria-label={label}>
@@ -138,10 +140,11 @@ function ListStage({ stage, last }: { stage: ChainReading; last: boolean }) {
 }
 
 /** The full chain: what each stage holds, how far it was checked and what kind of evidence it is. */
-export function ChainList({ stages }: { stages: readonly ChainReading[] }) {
+export function ChainList({ stages, record = null }: { stages: readonly ChainReading[]; record?: AnalysisRecord | null }) {
   return (
     <div className="mt-1">
-      {CHAIN_BRANCHES.map(({ id, label }) => {
+      {CHAIN_BRANCHES.map(({ id }) => {
+        const label = branchLabel(id, record);
         const members = inBranch(stages, id);
         return (
           <section key={id} aria-label={label} className="mt-3 first:mt-2">

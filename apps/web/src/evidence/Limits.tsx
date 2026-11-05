@@ -17,11 +17,12 @@ const LEADING: readonly RegExp[] = [
   /Ground positions are approximated/,
 ];
 
-type Source = "Gate" | "Camera" | "SAM" | "Decision";
+type Source = "Gate" | "Camera" | "Reference" | "SAM" | "Decision";
 
 const SOURCE_TONE: Record<Source, string> = {
   Gate: "text-paint-2 border-rule-2",
   Camera: "text-paint-3 border-rule-2",
+  Reference: "text-paint-3 border-rule-2",
   SAM: "text-ev-model-generated border-ev-model-generated/40",
   Decision: "text-ev-simulated border-ev-simulated/40",
 };
@@ -29,6 +30,7 @@ const SOURCE_TONE: Record<Source, string> = {
 const SOURCE_TITLE: Record<Source, string> = {
   Gate: "From this analysis record: the held-out agreement gate",
   Camera: "From this analysis record: the camera run",
+  Reference: "From this analysis record: published NGSIM trajectories, not video",
   SAM: "From the SAM measured record, source seconds 970 to 1000",
   Decision: "From the decision record: published NGSIM trajectories",
 };
@@ -49,7 +51,14 @@ function SourceTag({ source }: { source: Source }) {
 
 export function Limitations({ decision, record, index }: { decision: DecisionSummary | null; record: AnalysisRecord; index?: string }) {
   const tagged: { text: string; source: Source }[] = [
-    ...record.disclosures.map((text) => ({ text, source: GATE_LINE.test(text) ? ("Gate" as const) : ("Camera" as const) })),
+    ...record.disclosures.map((text) => ({
+      text,
+      source: GATE_LINE.test(text)
+        ? ("Gate" as const)
+        : record.data_origin === "reference_dataset"
+          ? ("Reference" as const)
+          : ("Camera" as const),
+    })),
     ...samMeasuredDisclosures(record).map((text) => ({ text, source: "SAM" as const })),
     ...(decision?.limitations ?? []).map((text) => ({ text, source: "Decision" as const })),
   ];
