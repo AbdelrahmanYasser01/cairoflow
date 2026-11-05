@@ -293,10 +293,10 @@ export const S05Twin: React.FC = () => {
           src="clips/twin_select.mp4"
           kind="video"
           playbackRate={6 / (bLen + 0.1)}
-          keys={[{ t: 0, x: 960, y: 540, z: 1.0 }, { t: 0.6, x: 1450, y: 470, z: 1.55 }, { t: label - 0.4, x: 1450, y: 470, z: 1.55 }, { t: label + 0.8, x: 760, y: 900, z: 1.4 }, { t: bLen, x: 760, y: 905, z: 1.44 }]}
+          keys={[{ t: 0, x: 960, y: 540, z: 1.0 }, { t: 0.6, x: 1450, y: 470, z: 1.55 }, { t: label - 0.4, x: 1450, y: 470, z: 1.55 }, { t: label + 0.8, x: 560, y: 900, z: 1.6 }, { t: bLen, x: 560, y: 905, z: 1.65 }]}
         >
-          <Callout x={1558} y={168} w={322} h={600} from={0.25} to={label - 0.15} label="ITS RECORD" />
-          <Callout x={116} y={940} w={1534} h={32} from={label + 0.6} spot label="APPROXIMATIONS, LABELLED" />
+          <Callout x={1562} y={158} w={320} h={608} from={0.25} to={label - 0.15} label="ITS RECORD" />
+          <Callout x={224} y={943} w={348} h={32} from={label + 0.6} spot label="APPROXIMATIONS, LABELLED" />
         </Shot>
       </Sequence>
     </Edge>
@@ -319,17 +319,17 @@ export const S06Analytics: React.FC = () => {
           src="stills/analytics.png"
           kind="still"
           keys={[
-            { t: 0, x: 300, y: 230, z: 1.7 },
-            { t: 1.4, x: 300, y: 230, z: 1.7 },
-            { t: 2.3, x: 625, y: 830, z: 1.15 },
-            { t: 3.3, x: 625, y: 830, z: 1.15 },
-            { t: 4.2, x: 1560, y: 760, z: 1.7 },
-            { t: bLen, x: 1565, y: 762, z: 1.75 },
+            { t: 0, x: 330, y: 265, z: 1.7 },
+            { t: 1.4, x: 330, y: 265, z: 1.7 },
+            { t: 2.3, x: 640, y: 720, z: 1.15 },
+            { t: 3.3, x: 640, y: 720, z: 1.15 },
+            { t: 4.2, x: 1590, y: 600, z: 1.7 },
+            { t: bLen, x: 1595, y: 602, z: 1.75 },
           ]}
         >
-          <Callout x={112} y={178} w={150} h={66} from={0.3} to={1.9} label="COUNTED TRACKS" />
-          <Callout x={1664} y={677} w={72} h={26} from={4.4} pad={5} />
-          <Callout x={1156} y={842} w={640} h={22} from={4.6} pad={6} />
+          <Callout x={112} y={192} w={434} h={146} from={0.3} to={1.9} label="COUNTED TRACKS" />
+          <Callout x={1628} y={466} w={124} h={76} from={4.4} pad={5} label="CAMERA / NGSIM" />
+          <Callout x={1300} y={804} w={580} h={26} from={4.6} pad={6} />
         </Shot>
       </Sequence>
     </Edge>
@@ -531,9 +531,10 @@ export const S08Withheld: React.FC = () => {
         <Miss from={0.7} to={aEnd} />
       </Sequence>
       <Sequence from={f(aEnd)} durationInFrames={f(bEnd - aEnd)} layout="none">
-        <Shot src="stills/analytics_check_open.png" kind="still" keys={[{ t: 0, x: 470, y: 300, z: 1.45 }, { t: 1.6, x: 470, y: 300, z: 1.45 }, { t: 2.6, x: 450, y: 560, z: 1.45 }, { t: bEnd - aEnd, x: 450, y: 565, z: 1.5 }]}>
-          <Callout x={556} y={180} w={232} h={98} from={0.3} color={C.stop} label="NO FIGURE" />
-          <Callout x={124} y={372} w={680} h={372} from={2.4} label="ONLY THE REASON" />
+        <Shot src="stills/analytics_check_open.png" kind="still" keys={[{ t: 0, x: 997, y: 575, z: 1.4 }, { t: 1.6, x: 997, y: 575, z: 1.4 }, { t: 2.6, x: 997, y: 790, z: 1.08 }, { t: bEnd - aEnd, x: 997, y: 792, z: 1.1 }]}>
+          <Callout x={110} y={492} w={1772} h={158} from={0.3} to={2.4} color={C.stop} label="NO FIGURE" />
+          <Callout x={110} y={724} w={640} h={160} from={2.4} label="ONLY THE REASON" />
+          <Callout x={1519} y={748} w={365} h={210} from={2.8} color={C.stop} />
         </Shot>
       </Sequence>
       <Sequence from={f(bEnd)} durationInFrames={f(seconds - bEnd)} layout="none">

@@ -35,11 +35,11 @@ const SHOTS = {
   vision_tracks: { url: "/vision", analysis: STUDY, before: [click("Tracks"), play], seconds: 6, slow: 0.25, settle: 3000 },
   vision_sam: { url: "/vision", analysis: SAM, before: [play], seconds: 7, slow: 0.25, settle: 4000 },
   vision_geo: { url: "/vision?layer=geo", analysis: STUDY, before: [play], seconds: 5, slow: 0.25, settle: 3000 },
-  twin_along: { url: "/twin", analysis: STUDY, before: [click("2x"), play], seconds: 8, slow: 1 / 30, settle: 9000 },
-  twin_select: { url: "/twin", analysis: STUDY, before: [at(1290, 690), pause(4000), click("Follow selected"), pause(6000), play], seconds: 6, slow: 1 / 30, settle: 9000 },
-  twin_plan: { url: "/twin", analysis: STUDY, before: [click("Plan"), pause(8000), click("4x"), play], seconds: 5, slow: 1 / 30, settle: 9000 },
-  twin_geo: { url: "/twin", analysis: STUDY, before: [click("Geo"), pause(8000), click("4x"), play], seconds: 5, slow: 1 / 30, settle: 9000 },
-  twin_hero: { url: "/twin", analysis: STUDY, before: [click("Oblique"), pause(8000), click("4x"), play], seconds: 7, slow: 1 / 30, settle: 9000 },
+  twin_along: { url: "/twin", analysis: STUDY, before: [click("Along Lankershim"), pause(6000), click("2x"), play], seconds: 6, slow: 1 / 15, settle: 9000 },
+  twin_select: { url: "/twin", analysis: STUDY, before: [click("Along Lankershim"), pause(6000), at(1290, 690), pause(4000), click("Follow selected"), pause(6000), play], seconds: 6, slow: 1 / 15, settle: 9000 },
+  twin_plan: { url: "/twin", analysis: STUDY, before: [click("Plan"), pause(8000), click("4x"), play], seconds: 3, slow: 1 / 15, settle: 9000 },
+  twin_geo: { url: "/twin", analysis: STUDY, before: [click("Geo"), pause(8000), click("4x"), play], seconds: 5, slow: 1 / 15, settle: 9000 },
+  twin_hero: { url: "/twin", analysis: STUDY, before: [click("Oblique"), pause(8000), click("4x"), play], seconds: 7, slow: 1 / 15, settle: 9000 },
 };
 
 function timeScale() {
