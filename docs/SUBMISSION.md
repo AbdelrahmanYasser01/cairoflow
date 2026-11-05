@@ -43,7 +43,7 @@ Counterfactual scenarios (demand growth, lane closures, turn bans), a second sit
 
 ## Demo video
 
-About two and a half minutes at 1080p, cut from Playwright captures of the real app with Remotion. Captions are burned in, so it works muted. The source is in `video/`, and the storyboard, voice-over script and optional Higgsfield shot prompts are in [VIDEO.md](VIDEO.md).
+2 minutes 32 seconds at 1080p, cut from Playwright captures of the real app with Remotion. Captions are burned in, so it works muted. The source is in `video/`, and the storyboard, voice-over script and optional Higgsfield shot prompts are in [VIDEO.md](VIDEO.md).
 
 ## Attribution (needed on any video that shows the footage)
 
