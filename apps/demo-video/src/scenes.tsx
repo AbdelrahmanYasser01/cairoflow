@@ -139,7 +139,7 @@ const SamAlone: React.FC = () => {
   const followed = Math.floor(interpolate(t, [0.4, 2.2], [0, 16], CLAMP));
   const bars = [
     { label: "SAM 3.1 alone, tracked boxes", v: 0.45, colour: C.model },
-    { label: "Our detector and tracker", v: 0.8, colour: C.paint1 },
+    { label: "Local detector and tracker", v: 0.8, colour: C.paint1 },
   ];
   return (
     <AbsoluteFill>
@@ -205,7 +205,7 @@ const Seeded: React.FC = () => {
         {box("Vehicle masks", "model-generated", C.model, 2.4)}
       </div>
       <div style={{ position: "absolute", left: 0, right: 0, top: 760, textAlign: "center", fontFamily: F.mono, fontSize: 24, color: C.paint2, opacity: ramp(t, 3.0, 3.6) }}>
-        9 box-prompt requests · $0.32 · seeded from these same tracks
+        box prompts in groups of up to 16 · $0.32 · seeded from these same tracks
       </div>
     </AbsoluteFill>
   );
@@ -250,7 +250,7 @@ export const S04Vision: React.FC = () => {
       </Sequence>
       <Sequence from={f(aEnd)} durationInFrames={f(bEnd - aEnd)} layout="none">
         <Shot src="clips/vision_tracks.mp4" kind="video" keys={[{ t: 0, x: 560, y: 450, z: 1.46 }, { t: bEnd - aEnd, x: 590, y: 440, z: 1.4 }]} />
-        <Chip x={200} y={760} from={0.3} to={bEnd - aEnd} title="Local detector + tracker" sub="967 counted tracks over fifteen minutes" />
+        <Chip x={200} y={760} from={0.3} to={bEnd - aEnd} title="Local detector + tracker" sub="967 counted tracks over fifteen minutes, ungated" />
       </Sequence>
       <Sequence from={f(bEnd)} durationInFrames={f(cEnd - bEnd)} layout="none">
         <SamAlone />
@@ -286,7 +286,7 @@ export const S05Twin: React.FC = () => {
       <Ground />
       <Sequence durationInFrames={f(aEnd)} layout="none">
         <Shot src="clips/twin_along.mp4" kind="video" keys={[{ t: 0, x: 960, y: 540, z: 1.0 }, { t: aEnd, x: 980, y: 520, z: 1.07 }]} />
-        <Chip x={200} y={92} from={0.4} to={aEnd} title="Digital twin" sub="built from the same record, driven by the same clock" />
+        <Chip x={200} y={92} from={0.4} to={aEnd} title="Digital twin" sub="built from the fifteen-minute study's record, on the same clock" />
       </Sequence>
       <Sequence from={f(aEnd)} durationInFrames={f(bLen)} layout="none">
         <Shot
@@ -296,7 +296,7 @@ export const S05Twin: React.FC = () => {
           keys={[{ t: 0, x: 960, y: 540, z: 1.0 }, { t: 0.6, x: 1450, y: 470, z: 1.55 }, { t: label - 0.4, x: 1450, y: 470, z: 1.55 }, { t: label + 0.8, x: 760, y: 900, z: 1.4 }, { t: bLen, x: 760, y: 905, z: 1.44 }]}
         >
           <Callout x={1558} y={168} w={322} h={600} from={0.25} to={label - 0.15} label="ITS RECORD" />
-          <Callout x={116} y={940} w={1534} h={32} from={label + 0.6} spot label="EVERY APPROXIMATION, LABELLED" />
+          <Callout x={116} y={940} w={1534} h={32} from={label + 0.6} spot label="APPROXIMATIONS, LABELLED" />
         </Shot>
       </Sequence>
     </Edge>
@@ -457,6 +457,9 @@ export const S07Gate: React.FC = () => {
       </AbsoluteFill>
       <AbsoluteFill style={{ opacity: tableB }}>
         <GateTable t={t} reveal={-10} passFrom={c4 + 1.3} failAt={c5} limitAt={c6} />
+        <Footnote from={c4 + 0.4} y={800}>
+          Pooled over the seven held-out blocks. Block by block, sideways p90 missed in 3 of 7, turning agreement in 3, lane in 2, recall in 2.
+        </Footnote>
       </AbsoluteFill>
     </Edge>
   );
@@ -497,7 +500,7 @@ const Contract: React.FC = () => {
       </div>
       <div style={{ position: "absolute", left: 200, right: 200, top: 330, padding: "30px 36px", background: C.bg1, border: `1px solid ${C.rule2}`, borderRadius: 10 }}>
         {CODE.map((line, i) => {
-          const a = ramp(t, 0.3 + i * 0.12, 0.6 + i * 0.12);
+          const a = ramp(t, 0.05 + i * 0.06, 0.3 + i * 0.06);
           return (
             <div key={i} style={{ position: "relative", fontFamily: F.mono, fontSize: 25, lineHeight: "40px", height: 40, whiteSpace: "pre", color: line.dim ? C.paint3 : line.hi ? C.paint1 : C.paint2, opacity: a }}>
               {line.hi ? <div style={{ position: "absolute", left: -18, right: -18, top: 2, bottom: 2, background: `rgba(240,82,79,${0.16 * hi})`, borderLeft: `4px solid rgba(240,82,79,${hi})` }} /> : null}

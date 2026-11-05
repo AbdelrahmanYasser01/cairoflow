@@ -128,7 +128,29 @@ open; the title card is gone. Higgsfield was checked rather than assumed: no Hig
 connector exists in the build session, no credentials are set, and every Higgsfield host fails
 DNS from the build machine, so it could not be used even through its published SDKs.
 
-The final cut runs 2:56.
+## What the judge review and the claims verification changed
+
+An independent reviewer, given only dense frames, the transcript and the rubric, scored the first
+cut 5.85/10 (Impact 5, Meta tooling 5, Demo 6, Technical depth 8) and listed unclear and
+unsupported lines. A verification workflow then had four refuters check every line against the
+README, this register and the stored Muse replies. Changes that came out of the two passes:
+
+- The six passing checks are said to be pooled, with the block-by-block misses on screen; the
+  reason it is agreement rather than accuracy is said aloud; "tuned only" became "tuned the
+  detector and tracker", since the placement was not held out; "the part most demos skip" became
+  "Then comes the gate".
+- The decision line says it runs on published NGSIM data, not this camera; the cold open says how
+  far the count was from the published reference, and that the withholding is in this study.
+- The SAM agreement uses the register's own wording ("9,900 of 10,858 observed rows ... not
+  independent confirmation"); SAM's 586 replaced rows are shown on the app's own panel with
+  "542 of 586 either way"; one Muse hypothesis is shown word for word, labelled model-generated
+  with its own confidence; the weak "none cited the withheld counts" line was dropped.
+- The analytics line uses the team's vetted "801 against 911" across all twelve movements, since
+  only 801 of the 967 counted tracks are in the turning matrix; the 967 chip says "ungated".
+- The opening says "recorded traffic video" and "approximate 3D twin"; the close names the user,
+  decision support for traffic engineers.
+
+The final cut runs 2:58, with the voice at 1.08x.
 
 ## Calls made without the user (the brief asked for autonomy)
 

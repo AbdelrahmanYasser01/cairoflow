@@ -1,6 +1,6 @@
 {
  "voice": "af_heart",
- "speed": 1.05,
+ "speed": 1.08,
  "scenes": [
   {
    "id": "s00_open",
@@ -8,36 +8,36 @@
    "hold": 0.3,
    "lines": [
     {
-     "say": "Cairo Flow turns one traffic camera into tracked vehicles, turning counts, and a three D twin of the junction.",
-     "show": "CairoFlow turns one traffic camera into tracked vehicles, turning counts, and a 3D twin of the junction.",
+     "say": "Cairo Flow turns one recorded traffic video into tracked vehicles, turning counts, and an approximate three D twin of the junction.",
+     "show": "CairoFlow turns one recorded traffic video into tracked vehicles, turning counts, and an approximate 3D twin of the junction.",
      "pause": 0.7
     }
    ]
   },
   {
    "id": "s01_cold",
-   "lead": 1.2,
+   "lead": 1.0,
    "hold": 0.5,
    "lines": [
     {
      "say": "Twenty point three three percent.",
      "show": "20.33 percent.",
-     "pause": 0.8
+     "pause": 0.7
     },
     {
-     "say": "That's the error in our count of vehicles entering the junction.",
-     "show": "That's the error in our count of vehicles entering the junction.",
-     "pause": 0.6
+     "say": "That's how far our count of vehicles entering the junction was from the published reference.",
+     "show": "That's how far our count of vehicles entering the junction was from the published reference.",
+     "pause": 0.5
     },
     {
      "say": "Our limit was twenty percent, and we fixed it before we looked.",
      "show": "Our limit was 20 percent, and we fixed it before we looked.",
-     "pause": 0.8
+     "pause": 0.7
     },
     {
-     "say": "So Cairo Flow refuses to show you those counts.",
-     "show": "So CairoFlow refuses to show you those counts.",
-     "pause": 1.3
+     "say": "So in this fifteen minute study, Cairo Flow refuses to show you those counts.",
+     "show": "So in this fifteen-minute study, CairoFlow refuses to show you those counts.",
+     "pause": 1.1
     }
    ]
   },
@@ -69,13 +69,13 @@
    "hold": 0.3,
    "lines": [
     {
-     "say": "One overhead camera. Lankershim Boulevard, Los Angeles, two thousand five.",
-     "show": "One overhead camera: Lankershim Boulevard, Los Angeles, 2005.",
+     "say": "One overhead camera. Lankershim Boulevard, Los Angeles.",
+     "show": "One overhead camera: Lankershim Boulevard, Los Angeles.",
      "pause": 0.35
     },
     {
-     "say": "The footage isn't redistributed, so you see the stored tracks of our local detector and tracker.",
-     "show": "The footage isn't redistributed, so you see the stored tracks of our local detector and tracker.",
+     "say": "The footage isn't redistributed, so you see the stored tracks from the local detector and tracker.",
+     "show": "The footage isn't redistributed, so you see the stored tracks from the local detector and tracker.",
      "pause": 0.4
     },
     {
@@ -89,13 +89,13 @@
      "pause": 0.35
     },
     {
-     "say": "It agreed with nine thousand nine hundred of our ten thousand, eight hundred fifty eight detections. A consistency check, not proof.",
-     "show": "It agreed with 9,900 of our 10,858 detections. A consistency check, not proof.",
+     "say": "It agreed with nine thousand nine hundred of ten thousand, eight hundred fifty eight observed rows. A consistency check, not independent confirmation.",
+     "show": "It agreed with 9,900 of 10,858 observed rows. A consistency check, not independent confirmation.",
      "pause": 0.35
     },
     {
-     "say": "Its own boxes replaced five hundred eighty six rows our tracker had interpolated, and it outlined the vehicles it followed.",
-     "show": "Its own boxes replaced 586 rows our tracker had interpolated, and it outlined the vehicles it followed.",
+     "say": "Its own boxes replaced five hundred eighty six rows our tracker had filled in.",
+     "show": "Its own boxes replaced 586 rows our tracker had filled in.",
      "pause": 0.53
     }
    ]
@@ -106,8 +106,8 @@
    "hold": 0.4,
    "lines": [
     {
-     "say": "The same record drives a three D twin of the junction, on one shared clock.",
-     "show": "The same record drives a 3D twin of the junction, on one shared clock.",
+     "say": "The fifteen minute record drives a three D twin of the junction, on one shared clock.",
+     "show": "The fifteen-minute record drives a 3D twin of the junction, on one shared clock.",
      "pause": 0.35
     },
     {
@@ -128,8 +128,8 @@
    "hold": 0.6,
    "lines": [
     {
-     "say": "Nine hundred sixty seven counted tracks become turning movements, set beside the published reference, movement by movement.",
-     "show": "967 counted tracks become turning movements, set beside the published reference, movement by movement.",
+     "say": "Counted tracks become turning movements, set beside the published reference. Across all twelve, eight hundred one, against nine hundred eleven.",
+     "show": "Counted tracks become turning movements, set beside the published reference. Across all twelve: 801 against 911.",
      "pause": 0.53
     }
    ]
@@ -140,8 +140,8 @@
    "hold": 0.4,
    "lines": [
     {
-     "say": "Then comes the part most demos skip.",
-     "show": "Then comes the part most demos skip.",
+     "say": "Then comes the gate.",
+     "show": "Then comes the gate.",
      "pause": 0.4
     },
     {
@@ -150,8 +150,8 @@
      "pause": 0.35
     },
     {
-     "say": "We tuned only on alternating minutes of footage, then scored the held out minutes against the published N G Sim trajectories.",
-     "show": "We tuned only on alternating minutes of footage, then scored the held-out minutes against the published NGSIM trajectories.",
+     "say": "We tuned the detector and tracker on alternating minutes of footage, then scored the held out minutes once, against the published N G Sim trajectories.",
+     "show": "We tuned the detector and tracker on alternating minutes of footage, then scored the held-out minutes once, against the published NGSIM trajectories.",
      "pause": 0.31
     },
     {
@@ -221,7 +221,7 @@
     {
      "say": "All three replies passed. Here's one, word for word, labelled as model output.",
      "show": "All three replies passed. Here's one, word for word, labelled as model output.",
-     "pause": 2.8
+     "pause": 2.5
     }
    ]
   },
@@ -250,12 +250,12 @@
   {
    "id": "s11_close",
    "lead": 0.4,
-   "hold": 1.4,
+   "hold": 1.0,
    "lines": [
     {
      "say": "Cairo Flow. Decision support for traffic engineers. It tells you what it knows, and what it doesn't.",
      "show": "CairoFlow. Decision support for traffic engineers. It tells you what it knows, and what it doesn't.",
-     "pause": 1.2
+     "pause": 0.9
     }
    ]
   }
