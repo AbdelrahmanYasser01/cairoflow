@@ -39,6 +39,7 @@ const SHOTS = {
   twin_select: { url: "/twin", analysis: STUDY, before: [at(1290, 690), pause(4000), click("Follow selected"), pause(6000), play], seconds: 6, slow: 1 / 30, settle: 9000 },
   twin_plan: { url: "/twin", analysis: STUDY, before: [click("Plan"), pause(8000), click("4x"), play], seconds: 5, slow: 1 / 30, settle: 9000 },
   twin_geo: { url: "/twin", analysis: STUDY, before: [click("Geo"), pause(8000), click("4x"), play], seconds: 5, slow: 1 / 30, settle: 9000 },
+  twin_hero: { url: "/twin", analysis: STUDY, before: [click("Oblique"), pause(8000), click("4x"), play], seconds: 7, slow: 1 / 30, settle: 9000 },
 };
 
 function timeScale() {

@@ -6,7 +6,7 @@ export const FPS = 30;
 
 export type Caption = { text: string; start: number; end: number };
 export type SceneId =
-  | "s01_cold" | "s02_title" | "s03_problem" | "s04_vision" | "s05_twin" | "s06_analytics"
+  | "s00_open" | "s01_cold" | "s03_problem" | "s04_vision" | "s05_twin" | "s06_analytics"
   | "s07_gate" | "s08_withheld" | "s09_muse" | "s10_decision" | "s11_close";
 
 type VoScene = { file: string; duration: number; captions: Caption[] };

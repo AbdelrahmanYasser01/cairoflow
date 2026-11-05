@@ -64,8 +64,8 @@ Timings are targets; the edit is cut to the generated voiceover. Every line maps
 
 | # | Time | Picture | Voiceover | Claim it rests on |
 |---|---|---|---|---|
-| 1 | 0:00 | Black. A counter climbs to 20.33 %, a limit line at 20 %, the lamp goes red. The number dissolves; "Entering flow: Withheld" | Twenty point three three percent. That's the error in our entering counts. Our limit was twenty, and we fixed it before we looked. So CairoFlow refuses to show you those counts. | Gate row, entering count error 0.2033, limit 0.20, failed; what it covers (entering flow and per-arm entering counts) is withheld. The error itself is shown, so the line must not say the 20.33 % is hidden |
-| 2 | 0:12 | Title card: CairoFlow, "Traffic intelligence that shows its working." | CairoFlow. Traffic intelligence that shows its working. | README |
+| 0 | 0:00 | The app's twin, full-bleed under a gradient; CairoFlow wordmark, the double amber centreline, "Meta Global AI Developer Hackathon 2026 · SAM 3.1 · Muse Spark" | CairoFlow turns one traffic camera into tracked vehicles, turning counts, and a 3D twin of the junction. | README first paragraph (the decision is not claimed as camera output) |
+| 1 | 0:08 | Black. A counter climbs to 20.33 %, a limit line at 20 %, the lamp goes red. The number dissolves; "Entering flow: Withheld" | Twenty point three three percent. That's the error in our entering counts. Our limit was twenty, and we fixed it before we looked. So CairoFlow refuses to show you those counts. | Gate row, entering count error 0.2033, limit 0.20, failed; what it covers (entering flow and per-arm entering counts) is withheld. The error itself is shown, so the line must not say the 20.33 % is hidden |
 | 3 | 0:18 | Command page, slow push on "Lankershim Blvd" | Cities retime signals and rebuild junctions from traffic counts, and computer vision can now take those counts from ordinary video. But a model won't tell you when it's wrong. So we built one where every figure has to earn its place. | Framing, no product claim |
 | 4 | 0:36 | Vision Lab track playback; tracks table; SAM window with masks | One overhead camera: Lankershim Boulevard, Los Angeles, 2005. A local detector and tracker follow the vehicles through fifteen minutes. SAM 3.1, asked for "car", followed at most sixteen, and none that entered after the first frame. So on one sixty-second window, we seeded it with our tracks as box prompts. It agreed with 9,900 of 10,858 detector rows, a consistency check, not proof, and drew masks for the vehicles it followed. | SAM rows; README "How the Meta models are used" (909 rows were not reached, so not "a mask for each vehicle") |
 | 5 | 1:02 | Digital Twin, Along Lankershim, select a vehicle, Plan and Geo | The same record drives a 3D twin of the junction, on one shared clock. Click any vehicle to read its record. Every approximation is labelled on screen. | DEMO.md 1:00 to 1:15; twin limits |
@@ -118,7 +118,17 @@ show, so it now names the withheld entering counts; "a mask for each vehicle" be
 vehicles it followed"; and the Muse chip now says code flags unsupported numbers rather than that
 they "must match". The contract code on screen is an exact excerpt with elisions marked.
 
-The final cut runs 2:53.
+## What the research pass changed
+
+Devpost's demo-video guidance asks for the product working on screen within the first 10 to 15
+seconds, a statement of what the app does in the first few seconds, and no title screens. The
+first cut showed no product until 0:20 and spent five seconds on a title card. The cut now opens
+on the app's twin with the wordmark over it and a line saying what CairoFlow does, then the cold
+open; the title card is gone. Higgsfield was checked rather than assumed: no Higgsfield tool or
+connector exists in the build session, no credentials are set, and every Higgsfield host fails
+DNS from the build machine, so it could not be used even through its published SDKs.
+
+The final cut runs 2:56.
 
 ## Calls made without the user (the brief asked for autonomy)
 

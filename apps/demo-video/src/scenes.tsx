@@ -30,6 +30,38 @@ const Logo: React.FC<{ size: number }> = ({ size }) => (
   </svg>
 );
 
+/* 0 ─ Opening: the product itself, and what it does, in the first seconds. */
+export const S00Open: React.FC = () => {
+  const t = useSec();
+  const { seconds } = scene("s00_open");
+  const line = ramp(t, 0.6, 1.6, Easing.bezier(0.65, 0, 0.35, 1));
+  return (
+    <Edge seconds={seconds} inn={0.01} out={0.5}>
+      <AbsoluteFill style={{ background: C.bg }} />
+      <AbsoluteFill style={{ transform: `scale(${1.03 + t * 0.006})` }}>
+        <Video src={staticFile("clips/twin_hero.mp4")} muted playbackRate={7 / (seconds + 0.1)} style={{ width: 1920, height: 1080 }} />
+      </AbsoluteFill>
+      <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(10,12,14,0.94) 0%, rgba(10,12,14,0.78) 36%, rgba(10,12,14,0.2) 72%, rgba(10,12,14,0.08) 100%)" }} />
+      <div style={{ position: "absolute", left: 140, top: 270 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 28, opacity: ramp(t, 0.15, 0.8) }}>
+          <Logo size={104} />
+          <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 150, lineHeight: 1, color: C.paint1 }}>CairoFlow</div>
+        </div>
+        <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 8 }}>
+          <div style={{ width: 700 * line, height: 4, background: C.amber }} />
+          <div style={{ width: 700 * line, height: 4, background: C.amber }} />
+        </div>
+        <div style={{ marginTop: 30, fontFamily: F.text, fontWeight: 500, fontSize: 48, color: C.paint1, opacity: ramp(t, 0.8, 1.5) }}>Traffic intelligence that shows its working.</div>
+        <div style={{ marginTop: 40, fontFamily: F.mono, fontSize: 21, color: C.paint2, letterSpacing: "0.08em", opacity: ramp(t, 1.3, 2.0) }}>META GLOBAL AI DEVELOPER HACKATHON 2026 · SAM 3.1 · MUSE SPARK</div>
+      </div>
+      <div style={{ position: "absolute", right: 70, top: 56, fontFamily: F.mono, fontSize: 18, color: C.paint2, textAlign: "right", opacity: ramp(t, 1.0, 1.7), background: "rgba(10,12,14,0.7)", padding: "8px 14px", borderRadius: 5 }}>
+        The app's digital twin, on its committed records
+        <br />Lankershim Blvd, Los Angeles, 2005
+      </div>
+    </Edge>
+  );
+};
+
 /* 1 ─ Cold open: the number CairoFlow refuses to show. */
 export const S01Cold: React.FC = () => {
   const t = useSec();
@@ -70,32 +102,6 @@ export const S01Cold: React.FC = () => {
         <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 230, lineHeight: 1, color: C.paint1, borderBottom: `9px solid ${C.stop}`, paddingBottom: 10 }}>Withheld</div>
         <div style={{ fontFamily: F.mono, fontSize: 26, color: C.paint2, marginTop: 34 }}>20.33% count error, limit 20%</div>
         <div style={{ fontFamily: F.mono, fontSize: 22, color: C.paint3, marginTop: 8 }}>Limit fixed before the read</div>
-      </div>
-    </Edge>
-  );
-};
-
-/* 2 ─ Title. */
-export const S02Title: React.FC = () => {
-  const t = useSec();
-  const { seconds } = scene("s02_title");
-  const line = ramp(t, 0.35, 1.4, Easing.bezier(0.65, 0, 0.35, 1));
-  return (
-    <Edge seconds={seconds} inn={0.25} out={0.5}>
-      <Ground grid={0.25} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 300, display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 36, opacity: ramp(t, 0.1, 0.8), transform: `translateY(${(1 - ramp(t, 0.1, 0.9)) * 24}px)` }}>
-          <Logo size={150} />
-          <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 190, lineHeight: 1, color: C.paint1, letterSpacing: "-0.01em" }}>CairoFlow</div>
-        </div>
-        <div style={{ marginTop: 40, display: "flex", flexDirection: "column", gap: 9, alignItems: "center" }}>
-          <div style={{ width: 860 * line, height: 4, background: C.amber }} />
-          <div style={{ width: 860 * line, height: 4, background: C.amber }} />
-        </div>
-        <div style={{ marginTop: 40, fontFamily: F.text, fontWeight: 500, fontSize: 54, color: C.paint2, opacity: ramp(t, 0.8, 1.5) }}>Traffic intelligence that shows its working.</div>
-        <div style={{ marginTop: 70, fontFamily: F.mono, fontSize: 22, color: C.paint3, letterSpacing: "0.08em", opacity: ramp(t, 1.4, 2.1) }}>
-          META GLOBAL AI DEVELOPER HACKATHON 2026 · SAM 3.1 · MUSE SPARK
-        </div>
       </div>
     </Edge>
   );
@@ -209,7 +215,7 @@ const Agreed: React.FC = () => {
   const t = useSec();
   const n = Math.round(interpolate(t, [0.3, 1.8], [0, 9900], { ...CLAMP, easing: EASE }));
   return (
-    <div style={{ position: "absolute", right: 200, top: 110, width: 600, padding: "28px 34px", background: "rgba(17,21,26,0.95)", border: `1px solid ${C.rule2}`, borderLeft: `4px solid ${C.model}`, borderRadius: 8, opacity: ramp(t, 0.1, 0.5), boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}>
+    <div style={{ position: "absolute", right: 200, top: 110, width: 600, padding: "28px 34px", background: "rgba(17,21,26,0.95)", border: `1px solid ${C.rule2}`, borderRadius: 8, opacity: ramp(t, 0.1, 0.5), boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}>
       <Kicker color={C.model} style={{ fontSize: 19 }}>SAM 3.1, seeded with our tracks</Kicker>
       <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 104, color: C.paint1, lineHeight: 1.05, marginTop: 8, fontVariantNumeric: "tabular-nums" }}>
         {n.toLocaleString("en-US")}<span style={{ color: C.paint3, fontSize: 60 }}> / 10,858</span>

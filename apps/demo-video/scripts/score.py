@@ -163,9 +163,9 @@ def main() -> None:
     gate_caps = vo["s07_gate"]["captions"]
     reveal = s["s07_gate"] + gate_caps[5]["start"]  # "Entering counts came in at ..."
     six_pass = s["s07_gate"] + gate_caps[4]["start"]  # "Six checks passed."
-    lamp = 1.55  # the cold-open counter crosses its limit
+    lamp = s["s01_cold"] + 1.55  # the cold-open counter crosses its limit
     close = s["s11_close"]
-    grid0 = s["s02_title"]
+    grid0 = s["s03_problem"]  # the first downbeat of the groove
 
     # Harmony on a two-bar grid that puts a downbeat on the title.
     chords = [
@@ -176,7 +176,7 @@ def main() -> None:
     ]
     final = ([41, 53, 60, 64, 67, 69], 29)  # Fmaj9, the resolve
     bar2 = 8 * BEAT
-    events = [(0.0, chords[0])]  # the cold open holds one dark chord
+    events = [(0.0, chords[0])]  # the opening and the cold open hold one dark chord
     k = 0
     while grid0 + k * bar2 < close - 0.01:
         events.append((grid0 + k * bar2, chords[k % 4]))
@@ -245,10 +245,12 @@ def main() -> None:
         t,
         [
             (0, 0.0),
-            (0.4, 0.35),
+            (0.5, 0.75),
+            (s["s01_cold"] - 0.4, 0.75),
+            (s["s01_cold"] + 0.3, 0.3),
             (grid0 - 0.5, 0.45),
             (grid0, 1.0),
-            (s["s03_problem"], 0.85),
+            (grid0 + 3.0, 0.85),
             (s["s04_vision"], 0.9),
             (s["s07_gate"], 1.0),
             (reveal - 0.05, 1.15),

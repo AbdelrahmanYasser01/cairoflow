@@ -6,13 +6,13 @@ import { C } from "./theme";
 import { FPS, SCENES, scene, type SceneId } from "./timeline";
 import { Captions } from "./ui";
 import {
-  gatePassTimes, S01Cold, S02Title, S03Problem, S04Vision, S05Twin, S06Analytics, S07Gate, S08Withheld,
+  gatePassTimes, S00Open, S01Cold, S03Problem, S04Vision, S05Twin, S06Analytics, S07Gate, S08Withheld,
   S09Muse, S10Decision, S11Close,
 } from "./scenes";
 
 const VIEWS: Record<SceneId, React.FC> = {
+  s00_open: S00Open,
   s01_cold: S01Cold,
-  s02_title: S02Title,
   s03_problem: S03Problem,
   s04_vision: S04Vision,
   s05_twin: S05Twin,

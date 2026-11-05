@@ -111,11 +111,14 @@ export const Chip: React.FC<ChipProps> = ({ x, y, from, to = 1e6, title, sub, co
     <div
       style={{
         position: "absolute", left: x, top: y, width, opacity: a, transform: `translateY(${(1 - ramp(t, from, from + 0.5)) * 14}px)`,
-        background: "rgba(17,21,26,0.94)", border: `1px solid ${C.rule2}`, borderLeft: `4px solid ${color}`,
+        background: "rgba(17,21,26,0.94)", border: `1px solid ${C.rule2}`,
         padding: "14px 22px 16px", borderRadius: 6, boxShadow: "0 18px 50px rgba(0,0,0,0.5)", ...style,
       }}
     >
-      <div style={{ fontFamily: F.mono, fontSize: 19, fontWeight: 500, letterSpacing: "0.09em", textTransform: "uppercase", color }}>{title}</div>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: F.mono, fontSize: 19, fontWeight: 500, letterSpacing: "0.09em", textTransform: "uppercase", color }}>
+        <span style={{ width: 9, height: 9, background: color, flex: "none" }} />
+        {title}
+      </div>
       {sub ? <div style={{ fontFamily: F.text, fontSize: 28, color: C.paint1, marginTop: 6, lineHeight: 1.25 }}>{sub}</div> : null}
     </div>
   );

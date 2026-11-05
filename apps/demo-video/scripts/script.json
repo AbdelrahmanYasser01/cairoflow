@@ -3,6 +3,18 @@
  "speed": 1.0,
  "scenes": [
   {
+   "id": "s00_open",
+   "lead": 0.5,
+   "hold": 0.5,
+   "lines": [
+    {
+     "say": "Cairo Flow turns one traffic camera into tracked vehicles, turning counts, and a three D twin of the junction.",
+     "show": "CairoFlow turns one traffic camera into tracked vehicles, turning counts, and a 3D twin of the junction.",
+     "pause": 0.7
+    }
+   ]
+  },
+  {
    "id": "s01_cold",
    "lead": 1.2,
    "lines": [
@@ -28,18 +40,6 @@
     }
    ],
    "hold": 0.6
-  },
-  {
-   "id": "s02_title",
-   "lead": 0.3,
-   "lines": [
-    {
-     "say": "Cairo Flow. Traffic intelligence that shows its working.",
-     "show": "CairoFlow. Traffic intelligence that shows its working.",
-     "pause": 1.0
-    }
-   ],
-   "hold": 0.8
   },
   {
    "id": "s03_problem",
