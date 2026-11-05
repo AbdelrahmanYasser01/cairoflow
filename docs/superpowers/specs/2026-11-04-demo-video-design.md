@@ -150,6 +150,15 @@ README, this register and the stored Muse replies. Changes that came out of the 
 - The opening says "recorded traffic video" and "approximate 3D twin"; the close names the user,
   decision support for traffic engineers.
 
+The workflow's completeness critic then caught four more, all fixed: the film narrates the error
+in percent, so the miss is "a third of a percentage point", not a spoken "0.0033"; the limit was
+fixed "before the held-out read", not "before we looked", since held-out frames were used to fit
+the placement; the study shows "no entering-flow figure", since turning-matrix row sums stay
+visible; and "every figure has to earn its place" became "every headline figure shows its gate
+status", since some figures on screen are ungated. The decision line says "rather than our camera
+output" (the NGSIM data comes from the same video), the seeds are said to vary simulator noise,
+not demand, and the pull-quote notes that "validated" is the model's word.
+
 The final cut runs 2:58, with the voice at 1.08x.
 
 ## Calls made without the user (the brief asked for autonomy)

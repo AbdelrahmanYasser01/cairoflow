@@ -76,7 +76,7 @@ export const S01Cold: React.FC = () => {
   return (
     <Edge seconds={seconds} inn={0.2} out={0.45}>
       <AbsoluteFill style={{ background: C.bg }} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 250, display: "flex", flexDirection: "column", alignItems: "center", opacity: 1 - gone, filter: `blur(${gone * 26}px)` }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 250, display: "flex", flexDirection: "column", alignItems: "center", opacity: 1 - gone, filter: `blur(${gone * 26}px)`, transform: `scale(${1 + t * 0.005})` }}>
         <div style={{ display: "flex", alignItems: "center", gap: 22, opacity: ramp(t, 0.1, 0.6) }}>
           <Kicker color={C.paint2}>Entering count error · held-out blocks</Kicker>
           <Lamp state={failed ? "fail" : "off"} size={16} />
@@ -90,7 +90,7 @@ export const S01Cold: React.FC = () => {
           <div style={{ position: "absolute", left: (20 / 25) * barW - 1, top: -4, width: 3, height: 50, background: C.paint1, opacity: ramp(t, 0.2, 0.6) }} />
           <div style={{ position: "absolute", left: (20 / 25) * barW - 160, width: 320, top: 54, textAlign: "center", fontFamily: F.mono, fontSize: 22, color: C.paint1, opacity: ramp(t, 0.3, 0.8) }}>
             LIMIT 20%
-            <div style={{ fontSize: 19, color: C.paint3, marginTop: 4, opacity: ramp(t, l1, l1 + 0.6) }}>fixed before we looked</div>
+            <div style={{ fontSize: 19, color: C.paint3, marginTop: 4, opacity: ramp(t, l1, l1 + 0.6) }}>fixed before the held-out read</div>
           </div>
         </div>
       </div>
@@ -549,7 +549,7 @@ const Miss: React.FC<{ from: number; to: number }> = ({ from, to }) => {
   return (
     <div style={{ position: "absolute", left: 0, right: 0, top: 800, display: "flex", justifyContent: "center", opacity: shown(t, from, to, 0.35) }}>
       <div style={{ fontFamily: F.mono, fontSize: 44, color: C.paint1, background: "rgba(10,12,14,0.94)", border: `1px solid ${C.rule2}`, borderRadius: 8, padding: "12px 30px" }}>
-        0.2033 − 0.2000 = <span style={{ color: C.stop }}>0.0033</span>
+        20.33% − 20.00% = <span style={{ color: C.stop }}>0.33 points</span>
       </div>
     </div>
   );
@@ -562,11 +562,12 @@ const PullQuote: React.FC<{ from: number }> = ({ from }) => {
   return (
     <AbsoluteFill style={{ opacity: a, background: "rgba(10,12,14,0.88)", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div style={{ width: 1380, marginTop: -60, padding: "44px 56px", background: C.bg1, border: `1px solid ${C.model}77`, borderRadius: 12, transform: `translateY(${(1 - a) * 16}px)` }}>
-        <Kicker color={C.model} style={{ fontSize: 21 }}>Model-generated · Muse Spark · reply 1 of 3</Kicker>
+        <Kicker color={C.model} style={{ fontSize: 21 }}>Model-generated · Muse Spark · reply 1 of 3, hypothesis 1 of 3</Kicker>
         <div style={{ fontFamily: F.text, fontWeight: 500, fontSize: 46, lineHeight: 1.32, color: C.paint1, marginTop: 22 }}>
           “Operation is limited by heavy north-south through demand, with the N-S and S-N through movements dominating the validated turn counts and producing high stopped time.”
         </div>
-        <div style={{ fontFamily: F.mono, fontSize: 22, color: C.paint2, marginTop: 26 }}>The model's own confidence: low · a hypothesis for a person to test</div>
+        <div style={{ fontFamily: F.mono, fontSize: 22, color: C.paint2, marginTop: 26 }}>The model's own confidence: low. The same reply rated a computer-vision artefact explanation medium.
+          <br />"Validated" is the model's word: turning counts were checked only pooled.</div>
       </div>
     </AbsoluteFill>
   );
@@ -597,7 +598,7 @@ export const S09Muse: React.FC = () => {
         <Callout x={116} y={322} w={520} h={94} from={c1 + 0.9} to={c2} color={C.approx} label="CITATIONS RESOLVE TO EVIDENCE IDS" />
         <Callout x={114} y={234} w={430} h={22} from={c2 + 0.1} to={c2 + 2.2} color={C.go} label="CHECKED BY CODE" />
       </Shot>
-      <Chip x={1170} y={600} from={c1 + 0.3} to={c2 - 0.1} title="Reply schema" sub="No numeric field. Code flags any number in its text that no evidence holds." color={C.model} width={540} />
+      <Chip x={1170} y={600} from={c1 + 0.3} to={c2 - 0.1} title="Reply schema" sub="No numeric field. Code checks that cited ids exist and flags unsupported numbers, but doesn't judge whether a citation supports the claim." color={C.model} width={540} />
       <Chip x={1170} y={600} from={c2 + 0.1} to={c2 + 2.3} title="3 of 3 replies usable" sub="Checked by code: no citation problem, no unsupported number." color={C.go} width={540} />
       <PullQuote from={c2 + 2.4} />
     </Edge>
@@ -630,7 +631,7 @@ export const S10Decision: React.FC = () => {
           <Callout x={112} y={168} w={360} h={104} from={c1 + 0.6} to={c1 + 3.1} color={C.assumed} label="NO VALIDATED BASELINE" />
           <Callout x={604} y={556} w={300} h={490} from={c1 + 3.3} color={C.stop} label="EVERY CANDIDATE WORSENS SOMETHING" />
         </Shot>
-        <Chip x={1120} y={96} from={0.6} to={c1} title="SUMO · 3 candidates" sub="20 paired runs on each of 4 signal timelines" color={C.sim} width={600} />
+        <Chip x={1120} y={96} from={0.6} to={c1} title="SUMO · 3 candidates" sub="20 paired seeds on each of 4 signal timelines; the seeds vary simulator noise, not demand" color={C.sim} width={600} />
         <Footnote from={0.8} to={aEnd} y={872}>This decision used the published NGSIM trajectories, not this camera analysis.</Footnote>
       </Sequence>
       <Sequence from={f(aEnd)} durationInFrames={f(bLen)} layout="none">
@@ -665,7 +666,7 @@ export const S11Close: React.FC = () => {
         <div style={{ marginTop: 64, display: "flex", gap: 56, fontFamily: F.mono, fontSize: 23, color: C.paint2, opacity: ramp(t, 2.0, 2.7) }}>
           <span>Open source · MIT</span>
           <span style={{ color: C.rule2 }}>|</span>
-          <span>Runs offline from a fresh clone · no API key</span>
+          <span>Runs from a fresh clone · no API key · precomputed pages work offline</span>
           <span style={{ color: C.rule2 }}>|</span>
           <span>Meta SAM 3.1 · Muse Spark</span>
         </div>

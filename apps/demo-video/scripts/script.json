@@ -5,7 +5,7 @@
   {
    "id": "s00_open",
    "lead": 0.5,
-   "hold": 0.3,
+   "hold": 0.2,
    "lines": [
     {
      "say": "Cairo Flow turns one recorded traffic video into tracked vehicles, turning counts, and an approximate three D twin of the junction.",
@@ -17,7 +17,7 @@
   {
    "id": "s01_cold",
    "lead": 1.0,
-   "hold": 0.5,
+   "hold": 0.3,
    "lines": [
     {
      "say": "Twenty point three three percent.",
@@ -30,21 +30,21 @@
      "pause": 0.5
     },
     {
-     "say": "Our limit was twenty percent, and we fixed it before we looked.",
-     "show": "Our limit was 20 percent, and we fixed it before we looked.",
+     "say": "Our limit was twenty percent, and we fixed it before the held out read.",
+     "show": "Our limit was 20 percent, and we fixed it before the held-out read.",
      "pause": 0.7
     },
     {
      "say": "So in this fifteen minute study, Cairo Flow refuses to show you those counts.",
      "show": "So in this fifteen-minute study, CairoFlow refuses to show you those counts.",
-     "pause": 1.1
+     "pause": 0.9
     }
    ]
   },
   {
    "id": "s03_problem",
    "lead": 0.2,
-   "hold": 0.3,
+   "hold": 0.2,
    "lines": [
     {
      "say": "Cities re-time signals and rebuild junctions from traffic counts.",
@@ -57,8 +57,8 @@
      "pause": 0.4
     },
     {
-     "say": "So we built one where every figure has to earn its place.",
-     "show": "So we built one where every figure has to earn its place.",
+     "say": "So we built a pipeline where every headline figure shows its gate status.",
+     "show": "So we built a pipeline where every headline figure shows its gate status.",
      "pause": 0.7
     }
    ]
@@ -66,7 +66,7 @@
   {
    "id": "s04_vision",
    "lead": 0.2,
-   "hold": 0.3,
+   "hold": 0.2,
    "lines": [
     {
      "say": "One overhead camera. Lankershim Boulevard, Los Angeles.",
@@ -103,7 +103,7 @@
   {
    "id": "s05_twin",
    "lead": 0.2,
-   "hold": 0.4,
+   "hold": 0.2,
    "lines": [
     {
      "say": "The fifteen minute record drives a three D twin of the junction, on one shared clock.",
@@ -125,7 +125,7 @@
   {
    "id": "s06_analytics",
    "lead": 0.2,
-   "hold": 0.6,
+   "hold": 0.3,
    "lines": [
     {
      "say": "Counted tracks become turning movements, set beside the published reference. Across all twelve, eight hundred one, against nine hundred eleven.",
@@ -137,7 +137,7 @@
   {
    "id": "s07_gate",
    "lead": 0.3,
-   "hold": 0.4,
+   "hold": 0.2,
    "lines": [
     {
      "say": "Then comes the gate.",
@@ -172,18 +172,18 @@
     {
      "say": "The limit was twenty.",
      "show": "The limit was 20.",
-     "pause": 1.1
+     "pause": 0.8
     }
    ]
   },
   {
    "id": "s08_withheld",
    "lead": 0.2,
-   "hold": 0.3,
+   "hold": 0.2,
    "lines": [
     {
-     "say": "A miss of zero point zero zero three three.",
-     "show": "A miss of 0.0033.",
+     "say": "A miss of a third of a percentage point.",
+     "show": "A miss of a third of a percentage point.",
      "pause": 0.44
     },
     {
@@ -192,8 +192,8 @@
      "pause": 0.4
     },
     {
-     "say": "So the fifteen minute study shows no entering flow at all. Only the reason.",
-     "show": "So the fifteen-minute study shows no entering flow at all. Only the reason.",
+     "say": "So the fifteen minute study shows no entering flow figure. Only the reason.",
+     "show": "So the fifteen-minute study shows no entering-flow figure. Only the reason.",
      "pause": 0.4
     },
     {
@@ -206,7 +206,7 @@
   {
    "id": "s09_muse",
    "lead": 0.2,
-   "hold": 0.4,
+   "hold": 0.3,
    "lines": [
     {
      "say": "Muse Spark reads that evidence, and writes hypotheses for a person to test.",
@@ -219,20 +219,20 @@
      "pause": 0.4
     },
     {
-     "say": "All three replies passed. Here's one, word for word, labelled as model output.",
-     "show": "All three replies passed. Here's one, word for word, labelled as model output.",
-     "pause": 2.5
+     "say": "All three replies passed. Here's one hypothesis, word for word, labelled as model output.",
+     "show": "All three replies passed. Here's one hypothesis, word for word, labelled as model output.",
+     "pause": 2.0
     }
    ]
   },
   {
    "id": "s10_decision",
    "lead": 0.2,
-   "hold": 0.4,
+   "hold": 0.2,
    "lines": [
     {
-     "say": "For the decision, which runs on published N G Sim data, not this camera, Sumo tested three signal changes Muse proposed.",
-     "show": "For the decision, which runs on published NGSIM data, not this camera, SUMO tested three signal changes Muse proposed.",
+     "say": "For the decision, which used published N G Sim trajectories rather than our camera output, Sumo tested three signal changes Muse proposed.",
+     "show": "For the decision, which used published NGSIM trajectories rather than our camera output, SUMO tested three signal changes Muse proposed.",
      "pause": 0.35
     },
     {
@@ -250,7 +250,7 @@
   {
    "id": "s11_close",
    "lead": 0.4,
-   "hold": 1.0,
+   "hold": 0.8,
    "lines": [
     {
      "say": "Cairo Flow. Decision support for traffic engineers. It tells you what it knows, and what it doesn't.",
