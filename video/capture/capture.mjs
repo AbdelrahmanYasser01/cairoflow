@@ -431,10 +431,14 @@ const CLIPS = {
   // (c) Evidence: the gate panel, scrolled slowly.
   evidence: {
     url: "/evidence",
+    // The evidence scene starts 4.5 s into the clip (gate table scrolled up) and runs 6.4 s.
     stepped: {
-      seconds: 7,
+      seconds: 11,
       async prepare() { await sleep(2000); },
-      timeline: [{ at: 0.8, run: (page) => glideLater(page, { pattern: /entering count|agreement gate|held-out/i, at: 0.2, ms: 3200 }) }],
+      timeline: [
+        { at: 0.8, run: (page) => glideLater(page, { pattern: /entering count|agreement gate|held-out/i, at: 0.2, ms: 3200 }) },
+        { at: 6.5, run: (page) => glideLater(page, { fraction: 0.75, ms: 6000 }) },
+      ],
     },
     async run(page) {
       await sleep(2000);
@@ -449,8 +453,9 @@ const CLIPS = {
   // (d) Analytics: turning movements.
   analytics: {
     url: "/analytics",
+    // The analytics scene starts 5 s into the clip (after the scroll) and runs 7.4 s, so 13 s covers it.
     stepped: {
-      seconds: 8.5,
+      seconds: 13,
       async prepare() { await sleep(2000); },
       timeline: [{ at: 0.4, run: (page) => glideLater(page, { pattern: /turning/i, at: 0.25, ms: 2400 }) }],
     },

@@ -16,7 +16,7 @@
 // Remotion never downloads a browser; otherwise Remotion uses its own.
 
 import { spawnSync } from "node:child_process";
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -104,6 +104,19 @@ run([
   "--codec=h264", "--pixel-format=yuv420p", "--crf=18", "--image-format=jpeg", "--jpeg-quality=92",
   `--concurrency=${concurrency}`, ...extra, ...common,
 ]);
+
+// Remotion pipes JPEG frames, so its H.264 comes out tagged full range (yuvj420p). A full render is
+// re-encoded once to limited-range yuv420p, the format players and upload checks expect; patches are
+// left alone because splice.mjs re-encodes them anyway. --keep-range skips this.
+if (!flag("frames") && !flag("keep-range")) {
+  const probe = spawnSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=pix_fmt", "-of", "csv=p=0", target], { encoding: "utf8" });
+  if (String(probe.stdout).trim().startsWith("yuvj")) {
+    const tmp = target.replace(/\.mp4$/, ".yuv420p.mp4");
+    console.log("[render] normalising to yuv420p");
+    const ff = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", target, "-vf", "scale=in_range=full:out_range=tv,format=yuv420p", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-color_range", "tv", "-movflags", "+faststart", tmp], { stdio: "inherit" });
+    if (ff.status === 0) renameSync(tmp, target);
+  }
+}
 
 if (!value("out") && !flag("frames")) {
   const review = process.env.REVIEW_DIR || "/tmp/claude-0/review/video";

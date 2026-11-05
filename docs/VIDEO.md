@@ -14,7 +14,12 @@ the voice-over is burned in as captions wherever the on-screen type doesn't alre
 - The app clips are captured from the merged build (command center, Vision Lab, twin, analytics, evidence).
   They show the app's own top bar, so "Los Angeles, 2005 · decision support only" appears there as well as
   on the last card.
-- The two Higgsfield shots are illustrative. They stay labelled "Illustrative, not data" on screen.
+- The two Higgsfield shots are illustrative. They stay labelled "Illustrative, not data" on screen. The
+  submission cut is rendered with `--final`, so the slot ids are hidden and only that label shows.
+- How this cut was made: one full render from clips of the merged build, then the scenes that changed were
+  re-rendered and spliced in (see [Fix one scene](#fix-one-scene-without-a-full-render)). The twin is
+  frame-stepped; the command center, evidence, analytics and Vision Lab clips were re-captured with
+  `--screencast` after the last UI pass.
 
 ## Storyboard
 
@@ -27,17 +32,19 @@ Frames are at 30 fps; each scene runs 12 frames into the next for the crossfade.
 | 0:16 | 480-731 | Place (**Higgsfield H1**) | Generated aerial of an intersection at dusk (until then: abstract light-trail card). Dateline at left. No caption: the dateline says it. | One camera · NGSIM · Lankershim Blvd · at Universal Hollywood Dr · Los Angeles / 16 June 2005 / overhead video · *Illustrative, not data* | "One overhead camera. Los Angeles, June 2005. Lankershim Boulevard at Universal Hollywood Drive." |
 | 0:24 | 720-1061 | Camera lane | Vision Lab capture, pushed in on its frame panel: the long exposure of every stored track (Tracks, no video), playing at 1x (or the annotated NGSIM footage, once rendered). The chain lights up: Video, Detector, Tracker, Trajectories, Placement. 967 counts up. | Vision Lab · camera output · Camera lane · 967 tracks · 15-minute study · ◐ Approximated · ◌ Ungated | "A detector and a tracker turn fifteen minutes of video into nine hundred and sixty-seven tracks. That count is ungated." |
 | 0:35 | 1050-1451 | SAM 3.1 | The real SAM 3.1 mask outlines of the 60 s window, played from `sam-masks.json`, in the model-output pink. Four results rise at right, including the one that didn't improve. | SAM 3.1 · Meta · 586 interpolated rows replaced · 7.7% → 2.7% interpolated share · 0.37 m → 0.29 m across-road error, median · 0.55 m → 0.58 m along-road error: no gain · ◇ Model output · ◌ Ungated · seeded from detector tracks · $0.32 | "On one sixty-second window, Meta's SAM 3.1 refines the tracks. It replaces five hundred and eighty-six interpolated rows and gives each vehicle its own mask." |
-| 0:48 | 1440-1811 | Digital twin | Frame-stepped capture of the 3D twin at 4x: Oblique, Along Lankershim, Plan. | Digital twin · 4× · one clock | "Video, tracks and analytics share one clock with a 3D twin of the junction, here at four times speed." |
-| 1:00 | 1800-2021 | Analytics | Analytics page capture (counted tracks, Withheld entering flow, the turning-movement diagram and matrix), slow push toward the diagram. | Analytics · turning movements | "Turning movements, arm by arm, straight from the tracks." |
+| 0:48 | 1440-1811 | Digital twin | Frame-stepped capture of the 3D twin at 4x: Oblique, Along Lankershim, Plan. The app's own title labels it. | (the app: Digital Twin · 4x) | "Video, tracks and analytics share one clock with a 3D twin of the junction, here at four times speed." |
+| 1:00 | 1800-2021 | Analytics | Analytics page capture (counted tracks, Withheld entering flow, the turning-movement diagram and matrix), slow push toward the diagram. | (the app: Traffic Analytics · Turning movements) | "Turning movements, arm by arm, straight from the tracks." |
 | 1:07 | 2010-2621 | The gate | Seven instruments. One amber LIMIT line is drawn first, top to bottom, through every row (each limit normalised to the same x). Bars then fill one by one; "at least" checks must cross the line, "at most" checks must stop short. Six lamps go green. The last bar creeps over the line and goes red. | Agreement gate · held-out · Seven checks. Limits first. · ● vs published NGSIM trajectories · 7 held-out blocks · one read · Recall 0.761 ≥ 0.70 · Matched to NGSIM 0.863 ≥ 0.80 · Across-road error p90 1.39 m ≤ 1.5 m · Lane agreement 0.881 ≥ 0.85 · Turning agreement 0.847 ≥ 0.80 · Median speed error 0.48 m/s ≤ 1.0 m/s · Entering count error 0.2033 ≤ 0.20 FAIL · over by 0.0033 · Six pass. One misses by 0.0033. | "Before a single held-out read, we committed limits for seven checks against the published NGSIM trajectories. Recall. Matching. Position. Lanes. Turns. Speed. Six pass. Entering counts miss, by zero point zero zero three three." |
-| 1:27 | 2610-2891 | Withheld | Command center capture, pushing in on the Withheld figure; a card slides in at right with a red rule. | Command center · Entering flow · ⊘ Withheld · gate failed: 0.2033 > 0.20 · No value. The reason, in its place. | "So the product withholds entering flow and shows the reason in its place. The limit stays." |
-| 1:36 | 2880-3071 | Evidence | Evidence page capture: the gate table (the withheld entering figures, the magnified miss), gliding down toward the decision. The evidence key rises along the bottom. | Evidence · every figure · ● Checked ◐ Approximated ◌ Assumed ◌ Ungated ▦ Simulated ◇ Model output | "Every headline figure carries its evidence, and its gate." |
+| 1:27 | 2610-2891 | Withheld | Command center capture, pushing in on the Withheld figure; a card slides in at right with a red rule. | Entering flow · ⊘ Withheld · gate failed: 0.2033 > 0.20 · No value. The reason, in its place. | "So the product withholds entering flow and shows the reason in its place. The limit stays." |
+| 1:36 | 2880-3071 | Evidence | Evidence page capture: the gate table (the withheld entering figures, the magnified miss), gliding down toward the decision. The evidence key rises along the bottom on a dark band. | ● Checked ◐ Approximated ◌ Assumed ◌ Ungated ▦ Simulated ◇ Model output | "Every headline figure carries its evidence, and its gate." |
 | 1:42 | 3060-3521 | Muse Spark | The first hypothesis from `data/sample/diagnoses` types out under a pink model-output rule. Its four cited ids become chips that fly across and snap onto the 24 evidence ids of the record; each lands with a green tick. | Muse Spark · Meta · ◇ Model output · muse-spark-1.3 · h-ns-through · confidence low · CITES · EVIDENCE IDS · 24 · FROM THE RECORD · 3 runs · 0 citation problems · 0 unsupported numbers | "Meta's Muse Spark reads the record and writes hypotheses. Model output, labelled as such. Every citation is checked by code. Three runs, zero problems." |
 | 1:57 | 3510-4001 | SUMO | A 3 x 80 matrix: candidates I1, I2, I3 against 20 seeds in each of 4 timelines. Cells light blue as runs land, then each row turns red and lists what it worsened (from `decision_summary.json`). | SUMO · decision lane · Muse proposes. SUMO tests. · ◇ 3 proposals → ▦ 20 seeds × 4 timelines each · I1 worsens 4 · I2 worsens 7 · I3 worsens 5 · inputs: published NGSIM trajectories, not camera output · baseline: 2 timelines partly validated, 2 not assessed | "Then Muse proposes signal changes. SUMO tests three candidates, twenty seeds, four timelines. Every candidate makes something worse." |
 | 2:13 | 3990-4211 | Decision | Type only. | Decision · Nothing recommended. · ▦ every candidate worsened a metric / no validated baseline | "So CairoFlow recommends nothing." |
 | 2:20 | 4200-4559 | Close (**Higgsfield H2**, optional) | "It tells you what it knows, / and what it doesn't." over the optional H2 shot, then the lockup. | It tells you what it knows, and what it doesn't. · CairoFlow · Built with SAM 3.1 and Muse Spark · github.com/AbdelrahmanYasser01/cairoflow · NGSIM data: U.S. DOT FHWA, CC BY-SA · Los Angeles, 2005 · decision support only | "It tells you what it knows, and what it doesn't. Built with SAM 3.1 and Muse Spark." |
 
-Captions are burned in for the voice-over lines the screen doesn't already carry. They are off for the cold
+The full-bleed app clips (twin, analytics, command center, evidence) carry no extra source tag: the app's
+own page title labels them, and a tag on top collided with it. Captions are burned in for the voice-over
+lines the screen doesn't already carry. They are off for the cold
 open, the title, the place dateline, "and shows the reason in its place" (the Withheld card says it), the
 gate's last line, the decision and the close.
 
@@ -199,6 +206,10 @@ npm --prefix video run sheet                      # video/out/contact-sheet.png,
 npm --prefix video run studio                     # Remotion Studio, to scrub and edit
 ```
 
+Remotion pipes JPEG frames, so its H.264 comes out tagged full range (yuvj420p). A full render therefore
+ends with one re-encode to limited-range yuv420p (`--keep-range` skips it); patch renders are left as they
+are, because the splice re-encodes the whole cut anyway.
+
 What the capture does (`video/capture/capture.mjs`): it opens each page at 1920x1080, finds controls by
 their accessible names (so a redesigned UI still captures; a missing control is logged and skipped), and
 records:
@@ -207,15 +218,17 @@ records:
 |---|---|---|---|---|
 | `twin` | `/twin` | 12.6 s | 4x, Oblique, Play; then Along Lankershim at 4 s, Plan at 8.5 s | Digital twin |
 | `command` | `/` | 10 s | The page fits one screen; its camera-tracks replay keeps running | Withheld |
-| `evidence` | `/evidence` | 7 s | Glides from the top of the gate table toward the decision | Evidence |
-| `analytics` | `/analytics` | 8.5 s | Glides to "Turning movements" | Analytics |
+| `evidence` | `/evidence` | 11 s | Glides the gate table up, then slowly toward the decision; the scene uses 4.5 s to 10.9 s | Evidence |
+| `analytics` | `/analytics` | 13 s | Glides to "Turning movements"; the scene uses 5 s to 12.4 s | Analytics |
 | `vision` | `/vision` | 12 s | 15-minute study: Tracks, Play | Camera lane |
 | `sam` | `/vision` | screencast only | The SAM 3.1 window: Masks, Play | Camera lane, if `vision` is missing |
 
+With `--screencast` the 2D clips run 14 to 18 s (the same moves in real time, with pauses).
+
 Frame-stepped means the page runs on virtual time (`performance.now`, `Date.now` and
 `requestAnimationFrame`), advanced 1/30 s per screenshot, so the clip plays at true speed and stays smooth
-however slow the machine is; on a busy 4-core machine it costs about a second per frame for the twin and
-for the 2D pages alike. `--screencast` records the 2D pages through the DevTools screencast in real time
+however slow the machine is; on a busy 4-core machine it costs one to three seconds per frame, for the twin
+and for the 2D pages alike. `--screencast` records the 2D pages through the DevTools screencast in real time
 instead (each clip takes its own length plus encoding), at whatever frame rate the machine manages; the
 twin is always frame-stepped. `CAPTURE_OUT` and `CAPTURE_WORK` send the clips and their frames elsewhere,
 for a trial capture while a render is reading `video/public/captures`.

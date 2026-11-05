@@ -287,8 +287,8 @@ export function Twin({ dur, captures }: SceneProps) {
   return (
     <SceneFade dur={dur}>
       <Screen clip={captures.twin} label="Digital Twin" dur={dur} frameless zoomFrom={1.0} zoomTo={1.05} />
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 78%, rgba(10,12,14,0.85) 100%)" }} />
-      <SourceTag at={6}>Digital twin · 4× · one clock</SourceTag>
+      {/* Dark under the caption, so it never sits on the app's own bottom strip. */}
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 70%, rgba(10,12,14,0.94) 88%)" }} />
     </SceneFade>
   );
 }
@@ -300,8 +300,8 @@ export function Analytics({ dur, captures }: SceneProps) {
       {/* A gentle push toward the lower-left quarter, where the turning diagram sits; kept mild so a
           redesigned page still frames well. */}
       <Screen clip={captures.analytics} label="Analytics" dur={dur} frameless zoomFrom={1.02} zoomTo={1.16} originX={35} originY={62} startAt={150} />
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 78%, rgba(10,12,14,0.85) 100%)" }} />
-      <SourceTag at={4}>Analytics · turning movements</SourceTag>
+      {/* Dark under the caption, so it never sits on the app's own bottom strip. */}
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 70%, rgba(10,12,14,0.94) 88%)" }} />
     </SceneFade>
   );
 }
@@ -424,7 +424,6 @@ export function Withheld({ dur, captures }: SceneProps) {
     <SceneFade dur={dur}>
       <Screen clip={captures.command} label="Command center" dur={dur} frameless zoomFrom={1.02} zoomTo={1.16} originX={6} originY={62} />
       <AbsoluteFill style={{ background: "linear-gradient(90deg, transparent 40%, rgba(10,12,14,0.9) 75%)" }} />
-      <SourceTag at={4}>Command center</SourceTag>
       <div
         style={{
           position: "absolute",
@@ -459,9 +458,9 @@ export function Evidence({ dur, captures }: SceneProps) {
   const statuses = ["checked", "approximated", "assumed", "ungated", "simulated", "model"] as const;
   return (
     <SceneFade dur={dur}>
-      <Screen clip={captures.evidence} label="Evidence" dur={dur} frameless zoomFrom={1.0} zoomTo={1.04} />
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 70%, rgba(10,12,14,0.92) 100%)" }} />
-      <SourceTag at={4}>Evidence · every figure</SourceTag>
+      {/* Starts 4.5 s into the clip, once the page has scrolled the whole gate table above the key's band. */}
+      <Screen clip={captures.evidence} label="Evidence" dur={dur} frameless zoomFrom={1.0} zoomTo={1.04} startAt={135} />
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.7) 0%, transparent 18%, transparent 64%, rgba(10,12,14,0.96) 78%, rgba(10,12,14,0.96) 100%)" }} />
       <div style={{ position: "absolute", left: M, bottom: 200, display: "flex", gap: 44 }}>
         {statuses.map((s, i) => (
           <Rise key={s} at={20 + i * 6}>
@@ -502,7 +501,8 @@ export function Muse({ dur }: SceneProps) {
         const appear = prog(frame, 176 + i * 8, 12);
         const fly = prog(frame, 290 + i * 20, 22, easeInOut);
         const target = MUSE.evidence.indexOf(id);
-        const x0 = M + i * 262;
+        // Mono 20 px is about 12 px a character; 24 px padding and a 28 px gap between chips.
+        const x0 = M + MUSE.supporting.slice(0, i).reduce((sum, prev) => sum + prev.length * 12 + 24 + 28, 0);
         const y0 = chipY;
         const x1 = listX - 14;
         const y1 = listY + 60 + target * rowH - 6;
